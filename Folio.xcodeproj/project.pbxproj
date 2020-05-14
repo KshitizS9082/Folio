@@ -15,6 +15,18 @@
 		E252B055246C4044003F8718 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E252B053246C4044003F8718 /* LaunchScreen.storyboard */; };
 		E252B060246C4044003F8718 /* FolioTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E252B05F246C4044003F8718 /* FolioTests.swift */; };
 		E252B06B246C4044003F8718 /* FolioUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E252B06A246C4044003F8718 /* FolioUITests.swift */; };
+		E252B07C246C44DF003F8718 /* textViewPlaceholder.swift in Sources */ = {isa = PBXBuildFile; fileRef = E252B079246C44DF003F8718 /* textViewPlaceholder.swift */; };
+		E252B07D246C44DF003F8718 /* removeAllConstraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = E252B07A246C44DF003F8718 /* removeAllConstraints.swift */; };
+		E252B07E246C44DF003F8718 /* UnderlinedTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E252B07B246C44DF003F8718 /* UnderlinedTextView.swift */; };
+		E252B081246C45C0003F8718 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = E252B080246C45BF003F8718 /* Card.swift */; };
+		E252B083246C45E6003F8718 /* checkListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = E252B082246C45E5003F8718 /* checkListItem.swift */; };
+		E252B085246C45F2003F8718 /* MediaCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = E252B084246C45F2003F8718 /* MediaCard.swift */; };
+		E252B087246C4601003F8718 /* PageData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E252B086246C4601003F8718 /* PageData.swift */; };
+		E252B089246C4620003F8718 /* smallCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = E252B088246C4620003F8718 /* smallCard.swift */; };
+		E252B08C246C4681003F8718 /* PageListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E252B08B246C4681003F8718 /* PageListViewController.swift */; };
+		E252B08E246C4AD7003F8718 /* SwitchPageTimelineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E252B08D246C4AD7003F8718 /* SwitchPageTimelineViewController.swift */; };
+		E252B090246C4E6D003F8718 /* PageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E252B08F246C4E6D003F8718 /* PageViewController.swift */; };
+		E252B092246C4E79003F8718 /* TimelineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E252B091246C4E79003F8718 /* TimelineViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +61,18 @@
 		E252B066246C4044003F8718 /* FolioUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FolioUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E252B06A246C4044003F8718 /* FolioUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolioUITests.swift; sourceTree = "<group>"; };
 		E252B06C246C4044003F8718 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E252B079246C44DF003F8718 /* textViewPlaceholder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = textViewPlaceholder.swift; sourceTree = "<group>"; };
+		E252B07A246C44DF003F8718 /* removeAllConstraints.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = removeAllConstraints.swift; sourceTree = "<group>"; };
+		E252B07B246C44DF003F8718 /* UnderlinedTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnderlinedTextView.swift; sourceTree = "<group>"; };
+		E252B080246C45BF003F8718 /* Card.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
+		E252B082246C45E5003F8718 /* checkListItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = checkListItem.swift; sourceTree = "<group>"; };
+		E252B084246C45F2003F8718 /* MediaCard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediaCard.swift; sourceTree = "<group>"; };
+		E252B086246C4601003F8718 /* PageData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageData.swift; sourceTree = "<group>"; };
+		E252B088246C4620003F8718 /* smallCard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = smallCard.swift; sourceTree = "<group>"; };
+		E252B08B246C4681003F8718 /* PageListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageListViewController.swift; sourceTree = "<group>"; };
+		E252B08D246C4AD7003F8718 /* SwitchPageTimelineViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchPageTimelineViewController.swift; sourceTree = "<group>"; };
+		E252B08F246C4E6D003F8718 /* PageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageViewController.swift; sourceTree = "<group>"; };
+		E252B091246C4E79003F8718 /* TimelineViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,12 +123,16 @@
 		E252B047246C4041003F8718 /* Folio */ = {
 			isa = PBXGroup;
 			children = (
-				E252B048246C4041003F8718 /* AppDelegate.swift */,
-				E252B04A246C4041003F8718 /* SceneDelegate.swift */,
 				E252B04C246C4041003F8718 /* ViewController.swift */,
 				E252B04E246C4041003F8718 /* Main.storyboard */,
+				E252B08B246C4681003F8718 /* PageListViewController.swift */,
+				E252B08D246C4AD7003F8718 /* SwitchPageTimelineViewController.swift */,
+				E252B08F246C4E6D003F8718 /* PageViewController.swift */,
+				E252B091246C4E79003F8718 /* TimelineViewController.swift */,
+				E252B08A246C4640003F8718 /* Model */,
+				E252B07F246C44E7003F8718 /* Extensions */,
+				E252B078246C4055003F8718 /* Supporters */,
 				E252B051246C4044003F8718 /* Assets.xcassets */,
-				E252B053246C4044003F8718 /* LaunchScreen.storyboard */,
 				E252B056246C4044003F8718 /* Info.plist */,
 			);
 			path = Folio;
@@ -126,6 +154,38 @@
 				E252B06C246C4044003F8718 /* Info.plist */,
 			);
 			path = FolioUITests;
+			sourceTree = "<group>";
+		};
+		E252B078246C4055003F8718 /* Supporters */ = {
+			isa = PBXGroup;
+			children = (
+				E252B048246C4041003F8718 /* AppDelegate.swift */,
+				E252B04A246C4041003F8718 /* SceneDelegate.swift */,
+				E252B053246C4044003F8718 /* LaunchScreen.storyboard */,
+			);
+			path = Supporters;
+			sourceTree = "<group>";
+		};
+		E252B07F246C44E7003F8718 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				E252B07A246C44DF003F8718 /* removeAllConstraints.swift */,
+				E252B079246C44DF003F8718 /* textViewPlaceholder.swift */,
+				E252B07B246C44DF003F8718 /* UnderlinedTextView.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		E252B08A246C4640003F8718 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				E252B086246C4601003F8718 /* PageData.swift */,
+				E252B080246C45BF003F8718 /* Card.swift */,
+				E252B088246C4620003F8718 /* smallCard.swift */,
+				E252B082246C45E5003F8718 /* checkListItem.swift */,
+				E252B084246C45F2003F8718 /* MediaCard.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -260,8 +320,20 @@
 			buildActionMask = 2147483647;
 			files = (
 				E252B04D246C4041003F8718 /* ViewController.swift in Sources */,
+				E252B090246C4E6D003F8718 /* PageViewController.swift in Sources */,
+				E252B08E246C4AD7003F8718 /* SwitchPageTimelineViewController.swift in Sources */,
 				E252B049246C4041003F8718 /* AppDelegate.swift in Sources */,
+				E252B087246C4601003F8718 /* PageData.swift in Sources */,
+				E252B08C246C4681003F8718 /* PageListViewController.swift in Sources */,
+				E252B081246C45C0003F8718 /* Card.swift in Sources */,
+				E252B085246C45F2003F8718 /* MediaCard.swift in Sources */,
+				E252B07D246C44DF003F8718 /* removeAllConstraints.swift in Sources */,
 				E252B04B246C4041003F8718 /* SceneDelegate.swift in Sources */,
+				E252B07C246C44DF003F8718 /* textViewPlaceholder.swift in Sources */,
+				E252B07E246C44DF003F8718 /* UnderlinedTextView.swift in Sources */,
+				E252B083246C45E6003F8718 /* checkListItem.swift in Sources */,
+				E252B089246C4620003F8718 /* smallCard.swift in Sources */,
+				E252B092246C4E79003F8718 /* TimelineViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
