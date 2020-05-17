@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import PencilKit
+//import PencilKit
 
 struct Card: Codable {
     var UniquIdentifier: UUID?
@@ -20,9 +20,9 @@ struct Card: Codable {
     var isCompleted: Bool = false
     var Heading: String? = nil
     var notes: String = ""
-//    var savedpkDrawing = PKDrawing()
-    var savedPKData = Data()
-//    var savedpkDrawing: Data?
+
+//    var savedPKData = Data()
+
     var time : Date? = nil
     var endTime : Date? = nil
     var reminder: Date? = nil//Design
