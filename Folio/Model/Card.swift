@@ -21,7 +21,7 @@ struct Card: Codable {
     var Heading: String? = nil
     var notes: String = ""
 
-//    var savedPKData = Data()
+    var savedPKData = Data()
 
     var time : Date? = nil
     var endTime : Date? = nil

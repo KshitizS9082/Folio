@@ -31,6 +31,12 @@
 		E252B090246C4E6D003F8718 /* PageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E252B08F246C4E6D003F8718 /* PageViewController.swift */; };
 		E252B092246C4E79003F8718 /* TimelineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E252B091246C4E79003F8718 /* TimelineViewController.swift */; };
 		E252B094246CEE55003F8718 /* PageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E252B093246CEE55003F8718 /* PageView.swift */; };
+		E25BA4E924714CBD000D1DF7 /* SmallCardDatePickerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E25BA4E424714CBC000D1DF7 /* SmallCardDatePickerTableViewCell.swift */; };
+		E25BA4EA24714CBD000D1DF7 /* smallCardTitleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E25BA4E524714CBC000D1DF7 /* smallCardTitleTableViewCell.swift */; };
+		E25BA4EB24714CBD000D1DF7 /* smallCardTitleTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E25BA4E624714CBC000D1DF7 /* smallCardTitleTableViewCell.xib */; };
+		E25BA4EC24714CBD000D1DF7 /* SmallCardDatePickerTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E25BA4E724714CBC000D1DF7 /* SmallCardDatePickerTableViewCell.xib */; };
+		E25BA4F024715A29000D1DF7 /* cardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E25BA4EF24715A29000D1DF7 /* cardView.swift */; };
+		E25BA4F224716130000D1DF7 /* SmallCardInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E25BA4F12471612F000D1DF7 /* SmallCardInfoViewController.swift */; };
 		E269476524702D0900F9E21F /* UITextView+Expanding.swift in Sources */ = {isa = PBXBuildFile; fileRef = E269476424702D0900F9E21F /* UITextView+Expanding.swift */; };
 		E26947672470320B00F9E21F /* SmallCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E26947662470320B00F9E21F /* SmallCardView.swift */; };
 /* End PBXBuildFile section */
@@ -87,6 +93,12 @@
 		E252B08F246C4E6D003F8718 /* PageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageViewController.swift; sourceTree = "<group>"; };
 		E252B091246C4E79003F8718 /* TimelineViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineViewController.swift; sourceTree = "<group>"; };
 		E252B093246CEE55003F8718 /* PageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageView.swift; sourceTree = "<group>"; };
+		E25BA4E424714CBC000D1DF7 /* SmallCardDatePickerTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SmallCardDatePickerTableViewCell.swift; sourceTree = "<group>"; };
+		E25BA4E524714CBC000D1DF7 /* smallCardTitleTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = smallCardTitleTableViewCell.swift; sourceTree = "<group>"; };
+		E25BA4E624714CBC000D1DF7 /* smallCardTitleTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = smallCardTitleTableViewCell.xib; sourceTree = "<group>"; };
+		E25BA4E724714CBC000D1DF7 /* SmallCardDatePickerTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SmallCardDatePickerTableViewCell.xib; sourceTree = "<group>"; };
+		E25BA4EF24715A29000D1DF7 /* cardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = cardView.swift; sourceTree = "<group>"; };
+		E25BA4F12471612F000D1DF7 /* SmallCardInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SmallCardInfoViewController.swift; sourceTree = "<group>"; };
 		E269476424702D0900F9E21F /* UITextView+Expanding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITextView+Expanding.swift"; sourceTree = "<group>"; };
 		E26947662470320B00F9E21F /* SmallCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmallCardView.swift; sourceTree = "<group>"; };
 		F32C815244D1C255A7FDD23A /* Pods_Folio.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Folio.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -176,8 +188,9 @@
 				E252B08F246C4E6D003F8718 /* PageViewController.swift */,
 				E252B093246CEE55003F8718 /* PageView.swift */,
 				E252B091246C4E79003F8718 /* TimelineViewController.swift */,
-				E269475D2470276F00F9E21F /* Small Card Items */,
+				E25BA4EE247159E2000D1DF7 /* Big Card Items */,
 				E252B08A246C4640003F8718 /* Model */,
+				E269475D2470276F00F9E21F /* Small Card Items */,
 				E252B07F246C44E7003F8718 /* Extensions */,
 				E252B078246C4055003F8718 /* Supporters */,
 				E252B051246C4044003F8718 /* Assets.xcassets */,
@@ -237,10 +250,23 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		E25BA4EE247159E2000D1DF7 /* Big Card Items */ = {
+			isa = PBXGroup;
+			children = (
+				E25BA4EF24715A29000D1DF7 /* cardView.swift */,
+			);
+			path = "Big Card Items";
+			sourceTree = "<group>";
+		};
 		E269475D2470276F00F9E21F /* Small Card Items */ = {
 			isa = PBXGroup;
 			children = (
 				E26947662470320B00F9E21F /* SmallCardView.swift */,
+				E25BA4F12471612F000D1DF7 /* SmallCardInfoViewController.swift */,
+				E25BA4E424714CBC000D1DF7 /* SmallCardDatePickerTableViewCell.swift */,
+				E25BA4E724714CBC000D1DF7 /* SmallCardDatePickerTableViewCell.xib */,
+				E25BA4E524714CBC000D1DF7 /* smallCardTitleTableViewCell.swift */,
+				E25BA4E624714CBC000D1DF7 /* smallCardTitleTableViewCell.xib */,
 			);
 			path = "Small Card Items";
 			sourceTree = "<group>";
@@ -354,7 +380,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E25BA4EB24714CBD000D1DF7 /* smallCardTitleTableViewCell.xib in Resources */,
 				E252B055246C4044003F8718 /* LaunchScreen.storyboard in Resources */,
+				E25BA4EC24714CBD000D1DF7 /* SmallCardDatePickerTableViewCell.xib in Resources */,
 				E252B052246C4044003F8718 /* Assets.xcassets in Resources */,
 				E252B050246C4041003F8718 /* Main.storyboard in Resources */,
 			);
@@ -484,18 +512,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E25BA4F024715A29000D1DF7 /* cardView.swift in Sources */,
 				E252B04D246C4041003F8718 /* ViewController.swift in Sources */,
 				E252B094246CEE55003F8718 /* PageView.swift in Sources */,
 				E252B090246C4E6D003F8718 /* PageViewController.swift in Sources */,
+				E25BA4F224716130000D1DF7 /* SmallCardInfoViewController.swift in Sources */,
 				E252B08E246C4AD7003F8718 /* SwitchPageTimelineViewController.swift in Sources */,
 				E252B049246C4041003F8718 /* AppDelegate.swift in Sources */,
 				E252B087246C4601003F8718 /* PageData.swift in Sources */,
 				E252B08C246C4681003F8718 /* PageListViewController.swift in Sources */,
 				E252B081246C45C0003F8718 /* Card.swift in Sources */,
+				E25BA4EA24714CBD000D1DF7 /* smallCardTitleTableViewCell.swift in Sources */,
 				E269476524702D0900F9E21F /* UITextView+Expanding.swift in Sources */,
 				E252B085246C45F2003F8718 /* MediaCard.swift in Sources */,
 				E26947672470320B00F9E21F /* SmallCardView.swift in Sources */,
 				E252B07D246C44DF003F8718 /* removeAllConstraints.swift in Sources */,
+				E25BA4E924714CBD000D1DF7 /* SmallCardDatePickerTableViewCell.swift in Sources */,
 				E252B04B246C4041003F8718 /* SceneDelegate.swift in Sources */,
 				E252B07C246C44DF003F8718 /* textViewPlaceholder.swift in Sources */,
 				E252B07E246C44DF003F8718 /* UnderlinedTextView.swift in Sources */,

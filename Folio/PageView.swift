@@ -28,8 +28,23 @@ protocol SCardProtocol {
 class PageView: UIView {
     var page=PageData()
     var currentTask = pageViewCurrentTask.noneOfAbove
-    override func layoutSubviews() {
-//        self.isExclusiveTouch=false
+    var pageDelegate: pageProtocol?
+    var myViewController: PageViewController?
+
+    // MARK: - Initialization
+
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        setup()
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        setup()
+    }
+    
+    private func setup() {
+        addInteraction(UIDropInteraction(delegate: self))
     }
     override func draw(_ rect: CGRect) {
 //        let roundedRect = UIBezierPath(roundedRect: bounds, cornerRadius: pageCornerRadius)
@@ -58,20 +73,20 @@ class PageView: UIView {
         }
     }
     func addSmallCard(centeredAt point: CGPoint){
-//        if let nib = Bundle.main.loadNibNamed("SmallCardView", owner: self),
-//            let nibView = nib.first as? UIView {
-//            let newFrame = CGRect(origin: CGPoint(x: max(0, point.x-(smallCardWidth/2)), y: max(0,point.y-(smallCardHeight/2))), size: CGSize(width: smallCardWidth, height: smallCardHeight))
-//            nibView.frame = newFrame
-//            nibView.autoresizingMask = [.flexibleHeight]
-//            self.addSubview(nibView)
-//            print("view bounds = \(self.bounds), newviewframe = \(nibView.frame)")
-//        }
-//        setNeedsDisplay()
-        
         let newFrame = CGRect(origin: CGPoint(x: max(0, point.x-(smallCardWidth/2)), y: max(0,point.y-(smallCardHeight/2))), size: CGSize(width: smallCardWidth, height: smallCardHeight))
         let nv = SmallCardView(frame: newFrame)
+        nv.pageDelegate=myViewController
         nv.isUserInteractionEnabled=true
         self.addSubview(nv)
+        self.currentTask = .noneOfAbove
+    }
+    func addBigCard(centeredAt point: CGPoint){
+        let newFrame = CGRect(origin: CGPoint(x: max(0, point.x-(smallCardWidth/2)), y: max(0,point.y-(smallCardHeight/2))), size: CGSize(width: smallCardWidth, height: smallCardHeight))
+        let nv = cardView(frame: newFrame)
+        nv.pageDelegate=myViewController
+        nv.isUserInteractionEnabled=true
+        self.addSubview(nv)
+        self.currentTask = .noneOfAbove
     }
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
          guard let point = touches.first?.location(in: self) else { return }
@@ -81,6 +96,7 @@ class PageView: UIView {
             self.addSmallCard(centeredAt: point)
         case .addCard:
             print("addCard")
+            self.addBigCard(centeredAt: point)
         case .drawLines:
             print("drawLines")
         case .delete:
@@ -111,5 +127,34 @@ extension PageView{
     }
     var smallCardHeight: CGFloat{
         return 150
+    }
+}
+extension PageView: UIDropInteractionDelegate{
+    func dropInteraction(_ interaction: UIDropInteraction, canHandle session: UIDropSession) -> Bool {
+        return session.canLoadObjects(ofClass: NSString.self)
+    }
+    func dropInteraction(_ interaction: UIDropInteraction, sessionDidUpdate session: UIDropSession) -> UIDropProposal {
+        return UIDropProposal(operation: .copy)
+    }
+    func dropInteraction(_ interaction: UIDropInteraction, performDrop session: UIDropSession) {
+        session.loadObjects(ofClass: NSAttributedString.self) { providers in
+            let dropPoint = session.location(in: self)
+            print("point= \(dropPoint)")
+            for attributedString in providers as? [NSAttributedString] ?? [] {
+                print(attributedString.string)
+                switch attributedString.string {
+                case "Big Card":
+                    self.addBigCard(centeredAt: dropPoint)
+                case "Small Card":
+                    self.addSmallCard(centeredAt: dropPoint)
+                    //                case "Add Image":
+                    //                    self.addImageCard(with: attributedString, centeredAt: dropPoint)
+                    //                case "Media Card":
+                //                    self.addMediaCard(with: attributedString, centeredAt: dropPoint)
+                default:
+                    print("handled a string with value not the one we conform to as a card")
+                }
+            }
+        }
     }
 }
