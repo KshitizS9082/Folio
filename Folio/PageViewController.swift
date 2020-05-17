@@ -165,13 +165,43 @@ extension PageViewController: UIDragInteractionDelegate{
 extension PageViewController: pageProtocol{
     func showFullCardView(for cardView: cardView) {
         print("inside showFullCardView")
+        switch cardView.card.type {
+        case .CheckList:
+            print("Checklist")
+            showFullCheckListView(for: cardView)
+        case .Notes:
+            print("notes")
+            showFullNotesView(for: cardView)
+        case .Drawing:
+            print("Drawing")
+            showFullDrawingView(for: cardView)
+        }
+        
+        cardView.layoutSubviews()//Check if required
     }
     
     func showCardEditView(for cardView: cardView) {
-         print("inside showCardEditView")
+        print("inside showCardEditView")
+        let controller = EditCardViewController()
+        let transitionDelegate = SPStorkTransitioningDelegate()
+        transitionDelegate.customHeight = 500
+        transitionDelegate.showIndicator = true
+        transitionDelegate.indicatorColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
+        transitionDelegate.indicatorMode = .auto
+        transitionDelegate.hideIndicatorWhenScroll = true
+        transitionDelegate.showCloseButton = true
+        transitionDelegate.swipeToDismissEnabled = true
+        transitionDelegate.tapAroundToDismissEnabled = true
+        controller.transitioningDelegate = transitionDelegate
+        controller.modalPresentationStyle = .custom
+        controller.modalPresentationCapturesStatusBarAppearance = true
+        transitionDelegate.hapticMoments = [.willPresent, .willDismiss]
+        transitionDelegate.cornerRadius = 10
+        controller.card=cardView.card
+        controller.viewLinkedTo=cardView
+        self.present(controller, animated: true, completion: nil)
         
     }
-    
     
     func resizeCard(for cardView: UIView){
         var maxy = CGFloat(0)
@@ -211,5 +241,70 @@ extension PageViewController: pageProtocol{
         print("yet to implement changeContentSize")
     }
     
-    
+    private func showFullDrawingView(for cardView: cardView){
+        let controller = drawingCardFullViewController()
+        let transitionDelegate = SPStorkTransitioningDelegate()
+        transitionDelegate.customHeight = 800
+        transitionDelegate.showIndicator = true
+        transitionDelegate.indicatorColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
+        transitionDelegate.indicatorMode = .auto
+        transitionDelegate.hideIndicatorWhenScroll = true
+        transitionDelegate.showCloseButton = true
+        transitionDelegate.swipeToDismissEnabled = false
+        transitionDelegate.tapAroundToDismissEnabled = true
+        controller.transitioningDelegate = transitionDelegate
+        controller.modalPresentationStyle = .custom
+        controller.modalPresentationCapturesStatusBarAppearance = true
+        transitionDelegate.hapticMoments = [.willPresent, .willDismiss]
+        transitionDelegate.cornerRadius = 10
+        transitionDelegate.storkDelegate = controller
+        controller.card=cardView.card
+        controller.isEditing = true
+        controller.viewLinkedTo=cardView
+        self.present(controller, animated: true, completion: nil)
+    }
+    private func showFullNotesView(for cardView: cardView){
+        let controller = NotesFullViewController()
+        let transitionDelegate = SPStorkTransitioningDelegate()
+        transitionDelegate.customHeight = self.view.bounds.height * 0.7
+        transitionDelegate.showIndicator = true
+        transitionDelegate.indicatorColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
+        transitionDelegate.indicatorMode = .auto
+        transitionDelegate.hideIndicatorWhenScroll = true
+        transitionDelegate.showCloseButton = true
+        transitionDelegate.swipeToDismissEnabled = false
+        transitionDelegate.tapAroundToDismissEnabled = true
+        controller.transitioningDelegate = transitionDelegate
+        controller.modalPresentationStyle = .custom
+        controller.modalPresentationCapturesStatusBarAppearance = true
+        transitionDelegate.hapticMoments = [.willPresent, .willDismiss]
+        transitionDelegate.cornerRadius = 10
+        transitionDelegate.storkDelegate = controller
+        controller.card=cardView.card
+        controller.viewLinkedTo=cardView
+//        controller.delegate = self
+        self.present(controller, animated: true, completion: nil)
+    }
+    private func showFullCheckListView(for cardView: cardView){
+        let controller = checkListFullViewController()
+        let transitionDelegate = SPStorkTransitioningDelegate()
+        transitionDelegate.customHeight = 800
+        transitionDelegate.showIndicator = true
+        transitionDelegate.indicatorColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
+        transitionDelegate.indicatorMode = .auto
+        transitionDelegate.hideIndicatorWhenScroll = true
+        transitionDelegate.showCloseButton = true
+        transitionDelegate.swipeToDismissEnabled = false
+        transitionDelegate.tapAroundToDismissEnabled = true
+        controller.transitioningDelegate = transitionDelegate
+        controller.modalPresentationStyle = .custom
+        controller.modalPresentationCapturesStatusBarAppearance = true
+        transitionDelegate.hapticMoments = [.willPresent, .willDismiss]
+        transitionDelegate.cornerRadius = 10
+        transitionDelegate.storkDelegate = controller
+        controller.card=cardView.card
+        controller.viewLinkedTo=cardView
+//        controller.delegate = self
+        self.present(controller, animated: true, completion: nil)
+    }
 }

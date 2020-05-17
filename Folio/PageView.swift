@@ -81,7 +81,7 @@ class PageView: UIView {
         self.currentTask = .noneOfAbove
     }
     func addBigCard(centeredAt point: CGPoint){
-        let newFrame = CGRect(origin: CGPoint(x: max(0, point.x-(smallCardWidth/2)), y: max(0,point.y-(smallCardHeight/2))), size: CGSize(width: smallCardWidth, height: smallCardHeight))
+        let newFrame = CGRect(origin: CGPoint(x: max(0, point.x-(bigCardWidth/2)), y: max(0,point.y-(bigCardHeight/2))), size: CGSize(width: bigCardWidth, height: bigCardHeight))
         let nv = cardView(frame: newFrame)
         nv.pageDelegate=myViewController
         nv.isUserInteractionEnabled=true
@@ -127,6 +127,12 @@ extension PageView{
     }
     var smallCardHeight: CGFloat{
         return 150
+    }
+    var bigCardWidth: CGFloat{
+        return 300
+    }
+    var bigCardHeight: CGFloat{
+        return 200
     }
 }
 extension PageView: UIDropInteractionDelegate{

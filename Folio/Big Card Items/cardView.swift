@@ -174,7 +174,7 @@ class cardView: UIView, UITextFieldDelegate, UITableViewDataSource {
         pageDelegate?.showFullCardView(for: self)
     }
     @objc private func handleTapEditMenu(){
-        pageDelegate?.showFullCardView(for: self)
+        pageDelegate?.showCardEditView(for: self)
     }
     @objc private func handleResizeBounds(){
         print("in handlre resize bounds")
