@@ -49,6 +49,7 @@
 		E25BA50924721F93000D1DF7 /* SCardCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E25BA50324721F92000D1DF7 /* SCardCollectionViewCell.swift */; };
 		E25BA50A24721F93000D1DF7 /* Extensions0.swift in Sources */ = {isa = PBXBuildFile; fileRef = E25BA50424721F92000D1DF7 /* Extensions0.swift */; };
 		E25BA50B24721F93000D1DF7 /* GalleryFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = E25BA50524721F93000D1DF7 /* GalleryFlowLayout.swift */; };
+		E25BA50D2472285F000D1DF7 /* pickImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E25BA50C2472285F000D1DF7 /* pickImage.swift */; };
 		E269476524702D0900F9E21F /* UITextView+Expanding.swift in Sources */ = {isa = PBXBuildFile; fileRef = E269476424702D0900F9E21F /* UITextView+Expanding.swift */; };
 		E26947672470320B00F9E21F /* SmallCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E26947662470320B00F9E21F /* SmallCardView.swift */; };
 /* End PBXBuildFile section */
@@ -123,6 +124,7 @@
 		E25BA50324721F92000D1DF7 /* SCardCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SCardCollectionViewCell.swift; sourceTree = "<group>"; };
 		E25BA50424721F92000D1DF7 /* Extensions0.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions0.swift; sourceTree = "<group>"; };
 		E25BA50524721F93000D1DF7 /* GalleryFlowLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GalleryFlowLayout.swift; sourceTree = "<group>"; };
+		E25BA50C2472285F000D1DF7 /* pickImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = pickImage.swift; sourceTree = "<group>"; };
 		E269476424702D0900F9E21F /* UITextView+Expanding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITextView+Expanding.swift"; sourceTree = "<group>"; };
 		E26947662470320B00F9E21F /* SmallCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmallCardView.swift; sourceTree = "<group>"; };
 		F32C815244D1C255A7FDD23A /* Pods_Folio.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Folio.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -295,6 +297,7 @@
 				E25BA50424721F92000D1DF7 /* Extensions0.swift */,
 				E25BA50524721F93000D1DF7 /* GalleryFlowLayout.swift */,
 				E25BA50224721F92000D1DF7 /* GalleryViewController.swift */,
+				E25BA50C2472285F000D1DF7 /* pickImage.swift */,
 				E25BA50324721F92000D1DF7 /* SCardCollectionViewCell.swift */,
 				E25BA50124721F92000D1DF7 /* SCardCollectionViewCell.xib */,
 				E25BA50024721F91000D1DF7 /* ThumbCell.swift */,
@@ -565,6 +568,7 @@
 				E252B08E246C4AD7003F8718 /* SwitchPageTimelineViewController.swift in Sources */,
 				E252B049246C4041003F8718 /* AppDelegate.swift in Sources */,
 				E252B087246C4601003F8718 /* PageData.swift in Sources */,
+				E25BA50D2472285F000D1DF7 /* pickImage.swift in Sources */,
 				E252B08C246C4681003F8718 /* PageListViewController.swift in Sources */,
 				E252B081246C45C0003F8718 /* Card.swift in Sources */,
 				E25BA4EA24714CBD000D1DF7 /* smallCardTitleTableViewCell.swift in Sources */,

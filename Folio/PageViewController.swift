@@ -327,6 +327,7 @@ extension PageViewController: pageProtocol{
         }
         print("WARNING: COULDN'T inserted image in pagedata")
     }
+    //TODO: optimise as animation very laggy for now
     func showMedias(for cardView: MediaCardView) {
         print("yet to implement show medias")
         var images = [UIImage]()
@@ -334,13 +335,12 @@ extension PageViewController: pageProtocol{
              //MARK: media dat to img conversion
             if let im = UIImage(data: dat){
                 images.append(im)
-                for i in 0...4{
-                    images.append(im)
-                }
             }
         }
         let vc = WithImagesViewController()
         vc.images=images
+        vc.viewLinkedTo=cardView
+        vc.myViewController=self
         //If want to have a fixed
         //presentAsStork(vc, height: view.bounds.height, showIndicator: true, showCloseButton: false, complection: nil)
         self.present(vc, animated: true, completion: nil)

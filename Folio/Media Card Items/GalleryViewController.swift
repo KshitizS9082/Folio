@@ -13,6 +13,8 @@ import SPFakeBar
 class WithImagesViewController:UIViewController {
 
     var images = [UIImage]()
+    var viewLinkedTo:MediaCardView?
+    var myViewController: PageViewController?
     
     lazy var layout = GalleryFlowLayout()
     let navBar = SPFakeBarView(style: .noContent)
@@ -27,7 +29,18 @@ class WithImagesViewController:UIViewController {
         cv.dataSource = self
         return cv
     }()
-    
+    @objc func addImage(){
+        print("now have to add image")
+        pickImage().pickImage(self) { (image) in
+            self.images.append(image)
+//            self.collectionView.reloadItems(at: [
+//                IndexPath(row: self.images.count-2, section: 1),
+//                IndexPath(row: self.images.count-2, section: 1)])
+            self.collectionView.reloadData()
+            self.viewLinkedTo?.card.mediaData.append(image.pngData()!)
+            self.viewLinkedTo?.layoutSubviews()
+        }
+    }
     
     override func loadView() {
         super.loadView()
@@ -80,6 +93,16 @@ class WithImagesViewController:UIViewController {
         with coordinator: UIViewControllerTransitionCoordinator) {
         updateLayout(size)
     }
+    override func viewWillDisappear(_ animated: Bool) {
+        //TODO: check if needs to be implemented
+//        var imgDat = [Data]()
+//        for img in images{
+//            imgDat.append(img.pngData()!)
+//        }
+//        viewLinkedTo?.card.mediaData=imgDat
+//        viewLinkedTo?.layoutSubviews()
+    }
+//    viewdi
 }
 
 extension WithImagesViewController:UICollectionViewDataSource {
@@ -91,7 +114,7 @@ extension WithImagesViewController:UICollectionViewDataSource {
     func collectionView(
         _ collectionView: UICollectionView,
         numberOfItemsInSection section: Int) -> Int {
-        return images.count
+        return images.count+1
     }
     
     func collectionView(
@@ -101,14 +124,18 @@ extension WithImagesViewController:UICollectionViewDataSource {
         let cell:ThumbCell = collectionView
             .dequeueReusableCell(withReuseIdentifier: ThumbCell.reuseIdentifier,
                                  for: indexPath) as! ThumbCell
-        cell.imageView.image = images[indexPath.item]
         cell.layer.cornerRadius=cellCornerRadius
         cell.layer.masksToBounds=true
-        // Setup Image Viewer with [UIImage]
-        cell.imageView.setupImageViewer(
-            images: images,
-            initialIndex: indexPath.item)
-        
+        if indexPath.item<images.count{
+            cell.imageView.image = images[indexPath.item]
+            // Setup Image Viewer with [UIImage]
+            cell.imageView.setupImageViewer(
+                images: images,
+                initialIndex: indexPath.item)
+        }else{
+            cell.imageView.image = UIImage(systemName: "plus")
+            cell.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(addImage)))
+        }
         return cell
     }
 }

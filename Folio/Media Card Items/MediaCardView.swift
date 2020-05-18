@@ -69,6 +69,21 @@ class MediaCardView: UIView {
                 break
             }
         }
+//        if card.mediaData.count==0{
+//            let view=UIImageView()
+//            view.translatesAutoresizingMaskIntoConstraints=false
+//            addSubview(view)
+//            [
+//                view.leftAnchor.constraint(equalTo: safeAreaLayoutGuide.leftAnchor, constant: +dist),
+//                view.rightAnchor.constraint(equalTo: safeAreaLayoutGuide.rightAnchor, constant: -dist),
+//                view.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: +dist),
+//                view.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -dist)
+//                ].forEach { (cst) in
+//                    cst.isActive=true
+//            }
+//            view.image=UIImage(systemName: "plus")
+//            view.contentMode = .scaleAspectFill
+//        }
         subviews.forEach { (sv) in
             sv.layer.cornerRadius=cornerRadius
             sv.isUserInteractionEnabled=false
