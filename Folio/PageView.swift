@@ -97,13 +97,13 @@ class PageView: UIView {
         nv.layer.masksToBounds=true
         nv.pageDelegate?.getMeMedia(for: nv)
 //        pageDelegate?.getMeMedia(for: newCardView)
-        nv.addGestureRecognizer(UILongPressGestureRecognizer(target: self, action: #selector(didLongPressMediaView)))
+//        nv.addGestureRecognizer(UILongPressGestureRecognizer(target: self, action: #selector(didLongPressMediaView)))
         self.currentTask = .noneOfAbove
     }
-    @objc func didLongPressMediaView(sender: UIGestureRecognizer){
-        let view = sender.view as! MediaCardView
-        pageDelegate?.getMeMedia(for: view)
-    }
+//    @objc func didLongPressMediaView(sender: UIGestureRecognizer){
+//        let view = sender.view as! MediaCardView
+//        pageDelegate?.getMeMedia(for: view)
+//    }
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
          guard let point = touches.first?.location(in: self) else { return }
         switch currentTask {

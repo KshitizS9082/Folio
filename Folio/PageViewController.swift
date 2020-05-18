@@ -19,7 +19,54 @@ protocol pageProtocol {
 }
 
 class PageViewController: UIViewController {
-    var page=PageData()
+    var page: PageData? {
+        get{
+            var retVal = PageData()
+            retVal.pageViewSize = pageView.bounds.size
+            pageView.subviews.forEach { (sv) in
+                if let cv = sv as? SmallCardView{
+                    retVal.smallCards.append(smallCardData(card: cv.card, frame: cv.frame))
+                }
+                if let cv = sv as? cardView{
+                    retVal.bigCards.append(bigCardData(card: cv.card, frame: cv.frame))
+                }
+                //TODO: Gesture recognisers for mediacard not added automatically
+                if let cv =  sv as? MediaCardView{
+                    retVal.mediaCards.append(mediaCardData(card: cv.card, frame: cv.frame))
+                }
+            }
+            print("gonna get page: PageData? ")
+            return retVal
+        }
+        set{
+            print("is now in set page: PageData?")
+            pageView.subviews.forEach { (sv) in
+                sv.removeFromSuperview()
+            }
+            pageView.frame = CGRect(origin: CGPoint(x: 0, y: 0), size: newValue!.pageViewSize)
+            pageView.setNeedsDisplay()//TODO: check if needed
+            newValue?.bigCards.forEach({ (cardData) in
+                let nc = cardView(frame: cardData.frame)
+                nc.card=cardData.card
+                nc.pageDelegate=self
+                pageView.addSubview(nc)
+                
+            })
+            newValue?.smallCards.forEach({ (cardData) in
+                let nc = SmallCardView(frame: cardData.frame)
+                nc.card=cardData.card
+                nc.pageDelegate=self
+                pageView.addSubview(nc)
+            })
+            newValue?.mediaCards.forEach({ (cardData) in
+                let nc = MediaCardView(frame: cardData.frame)
+                nc.card=cardData.card
+                nc.pageDelegate=self
+                pageView.addSubview(nc)
+            })
+            pageView.layoutSubviews()
+        }
+    }
     var isToolBarHidden=true
     
     var dropZone: UIView = UIView()
@@ -39,10 +86,8 @@ class PageViewController: UIViewController {
     
     @objc func handleImageViewTap(_ sender: UITapGestureRecognizer){
         print("pageviewframe = \(pageView.frame)")
-        print("scrollviewframe = \(scrollView.frame)")
-        print("does contain = \(scrollView.subviews.contains(pageView))")
         if let x = sender.view as? UIImageView{
-            print("did select image at: \(ImageViews.firstIndex(of: x))")
+//            print("did select image at: \(ImageViews.firstIndex(of: x))")
             switch ImageViews.firstIndex(of: x) {
             case 0:
                 print("0")
@@ -53,6 +98,8 @@ class PageViewController: UIViewController {
             case 2:
                 print("2")
                 pageView.currentTask = .drawLines
+                //MARK: to be removed as used for testing
+                print("\(String(describing: page))")
             case 3:
                 print("3")
                 pageView.currentTask = .delete
@@ -67,7 +114,6 @@ class PageViewController: UIViewController {
             }
         }
     }
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -131,7 +177,44 @@ class PageViewController: UIViewController {
         scrollView.minimumZoomScale = minZoom;
     }
     
-    
+    func save() {
+        if let json = page?.json {
+            if let url = try? FileManager.default.url(
+                for: .documentDirectory,
+                in: .userDomainMask,
+                appropriateFor: nil,
+                create: true
+            ).appendingPathComponent("Untitled.json"){
+                do {
+                    try json.write(to: url)
+                    print ("saved successfully")
+                    //                    let str = String(data: json, encoding: .utf8)
+                    //                    print("jsondata = \(str)")
+                } catch let error {
+                    print ("couldn't save \(error)")
+                }
+            }
+        }
+    }
+    override func viewWillDisappear(_ animated: Bool) {
+        print("called disappear")
+        save()
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        print("inside viewwill appear")
+        if let url = try? FileManager.default.url(
+            for: .documentDirectory,
+            in: .userDomainMask,
+            appropriateFor: nil,
+            create: true
+        ).appendingPathComponent("Untitled.json"){
+            print("trying to extract contents of jsonData")
+            if let jsonData = try? Data(contentsOf: url){
+                page = PageData(json: jsonData)
+            }
+        }
+    }
 
 }
 extension PageViewController: UIScrollViewDelegate{

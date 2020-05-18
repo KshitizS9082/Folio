@@ -91,13 +91,16 @@ class MediaCardView: UIView {
         if let topMost = subviews.last as? UIImageView{
             topMost.isUserInteractionEnabled=true
             topMost.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(showPreview)))
+             topMost.addGestureRecognizer(UILongPressGestureRecognizer(target: self, action: #selector(didLongPressMediaView)))
         }
     }
     @objc func showPreview(){
         print("inside showfrepview")
         pageDelegate?.showMedias(for: self)
     }
-    
+    @objc func didLongPressMediaView(sender: UIGestureRecognizer){
+        pageDelegate?.getMeMedia(for: self)
+    }
     //Make view resizable
     var isResizing = false
     var pageDelegate: pageProtocol?
@@ -275,9 +278,9 @@ extension MediaCardView{
         return #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)
     }
     var minWidth: CGFloat{
-        return 150
+        return 100
     }
     var minHeight: CGFloat{
-        return 150
+        return 100
     }
 }
