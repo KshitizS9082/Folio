@@ -52,6 +52,8 @@
 		E25BA50D2472285F000D1DF7 /* pickImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E25BA50C2472285F000D1DF7 /* pickImage.swift */; };
 		E25BA51124727508000D1DF7 /* ScardTimelineTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E25BA50F24727508000D1DF7 /* ScardTimelineTableViewCell.swift */; };
 		E25BA51224727508000D1DF7 /* ScardTimelineTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E25BA51024727508000D1DF7 /* ScardTimelineTableViewCell.xib */; };
+		E25BA51524727B79000D1DF7 /* BigcardTimelineTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E25BA51324727B78000D1DF7 /* BigcardTimelineTableViewCell.xib */; };
+		E25BA51624727B79000D1DF7 /* BigcardTimelineTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E25BA51424727B79000D1DF7 /* BigcardTimelineTableViewCell.swift */; };
 		E269476524702D0900F9E21F /* UITextView+Expanding.swift in Sources */ = {isa = PBXBuildFile; fileRef = E269476424702D0900F9E21F /* UITextView+Expanding.swift */; };
 		E26947672470320B00F9E21F /* SmallCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E26947662470320B00F9E21F /* SmallCardView.swift */; };
 /* End PBXBuildFile section */
@@ -129,6 +131,8 @@
 		E25BA50C2472285F000D1DF7 /* pickImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = pickImage.swift; sourceTree = "<group>"; };
 		E25BA50F24727508000D1DF7 /* ScardTimelineTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScardTimelineTableViewCell.swift; sourceTree = "<group>"; };
 		E25BA51024727508000D1DF7 /* ScardTimelineTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ScardTimelineTableViewCell.xib; sourceTree = "<group>"; };
+		E25BA51324727B78000D1DF7 /* BigcardTimelineTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BigcardTimelineTableViewCell.xib; sourceTree = "<group>"; };
+		E25BA51424727B79000D1DF7 /* BigcardTimelineTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BigcardTimelineTableViewCell.swift; sourceTree = "<group>"; };
 		E269476424702D0900F9E21F /* UITextView+Expanding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITextView+Expanding.swift"; sourceTree = "<group>"; };
 		E26947662470320B00F9E21F /* SmallCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmallCardView.swift; sourceTree = "<group>"; };
 		F32C815244D1C255A7FDD23A /* Pods_Folio.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Folio.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -315,6 +319,8 @@
 			children = (
 				E25BA50F24727508000D1DF7 /* ScardTimelineTableViewCell.swift */,
 				E25BA51024727508000D1DF7 /* ScardTimelineTableViewCell.xib */,
+				E25BA51424727B79000D1DF7 /* BigcardTimelineTableViewCell.swift */,
+				E25BA51324727B78000D1DF7 /* BigcardTimelineTableViewCell.xib */,
 			);
 			path = "Timeline Items";
 			sourceTree = "<group>";
@@ -447,6 +453,7 @@
 				E25BA4EC24714CBD000D1DF7 /* SmallCardDatePickerTableViewCell.xib in Resources */,
 				E252B052246C4044003F8718 /* Assets.xcassets in Resources */,
 				E252B050246C4041003F8718 /* Main.storyboard in Resources */,
+				E25BA51524727B79000D1DF7 /* BigcardTimelineTableViewCell.xib in Resources */,
 				E25BA51224727508000D1DF7 /* ScardTimelineTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -606,6 +613,7 @@
 				E25BA4FA247163CE000D1DF7 /* NotesFullViewController.swift in Sources */,
 				E25BA4FF24716DC0000D1DF7 /* ImagePickerManager.swift in Sources */,
 				E252B083246C45E6003F8718 /* checkListItem.swift in Sources */,
+				E25BA51624727B79000D1DF7 /* BigcardTimelineTableViewCell.swift in Sources */,
 				E252B089246C4620003F8718 /* smallCard.swift in Sources */,
 				E25BA50824721F93000D1DF7 /* GalleryViewController.swift in Sources */,
 				E25BA4F424716196000D1DF7 /* EditCardViewController.swift in Sources */,

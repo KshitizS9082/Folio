@@ -181,7 +181,7 @@ class SmallCardInfoViewController: UIViewController, UITableViewDataSource, SPSt
         let deleteAction = UIAlertAction(title: "Delete", style: .destructive){
             UIAlertAction in
             print("in delete")
-            //            self.smallcardDelegate?.deleteSCard(for: self.sCard, at: self.viewLinkedTo!)
+            self.viewLinkedTo?.removeFromSuperview()
             self.dismiss(animated: true)
         }
         let deleteFromPageAction = UIAlertAction(title: "Remove From Page", style: .destructive){

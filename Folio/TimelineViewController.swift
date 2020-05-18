@@ -131,6 +131,7 @@ extension TimelineViewController: UITableViewDataSource, UITableViewDelegate{
             return setSmallCardCell(tableView, cellForRowAt: indexPath)
         case .big:
             print("big")
+            return setBigCardCell(tableView, cellForRowAt: indexPath)
         case .media:
             print("media")
         default:
@@ -153,7 +154,18 @@ extension TimelineViewController: UITableViewDataSource, UITableViewDelegate{
         cell.awakeFromNib()
         return cell
     }
-    
+    func setBigCardCell(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell{
+        let cell = tableView.dequeueReusableCell(withIdentifier: "bigCardCell", for: indexPath) as! BigcardTimelineTableViewCell
+        cell.delegate=self
+//        cell.updateCardDelegate=self
+//        cell.showLinkDelegate=myViewController
+        cell.sizeType = self.sizeType
+        cell.indexpath=indexPath
+        cell.row = indexPath.row
+        cell.card=cardsList[indexPath.row].bigCard?.card
+        cell.awakeFromNib()
+        return cell
+    }
 }
 extension TimelineViewController: myUpdateCellHeightDelegate{
     func updated(height: CGFloat, row: Int, indexpath: IndexPath) {
