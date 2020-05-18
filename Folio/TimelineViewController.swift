@@ -8,23 +8,193 @@
 
 import UIKit
 
-
+protocol myUpdateCellHeightDelegate{
+    func updated(height: CGFloat, row: Int, indexpath: IndexPath)
+}
 
 class TimelineViewController: UIViewController {
-    var page=PageData()
+    var page: PageData?
+    var showingType = showingDataType.allCards
+    var sizeType = cardSizeMode.full
+    var cardsList = [timeLineCard]()
+    
+    @IBOutlet weak var table: UITableView!
+    private func setCardsList(){
+        print("in setCardList")
+        cardsList = []
+        if let page = page{
+            page.bigCards.forEach { (card) in
+                cardsList.append(timeLineCard(type: .big, smallCard: nil, bigCard: card, mediaCard: nil))
+            }
+            page.smallCards.forEach { (card) in
+                cardsList.append(timeLineCard(type: .small, smallCard: card, bigCard: nil, mediaCard: nil))
+            }
+            page.mediaCards.forEach { (card) in
+                cardsList.append(timeLineCard(type: .media, smallCard: nil, bigCard: nil, mediaCard: card))
+            }
+        }
+    }
+    func setTable(){
+        table.dataSource=self
+        table.delegate=self
+        table.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        table.register(UINib(nibName: "smallCardTitleTableViewCell", bundle: nil), forCellReuseIdentifier: "titleTextCell")
+        table.register(UINib(nibName: "SmallCardDatePickerTableViewCell", bundle: nil), forCellReuseIdentifier: "datePickerCell")
+        table.register(UINib(nibName: "ScardTimelineTableViewCell", bundle: nil), forCellReuseIdentifier: "smallCardCell")
+        table.register(UINib(nibName: "BigcardTimelineTableViewCell", bundle: nil), forCellReuseIdentifier: "bigCardCell")
+        table.register(UINib(nibName: "MediaCardTableViewCell", bundle: nil), forCellReuseIdentifier: "mediaCardCell")
+        table.backgroundColor = pageColor
+        table.rowHeight = UITableView.automaticDimension
+    }
     override func viewDidLoad() {
-        super.viewDidLoad()
-        
+        setCardsList()
+        setTable()
+        table.reloadData()
+        let pinch = UIPinchGestureRecognizer(target: self, action: #selector(handlePinch))
+        view.addGestureRecognizer(pinch)
+        //to dismiss keyboard
+        let tap=UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing(_:)))
+        view.addGestureRecognizer(tap)
+        // register for notifications when the keyboard appears:
+        NotificationCenter.default.addObserver( self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
+    }
+    @objc func handlePinch(pinch: UIPinchGestureRecognizer){
+        if pinch.state == .ended{
+            if pinch.scale>1.0{
+                switch self.sizeType {
+                case .small:
+                    self.sizeType = .medium
+                case .medium:
+                    self.sizeType = .full
+                default:
+                    print("can't zoom in further")
+                }
+            }else if pinch.scale<1.0{
+                switch self.sizeType {
+                case .full:
+                    self.sizeType = .medium
+                case .medium:
+                    self.sizeType = .small
+                default:
+                    print("can't zoom out further")
+                }
+            }
+            print("size type = \(self.sizeType)")
+            table.reloadData()
+        }
     }
     
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        print("inside viewwill appear")
+        if let url = try? FileManager.default.url(
+            for: .documentDirectory,
+            in: .userDomainMask,
+            appropriateFor: nil,
+            create: true
+        ).appendingPathComponent("Untitled.json"){
+            print("trying to extract contents of jsonData")
+            if let jsonData = try? Data(contentsOf: url){
+                page = PageData(json: jsonData)
+            }
+            viewDidLoad()
+        }
     }
-    */
+    
+    @objc func keyboardWillShow( note:NSNotification ){
+        // read the CGRect from the notification (if any)
+        if let newFrame = (note.userInfo?[ UIResponder.keyboardFrameEndUserInfoKey ] as? NSValue)?.cgRectValue {
+            let insets = UIEdgeInsets( top: 0, left: 0, bottom: newFrame.height, right: 0 )
+            table.contentInset = insets
+            table.scrollIndicatorInsets = insets
+        }
+    }
+}
 
+extension TimelineViewController{
+    var pageColor: UIColor{
+        return #colorLiteral(red: 0.9411764706, green: 0.9450980392, blue: 0.9176470588, alpha: 1)
+    }
+    var mediaCardCellColor: UIColor{
+        return #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+    }
+}
+extension TimelineViewController: UITableViewDataSource, UITableViewDelegate{
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return cardsList.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        switch cardsList[indexPath.row].type {
+        case .small:
+            print("small")
+            return setSmallCardCell(tableView, cellForRowAt: indexPath)
+        case .big:
+            print("big")
+        case .media:
+            print("media")
+        default:
+            print("i dunno what card this is")
+        }
+        return UITableViewCell()
+    }
+    func setSmallCardCell(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell{
+        let cell = tableView.dequeueReusableCell(withIdentifier: "smallCardCell", for: indexPath) as! ScardTimelineTableViewCell
+//        cell.updateCardDelegate=self
+        cell.delegate=self
+//        cell.showLinkDelegate = myViewController
+        cell.sizeType = self.sizeType
+        cell.indexpath = indexPath
+        cell.row = indexPath.row
+        cell.card=cardsList[indexPath.row].smallCard?.card
+        if let done = cell.card?.isDone{
+            cell.isDone = done
+        }
+        cell.awakeFromNib()
+        return cell
+    }
+    
+}
+extension TimelineViewController: myUpdateCellHeightDelegate{
+    func updated(height: CGFloat, row: Int, indexpath: IndexPath) {
+        //TODO: maybe use this stord height method, but not required
+        
+        // Disabling animations gives us our desired behaviour
+        UIView.setAnimationsEnabled(false)
+        /* These will causes table cell heights to be recaluclated,
+         without reloading the entire cell */
+        table.beginUpdates()
+        table.endUpdates()
+        // Re-enable animations
+        UIView.setAnimationsEnabled(true)
+        
+        table.scrollToRow(at: indexpath, at: .bottom, animated: false)
+    }
+}
+//struct timeLineCard {
+//    var type = cardType.small
+//    var index = 0
+//    var dated : Date?
+//    var identifier = UUID()
+//}
+struct timeLineCard {
+    var type = cardType.small
+    var smallCard: smallCardData?
+    var bigCard: bigCardData?
+    var mediaCard: mediaCardData?
+}
+enum showingDataType {
+    case allCards
+    case datedCards
+    case mediaTypes
+}
+enum cardSizeMode{
+    case full
+    case medium
+    case small
+}
+enum cardType: String{
+    case small
+    case big
+    case media
 }

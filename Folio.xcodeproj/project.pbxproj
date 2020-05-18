@@ -50,6 +50,8 @@
 		E25BA50A24721F93000D1DF7 /* Extensions0.swift in Sources */ = {isa = PBXBuildFile; fileRef = E25BA50424721F92000D1DF7 /* Extensions0.swift */; };
 		E25BA50B24721F93000D1DF7 /* GalleryFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = E25BA50524721F93000D1DF7 /* GalleryFlowLayout.swift */; };
 		E25BA50D2472285F000D1DF7 /* pickImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E25BA50C2472285F000D1DF7 /* pickImage.swift */; };
+		E25BA51124727508000D1DF7 /* ScardTimelineTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E25BA50F24727508000D1DF7 /* ScardTimelineTableViewCell.swift */; };
+		E25BA51224727508000D1DF7 /* ScardTimelineTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E25BA51024727508000D1DF7 /* ScardTimelineTableViewCell.xib */; };
 		E269476524702D0900F9E21F /* UITextView+Expanding.swift in Sources */ = {isa = PBXBuildFile; fileRef = E269476424702D0900F9E21F /* UITextView+Expanding.swift */; };
 		E26947672470320B00F9E21F /* SmallCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E26947662470320B00F9E21F /* SmallCardView.swift */; };
 /* End PBXBuildFile section */
@@ -125,6 +127,8 @@
 		E25BA50424721F92000D1DF7 /* Extensions0.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions0.swift; sourceTree = "<group>"; };
 		E25BA50524721F93000D1DF7 /* GalleryFlowLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GalleryFlowLayout.swift; sourceTree = "<group>"; };
 		E25BA50C2472285F000D1DF7 /* pickImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = pickImage.swift; sourceTree = "<group>"; };
+		E25BA50F24727508000D1DF7 /* ScardTimelineTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScardTimelineTableViewCell.swift; sourceTree = "<group>"; };
+		E25BA51024727508000D1DF7 /* ScardTimelineTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ScardTimelineTableViewCell.xib; sourceTree = "<group>"; };
 		E269476424702D0900F9E21F /* UITextView+Expanding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITextView+Expanding.swift"; sourceTree = "<group>"; };
 		E26947662470320B00F9E21F /* SmallCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmallCardView.swift; sourceTree = "<group>"; };
 		F32C815244D1C255A7FDD23A /* Pods_Folio.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Folio.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -214,6 +218,7 @@
 				E252B08F246C4E6D003F8718 /* PageViewController.swift */,
 				E252B093246CEE55003F8718 /* PageView.swift */,
 				E252B091246C4E79003F8718 /* TimelineViewController.swift */,
+				E25BA50E2472695A000D1DF7 /* Timeline Items */,
 				E25BA4FB24716A9D000D1DF7 /* Media Card Items */,
 				E252B08A246C4640003F8718 /* Model */,
 				E25BA4EE247159E2000D1DF7 /* Big Card Items */,
@@ -303,6 +308,15 @@
 				E25BA50024721F91000D1DF7 /* ThumbCell.swift */,
 			);
 			path = "Media Card Items";
+			sourceTree = "<group>";
+		};
+		E25BA50E2472695A000D1DF7 /* Timeline Items */ = {
+			isa = PBXGroup;
+			children = (
+				E25BA50F24727508000D1DF7 /* ScardTimelineTableViewCell.swift */,
+				E25BA51024727508000D1DF7 /* ScardTimelineTableViewCell.xib */,
+			);
+			path = "Timeline Items";
 			sourceTree = "<group>";
 		};
 		E269475D2470276F00F9E21F /* Small Card Items */ = {
@@ -433,6 +447,7 @@
 				E25BA4EC24714CBD000D1DF7 /* SmallCardDatePickerTableViewCell.xib in Resources */,
 				E252B052246C4044003F8718 /* Assets.xcassets in Resources */,
 				E252B050246C4041003F8718 /* Main.storyboard in Resources */,
+				E25BA51224727508000D1DF7 /* ScardTimelineTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -577,6 +592,7 @@
 				E25BA4F9247163CE000D1DF7 /* drawingCardFullViewController.swift in Sources */,
 				E252B085246C45F2003F8718 /* MediaCard.swift in Sources */,
 				E26947672470320B00F9E21F /* SmallCardView.swift in Sources */,
+				E25BA51124727508000D1DF7 /* ScardTimelineTableViewCell.swift in Sources */,
 				E252B07D246C44DF003F8718 /* removeAllConstraints.swift in Sources */,
 				E25BA4E924714CBD000D1DF7 /* SmallCardDatePickerTableViewCell.swift in Sources */,
 				E25BA4F8247163CE000D1DF7 /* checkListFullViewController.swift in Sources */,

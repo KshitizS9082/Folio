@@ -205,7 +205,7 @@
                                 </constraints>
                             </imageView>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemYellowColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="7ZQ-M8-LUC" firstAttribute="trailing" secondItem="9gP-HQ-60U" secondAttribute="trailing" constant="6" id="0MV-RU-JiS"/>
                             <constraint firstItem="xBB-M9-Ju6" firstAttribute="trailing" secondItem="KFd-ea-Pal" secondAttribute="trailing" id="33l-BK-Cbd"/>
@@ -249,9 +249,24 @@
                     <view key="view" contentMode="scaleToFill" id="EHE-yG-30h">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="774"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="UlL-F8-DQa">
+                                <rect key="frame" x="0.0" y="44" width="414" height="730"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="UlL-F8-DQa" firstAttribute="top" secondItem="nR5-Ju-Arh" secondAttribute="top" id="Aub-nV-R8c"/>
+                            <constraint firstItem="nR5-Ju-Arh" firstAttribute="bottom" secondItem="UlL-F8-DQa" secondAttribute="bottom" id="Bv7-ac-dBO"/>
+                            <constraint firstItem="nR5-Ju-Arh" firstAttribute="trailing" secondItem="UlL-F8-DQa" secondAttribute="trailing" id="MHT-BW-f9z"/>
+                            <constraint firstItem="UlL-F8-DQa" firstAttribute="leading" secondItem="nR5-Ju-Arh" secondAttribute="leading" id="uwV-36-tex"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="nR5-Ju-Arh"/>
                     </view>
+                    <connections>
+                        <outlet property="table" destination="UlL-F8-DQa" id="Zqc-ds-SBw"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WUl-DW-cEz" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
