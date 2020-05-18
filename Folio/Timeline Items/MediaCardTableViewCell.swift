@@ -75,14 +75,38 @@ class MediaCardTableViewCell: UITableViewCell {
 //            }
 //        }
         //MARK: media dat to img conversion
-        if let datList = card?.mediaData{
-            for dat in datList{
-                if let img = UIImage(data: dat){
-                    allImages.append(img)
-                    print("succesfully added from dat image")
+//        if let datList = card?.mediaData{
+//            for dat in datList{
+//                if let img = UIImage(data: dat){
+//                    allImages.append(img)
+//                    print("succesfully added from dat image")
+//                }
+//            }
+//        }
+        //MARK: URL based implementation for getting image
+        if let datList = card?.mediaDataURLs{
+            for fileName in datList{
+                if let url = try? FileManager.default.url(
+                    for: .documentDirectory,
+                    in: .userDomainMask,
+                    appropriateFor: nil,
+                    create: true
+                ).appendingPathComponent(fileName){
+                    if let jsonData = try? Data(contentsOf: url){
+                        print("did retrieve jsondata")
+                        if let extract = imageData(json: jsonData){
+                            if let image = UIImage(data: extract.data){
+                                print("did get UIImage from extrated data")
+                                allImages.append(image)
+                            }else{
+                                print("couldn't get UIImage from extrated data, check if sure this file doesn't exist and if so delete it from array")
+                            }
+                        }
+                    }
                 }
             }
         }
+        
         
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal

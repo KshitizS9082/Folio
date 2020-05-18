@@ -58,6 +58,7 @@
 		E25BA51A24728AA9000D1DF7 /* MediaCardTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E25BA51824728AA9000D1DF7 /* MediaCardTableViewCell.swift */; };
 		E269476524702D0900F9E21F /* UITextView+Expanding.swift in Sources */ = {isa = PBXBuildFile; fileRef = E269476424702D0900F9E21F /* UITextView+Expanding.swift */; };
 		E26947672470320B00F9E21F /* SmallCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E26947662470320B00F9E21F /* SmallCardView.swift */; };
+		E284B6242472D9BD00CC6465 /* uniqueFileName.swift in Sources */ = {isa = PBXBuildFile; fileRef = E284B6232472D9BD00CC6465 /* uniqueFileName.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -139,6 +140,7 @@
 		E25BA51824728AA9000D1DF7 /* MediaCardTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediaCardTableViewCell.swift; sourceTree = "<group>"; };
 		E269476424702D0900F9E21F /* UITextView+Expanding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITextView+Expanding.swift"; sourceTree = "<group>"; };
 		E26947662470320B00F9E21F /* SmallCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmallCardView.swift; sourceTree = "<group>"; };
+		E284B6232472D9BD00CC6465 /* uniqueFileName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = uniqueFileName.swift; sourceTree = "<group>"; };
 		F32C815244D1C255A7FDD23A /* Pods_Folio.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Folio.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FB442A4DFD8207DB35ADCE4D /* Pods-FolioTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FolioTests.debug.xcconfig"; path = "Target Support Files/Pods-FolioTests/Pods-FolioTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -274,6 +276,7 @@
 				E252B07A246C44DF003F8718 /* removeAllConstraints.swift */,
 				E252B079246C44DF003F8718 /* textViewPlaceholder.swift */,
 				E252B07B246C44DF003F8718 /* UnderlinedTextView.swift */,
+				E284B6232472D9BD00CC6465 /* uniqueFileName.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -596,6 +599,7 @@
 				E25BA4F224716130000D1DF7 /* SmallCardInfoViewController.swift in Sources */,
 				E252B08E246C4AD7003F8718 /* SwitchPageTimelineViewController.swift in Sources */,
 				E252B049246C4041003F8718 /* AppDelegate.swift in Sources */,
+				E284B6242472D9BD00CC6465 /* uniqueFileName.swift in Sources */,
 				E252B087246C4601003F8718 /* PageData.swift in Sources */,
 				E25BA51A24728AA9000D1DF7 /* MediaCardTableViewCell.swift in Sources */,
 				E25BA50D2472285F000D1DF7 /* pickImage.swift in Sources */,

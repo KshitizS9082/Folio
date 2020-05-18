@@ -30,15 +30,31 @@ class WithImagesViewController:UIViewController {
         return cv
     }()
     @objc func addImage(){
+        //MARK: set a new json and use corrosponding url for new image
         print("now have to add image")
         pickImage().pickImage(self) { (image) in
             self.images.append(image)
-//            self.collectionView.reloadItems(at: [
-//                IndexPath(row: self.images.count-2, section: 1),
-//                IndexPath(row: self.images.count-2, section: 1)])
             self.collectionView.reloadData()
-            self.viewLinkedTo?.card.mediaData.append(image.pngData()!)
-            self.viewLinkedTo?.layoutSubviews()
+            let fileName=String.uniqueFilename(withPrefix: "iamgeData")+".json"
+            if let json = imageData(instData: image.pngData()!).json {
+                if let url = try? FileManager.default.url(
+                    for: .documentDirectory,
+                    in: .userDomainMask,
+                    appropriateFor: nil,
+                    create: true
+                ).appendingPathComponent(fileName){
+                    do {
+                        try json.write(to: url)
+                        print ("saved successfully")
+                        //MARK: is a data leak to be corrected
+                        //TODO: sometimes fileName added but not deleted
+                        self.viewLinkedTo?.card.mediaDataURLs.append(fileName)
+                        self.viewLinkedTo?.layoutSubviews()
+                    } catch let error {
+                        print ("couldn't save \(error)")
+                    }
+                }
+            }
         }
     }
     

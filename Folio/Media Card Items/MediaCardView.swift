@@ -29,74 +29,71 @@ class MediaCardView: UIView {
         }
         var dist = CGFloat(0)
         var i=0
-        //MARK: media dat to img conversion
-        for ind in card.mediaData.indices{
-            if ind<card.mediaData.count-numberOfImagesToShow{
+        //MARK: URL based implementation for getting image
+        
+        for ind in card.mediaDataURLs.indices{
+            if ind<card.mediaDataURLs.count-numberOfImagesToShow{
                 continue
             }
-            //DO NOT CHANGE TO LET CAUSES PROBLEM IN NEXT ITERATION
-            var x=card.mediaData[ind]
-            print("checking if element a image")
-            if let image = UIImage(data: x){
-                //            if let image = x as? UIImage{
-                print("found a image")
-                let view=UIImageView()
-                view.image=image
-                view.contentMode = .scaleAspectFill
-                //TODO: if set to false shadows would appear but proper edge distance b/w subviews won't be maintained
-                view.layer.masksToBounds=true
-                view.layer.shadowColor=shadowColor
-                view.layer.shadowOpacity=1.0
-                //TODO: see if below line for caching causes a problem in resizing if not set it
-                //                view.layer.shouldRasterize=true
-                view.layer.shadowRadius = shadowRadius
-                view.translatesAutoresizingMaskIntoConstraints=false
-                addSubview(view)
-                [
-                    view.leftAnchor.constraint(equalTo: safeAreaLayoutGuide.leftAnchor, constant: +dist),
-                    view.rightAnchor.constraint(equalTo: safeAreaLayoutGuide.rightAnchor, constant: -dist),
-                    view.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: +dist),
-                    view.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -dist)
-                    ].forEach { (cst) in
-                        cst.isActive=true
+            print("tryihg to retrieve jsondata from url: \(card.mediaDataURLs[ind])")
+            if let url = try? FileManager.default.url(
+                for: .documentDirectory,
+                in: .userDomainMask,
+                appropriateFor: nil,
+                create: true
+            ).appendingPathComponent(card.mediaDataURLs[ind]){
+                if let jsonData = try? Data(contentsOf: url){
+                    print("did retrieve jsondata")
+                    if let extract = imageData(json: jsonData){
+                        //DO NOT CHANGE TO LET CAUSES PROBLEM IN NEXT ITERATION
+                        var x=extract.data
+                        print("checking if element a image: json ver")
+                        if let image = UIImage(data: x){
+                            //            if let image = x as? UIImage{
+                            print("found a image")
+                            let view=UIImageView()
+                            view.image=image
+                            view.contentMode = .scaleAspectFill
+                            //TODO: if set to false shadows would appear but proper edge distance b/w subviews won't be maintained
+                            view.layer.masksToBounds=true
+                            view.layer.shadowColor=shadowColor
+                            view.layer.shadowOpacity=1.0
+                            //TODO: see if below line for caching causes a problem in resizing if not set it
+                            //                view.layer.shouldRasterize=true
+                            view.layer.shadowRadius = shadowRadius
+                            view.translatesAutoresizingMaskIntoConstraints=false
+                            addSubview(view)
+                            [
+                                view.leftAnchor.constraint(equalTo: safeAreaLayoutGuide.leftAnchor, constant: +dist),
+                                view.rightAnchor.constraint(equalTo: safeAreaLayoutGuide.rightAnchor, constant: -dist),
+                                view.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: +dist),
+                                view.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -dist)
+                                ].forEach { (cst) in
+                                    cst.isActive=true
+                            }
+                            imageViews.append(view)
+                            
+                        }
+                        i+=1
+                        dist+=distanceOfEachNewImageFromPreviousImage
+                        if i>=numberOfImagesToShow{
+                            break
+                        }
+                    }
+                }else{
+                    print("couldnt get json from URL")
                 }
-                imageViews.append(view)
-                
-            }
-            i+=1
-            dist+=distanceOfEachNewImageFromPreviousImage
-            if i>=numberOfImagesToShow{
-                break
             }
         }
-//        if card.mediaData.count==0{
-//            let view=UIImageView()
-//            view.translatesAutoresizingMaskIntoConstraints=false
-//            addSubview(view)
-//            [
-//                view.leftAnchor.constraint(equalTo: safeAreaLayoutGuide.leftAnchor, constant: +dist),
-//                view.rightAnchor.constraint(equalTo: safeAreaLayoutGuide.rightAnchor, constant: -dist),
-//                view.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: +dist),
-//                view.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -dist)
-//                ].forEach { (cst) in
-//                    cst.isActive=true
-//            }
-//            view.image=UIImage(systemName: "plus")
-//            view.contentMode = .scaleAspectFill
-//        }
+        
         subviews.forEach { (sv) in
             sv.layer.cornerRadius=cornerRadius
-//            sv.isUserInteractionEnabled=false
         }
-//        if let topMost = subviews.last as? UIImageView{
-//            topMost.isUserInteractionEnabled=true
-//            topMost.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(showPreview)))
-//             topMost.addGestureRecognizer(UILongPressGestureRecognizer(target: self, action: #selector(didLongPressMediaView)))
-//        }
         self.isUserInteractionEnabled=true
         self.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(showPreview)))
         self.addGestureRecognizer(UILongPressGestureRecognizer(target: self, action: #selector(didLongPressMediaView)))
     }
+    //MARK: set a new json and use corrosponding url for new image
     @objc func showPreview(){
         print("inside showfrepview")
         pageDelegate?.showMedias(for: self)
@@ -287,3 +284,44 @@ extension MediaCardView{
         return 100
     }
 }
+
+//MARK: media dat to img conversion: Data based implementation
+//        for ind in card.mediaData.indices{
+//            if ind<card.mediaData.count-numberOfImagesToShow{
+//                continue
+//            }
+//            //DO NOT CHANGE TO LET CAUSES PROBLEM IN NEXT ITERATION
+//            var x=card.mediaData[ind]
+//            print("checking if element a image")
+//            if let image = UIImage(data: x){
+//                //            if let image = x as? UIImage{
+//                print("found a image")
+//                let view=UIImageView()
+//                view.image=image
+//                view.contentMode = .scaleAspectFill
+//                //TODO: if set to false shadows would appear but proper edge distance b/w subviews won't be maintained
+//                view.layer.masksToBounds=true
+//                view.layer.shadowColor=shadowColor
+//                view.layer.shadowOpacity=1.0
+//                //TODO: see if below line for caching causes a problem in resizing if not set it
+//                //                view.layer.shouldRasterize=true
+//                view.layer.shadowRadius = shadowRadius
+//                view.translatesAutoresizingMaskIntoConstraints=false
+//                addSubview(view)
+//                [
+//                    view.leftAnchor.constraint(equalTo: safeAreaLayoutGuide.leftAnchor, constant: +dist),
+//                    view.rightAnchor.constraint(equalTo: safeAreaLayoutGuide.rightAnchor, constant: -dist),
+//                    view.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: +dist),
+//                    view.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -dist)
+//                    ].forEach { (cst) in
+//                        cst.isActive=true
+//                }
+//                imageViews.append(view)
+//
+//            }
+//            i+=1
+//            dist+=distanceOfEachNewImageFromPreviousImage
+//            if i>=numberOfImagesToShow{
+//                break
+//            }
+//        }

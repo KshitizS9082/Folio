@@ -14,10 +14,26 @@ struct MediaCard: Codable {
     var title: String?
     var dateOfCreation: Date = Date()
 //    var data = [AnyObject]()
-    var mediaData = [Data]()
+//    var mediaData = [Data]()
+    var mediaDataURLs = [String]()
     
 }
-
+struct imageData: Codable{
+    var data = Data()
+    var json: Data? {
+        return try? JSONEncoder().encode(self)
+    }
+    init(instData: Data){
+        self.data=instData
+    }
+    init?(json: Data){
+        if let newValue = try? JSONDecoder().decode(imageData.self, from: json) {
+            self = newValue
+        } else {
+            return nil
+        }
+    }
+}
 enum mediaType {
     case image
     case video

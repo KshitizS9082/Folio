@@ -406,8 +406,28 @@ extension PageViewController: pageProtocol{
             print("should delete = \(shouldDelete)")
             if let img = image{
                 //MARK: media dat to img conversion
-                cardView.card.mediaData.append(img.pngData()!)
-                print("did append image to newView.card.mediaData")
+//                cardView.card.mediaData.append(img.pngData()!)
+//                print("did append image to newView.card.mediaData")
+                //MARK: set a new json and use corrosponding url for new image
+                let fileName=String.uniqueFilename(withPrefix: "iamgeData")+".json"
+                if let json = imageData(instData: img.pngData()!).json {
+                    if let url = try? FileManager.default.url(
+                        for: .documentDirectory,
+                        in: .userDomainMask,
+                        appropriateFor: nil,
+                        create: true
+                    ).appendingPathComponent(fileName){
+                        do {
+                            try json.write(to: url)
+                            print ("saved successfully")
+                            //MARK: is a data leak to be corrected
+                            //TODO: sometimes fileName added but not deleted
+                            cardView.card.mediaDataURLs.append(fileName)
+                        } catch let error {
+                            print ("couldn't save \(error)")
+                        }
+                    }
+                }
                 cardView.layoutSubviews()
             }
             if shouldDeleteFromPage{
@@ -426,10 +446,31 @@ extension PageViewController: pageProtocol{
     func showMedias(for cardView: MediaCardView) {
         print("yet to implement show medias")
         var images = [UIImage]()
-        for dat in cardView.card.mediaData{
-             //MARK: media dat to img conversion
-            if let im = UIImage(data: dat){
-                images.append(im)
+//        for dat in cardView.card.mediaData{
+//             //MARK: media dat to img conversion
+//            if let im = UIImage(data: dat){
+//                images.append(im)
+//            }
+//        }
+         //MARK: URL based implementation for getting image
+        for fileName in cardView.card.mediaDataURLs{
+            if let url = try? FileManager.default.url(
+                for: .documentDirectory,
+                in: .userDomainMask,
+                appropriateFor: nil,
+                create: true
+            ).appendingPathComponent(fileName){
+                if let jsonData = try? Data(contentsOf: url){
+                    print("did retrieve jsondata")
+                    if let extract = imageData(json: jsonData){
+                        if let image = UIImage(data: extract.data){
+                            print("did get UIImage from extrated data")
+                            images.append(image)
+                        }else{
+                            print("couldn't get UIImage from extrated data, check if sure this file doesn't exist and if so delete it from array")
+                        }
+                    }
+                }
             }
         }
         let vc = WithImagesViewController()
