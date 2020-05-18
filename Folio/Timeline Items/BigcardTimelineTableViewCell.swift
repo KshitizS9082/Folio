@@ -45,7 +45,7 @@ class BigcardTimelineTableViewCell: UITableViewCell {
     @IBOutlet weak var additionalView: UIView!{
         didSet{
             additionalView.layer.cornerRadius = cornerRadius
-            additionalView.layer.backgroundColor = #colorLiteral(red: 0.2392156869, green: 0.6745098233, blue: 0.9686274529, alpha: 0.5947678257)
+            additionalView.layer.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0)
         }
     }
     var titlePlaceHolder = "Title"

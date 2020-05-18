@@ -134,6 +134,7 @@ extension TimelineViewController: UITableViewDataSource, UITableViewDelegate{
             return setBigCardCell(tableView, cellForRowAt: indexPath)
         case .media:
             print("media")
+            return setMediaCardCell(tableView, cellForRowAt: indexPath)
         default:
             print("i dunno what card this is")
         }
@@ -163,6 +164,20 @@ extension TimelineViewController: UITableViewDataSource, UITableViewDelegate{
         cell.indexpath=indexPath
         cell.row = indexPath.row
         cell.card=cardsList[indexPath.row].bigCard?.card
+        cell.awakeFromNib()
+        return cell
+    }
+    func setMediaCardCell(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell{
+        let cell = tableView.dequeueReusableCell(withIdentifier: "mediaCardCell", for: indexPath) as! MediaCardTableViewCell
+        //reload data added to remove a bug where previous cell without image deleted in page view and new cell with image added would result in crash DO NOT REMOVE!!
+        cell.collectionView.reloadData()
+//        cell.showLinkDelegate=myViewController
+        cell.card=cardsList[indexPath.row].mediaCard?.card
+        cell.backgroundColor=mediaCardCellColor
+        cell.updateHeightDelegate=self
+        cell.indexpath=indexPath
+        cell.row=indexPath.row
+        cell.sizeType=self.sizeType
         cell.awakeFromNib()
         return cell
     }
