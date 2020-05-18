@@ -86,13 +86,16 @@ class MediaCardView: UIView {
 //        }
         subviews.forEach { (sv) in
             sv.layer.cornerRadius=cornerRadius
-            sv.isUserInteractionEnabled=false
+//            sv.isUserInteractionEnabled=false
         }
-        if let topMost = subviews.last as? UIImageView{
-            topMost.isUserInteractionEnabled=true
-            topMost.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(showPreview)))
-             topMost.addGestureRecognizer(UILongPressGestureRecognizer(target: self, action: #selector(didLongPressMediaView)))
-        }
+//        if let topMost = subviews.last as? UIImageView{
+//            topMost.isUserInteractionEnabled=true
+//            topMost.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(showPreview)))
+//             topMost.addGestureRecognizer(UILongPressGestureRecognizer(target: self, action: #selector(didLongPressMediaView)))
+//        }
+        self.isUserInteractionEnabled=true
+        self.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(showPreview)))
+        self.addGestureRecognizer(UILongPressGestureRecognizer(target: self, action: #selector(didLongPressMediaView)))
     }
     @objc func showPreview(){
         print("inside showfrepview")

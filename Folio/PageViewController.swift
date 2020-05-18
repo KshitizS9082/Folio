@@ -43,28 +43,33 @@ class PageViewController: UIViewController {
             pageView.subviews.forEach { (sv) in
                 sv.removeFromSuperview()
             }
-            pageView.frame = CGRect(origin: CGPoint(x: 0, y: 0), size: newValue!.pageViewSize)
-            pageView.setNeedsDisplay()//TODO: check if needed
-            newValue?.bigCards.forEach({ (cardData) in
-                let nc = cardView(frame: cardData.frame)
-                nc.card=cardData.card
-                nc.pageDelegate=self
-                pageView.addSubview(nc)
-                
-            })
-            newValue?.smallCards.forEach({ (cardData) in
-                let nc = SmallCardView(frame: cardData.frame)
-                nc.card=cardData.card
-                nc.pageDelegate=self
-                pageView.addSubview(nc)
-            })
-            newValue?.mediaCards.forEach({ (cardData) in
-                let nc = MediaCardView(frame: cardData.frame)
-                nc.card=cardData.card
-                nc.pageDelegate=self
-                pageView.addSubview(nc)
-            })
-            pageView.layoutSubviews()
+            if let newValue = newValue{
+                pageView.frame = CGRect(origin: CGPoint(x: 0, y: 0), size: newValue.pageViewSize)
+                pageView.setNeedsDisplay()//TODO: check if needed
+                newValue.bigCards.forEach({ (cardData) in
+                    let nc = cardView(frame: cardData.frame)
+                    nc.card=cardData.card
+                    nc.pageDelegate=self
+                    pageView.addSubview(nc)
+                    
+                })
+                newValue.smallCards.forEach({ (cardData) in
+                    let nc = SmallCardView(frame: cardData.frame)
+                    nc.card=cardData.card
+                    nc.pageDelegate=self
+                    pageView.addSubview(nc)
+                })
+                newValue.mediaCards.forEach({ (cardData) in
+                    let nc = MediaCardView(frame: cardData.frame)
+                    nc.card=cardData.card
+                    nc.pageDelegate=self
+                    pageView.addSubview(nc)
+                })
+                pageView.layoutSubviews()
+            }else{
+                print("got nil for newValue in set in PageData in PageViewController")
+            }
+            viewDidLoad()
         }
     }
     var isToolBarHidden=true
@@ -163,6 +168,7 @@ class PageViewController: UIViewController {
         pageView.pageDelegate=self
         pageView.myViewController=self
         //TODO: handle dimensions and zoom properly
+        print("gonna set frame size for pageview which currently is \(pageView.frame.size)")
         if pageView.frame.size == .zero{
             scrollView.zoomScale=1
             pageView.frame = CGRect(origin: CGPoint.zero, size: view.frame.size.applying(CGAffineTransform(scaleX: 1.75, y: 1.5)))
@@ -211,7 +217,13 @@ class PageViewController: UIViewController {
         ).appendingPathComponent("Untitled.json"){
             print("trying to extract contents of jsonData")
             if let jsonData = try? Data(contentsOf: url){
-                page = PageData(json: jsonData)
+                if let extract = PageData(json: jsonData){
+                    print("did set page = extract i.e. \(extract) succesfully")
+                    page = extract
+//                    viewDidLoad()
+                }else{
+                    print("ERROR: found PageData(json: jsonData) to be nil so didn't set it")
+                }
             }
         }
     }
