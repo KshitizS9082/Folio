@@ -1,0 +1,132 @@
+//
+//  GalleryViewController.swift
+//  card2
+//
+//  Created by Kshitiz Sharma on 08/05/20.
+//  Copyright © 2020 Kshitiz Sharma. All rights reserved.
+//
+import UIKit
+import ImageViewer_swift
+import SPStorkController
+import SPFakeBar
+
+class WithImagesViewController:UIViewController {
+
+    var images = [UIImage]()
+    
+    lazy var layout = GalleryFlowLayout()
+    let navBar = SPFakeBarView(style: .noContent)
+    
+    lazy var collectionView:UICollectionView = {
+        // Flow layout setup
+        let cv = UICollectionView(
+            frame: .zero, collectionViewLayout: layout)
+        cv.register(
+            ThumbCell.self,
+            forCellWithReuseIdentifier: ThumbCell.reuseIdentifier)
+        cv.dataSource = self
+        return cv
+    }()
+    
+    
+    override func loadView() {
+        super.loadView()
+        view = UIView()
+        self.navBar.titleLabel.text = "Media"
+        navBar.backgroundColor=navBarColour
+        if(view.subviews.contains(self.navBar)==false){
+            view.addSubview(self.navBar)
+        }
+        view.backgroundColor = backgroundColor
+        collectionView.backgroundColor = backgroundColor
+        view.addSubview(collectionView)
+        collectionView.backgroundColor = navBar.backgroundColor
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
+        collectionView.topAnchor
+            .constraint(equalTo: navBar.bottomAnchor)
+            .isActive = true
+        collectionView.leadingAnchor
+            .constraint(equalTo: view.leadingAnchor)
+            .isActive = true
+        collectionView.trailingAnchor
+            .constraint(equalTo: view.trailingAnchor)
+            .isActive = true
+        collectionView.bottomAnchor
+            .constraint(equalTo: view.bottomAnchor)
+            .isActive = true
+        collectionView.delegate=self
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        title = "Gallery"
+    }
+    
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        updateLayout(view.frame.size)
+    }
+    
+    private func updateLayout(_ size:CGSize) {
+        if size.width > size.height {
+            layout.columns = 4
+        } else {
+            layout.columns = 3
+        }
+    }
+    
+    override func viewWillTransition(
+        to size: CGSize,
+        with coordinator: UIViewControllerTransitionCoordinator) {
+        updateLayout(size)
+    }
+}
+
+extension WithImagesViewController:UICollectionViewDataSource {
+    
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return 1
+    }
+    
+    func collectionView(
+        _ collectionView: UICollectionView,
+        numberOfItemsInSection section: Int) -> Int {
+        return images.count
+    }
+    
+    func collectionView(
+        _ collectionView: UICollectionView,
+        cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
+        let cell:ThumbCell = collectionView
+            .dequeueReusableCell(withReuseIdentifier: ThumbCell.reuseIdentifier,
+                                 for: indexPath) as! ThumbCell
+        cell.imageView.image = images[indexPath.item]
+        cell.layer.cornerRadius=cellCornerRadius
+        cell.layer.masksToBounds=true
+        // Setup Image Viewer with [UIImage]
+        cell.imageView.setupImageViewer(
+            images: images,
+            initialIndex: indexPath.item)
+        
+        return cell
+    }
+}
+
+extension WithImagesViewController: UICollectionViewDelegate, UIScrollViewDelegate{
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        SPStorkController.scrollViewDidScroll(scrollView)
+    }
+}
+
+extension WithImagesViewController{
+    var navBarColour: UIColor{
+        return #colorLiteral(red: 0.9411764706, green: 0.9450980392, blue: 0.9176470588, alpha: 1)
+    }
+    var backgroundColor: UIColor{
+        return #colorLiteral(red: 0.9411764706, green: 0.9450980392, blue: 0.9176470588, alpha: 1)
+    }
+    var cellCornerRadius: CGFloat{
+        return 4.0
+    }
+}

@@ -88,6 +88,22 @@ class PageView: UIView {
         self.addSubview(nv)
         self.currentTask = .noneOfAbove
     }
+    func addMediaCard(centeredAt point: CGPoint){
+        let newFrame = CGRect(origin: CGPoint(x: max(0, point.x-(mediaCardDimension/2)), y: max(0,point.y-(mediaCardDimension/2))), size: CGSize(width: mediaCardDimension, height: mediaCardDimension))
+        let nv = MediaCardView(frame: newFrame)
+        nv.pageDelegate=myViewController
+        nv.isUserInteractionEnabled=true
+        self.addSubview(nv)
+        nv.layer.masksToBounds=true
+        nv.pageDelegate?.getMeMedia(for: nv)
+//        pageDelegate?.getMeMedia(for: newCardView)
+        nv.addGestureRecognizer(UILongPressGestureRecognizer(target: self, action: #selector(didLongPressMediaView)))
+        self.currentTask = .noneOfAbove
+    }
+    @objc func didLongPressMediaView(sender: UIGestureRecognizer){
+        let view = sender.view as! MediaCardView
+        pageDelegate?.getMeMedia(for: view)
+    }
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
          guard let point = touches.first?.location(in: self) else { return }
         switch currentTask {
@@ -103,6 +119,7 @@ class PageView: UIView {
             print("drawLines")
         case .addMediaCard:
             print("addMediaCard")
+            self.addMediaCard(centeredAt: point)
         case .connectViews:
             print("connectViews")
         case .noneOfAbove:
@@ -134,6 +151,9 @@ extension PageView{
     var bigCardHeight: CGFloat{
         return 200
     }
+    var mediaCardDimension: CGFloat{
+        return 100
+    }
 }
 extension PageView: UIDropInteractionDelegate{
     func dropInteraction(_ interaction: UIDropInteraction, canHandle session: UIDropSession) -> Bool {
@@ -155,8 +175,8 @@ extension PageView: UIDropInteractionDelegate{
                     self.addSmallCard(centeredAt: dropPoint)
                     //                case "Add Image":
                     //                    self.addImageCard(with: attributedString, centeredAt: dropPoint)
-                    //                case "Media Card":
-                //                    self.addMediaCard(with: attributedString, centeredAt: dropPoint)
+                case "Media Card":
+                    self.addMediaCard(centeredAt: dropPoint)
                 default:
                     print("handled a string with value not the one we conform to as a card")
                 }

@@ -14,6 +14,8 @@ protocol pageProtocol {
     func showSmallCardInfoView(for cardView: SmallCardView)
     func showFullCardView(for cardView: cardView)
     func showCardEditView(for cardView: cardView)
+    func getMeMedia(for cardView: MediaCardView)
+    func showMedias(for cardView: MediaCardView)
 }
 
 class PageViewController: UIViewController {
@@ -163,21 +165,19 @@ extension PageViewController: UIDragInteractionDelegate{
     
 }
 extension PageViewController: pageProtocol{
-    func showFullCardView(for cardView: cardView) {
-        print("inside showFullCardView")
-        switch cardView.card.type {
-        case .CheckList:
-            print("Checklist")
-            showFullCheckListView(for: cardView)
-        case .Notes:
-            print("notes")
-            showFullNotesView(for: cardView)
-        case .Drawing:
-            print("Drawing")
-            showFullDrawingView(for: cardView)
+    
+    func resizeCard(for cardView: UIView){
+        var maxy = CGFloat(0)
+        cardView.subviews.forEach { (sv) in
+            maxy = max(maxy, sv.frame.maxY )
         }
-        
-        cardView.layoutSubviews()//Check if required
+        print("maxy = \(maxy), cardView.frame.maxY = \(cardView.frame.maxY)")
+        if (maxy>cardView.bounds.maxY-6) || (maxy < cardView.bounds.maxY-6) {
+            cardView.frame = CGRect(origin: cardView.frame.origin, size: CGSize(width: cardView.frame.width, height: maxy+6.0))
+        }
+    }
+    func changeContentSize(using newView: UIView) {
+        print("yet to implement changeContentSize")
     }
     
     func showCardEditView(for cardView: cardView) {
@@ -201,17 +201,6 @@ extension PageViewController: pageProtocol{
         controller.viewLinkedTo=cardView
         self.present(controller, animated: true, completion: nil)
         
-    }
-    
-    func resizeCard(for cardView: UIView){
-        var maxy = CGFloat(0)
-        cardView.subviews.forEach { (sv) in
-            maxy = max(maxy, sv.frame.maxY )
-        }
-        print("maxy = \(maxy), cardView.frame.maxY = \(cardView.frame.maxY)")
-        if (maxy>cardView.bounds.maxY-6) || (maxy < cardView.bounds.maxY-6) {
-            cardView.frame = CGRect(origin: cardView.frame.origin, size: CGSize(width: cardView.frame.width, height: maxy+6.0))
-        }
     }
     func showSmallCardInfoView(for cardView: SmallCardView) {
         print("yet to implement showSmallCardInfoView")
@@ -237,10 +226,21 @@ extension PageViewController: pageProtocol{
         self.present(controller, animated: true, completion: nil)
     }
     
-    func changeContentSize(using newView: UIView) {
-        print("yet to implement changeContentSize")
+    func showFullCardView(for cardView: cardView) {
+        print("inside showFullCardView")
+        switch cardView.card.type {
+        case .CheckList:
+            print("Checklist")
+            showFullCheckListView(for: cardView)
+        case .Notes:
+            print("notes")
+            showFullNotesView(for: cardView)
+        case .Drawing:
+            print("Drawing")
+            showFullDrawingView(for: cardView)
+        }
+        cardView.layoutSubviews()//Check if required
     }
-    
     private func showFullDrawingView(for cardView: cardView){
         let controller = drawingCardFullViewController()
         let transitionDelegate = SPStorkTransitioningDelegate()
@@ -282,7 +282,6 @@ extension PageViewController: pageProtocol{
         transitionDelegate.storkDelegate = controller
         controller.card=cardView.card
         controller.viewLinkedTo=cardView
-//        controller.delegate = self
         self.present(controller, animated: true, completion: nil)
     }
     private func showFullCheckListView(for cardView: cardView){
@@ -304,7 +303,47 @@ extension PageViewController: pageProtocol{
         transitionDelegate.storkDelegate = controller
         controller.card=cardView.card
         controller.viewLinkedTo=cardView
-//        controller.delegate = self
         self.present(controller, animated: true, completion: nil)
+    }
+    
+    func getMeMedia(for cardView: MediaCardView) {
+        ImagePickerManager().pickImage(self){ image, shouldDelete, shouldDeleteFromPage, resizeView in
+            print("should delete = \(shouldDelete)")
+            if let img = image{
+                //MARK: media dat to img conversion
+                cardView.card.mediaData.append(img.pngData()!)
+                print("did append image to newView.card.mediaData")
+                cardView.layoutSubviews()
+            }
+            if shouldDeleteFromPage{
+                cardView.frame = CGRect.zero
+            }
+            if shouldDelete{
+                cardView.removeFromSuperview()
+            }
+            if resizeView{
+                cardView.startResizing()
+            }
+        }
+        print("WARNING: COULDN'T inserted image in pagedata")
+    }
+    func showMedias(for cardView: MediaCardView) {
+        print("yet to implement show medias")
+        var images = [UIImage]()
+        for dat in cardView.card.mediaData{
+             //MARK: media dat to img conversion
+            if let im = UIImage(data: dat){
+                images.append(im)
+                for i in 0...4{
+                    images.append(im)
+                }
+            }
+        }
+        let vc = WithImagesViewController()
+        vc.images=images
+        //If want to have a fixed
+        //presentAsStork(vc, height: view.bounds.height, showIndicator: true, showCloseButton: false, complection: nil)
+        self.present(vc, animated: true, completion: nil)
+        return
     }
 }

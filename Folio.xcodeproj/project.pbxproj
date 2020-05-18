@@ -41,6 +41,14 @@
 		E25BA4F8247163CE000D1DF7 /* checkListFullViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E25BA4F5247163CD000D1DF7 /* checkListFullViewController.swift */; };
 		E25BA4F9247163CE000D1DF7 /* drawingCardFullViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E25BA4F6247163CD000D1DF7 /* drawingCardFullViewController.swift */; };
 		E25BA4FA247163CE000D1DF7 /* NotesFullViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E25BA4F7247163CE000D1DF7 /* NotesFullViewController.swift */; };
+		E25BA4FD24716AD0000D1DF7 /* MediaCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E25BA4FC24716AD0000D1DF7 /* MediaCardView.swift */; };
+		E25BA4FF24716DC0000D1DF7 /* ImagePickerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E25BA4FE24716DC0000D1DF7 /* ImagePickerManager.swift */; };
+		E25BA50624721F93000D1DF7 /* ThumbCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E25BA50024721F91000D1DF7 /* ThumbCell.swift */; };
+		E25BA50724721F93000D1DF7 /* SCardCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E25BA50124721F92000D1DF7 /* SCardCollectionViewCell.xib */; };
+		E25BA50824721F93000D1DF7 /* GalleryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E25BA50224721F92000D1DF7 /* GalleryViewController.swift */; };
+		E25BA50924721F93000D1DF7 /* SCardCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E25BA50324721F92000D1DF7 /* SCardCollectionViewCell.swift */; };
+		E25BA50A24721F93000D1DF7 /* Extensions0.swift in Sources */ = {isa = PBXBuildFile; fileRef = E25BA50424721F92000D1DF7 /* Extensions0.swift */; };
+		E25BA50B24721F93000D1DF7 /* GalleryFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = E25BA50524721F93000D1DF7 /* GalleryFlowLayout.swift */; };
 		E269476524702D0900F9E21F /* UITextView+Expanding.swift in Sources */ = {isa = PBXBuildFile; fileRef = E269476424702D0900F9E21F /* UITextView+Expanding.swift */; };
 		E26947672470320B00F9E21F /* SmallCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E26947662470320B00F9E21F /* SmallCardView.swift */; };
 /* End PBXBuildFile section */
@@ -107,6 +115,14 @@
 		E25BA4F5247163CD000D1DF7 /* checkListFullViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = checkListFullViewController.swift; sourceTree = "<group>"; };
 		E25BA4F6247163CD000D1DF7 /* drawingCardFullViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = drawingCardFullViewController.swift; sourceTree = "<group>"; };
 		E25BA4F7247163CE000D1DF7 /* NotesFullViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotesFullViewController.swift; sourceTree = "<group>"; };
+		E25BA4FC24716AD0000D1DF7 /* MediaCardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediaCardView.swift; sourceTree = "<group>"; };
+		E25BA4FE24716DC0000D1DF7 /* ImagePickerManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagePickerManager.swift; sourceTree = "<group>"; };
+		E25BA50024721F91000D1DF7 /* ThumbCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThumbCell.swift; sourceTree = "<group>"; };
+		E25BA50124721F92000D1DF7 /* SCardCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SCardCollectionViewCell.xib; sourceTree = "<group>"; };
+		E25BA50224721F92000D1DF7 /* GalleryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GalleryViewController.swift; sourceTree = "<group>"; };
+		E25BA50324721F92000D1DF7 /* SCardCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SCardCollectionViewCell.swift; sourceTree = "<group>"; };
+		E25BA50424721F92000D1DF7 /* Extensions0.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions0.swift; sourceTree = "<group>"; };
+		E25BA50524721F93000D1DF7 /* GalleryFlowLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GalleryFlowLayout.swift; sourceTree = "<group>"; };
 		E269476424702D0900F9E21F /* UITextView+Expanding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITextView+Expanding.swift"; sourceTree = "<group>"; };
 		E26947662470320B00F9E21F /* SmallCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmallCardView.swift; sourceTree = "<group>"; };
 		F32C815244D1C255A7FDD23A /* Pods_Folio.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Folio.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -196,8 +212,9 @@
 				E252B08F246C4E6D003F8718 /* PageViewController.swift */,
 				E252B093246CEE55003F8718 /* PageView.swift */,
 				E252B091246C4E79003F8718 /* TimelineViewController.swift */,
-				E25BA4EE247159E2000D1DF7 /* Big Card Items */,
+				E25BA4FB24716A9D000D1DF7 /* Media Card Items */,
 				E252B08A246C4640003F8718 /* Model */,
+				E25BA4EE247159E2000D1DF7 /* Big Card Items */,
 				E269475D2470276F00F9E21F /* Small Card Items */,
 				E252B07F246C44E7003F8718 /* Extensions */,
 				E252B078246C4055003F8718 /* Supporters */,
@@ -268,6 +285,21 @@
 				E25BA4F7247163CE000D1DF7 /* NotesFullViewController.swift */,
 			);
 			path = "Big Card Items";
+			sourceTree = "<group>";
+		};
+		E25BA4FB24716A9D000D1DF7 /* Media Card Items */ = {
+			isa = PBXGroup;
+			children = (
+				E25BA4FC24716AD0000D1DF7 /* MediaCardView.swift */,
+				E25BA4FE24716DC0000D1DF7 /* ImagePickerManager.swift */,
+				E25BA50424721F92000D1DF7 /* Extensions0.swift */,
+				E25BA50524721F93000D1DF7 /* GalleryFlowLayout.swift */,
+				E25BA50224721F92000D1DF7 /* GalleryViewController.swift */,
+				E25BA50324721F92000D1DF7 /* SCardCollectionViewCell.swift */,
+				E25BA50124721F92000D1DF7 /* SCardCollectionViewCell.xib */,
+				E25BA50024721F91000D1DF7 /* ThumbCell.swift */,
+			);
+			path = "Media Card Items";
 			sourceTree = "<group>";
 		};
 		E269475D2470276F00F9E21F /* Small Card Items */ = {
@@ -392,6 +424,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E25BA50724721F93000D1DF7 /* SCardCollectionViewCell.xib in Resources */,
 				E25BA4EB24714CBD000D1DF7 /* smallCardTitleTableViewCell.xib in Resources */,
 				E252B055246C4044003F8718 /* LaunchScreen.storyboard in Resources */,
 				E25BA4EC24714CBD000D1DF7 /* SmallCardDatePickerTableViewCell.xib in Resources */,
@@ -536,6 +569,7 @@
 				E252B081246C45C0003F8718 /* Card.swift in Sources */,
 				E25BA4EA24714CBD000D1DF7 /* smallCardTitleTableViewCell.swift in Sources */,
 				E269476524702D0900F9E21F /* UITextView+Expanding.swift in Sources */,
+				E25BA50A24721F93000D1DF7 /* Extensions0.swift in Sources */,
 				E25BA4F9247163CE000D1DF7 /* drawingCardFullViewController.swift in Sources */,
 				E252B085246C45F2003F8718 /* MediaCard.swift in Sources */,
 				E26947672470320B00F9E21F /* SmallCardView.swift in Sources */,
@@ -544,10 +578,16 @@
 				E25BA4F8247163CE000D1DF7 /* checkListFullViewController.swift in Sources */,
 				E252B04B246C4041003F8718 /* SceneDelegate.swift in Sources */,
 				E252B07C246C44DF003F8718 /* textViewPlaceholder.swift in Sources */,
+				E25BA50924721F93000D1DF7 /* SCardCollectionViewCell.swift in Sources */,
+				E25BA50B24721F93000D1DF7 /* GalleryFlowLayout.swift in Sources */,
 				E252B07E246C44DF003F8718 /* UnderlinedTextView.swift in Sources */,
+				E25BA4FD24716AD0000D1DF7 /* MediaCardView.swift in Sources */,
+				E25BA50624721F93000D1DF7 /* ThumbCell.swift in Sources */,
 				E25BA4FA247163CE000D1DF7 /* NotesFullViewController.swift in Sources */,
+				E25BA4FF24716DC0000D1DF7 /* ImagePickerManager.swift in Sources */,
 				E252B083246C45E6003F8718 /* checkListItem.swift in Sources */,
 				E252B089246C4620003F8718 /* smallCard.swift in Sources */,
+				E25BA50824721F93000D1DF7 /* GalleryViewController.swift in Sources */,
 				E25BA4F424716196000D1DF7 /* EditCardViewController.swift in Sources */,
 				E252B092246C4E79003F8718 /* TimelineViewController.swift in Sources */,
 			);
