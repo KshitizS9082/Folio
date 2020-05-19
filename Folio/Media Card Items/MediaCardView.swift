@@ -29,59 +29,70 @@ class MediaCardView: UIView {
         }
         var dist = CGFloat(0)
         var i=0
-        //MARK: URL based implementation for getting image
-        
-        for ind in card.mediaDataURLs.indices{
-            if ind<card.mediaDataURLs.count-numberOfImagesToShow{
-                continue
+        //        if imageViews.count != numberOfImagesToShow{
+        self.subviews.forEach { (sv) in
+            sv.removeFromSuperview()
+        }
+        self.imageViews.removeAll()
+        for _ in 0..<numberOfImagesToShow{
+            let view=UIImageView()
+            //            view.image=image
+            view.contentMode = .scaleAspectFill
+            //TODO: if set to false shadows would appear but proper edge distance b/w subviews won't be maintained
+            view.layer.masksToBounds=true
+            view.layer.shadowColor=shadowColor
+            view.layer.shadowOpacity=1.0
+            //TODO: see if below line for caching causes a problem in resizing if not set it
+            //                view.layer.shouldRasterize=true
+            view.layer.shadowRadius = shadowRadius
+            view.translatesAutoresizingMaskIntoConstraints=false
+            addSubview(view)
+            [
+                view.leftAnchor.constraint(equalTo: safeAreaLayoutGuide.leftAnchor, constant: +dist),
+                view.rightAnchor.constraint(equalTo: safeAreaLayoutGuide.rightAnchor, constant: -dist),
+                view.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: +dist),
+                view.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -dist)
+                ].forEach { (cst) in
+                    cst.isActive=true
             }
-            print("tryihg to retrieve jsondata from url: \(card.mediaDataURLs[ind])")
-            if let url = try? FileManager.default.url(
-                for: .documentDirectory,
-                in: .userDomainMask,
-                appropriateFor: nil,
-                create: true
-            ).appendingPathComponent(card.mediaDataURLs[ind]){
-                if let jsonData = try? Data(contentsOf: url){
-                    print("did retrieve jsondata")
-                    if let extract = imageData(json: jsonData){
-                        //DO NOT CHANGE TO LET CAUSES PROBLEM IN NEXT ITERATION
-                        var x=extract.data
-                        print("checking if element a image: json ver")
-                        if let image = UIImage(data: x){
-                            //            if let image = x as? UIImage{
-                            print("found a image")
-                            let view=UIImageView()
-                            view.image=image
-                            view.contentMode = .scaleAspectFill
-                            //TODO: if set to false shadows would appear but proper edge distance b/w subviews won't be maintained
-                            view.layer.masksToBounds=true
-                            view.layer.shadowColor=shadowColor
-                            view.layer.shadowOpacity=1.0
-                            //TODO: see if below line for caching causes a problem in resizing if not set it
-                            //                view.layer.shouldRasterize=true
-                            view.layer.shadowRadius = shadowRadius
-                            view.translatesAutoresizingMaskIntoConstraints=false
-                            addSubview(view)
-                            [
-                                view.leftAnchor.constraint(equalTo: safeAreaLayoutGuide.leftAnchor, constant: +dist),
-                                view.rightAnchor.constraint(equalTo: safeAreaLayoutGuide.rightAnchor, constant: -dist),
-                                view.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: +dist),
-                                view.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -dist)
-                                ].forEach { (cst) in
-                                    cst.isActive=true
+                        view.isHidden=true
+            imageViews.append(view)
+            view.addSubview(UIActivityIndicatorView())
+            dist+=distanceOfEachNewImageFromPreviousImage
+        }
+        //        }
+        //MARK: URL based implementation for getting image
+//        }
+        let st=max(0,card.mediaDataURLs.count-numberOfImagesToShow)
+        let end=card.mediaDataURLs.count
+        for ind in st..<end{
+            DispatchQueue.global(qos: .background).async {
+                print("tryihg to retrieve jsondata from url: \(self.card.mediaDataURLs[ind])")
+                if let url = try? FileManager.default.url(
+                    for: .documentDirectory,
+                    in: .userDomainMask,
+                    appropriateFor: nil,
+                    create: true
+                ).appendingPathComponent(self.card.mediaDataURLs[ind]){
+                    if let jsonData = try? Data(contentsOf: url){
+                        print("did retrieve jsondata")
+                        if let extract = imageData(json: jsonData){
+                            //DO NOT CHANGE TO LET CAUSES PROBLEM IN NEXT ITERATION
+                            var x=extract.data
+                            print("checking if element a image: json ver")
+                            if let image = UIImage(data: x){
+                                //            if let image = x as? UIImage{
+//                                print("found a image and setting at iv \(ind-st) from imvcnt \(subviews.count)")
+                                DispatchQueue.main.async {
+                                    self.imageViews[ind-st].image=image
+                                    self.imageViews[ind-st].backgroundColor = #colorLiteral(red: 0.3667180918, green: 0.6686031065, blue: 0.1868030611, alpha: 0.4038567342)
+                                    self.imageViews[ind-st].isHidden=false
+                                }
                             }
-                            imageViews.append(view)
-                            
-                        }
-                        i+=1
-                        dist+=distanceOfEachNewImageFromPreviousImage
-                        if i>=numberOfImagesToShow{
-                            break
+                        }else{
+                            print("couldnt get json from URL")
                         }
                     }
-                }else{
-                    print("couldnt get json from URL")
                 }
             }
         }

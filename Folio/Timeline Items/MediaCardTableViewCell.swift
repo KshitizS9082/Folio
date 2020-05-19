@@ -85,21 +85,55 @@ class MediaCardTableViewCell: UITableViewCell {
 //        }
         //MARK: URL based implementation for getting image
         if let datList = card?.mediaDataURLs{
+//            for fileName in datList{
+//                if let url = try? FileManager.default.url(
+//                    for: .documentDirectory,
+//                    in: .userDomainMask,
+//                    appropriateFor: nil,
+//                    create: true
+//                ).appendingPathComponent(fileName){
+//                    if let jsonData = try? Data(contentsOf: url){
+//                        print("did retrieve jsondata")
+//                        if let extract = imageData(json: jsonData){
+//                            if let image = UIImage(data: extract.data){
+//                                print("did get UIImage from extrated data")
+//                                allImages.append(image)
+//                            }else{
+//                                print("couldn't get UIImage from extrated data, check if sure this file doesn't exist and if so delete it from array")
+//                            }
+//                        }
+            //                    }
+            //                }
+            //            }
+            for _ in datList{
+                allImages.append(UIImage())
+            }
             for fileName in datList{
-                if let url = try? FileManager.default.url(
-                    for: .documentDirectory,
-                    in: .userDomainMask,
-                    appropriateFor: nil,
-                    create: true
-                ).appendingPathComponent(fileName){
-                    if let jsonData = try? Data(contentsOf: url){
-                        print("did retrieve jsondata")
-                        if let extract = imageData(json: jsonData){
-                            if let image = UIImage(data: extract.data){
-                                print("did get UIImage from extrated data")
-                                allImages.append(image)
+                DispatchQueue.global(qos: .background).async {
+                    print("tryihg to retrieve jsondata from url: \(fileName)")
+                    if let url = try? FileManager.default.url(
+                        for: .documentDirectory,
+                        in: .userDomainMask,
+                        appropriateFor: nil,
+                        create: true
+                    ).appendingPathComponent(fileName){
+                        if let jsonData = try? Data(contentsOf: url){
+                            print("did retrieve jsondata")
+                            if let extract = imageData(json: jsonData){
+                                //DO NOT CHANGE TO LET CAUSES PROBLEM IN NEXT ITERATION
+                                print("checking if element a image: json ver")
+                                if let image = UIImage(data: extract.data){
+                                    print("did get UIImage from extrated data")
+//                                    self.allImages.append(image)
+                                    self.allImages[datList.firstIndex(of: fileName)!]=image
+                                    DispatchQueue.main.async {
+                                        self.collectionView.reloadData()
+                                    }
+                                }else{
+                                    print("couldn't get UIImage from extrated data, check if sure this file doesn't exist and if so delete it from array")
+                                }
                             }else{
-                                print("couldn't get UIImage from extrated data, check if sure this file doesn't exist and if so delete it from array")
+                                print("couldnt get json from URL")
                             }
                         }
                     }
