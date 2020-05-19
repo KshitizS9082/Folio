@@ -110,15 +110,7 @@ class WithImagesViewController:UIViewController {
         updateLayout(size)
     }
     override func viewWillDisappear(_ animated: Bool) {
-        //TODO: check if needs to be implemented
-//        var imgDat = [Data]()
-//        for img in images{
-//            imgDat.append(img.pngData()!)
-//        }
-//        viewLinkedTo?.card.mediaData=imgDat
-//        viewLinkedTo?.layoutSubviews()
     }
-//    viewdi
 }
 
 extension WithImagesViewController:UICollectionViewDataSource {

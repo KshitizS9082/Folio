@@ -434,7 +434,8 @@ extension PageViewController: pageProtocol{
                 cardView.frame = CGRect.zero
             }
             if shouldDelete{
-                cardView.removeFromSuperview()
+                cardView.deleteMe()
+//                cardView.removeFromSuperview()
             }
             if resizeView{
                 cardView.startResizing()

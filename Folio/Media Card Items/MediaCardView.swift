@@ -112,6 +112,26 @@ class MediaCardView: UIView {
     @objc func didLongPressMediaView(sender: UIGestureRecognizer){
         pageDelegate?.getMeMedia(for: self)
     }
+    func deleteMe(){
+        let fileManager = FileManager.default
+//        if let names = {
+            for fileName in self.card.mediaDataURLs{
+                if let url = try? FileManager.default.url(
+                    for: .documentDirectory,
+                    in: .userDomainMask,
+                    appropriateFor: nil,
+                    create: true
+                ).appendingPathComponent(fileName){
+                    do{
+                        try fileManager.removeItem(at: url)
+                        print("deleted item \(url) succefully")
+                    } catch{
+                        print("ERROR: item  at \(url) couldn't be deleted")
+                    }
+                }
+            }
+        self.removeFromSuperview()
+    }
     //Make view resizable
     var isResizing = false
     var pageDelegate: pageProtocol?
