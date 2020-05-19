@@ -17,6 +17,7 @@ class TimelineViewController: UIViewController {
     var showingType = showingDataType.allCards
     var sizeType = cardSizeMode.full
     var cardsList = [timeLineCard]()
+    var myViewController: SwitchPageTimelineViewController?
     
     @IBOutlet weak var table: UITableView!
     private func setCardsList(){
@@ -144,7 +145,7 @@ extension TimelineViewController: UITableViewDataSource, UITableViewDelegate{
         let cell = tableView.dequeueReusableCell(withIdentifier: "smallCardCell", for: indexPath) as! ScardTimelineTableViewCell
 //        cell.updateCardDelegate=self
         cell.delegate=self
-//        cell.showLinkDelegate = myViewController
+        cell.showLinkDelegate = myViewController
         cell.sizeType = self.sizeType
         cell.indexpath = indexPath
         cell.row = indexPath.row
@@ -159,7 +160,7 @@ extension TimelineViewController: UITableViewDataSource, UITableViewDelegate{
         let cell = tableView.dequeueReusableCell(withIdentifier: "bigCardCell", for: indexPath) as! BigcardTimelineTableViewCell
         cell.delegate=self
 //        cell.updateCardDelegate=self
-//        cell.showLinkDelegate=myViewController
+        cell.showLinkDelegate=myViewController
         cell.sizeType = self.sizeType
         cell.indexpath=indexPath
         cell.row = indexPath.row
@@ -171,7 +172,7 @@ extension TimelineViewController: UITableViewDataSource, UITableViewDelegate{
         let cell = tableView.dequeueReusableCell(withIdentifier: "mediaCardCell", for: indexPath) as! MediaCardTableViewCell
         //reload data added to remove a bug where previous cell without image deleted in page view and new cell with image added would result in crash DO NOT REMOVE!!
         cell.collectionView.reloadData()
-//        cell.showLinkDelegate=myViewController
+        cell.showLinkDelegate=myViewController
         cell.card=cardsList[indexPath.row].mediaCard?.card
         cell.backgroundColor=mediaCardCellColor
         cell.updateHeightDelegate=self

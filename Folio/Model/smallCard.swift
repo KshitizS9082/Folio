@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 struct SmallCard: Codable {
-    var UniquIdentifier: UUID?
+    var UniquIdentifier=UUID()
     var isDone = false
     var title = "Title"
     var notes = ""

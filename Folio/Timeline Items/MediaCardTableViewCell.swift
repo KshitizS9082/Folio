@@ -12,7 +12,7 @@ import UIKit
 class MediaCardTableViewCell: UITableViewCell {
 
     var updateHeightDelegate: myUpdateCellHeightDelegate?
-//    var showLinkDelegate: timelineSwitchDelegate?
+    var showLinkDelegate: timelineSwitchDelegate?
     var sizeType = cardSizeMode.full
     var row = 0
     var indexpath = IndexPath(row: 0, section: 0)
@@ -26,7 +26,7 @@ class MediaCardTableViewCell: UITableViewCell {
     }
     @objc func handleLinkViewTap(){
            print("yet to implement did tap linkview in mediacard timeline")
-//        showLinkDelegate!.switchToPageAndShowCard(with: (card?.UniquIdentifier)!)
+        showLinkDelegate!.switchToPageAndShowCard(with: (card?.UniquIdentifier)!)
        }
     //    @IBOutlet weak var imageViewWidthConstraint: NSLayoutConstraint!
 //    @IBOutlet weak var myImageView: UIImageView!{

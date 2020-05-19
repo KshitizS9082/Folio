@@ -10,7 +10,7 @@ import Foundation
 //import PencilKit
 
 struct Card: Codable {
-    var UniquIdentifier: UUID?
+    var UniquIdentifier=UUID()
     var type: cardType = cardType.CheckList
     enum cardType: String, Codable {
         case CheckList

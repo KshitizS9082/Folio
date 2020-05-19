@@ -9,7 +9,7 @@
 import Foundation
 
 struct MediaCard: Codable {
-    var UniquIdentifier: UUID?
+    var UniquIdentifier=UUID()
 //    var data = (Any?, mediaType?)()
     var title: String?
     var dateOfCreation: Date = Date()

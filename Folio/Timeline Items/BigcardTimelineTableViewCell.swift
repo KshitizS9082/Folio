@@ -16,7 +16,7 @@ class BigcardTimelineTableViewCell: UITableViewCell {
     
     var delegate: myUpdateCellHeightDelegate?
 //    var updateCardDelegate: updateBigCardFromCell?
-//    var showLinkDelegate: timelineSwitchDelegate?
+    var showLinkDelegate: timelineSwitchDelegate?
     var sizeType = cardSizeMode.full
     var card: Card?{
         didSet{
@@ -65,7 +65,7 @@ class BigcardTimelineTableViewCell: UITableViewCell {
     }
     @objc func handleLinkViewTap(){
         print("yet to implement did tap linkview bigcardtimelinecell")
-//        showLinkDelegate!.switchToPageAndShowCard(with: (card!.UniquIdentifier)!)
+        showLinkDelegate!.switchToPageAndShowCard(with: (card!.UniquIdentifier))
     }
     lazy var constr  = additionalView.heightAnchor.constraint(equalToConstant: 0)
     override func awakeFromNib() {

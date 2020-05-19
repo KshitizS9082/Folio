@@ -26,7 +26,7 @@ class ScardTimelineTableViewCell: UITableViewCell {
         }
     }
 //    var updateCardDelegate: updateSmallCardFromCell?
-//    var showLinkDelegate: timelineSwitchDelegate?
+    var showLinkDelegate: timelineSwitchDelegate?
     var sizeType = cardSizeMode.full
     var baseHeight: CGFloat = 40
     var row = 0
@@ -64,7 +64,7 @@ class ScardTimelineTableViewCell: UITableViewCell {
     }
     @objc func handleLinkViewTap(){
         print("yet to implement did tap linkview")
-//        showLinkDelegate!.switchToPageAndShowCard(with: card!.UniquIdentifier!)
+        showLinkDelegate!.switchToPageAndShowCard(with: card!.UniquIdentifier)
     }
     override func awakeFromNib() {
         super.awakeFromNib()

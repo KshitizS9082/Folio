@@ -28,7 +28,6 @@ class MediaCardView: UIView {
             sv.removeFromSuperview()
         }
         var dist = CGFloat(0)
-        var i=0
         //        if imageViews.count != numberOfImagesToShow{
         self.subviews.forEach { (sv) in
             sv.removeFromSuperview()
@@ -63,6 +62,7 @@ class MediaCardView: UIView {
         //        }
         //MARK: URL based implementation for getting image
 //        }
+        var x = Data()
         let st=max(0,card.mediaDataURLs.count-numberOfImagesToShow)
         let end=card.mediaDataURLs.count
         for ind in st..<end{
@@ -78,7 +78,7 @@ class MediaCardView: UIView {
                         print("did retrieve jsondata")
                         if let extract = imageData(json: jsonData){
                             //DO NOT CHANGE TO LET CAUSES PROBLEM IN NEXT ITERATION
-                            var x=extract.data
+                            x=extract.data
                             print("checking if element a image: json ver")
                             if let image = UIImage(data: x){
                                 //            if let image = x as? UIImage{

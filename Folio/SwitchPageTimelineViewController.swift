@@ -7,6 +7,9 @@
 //
 
 import UIKit
+protocol timelineSwitchDelegate {
+    func switchToPageAndShowCard(with uniqueID: UUID)
+}
 
 class SwitchPageTimelineViewController: UIViewController {
     var page=PageData()
@@ -23,6 +26,9 @@ class SwitchPageTimelineViewController: UIViewController {
     @IBOutlet weak var pageCV: UIView!
     @IBOutlet weak var timeLineCV: UIView!
     
+    var pageVController : PageViewController?
+    var timeLineVController : TimelineViewController?
+    
     var toolBarIsHidden=false
     @IBAction func segmentChanged(_ sender: UISegmentedControl) {
         print("segment changed")
@@ -31,6 +37,10 @@ class SwitchPageTimelineViewController: UIViewController {
             pageCV.isHidden=false
             timeLineCV.isHidden=true
         case 1:
+            //TODO: currently loads data in segment 2 from storage can be done faster
+            pageVController?.save()
+            timeLineVController?.viewWillAppear(true)
+//            timeLineVController?.viewDidLoad()
             pageCV.isHidden=true
             timeLineCV.isHidden=false
         default:
@@ -62,14 +72,29 @@ class SwitchPageTimelineViewController: UIViewController {
     }
     
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    
+//     MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+        switch segue.identifier {
+        case "pageViewSegue":
+            pageVController = segue.destination as? PageViewController
+        case "timeLineSegue":
+            timeLineVController = segue.destination as? TimelineViewController
+            timeLineVController?.myViewController=self
+        default:
+            print("unknown segue identifier")
+        }
+        
     }
-    */
+    
 
+}
+
+extension SwitchPageTimelineViewController: timelineSwitchDelegate{
+    func switchToPageAndShowCard(with uniqueID: UUID) {
+        segmentControl.selectedSegmentIndex=0
+        segmentChanged(segmentControl)
+        pageVController?.scrollToCard(with: uniqueID)
+    }
+    
 }
