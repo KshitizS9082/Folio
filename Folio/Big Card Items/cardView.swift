@@ -378,6 +378,9 @@ class cardView: UIView, UITextFieldDelegate, UITableViewDataSource {
     
     
     override func layoutSubviews() {
+        self.backgroundColor = cardColour
+        self.layer.cornerRadius = cornerRadius
+        self.layer.masksToBounds=true
         if(isResizing){
             return
         }
@@ -415,11 +418,11 @@ class cardView: UIView, UITextFieldDelegate, UITableViewDataSource {
     
     override func draw(_ rect: CGRect) {
         // Drawing code
-        let roundedRect = UIBezierPath(roundedRect: bounds, cornerRadius: cornerRadius)
-        roundedRect.addClip()
-        cardColour.setFill()
-        roundedRect.fill()
-        self.layer.masksToBounds=true
+//        let roundedRect = UIBezierPath(roundedRect: bounds, cornerRadius: cornerRadius)
+//        roundedRect.addClip()
+//        cardColour.setFill()
+//        roundedRect.fill()
+//        self.layer.masksToBounds=true
     }
     
     //Make view resizable
