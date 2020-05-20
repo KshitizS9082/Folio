@@ -10,6 +10,9 @@ import UIKit
 
 protocol myUpdateCellHeightDelegate{
     func updated(height: CGFloat, row: Int, indexpath: IndexPath)
+    func saveSmallCard(with card: SmallCard)
+    func saveBigCard(with card: Card)
+    func saveMediaCard(with card: MediaCard)
 }
 
 class TimelineViewController: UIViewController {
@@ -82,6 +85,28 @@ class TimelineViewController: UIViewController {
             }
             print("size type = \(self.sizeType)")
             table.reloadData()
+        }
+    }
+    
+    func save() {
+        print("attempting to save page = \(page)")
+        if let json = page?.json {
+            if let url = try? FileManager.default.url(
+                for: .documentDirectory,
+                in: .userDomainMask,
+                appropriateFor: nil,
+                create: true
+            ).appendingPathComponent("Untitled.json"){
+                do {
+                    try json.write(to: url)
+                    print ("saved successfully")
+                    
+                    //                    let str = String(data: json, encoding: .utf8)
+                    //                    print("jsondata = \(str)")
+                } catch let error {
+                    print ("couldn't save \(error)")
+                }
+            }
         }
     }
     
@@ -175,7 +200,7 @@ extension TimelineViewController: UITableViewDataSource, UITableViewDelegate{
         cell.showLinkDelegate=myViewController
         cell.card=cardsList[indexPath.row].mediaCard?.card
         cell.backgroundColor=mediaCardCellColor
-        cell.updateHeightDelegate=self
+        cell.delegate=self
         cell.indexpath=indexPath
         cell.row=indexPath.row
         cell.sizeType=self.sizeType
@@ -184,6 +209,43 @@ extension TimelineViewController: UITableViewDataSource, UITableViewDelegate{
     }
 }
 extension TimelineViewController: myUpdateCellHeightDelegate{
+    func saveBigCard(with card: Card) {
+        let uniqueID = card.UniquIdentifier
+        if let cardDatas = page?.bigCards{
+            for ind in cardDatas.indices{
+                if cardDatas[ind].card.UniquIdentifier==uniqueID{
+                    print("found the place to save to")
+                    page?.bigCards[ind].card = card
+                }
+            }
+        }
+    }
+    //TODO: see if ever calls
+    func saveMediaCard(with card: MediaCard) {
+        let uniqueID = card.UniquIdentifier
+        if let cardDatas = page?.mediaCards{
+            for ind in cardDatas.indices{
+                if cardDatas[ind].card.UniquIdentifier==uniqueID{
+                    print("found the place to save to nv = \(card)")
+                    page?.mediaCards[ind].card = card
+                }
+            }
+        }
+    }
+    
+    func saveSmallCard(with card: SmallCard) {
+        let uniqueID = card.UniquIdentifier
+        if let cardDatas = page?.smallCards{
+            for ind in cardDatas.indices{
+                if cardDatas[ind].card.UniquIdentifier==uniqueID{
+                    print("found the place to save to nv = \(card)")
+                    page?.smallCards[ind].card = card
+                }
+            }
+        }
+        print("after saveSmallCard page= \(self.page)")
+    }
+    
     func updated(height: CGFloat, row: Int, indexpath: IndexPath) {
         //TODO: maybe use this stord height method, but not required
         
@@ -199,12 +261,7 @@ extension TimelineViewController: myUpdateCellHeightDelegate{
         table.scrollToRow(at: indexpath, at: .bottom, animated: false)
     }
 }
-//struct timeLineCard {
-//    var type = cardType.small
-//    var index = 0
-//    var dated : Date?
-//    var identifier = UUID()
-//}
+
 struct timeLineCard {
     var type = cardType.small
     var smallCard: smallCardData?

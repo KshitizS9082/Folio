@@ -11,7 +11,7 @@ import UIKit
 //TODO: update cell heights properly, currently updated when image is tapped
 class MediaCardTableViewCell: UITableViewCell {
 
-    var updateHeightDelegate: myUpdateCellHeightDelegate?
+    var delegate: myUpdateCellHeightDelegate?
     var showLinkDelegate: timelineSwitchDelegate?
     var sizeType = cardSizeMode.full
     var row = 0
@@ -118,16 +118,19 @@ class MediaCardTableViewCell: UITableViewCell {
                         create: true
                     ).appendingPathComponent(fileName){
                         if let jsonData = try? Data(contentsOf: url){
-                            print("did retrieve jsondata")
+                            print("did retrieve jsondata MediaTableViewcell")
                             if let extract = imageData(json: jsonData){
                                 //DO NOT CHANGE TO LET CAUSES PROBLEM IN NEXT ITERATION
-                                print("checking if element a image: json ver")
+                                print("checking if element a image: json ver MediaTableViewcell")
                                 if let image = UIImage(data: extract.data){
                                     print("did get UIImage from extrated data")
-//                                    self.allImages.append(image)
-                                    self.allImages[datList.firstIndex(of: fileName)!]=image
-                                    DispatchQueue.main.async {
-                                        self.collectionView.reloadData()
+                                    if let pos = datList.firstIndex(of: fileName){
+                                        if pos<self.allImages.count{
+                                            self.allImages[pos]=image
+                                            DispatchQueue.main.async {
+                                                self.collectionView.reloadData()
+                                            }
+                                        }
                                     }
                                 }else{
                                     print("couldn't get UIImage from extrated data, check if sure this file doesn't exist and if so delete it from array")

@@ -65,6 +65,7 @@ class BigcardTimelineTableViewCell: UITableViewCell {
     }
     @objc func handleLinkViewTap(){
         print("yet to implement did tap linkview bigcardtimelinecell")
+        self.updateCard()
         showLinkDelegate!.switchToPageAndShowCard(with: (card!.UniquIdentifier))
     }
     lazy var constr  = additionalView.heightAnchor.constraint(equalToConstant: 0)
@@ -259,6 +260,10 @@ class BigcardTimelineTableViewCell: UITableViewCell {
     func updateCard(){
         print("yet to implement update bigcard")
 //        updateCardDelegate!.newValuesFor(card: card!, isDone: isDone, titleText: title)
+        card?.isCompleted=self.isDone
+        card?.Heading=self.titleTextView.text
+        delegate?.saveBigCard(with: card!)
+        
     }
 }
 

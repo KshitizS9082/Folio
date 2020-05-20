@@ -146,6 +146,10 @@ class ScardTimelineTableViewCell: UITableViewCell {
     func updateCard(){
         print("yet to implement updateCard")
 //        updateCardDelegate!.newValuesFor(card: card!, isDone: isDone, titleText: self.title, notesText: self.notes)
+        card?.isDone=self.isDone
+        card?.title=self.titleTextView.text
+        card?.notes=self.notesTextView.text
+        delegate?.saveSmallCard(with: self.card!)
     }
 }
 extension ScardTimelineTableViewCell: UITextViewDelegate{

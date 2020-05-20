@@ -34,15 +34,19 @@ class SwitchPageTimelineViewController: UIViewController {
         print("segment changed")
         switch segmentControl.selectedSegmentIndex {
         case 0:
+            timeLineVController?.save()
+//            pageVController?.viewWillAppear(true)
+            pageVController?.page=timeLineVController?.page
+//            pageVController?.viewDidLoad()
             pageCV.isHidden=false
             timeLineCV.isHidden=true
         case 1:
             //TODO: currently loads data in segment 2 from storage can be done faster
             pageVController?.save()
-            timeLineVController?.viewWillAppear(true)
-//            timeLineVController?.viewDidLoad()
             pageCV.isHidden=true
             timeLineCV.isHidden=false
+            timeLineVController?.viewWillAppear(true)
+//            timeLineVController?.viewDidLoad()
         default:
             print("unknown index for segmentControl.selectedSegmentIndex: \(segmentControl.selectedSegmentIndex)")
             break
