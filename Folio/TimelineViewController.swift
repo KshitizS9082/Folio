@@ -16,6 +16,7 @@ protocol myUpdateCellHeightDelegate{
 }
 
 class TimelineViewController: UIViewController {
+    var pageID: pageInfo?
     var page: PageData?
     var showingType = showingDataType.allCards
     var sizeType = cardSizeMode.full
@@ -96,13 +97,10 @@ class TimelineViewController: UIViewController {
                 in: .userDomainMask,
                 appropriateFor: nil,
                 create: true
-            ).appendingPathComponent("Untitled.json"){
+            ).appendingPathComponent(pageID!.fileName){
                 do {
                     try json.write(to: url)
                     print ("saved successfully")
-                    
-                    //                    let str = String(data: json, encoding: .utf8)
-                    //                    print("jsondata = \(str)")
                 } catch let error {
                     print ("couldn't save \(error)")
                 }
@@ -118,7 +116,7 @@ class TimelineViewController: UIViewController {
             in: .userDomainMask,
             appropriateFor: nil,
             create: true
-        ).appendingPathComponent("Untitled.json"){
+        ).appendingPathComponent(pageID!.fileName){
             print("trying to extract contents of jsonData")
             if let jsonData = try? Data(contentsOf: url){
                 page = PageData(json: jsonData)

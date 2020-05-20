@@ -19,6 +19,7 @@ protocol pageProtocol {
 }
 
 class PageViewController: UIViewController {
+    var pageID: pageInfo?
     var page: PageData? {
         get{
             var retVal = PageData()
@@ -190,7 +191,7 @@ class PageViewController: UIViewController {
                 in: .userDomainMask,
                 appropriateFor: nil,
                 create: true
-            ).appendingPathComponent("Untitled.json"){
+            ).appendingPathComponent(pageID!.fileName){
                 do {
                     try json.write(to: url)
                     print ("saved successfully")
@@ -236,7 +237,7 @@ class PageViewController: UIViewController {
             in: .userDomainMask,
             appropriateFor: nil,
             create: true
-        ).appendingPathComponent("Untitled.json"){
+        ).appendingPathComponent(pageID!.fileName){
             print("trying to extract contents of jsonData")
             if let jsonData = try? Data(contentsOf: url){
                 if let extract = PageData(json: jsonData){
@@ -434,25 +435,30 @@ extension PageViewController: pageProtocol{
                 let fileName=String.uniqueFilename(withPrefix: "iamgeData")+".json"
 //                if let json = imageData(instData: img.pngData()!).json {
                 //TODO: currently reduces data size of image for efficiency, donot do that
-                if let json = imageData(instData: img.jpeg(.lowest)!).json {
-                    if let url = try? FileManager.default.url(
-                        for: .documentDirectory,
-                        in: .userDomainMask,
-                        appropriateFor: nil,
-                        create: true
-                    ).appendingPathComponent(fileName){
-                        do {
-                            try json.write(to: url)
-                            print ("saved successfully")
-                            //MARK: is a data leak to be corrected
-                            //TODO: sometimes fileName added but not deleted
-                            cardView.card.mediaDataURLs.append(fileName)
-                        } catch let error {
-                            print ("couldn't save \(error)")
+//                if let json = imageData(instData: img.jpeg(.lowest)!).json {
+                DispatchQueue.global(qos: .background).async {
+                    if let json = imageData(instData: (img.resizedTo1MB()!).pngData()!).json {
+                        if let url = try? FileManager.default.url(
+                            for: .documentDirectory,
+                            in: .userDomainMask,
+                            appropriateFor: nil,
+                            create: true
+                        ).appendingPathComponent(fileName){
+                            do {
+                                try json.write(to: url)
+                                print ("saved successfully")
+                                //MARK: is a data leak to be corrected
+                                //TODO: sometimes fileName added but not deleted
+                                cardView.card.mediaDataURLs.append(fileName)
+                            } catch let error {
+                                print ("couldn't save \(error)")
+                            }
                         }
                     }
+                    DispatchQueue.main.sync {
+                        cardView.layoutSubviews()
+                    }
                 }
-                cardView.layoutSubviews()
             }
             if shouldDeleteFromPage{
                 cardView.frame = CGRect.zero

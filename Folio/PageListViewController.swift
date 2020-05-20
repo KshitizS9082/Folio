@@ -7,9 +7,46 @@
 //
 
 import UIKit
+struct pageInfo: Codable{
+    var title = "Title"
+    var fileName = String.uniqueFilename(withPrefix: "Page")+".json"
+    var dateOfMaking =  Date()
+    init(){
+    }
+    init?(json: Data){
+        if let newValue = try? JSONDecoder().decode(pageInfo.self, from: json) {
+            self = newValue
+        } else {
+            return nil
+        }
+    }
+    init(title: String){
+        self.title = title
+    }
+    var json: Data? {
+        return try? JSONEncoder().encode(self)
+    }
+}
+struct pageInfoList: Codable {
+    var items = [pageInfo]()
+    init(){
+    }
+    init?(json: Data){
+        if let newValue = try? JSONDecoder().decode(pageInfoList.self, from: json) {
+            self = newValue
+        } else {
+            return nil
+        }
+    }
+    var json: Data? {
+        return try? JSONEncoder().encode(self)
+    }
+}
 
 class PageListViewController: UIViewController {
-    var pages = [PageData]()
+//    var pages = [PageData]()
+//    var pageList = [pageInfo]()
+    var pages = pageInfoList()
     var addPageButton = UIImageView(image: UIImage(systemName: "plus.circle.fill"))
     var titleLabel = UILabel()
     
@@ -64,22 +101,57 @@ class PageListViewController: UIViewController {
     }
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.setNavigationBarHidden(true, animated: true)
+        if let url = try? FileManager.default.url(
+            for: .documentDirectory,
+            in: .userDomainMask,
+            appropriateFor: nil,
+            create: true
+        ).appendingPathComponent("PageList.json"){
+            print("trying to extract contents of jsonData")
+            if let jsonData = try? Data(contentsOf: url){
+//                pageList = pageInfo(json: jsonData)
+                if let x = pageInfoList(json: jsonData){
+                    pages = x
+                }else{
+                    print("WARNING: COULDN'T UNWRAP JSON DATA TO FIND PAGELIST")
+                }
+            }
+            viewDidLoad()
+        }
+    }
+    func save() {
+        print("attempting to save pages")
+        if let json = pages.json {
+            if let url = try? FileManager.default.url(
+                for: .documentDirectory,
+                in: .userDomainMask,
+                appropriateFor: nil,
+                create: true
+            ).appendingPathComponent("PageList.json"){
+                do {
+                    try json.write(to: url)
+                    print ("saved successfully")
+                } catch let error {
+                    print ("couldn't save \(error)")
+                }
+            }
+        }
     }
     override func viewWillDisappear(_ animated: Bool) {
         self.navigationController?.setNavigationBarHidden(false, animated: animated)
+        save()
     }
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(image:  UIImage(systemName: "plus.circle.fill"), style: .plain, target: self, action: #selector(addPage))
-        pages.append(PageData(title: "First Page"))
-        pages.append(PageData(title: "Second Page"))
         configureHeading()
         configureTable()
         // Do any additional setup after loading the view.
     }
     
     @objc func addPage(){
-        pages.append(PageData())
+//        pages.append(PageData())
+        pages.items.append(pageInfo())
         table.reloadData()
     }
     
@@ -88,10 +160,11 @@ class PageListViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "openPage"{
             if let targetController = segue.destination as? SwitchPageTimelineViewController{
-                targetController.page = pages[selectedCell!]
+//                targetController.page = pages[selectedCell!]
                 targetController.index = selectedCell!
+                targetController.pageID = pages.items[selectedCell!]
                 targetController.myViewController=self
-                print("passing pageTitle: \(pages[selectedCell!].title)")
+                print("passing pageTitle: \(pages.items[selectedCell!].title)")
             }
         }
     }
@@ -99,15 +172,16 @@ class PageListViewController: UIViewController {
 }
 extension PageListViewController:UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return pages.count
+        return pages.items.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "pageCell", for: indexPath)
         cell.accessoryType = .disclosureIndicator
-        cell.textLabel?.text = pages[indexPath.row].title
+        cell.textLabel?.text = pages.items[indexPath.row].title
         cell.backgroundColor = cellColour
-        let time = pages[indexPath.row].lasteDateOfEditting
+//        let time = pages[indexPath.row].lasteDateOfEditting
+        let time =  pages.items[indexPath.row].dateOfMaking
         let formatter = DateFormatter()
         //        formatter.dateFormat = "d/M/yy, hh:mm a"
         formatter.dateStyle = .full
@@ -123,7 +197,7 @@ extension PageListViewController:UITableViewDelegate, UITableViewDataSource{
     }
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete{
-            pages.remove(at: indexPath.row)
+            pages.items.remove(at: indexPath.row)
             table.reloadData()
         }
     }

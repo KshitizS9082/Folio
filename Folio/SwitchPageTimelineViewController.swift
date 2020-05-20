@@ -12,6 +12,7 @@ protocol timelineSwitchDelegate {
 }
 
 class SwitchPageTimelineViewController: UIViewController {
+    var pageID: pageInfo?
     var page=PageData()
     var index=0
     var myViewController: PageListViewController?
@@ -92,8 +93,10 @@ class SwitchPageTimelineViewController: UIViewController {
         switch segue.identifier {
         case "pageViewSegue":
             pageVController = segue.destination as? PageViewController
+            pageVController?.pageID = self.pageID
         case "timeLineSegue":
             timeLineVController = segue.destination as? TimelineViewController
+            timeLineVController?.pageID = self.pageID
             timeLineVController?.myViewController=self
         default:
             print("unknown segue identifier")

@@ -11,6 +11,7 @@ import UIKit
 
 struct PageData: Codable{
     var title = "Title"
+    var uniqueID = UUID()
     var pageViewSize =  CGSize()
     var lasteDateOfEditting = Date()
     var bigCards = [bigCardData]()
