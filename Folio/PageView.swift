@@ -79,6 +79,7 @@ class PageView: UIView {
         nv.isUserInteractionEnabled=true
         self.addSubview(nv)
         self.currentTask = .noneOfAbove
+        pageDelegate?.changeContentSize(using: nv)
     }
     func addBigCard(centeredAt point: CGPoint){
         let newFrame = CGRect(origin: CGPoint(x: max(0, point.x-(bigCardWidth/2)), y: max(0,point.y-(bigCardHeight/2))), size: CGSize(width: bigCardWidth, height: bigCardHeight))
@@ -87,6 +88,7 @@ class PageView: UIView {
         nv.isUserInteractionEnabled=true
         self.addSubview(nv)
         self.currentTask = .noneOfAbove
+        pageDelegate?.changeContentSize(using: nv)
     }
     func addMediaCard(centeredAt point: CGPoint){
         let newFrame = CGRect(origin: CGPoint(x: max(0, point.x-(mediaCardDimension/2)), y: max(0,point.y-(mediaCardDimension/2))), size: CGSize(width: mediaCardDimension, height: mediaCardDimension))
@@ -99,6 +101,7 @@ class PageView: UIView {
 //        pageDelegate?.getMeMedia(for: newCardView)
 //        nv.addGestureRecognizer(UILongPressGestureRecognizer(target: self, action: #selector(didLongPressMediaView)))
         self.currentTask = .noneOfAbove
+        pageDelegate?.changeContentSize(using: nv)
     }
 //    @objc func didLongPressMediaView(sender: UIGestureRecognizer){
 //        let view = sender.view as! MediaCardView

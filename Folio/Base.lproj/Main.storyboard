@@ -204,27 +204,66 @@
                                     <constraint firstAttribute="width" secondItem="bK9-KC-QTQ" secondAttribute="height" id="mcN-hI-uME"/>
                                 </constraints>
                             </imageView>
+                            <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="arrow.up.to.line.alt" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="TOD-aV-QW7">
+                                <rect key="frame" x="364" y="359" width="44" height="42.5"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="TOD-aV-QW7" secondAttribute="height" constant="1" id="9rB-bn-gca"/>
+                                </constraints>
+                            </imageView>
+                            <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="arrow.left.to.line.alt" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="DJ1-Mi-ymj">
+                                <rect key="frame" x="364" y="459" width="44" height="38"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="DJ1-Mi-ymj" secondAttribute="height" constant="1" id="0B7-Ub-F5M"/>
+                                </constraints>
+                            </imageView>
+                            <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="arrow.down.to.line.alt" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="43G-7N-ko0">
+                                <rect key="frame" x="364" y="408" width="44" height="42.5"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="43G-7N-ko0" secondAttribute="height" constant="1" id="xEI-j8-QGS"/>
+                                </constraints>
+                            </imageView>
+                            <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="arrow.right.to.line.alt" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="jHa-WE-XxO">
+                                <rect key="frame" x="364" y="508" width="44" height="38"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="jHa-WE-XxO" secondAttribute="height" constant="1" id="iu2-wt-BYX"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="7ZQ-M8-LUC" firstAttribute="trailing" secondItem="9gP-HQ-60U" secondAttribute="trailing" constant="6" id="0MV-RU-JiS"/>
                             <constraint firstItem="xBB-M9-Ju6" firstAttribute="trailing" secondItem="KFd-ea-Pal" secondAttribute="trailing" id="33l-BK-Cbd"/>
+                            <constraint firstItem="jHa-WE-XxO" firstAttribute="trailing" secondItem="DJ1-Mi-ymj" secondAttribute="trailing" id="4lP-gK-lME"/>
+                            <constraint firstItem="TOD-aV-QW7" firstAttribute="top" secondItem="bK9-KC-QTQ" secondAttribute="bottom" constant="6" id="4ss-vc-Doy"/>
                             <constraint firstItem="wOQ-Sg-Khi" firstAttribute="top" secondItem="xBB-M9-Ju6" secondAttribute="bottom" constant="6" id="5ei-pJ-Qbr"/>
                             <constraint firstItem="xBB-M9-Ju6" firstAttribute="leading" secondItem="KFd-ea-Pal" secondAttribute="leading" id="6AA-7C-3FG"/>
                             <constraint firstItem="bK9-KC-QTQ" firstAttribute="top" secondItem="J4H-vX-fqK" secondAttribute="bottom" constant="6" id="AwJ-Ts-exw"/>
+                            <constraint firstItem="TOD-aV-QW7" firstAttribute="trailing" secondItem="bK9-KC-QTQ" secondAttribute="trailing" id="C6Q-IM-Aj0"/>
+                            <constraint firstItem="43G-7N-ko0" firstAttribute="top" secondItem="TOD-aV-QW7" secondAttribute="bottom" constant="6" id="Dke-F2-6VQ"/>
                             <constraint firstItem="bK9-KC-QTQ" firstAttribute="trailing" secondItem="J4H-vX-fqK" secondAttribute="trailing" id="Hkv-Be-wcy"/>
+                            <constraint firstItem="43G-7N-ko0" firstAttribute="width" secondItem="43G-7N-ko0" secondAttribute="height" constant="1" id="Hma-6u-get"/>
                             <constraint firstItem="KFd-ea-Pal" firstAttribute="trailing" secondItem="9gP-HQ-60U" secondAttribute="trailing" id="JWw-6s-Eid"/>
                             <constraint firstItem="wOQ-Sg-Khi" firstAttribute="trailing" secondItem="xBB-M9-Ju6" secondAttribute="trailing" id="Jal-K5-8r5"/>
                             <constraint firstItem="9gP-HQ-60U" firstAttribute="top" secondItem="7ZQ-M8-LUC" secondAttribute="top" constant="15" id="Jsm-pe-Ipr"/>
                             <constraint firstItem="KFd-ea-Pal" firstAttribute="leading" secondItem="9gP-HQ-60U" secondAttribute="leading" id="JuF-4T-WIu"/>
                             <constraint firstItem="bK9-KC-QTQ" firstAttribute="leading" secondItem="J4H-vX-fqK" secondAttribute="leading" id="K0K-5Q-Ue7"/>
                             <constraint firstItem="J4H-vX-fqK" firstAttribute="leading" secondItem="wOQ-Sg-Khi" secondAttribute="leading" id="NTe-v6-J9i"/>
+                            <constraint firstItem="43G-7N-ko0" firstAttribute="leading" secondItem="TOD-aV-QW7" secondAttribute="leading" id="P4F-So-Pr1"/>
+                            <constraint firstItem="DJ1-Mi-ymj" firstAttribute="width" secondItem="DJ1-Mi-ymj" secondAttribute="height" constant="1" id="Qpf-AC-eQW"/>
+                            <constraint firstItem="jHa-WE-XxO" firstAttribute="top" secondItem="DJ1-Mi-ymj" secondAttribute="bottom" constant="6" id="Sbn-T6-7F6"/>
+                            <constraint firstItem="jHa-WE-XxO" firstAttribute="width" secondItem="jHa-WE-XxO" secondAttribute="height" constant="1" id="Uif-QG-LNv"/>
                             <constraint firstItem="xBB-M9-Ju6" firstAttribute="top" secondItem="KFd-ea-Pal" secondAttribute="bottom" constant="6" id="a15-21-W9N"/>
                             <constraint firstItem="wOQ-Sg-Khi" firstAttribute="leading" secondItem="xBB-M9-Ju6" secondAttribute="leading" id="aUz-J3-xu6"/>
                             <constraint firstItem="KFd-ea-Pal" firstAttribute="width" secondItem="KFd-ea-Pal" secondAttribute="height" id="cWx-Ty-cPv"/>
+                            <constraint firstItem="jHa-WE-XxO" firstAttribute="leading" secondItem="DJ1-Mi-ymj" secondAttribute="leading" id="jS2-TJ-r03"/>
                             <constraint firstItem="J4H-vX-fqK" firstAttribute="width" secondItem="J4H-vX-fqK" secondAttribute="height" id="kUq-SQ-yHI"/>
+                            <constraint firstItem="DJ1-Mi-ymj" firstAttribute="trailing" secondItem="43G-7N-ko0" secondAttribute="trailing" id="kuN-12-RhZ"/>
                             <constraint firstItem="KFd-ea-Pal" firstAttribute="top" secondItem="9gP-HQ-60U" secondAttribute="bottom" constant="6" id="nDS-kM-Zof"/>
+                            <constraint firstItem="TOD-aV-QW7" firstAttribute="leading" secondItem="bK9-KC-QTQ" secondAttribute="leading" id="nH6-hL-lk7"/>
+                            <constraint firstItem="DJ1-Mi-ymj" firstAttribute="leading" secondItem="43G-7N-ko0" secondAttribute="leading" id="nIT-oS-DQH"/>
                             <constraint firstItem="J4H-vX-fqK" firstAttribute="top" secondItem="wOQ-Sg-Khi" secondAttribute="bottom" constant="6" id="o3b-O4-jKa"/>
+                            <constraint firstItem="43G-7N-ko0" firstAttribute="trailing" secondItem="TOD-aV-QW7" secondAttribute="trailing" id="prp-Bs-kkC"/>
+                            <constraint firstItem="DJ1-Mi-ymj" firstAttribute="top" secondItem="43G-7N-ko0" secondAttribute="bottom" constant="6" id="tLz-Ne-E6K"/>
                             <constraint firstItem="J4H-vX-fqK" firstAttribute="trailing" secondItem="wOQ-Sg-Khi" secondAttribute="trailing" id="uZz-dA-TYd"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="7ZQ-M8-LUC"/>
@@ -236,6 +275,10 @@
                         <outletCollection property="ImageViews" destination="wOQ-Sg-Khi" collectionClass="NSMutableArray" id="s5v-Ci-YHV"/>
                         <outletCollection property="ImageViews" destination="J4H-vX-fqK" collectionClass="NSMutableArray" id="Lsg-Jk-sa7"/>
                         <outletCollection property="ImageViews" destination="bK9-KC-QTQ" collectionClass="NSMutableArray" id="OUY-tJ-zVi"/>
+                        <outletCollection property="ImageViews" destination="TOD-aV-QW7" collectionClass="NSMutableArray" id="XRV-rp-Ttx"/>
+                        <outletCollection property="ImageViews" destination="43G-7N-ko0" collectionClass="NSMutableArray" id="3jf-1w-Cu8"/>
+                        <outletCollection property="ImageViews" destination="DJ1-Mi-ymj" collectionClass="NSMutableArray" id="UuP-px-DAt"/>
+                        <outletCollection property="ImageViews" destination="jHa-WE-XxO" collectionClass="NSMutableArray" id="Imq-Ih-Xas"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fmJ-eK-wcs" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -274,7 +317,11 @@
         </scene>
     </scenes>
     <resources>
+        <image name="arrow.down.to.line.alt" catalog="system" width="111" height="128"/>
+        <image name="arrow.left.to.line.alt" catalog="system" width="128" height="89"/>
         <image name="arrow.right.square" catalog="system" width="128" height="114"/>
+        <image name="arrow.right.to.line.alt" catalog="system" width="128" height="89"/>
+        <image name="arrow.up.to.line.alt" catalog="system" width="111" height="128"/>
         <image name="delete.left" catalog="system" width="128" height="104"/>
         <image name="ellipsis" catalog="system" width="128" height="37"/>
         <image name="pencil.circle" catalog="system" width="128" height="121"/>

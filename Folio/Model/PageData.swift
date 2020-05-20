@@ -12,12 +12,13 @@ import UIKit
 struct PageData: Codable{
     var title = "Title"
     var uniqueID = UUID()
-    var pageViewSize =  CGSize()
     var lasteDateOfEditting = Date()
     var bigCards = [bigCardData]()
     var smallCards = [smallCardData]()
     var mediaCards = [mediaCardData]()
     var conntectedViews = [connectingViewTupple]()
+    var pageWidth = 0.0
+    var pageHeight = 0.0
     
     init(){
     }

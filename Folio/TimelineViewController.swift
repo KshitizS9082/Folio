@@ -90,7 +90,7 @@ class TimelineViewController: UIViewController {
     }
     
     func save() {
-        print("attempting to save page = \(page)")
+        print("attempting to save page")
         if let json = page?.json {
             if let url = try? FileManager.default.url(
                 for: .documentDirectory,
@@ -236,12 +236,10 @@ extension TimelineViewController: myUpdateCellHeightDelegate{
         if let cardDatas = page?.smallCards{
             for ind in cardDatas.indices{
                 if cardDatas[ind].card.UniquIdentifier==uniqueID{
-                    print("found the place to save to nv = \(card)")
                     page?.smallCards[ind].card = card
                 }
             }
         }
-        print("after saveSmallCard page= \(self.page)")
     }
     
     func updated(height: CGFloat, row: Int, indexpath: IndexPath) {

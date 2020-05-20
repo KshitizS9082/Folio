@@ -23,7 +23,8 @@ class PageViewController: UIViewController {
     var page: PageData? {
         get{
             var retVal = PageData()
-            retVal.pageViewSize = pageView.bounds.size
+            retVal.pageWidth = Double(pageViewWidhtConstraint!.constant)
+            retVal.pageHeight = Double(pageViewHeightConstraint!.constant)
             pageView.subviews.forEach { (sv) in
                 if let cv = sv as? SmallCardView{
                     retVal.smallCards.append(smallCardData(card: cv.card, frame: cv.frame))
@@ -45,7 +46,9 @@ class PageViewController: UIViewController {
                 sv.removeFromSuperview()
             }
             if let newValue = newValue{
-                pageView.frame = CGRect(origin: CGPoint(x: 0, y: 0), size: newValue.pageViewSize)
+                pageViewWidhtConstraint?.constant = CGFloat(newValue.pageWidth)
+                pageViewHeightConstraint?.constant = CGFloat(newValue.pageHeight)
+                self.updateMinZoomScale()
                 pageView.setNeedsDisplay()//TODO: check if needed
                 newValue.bigCards.forEach({ (cardData) in
                     let nc = cardView(frame: cardData.frame)
@@ -92,6 +95,7 @@ class PageViewController: UIViewController {
     
     @objc func handleImageViewTap(_ sender: UITapGestureRecognizer){
         print("pageviewframe = \(pageView.frame)")
+        print("pageviewbounds = \(pageView.bounds)")
         if let x = sender.view as? UIImageView{
 //            print("did select image at: \(ImageViews.firstIndex(of: x))")
             switch ImageViews.firstIndex(of: x) {
@@ -115,6 +119,18 @@ class PageViewController: UIViewController {
             case 5:
                 print("5")
                 pageView.currentTask = .connectViews
+            case 6:
+                print("6")
+                self.changePageView(horizontalFactor: 0, verticalFactor: -1)
+            case 7:
+                print("7")
+                self.changePageView(horizontalFactor: 0, verticalFactor: 1)
+            case 8:
+                print("8")
+                self.changePageView(horizontalFactor: -1, verticalFactor: 0)
+            case 9:
+                print("9")
+                self.changePageView(horizontalFactor: 1, verticalFactor: 0)
             default:
                 print("unexpected index")
             }
@@ -172,16 +188,36 @@ class PageViewController: UIViewController {
         print("gonna set frame size for pageview which currently is \(pageView.frame.size)")
         if pageView.frame.size == .zero{
             scrollView.zoomScale=1
-            pageView.frame = CGRect(origin: CGPoint.zero, size: view.frame.size.applying(CGAffineTransform(scaleX: 1.75, y: 1.5)))
+//            pageView.frame = CGRect(origin: CGPoint.zero, size: CGSize(width: basePageViewWidth, height: basePageViewHeight))
         }
+        pageView.translatesAutoresizingMaskIntoConstraints=false
+        if pageViewWidhtConstraint==nil{
+            pageViewWidhtConstraint = pageView.widthAnchor.constraint(equalToConstant: basePageViewWidth)
+        }
+        if pageViewHeightConstraint==nil{
+            pageViewHeightConstraint = pageView.heightAnchor.constraint(equalToConstant: basePageViewHeight)
+        }
+        pageViewWidhtConstraint?.isActive=true
+        pageViewHeightConstraint?.isActive=true
+//        pageView.translatesAutoresizingMaskIntoConstraints=false
         scrollView.contentSize = pageView.frame.size
     }
+    var pageViewHeightConstraint: NSLayoutConstraint?
+    var pageViewWidhtConstraint: NSLayoutConstraint?
     func updateMinZoomScale(){
         var minZoom = min(self.view.bounds.size.width / pageView.bounds.size.width, self.view.bounds.size.height / pageView.bounds.size.height);
         if (minZoom > 1.0) {
             minZoom = 1.0;
         }
         scrollView.minimumZoomScale = minZoom;
+    }
+    func changePageView(horizontalFactor x: CGFloat, verticalFactor y: CGFloat){
+        print("old pageView frame = \(pageView.frame)")
+        pageViewWidhtConstraint?.constant = max( basePageViewWidth, pageViewWidhtConstraint!.constant+x*widthToIncreaseOnHorizontalOutOfBonds)
+        pageViewHeightConstraint?.constant = max(basePageViewHeight ,pageViewHeightConstraint!.constant+y*HeightToIncreaseOnVerticalOutOfBonds)
+        pageView.setNeedsDisplay(); pageView.setNeedsLayout()
+        print("new pageView frame = \(pageView.frame)")
+        updateMinZoomScale()
     }
     
     func save() {
@@ -225,10 +261,7 @@ class PageViewController: UIViewController {
             }
         }
     }
-//    override func viewWillDisappear(_ animated: Bool) {
-//        print("called disappear")
-//        save()
-//    }
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         print("inside viewwill appear")
@@ -251,6 +284,22 @@ class PageViewController: UIViewController {
         }
     }
 
+}
+extension PageViewController{
+    var basePageViewHeight: CGFloat{
+//        return self.view.frame.height * 1.75
+        return UIScreen.main.bounds.height * 1.5
+    }
+    var basePageViewWidth: CGFloat{
+        return UIScreen.main.bounds.width * 1.5
+//        return self.view.frame.width * 1.5
+    }
+    var widthToIncreaseOnHorizontalOutOfBonds: CGFloat{
+        return 150
+    }
+    var HeightToIncreaseOnVerticalOutOfBonds: CGFloat{
+        return 150
+    }
 }
 extension PageViewController: UIScrollViewDelegate{
     func viewForZooming(in scrollView: UIScrollView) -> UIView? {
@@ -296,6 +345,16 @@ extension PageViewController: pageProtocol{
     }
     func changeContentSize(using newView: UIView) {
         print("yet to implement changeContentSize")
+//        if(newView.frame.maxX >= pageView.bounds.maxX){
+//            print("x crossed")
+//            pageView.frame = CGRect(origin: CGPoint.zero, size: CGSize(width: pageView.frame.width+widthToIncreaseOnHorizontalOutOfBonds, height: pageView.frame.height))
+//        }
+//        if(newView.frame.maxY >= pageView.bounds.maxY){
+//            print("y crossed")
+//            print("(newView.frame.maxY, self.frame.maxY \(newView.frame.maxY), \(pageView.frame.maxY)")
+//            pageView.frame = CGRect(origin: CGPoint.zero, size: CGSize(width: pageView.frame.width, height:  pageView.frame.height+HeightToIncreaseOnVerticalOutOfBonds))
+//        }
+//        updateMinZoomScale()
     }
     
     func showCardEditView(for cardView: cardView) {
