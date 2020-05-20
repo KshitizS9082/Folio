@@ -10,6 +10,7 @@
 		870E12556BF0317058D31A09 /* Pods_Folio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F32C815244D1C255A7FDD23A /* Pods_Folio.framework */; };
 		87DB04D9E8C0C19EDD6FF265 /* Pods_FolioTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC6B6DB7D06A4FC4A090E6A3 /* Pods_FolioTests.framework */; };
 		A3922D801270C8842263D3B3 /* Pods_Folio_FolioUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5CDFF065539CE4B3E77C16F8 /* Pods_Folio_FolioUITests.framework */; };
+		E216884D2474E19B00D079A4 /* UIImageCompressor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E216884C2474E19B00D079A4 /* UIImageCompressor.swift */; };
 		E252B049246C4041003F8718 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E252B048246C4041003F8718 /* AppDelegate.swift */; };
 		E252B04B246C4041003F8718 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E252B04A246C4041003F8718 /* SceneDelegate.swift */; };
 		E252B04D246C4041003F8718 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E252B04C246C4041003F8718 /* ViewController.swift */; };
@@ -86,6 +87,7 @@
 		AB7282A2BE03B60D0F69806A /* Pods-Folio.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Folio.debug.xcconfig"; path = "Target Support Files/Pods-Folio/Pods-Folio.debug.xcconfig"; sourceTree = "<group>"; };
 		B7F7E37428634E233DB6CFDE /* Pods-FolioTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FolioTests.release.xcconfig"; path = "Target Support Files/Pods-FolioTests/Pods-FolioTests.release.xcconfig"; sourceTree = "<group>"; };
 		BC6B6DB7D06A4FC4A090E6A3 /* Pods_FolioTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FolioTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E216884C2474E19B00D079A4 /* UIImageCompressor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageCompressor.swift; sourceTree = "<group>"; };
 		E252B045246C4041003F8718 /* Folio.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Folio.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E252B048246C4041003F8718 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E252B04A246C4041003F8718 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -277,6 +279,7 @@
 				E252B079246C44DF003F8718 /* textViewPlaceholder.swift */,
 				E252B07B246C44DF003F8718 /* UnderlinedTextView.swift */,
 				E284B6232472D9BD00CC6465 /* uniqueFileName.swift */,
+				E216884C2474E19B00D079A4 /* UIImageCompressor.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -610,6 +613,7 @@
 				E25BA50A24721F93000D1DF7 /* Extensions0.swift in Sources */,
 				E25BA4F9247163CE000D1DF7 /* drawingCardFullViewController.swift in Sources */,
 				E252B085246C45F2003F8718 /* MediaCard.swift in Sources */,
+				E216884D2474E19B00D079A4 /* UIImageCompressor.swift in Sources */,
 				E26947672470320B00F9E21F /* SmallCardView.swift in Sources */,
 				E25BA51124727508000D1DF7 /* ScardTimelineTableViewCell.swift in Sources */,
 				E252B07D246C44DF003F8718 /* removeAllConstraints.swift in Sources */,

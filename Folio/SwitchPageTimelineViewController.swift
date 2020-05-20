@@ -74,6 +74,16 @@ class SwitchPageTimelineViewController: UIViewController {
         configureNavBar()
         // Do any additional setup after loading the view.
     }
+    override func viewWillDisappear(_ animated: Bool) {
+        switch segmentControl.selectedSegmentIndex{
+        case 0:
+            pageVController?.save()
+        case 1:
+            timeLineVController?.save()
+        default:
+            print("dont know what to save")
+        }
+    }
     
 
     

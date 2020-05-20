@@ -224,10 +224,10 @@ class PageViewController: UIViewController {
             }
         }
     }
-    override func viewWillDisappear(_ animated: Bool) {
-        print("called disappear")
-        save()
-    }
+//    override func viewWillDisappear(_ animated: Bool) {
+//        print("called disappear")
+//        save()
+//    }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         print("inside viewwill appear")
@@ -432,7 +432,9 @@ extension PageViewController: pageProtocol{
 //                print("did append image to newView.card.mediaData")
                 //MARK: set a new json and use corrosponding url for new image
                 let fileName=String.uniqueFilename(withPrefix: "iamgeData")+".json"
-                if let json = imageData(instData: img.pngData()!).json {
+//                if let json = imageData(instData: img.pngData()!).json {
+                //TODO: currently reduces data size of image for efficiency, donot do that
+                if let json = imageData(instData: img.jpeg(.lowest)!).json {
                     if let url = try? FileManager.default.url(
                         for: .documentDirectory,
                         in: .userDomainMask,
