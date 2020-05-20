@@ -205,7 +205,7 @@ class PageViewController: UIViewController {
     var pageViewHeightConstraint: NSLayoutConstraint?
     var pageViewWidhtConstraint: NSLayoutConstraint?
     func updateMinZoomScale(){
-        var minZoom = min(self.view.bounds.size.width / pageView.bounds.size.width, self.view.bounds.size.height / pageView.bounds.size.height);
+        var minZoom = min(self.view.bounds.size.width / pageViewWidhtConstraint!.constant, self.view.bounds.size.height / pageViewHeightConstraint!.constant);
         if (minZoom > 1.0) {
             minZoom = 1.0;
         }
