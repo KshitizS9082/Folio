@@ -23,7 +23,22 @@ class SwitchPageTimelineViewController: UIViewController {
     
     @IBOutlet weak var navBarRightLeftButton: UIBarButtonItem!
     @IBOutlet weak var navBarRightRightButton: UIBarButtonItem!
+    var isToolBarVisisble = true
     
+    @IBAction func rightButtonClick(_ sender: UIBarButtonItem) {
+        switch segmentControl.selectedSegmentIndex {
+        case 0:
+            pageVController?.toggleToolBar()
+            if isToolBarVisisble{
+                navBarRightRightButton.image=UIImage(systemName: "chevron.up")
+            }else{
+                navBarRightRightButton.image=UIImage(systemName: "plus")
+            }
+            isToolBarVisisble = !isToolBarVisisble
+        default:
+            print("showing timeline so do nothing")
+        }
+    }
     @IBOutlet weak var pageCV: UIView!
     @IBOutlet weak var timeLineCV: UIView!
     
