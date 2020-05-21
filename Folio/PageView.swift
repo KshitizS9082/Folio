@@ -118,12 +118,14 @@ class PageView: UIView {
                 scrollView.panGestureRecognizer.isEnabled = false
             }
             canvas?.isUserInteractionEnabled=true
+            canvas?.becomeFirstResponder()
         default:
             if let scrollView = superview as? UIScrollView {
                 print("found scrollview to enable")
                 scrollView.panGestureRecognizer.isEnabled = true
             }
             canvas?.isUserInteractionEnabled=false
+            canvas?.resignFirstResponder()
         }
     }
     override func layoutSubviews() {

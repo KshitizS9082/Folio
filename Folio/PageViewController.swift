@@ -232,6 +232,12 @@ class PageViewController: UIViewController {
             ].forEach { (cst) in
                 cst?.isActive=true
         }
+        if let window = UIApplication.shared.windows.last, let toolPicker = PKToolPicker.shared(for: window) {
+            toolPicker.setVisible(true, forFirstResponder: pageView.canvas!)
+            toolPicker.addObserver(pageView.canvas!)
+            toolPicker.addObserver(self)
+        }
+        
     }
     var pageViewHeightConstraint: NSLayoutConstraint?
     var pageViewWidhtConstraint: NSLayoutConstraint?
@@ -262,8 +268,6 @@ class PageViewController: UIViewController {
                 do {
                     try json.write(to: url)
                     print ("saved successfully")
-                    //                    let str = String(data: json, encoding: .utf8)
-                    //                    print("jsondata = \(str)")
                 } catch let error {
                     print ("couldn't save \(error)")
                 }
@@ -318,12 +322,10 @@ class PageViewController: UIViewController {
 }
 extension PageViewController{
     var basePageViewHeight: CGFloat{
-//        return self.view.frame.height * 1.75
         return UIScreen.main.bounds.height * 1.5
     }
     var basePageViewWidth: CGFloat{
         return UIScreen.main.bounds.width * 1.5
-//        return self.view.frame.width * 1.5
     }
     var widthToIncreaseOnHorizontalOutOfBonds: CGFloat{
         return 150
@@ -606,4 +608,8 @@ extension PageViewController: pageProtocol{
         self.present(vc, animated: true, completion: nil)
         return
     }
+}
+
+extension PageViewController: PKToolPickerObserver{
+    
 }
