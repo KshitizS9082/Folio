@@ -8,6 +8,8 @@
 
 import UIKit
 import SPStorkController
+import PencilKit
+
 protocol pageProtocol {
     func changeContentSize(using newView: UIView)
     func resizeCard(for cardView: UIView)
@@ -25,6 +27,9 @@ class PageViewController: UIViewController {
             var retVal = PageData()
             retVal.pageWidth = Double(pageViewWidhtConstraint!.constant)
             retVal.pageHeight = Double(pageViewHeightConstraint!.constant)
+            if let dat = pageView.canvas?.drawing.dataRepresentation(){
+                    retVal.drawingData = dat
+            }
             pageView.subviews.forEach { (sv) in
                 if let cv = sv as? SmallCardView{
                     retVal.smallCards.append(smallCardData(card: cv.card, frame: cv.frame))
@@ -50,6 +55,13 @@ class PageViewController: UIViewController {
                 pageViewHeightConstraint?.constant = CGFloat(newValue.pageHeight)
                 self.updateMinZoomScale()
                 pageView.setNeedsDisplay()//TODO: check if needed
+                var d=PKDrawing()
+                do {
+                    try d = PKDrawing.init(data: newValue.drawingData)
+                    pageView.canvas?.drawing = d
+                } catch  {
+                    print("Error loading drawing object")
+                }
                 newValue.bigCards.forEach({ (cardData) in
                     let nc = cardView(frame: cardData.frame)
                     nc.card=cardData.card
@@ -192,7 +204,6 @@ class PageViewController: UIViewController {
         print("gonna set frame size for pageview which currently is \(pageView.frame.size)")
         if pageView.frame.size == .zero{
             scrollView.zoomScale=1
-//            pageView.frame = CGRect(origin: CGPoint.zero, size: CGSize(width: basePageViewWidth, height: basePageViewHeight))
         }
         pageView.translatesAutoresizingMaskIntoConstraints=false
         if pageViewWidhtConstraint==nil{
@@ -205,6 +216,22 @@ class PageViewController: UIViewController {
         pageViewHeightConstraint?.isActive=true
 //        pageView.translatesAutoresizingMaskIntoConstraints=false
         scrollView.contentSize = pageView.frame.size
+        if pageView.canvas==nil{
+            pageView.canvas = PKCanvasView()
+        }
+        pageView.addSubview(pageView.canvas!)
+        pageView.sendSubviewToBack(pageView.canvas!)
+        pageView.canvas?.isUserInteractionEnabled=false
+        pageView.canvas?.backgroundColor = pageColor
+        pageView.canvas?.translatesAutoresizingMaskIntoConstraints=false
+        [
+            pageView.canvas?.leftAnchor.constraint(equalTo: pageView.leftAnchor),
+            pageView.canvas?.rightAnchor.constraint(equalTo: pageView.rightAnchor),
+            pageView.canvas?.topAnchor.constraint(equalTo: pageView.topAnchor),
+            pageView.canvas?.bottomAnchor.constraint(equalTo: pageView.bottomAnchor)
+            ].forEach { (cst) in
+                cst?.isActive=true
+        }
     }
     var pageViewHeightConstraint: NSLayoutConstraint?
     var pageViewWidhtConstraint: NSLayoutConstraint?
@@ -303,6 +330,9 @@ extension PageViewController{
     }
     var HeightToIncreaseOnVerticalOutOfBonds: CGFloat{
         return 150
+    }
+    var pageColor: UIColor{
+        return #colorLiteral(red: 0.9411764706, green: 0.9450980392, blue: 0.9176470588, alpha: 1)
     }
 }
 extension PageViewController: UIScrollViewDelegate{

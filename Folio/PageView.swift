@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import PencilKit
+
 enum pageViewCurrentTask {
     case addSmallCard
     case addCard
@@ -31,6 +33,7 @@ class PageView: UIView {
     var pageDelegate: pageProtocol?
     var myViewController: PageViewController?
     var drawing = DrawingView()
+    var canvas: PKCanvasView?
 
     // MARK: - Initialization
 
@@ -48,21 +51,20 @@ class PageView: UIView {
         addInteraction(UIDropInteraction(delegate: self))
     }
     override func draw(_ rect: CGRect) {
-//        let roundedRect = UIBezierPath(roundedRect: bounds, cornerRadius: pageCornerRadius)
-        let rect = UIBezierPath(rect: bounds)
-        rect.addClip()
-        pageColor.setFill()
-        rect.fill()
-        let stripes = UIBezierPath()
-        var i=0
-        while( 50*CGFloat(i)<=bounds.height){
-            stripes.move(to: CGPoint(x: 0, y: 50*CGFloat(i)) )
-            lineColor.setStroke()
-            stripes.addLine(to: CGPoint(x: bounds.width, y: 50*CGFloat(i)) )
-            stripes.lineWidth = 1.0
-            stripes.stroke()
-            i+=1
-        }
+//        let rect = UIBezierPath(rect: bounds)
+//        rect.addClip()
+//        pageColor.setFill()
+//        rect.fill()
+//        let stripes = UIBezierPath()
+//        var i=0
+//        while( 50*CGFloat(i)<=bounds.height){
+//            stripes.move(to: CGPoint(x: 0, y: 50*CGFloat(i)) )
+//            lineColor.setStroke()
+//            stripes.addLine(to: CGPoint(x: bounds.width, y: 50*CGFloat(i)) )
+//            stripes.lineWidth = 1.0
+//            stripes.stroke()
+//            i+=1
+//        }
 //        i=0
 //        while( 50*CGFloat(i)<=bounds.width){
 //            stripes.move(to: CGPoint(x: 50*CGFloat(i), y: 0) )
@@ -104,10 +106,7 @@ class PageView: UIView {
         self.currentTask = .noneOfAbove
         pageDelegate?.changeContentSize(using: nv)
     }
-//    @objc func didLongPressMediaView(sender: UIGestureRecognizer){
-//        let view = sender.view as! MediaCardView
-//        pageDelegate?.getMeMedia(for: view)
-//    }
+
     func setupDrawing(){
         switch currentTask {
         case .drawLines:
@@ -117,41 +116,17 @@ class PageView: UIView {
                 // if we are in a scroll view, disable its recognizers
                 // so that ours will get the touch events instead
                 scrollView.panGestureRecognizer.isEnabled = false
-                scrollView.pinchGestureRecognizer?.isEnabled = false
             }
-            drawing.isUserInteractionEnabled=true
+            canvas?.isUserInteractionEnabled=true
         default:
-            drawing.isUserInteractionEnabled=false
             if let scrollView = superview as? UIScrollView {
                 print("found scrollview to enable")
                 scrollView.panGestureRecognizer.isEnabled = true
-                scrollView.pinchGestureRecognizer?.isEnabled = true
             }
+            canvas?.isUserInteractionEnabled=false
         }
     }
     override func layoutSubviews() {
-        if subviews.contains(drawing)==false{
-            addSubview(drawing)
-        }
-        sendSubviewToBack(drawing)
-        drawing.backgroundColor=#colorLiteral(red: 0, green: 0.8699000422, blue: 0.9686274529, alpha: 0.2162191901)
-        drawing.translatesAutoresizingMaskIntoConstraints=false
-        [
-            drawing.leftAnchor.constraint(equalTo: self.leftAnchor),
-            drawing.rightAnchor.constraint(equalTo: self.rightAnchor),
-            drawing.topAnchor.constraint(equalTo: self.topAnchor),
-            drawing.bottomAnchor.constraint(equalTo: self.bottomAnchor)
-            ].forEach { (cst) in
-                cst.isActive=true
-        }
-        switch currentTask {
-        case .drawLines:
-            print("readyng for draw lines")
-            drawing.isUserInteractionEnabled=true
-        default:
-            print("not to draw")
-            drawing.isUserInteractionEnabled=false
-        }
     }
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         guard let point = touches.first?.location(in: self) else { return }
@@ -176,7 +151,7 @@ class PageView: UIView {
             print("noneOfAbove")
         default:
             print("dunno what to do with touch began")
-            drawing.isUserInteractionEnabled=false
+            canvas?.isUserInteractionEnabled=false
         }
     }
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {

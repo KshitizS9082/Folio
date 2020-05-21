@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import PencilKit
 
 class SmallCardView: UIView {
     var card = SmallCard()
@@ -349,6 +350,9 @@ class SmallCardView: UIView {
             if let pagev = superview as? PageView{
                 for sv in pagev.subviews{
                     if sv.frame==self.frame{
+                        continue
+                    }
+                    if let _ = sv as? PKCanvasView{
                         continue
                     }
                     if self.frame.intersects(sv.frame){

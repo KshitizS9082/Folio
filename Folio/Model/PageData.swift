@@ -13,6 +13,7 @@ struct PageData: Codable{
     var title = "Title"
     var uniqueID = UUID()
     var lasteDateOfEditting = Date()
+    var drawingData = Data()
     var bigCards = [bigCardData]()
     var smallCards = [smallCardData]()
     var mediaCards = [mediaCardData]()

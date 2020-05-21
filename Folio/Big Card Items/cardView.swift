@@ -530,6 +530,9 @@ class cardView: UIView, UITextFieldDelegate, UITableViewDataSource {
                     if sv.frame==self.frame{
                         continue
                     }
+                    if let _ = sv as? PKCanvasView{
+                        continue
+                    }
                     if self.frame.intersects(sv.frame){
                         if abs(self.frame.midX-sv.frame.midX) < abs(self.frame.midY-sv.frame.midY){
                             if self.frame.midY<sv.frame.midY{
