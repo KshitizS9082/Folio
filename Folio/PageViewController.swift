@@ -107,9 +107,13 @@ class PageViewController: UIViewController {
                 pageView.currentTask = .addCard
             case 2:
                 print("2")
-                pageView.currentTask = .drawLines
-                //MARK: to be removed as used for testing
-                print("\(String(describing: page))")
+                switch pageView.currentTask {
+                case .drawLines:
+                    pageView.currentTask = .noneOfAbove
+                default:
+                    pageView.currentTask = .drawLines
+                }
+                pageView.setupDrawing()
             case 3:
                 print("3")
                 pageView.currentTask = .delete

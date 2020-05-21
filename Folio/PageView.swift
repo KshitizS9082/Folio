@@ -30,6 +30,7 @@ class PageView: UIView {
     var currentTask = pageViewCurrentTask.noneOfAbove
     var pageDelegate: pageProtocol?
     var myViewController: PageViewController?
+    var drawing = DrawingView()
 
     // MARK: - Initialization
 
@@ -62,15 +63,15 @@ class PageView: UIView {
             stripes.stroke()
             i+=1
         }
-        i=0
-        while( 50*CGFloat(i)<=bounds.width){
-            stripes.move(to: CGPoint(x: 50*CGFloat(i), y: 0) )
-            lineColor.setStroke()
-            stripes.addLine(to: CGPoint(x: 50*CGFloat(i), y: bounds.height) )
-            stripes.lineWidth = 1.0
-            stripes.stroke()
-            i+=1
-        }
+//        i=0
+//        while( 50*CGFloat(i)<=bounds.width){
+//            stripes.move(to: CGPoint(x: 50*CGFloat(i), y: 0) )
+//            lineColor.setStroke()
+//            stripes.addLine(to: CGPoint(x: 50*CGFloat(i), y: bounds.height) )
+//            stripes.lineWidth = 1.0
+//            stripes.stroke()
+//            i+=1
+//        }
     }
     func addSmallCard(centeredAt point: CGPoint){
         let newFrame = CGRect(origin: CGPoint(x: max(0, point.x-(smallCardWidth/2)), y: max(0,point.y-(smallCardHeight/2))), size: CGSize(width: smallCardWidth, height: smallCardHeight))
@@ -107,8 +108,53 @@ class PageView: UIView {
 //        let view = sender.view as! MediaCardView
 //        pageDelegate?.getMeMedia(for: view)
 //    }
+    func setupDrawing(){
+        switch currentTask {
+        case .drawLines:
+            print("readyng for draw lines")
+            if let scrollView = superview as? UIScrollView {
+                print("found scrollview to disable")
+                // if we are in a scroll view, disable its recognizers
+                // so that ours will get the touch events instead
+                scrollView.panGestureRecognizer.isEnabled = false
+                scrollView.pinchGestureRecognizer?.isEnabled = false
+            }
+            drawing.isUserInteractionEnabled=true
+        default:
+            drawing.isUserInteractionEnabled=false
+            if let scrollView = superview as? UIScrollView {
+                print("found scrollview to enable")
+                scrollView.panGestureRecognizer.isEnabled = true
+                scrollView.pinchGestureRecognizer?.isEnabled = true
+            }
+        }
+    }
+    override func layoutSubviews() {
+        if subviews.contains(drawing)==false{
+            addSubview(drawing)
+        }
+        sendSubviewToBack(drawing)
+        drawing.backgroundColor=#colorLiteral(red: 0, green: 0.8699000422, blue: 0.9686274529, alpha: 0.2162191901)
+        drawing.translatesAutoresizingMaskIntoConstraints=false
+        [
+            drawing.leftAnchor.constraint(equalTo: self.leftAnchor),
+            drawing.rightAnchor.constraint(equalTo: self.rightAnchor),
+            drawing.topAnchor.constraint(equalTo: self.topAnchor),
+            drawing.bottomAnchor.constraint(equalTo: self.bottomAnchor)
+            ].forEach { (cst) in
+                cst.isActive=true
+        }
+        switch currentTask {
+        case .drawLines:
+            print("readyng for draw lines")
+            drawing.isUserInteractionEnabled=true
+        default:
+            print("not to draw")
+            drawing.isUserInteractionEnabled=false
+        }
+    }
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-         guard let point = touches.first?.location(in: self) else { return }
+        guard let point = touches.first?.location(in: self) else { return }
         switch currentTask {
         case .addSmallCard:
             print("addSmallCard")
@@ -118,6 +164,7 @@ class PageView: UIView {
             self.addBigCard(centeredAt: point)
         case .drawLines:
             print("drawLines")
+            return
         case .delete:
             print("drawLines")
         case .addMediaCard:
@@ -129,6 +176,7 @@ class PageView: UIView {
             print("noneOfAbove")
         default:
             print("dunno what to do with touch began")
+            drawing.isUserInteractionEnabled=false
         }
     }
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -187,3 +235,4 @@ extension PageView: UIDropInteractionDelegate{
         }
     }
 }
+
