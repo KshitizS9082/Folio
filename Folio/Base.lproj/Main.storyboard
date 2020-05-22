@@ -100,8 +100,8 @@
                     </view>
                     <navigationItem key="navigationItem" id="L8o-5U-umW">
                         <nil key="title"/>
-                        <segmentedControl key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="jtI-lv-gho">
-                            <rect key="frame" x="141.5" y="6" width="131" height="33"/>
+                        <segmentedControl key="titleView" opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="jtI-lv-gho">
+                            <rect key="frame" x="131.5" y="5.5" width="151" height="33"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <segments>
                                 <segment title="Page"/>
@@ -112,14 +112,14 @@
                             </connections>
                         </segmentedControl>
                         <rightBarButtonItems>
-                            <barButtonItem title="Item" image="chevron.up" catalog="system" id="9ol-Mv-YGa">
+                            <barButtonItem title="Item" image="rectangle.3.offgrid" catalog="system" id="9ol-Mv-YGa">
                                 <connections>
                                     <action selector="rightButtonClick:" destination="KJv-kN-YwA" id="51J-n6-DjT"/>
                                 </connections>
                             </barButtonItem>
                             <barButtonItem title="Item" image="ellipsis" catalog="system" id="saA-Rf-gVW">
                                 <connections>
-                                    <action selector="right_left_touch:" destination="KJv-kN-YwA" id="fec-qk-MbU"/>
+                                    <action selector="leftButtonClick:" destination="KJv-kN-YwA" id="0lO-ti-zB0"/>
                                 </connections>
                             </barButtonItem>
                         </rightBarButtonItems>
@@ -314,13 +314,13 @@
         <image name="arrow.right.square" catalog="system" width="128" height="114"/>
         <image name="arrow.right.to.line.alt" catalog="system" width="128" height="89"/>
         <image name="arrow.up.to.line.alt" catalog="system" width="111" height="128"/>
-        <image name="chevron.up" catalog="system" width="128" height="72"/>
         <image name="delete.left" catalog="system" width="128" height="104"/>
         <image name="ellipsis" catalog="system" width="128" height="37"/>
         <image name="pencil.circle" catalog="system" width="128" height="121"/>
         <image name="photo" catalog="system" width="128" height="93"/>
         <image name="plus.square" catalog="system" width="128" height="114"/>
         <image name="plus.square.fill" catalog="system" width="128" height="114"/>
+        <image name="rectangle.3.offgrid" catalog="system" width="128" height="80"/>
         <image name="rectangle.and.paperclip" catalog="system" width="128" height="100"/>
     </resources>
 </document>

@@ -23,18 +23,24 @@ class SwitchPageTimelineViewController: UIViewController {
     
     @IBOutlet weak var navBarRightLeftButton: UIBarButtonItem!
     @IBOutlet weak var navBarRightRightButton: UIBarButtonItem!
-    var isToolBarVisisble = true
+    
+    
+    @IBAction func leftButtonClick(_ sender: UIBarButtonItem) {
+        switch segmentControl.selectedSegmentIndex {
+        case 0:
+            print("lfb 0")
+        case 1:
+            print("lfb 1")
+            timeLineToolBar()
+        default:
+            print("showing timeline so do nothing")
+        }
+    }
     
     @IBAction func rightButtonClick(_ sender: UIBarButtonItem) {
         switch segmentControl.selectedSegmentIndex {
         case 0:
             pageVController?.toggleToolBar()
-            if isToolBarVisisble{
-                navBarRightRightButton.image=UIImage(systemName: "chevron.up")
-            }else{
-                navBarRightRightButton.image=UIImage(systemName: "plus")
-            }
-            isToolBarVisisble = !isToolBarVisisble
         default:
             print("showing timeline so do nothing")
         }
@@ -50,13 +56,13 @@ class SwitchPageTimelineViewController: UIViewController {
         print("segment changed")
         switch segmentControl.selectedSegmentIndex {
         case 0:
+            navBarRightRightButton.image = UIImage(systemName: "rectangle.3.offgrid")
             timeLineVController?.save()
-//            pageVController?.viewWillAppear(true)
             pageVController?.page=timeLineVController?.page
-//            pageVController?.viewDidLoad()
             pageCV.isHidden=false
             timeLineCV.isHidden=true
         case 1:
+            navBarRightRightButton.image = UIImage(systemName: "plus")
             //TODO: currently loads data in segment 2 from storage can be done faster
             pageVController?.save()
             pageCV.isHidden=true
@@ -73,11 +79,43 @@ class SwitchPageTimelineViewController: UIViewController {
     private func configureNavBar(){
         
     }
-    @objc private func showToolBar(){
-        print("show tool bar")
-    }
-    @objc private func timeLineToolBar(){
+    private func timeLineToolBar(){
         print("timelint toolBar click")
+        //        vc2.setShowingCardType()
+        let showAll = UIAlertAction(title: "Show All Cards",
+                                    style: .default) { (action) in
+                                        self.timeLineVController?.showingType = .allCards
+                                        self.timeLineVController?.viewDidLoad()
+        }
+        let showTimed = UIAlertAction(title: "Show Reminder Cards",
+                                      style: .default) { (action) in
+                                        self.timeLineVController?.showingType = .reminderCards
+                                        self.timeLineVController?.viewDidLoad()
+        }
+        let mediaCards = UIAlertAction(title: "Show Media Cards",
+                                       style: .default) { (action) in
+                                        self.timeLineVController?.showingType = .mediaTypes
+                                        self.timeLineVController?.viewDidLoad()
+        }
+        let cancelAction = UIAlertAction(title: "Cancel",
+                                         style: .cancel) { (action) in
+                                            // Respond to user selection of the action
+        }
+        
+        let alert = UIAlertController(title: "Sort Cards",
+                                      message: "filter what to see",
+                                      preferredStyle: .actionSheet)
+        alert.addAction(showAll)
+        alert.addAction(showTimed)
+        alert.addAction(mediaCards)
+        alert.addAction(cancelAction)
+        // On iPad, action sheets must be presented from a popover.
+        alert.popoverPresentationController?.barButtonItem =
+            self.navBarRightLeftButton
+        self.present(alert, animated: true) {
+            // The alert was presented
+        }
+        
     }
     @objc private func addTimelineSmallCard(){
         print("show tool bar")

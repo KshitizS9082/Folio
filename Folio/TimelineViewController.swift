@@ -28,14 +28,34 @@ class TimelineViewController: UIViewController {
         print("in setCardList")
         cardsList = []
         if let page = page{
-            page.bigCards.forEach { (card) in
-                cardsList.append(timeLineCard(type: .big, smallCard: nil, bigCard: card, mediaCard: nil))
-            }
-            page.smallCards.forEach { (card) in
-                cardsList.append(timeLineCard(type: .small, smallCard: card, bigCard: nil, mediaCard: nil))
-            }
-            page.mediaCards.forEach { (card) in
-                cardsList.append(timeLineCard(type: .media, smallCard: nil, bigCard: nil, mediaCard: card))
+            switch showingType {
+            case .allCards:
+                page.bigCards.forEach { (card) in
+                    cardsList.append(timeLineCard(type: .big, smallCard: nil, bigCard: card, mediaCard: nil))
+                }
+                page.smallCards.forEach { (card) in
+                    cardsList.append(timeLineCard(type: .small, smallCard: card, bigCard: nil, mediaCard: nil))
+                }
+                page.mediaCards.forEach { (card) in
+                    cardsList.append(timeLineCard(type: .media, smallCard: nil, bigCard: nil, mediaCard: card))
+                }
+            case .reminderCards:
+                page.bigCards.forEach { (card) in
+                    if card.card.reminder != nil{
+                        cardsList.append(timeLineCard(type: .big, smallCard: nil, bigCard: card, mediaCard: nil))
+                    }
+                }
+                page.smallCards.forEach { (card) in
+                    if card.card.reminderDate != nil{
+                        cardsList.append(timeLineCard(type: .small, smallCard: card, bigCard: nil, mediaCard: nil))
+                    }
+                }
+            case .mediaTypes:
+                page.mediaCards.forEach { (card) in
+                    cardsList.append(timeLineCard(type: .media, smallCard: nil, bigCard: nil, mediaCard: card))
+                }
+            default:
+                print("dunnow what type")
             }
         }
     }
@@ -266,7 +286,7 @@ struct timeLineCard {
 }
 enum showingDataType {
     case allCards
-    case datedCards
+    case reminderCards
     case mediaTypes
 }
 enum cardSizeMode{
