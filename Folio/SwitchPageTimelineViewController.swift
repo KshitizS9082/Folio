@@ -29,6 +29,9 @@ class SwitchPageTimelineViewController: UIViewController {
         switch segmentControl.selectedSegmentIndex {
         case 0:
             print("lfb 0")
+            UNUserNotificationCenter.current().getPendingNotificationRequests { (notificationRequests) in
+                print(notificationRequests)
+            }
         case 1:
             print("lfb 1")
             timeLineToolBar()

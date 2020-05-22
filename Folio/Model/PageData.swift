@@ -44,6 +44,11 @@ struct connectingViewTupple: Codable{
     var first: UUID?
     var second: UUID?
 }
+//struct MyReminder {
+//    let title: String
+//    let date: Date
+//    let identifier: String
+//}
 
 struct bigCardData: Codable {
     var card = Card()

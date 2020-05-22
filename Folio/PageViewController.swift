@@ -8,6 +8,7 @@
 
 import UIKit
 import SPStorkController
+import UserNotifications
 import PencilKit
 
 protocol pageProtocol {
@@ -306,7 +307,7 @@ class PageViewController: UIViewController {
     @IBOutlet weak var ivHeightConstraint: NSLayoutConstraint!
     func toggleToolBar(){
         self.ivHeightConstraint.constant=44-self.ivHeightConstraint.constant
-        UIView.animate(withDuration: 0.6, delay: 0, options: .curveEaseInOut, animations: {
+        UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseInOut, animations: {
             self.view.layoutIfNeeded()
         }, completion: nil)
     }

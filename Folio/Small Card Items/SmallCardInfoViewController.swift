@@ -9,6 +9,7 @@
 import UIKit
 import SPFakeBar
 import SPStorkController
+import UserNotifications
 
 protocol ExpandingCellDelegate {
     func updated(height: CGFloat, row: Int)
@@ -114,6 +115,9 @@ class SmallCardInfoViewController: UIViewController, UITableViewDataSource, SPSt
         cell.imageView?.isUserInteractionEnabled=true
         cell.textLabel?.textAlignment = .right
         if let time=sCard.reminderDate{
+            //setting alarm
+            setReminder(with: time)
+            //setting text
             let formatter = DateFormatter()
             formatter.dateFormat = "EEE, dd/MM/yy, hh:mm a"
             cell.textLabel?.text = formatter.string(from: time)
@@ -126,6 +130,55 @@ class SmallCardInfoViewController: UIViewController, UITableViewDataSource, SPSt
         cell.textLabel?.addGestureRecognizer(tap)
         cell.addGestureRecognizer(tap)
         return cell
+    }
+    func setReminder(with reminderTime: Date){
+        UNUserNotificationCenter.current().getPendingNotificationRequests { (notificationRequests) in
+            var identifiers: [String] = []
+            for notification:UNNotificationRequest in notificationRequests {
+                if notification.identifier == String(describing: (self.viewLinkedTo?.card.UniquIdentifier)!) {
+                    identifiers.append(notification.identifier)
+                }
+            }
+            print("removing notifs with identifiers \(identifiers)")
+            UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: identifiers)
+        }
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound], completionHandler: { success, error in
+            if success {
+                // schedule test
+                print("scheduling a test")
+                let content = UNMutableNotificationContent()
+                content.title = self.sCard.title
+                content.sound = .default
+                content.body = "You have a scheduled reminder"
+                
+//                let targetDate = Date().addingTimeInterval(5)
+                let targetDate = self.sCard.reminderDate!
+                print("setting reminder to \(targetDate)")
+                let trigger = UNCalendarNotificationTrigger(dateMatching: Calendar.current.dateComponents([.year, .month, .day, .hour, .minute, .second],from: targetDate), repeats: false)
+                
+                let request = UNNotificationRequest(identifier: String(describing: (self.viewLinkedTo?.card.UniquIdentifier)!), content: content, trigger: trigger)
+                UNUserNotificationCenter.current().add(request, withCompletionHandler: { error in
+                    if error != nil {
+                        print("something went wrong")
+                    }
+                })
+            }
+            else if error != nil {
+                print("error occurred")
+            }
+        })
+    }
+    func unSetReminder(){
+        UNUserNotificationCenter.current().getPendingNotificationRequests { (notificationRequests) in
+            var identifiers: [String] = []
+            for notification:UNNotificationRequest in notificationRequests {
+                if notification.identifier == String(describing: (self.viewLinkedTo?.card.UniquIdentifier)!) {
+                    identifiers.append(notification.identifier)
+                }
+            }
+            print("removing notifs with identifiers \(identifiers)")
+            UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: identifiers)
+        }
     }
     @objc func toggleDatePickerCell(){
         datePickerVisible = !datePickerVisible
@@ -181,14 +234,13 @@ class SmallCardInfoViewController: UIViewController, UITableViewDataSource, SPSt
         let deleteAction = UIAlertAction(title: "Delete", style: .destructive){
             UIAlertAction in
             print("in delete")
+            self.unSetReminder()
             self.viewLinkedTo?.removeFromSuperview()
             self.dismiss(animated: true)
         }
         let deleteFromPageAction = UIAlertAction(title: "Remove From Page", style: .destructive){
             UIAlertAction in
             print("in Remove From Page")
-//            self.viewLinkedTo?.removeFromSuperview()
-//            self.viewLinkedTo?.frame = CGRect.zero
             self.viewLinkedTo?.isHidden=true
             self.dismiss(animated: true)
         }
@@ -317,7 +369,7 @@ extension SmallCardInfoViewController: UITableViewDelegate {
     }
     func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         
-        print("now will update \(indexPath.row)")
+//        print("now will update \(indexPath.row)")
         switch indexPath.row {
         case 1:
             let cell = cell as! smallCardTitleTableViewCell
@@ -347,6 +399,7 @@ extension SmallCardInfoViewController: UITableViewDelegate {
         if editingStyle == .delete{
             sCard.reminderDate = nil
             datePickerVisible = false
+            self.unSetReminder()
             table.reloadRows(at: [IndexPath(row: 5, section: 0), IndexPath(row: 6, section: 0)], with: .automatic)
         }
     }
