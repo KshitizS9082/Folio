@@ -135,7 +135,6 @@ class BigcardTimelineTableViewCell: UITableViewCell {
     private func setAdditionView(){
         switch card?.type {
         case .CheckList:
-            print("cc case")
             setChecklist()
         case .Drawing:
             print("drawing case")

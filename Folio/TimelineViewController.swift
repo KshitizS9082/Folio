@@ -25,7 +25,6 @@ class TimelineViewController: UIViewController {
     
     @IBOutlet weak var table: UITableView!
     private func setCardsList(){
-        print("in setCardList")
         cardsList = []
         if let page = page{
             switch showingType {
@@ -130,14 +129,14 @@ class TimelineViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        print("inside viewwill appear")
+//        print("inside viewwill appear")
         if let url = try? FileManager.default.url(
             for: .documentDirectory,
             in: .userDomainMask,
             appropriateFor: nil,
             create: true
         ).appendingPathComponent(pageID!.fileName){
-            print("trying to extract contents of jsonData")
+//            print("trying to extract contents of jsonData")
             if let jsonData = try? Data(contentsOf: url){
                 page = PageData(json: jsonData)
             }
@@ -171,13 +170,10 @@ extension TimelineViewController: UITableViewDataSource, UITableViewDelegate{
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch cardsList[indexPath.row].type {
         case .small:
-            print("small")
             return setSmallCardCell(tableView, cellForRowAt: indexPath)
         case .big:
-            print("big")
             return setBigCardCell(tableView, cellForRowAt: indexPath)
         case .media:
-            print("media")
             return setMediaCardCell(tableView, cellForRowAt: indexPath)
         default:
             print("i dunno what card this is")

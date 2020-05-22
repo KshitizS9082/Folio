@@ -188,7 +188,8 @@ class SmallCardInfoViewController: UIViewController, UITableViewDataSource, SPSt
             UIAlertAction in
             print("in Remove From Page")
 //            self.viewLinkedTo?.removeFromSuperview()
-            self.viewLinkedTo?.frame = CGRect.zero
+//            self.viewLinkedTo?.frame = CGRect.zero
+            self.viewLinkedTo?.isHidden=true
             self.dismiss(animated: true)
         }
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel){

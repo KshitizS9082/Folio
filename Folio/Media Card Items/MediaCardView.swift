@@ -68,7 +68,7 @@ class MediaCardView: UIView {
         let end=card.mediaDataURLs.count
         for ind in st..<end{
             DispatchQueue.global(qos: .background).async {
-                print("tryihg to retrieve jsondata from url: \(self.card.mediaDataURLs[ind])")
+//                print("tryihg to retrieve jsondata from url: \(self.card.mediaDataURLs[ind])")
                 if let url = try? FileManager.default.url(
                     for: .documentDirectory,
                     in: .userDomainMask,
@@ -76,11 +76,11 @@ class MediaCardView: UIView {
                     create: true
                 ).appendingPathComponent(self.card.mediaDataURLs[ind]){
                     if let jsonData = try? Data(contentsOf: url){
-                        print("did retrieve jsondata")
+//                        print("did retrieve jsondata")
                         if let extract = imageData(json: jsonData){
                             //DO NOT CHANGE TO LET CAUSES PROBLEM IN NEXT ITERATION
                             x=extract.data
-                            print("checking if element a image: json ver")
+//                            print("checking if element a image: json ver")
                             if let image = UIImage(data: x){
                                 //            if let image = x as? UIImage{
 //                                print("found a image and setting at iv \(ind-st) from imvcnt \(subviews.count)")

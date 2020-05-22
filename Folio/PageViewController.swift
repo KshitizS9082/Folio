@@ -201,7 +201,6 @@ class PageViewController: UIViewController {
         pageView.pageDelegate=self
         pageView.myViewController=self
         //TODO: handle dimensions and zoom properly
-        print("gonna set frame size for pageview which currently is \(pageView.frame.size)")
         if pageView.frame.size == .zero{
             scrollView.zoomScale=1
         }
@@ -281,18 +280,24 @@ class PageViewController: UIViewController {
                 if x.card.UniquIdentifier == uniqueID{
                     let point = CGPoint(x: max(0, x.frame.midX-view.bounds.width/2), y: max(0, x.frame.midY-view.bounds.height/2))
                     scrollView.setContentOffset(point, animated: true)
+                    sv.isHidden=false
+                    return
                 }
             }
             if let x = sv as? cardView{
                 if x.card.UniquIdentifier == uniqueID{
                     let point = CGPoint(x: max(0, x.frame.midX-view.bounds.width/2), y: max(0, x.frame.midY-view.bounds.height/2))
                     scrollView.setContentOffset(point, animated: true)
+                    sv.isHidden=false
+                    return
                 }
             }
             if let x = sv as? MediaCardView{
                 if x.card.UniquIdentifier == uniqueID{
                     let point = CGPoint(x: max(0, x.frame.midX-view.bounds.width/2), y: max(0, x.frame.midY-view.bounds.height/2))
                     scrollView.setContentOffset(point, animated: true)
+                    sv.isHidden=false
+                    return
                 }
             }
         }
@@ -308,17 +313,16 @@ class PageViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        print("inside viewwill appear")
         if let url = try? FileManager.default.url(
             for: .documentDirectory,
             in: .userDomainMask,
             appropriateFor: nil,
             create: true
         ).appendingPathComponent(pageID!.fileName){
-            print("trying to extract contents of jsonData")
+//            print("trying to extract contents of jsonData")
             if let jsonData = try? Data(contentsOf: url){
                 if let extract = PageData(json: jsonData){
-                    print("did set page = extract i.e. \(extract) succesfully")
+//                    print("did set page = extract i.e. \(extract) succesfully")
                     page = extract
 //                    viewDidLoad()
                 }else{
@@ -570,7 +574,8 @@ extension PageViewController: pageProtocol{
                 }
             }
             if shouldDeleteFromPage{
-                cardView.frame = CGRect.zero
+//                cardView.frame = CGRect.
+                cardView.isHidden=true
             }
             if shouldDelete{
                 cardView.deleteMe()

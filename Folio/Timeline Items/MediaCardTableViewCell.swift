@@ -110,7 +110,7 @@ class MediaCardTableViewCell: UITableViewCell {
             }
             for fileName in datList{
                 DispatchQueue.global(qos: .background).async {
-                    print("tryihg to retrieve jsondata from url: \(fileName)")
+//                    print("tryihg to retrieve jsondata from url: \(fileName)")
                     if let url = try? FileManager.default.url(
                         for: .documentDirectory,
                         in: .userDomainMask,
@@ -118,12 +118,12 @@ class MediaCardTableViewCell: UITableViewCell {
                         create: true
                     ).appendingPathComponent(fileName){
                         if let jsonData = try? Data(contentsOf: url){
-                            print("did retrieve jsondata MediaTableViewcell")
+//                            print("did retrieve jsondata MediaTableViewcell")
                             if let extract = imageData(json: jsonData){
                                 //DO NOT CHANGE TO LET CAUSES PROBLEM IN NEXT ITERATION
-                                print("checking if element a image: json ver MediaTableViewcell")
+//                                print("checking if element a image: json ver MediaTableViewcell")
                                 if let image = UIImage(data: extract.data){
-                                    print("did get UIImage from extrated data")
+//                                    print("did get UIImage from extrated data")
                                     if let pos = datList.firstIndex(of: fileName){
                                         if pos<self.allImages.count{
                                             self.allImages[pos]=image
@@ -155,7 +155,6 @@ class MediaCardTableViewCell: UITableViewCell {
                 layout.minimumInteritemSpacing = spacings
                 layout.minimumLineSpacing = spacings
                 layout.itemSize = CGSize(width: self.collectionView.frame.size.height-spacings, height: self.collectionView.frame.size.height-spacings)
-                print("invalidating layout")
                 layout.invalidateLayout()
             }
             collectionView.reloadData()
@@ -166,7 +165,7 @@ class MediaCardTableViewCell: UITableViewCell {
 
 extension MediaCardTableViewCell: UICollectionViewDataSource, UICollectionViewDelegate{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        print("no. of images in cv = \(allImages.count) ")
+//        print("no. of images in cv = \(allImages.count) ")
 //        return (card?.data.count)!
         return allImages.count
     }

@@ -43,7 +43,6 @@ class SmallCardView: UIView {
         setNeedsLayout()
     }
     override func layoutSubviews() {
-        print("gonna layout with \(self.card)")
         if(isResizing){
             return
         }
