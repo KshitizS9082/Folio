@@ -461,6 +461,9 @@ class cardView: UIView, UITextFieldDelegate, UITableViewDataSource {
                     return .none
                 }()
             }
+            if let page = superview as? PageView{
+                page.bringSubviewToFront(self)
+            }
         }
     }
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {

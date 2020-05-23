@@ -170,6 +170,9 @@ class MediaCardView: UIView {
                     return .none
                 }()
             }
+            if let page = superview as? PageView{
+                page.bringSubviewToFront(self)
+            }
         }
     }
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
