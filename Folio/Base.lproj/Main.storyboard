@@ -89,6 +89,59 @@
                                             <outlet property="titleTextField" destination="g7e-WM-Wtk" id="wx4-eT-hhV"/>
                                         </connections>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="PageExtractTVCell" id="tc2-uW-zXE" customClass="PagesExtractTableViewCell" customModule="Folio" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="150.5" width="414" height="315.5"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="tc2-uW-zXE" id="wbL-RZ-Z0e">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="315.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4dQ-J0-cZk" customClass="PageExtractSubview" customModule="Folio" customModuleProvider="target">
+                                                    <rect key="frame" x="20" y="25" width="164.5" height="120.5"/>
+                                                    <color key="backgroundColor" systemColor="systemGray5Color" red="0.8980392157" green="0.8980392157" blue="0.91764705879999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="120" id="LHx-3H-0cg"/>
+                                                    </constraints>
+                                                </view>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pBC-gc-6oZ" customClass="PageExtractSubview" customModule="Folio" customModuleProvider="target">
+                                                    <rect key="frame" x="229.5" y="25" width="164.5" height="120.5"/>
+                                                    <color key="backgroundColor" systemColor="systemGray5Color" red="0.8980392157" green="0.8980392157" blue="0.91764705879999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                </view>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4pd-GB-4Yj" customClass="PageExtractSubview" customModule="Folio" customModuleProvider="target">
+                                                    <rect key="frame" x="229.5" y="170.5" width="164.5" height="120"/>
+                                                    <color key="backgroundColor" systemColor="systemGray5Color" red="0.8980392157" green="0.8980392157" blue="0.91764705879999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                </view>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HuC-bI-8QJ" customClass="PageExtractSubview" customModule="Folio" customModuleProvider="target">
+                                                    <rect key="frame" x="20" y="170.5" width="164.5" height="120"/>
+                                                    <color key="backgroundColor" systemColor="systemGray5Color" red="0.8980392157" green="0.8980392157" blue="0.91764705879999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                </view>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="HuC-bI-8QJ" secondAttribute="bottom" constant="25" id="8n3-Uf-31p"/>
+                                                <constraint firstItem="4pd-GB-4Yj" firstAttribute="leading" secondItem="pBC-gc-6oZ" secondAttribute="leading" id="CZR-7j-7pz"/>
+                                                <constraint firstItem="pBC-gc-6oZ" firstAttribute="top" secondItem="4dQ-J0-cZk" secondAttribute="top" id="Fhn-HK-ixD"/>
+                                                <constraint firstAttribute="trailing" secondItem="pBC-gc-6oZ" secondAttribute="trailing" constant="20" id="GrX-dw-5oi"/>
+                                                <constraint firstItem="pBC-gc-6oZ" firstAttribute="height" secondItem="4dQ-J0-cZk" secondAttribute="height" id="JQ9-pL-14S"/>
+                                                <constraint firstItem="4pd-GB-4Yj" firstAttribute="trailing" secondItem="pBC-gc-6oZ" secondAttribute="trailing" id="L1F-xh-3Lr"/>
+                                                <constraint firstItem="HuC-bI-8QJ" firstAttribute="leading" secondItem="4dQ-J0-cZk" secondAttribute="leading" id="Pra-gV-svj"/>
+                                                <constraint firstItem="HuC-bI-8QJ" firstAttribute="trailing" secondItem="4dQ-J0-cZk" secondAttribute="trailing" id="XcU-DT-ouc"/>
+                                                <constraint firstItem="pBC-gc-6oZ" firstAttribute="leading" secondItem="4dQ-J0-cZk" secondAttribute="trailing" constant="45" id="aTX-IT-OWN"/>
+                                                <constraint firstItem="HuC-bI-8QJ" firstAttribute="height" secondItem="4dQ-J0-cZk" secondAttribute="height" id="bPz-bG-umX"/>
+                                                <constraint firstItem="4pd-GB-4Yj" firstAttribute="height" secondItem="4dQ-J0-cZk" secondAttribute="height" id="gnh-5V-0N5"/>
+                                                <constraint firstItem="pBC-gc-6oZ" firstAttribute="width" secondItem="4dQ-J0-cZk" secondAttribute="width" id="mNs-ON-B2b"/>
+                                                <constraint firstItem="HuC-bI-8QJ" firstAttribute="top" secondItem="4dQ-J0-cZk" secondAttribute="bottom" constant="25" id="vJq-Cu-mvM"/>
+                                                <constraint firstItem="4dQ-J0-cZk" firstAttribute="top" secondItem="wbL-RZ-Z0e" secondAttribute="top" constant="25" id="xQw-98-f4Y"/>
+                                                <constraint firstItem="4pd-GB-4Yj" firstAttribute="bottom" secondItem="HuC-bI-8QJ" secondAttribute="bottom" id="xeo-sZ-Gb1"/>
+                                                <constraint firstItem="4dQ-J0-cZk" firstAttribute="leading" secondItem="wbL-RZ-Z0e" secondAttribute="leading" constant="20" id="ztl-od-Sxg"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outletCollection property="extractCardList" destination="4dQ-J0-cZk" collectionClass="NSMutableArray" id="aII-Eq-UR0"/>
+                                            <outletCollection property="extractCardList" destination="pBC-gc-6oZ" collectionClass="NSMutableArray" id="Y5i-9x-6oX"/>
+                                            <outletCollection property="extractCardList" destination="HuC-bI-8QJ" collectionClass="NSMutableArray" id="QBr-OS-7KW"/>
+                                            <outletCollection property="extractCardList" destination="4pd-GB-4Yj" collectionClass="NSMutableArray" id="lWU-vR-d4q"/>
+                                        </connections>
+                                    </tableViewCell>
                                 </prototypes>
                             </tableView>
                         </subviews>

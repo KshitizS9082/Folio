@@ -176,10 +176,15 @@ class PageListViewController: UIViewController {
 }
 extension PageListViewController:UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return pages.items.count
+        return pages.items.count+1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if indexPath.row == pages.items.count{
+            let cell = tableView.dequeueReusableCell(withIdentifier: "PageExtractTVCell", for: indexPath) as! PagesExtractTableViewCell
+            cell.backgroundColor = UIColor.clear
+            return cell
+        }
         let cell = tableView.dequeueReusableCell(withIdentifier: "customPageCell", for: indexPath) as! pageListTableViewCell
         cell.accessoryType = .disclosureIndicator
         cell.myIndexPath=indexPath
@@ -195,6 +200,9 @@ extension PageListViewController:UITableViewDelegate, UITableViewDataSource{
         return cell
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if indexPath.row==pages.items.count{
+            return 300
+        }
         return cellHeight
     }
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {

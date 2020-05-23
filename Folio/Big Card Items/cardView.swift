@@ -571,10 +571,10 @@ extension cardView{
         return bounds.size.height * 0.03
     }
     var cardColour: UIColor{
-        return UIColor.white
+        return #colorLiteral(red: 0.9839849829, green: 0.9880542423, blue: 0.9669427433, alpha: 1)
     }
     var noteColour: UIColor{
-        return UIColor.clear
+        return #colorLiteral(red: 0.9839849829, green: 0.9880542423, blue: 0.9669427433, alpha: 1)
     }
     var resizeBoundsColor: UIColor{
         return #colorLiteral(red: 0.1764705926, green: 0.4980392158, blue: 0.7568627596, alpha: 0.4511993838)

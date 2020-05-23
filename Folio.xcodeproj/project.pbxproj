@@ -12,6 +12,7 @@
 		A3922D801270C8842263D3B3 /* Pods_Folio_FolioUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5CDFF065539CE4B3E77C16F8 /* Pods_Folio_FolioUITests.framework */; };
 		E216884D2474E19B00D079A4 /* UIImageCompressor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E216884C2474E19B00D079A4 /* UIImageCompressor.swift */; };
 		E216884F2475965500D079A4 /* DrawingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E216884E2475965500D079A4 /* DrawingView.swift */; };
+		E2252E0B247943AA00EF26C9 /* PagesExtractTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2252E0A247943AA00EF26C9 /* PagesExtractTableViewCell.swift */; };
 		E252B049246C4041003F8718 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E252B048246C4041003F8718 /* AppDelegate.swift */; };
 		E252B04B246C4041003F8718 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E252B04A246C4041003F8718 /* SceneDelegate.swift */; };
 		E252B04D246C4041003F8718 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E252B04C246C4041003F8718 /* ViewController.swift */; };
@@ -91,6 +92,7 @@
 		BC6B6DB7D06A4FC4A090E6A3 /* Pods_FolioTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FolioTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E216884C2474E19B00D079A4 /* UIImageCompressor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageCompressor.swift; sourceTree = "<group>"; };
 		E216884E2475965500D079A4 /* DrawingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrawingView.swift; sourceTree = "<group>"; };
+		E2252E0A247943AA00EF26C9 /* PagesExtractTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PagesExtractTableViewCell.swift; sourceTree = "<group>"; };
 		E252B045246C4041003F8718 /* Folio.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Folio.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E252B048246C4041003F8718 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E252B04A246C4041003F8718 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -229,9 +231,10 @@
 			children = (
 				E252B04C246C4041003F8718 /* ViewController.swift */,
 				E252B04E246C4041003F8718 /* Main.storyboard */,
-				E252B08B246C4681003F8718 /* PageListViewController.swift */,
 				E252B08D246C4AD7003F8718 /* SwitchPageTimelineViewController.swift */,
+				E252B08B246C4681003F8718 /* PageListViewController.swift */,
 				E2D4B87C247901A1005F566F /* pageListTableViewCell.swift */,
+				E2252E0A247943AA00EF26C9 /* PagesExtractTableViewCell.swift */,
 				E252B08F246C4E6D003F8718 /* PageViewController.swift */,
 				E252B093246CEE55003F8718 /* PageView.swift */,
 				E252B091246C4E79003F8718 /* TimelineViewController.swift */,
@@ -609,6 +612,7 @@
 				E252B08E246C4AD7003F8718 /* SwitchPageTimelineViewController.swift in Sources */,
 				E252B049246C4041003F8718 /* AppDelegate.swift in Sources */,
 				E284B6242472D9BD00CC6465 /* uniqueFileName.swift in Sources */,
+				E2252E0B247943AA00EF26C9 /* PagesExtractTableViewCell.swift in Sources */,
 				E252B087246C4601003F8718 /* PageData.swift in Sources */,
 				E25BA51A24728AA9000D1DF7 /* MediaCardTableViewCell.swift in Sources */,
 				E25BA50D2472285F000D1DF7 /* pickImage.swift in Sources */,
