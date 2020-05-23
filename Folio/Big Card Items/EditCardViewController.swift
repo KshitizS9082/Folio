@@ -10,6 +10,7 @@ import UIKit
 
 import SPStorkController
 import SPFakeBar
+import UserNotifications
 
 
 class EditCardViewController: UIViewController, UITextViewDelegate, UIPickerViewDelegate, UIPickerViewDataSource {
@@ -402,41 +403,100 @@ class EditCardViewController: UIViewController, UITextViewDelegate, UIPickerView
         reminderValue.sizeToFit()
     }
     private func setReminderDatePicker(){
-            reminderDatePicker = UIDatePicker()
-            if let date =  card.reminder {
-                reminderDatePicker?.date = date
-            }
-            reminderDatePicker?.datePickerMode = .dateAndTime
-            reminderValue.inputView = reminderDatePicker
-            
-            //ToolBar
-            let toolbar = UIToolbar();
-            toolbar.sizeToFit()
-            toolbar.backgroundColor = datePickerToolbarColor
-            //done button & cancel button
-            let doneButton = UIBarButtonItem(title: "Set", style: .done, target: self, action: #selector(doneReminderDateChange));
-            let spaceButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.flexibleSpace, target: nil, action: nil)
-            let cancelButton = UIBarButtonItem(title: "Cancel", style: .done, target: self, action: #selector(cancelReminderDatePicker));
-            let centerButton = UIBarButtonItem(title: "Reminder", style: .plain, target: nil, action: nil)
-            toolbar.setItems([cancelButton,spaceButton,centerButton,spaceButton,doneButton], animated: false)
-
-            // add toolbar to textField
-            reminderValue.inputAccessoryView = toolbar
-            
-            reminderDatePicker?.backgroundColor = datePickerColor
+        reminderDatePicker = UIDatePicker()
+        if let date =  card.reminder {
+            reminderDatePicker?.date = date
+        }else{
+            reminderValue.text = "Date not set"
         }
+        reminderDatePicker?.datePickerMode = .dateAndTime
+        reminderValue.inputView = reminderDatePicker
+        
+        //ToolBar
+        let toolbar = UIToolbar();
+        toolbar.sizeToFit()
+        toolbar.backgroundColor = datePickerToolbarColor
+        //done button & cancel button
+        let doneButton = UIBarButtonItem(title: "Set", style: .done, target: self, action: #selector(doneReminderDateChange));
+        let spaceButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.flexibleSpace, target: nil, action: nil)
+        let cancelButton = UIBarButtonItem(title: "Cancel", style: .done, target: self, action: #selector(cancelReminderDatePicker));
+        let deleteButton = UIBarButtonItem(title: "Delete", style: .done, target: self, action: #selector(deleteReminderDatePicker));
+        let centerButton = UIBarButtonItem(title: "Reminder", style: .plain, target: nil, action: nil)
+        toolbar.setItems([cancelButton,deleteButton,spaceButton,centerButton,spaceButton,doneButton], animated: false)
+        
+        // add toolbar to textField
+        reminderValue.inputAccessoryView = toolbar
+        
+        reminderDatePicker?.backgroundColor = datePickerColor
+    }
     @objc func doneReminderDateChange(){
         let myDateFormater = DateFormatter()
-            myDateFormater.dateStyle = .long
+        myDateFormater.dateStyle = .long
         let myTimeFormater = DateFormatter()
-            myTimeFormater.dateFormat = "hh:mm a"
+        myTimeFormater.dateFormat = "hh:mm a"
         reminderValue.text =  myTimeFormater.string(from: reminderDatePicker!.date) + ", " + myDateFormater.string(from: reminderDatePicker!.date)
         card.reminder = reminderDatePicker?.date
+        setReminder(with: card.reminder!)
         self.view.endEditing(true)
     }
     @objc func cancelReminderDatePicker(){
-       self.view.endEditing(true)
-     }
+        self.view.endEditing(true)
+    }
+    @objc func deleteReminderDatePicker(){
+        self.view.endEditing(true)
+        card.reminder = nil
+        reminderValue.text = "Date not set"
+        unSetReminder()
+    }
+    func setReminder(with reminderTime: Date){
+            UNUserNotificationCenter.current().getPendingNotificationRequests { (notificationRequests) in
+                var identifiers: [String] = []
+                for notification:UNNotificationRequest in notificationRequests {
+                    if notification.identifier == String(describing: (self.viewLinkedTo?.card.UniquIdentifier)!) {
+                        identifiers.append(notification.identifier)
+                    }
+                }
+                print("removing notifs with identifiers \(identifiers)")
+                UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: identifiers)
+            }
+            UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound], completionHandler: { success, error in
+                if success {
+                    // schedule test
+                    print("scheduling a test")
+                    let content = UNMutableNotificationContent()
+                    content.title = self.card.Heading ?? "Folio Reminder"
+                    content.sound = .default
+                    content.body = "You have a scheduled reminder"
+                    
+    //                let targetDate = Date().addingTimeInterval(5)
+                    let targetDate = self.card.reminder!
+                    print("setting reminder to \(targetDate)")
+                    let trigger = UNCalendarNotificationTrigger(dateMatching: Calendar.current.dateComponents([.year, .month, .day, .hour, .minute, .second],from: targetDate), repeats: false)
+                    
+                    let request = UNNotificationRequest(identifier: String(describing: (self.viewLinkedTo?.card.UniquIdentifier)!), content: content, trigger: trigger)
+                    UNUserNotificationCenter.current().add(request, withCompletionHandler: { error in
+                        if error != nil {
+                            print("something went wrong")
+                        }
+                    })
+                }
+                else if error != nil {
+                    print("error occurred")
+                }
+            })
+        }
+        func unSetReminder(){
+            UNUserNotificationCenter.current().getPendingNotificationRequests { (notificationRequests) in
+                var identifiers: [String] = []
+                for notification:UNNotificationRequest in notificationRequests {
+                    if notification.identifier == String(describing: (self.viewLinkedTo?.card.UniquIdentifier)!) {
+                        identifiers.append(notification.identifier)
+                    }
+                }
+                print("removing notifs with identifiers \(identifiers)")
+                UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: identifiers)
+            }
+        }
     
     //set Delete button
     private func setDeleteButton(){
