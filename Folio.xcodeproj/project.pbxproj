@@ -61,6 +61,7 @@
 		E269476524702D0900F9E21F /* UITextView+Expanding.swift in Sources */ = {isa = PBXBuildFile; fileRef = E269476424702D0900F9E21F /* UITextView+Expanding.swift */; };
 		E26947672470320B00F9E21F /* SmallCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E26947662470320B00F9E21F /* SmallCardView.swift */; };
 		E284B6242472D9BD00CC6465 /* uniqueFileName.swift in Sources */ = {isa = PBXBuildFile; fileRef = E284B6232472D9BD00CC6465 /* uniqueFileName.swift */; };
+		E2D4B87D247901A1005F566F /* pageListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D4B87C247901A1005F566F /* pageListTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -145,6 +146,7 @@
 		E269476424702D0900F9E21F /* UITextView+Expanding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITextView+Expanding.swift"; sourceTree = "<group>"; };
 		E26947662470320B00F9E21F /* SmallCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmallCardView.swift; sourceTree = "<group>"; };
 		E284B6232472D9BD00CC6465 /* uniqueFileName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = uniqueFileName.swift; sourceTree = "<group>"; };
+		E2D4B87C247901A1005F566F /* pageListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = pageListTableViewCell.swift; sourceTree = "<group>"; };
 		F32C815244D1C255A7FDD23A /* Pods_Folio.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Folio.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FB442A4DFD8207DB35ADCE4D /* Pods-FolioTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FolioTests.debug.xcconfig"; path = "Target Support Files/Pods-FolioTests/Pods-FolioTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -229,6 +231,7 @@
 				E252B04E246C4041003F8718 /* Main.storyboard */,
 				E252B08B246C4681003F8718 /* PageListViewController.swift */,
 				E252B08D246C4AD7003F8718 /* SwitchPageTimelineViewController.swift */,
+				E2D4B87C247901A1005F566F /* pageListTableViewCell.swift */,
 				E252B08F246C4E6D003F8718 /* PageViewController.swift */,
 				E252B093246CEE55003F8718 /* PageView.swift */,
 				E252B091246C4E79003F8718 /* TimelineViewController.swift */,
@@ -637,6 +640,7 @@
 				E252B089246C4620003F8718 /* smallCard.swift in Sources */,
 				E25BA50824721F93000D1DF7 /* GalleryViewController.swift in Sources */,
 				E25BA4F424716196000D1DF7 /* EditCardViewController.swift in Sources */,
+				E2D4B87D247901A1005F566F /* pageListTableViewCell.swift in Sources */,
 				E252B092246C4E79003F8718 /* TimelineViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

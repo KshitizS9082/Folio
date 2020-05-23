@@ -42,6 +42,9 @@ struct pageInfoList: Codable {
         return try? JSONEncoder().encode(self)
     }
 }
+protocol pageListeProtocol {
+    func setPageTitle(for indexPath: IndexPath, to title: String)
+}
 
 class PageListViewController: UIViewController {
 //    var pages = [PageData]()
@@ -98,6 +101,7 @@ class PageListViewController: UIViewController {
         view.backgroundColor = backgroundColour
         table.dataSource=self
         table.delegate=self
+//        table.register(UINib(nibName: "pageListTableViewCell", bundle: nil), forCellReuseIdentifier: "customPageCell")
     }
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.setNavigationBarHidden(true, animated: true)
@@ -176,17 +180,18 @@ extension PageListViewController:UITableViewDelegate, UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "pageCell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "customPageCell", for: indexPath) as! pageListTableViewCell
         cell.accessoryType = .disclosureIndicator
-        cell.textLabel?.text = pages.items[indexPath.row].title
+        cell.myIndexPath=indexPath
+        cell.pageListDelegate=self
+        cell.titleTextField.text = pages.items[indexPath.row].title
         cell.backgroundColor = cellColour
-//        let time = pages[indexPath.row].lasteDateOfEditting
         let time =  pages.items[indexPath.row].dateOfMaking
         let formatter = DateFormatter()
         //        formatter.dateFormat = "d/M/yy, hh:mm a"
         formatter.dateStyle = .full
-        cell.detailTextLabel?.text = formatter.string(from: time)
-        cell.detailTextLabel?.textColor = UIColor.systemGray
+        cell.subtitleText?.text = formatter.string(from: time)
+        cell.subtitleText?.textColor = UIColor.systemGray
         return cell
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -201,12 +206,37 @@ extension PageListViewController:UITableViewDelegate, UITableViewDataSource{
             table.reloadData()
         }
     }
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let action = UIContextualAction(style: .destructive, title: "Delete",
+                                        handler: { (action, view, completionHandler) in
+                        self.pages.items.remove(at: indexPath.row)
+                        self.table.reloadData()
+                        completionHandler(true)
+        })
+        action.backgroundColor = .systemRed
+        let editAction = UIContextualAction(style: .normal, title: "Edit",
+                                            handler: { (action, view, completionHandler) in
+                                                self.startEdittingCell(at: indexPath)
+                                                completionHandler(true)
+        })
+        
+        let configuration = UISwipeActionsConfiguration(actions: [action, editAction])
+        return configuration
+    }
+//    }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         selectedCell=indexPath.row
         performSegue(withIdentifier: "openPage", sender: self)
         table.deselectRow(at: indexPath, animated: true)
     }
-    
+    func startEdittingCell(at indexPath: IndexPath){
+        //needs to add a delay becuase of a bug that cell dissapears if not becomefirstresponder
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.9) {
+            if let cell = self.table.cellForRow(at: indexPath) as? pageListTableViewCell{
+                cell.titleTextField.becomeFirstResponder()
+            }
+        }
+    }
 }
 extension PageListViewController{
     var cellHeight: CGFloat{
@@ -218,4 +248,12 @@ extension PageListViewController{
     var backgroundColour: UIColor{
         return #colorLiteral(red: 0.9411764706, green: 0.9450980392, blue: 0.9176470588, alpha: 1)
     }
+}
+
+extension PageListViewController: pageListeProtocol{
+    func setPageTitle(for indexPath: IndexPath, to title: String) {
+        pages.items[indexPath.row].title = title
+    }
+    
+    
 }
