@@ -44,6 +44,7 @@ struct pageInfoList: Codable {
 }
 protocol pageListeProtocol {
     func setPageTitle(for indexPath: IndexPath, to title: String)
+    func performSegueForExtractView(for extractViewIndex: Int)
 }
 
 class PageListViewController: UIViewController {
@@ -161,6 +162,7 @@ class PageListViewController: UIViewController {
     
     // MARK: - Navigation
     var selectedCell: Int?
+    var selectedExtractView: Int?
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "openPage"{
             if let targetController = segue.destination as? SwitchPageTimelineViewController{
@@ -171,18 +173,35 @@ class PageListViewController: UIViewController {
                 print("passing pageTitle: \(pages.items[selectedCell!].title)")
             }
         }
+        if segue.identifier == "pageExtractSegue"{
+            if let targetController = segue.destination as? PageExtractViewController{
+                targetController.pagesListFromPLVC=self.pages
+                targetController.selectedExtractView = self.selectedExtractView!
+            }
+        }
     }
     
 }
 extension PageListViewController:UITableViewDelegate, UITableViewDataSource{
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 2
+    }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return pages.items.count+1
+        var rowCount = 0
+        if section == 0 {
+            rowCount = 1
+        }
+        if section == 1 {
+            rowCount = pages.items.count
+        }
+        return rowCount
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if indexPath.row == pages.items.count{
+        if indexPath.section==0{
             let cell = tableView.dequeueReusableCell(withIdentifier: "PageExtractTVCell", for: indexPath) as! PagesExtractTableViewCell
             cell.backgroundColor = UIColor.clear
+            cell.delegate=self
             return cell
         }
         let cell = tableView.dequeueReusableCell(withIdentifier: "customPageCell", for: indexPath) as! pageListTableViewCell
@@ -200,8 +219,8 @@ extension PageListViewController:UITableViewDelegate, UITableViewDataSource{
         return cell
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if indexPath.row==pages.items.count{
-            return 300
+        if indexPath.section==0{
+            return 270
         }
         return cellHeight
     }
@@ -234,7 +253,13 @@ extension PageListViewController:UITableViewDelegate, UITableViewDataSource{
 //    }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         selectedCell=indexPath.row
-        performSegue(withIdentifier: "openPage", sender: self)
+        if indexPath.section==0{
+            print("selected cell at section 0")
+            let cell=table.cellForRow(at: indexPath) as! PagesExtractTableViewCell
+            self.selectedExtractView=cell.selectedView
+        }else{
+            performSegue(withIdentifier: "openPage", sender: self)
+        }
         table.deselectRow(at: indexPath, animated: true)
     }
     func startEdittingCell(at indexPath: IndexPath){
@@ -259,6 +284,11 @@ extension PageListViewController{
 }
 
 extension PageListViewController: pageListeProtocol{
+    func performSegueForExtractView(for extractViewIndex: Int) {
+        self.selectedExtractView=extractViewIndex
+        performSegue(withIdentifier: "pageExtractSegue", sender: self)
+    }
+    
     func setPageTitle(for indexPath: IndexPath, to title: String) {
         pages.items[indexPath.row].title = title
     }

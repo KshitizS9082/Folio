@@ -90,29 +90,29 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="PageExtractTVCell" id="tc2-uW-zXE" customClass="PagesExtractTableViewCell" customModule="Folio" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="150.5" width="414" height="315.5"/>
+                                        <rect key="frame" x="0.0" y="150.5" width="414" height="270.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="tc2-uW-zXE" id="wbL-RZ-Z0e">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="315.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="270.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4dQ-J0-cZk" customClass="PageExtractSubview" customModule="Folio" customModuleProvider="target">
-                                                    <rect key="frame" x="20" y="25" width="164.5" height="120.5"/>
+                                                    <rect key="frame" x="20" y="25" width="172" height="100.5"/>
                                                     <color key="backgroundColor" systemColor="systemGray5Color" red="0.8980392157" green="0.8980392157" blue="0.91764705879999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="120" id="LHx-3H-0cg"/>
+                                                        <constraint firstAttribute="height" constant="100" id="LHx-3H-0cg"/>
                                                     </constraints>
                                                 </view>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pBC-gc-6oZ" customClass="PageExtractSubview" customModule="Folio" customModuleProvider="target">
-                                                    <rect key="frame" x="229.5" y="25" width="164.5" height="120.5"/>
+                                                    <rect key="frame" x="222" y="25" width="172" height="100.5"/>
                                                     <color key="backgroundColor" systemColor="systemGray5Color" red="0.8980392157" green="0.8980392157" blue="0.91764705879999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </view>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4pd-GB-4Yj" customClass="PageExtractSubview" customModule="Folio" customModuleProvider="target">
-                                                    <rect key="frame" x="229.5" y="170.5" width="164.5" height="120"/>
+                                                    <rect key="frame" x="222" y="145.5" width="172" height="100"/>
                                                     <color key="backgroundColor" systemColor="systemGray5Color" red="0.8980392157" green="0.8980392157" blue="0.91764705879999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </view>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HuC-bI-8QJ" customClass="PageExtractSubview" customModule="Folio" customModuleProvider="target">
-                                                    <rect key="frame" x="20" y="170.5" width="164.5" height="120"/>
+                                                    <rect key="frame" x="20" y="145.5" width="172" height="100"/>
                                                     <color key="backgroundColor" systemColor="systemGray5Color" red="0.8980392157" green="0.8980392157" blue="0.91764705879999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </view>
                                             </subviews>
@@ -125,11 +125,11 @@
                                                 <constraint firstItem="4pd-GB-4Yj" firstAttribute="trailing" secondItem="pBC-gc-6oZ" secondAttribute="trailing" id="L1F-xh-3Lr"/>
                                                 <constraint firstItem="HuC-bI-8QJ" firstAttribute="leading" secondItem="4dQ-J0-cZk" secondAttribute="leading" id="Pra-gV-svj"/>
                                                 <constraint firstItem="HuC-bI-8QJ" firstAttribute="trailing" secondItem="4dQ-J0-cZk" secondAttribute="trailing" id="XcU-DT-ouc"/>
-                                                <constraint firstItem="pBC-gc-6oZ" firstAttribute="leading" secondItem="4dQ-J0-cZk" secondAttribute="trailing" constant="45" id="aTX-IT-OWN"/>
+                                                <constraint firstItem="pBC-gc-6oZ" firstAttribute="leading" secondItem="4dQ-J0-cZk" secondAttribute="trailing" constant="30" id="aTX-IT-OWN"/>
                                                 <constraint firstItem="HuC-bI-8QJ" firstAttribute="height" secondItem="4dQ-J0-cZk" secondAttribute="height" id="bPz-bG-umX"/>
                                                 <constraint firstItem="4pd-GB-4Yj" firstAttribute="height" secondItem="4dQ-J0-cZk" secondAttribute="height" id="gnh-5V-0N5"/>
                                                 <constraint firstItem="pBC-gc-6oZ" firstAttribute="width" secondItem="4dQ-J0-cZk" secondAttribute="width" id="mNs-ON-B2b"/>
-                                                <constraint firstItem="HuC-bI-8QJ" firstAttribute="top" secondItem="4dQ-J0-cZk" secondAttribute="bottom" constant="25" id="vJq-Cu-mvM"/>
+                                                <constraint firstItem="HuC-bI-8QJ" firstAttribute="top" secondItem="4dQ-J0-cZk" secondAttribute="bottom" constant="20" id="vJq-Cu-mvM"/>
                                                 <constraint firstItem="4dQ-J0-cZk" firstAttribute="top" secondItem="wbL-RZ-Z0e" secondAttribute="top" constant="25" id="xQw-98-f4Y"/>
                                                 <constraint firstItem="4pd-GB-4Yj" firstAttribute="bottom" secondItem="HuC-bI-8QJ" secondAttribute="bottom" id="xeo-sZ-Gb1"/>
                                                 <constraint firstItem="4dQ-J0-cZk" firstAttribute="leading" secondItem="wbL-RZ-Z0e" secondAttribute="leading" constant="20" id="ztl-od-Sxg"/>
@@ -152,6 +152,7 @@
                     <connections>
                         <outlet property="table" destination="mer-jd-fz9" id="asQ-Se-gox"/>
                         <segue destination="KJv-kN-YwA" kind="show" identifier="openPage" id="to3-FM-KxV"/>
+                        <segue destination="gmg-h9-rsM" kind="show" identifier="pageExtractSegue" id="Hne-E4-1Yi"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -370,6 +371,56 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fmJ-eK-wcs" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2704.347826086957" y="-304.6875"/>
+        </scene>
+        <!--Page Extract View Controller-->
+        <scene sceneID="ux6-Zf-B89">
+            <objects>
+                <viewController id="gmg-h9-rsM" customClass="PageExtractViewController" customModule="Folio" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Fxf-G2-K15">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="3Cm-hI-ttm">
+                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" textLabel="RBs-XN-Xh2" style="IBUITableViewCellStyleDefault" id="oIv-yD-Kyw">
+                                        <rect key="frame" x="0.0" y="28" width="414" height="43.5"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="oIv-yD-Kyw" id="iu8-du-nzl">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text=" Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="RBs-XN-Xh2">
+                                                    <rect key="frame" x="20" y="0.0" width="374" height="43.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="31"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="3Cm-hI-ttm" firstAttribute="leading" secondItem="VgJ-14-ieO" secondAttribute="leading" id="8xm-Gc-vHm"/>
+                            <constraint firstItem="3Cm-hI-ttm" firstAttribute="top" secondItem="VgJ-14-ieO" secondAttribute="top" id="TCO-IK-cKW"/>
+                            <constraint firstItem="VgJ-14-ieO" firstAttribute="bottom" secondItem="3Cm-hI-ttm" secondAttribute="bottom" id="aWG-ZN-R1o"/>
+                            <constraint firstItem="VgJ-14-ieO" firstAttribute="trailing" secondItem="3Cm-hI-ttm" secondAttribute="trailing" id="bbD-cX-dYz"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="VgJ-14-ieO"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="UQa-PS-Uja"/>
+                    <connections>
+                        <outlet property="table" destination="3Cm-hI-ttm" id="aMS-Yh-bzt"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bTN-LG-41G" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1674" y="924"/>
         </scene>
         <!--Timeline View Controller-->
         <scene sceneID="hRO-DG-1fM">

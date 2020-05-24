@@ -59,6 +59,7 @@
 		E25BA51624727B79000D1DF7 /* BigcardTimelineTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E25BA51424727B79000D1DF7 /* BigcardTimelineTableViewCell.swift */; };
 		E25BA51924728AA9000D1DF7 /* MediaCardTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E25BA51724728AA9000D1DF7 /* MediaCardTableViewCell.xib */; };
 		E25BA51A24728AA9000D1DF7 /* MediaCardTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E25BA51824728AA9000D1DF7 /* MediaCardTableViewCell.swift */; };
+		E260F152247AA91E00CFB697 /* PageExtractViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E260F151247AA91E00CFB697 /* PageExtractViewController.swift */; };
 		E269476524702D0900F9E21F /* UITextView+Expanding.swift in Sources */ = {isa = PBXBuildFile; fileRef = E269476424702D0900F9E21F /* UITextView+Expanding.swift */; };
 		E26947672470320B00F9E21F /* SmallCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E26947662470320B00F9E21F /* SmallCardView.swift */; };
 		E284B6242472D9BD00CC6465 /* uniqueFileName.swift in Sources */ = {isa = PBXBuildFile; fileRef = E284B6232472D9BD00CC6465 /* uniqueFileName.swift */; };
@@ -145,6 +146,7 @@
 		E25BA51424727B79000D1DF7 /* BigcardTimelineTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BigcardTimelineTableViewCell.swift; sourceTree = "<group>"; };
 		E25BA51724728AA9000D1DF7 /* MediaCardTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MediaCardTableViewCell.xib; sourceTree = "<group>"; };
 		E25BA51824728AA9000D1DF7 /* MediaCardTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediaCardTableViewCell.swift; sourceTree = "<group>"; };
+		E260F151247AA91E00CFB697 /* PageExtractViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageExtractViewController.swift; sourceTree = "<group>"; };
 		E269476424702D0900F9E21F /* UITextView+Expanding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITextView+Expanding.swift"; sourceTree = "<group>"; };
 		E26947662470320B00F9E21F /* SmallCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmallCardView.swift; sourceTree = "<group>"; };
 		E284B6232472D9BD00CC6465 /* uniqueFileName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = uniqueFileName.swift; sourceTree = "<group>"; };
@@ -233,8 +235,10 @@
 				E252B04E246C4041003F8718 /* Main.storyboard */,
 				E252B08D246C4AD7003F8718 /* SwitchPageTimelineViewController.swift */,
 				E252B08B246C4681003F8718 /* PageListViewController.swift */,
+				E260F151247AA91E00CFB697 /* PageExtractViewController.swift */,
 				E2D4B87C247901A1005F566F /* pageListTableViewCell.swift */,
 				E2252E0A247943AA00EF26C9 /* PagesExtractTableViewCell.swift */,
+				E260F153247AA95200CFB697 /* Page Extract Items */,
 				E252B08F246C4E6D003F8718 /* PageViewController.swift */,
 				E252B093246CEE55003F8718 /* PageView.swift */,
 				E252B091246C4E79003F8718 /* TimelineViewController.swift */,
@@ -344,6 +348,13 @@
 				E25BA51724728AA9000D1DF7 /* MediaCardTableViewCell.xib */,
 			);
 			path = "Timeline Items";
+			sourceTree = "<group>";
+		};
+		E260F153247AA95200CFB697 /* Page Extract Items */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "Page Extract Items";
 			sourceTree = "<group>";
 		};
 		E269475D2470276F00F9E21F /* Small Card Items */ = {
@@ -637,6 +648,7 @@
 				E252B07E246C44DF003F8718 /* UnderlinedTextView.swift in Sources */,
 				E25BA4FD24716AD0000D1DF7 /* MediaCardView.swift in Sources */,
 				E25BA50624721F93000D1DF7 /* ThumbCell.swift in Sources */,
+				E260F152247AA91E00CFB697 /* PageExtractViewController.swift in Sources */,
 				E25BA4FA247163CE000D1DF7 /* NotesFullViewController.swift in Sources */,
 				E25BA4FF24716DC0000D1DF7 /* ImagePickerManager.swift in Sources */,
 				E252B083246C45E6003F8718 /* checkListItem.swift in Sources */,

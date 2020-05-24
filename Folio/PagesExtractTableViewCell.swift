@@ -11,12 +11,14 @@ import UIKit
 class PagesExtractTableViewCell: UITableViewCell {
 
     @IBOutlet var extractCardList: [PageExtractSubview]!
-    
+    var selectedView: Int?
+    var delegate: pageListeProtocol?
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
         for ind in extractCardList.indices{
             let card = extractCardList[ind]
+            card.myIndex=ind
             card.backgroundColor = #colorLiteral(red: 0.9839849829, green: 0.9880542423, blue: 0.9669427433, alpha: 1)
             switch ind {
             case 0:
@@ -25,31 +27,39 @@ class PagesExtractTableViewCell: UITableViewCell {
                 card.image.tintColor = .systemBlue
                 card.textLablel.text = "Today"
                 card.numberLabel.text = "4"
+                card.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(selectedIndex)))
             case 1:
                 print(1)
                 card.image.image = UIImage(systemName: "clock.fill")
                 card.image.tintColor = .systemYellow
                 card.textLablel.text = "Scheduled"
                 card.numberLabel.text = "32"
+                 card.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(selectedIndex)))
             case 2:
                 print(2)
                 card.image.image = UIImage(systemName: "tray.fill")
                 card.image.tintColor = .systemGray
                 card.textLablel.text = "All"
                 card.numberLabel.text = "49"
+                 card.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(selectedIndex)))
             case 3:
                 print(3)
                 card.image.image = UIImage(systemName: "exclamationmark.circle.fill")
                 card.image.tintColor = .systemRed
                 card.textLablel.text = "Due"
                 card.numberLabel.text = "5"
+                 card.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(selectedIndex)))
             default:
-                print("didn't handle this extractCardListIndex")
+                print("didn't handle this extractCardListIndex" )
             }
             card.layoutSubviews()
         }
     }
-
+    @objc func selectedIndex(_ sender: UITapGestureRecognizer){
+        if let x=sender.view as? PageExtractSubview{
+            delegate?.performSegueForExtractView(for: x.myIndex)
+        }
+    }
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
@@ -61,7 +71,7 @@ class PageExtractSubview: UIView{
     var image = UIImageView(image: UIImage(systemName: "calendar.circle.fill"))
     var textLablel = UILabel()
     var numberLabel = UILabel()
-    
+    var myIndex = 0
     override func layoutSubviews() {
         self.layer.cornerRadius=cornerradiuse
         if subviews.contains(image)==false{
@@ -117,12 +127,12 @@ extension PageExtractSubview{
     }
     var numberLabelFont: UIFont{
 //         return UIFont(name: "SnellRoundhand-Black", size: 40)!
-        return UIFont.boldSystemFont(ofSize: 40)
+        return UIFont.boldSystemFont(ofSize: 30)
     }
     var cornerradiuse: CGFloat{
         return 10
     }
     var viewsizes: CGFloat{
-        return 40
+        return 35
     }
 }
