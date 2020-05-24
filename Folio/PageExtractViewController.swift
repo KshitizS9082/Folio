@@ -16,6 +16,8 @@ class PageExtractViewController: UIViewController {
     var cardsList = [timeLineCard]()
     
     @IBOutlet weak var table: UITableView!
+    
+    @IBOutlet weak var navBarTitle: UINavigationItem!
     func addAllCards(for page: PageData){
         page.bigCards.forEach { (card) in
             cardsList.append(timeLineCard(type: .big, smallCard: nil, bigCard: card, mediaCard: nil))
@@ -157,7 +159,20 @@ class PageExtractViewController: UIViewController {
            }
        }
     
-
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        // Make the navigation bar background clear
+        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        navigationController?.navigationBar.shadowImage = UIImage()
+        navigationController?.navigationBar.isTranslucent = true
+    }
+    override func viewWillDisappear(_ animated: Bool) {
+        // Restore the navigation bar to default
+        navigationController?.navigationBar.setBackgroundImage(nil, for: .default)
+        navigationController?.navigationBar.shadowImage = nil
+        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black]
+        navigationController?.navigationBar.tintColor = UIColor.systemBlue
+    }
     /*
     // MARK: - Navigation
 
@@ -252,6 +267,17 @@ extension PageExtractViewController: UITableViewDataSource, UITableViewDelegate{
         default:
             headerLabel.textColor = UIColor.black
         }
+        navigationController?.navigationBar.topItem?.title = headerLabel.text
+        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor:headerLabel.textColor ?? UIColor.systemBlue]
+        navigationController?.navigationBar.tintColor = headerLabel.textColor
+//        let appearance = UINavigationBarAppearance()
+//        appearance.titleTextAttributes = [.foregroundColor: headerLabel.textColor ?? UIColor.systemBlue]
+//        appearance.largeTitleTextAttributes = [.foregroundColor: headerLabel.textColor ?? UIColor.systemBlue]
+////        appearance.backgroundColor = pageColor
+//        appearance.shadowImage = UIImage()
+//        appearance.backgroundImage = UIImage()
+//        navigationItem.standardAppearance = appearance
+//        navigationItem.scrollEdgeAppearance = appearance
         headerLabel.sizeToFit()
         headerView.addSubview(headerLabel)
 
