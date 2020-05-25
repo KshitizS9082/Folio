@@ -199,10 +199,7 @@ extension PageListViewController:UITableViewDelegate, UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section==0{
-            let cell = tableView.dequeueReusableCell(withIdentifier: "PageExtractTVCell", for: indexPath) as! PagesExtractTableViewCell
-            cell.backgroundColor = UIColor.clear
-            cell.delegate=self
-            return cell
+            return self.setupExtractTableViewCell(tableView, cellForRowAt: indexPath)
         }
         let cell = tableView.dequeueReusableCell(withIdentifier: "customPageCell", for: indexPath) as! pageListTableViewCell
         cell.accessoryType = .disclosureIndicator
@@ -218,6 +215,63 @@ extension PageListViewController:UITableViewDelegate, UITableViewDataSource{
         cell.subtitleText?.textColor = UIColor.systemGray
         return cell
     }
+    
+    func setupExtractTableViewCell(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "PageExtractTVCell", for: indexPath) as! PagesExtractTableViewCell
+        cell.backgroundColor = UIColor.clear
+        cell.delegate=self
+        var fileName=""
+        var count = [Int](repeating: 0, count: 4)
+        for info in pages.items{
+            fileName=info.fileName
+            if let url = try? FileManager.default.url(
+                for: .documentDirectory,
+                in: .userDomainMask,
+                appropriateFor: nil,
+                create: true
+            ).appendingPathComponent(fileName){
+                if let jsonData = try? Data(contentsOf: url){
+                    if let page = PageData(json: jsonData){
+                        let calendar = Calendar.current
+                        page.bigCards.forEach { (card) in
+                            count[2]+=1
+                            if let date = card.card.reminder{
+                                count[1]+=1
+                                if calendar.isDateInToday(date){
+                                    count[0]+=1
+                                }
+                                if date<Date(){
+                                    count[2]+=1
+                                }
+                            }
+                        }
+                        page.smallCards.forEach { (card) in
+                            count[2]+=1
+                            if let date = card.card.reminderDate{
+                                count[1]+=1
+                                if calendar.isDateInToday(date){
+                                    count[0]+=1
+                                }
+                                if date<Date(){
+                                    count[2]+=1
+                                }
+                            }
+                        }
+                        page.mediaCards.forEach { (card) in
+                            count[2]+=1
+                        }
+                    }else{
+                        print("WARNING: DROPPED A PAGE INSIDE PAGEEXTRACTVC")
+                    }
+                }
+            }
+        }
+        for ind in cell.extractCardList.indices{
+            cell.extractCardList[ind].numberLabel.text = String(count[ind])
+        }
+        return cell
+    }
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.section==0{
             return 270

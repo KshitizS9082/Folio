@@ -26,28 +26,28 @@ class PagesExtractTableViewCell: UITableViewCell {
                 card.image.image = UIImage(systemName: "calendar.circle.fill")
                 card.image.tintColor = .systemBlue
                 card.textLablel.text = "Today"
-                card.numberLabel.text = "4"
+                card.numberLabel.text = "--"
                 card.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(selectedIndex)))
             case 1:
                 print(1)
                 card.image.image = UIImage(systemName: "clock.fill")
                 card.image.tintColor = .systemYellow
                 card.textLablel.text = "Scheduled"
-                card.numberLabel.text = "32"
+                card.numberLabel.text = "--"
                  card.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(selectedIndex)))
             case 2:
                 print(2)
                 card.image.image = UIImage(systemName: "tray.fill")
                 card.image.tintColor = .systemGray
                 card.textLablel.text = "All"
-                card.numberLabel.text = "49"
+                card.numberLabel.text = "--"
                  card.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(selectedIndex)))
             case 3:
                 print(3)
                 card.image.image = UIImage(systemName: "exclamationmark.circle.fill")
                 card.image.tintColor = .systemRed
                 card.textLablel.text = "Due"
-                card.numberLabel.text = "5"
+                card.numberLabel.text = "--"
                  card.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(selectedIndex)))
             default:
                 print("didn't handle this extractCardListIndex" )

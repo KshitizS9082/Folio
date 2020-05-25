@@ -235,9 +235,7 @@
 				E252B04E246C4041003F8718 /* Main.storyboard */,
 				E252B08D246C4AD7003F8718 /* SwitchPageTimelineViewController.swift */,
 				E252B08B246C4681003F8718 /* PageListViewController.swift */,
-				E260F151247AA91E00CFB697 /* PageExtractViewController.swift */,
-				E2D4B87C247901A1005F566F /* pageListTableViewCell.swift */,
-				E2252E0A247943AA00EF26C9 /* PagesExtractTableViewCell.swift */,
+				E25B0E97247BA803004F3BDA /* Page List Items */,
 				E260F153247AA95200CFB697 /* Page Extract Items */,
 				E252B08F246C4E6D003F8718 /* PageViewController.swift */,
 				E252B093246CEE55003F8718 /* PageView.swift */,
@@ -309,6 +307,15 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		E25B0E97247BA803004F3BDA /* Page List Items */ = {
+			isa = PBXGroup;
+			children = (
+				E2D4B87C247901A1005F566F /* pageListTableViewCell.swift */,
+				E2252E0A247943AA00EF26C9 /* PagesExtractTableViewCell.swift */,
+			);
+			path = "Page List Items";
+			sourceTree = "<group>";
+		};
 		E25BA4EE247159E2000D1DF7 /* Big Card Items */ = {
 			isa = PBXGroup;
 			children = (
@@ -353,6 +360,7 @@
 		E260F153247AA95200CFB697 /* Page Extract Items */ = {
 			isa = PBXGroup;
 			children = (
+				E260F151247AA91E00CFB697 /* PageExtractViewController.swift */,
 			);
 			path = "Page Extract Items";
 			sourceTree = "<group>";
