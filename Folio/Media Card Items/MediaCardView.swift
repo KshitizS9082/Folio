@@ -115,7 +115,6 @@ class MediaCardView: UIView {
     }
     func deleteMe(){
         let fileManager = FileManager.default
-//        if let names = {
             for fileName in self.card.mediaDataURLs{
                 if let url = try? FileManager.default.url(
                     for: .documentDirectory,

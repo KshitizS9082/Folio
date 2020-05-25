@@ -227,18 +227,55 @@ extension PageListViewController:UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         return true
     }
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete{
-            pages.items.remove(at: indexPath.row)
-            table.reloadData()
+    
+    func deletePage(for pageInformation: pageInfo){
+        print("inside delete page")
+        let fileName = pageInformation.fileName
+        let fileManager = FileManager.default
+        if let url = try? FileManager.default.url(
+            for: .documentDirectory,
+            in: .userDomainMask,
+            appropriateFor: nil,
+            create: true
+        ).appendingPathComponent(fileName){
+            if let jsonData = try? Data(contentsOf: url){
+                let pageDat = PageData(json: jsonData)
+                if let medCards = pageDat?.mediaCards{
+                    medCards.forEach { (medCardDat) in
+                        for imgName in medCardDat.card.mediaDataURLs{
+                            if let imgURL = try? FileManager.default.url(
+                                for: .documentDirectory,
+                                in: .userDomainMask,
+                                appropriateFor: nil,
+                                create: true
+                            ).appendingPathComponent(imgName){
+                                do{
+                                    try fileManager.removeItem(at: imgURL)
+                                    print("deleted item \(imgURL) succefully")
+                                } catch{
+                                    print("ERROR: item  at \(imgURL) couldn't be deleted")
+                                    return
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            do{
+                try fileManager.removeItem(at: url)
+                print("deleted pageInformation \(url) succefully")
+            } catch{
+                print("ERROR: pageInformation item  at \(url) couldn't be deleted")
+            }
         }
     }
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let action = UIContextualAction(style: .destructive, title: "Delete",
                                         handler: { (action, view, completionHandler) in
-                        self.pages.items.remove(at: indexPath.row)
-                        self.table.reloadData()
-                        completionHandler(true)
+                                            self.deletePage(for: self.pages.items[indexPath.row])
+                                            self.pages.items.remove(at: indexPath.row)
+                                            self.table.reloadData()
+                                            completionHandler(true)
         })
         action.backgroundColor = .systemRed
         let editAction = UIContextualAction(style: .normal, title: "Edit",
@@ -250,7 +287,6 @@ extension PageListViewController:UITableViewDelegate, UITableViewDataSource{
         let configuration = UISwipeActionsConfiguration(actions: [action, editAction])
         return configuration
     }
-//    }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         selectedCell=indexPath.row
         if indexPath.section==0{
@@ -269,6 +305,29 @@ extension PageListViewController:UITableViewDelegate, UITableViewDataSource{
                 cell.titleTextField.becomeFirstResponder()
             }
         }
+    }
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        if section==0{
+            let empytView = UIView()
+            return empytView
+        }
+        let headerView = UIView()
+        headerView.backgroundColor = UIColor.clear
+        let headerLabel = UILabel()
+        headerView.addSubview(headerLabel)
+        headerLabel.translatesAutoresizingMaskIntoConstraints=false
+        [
+            headerLabel.leftAnchor.constraint(equalTo: headerView.safeAreaLayoutGuide.leftAnchor, constant: 10),
+            headerLabel.centerYAnchor.constraint(equalTo: headerView.safeAreaLayoutGuide.centerYAnchor, constant: 0)
+            ].forEach { (cst) in
+                cst.isActive=true
+        }
+        headerLabel.font = UIFont.boldSystemFont(ofSize: 30)
+        headerLabel.textColor = UIColor.systemGray
+        headerLabel.text = "My Pages"
+        headerLabel.sizeToFit()
+        headerView.addSubview(headerLabel)
+        return headerView
     }
 }
 extension PageListViewController{
