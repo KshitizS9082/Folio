@@ -97,8 +97,6 @@ class PageExtractViewController: UIViewController {
                 }
             }
         }
-       
-        
     }
     func setupTable(){
         table.dataSource=self

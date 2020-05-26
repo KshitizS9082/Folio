@@ -404,7 +404,7 @@
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4B0-2k-E2N">
                                                     <rect key="frame" x="44" y="44" width="40" height="40"/>
-                                                    <color key="backgroundColor" systemColor="systemGray4Color" red="0.81960784310000001" green="0.81960784310000001" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <color key="backgroundColor" red="1" green="0.21568627450980393" blue="0.37254901960784315" alpha="0.50511646855828218" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="40" id="QKG-xw-7pW"/>
                                                         <constraint firstAttribute="width" secondItem="4B0-2k-E2N" secondAttribute="height" id="Ype-g5-zfR"/>
@@ -455,12 +455,20 @@
                                     <outlet property="ibCalendarDelegate" destination="iHJ-Ix-OFG" id="fYb-ai-kRv"/>
                                 </connections>
                             </collectionView>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="SoI-kp-iib">
+                                <rect key="frame" x="0.0" y="388" width="414" height="474"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" red="0.94160306449999998" green="0.94537228350000002" blue="0.91919022800000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="tmd-xt-zwT" firstAttribute="trailing" secondItem="aXN-vR-B2r" secondAttribute="trailing" id="6Md-DL-EQc"/>
+                            <constraint firstItem="SoI-kp-iib" firstAttribute="top" secondItem="aXN-vR-B2r" secondAttribute="bottom" id="JZA-eY-WFh"/>
+                            <constraint firstItem="tmd-xt-zwT" firstAttribute="trailing" secondItem="SoI-kp-iib" secondAttribute="trailing" id="MRd-jZ-iyb"/>
+                            <constraint firstItem="SoI-kp-iib" firstAttribute="leading" secondItem="tmd-xt-zwT" secondAttribute="leading" id="T0f-Mv-QMb"/>
                             <constraint firstItem="aXN-vR-B2r" firstAttribute="top" secondItem="tmd-xt-zwT" secondAttribute="top" id="gzA-zY-7Mg"/>
                             <constraint firstItem="aXN-vR-B2r" firstAttribute="leading" secondItem="tmd-xt-zwT" secondAttribute="leading" id="j76-xV-hMx"/>
+                            <constraint firstItem="tmd-xt-zwT" firstAttribute="bottom" secondItem="SoI-kp-iib" secondAttribute="bottom" id="xhd-hj-OjS"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="tmd-xt-zwT"/>
                     </view>
@@ -475,6 +483,7 @@
                     <connections>
                         <outlet property="calendarView" destination="aXN-vR-B2r" id="oRX-IU-82l"/>
                         <outlet property="constraint" destination="Xom-oi-UOb" id="XMU-x9-Icz"/>
+                        <outlet property="table" destination="SoI-kp-iib" id="s5T-nI-fXH"/>
                         <outlet property="toggleCalendarButton" destination="bUs-VX-RXK" id="itW-td-gs8"/>
                     </connections>
                 </viewController>

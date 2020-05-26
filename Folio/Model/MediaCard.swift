@@ -12,7 +12,7 @@ struct MediaCard: Codable {
     var UniquIdentifier=UUID()
 //    var data = (Any?, mediaType?)()
     var title: String?
-    var dateOfCreation: Date = Date()
+    var dateOfConstruction = Date()
 //    var data = [AnyObject]()
 //    var mediaData = [Data]()
     var mediaDataURLs = [String]()

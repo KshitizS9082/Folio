@@ -201,6 +201,9 @@ class PageListViewController: UIViewController {
         }
         if segue.identifier == "showJournalSegue"{
             print("now set journalvc")
+            if let targetController = segue.destination as? JournalViewController{
+                targetController.pagesListFromPLVC=self.pages
+            }
         }
     }
     

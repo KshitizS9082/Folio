@@ -11,12 +11,29 @@ import UIKit
 
 struct SmallCard: Codable {
     var UniquIdentifier=UUID()
-    var isDone = false
+    var dateOfCompletion: Date?
+    var dateOfConstruction = Date()
+    var isDone = false{
+        didSet{
+            if self.isDone{
+                dateOfCompletion=Date()
+            }else{
+                dateOfCompletion=nil
+            }
+        }
+    }
     var title = "Title"
     var notes = ""
     var extraNotes = ""
     var url: URL?
-    var reminderDate: Date?
+    var reminderDate: Date?{
+        //MARK: "WARNING USED FOR DEBUGGING, REMOVE LATER"
+        didSet{
+            if reminderDate != nil{
+                dateOfCompletion=reminderDate
+            }
+        }
+    }
 //    var images = [UIImage]()
     
     enum priorityEnum: String {

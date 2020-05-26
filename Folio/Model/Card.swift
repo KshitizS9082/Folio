@@ -11,13 +11,23 @@ import Foundation
 
 struct Card: Codable {
     var UniquIdentifier=UUID()
+    var dateOfConstruction = Date()
+    var dateOfCompletion: Date?
     var type: cardType = cardType.CheckList
     enum cardType: String, Codable {
         case CheckList
         case Notes
         case Drawing
     }
-    var isCompleted: Bool = false
+    var isCompleted: Bool = false{
+        didSet{
+            if self.isCompleted{
+                dateOfCompletion=Date()
+            }else{
+                dateOfCompletion=nil
+            }
+        }
+    }
     var Heading: String? = nil
     var notes: String = ""
 
@@ -25,7 +35,14 @@ struct Card: Codable {
 
     var time : Date? = nil
     var endTime : Date? = nil
-    var reminder: Date? = nil//Design
+    var reminder: Date? = nil{//DesignP
+        //MARK: "WARNING USED FOR DEBUGGING, REMOVE LATER"
+        didSet{
+            if reminder != nil{
+                dateOfCompletion=reminder
+            }
+        }
+    }
     
     var label: labelStruct? = nil
     var checkList = [checkListItem]()
