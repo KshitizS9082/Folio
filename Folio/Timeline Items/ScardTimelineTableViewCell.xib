@@ -59,7 +59,7 @@
                     <constraint firstItem="jsC-Uk-w7B" firstAttribute="top" secondItem="XYO-UF-SCs" secondAttribute="bottom" id="QMb-0F-R3T"/>
                     <constraint firstItem="ZNS-wf-Xoe" firstAttribute="leading" secondItem="Pm8-JG-1v7" secondAttribute="leading" id="Qte-mU-30V"/>
                     <constraint firstItem="2T4-8R-awU" firstAttribute="trailing" secondItem="XYO-UF-SCs" secondAttribute="trailing" id="a8g-0J-Gsa"/>
-                    <constraint firstItem="XYO-UF-SCs" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="6" id="acq-3H-1Tf"/>
+                    <constraint firstItem="XYO-UF-SCs" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="20" symbolic="YES" id="acq-3H-1Tf"/>
                     <constraint firstItem="2T4-8R-awU" firstAttribute="top" secondItem="jsC-Uk-w7B" secondAttribute="bottom" id="cgx-T8-T6I"/>
                     <constraint firstItem="ZNS-wf-Xoe" firstAttribute="top" relation="greaterThanOrEqual" secondItem="Pm8-JG-1v7" secondAttribute="bottom" id="dug-c7-BOr"/>
                     <constraint firstItem="jsC-Uk-w7B" firstAttribute="trailing" relation="lessThanOrEqual" secondItem="XYO-UF-SCs" secondAttribute="trailing" id="f21-NX-rU1"/>

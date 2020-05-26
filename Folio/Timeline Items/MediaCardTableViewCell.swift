@@ -18,6 +18,11 @@ class MediaCardTableViewCell: UITableViewCell {
     var indexpath = IndexPath(row: 0, section: 0)
     var allImages = [UIImage]()
     
+    @IBOutlet weak var cardBackgroundView: UIView!{
+        didSet{
+            cardBackgroundView.layer.cornerRadius=15
+        }
+    }
     @IBOutlet weak var linkView: UIImageView!{
         didSet{
             linkView.isUserInteractionEnabled=true

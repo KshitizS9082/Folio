@@ -33,6 +33,11 @@ class BigcardTimelineTableViewCell: UITableViewCell {
     var title = ""
     @IBOutlet weak var reminderLabel: UILabel!
     
+    @IBOutlet weak var cardBackgroundView: UIView!{
+        didSet{
+            cardBackgroundView.layer.cornerRadius = 15
+        }
+    }
     
     @IBOutlet weak var checkBox: UIImageView!
     @IBOutlet weak var titleTextView: UITextView!{
