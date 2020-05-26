@@ -36,6 +36,11 @@ class ScardTimelineTableViewCell: UITableViewCell {
     var notes = ""
     lazy var constr  = notesTextView.heightAnchor.constraint(equalToConstant: 0)
     
+    @IBOutlet weak var cardBackgroundView: UIView!{
+        didSet{
+            cardBackgroundView.layer.cornerRadius=15
+        }
+    }
     @IBOutlet weak var checkBox: UIImageView!
     @IBOutlet weak var linkView: UIImageView!{
         didSet{
