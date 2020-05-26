@@ -332,7 +332,6 @@ class PageViewController: UIViewController {
             }
         }
     }
-
 }
 extension PageViewController{
     var basePageViewHeight: CGFloat{

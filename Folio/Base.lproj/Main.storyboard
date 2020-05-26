@@ -4,6 +4,7 @@
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -153,6 +154,7 @@
                         <outlet property="table" destination="mer-jd-fz9" id="asQ-Se-gox"/>
                         <segue destination="KJv-kN-YwA" kind="show" identifier="openPage" id="to3-FM-KxV"/>
                         <segue destination="gmg-h9-rsM" kind="show" identifier="pageExtractSegue" id="Hne-E4-1Yi"/>
+                        <segue destination="iHJ-Ix-OFG" kind="show" identifier="showJournalSegue" id="262-yF-jhR"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -372,6 +374,114 @@
             </objects>
             <point key="canvasLocation" x="2704.347826086957" y="-304.6875"/>
         </scene>
+        <!--Journal View Controller-->
+        <scene sceneID="JsJ-HB-AVz">
+            <objects>
+                <viewController id="iHJ-Ix-OFG" customClass="JournalViewController" customModule="Folio" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="gDp-Ju-277">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="aXN-vR-B2r" customClass="JTAppleCalendarView" customModule="JTAppleCalendar">
+                                <rect key="frame" x="0.0" y="88" width="414" height="300"/>
+                                <color key="backgroundColor" red="0.98468536139999996" green="0.98847490549999995" blue="0.96663469079999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="300" id="Xom-oi-UOb"/>
+                                </constraints>
+                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="8ck-rg-LVE">
+                                    <size key="itemSize" width="128" height="128"/>
+                                    <size key="headerReferenceSize" width="50" height="50"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="dateCell" id="sky-Ev-7uD" customClass="DateCell" customModule="Folio" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="50" width="128" height="128"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="WC8-GT-yDX">
+                                            <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4B0-2k-E2N">
+                                                    <rect key="frame" x="44" y="44" width="40" height="40"/>
+                                                    <color key="backgroundColor" systemColor="systemGray4Color" red="0.81960784310000001" green="0.81960784310000001" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="40" id="QKG-xw-7pW"/>
+                                                        <constraint firstAttribute="width" secondItem="4B0-2k-E2N" secondAttribute="height" id="Ype-g5-zfR"/>
+                                                    </constraints>
+                                                </view>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gPR-WI-h67">
+                                                    <rect key="frame" x="43" y="53.5" width="42" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="4B0-2k-E2N" firstAttribute="centerX" secondItem="WC8-GT-yDX" secondAttribute="centerX" id="D8S-Vz-y71"/>
+                                                <constraint firstItem="4B0-2k-E2N" firstAttribute="centerY" secondItem="WC8-GT-yDX" secondAttribute="centerY" id="PH3-Oc-S7R"/>
+                                                <constraint firstItem="gPR-WI-h67" firstAttribute="centerX" secondItem="WC8-GT-yDX" secondAttribute="centerX" id="pF6-Ff-AlR"/>
+                                                <constraint firstItem="gPR-WI-h67" firstAttribute="centerY" secondItem="WC8-GT-yDX" secondAttribute="centerY" id="pPs-Ka-3ZK"/>
+                                            </constraints>
+                                        </collectionViewCellContentView>
+                                        <connections>
+                                            <outlet property="dateLabel" destination="gPR-WI-h67" id="V9e-ZS-g2H"/>
+                                            <outlet property="selectedView" destination="4B0-2k-E2N" id="TeC-Ef-I64"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                </cells>
+                                <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" reuseIdentifier="DateHeader" id="Cxe-L1-SW5" customClass="DateHeader" customModule="Folio" customModuleProvider="target">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="50"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Month Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9TO-WA-0YB">
+                                            <rect key="frame" x="159.5" y="14.5" width="95.5" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" name="systemPinkColor" catalog="System" colorSpace="catalog"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <color key="backgroundColor" red="0.98468536139999996" green="0.98847490549999995" blue="0.96663469079999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <constraints>
+                                        <constraint firstItem="9TO-WA-0YB" firstAttribute="centerX" secondItem="Cxe-L1-SW5" secondAttribute="centerX" id="6fT-rc-tQM"/>
+                                        <constraint firstItem="9TO-WA-0YB" firstAttribute="centerY" secondItem="Cxe-L1-SW5" secondAttribute="centerY" id="YME-dP-0rh"/>
+                                    </constraints>
+                                    <connections>
+                                        <outlet property="monthTitle" destination="9TO-WA-0YB" id="EBI-aK-hgK"/>
+                                    </connections>
+                                </collectionReusableView>
+                                <connections>
+                                    <outlet property="ibCalendarDataSource" destination="iHJ-Ix-OFG" id="sKw-SZ-oyd"/>
+                                    <outlet property="ibCalendarDelegate" destination="iHJ-Ix-OFG" id="fYb-ai-kRv"/>
+                                </connections>
+                            </collectionView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.94160306449999998" green="0.94537228350000002" blue="0.91919022800000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="tmd-xt-zwT" firstAttribute="trailing" secondItem="aXN-vR-B2r" secondAttribute="trailing" id="6Md-DL-EQc"/>
+                            <constraint firstItem="aXN-vR-B2r" firstAttribute="top" secondItem="tmd-xt-zwT" secondAttribute="top" id="gzA-zY-7Mg"/>
+                            <constraint firstItem="aXN-vR-B2r" firstAttribute="leading" secondItem="tmd-xt-zwT" secondAttribute="leading" id="j76-xV-hMx"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="tmd-xt-zwT"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="LHS-SP-7NN">
+                        <barButtonItem key="rightBarButtonItem" title="Item" image="rectangle.compress.vertical" catalog="system" id="bUs-VX-RXK">
+                            <color key="tintColor" systemColor="systemPinkColor" red="1" green="0.1764705882" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <connections>
+                                <action selector="toggleCalendar:" destination="iHJ-Ix-OFG" id="mkl-z2-Jva"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="calendarView" destination="aXN-vR-B2r" id="oRX-IU-82l"/>
+                        <outlet property="constraint" destination="Xom-oi-UOb" id="XMU-x9-Icz"/>
+                        <outlet property="toggleCalendarButton" destination="bUs-VX-RXK" id="itW-td-gs8"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="w3v-aE-aDH" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="649" y="933"/>
+        </scene>
         <!--Page Extract View Controller-->
         <scene sceneID="ux6-Zf-B89">
             <objects>
@@ -419,7 +529,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bTN-LG-41G" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1674" y="924"/>
+            <point key="canvasLocation" x="1475" y="933"/>
         </scene>
         <!--Timeline View Controller-->
         <scene sceneID="hRO-DG-1fM">
@@ -466,5 +576,6 @@
         <image name="plus.square.fill" catalog="system" width="128" height="114"/>
         <image name="rectangle.3.offgrid" catalog="system" width="128" height="80"/>
         <image name="rectangle.and.paperclip" catalog="system" width="128" height="100"/>
+        <image name="rectangle.compress.vertical" catalog="system" width="128" height="128"/>
     </resources>
 </document>

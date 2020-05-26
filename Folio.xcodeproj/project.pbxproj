@@ -34,6 +34,8 @@
 		E252B090246C4E6D003F8718 /* PageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E252B08F246C4E6D003F8718 /* PageViewController.swift */; };
 		E252B092246C4E79003F8718 /* TimelineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E252B091246C4E79003F8718 /* TimelineViewController.swift */; };
 		E252B094246CEE55003F8718 /* PageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E252B093246CEE55003F8718 /* PageView.swift */; };
+		E25B0E9B247BD055004F3BDA /* UITextField+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E25B0E9A247BD055004F3BDA /* UITextField+Extensions.swift */; };
+		E25B0E9D247C010C004F3BDA /* JournalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E25B0E9C247C010C004F3BDA /* JournalViewController.swift */; };
 		E25BA4E924714CBD000D1DF7 /* SmallCardDatePickerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E25BA4E424714CBC000D1DF7 /* SmallCardDatePickerTableViewCell.swift */; };
 		E25BA4EA24714CBD000D1DF7 /* smallCardTitleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E25BA4E524714CBC000D1DF7 /* smallCardTitleTableViewCell.swift */; };
 		E25BA4EB24714CBD000D1DF7 /* smallCardTitleTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E25BA4E624714CBC000D1DF7 /* smallCardTitleTableViewCell.xib */; };
@@ -64,6 +66,8 @@
 		E26947672470320B00F9E21F /* SmallCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E26947662470320B00F9E21F /* SmallCardView.swift */; };
 		E284B6242472D9BD00CC6465 /* uniqueFileName.swift in Sources */ = {isa = PBXBuildFile; fileRef = E284B6232472D9BD00CC6465 /* uniqueFileName.swift */; };
 		E2D4B87D247901A1005F566F /* pageListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D4B87C247901A1005F566F /* pageListTableViewCell.swift */; };
+		E2FEE2B0247C1DDD00DD7069 /* DateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2FEE2AF247C1DDC00DD7069 /* DateCell.swift */; };
+		E2FEE2B2247CC24200DD7069 /* DateHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2FEE2B1247CC24200DD7069 /* DateHeader.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -121,6 +125,8 @@
 		E252B08F246C4E6D003F8718 /* PageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageViewController.swift; sourceTree = "<group>"; };
 		E252B091246C4E79003F8718 /* TimelineViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineViewController.swift; sourceTree = "<group>"; };
 		E252B093246CEE55003F8718 /* PageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageView.swift; sourceTree = "<group>"; };
+		E25B0E9A247BD055004F3BDA /* UITextField+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITextField+Extensions.swift"; sourceTree = "<group>"; };
+		E25B0E9C247C010C004F3BDA /* JournalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalViewController.swift; sourceTree = "<group>"; };
 		E25BA4E424714CBC000D1DF7 /* SmallCardDatePickerTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SmallCardDatePickerTableViewCell.swift; sourceTree = "<group>"; };
 		E25BA4E524714CBC000D1DF7 /* smallCardTitleTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = smallCardTitleTableViewCell.swift; sourceTree = "<group>"; };
 		E25BA4E624714CBC000D1DF7 /* smallCardTitleTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = smallCardTitleTableViewCell.xib; sourceTree = "<group>"; };
@@ -151,6 +157,8 @@
 		E26947662470320B00F9E21F /* SmallCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmallCardView.swift; sourceTree = "<group>"; };
 		E284B6232472D9BD00CC6465 /* uniqueFileName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = uniqueFileName.swift; sourceTree = "<group>"; };
 		E2D4B87C247901A1005F566F /* pageListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = pageListTableViewCell.swift; sourceTree = "<group>"; };
+		E2FEE2AF247C1DDC00DD7069 /* DateCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateCell.swift; sourceTree = "<group>"; };
+		E2FEE2B1247CC24200DD7069 /* DateHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateHeader.swift; sourceTree = "<group>"; };
 		F32C815244D1C255A7FDD23A /* Pods_Folio.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Folio.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FB442A4DFD8207DB35ADCE4D /* Pods-FolioTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FolioTests.debug.xcconfig"; path = "Target Support Files/Pods-FolioTests/Pods-FolioTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -235,6 +243,9 @@
 				E252B04E246C4041003F8718 /* Main.storyboard */,
 				E252B08D246C4AD7003F8718 /* SwitchPageTimelineViewController.swift */,
 				E252B08B246C4681003F8718 /* PageListViewController.swift */,
+				E25B0E9C247C010C004F3BDA /* JournalViewController.swift */,
+				E2FEE2AF247C1DDC00DD7069 /* DateCell.swift */,
+				E2FEE2B1247CC24200DD7069 /* DateHeader.swift */,
 				E25B0E97247BA803004F3BDA /* Page List Items */,
 				E260F153247AA95200CFB697 /* Page Extract Items */,
 				E252B08F246C4E6D003F8718 /* PageViewController.swift */,
@@ -285,6 +296,7 @@
 			isa = PBXGroup;
 			children = (
 				E269476424702D0900F9E21F /* UITextView+Expanding.swift */,
+				E25B0E9A247BD055004F3BDA /* UITextField+Extensions.swift */,
 				E252B07A246C44DF003F8718 /* removeAllConstraints.swift */,
 				E252B079246C44DF003F8718 /* textViewPlaceholder.swift */,
 				E252B07B246C44DF003F8718 /* UnderlinedTextView.swift */,
@@ -633,6 +645,7 @@
 				E284B6242472D9BD00CC6465 /* uniqueFileName.swift in Sources */,
 				E2252E0B247943AA00EF26C9 /* PagesExtractTableViewCell.swift in Sources */,
 				E252B087246C4601003F8718 /* PageData.swift in Sources */,
+				E2FEE2B2247CC24200DD7069 /* DateHeader.swift in Sources */,
 				E25BA51A24728AA9000D1DF7 /* MediaCardTableViewCell.swift in Sources */,
 				E25BA50D2472285F000D1DF7 /* pickImage.swift in Sources */,
 				E252B08C246C4681003F8718 /* PageListViewController.swift in Sources */,
@@ -654,8 +667,11 @@
 				E216884F2475965500D079A4 /* DrawingView.swift in Sources */,
 				E25BA50B24721F93000D1DF7 /* GalleryFlowLayout.swift in Sources */,
 				E252B07E246C44DF003F8718 /* UnderlinedTextView.swift in Sources */,
+				E2FEE2B0247C1DDD00DD7069 /* DateCell.swift in Sources */,
+				E25B0E9D247C010C004F3BDA /* JournalViewController.swift in Sources */,
 				E25BA4FD24716AD0000D1DF7 /* MediaCardView.swift in Sources */,
 				E25BA50624721F93000D1DF7 /* ThumbCell.swift in Sources */,
+				E25B0E9B247BD055004F3BDA /* UITextField+Extensions.swift in Sources */,
 				E260F152247AA91E00CFB697 /* PageExtractViewController.swift in Sources */,
 				E25BA4FA247163CE000D1DF7 /* NotesFullViewController.swift in Sources */,
 				E25BA4FF24716DC0000D1DF7 /* ImagePickerManager.swift in Sources */,

@@ -51,7 +51,9 @@ class PageListViewController: UIViewController {
 //    var pages = [PageData]()
 //    var pageList = [pageInfo]()
     var pages = pageInfoList()
-    var addPageButton = UIImageView(image: UIImage(systemName: "plus.circle.fill"))
+    var addPageButton = UIImageView(image: UIImage(systemName: "plus.circle"))
+//    let journalButton = UIImageView(image: UIImage(systemName: "square.split.2x1.fill"))
+    let journalButton = UIImageView(image: UIImage(systemName: "book.circle"))
     var titleLabel = UILabel()
     
     @IBOutlet weak var table: UITableView!
@@ -63,13 +65,28 @@ class PageListViewController: UIViewController {
         [
             addPageButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 5),
             addPageButton.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor, constant: -10),
-            addPageButton.widthAnchor.constraint(equalToConstant: 40),
-            addPageButton.heightAnchor.constraint(equalToConstant: 40)
+            addPageButton.widthAnchor.constraint(equalToConstant: topButtonsDimenstions),
+            addPageButton.heightAnchor.constraint(equalToConstant: topButtonsDimenstions)
             ].forEach { (cst) in
                 cst.isActive=true
         }
         addPageButton.isUserInteractionEnabled=true
         addPageButton.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(addPage)))
+        
+        if view.subviews.contains(journalButton)==false{
+            view.addSubview(journalButton)
+        }
+        journalButton.translatesAutoresizingMaskIntoConstraints=false
+        [
+            journalButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 5),
+            journalButton.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor, constant: 10),
+            journalButton.widthAnchor.constraint(equalToConstant: topButtonsDimenstions),
+            journalButton.heightAnchor.constraint(equalToConstant: topButtonsDimenstions)
+            ].forEach { (cst) in
+                cst.isActive=true
+        }
+        journalButton.isUserInteractionEnabled=true
+        journalButton.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(showJournal)))
         
         if view.subviews.contains(titleLabel)==false{
             view.addSubview(titleLabel)
@@ -159,6 +176,9 @@ class PageListViewController: UIViewController {
         pages.items.append(pageInfo())
         table.reloadData()
     }
+    @objc func showJournal(){
+        performSegue(withIdentifier: "showJournalSegue", sender: self)
+    }
     
     // MARK: - Navigation
     var selectedCell: Int?
@@ -179,8 +199,16 @@ class PageListViewController: UIViewController {
                 targetController.selectedExtractView = self.selectedExtractView!
             }
         }
+        if segue.identifier == "showJournalSegue"{
+            print("now set journalvc")
+        }
     }
     
+}
+extension PageListViewController{
+    var topButtonsDimenstions: CGFloat{
+        return 35
+    }
 }
 extension PageListViewController:UITableViewDelegate, UITableViewDataSource{
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -354,35 +382,36 @@ extension PageListViewController:UITableViewDelegate, UITableViewDataSource{
     }
     func startEdittingCell(at indexPath: IndexPath){
         //needs to add a delay becuase of a bug that cell dissapears if not becomefirstresponder
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.9) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.3) {
             if let cell = self.table.cellForRow(at: indexPath) as? pageListTableViewCell{
                 cell.titleTextField.becomeFirstResponder()
             }
         }
     }
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        if section==0{
-            let empytView = UIView()
-            return empytView
-        }
-        let headerView = UIView()
-        headerView.backgroundColor = UIColor.clear
-        let headerLabel = UILabel()
-        headerView.addSubview(headerLabel)
-        headerLabel.translatesAutoresizingMaskIntoConstraints=false
-        [
-            headerLabel.leftAnchor.constraint(equalTo: headerView.safeAreaLayoutGuide.leftAnchor, constant: 10),
-            headerLabel.centerYAnchor.constraint(equalTo: headerView.safeAreaLayoutGuide.centerYAnchor, constant: 0)
-            ].forEach { (cst) in
-                cst.isActive=true
-        }
-        headerLabel.font = UIFont.boldSystemFont(ofSize: 30)
-        headerLabel.textColor = UIColor.systemGray
-        headerLabel.text = "My Pages"
-        headerLabel.sizeToFit()
-        headerView.addSubview(headerLabel)
-        return headerView
-    }
+//    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+//        if section==0{
+//            let empytView = UIView()
+//            empytView.backgroundColor = .gray
+//            return empytView
+//        }
+//        let headerView = UIView()
+//        headerView.backgroundColor = UIColor.clear
+//        let headerLabel = UILabel()
+//        headerView.addSubview(headerLabel)
+//        headerLabel.translatesAutoresizingMaskIntoConstraints=false
+//        [
+//            headerLabel.leftAnchor.constraint(equalTo: headerView.safeAreaLayoutGuide.leftAnchor, constant: 10),
+//            headerLabel.centerYAnchor.constraint(equalTo: headerView.safeAreaLayoutGuide.centerYAnchor, constant: 0)
+//            ].forEach { (cst) in
+//                cst.isActive=true
+//        }
+//        headerLabel.font = UIFont.boldSystemFont(ofSize: 30)
+//        headerLabel.textColor = UIColor.systemGray
+//        headerLabel.text = "My Pages"
+//        headerLabel.sizeToFit()
+//        headerView.addSubview(headerLabel)
+//        return headerView
+//    }
 }
 extension PageListViewController{
     var cellHeight: CGFloat{
