@@ -67,7 +67,8 @@ class TimelineViewController: UIViewController {
         table.register(UINib(nibName: "ScardTimelineTableViewCell", bundle: nil), forCellReuseIdentifier: "smallCardCell")
         table.register(UINib(nibName: "BigcardTimelineTableViewCell", bundle: nil), forCellReuseIdentifier: "bigCardCell")
         table.register(UINib(nibName: "MediaCardTableViewCell", bundle: nil), forCellReuseIdentifier: "mediaCardCell")
-        table.backgroundColor = pageColor
+//        table.backgroundColor = pageColor
+        table.backgroundColor =  UIColor(named: "myBackgroundColor") ?? #colorLiteral(red: 0.9254902005, green: 0.2352941185, blue: 0.1019607857, alpha: 1)
         table.rowHeight = UITableView.automaticDimension
     }
     override func viewDidLoad() {
@@ -156,10 +157,13 @@ class TimelineViewController: UIViewController {
 
 extension TimelineViewController{
     var pageColor: UIColor{
-        return #colorLiteral(red: 0.9411764706, green: 0.9450980392, blue: 0.9176470588, alpha: 1)
+        UIColor(named: "myBackgroundColor") ?? #colorLiteral(red: 0.9254902005, green: 0.2352941185, blue: 0.1019607857, alpha: 1)
+//        return #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)
+//        return #colorLiteral(red: 0.9411764706, green: 0.9450980392, blue: 0.9176470588, alpha: 1)
     }
     var mediaCardCellColor: UIColor{
-        return #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+        return #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0)
+//        return #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
     }
 }
 extension TimelineViewController: UITableViewDataSource, UITableViewDelegate{
@@ -188,6 +192,7 @@ extension TimelineViewController: UITableViewDataSource, UITableViewDelegate{
         cell.sizeType = self.sizeType
         cell.indexpath = indexPath
         cell.row = indexPath.row
+        cell.backgroundColor = .clear
         cell.card=cardsList[indexPath.row].smallCard?.card
         if let done = cell.card?.isDone{
             cell.isDone = done
@@ -203,6 +208,7 @@ extension TimelineViewController: UITableViewDataSource, UITableViewDelegate{
         cell.sizeType = self.sizeType
         cell.indexpath=indexPath
         cell.row = indexPath.row
+        cell.backgroundColor = .clear
         cell.card=cardsList[indexPath.row].bigCard?.card
         cell.awakeFromNib()
         return cell

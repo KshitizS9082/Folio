@@ -3,6 +3,7 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -182,7 +183,7 @@
                                 </connections>
                             </containerView>
                         </subviews>
-                        <color key="backgroundColor" red="0.94160306449999998" green="0.94537228350000002" blue="0.91919022800000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" name="myBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="agX-wh-k4g" firstAttribute="bottom" secondItem="BsT-cZ-AwG" secondAttribute="bottom" id="1e8-YK-p3v"/>
                             <constraint firstItem="nyq-fU-IfX" firstAttribute="leading" secondItem="agX-wh-k4g" secondAttribute="leading" id="3SG-eW-N1X"/>
@@ -321,7 +322,7 @@
                                 </constraints>
                             </imageView>
                         </subviews>
-                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" name="myBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="xBB-M9-Ju6" firstAttribute="trailing" secondItem="KFd-ea-Pal" secondAttribute="trailing" id="33l-BK-Cbd"/>
                             <constraint firstItem="jHa-WE-XxO" firstAttribute="trailing" secondItem="DJ1-Mi-ymj" secondAttribute="trailing" id="4lP-gK-lME"/>
@@ -460,7 +461,7 @@
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                             </tableView>
                         </subviews>
-                        <color key="backgroundColor" red="0.94160306449999998" green="0.94537228350000002" blue="0.91919022800000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" name="myBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="tmd-xt-zwT" firstAttribute="trailing" secondItem="aXN-vR-B2r" secondAttribute="trailing" id="6Md-DL-EQc"/>
                             <constraint firstItem="SoI-kp-iib" firstAttribute="top" secondItem="aXN-vR-B2r" secondAttribute="bottom" id="JZA-eY-WFh"/>
@@ -501,7 +502,7 @@
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="3Cm-hI-ttm">
                                 <rect key="frame" x="0.0" y="88" width="414" height="774"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <color key="backgroundColor" name="myBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" textLabel="RBs-XN-Xh2" style="IBUITableViewCellStyleDefault" id="oIv-yD-Kyw">
                                         <rect key="frame" x="0.0" y="28" width="414" height="73.5"/>
@@ -523,7 +524,7 @@
                                 </prototypes>
                             </tableView>
                         </subviews>
-                        <color key="backgroundColor" red="0.94211393590000003" green="0.94568794970000003" blue="0.91656631229999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" name="myBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="3Cm-hI-ttm" firstAttribute="leading" secondItem="VgJ-14-ieO" secondAttribute="leading" id="8xm-Gc-vHm"/>
                             <constraint firstItem="3Cm-hI-ttm" firstAttribute="top" secondItem="VgJ-14-ieO" secondAttribute="top" id="TCO-IK-cKW"/>
@@ -586,5 +587,8 @@
         <image name="rectangle.3.offgrid" catalog="system" width="128" height="80"/>
         <image name="rectangle.and.paperclip" catalog="system" width="128" height="100"/>
         <image name="rectangle.compress.vertical" catalog="system" width="128" height="128"/>
+        <namedColor name="myBackgroundColor">
+            <color red="0.94211393590000003" green="0.94568794970000003" blue="0.91656631229999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
     </resources>
 </document>

@@ -584,6 +584,7 @@ extension EditCardViewController{
         return view.bounds.width*0.03
     }
     var cardBackgroundColor: UIColor{
+//         return UIColor(named: "myBackgroundColor") ?? #colorLiteral(red: 0.9254902005, green: 0.2352941185, blue: 0.1019607857, alpha: 1)
         return #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
     }
     var datePickerColor: UIColor{

@@ -160,10 +160,10 @@ extension JournalViewController{
         return 40
     }
     var pageColor: UIColor{
-        return #colorLiteral(red: 0.9411764706, green: 0.9450980392, blue: 0.9176470588, alpha: 1)
+        return UIColor(named: "myBackgroundColor") ?? #colorLiteral(red: 0.9254902005, green: 0.2352941185, blue: 0.1019607857, alpha: 1)
     }
     var mediaCardCellColor: UIColor{
-        return #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+        return .clear
     }
 }
 
@@ -291,6 +291,7 @@ extension JournalViewController: UITableViewDataSource, UITableViewDelegate{
         cell.sizeType = self.sizeType
         cell.indexpath = indexPath
         cell.row = indexPath.row
+        cell.backgroundColor = .clear
         cell.card=cardsForSelectedDate[indexPath.row].smallCard?.card
         if let done = cell.card?.isDone{
             cell.isDone = done
@@ -305,6 +306,7 @@ extension JournalViewController: UITableViewDataSource, UITableViewDelegate{
         cell.sizeType = self.sizeType
         cell.indexpath=indexPath
         cell.row = indexPath.row
+        cell.backgroundColor = .clear
         cell.card=cardsForSelectedDate[indexPath.row].bigCard?.card
         cell.linkView.isHidden=true
         cell.awakeFromNib()
@@ -320,6 +322,7 @@ extension JournalViewController: UITableViewDataSource, UITableViewDelegate{
         cell.delegate=self
         cell.indexpath=indexPath
         cell.row=indexPath.row
+        cell.backgroundColor = .clear
         cell.sizeType = self.sizeType
         cell.linkView.isHidden=true
         cell.awakeFromNib()
