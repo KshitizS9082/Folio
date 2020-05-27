@@ -243,7 +243,7 @@ extension PageListViewController:UITableViewDelegate, UITableViewDataSource{
         //        formatter.dateFormat = "d/M/yy, hh:mm a"
         formatter.dateStyle = .full
         cell.subtitleText?.text = formatter.string(from: time)
-        cell.subtitleText?.textColor = UIColor.systemGray
+        cell.subtitleText?.textColor =  UIColor(named: "subMainTextColor") ?? #colorLiteral(red: 0.9254902005, green: 0.2352941185, blue: 0.1019607857, alpha: 1)
         return cell
     }
     

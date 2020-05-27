@@ -156,10 +156,10 @@ extension WithImagesViewController: UICollectionViewDelegate, UIScrollViewDelega
 
 extension WithImagesViewController{
     var navBarColour: UIColor{
-        return #colorLiteral(red: 0.9411764706, green: 0.9450980392, blue: 0.9176470588, alpha: 1)
+        return UIColor(named: "mediaCardColor") ?? #colorLiteral(red: 0.9254902005, green: 0.2352941185, blue: 0.1019607857, alpha: 1)
     }
     var backgroundColor: UIColor{
-        return #colorLiteral(red: 0.9411764706, green: 0.9450980392, blue: 0.9176470588, alpha: 1)
+        return UIColor(named: "mediaCardColor") ?? #colorLiteral(red: 0.9254902005, green: 0.2352941185, blue: 0.1019607857, alpha: 1)
     }
     var cellCornerRadius: CGFloat{
         return 4.0

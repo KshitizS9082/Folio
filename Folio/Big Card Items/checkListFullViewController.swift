@@ -165,7 +165,7 @@ extension checkListFullViewController{
         return 20
     }
     var checkListBackgroundColor: UIColor{
-        return #colorLiteral(red: 0.9591756463, green: 0.9593097568, blue: 0.9591332078, alpha: 1)
+        return UIColor(named: "bigCardColor") ?? #colorLiteral(red: 0.9254902005, green: 0.2352941185, blue: 0.1019607857, alpha: 1)
     }
 }
 extension checkListFullViewController: UIScrollViewDelegate{

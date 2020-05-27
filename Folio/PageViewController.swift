@@ -165,7 +165,7 @@ class PageViewController: UIViewController {
             view.addSubview(dropZone)
         }
         dropZone.translatesAutoresizingMaskIntoConstraints=false
-        dropZone.backgroundColor=#colorLiteral(red: 0.7836764455, green: 0.7836764455, blue: 0.7836764455, alpha: 1)
+        dropZone.backgroundColor=UIColor(named: "smallCardColor") ?? #colorLiteral(red: 0.9254902005, green: 0.2352941185, blue: 0.1019607857, alpha: 1)
         [
             dropZone.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             dropZone.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),

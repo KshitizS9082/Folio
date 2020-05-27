@@ -322,8 +322,8 @@
 		E25B0E97247BA803004F3BDA /* Page List Items */ = {
 			isa = PBXGroup;
 			children = (
-				E2D4B87C247901A1005F566F /* pageListTableViewCell.swift */,
 				E2252E0A247943AA00EF26C9 /* PagesExtractTableViewCell.swift */,
+				E2D4B87C247901A1005F566F /* pageListTableViewCell.swift */,
 			);
 			path = "Page List Items";
 			sourceTree = "<group>";

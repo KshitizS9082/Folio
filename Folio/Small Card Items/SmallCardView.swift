@@ -396,7 +396,7 @@ extension SmallCardView{
         return 30
     }
     var cardColour: UIColor{
-        return #colorLiteral(red: 0.9839849829, green: 0.9880542423, blue: 0.9669427433, alpha: 1)
+        return UIColor(named: "smallCardColor") ?? #colorLiteral(red: 0.9254902005, green: 0.2352941185, blue: 0.1019607857, alpha: 1)
     }
 }
 

@@ -345,13 +345,16 @@ class SmallCardInfoViewController: UIViewController, UITableViewDataSource, SPSt
 
 extension SmallCardInfoViewController{
     var tableBackgroundColor: UIColor{
-        return #colorLiteral(red: 0.9214739799, green: 0.9253779054, blue: 0.942587316, alpha: 1)
+        return UIColor(named: "myBackgroundColor") ?? #colorLiteral(red: 0.9254902005, green: 0.2352941185, blue: 0.1019607857, alpha: 1)
+//        return #colorLiteral(red: 0.9214739799, green: 0.9253779054, blue: 0.942587316, alpha: 1)
     }
     var cellBackgroundColor: UIColor{
-        return #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+        return UIColor(named: "smallCardColor") ?? #colorLiteral(red: 0.9254902005, green: 0.2352941185, blue: 0.1019607857, alpha: 1)
+//        return #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
     }
     var navBarBackgroundColor: UIColor{
-        return #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+        return UIColor(named: "smallCardColor") ?? #colorLiteral(red: 0.9254902005, green: 0.2352941185, blue: 0.1019607857, alpha: 1)
+//        return #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
     }
 }
 

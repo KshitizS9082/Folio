@@ -103,6 +103,6 @@ extension NotesFullViewController{
         return view.bounds.size.height * 0.03
     }
     var noteColour: UIColor{
-        return #colorLiteral(red: 0.9411764706, green: 0.9450980392, blue: 0.9176470588, alpha: 1)
+        return UIColor(named: "bigCardColor") ?? #colorLiteral(red: 0.9254902005, green: 0.2352941185, blue: 0.1019607857, alpha: 1)
     }
 }

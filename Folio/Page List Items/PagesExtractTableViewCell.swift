@@ -19,7 +19,7 @@ class PagesExtractTableViewCell: UITableViewCell {
         for ind in extractCardList.indices{
             let card = extractCardList[ind]
             card.myIndex=ind
-            card.backgroundColor = #colorLiteral(red: 0.9839849829, green: 0.9880542423, blue: 0.9669427433, alpha: 1)
+            card.backgroundColor = UIColor(named: "pageExtractSubCard") ?? #colorLiteral(red: 0.9254902005, green: 0.2352941185, blue: 0.1019607857, alpha: 1)
             switch ind {
             case 0:
                 print(0)
@@ -97,7 +97,7 @@ class PageExtractSubview: UIView{
             ].forEach { (cst) in
                 cst.isActive=true
         }
-        textLablel.textColor = UIColor.systemGray
+        textLablel.textColor =  UIColor(named: "subMainTextColor") ?? #colorLiteral(red: 0.9254902005, green: 0.2352941185, blue: 0.1019607857, alpha: 1)
 //        textLablel.text = "Today"
         
         if subviews.contains(numberLabel)==false{
@@ -110,7 +110,7 @@ class PageExtractSubview: UIView{
             ].forEach { (cst) in
                 cst.isActive=true
         }
-        numberLabel.textColor = UIColor.black
+        numberLabel.textColor =  UIColor(named: "mainTextColor") ?? #colorLiteral(red: 0.9254902005, green: 0.2352941185, blue: 0.1019607857, alpha: 1)
 //        numberLabel.attributedText = NSAttributedString(string: "22", attributes: numberFontAttributes)
 //        numberLabel.text = "22"
         numberLabel.font = numberLabelFont

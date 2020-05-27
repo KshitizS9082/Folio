@@ -385,7 +385,7 @@
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="aXN-vR-B2r" customClass="JTAppleCalendarView" customModule="JTAppleCalendar">
                                 <rect key="frame" x="0.0" y="88" width="414" height="300"/>
-                                <color key="backgroundColor" red="0.98468536139999996" green="0.98847490549999995" blue="0.96663469079999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" name="calendarColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="300" id="Xom-oi-UOb"/>
                                 </constraints>
@@ -442,7 +442,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
-                                    <color key="backgroundColor" red="0.98468536139999996" green="0.98847490549999995" blue="0.96663469079999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="backgroundColor" name="calendarColor"/>
                                     <constraints>
                                         <constraint firstItem="9TO-WA-0YB" firstAttribute="centerX" secondItem="Cxe-L1-SW5" secondAttribute="centerX" id="6fT-rc-tQM"/>
                                         <constraint firstItem="9TO-WA-0YB" firstAttribute="centerY" secondItem="Cxe-L1-SW5" secondAttribute="centerY" id="YME-dP-0rh"/>
@@ -458,7 +458,7 @@
                             </collectionView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="SoI-kp-iib">
                                 <rect key="frame" x="0.0" y="388" width="414" height="474"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <color key="backgroundColor" name="calendarColor"/>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" name="myBackgroundColor"/>
@@ -587,8 +587,11 @@
         <image name="rectangle.3.offgrid" catalog="system" width="128" height="80"/>
         <image name="rectangle.and.paperclip" catalog="system" width="128" height="100"/>
         <image name="rectangle.compress.vertical" catalog="system" width="128" height="128"/>
+        <namedColor name="calendarColor">
+            <color red="0.99964183569999998" green="0.99612766500000005" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <namedColor name="myBackgroundColor">
-            <color red="0.94211393590000003" green="0.94568794970000003" blue="0.91656631229999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.94160306449999998" green="0.94537228350000002" blue="0.91919022800000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
 </document>

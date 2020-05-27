@@ -162,9 +162,6 @@ extension JournalViewController{
     var pageColor: UIColor{
         return UIColor(named: "myBackgroundColor") ?? #colorLiteral(red: 0.9254902005, green: 0.2352941185, blue: 0.1019607857, alpha: 1)
     }
-    var mediaCardCellColor: UIColor{
-        return .clear
-    }
 }
 
 extension JournalViewController: JTAppleCalendarViewDataSource {
@@ -212,9 +209,9 @@ extension JournalViewController: JTAppleCalendarViewDelegate {
     
     func handleCellTextColor(cell: DateCell, cellState: CellState) {
         if cellState.dateBelongsTo == .thisMonth {
-            cell.dateLabel.textColor = UIColor.black
+            cell.dateLabel.textColor = UIColor(named: "mainTextColor")
         } else {
-            cell.dateLabel.textColor = UIColor.gray
+            cell.dateLabel.textColor = UIColor(named: "subMainTextColor")
         }
     }
     
@@ -318,7 +315,7 @@ extension JournalViewController: UITableViewDataSource, UITableViewDelegate{
         cell.collectionView.reloadData()
         //            cell.showLinkDelegate=myViewController
         cell.card=cardsForSelectedDate[indexPath.row].mediaCard?.card
-        cell.backgroundColor=mediaCardCellColor
+        cell.backgroundColor = .clear
         cell.delegate=self
         cell.indexpath=indexPath
         cell.row=indexPath.row

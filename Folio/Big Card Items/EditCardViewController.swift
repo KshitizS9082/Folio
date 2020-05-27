@@ -584,33 +584,40 @@ extension EditCardViewController{
         return view.bounds.width*0.03
     }
     var cardBackgroundColor: UIColor{
-//         return UIColor(named: "myBackgroundColor") ?? #colorLiteral(red: 0.9254902005, green: 0.2352941185, blue: 0.1019607857, alpha: 1)
-        return #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+         return UIColor(named: "bigCardColor") ?? #colorLiteral(red: 0.9254902005, green: 0.2352941185, blue: 0.1019607857, alpha: 1)
+//        return #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
     }
     var datePickerColor: UIColor{
-        return #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+        return UIColor(named: "bigCardColor") ?? #colorLiteral(red: 0.9254902005, green: 0.2352941185, blue: 0.1019607857, alpha: 1)
+//        return #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
     }
     var dateTextColor: UIColor{
-        return #colorLiteral(red: 0.313691169, green: 0.3137494922, blue: 0.31368348, alpha: 1)
+        return UIColor(named: "subMainTextColor") ?? #colorLiteral(red: 0.9254902005, green: 0.2352941185, blue: 0.1019607857, alpha: 1)
+//        return #colorLiteral(red: 0.313691169, green: 0.3137494922, blue: 0.31368348, alpha: 1)
     }
     var timeTextColor: UIColor{
-        return #colorLiteral(red: 0.4391697049, green: 0.4392479062, blue: 0.4391593933, alpha: 1)
+        return UIColor(named: "mainTextColor") ?? #colorLiteral(red: 0.9254902005, green: 0.2352941185, blue: 0.1019607857, alpha: 1)
+//        return #colorLiteral(red: 0.4391697049, green: 0.4392479062, blue: 0.4391593933, alpha: 1)
     }
     var typeHeadingColor: UIColor{
-        return #colorLiteral(red: 0.4391697049, green: 0.4392479062, blue: 0.4391593933, alpha: 1)
+        return UIColor(named: "subMainTextColor") ?? #colorLiteral(red: 0.9254902005, green: 0.2352941185, blue: 0.1019607857, alpha: 1)
+//        return #colorLiteral(red: 0.4391697049, green: 0.4392479062, blue: 0.4391593933, alpha: 1)
     }
     var typeColor: UIColor{
-        return #colorLiteral(red: 0.4391697049, green: 0.4392479062, blue: 0.4391593933, alpha: 1)
+        return UIColor(named: "subMainTextColor") ?? #colorLiteral(red: 0.9254902005, green: 0.2352941185, blue: 0.1019607857, alpha: 1)
+//        return #colorLiteral(red: 0.4391697049, green: 0.4392479062, blue: 0.4391593933, alpha: 1)
     }
     var datePickerToolbarColor: UIColor{
-        return #colorLiteral(red: 0.8732018588, green: 0.8732018588, blue: 0.8732018588, alpha: 0.9013556338)
+        return UIColor(named: "bigCardColor") ?? #colorLiteral(red: 0.9254902005, green: 0.2352941185, blue: 0.1019607857, alpha: 1)
+//        return #colorLiteral(red: 0.8732018588, green: 0.8732018588, blue: 0.8732018588, alpha: 0.9013556338)
     }
     var timeTextToCardTypeDistance: CGFloat{
         return view.bounds.size.height * 0.01
     }
     var bottomBorderColor: UIColor{
-        return UIColor.systemGray
-        }
+        return UIColor(named: "subMainTextColor") ?? #colorLiteral(red: 0.9254902005, green: 0.2352941185, blue: 0.1019607857, alpha: 1)
+//        return UIColor.systemGray
+    }
     var viewsBackgroundColor: UIColor{
         return  #colorLiteral(red: 0.5, green: 0.5, blue: 0.5, alpha: 0)
     }
