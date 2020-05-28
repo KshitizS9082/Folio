@@ -160,7 +160,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1039.1304347826087" y="138.61607142857142"/>
+            <point key="canvasLocation" x="833" y="139"/>
         </scene>
         <!--Switch Page Timeline View Controller-->
         <scene sceneID="o1K-2h-VbR">
@@ -232,7 +232,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Loy-cI-Nnn" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1771" y="139"/>
+            <point key="canvasLocation" x="2036" y="139"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="2RY-cH-zdR">
@@ -250,7 +250,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TjL-Od-8Uf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="128.98550724637681" y="138.61607142857142"/>
+            <point key="canvasLocation" x="-104" y="139"/>
         </scene>
         <!--Page View Controller-->
         <scene sceneID="ywQ-Al-Nd4">
@@ -486,6 +486,7 @@
                         <outlet property="constraint" destination="Xom-oi-UOb" id="XMU-x9-Icz"/>
                         <outlet property="table" destination="SoI-kp-iib" id="s5T-nI-fXH"/>
                         <outlet property="toggleCalendarButton" destination="bUs-VX-RXK" id="itW-td-gs8"/>
+                        <segue destination="KJv-kN-YwA" kind="show" identifier="fromCalendarShowCardSegue" id="r5M-ob-z1M"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="w3v-aE-aDH" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -574,7 +575,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="IQB-IT-bw5"/>
+        <segue reference="r5M-ob-z1M"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="arrow.down.to.line.alt" catalog="system" width="111" height="128"/>

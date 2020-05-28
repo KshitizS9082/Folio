@@ -77,16 +77,16 @@ class JournalViewController: UIViewController {
 //                        pages.append(page)
                         page.bigCards.forEach { (card) in
                             if let doc=card.card.dateOfCompletion{
-                            self.allCards.append(journalCard(type: .big, dateInCal: doc, smallCard: nil, bigCard: card, mediaCard: nil))
+                            self.allCards.append(journalCard(type: .big, dateInCal: doc, smallCard: nil, bigCard: card, mediaCard: nil, pageID: info))
                             }
                         }
                         page.smallCards.forEach { (card) in
                             if let doc=card.card.dateOfCompletion{
-                            self.allCards.append(journalCard(type: .small, dateInCal: doc, smallCard: card, bigCard: nil, mediaCard: nil))
+                            self.allCards.append(journalCard(type: .small, dateInCal: doc, smallCard: card, bigCard: nil, mediaCard: nil, pageID: info))
                             }
                         }
                         page.mediaCards.forEach { (card) in
-                            self.allCards.append(journalCard(type: .media, dateInCal: card.card.dateOfConstruction, smallCard: nil, bigCard: nil, mediaCard: card))
+                            self.allCards.append(journalCard(type: .media, dateInCal: card.card.dateOfConstruction, smallCard: nil, bigCard: nil, mediaCard: card, pageID: info))
                         }
                     }else{
                         print("WARNING: DROPPED A PAGE INSIDE PAGEEXTRACTVC")
@@ -146,6 +146,19 @@ class JournalViewController: UIViewController {
     }
     override func viewWillDisappear(_ animated: Bool) {
         navigationController?.hidesBarsOnSwipe=false
+    }
+    
+    // MARK: - Navigation
+    var selectedCell: Int?
+    var uniqueIdOfCardToShow: UUID?
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "fromCalendarShowCardSegue"{
+            if let targetController = segue.destination as? SwitchPageTimelineViewController{
+                targetController.pageID = cardsForSelectedDate[selectedCell!].pageID
+                targetController.uniqueIdOfCardToShow = self.uniqueIdOfCardToShow
+                self.uniqueIdOfCardToShow=nil
+            }
+        }
     }
     
 }
@@ -285,6 +298,7 @@ extension JournalViewController: UITableViewDataSource, UITableViewDelegate{
     func setSmallCardCell(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell{
         let cell = tableView.dequeueReusableCell(withIdentifier: "smallCardCell", for: indexPath) as! ScardTimelineTableViewCell
         cell.delegate=self
+        cell.showLinkDelegate=self
         cell.sizeType = self.sizeType
         cell.indexpath = indexPath
         cell.row = indexPath.row
@@ -293,27 +307,36 @@ extension JournalViewController: UITableViewDataSource, UITableViewDelegate{
         if let done = cell.card?.isDone{
             cell.isDone = done
         }
-        cell.linkView.isHidden=true
         cell.awakeFromNib()
+        cell.checkBox.isUserInteractionEnabled=false
+        cell.titleTextView.isEditable=false
+        cell.notesTextView.isEditable=false
+        cell.linkView.isUserInteractionEnabled=true
         return cell
     }
     func setBigCardCell(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell{
         let cell = tableView.dequeueReusableCell(withIdentifier: "bigCardCell", for: indexPath) as! BigcardTimelineTableViewCell
         cell.delegate=self
+        cell.showLinkDelegate=self
         cell.sizeType = self.sizeType
         cell.indexpath=indexPath
         cell.row = indexPath.row
         cell.backgroundColor = .clear
         cell.card=cardsForSelectedDate[indexPath.row].bigCard?.card
-        cell.linkView.isHidden=true
+//        cell.linkView.isHidden=true
         cell.awakeFromNib()
+        cell.checkBox.isUserInteractionEnabled=false
+        //        cell.checkListTable.isUserInteractionEnabled=fal
+        cell.titleTextView.isEditable=false
+        cell.additionalView.isUserInteractionEnabled=false
+        cell.linkView.isUserInteractionEnabled=true
         return cell
     }
     func setMediaCardCell(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell{
         let cell = tableView.dequeueReusableCell(withIdentifier: "mediaCardCell", for: indexPath) as! MediaCardTableViewCell
         //reload data added to remove a bug where previous cell without image deleted in page view and new cell with image added would result in crash DO NOT REMOVE!!
         cell.collectionView.reloadData()
-        //            cell.showLinkDelegate=myViewController
+        cell.showLinkDelegate=self
         cell.card=cardsForSelectedDate[indexPath.row].mediaCard?.card
         cell.backgroundColor = .clear
         cell.delegate=self
@@ -321,9 +344,13 @@ extension JournalViewController: UITableViewDataSource, UITableViewDelegate{
         cell.row=indexPath.row
         cell.backgroundColor = .clear
         cell.sizeType = self.sizeType
-        cell.linkView.isHidden=true
+//        cell.linkView.isHidden=true
         cell.awakeFromNib()
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.table.deselectRow(at: indexPath, animated: false)
     }
 }
 extension JournalViewController: myUpdateCellHeightDelegate{
@@ -377,13 +404,47 @@ extension JournalViewController: myUpdateCellHeightDelegate{
         table.scrollToRow(at: indexpath, at: .bottom, animated: false)
     }
 }
-
+extension JournalViewController: timelineSwitchDelegate{
+    func switchToPageAndShowCard(with uniqueID: UUID) {
+        print("inside switchToPageAndShowCard")
+        self.uniqueIdOfCardToShow=uniqueID
+        cardsForSelectedDate.indices.forEach{ (ind) in
+            let tlcard = cardsForSelectedDate[ind]
+            if let card = tlcard.bigCard{
+                if card.card.UniquIdentifier == uniqueID{
+                    selectedCell=ind
+                    print("gonna perform segue with cell at \(selectedCell!)")
+                    performSegue(withIdentifier: "fromCalendarShowCardSegue", sender: self)
+                    return
+                }
+            }
+            if let card = tlcard.smallCard{
+                if card.card.UniquIdentifier == uniqueID{
+                    selectedCell=ind
+                    print("gonna perform segue with cell at \(selectedCell!)")
+                    performSegue(withIdentifier: "fromCalendarShowCardSegue", sender: self)
+                    return
+                }
+            }
+            if let card = tlcard.mediaCard{
+                if card.card.UniquIdentifier == uniqueID{
+                    selectedCell=ind
+                    print("gonna perform segue with cell at \(selectedCell!)")
+                    performSegue(withIdentifier: "fromCalendarShowCardSegue", sender: self)
+                    return
+                }
+            }
+        }
+    }
+}
 struct journalCard {
     var type = journalCardType.small
     var dateInCal: Date?
     var smallCard: smallCardData?
     var bigCard: bigCardData?
     var mediaCard: mediaCardData?
+    //used for segue from PageExtractViewController to switchPageTimelineVC
+    var pageID: pageInfo?
 }
 enum journalCardType: String{
     case small
