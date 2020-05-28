@@ -176,13 +176,13 @@ class PageExtractViewController: UIViewController {
     
     // MARK: - Navigation
     var selectedCell: Int?
+      var uniqueIdOfCardToShow: UUID?
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showPageLinkedToCardSegue"{
             if let targetController = segue.destination as? SwitchPageTimelineViewController{
-                //                targetController.page = pages[selectedCell!]
-//                targetController.pageID = pagesListFromPLVC.items[selectedCell!]
                 targetController.pageID = cardsList[selectedCell!].pageID
-//                print("passing pageTitle: \(pagesListFromPLVC.items[selectedCell!].title)")
+                targetController.uniqueIdOfCardToShow = self.uniqueIdOfCardToShow
+                self.uniqueIdOfCardToShow=nil
             }
         }
     }
@@ -407,6 +407,7 @@ extension PageExtractViewController: myUpdateCellHeightDelegate{
 extension PageExtractViewController: timelineSwitchDelegate{
     func switchToPageAndShowCard(with uniqueID: UUID) {
         print("inside switchToPageAndShowCard")
+        self.uniqueIdOfCardToShow=uniqueID
         cardsList.indices.forEach{ (ind) in
             let tlcard = cardsList[ind]
             if let card = tlcard.bigCard{

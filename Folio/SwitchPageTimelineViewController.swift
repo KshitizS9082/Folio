@@ -155,7 +155,16 @@ class SwitchPageTimelineViewController: UIViewController {
         }
     }
     
-    
+    //to show a card on segue
+    var uniqueIdOfCardToShow: UUID? //shows a card when uuid not nill and then set it to nill
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
+        print("inside view did appear")
+        if let id =  uniqueIdOfCardToShow{
+            self.switchToPageAndShowCard(with: id)
+            self.uniqueIdOfCardToShow=nil
+        }
+    }
 //     MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         switch segue.identifier {
