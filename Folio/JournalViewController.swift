@@ -14,6 +14,7 @@ class JournalViewController: UIViewController {
     var pagesListFromPLVC = pageInfoList()
     var pages = [PageData]()
     var allCards = [journalCard]()
+//    var datesPresent = [Date]()
     var cardsForSelectedDate = [journalCard]()
     var sizeType = cardSizeMode.full
     
@@ -94,10 +95,10 @@ class JournalViewController: UIViewController {
                 }
             }
         }
-        print("self.cards ")
-        for card in self.allCards{
-            print(card)
-        }
+//        print("self.cards ")
+//        for card in self.allCards{
+//            print(card)
+//        }
     }
     func setupTable(){
            table.dataSource=self
@@ -207,6 +208,14 @@ extension JournalViewController: JTAppleCalendarViewDelegate {
         //        } else {
         //           cell.isHidden = true
         //        }
+         cell.isPresentView.isHidden=true
+        for card in allCards{
+            let sameDat =  Calendar.current.isDate(card.dateInCal!, equalTo: date, toGranularity: .day)
+            if sameDat{
+                cell.isPresentView.isHidden=false
+                break
+            }
+        }
         return cell
     }
     
@@ -230,7 +239,7 @@ extension JournalViewController: JTAppleCalendarViewDelegate {
     
     func handleCellSelected(cell: DateCell, cellState: CellState) {
         if cellState.isSelected {
-            cell.selectedView.layer.cornerRadius =  20
+//            cell.selectedView.layer.cornerRadius =  15
             cell.selectedView.isHidden = false
         } else {
             cell.selectedView.isHidden = true

@@ -300,8 +300,8 @@ extension BigcardTimelineTableViewCell: UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        print("checklist length= \(String(describing: card?.checkList.count))")
-        print("trying to access= \(indexPath.row)")
+//        print("checklist length= \(String(describing: card?.checkList.count))")
+//        print("trying to access= \(indexPath.row)")
         let cell = tableView.dequeueReusableCell(withIdentifier: "cardCheckListCell", for: indexPath)
         cell.textLabel?.text = card!.checkList[indexPath.row].title
         if(card!.checkList[indexPath.row].isCompleted!){
