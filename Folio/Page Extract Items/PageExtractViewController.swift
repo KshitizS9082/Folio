@@ -18,57 +18,59 @@ class PageExtractViewController: UIViewController {
     @IBOutlet weak var table: UITableView!
     
     @IBOutlet weak var navBarTitle: UINavigationItem!
-    func addAllCards(for page: PageData){
+    func addAllCards(for page: PageData, with info: pageInfo){
         page.bigCards.forEach { (card) in
-            cardsList.append(timeLineCard(type: .big, smallCard: nil, bigCard: card, mediaCard: nil))
+            cardsList.append(timeLineCard(type: .big, smallCard: nil, bigCard: card, mediaCard: nil, pageID: info))
         }
         page.smallCards.forEach { (card) in
-            cardsList.append(timeLineCard(type: .small, smallCard: card, bigCard: nil, mediaCard: nil))
+            cardsList.append(timeLineCard(type: .small, smallCard: card, bigCard: nil, mediaCard: nil, pageID: info))
         }
         page.mediaCards.forEach { (card) in
-            cardsList.append(timeLineCard(type: .media, smallCard: nil, bigCard: nil, mediaCard: card))
+            cardsList.append(timeLineCard(type: .media, smallCard: nil, bigCard: nil, mediaCard: card, pageID: info))
         }
     }
-    func addTodayCards(for page: PageData){
+    func addTodayCards(for page: PageData, with info: pageInfo){
         let calendar = Calendar.current
         page.bigCards.forEach { (card) in
             if let date = card.card.reminder, calendar.isDateInToday(date){
-                cardsList.append(timeLineCard(type: .big, smallCard: nil, bigCard: card, mediaCard: nil))
+                cardsList.append(timeLineCard(type: .big, smallCard: nil, bigCard: card, mediaCard: nil, pageID: info))
             }
         }
         page.smallCards.forEach { (card) in
             if let date = card.card.reminderDate, calendar.isDateInToday(date){
-            cardsList.append(timeLineCard(type: .small, smallCard: card, bigCard: nil, mediaCard: nil))
+            cardsList.append(timeLineCard(type: .small, smallCard: card, bigCard: nil, mediaCard: nil, pageID: info))
             }
         }
     }
-    func addScheduledCards(for page: PageData){
+    func addScheduledCards(for page: PageData, with info: pageInfo){
         page.bigCards.forEach { (card) in
             if card.card.reminder != nil{
-                cardsList.append(timeLineCard(type: .big, smallCard: nil, bigCard: card, mediaCard: nil))
+                cardsList.append(timeLineCard(type: .big, smallCard: nil, bigCard: card, mediaCard: nil, pageID: info))
             }
         }
         page.smallCards.forEach { (card) in
             if card.card.reminderDate != nil{
-            cardsList.append(timeLineCard(type: .small, smallCard: card, bigCard: nil, mediaCard: nil))
+            cardsList.append(timeLineCard(type: .small, smallCard: card, bigCard: nil, mediaCard: nil, pageID: info))
             }
         }
     }
-    func addDueCards(for page: PageData){
+    func addDueCards(for page: PageData, with info: pageInfo){
         page.bigCards.forEach { (card) in
             if let date = card.card.reminder, date<Date(){
-                cardsList.append(timeLineCard(type: .big, smallCard: nil, bigCard: card, mediaCard: nil))
+                cardsList.append(timeLineCard(type: .big, smallCard: nil, bigCard: card, mediaCard: nil, pageID: info))
             }
         }
         page.smallCards.forEach { (card) in
             if let date = card.card.reminderDate, date<Date(){
-            cardsList.append(timeLineCard(type: .small, smallCard: card, bigCard: nil, mediaCard: nil))
+            cardsList.append(timeLineCard(type: .small, smallCard: card, bigCard: nil, mediaCard: nil, pageID: info))
             }
         }
     }
     func setupData(){
         var fileName=""
-        for info in pagesListFromPLVC.items{
+        var info = pageInfo()
+        for ind in pagesListFromPLVC.items.indices{
+            info = pagesListFromPLVC.items[ind]
             fileName=info.fileName
             if let url = try? FileManager.default.url(
                 for: .documentDirectory,
@@ -81,13 +83,13 @@ class PageExtractViewController: UIViewController {
                         pages.append(page)
                         switch selectedExtractView {
                         case 0:
-                            self.addTodayCards(for: page)
+                            self.addTodayCards(for: page, with: info)
                         case 1:
-                            self.addScheduledCards(for: page)
+                            self.addScheduledCards(for: page, with: info)
                         case 2:
-                            self.addAllCards(for: page)
+                            self.addAllCards(for: page, with: info)
                         case 3:
-                            self.addDueCards(for: page)
+                            self.addDueCards(for: page, with: info)
                         default:
                             print("to show case not handleed")
                         }
@@ -171,15 +173,20 @@ class PageExtractViewController: UIViewController {
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black]
         navigationController?.navigationBar.tintColor = UIColor.systemBlue
     }
-    /*
+    
     // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    var selectedCell: Int?
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+        if segue.identifier == "showPageLinkedToCardSegue"{
+            if let targetController = segue.destination as? SwitchPageTimelineViewController{
+                //                targetController.page = pages[selectedCell!]
+//                targetController.pageID = pagesListFromPLVC.items[selectedCell!]
+                targetController.pageID = cardsList[selectedCell!].pageID
+//                print("passing pageTitle: \(pagesListFromPLVC.items[selectedCell!].title)")
+            }
+        }
     }
-    */
+
 
 }
 extension PageExtractViewController{
@@ -289,7 +296,7 @@ extension PageExtractViewController: UITableViewDataSource, UITableViewDelegate{
     func setSmallCardCell(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell{
         let cell = tableView.dequeueReusableCell(withIdentifier: "smallCardCell", for: indexPath) as! ScardTimelineTableViewCell
         cell.delegate=self
-        //            cell.showLinkDelegate = myViewController
+        cell.showLinkDelegate = self
         cell.sizeType = self.sizeType
         cell.indexpath = indexPath
         cell.row = indexPath.row
@@ -298,29 +305,36 @@ extension PageExtractViewController: UITableViewDataSource, UITableViewDelegate{
         if let done = cell.card?.isDone{
             cell.isDone = done
         }
-        cell.linkView.isHidden=true
         cell.awakeFromNib()
+        cell.checkBox.isUserInteractionEnabled=false
+        cell.titleTextView.isEditable=false
+        cell.notesTextView.isEditable=false
+        cell.linkView.isUserInteractionEnabled=true
         return cell
     }
     func setBigCardCell(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell{
         let cell = tableView.dequeueReusableCell(withIdentifier: "bigCardCell", for: indexPath) as! BigcardTimelineTableViewCell
         cell.delegate=self
         //        cell.updateCardDelegate=self
-        //            cell.showLinkDelegate=myViewController
+        cell.showLinkDelegate = self
         cell.sizeType = self.sizeType
         cell.indexpath=indexPath
         cell.row = indexPath.row
         cell.backgroundColor = .clear
         cell.card=cardsList[indexPath.row].bigCard?.card
-        cell.linkView.isHidden=true
         cell.awakeFromNib()
+        cell.checkBox.isUserInteractionEnabled=false
+//        cell.checkListTable.isUserInteractionEnabled=fal
+        cell.titleTextView.isEditable=false
+        cell.additionalView.isUserInteractionEnabled=false
+        cell.linkView.isUserInteractionEnabled=true
         return cell
     }
     func setMediaCardCell(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell{
         let cell = tableView.dequeueReusableCell(withIdentifier: "mediaCardCell", for: indexPath) as! MediaCardTableViewCell
         //reload data added to remove a bug where previous cell without image deleted in page view and new cell with image added would result in crash DO NOT REMOVE!!
         cell.collectionView.reloadData()
-        //            cell.showLinkDelegate=myViewController
+        cell.showLinkDelegate = self
         cell.card=cardsList[indexPath.row].mediaCard?.card
         cell.backgroundColor=mediaCardCellColor
         cell.delegate=self
@@ -328,9 +342,15 @@ extension PageExtractViewController: UITableViewDataSource, UITableViewDelegate{
         cell.row=indexPath.row
         cell.backgroundColor = .clear
         cell.sizeType=self.sizeType
-        cell.linkView.isHidden=true
         cell.awakeFromNib()
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//        selectedCell=indexPath.row
+//        print("gonna perform segue with cell at \(selectedCell!)")
+//        performSegue(withIdentifier: "showPageLinkedToCardSegue", sender: self)
+        self.table.deselectRow(at: indexPath, animated: false)
     }
 }
 extension PageExtractViewController: myUpdateCellHeightDelegate{
@@ -382,5 +402,37 @@ extension PageExtractViewController: myUpdateCellHeightDelegate{
         UIView.setAnimationsEnabled(true)
         
         table.scrollToRow(at: indexpath, at: .bottom, animated: false)
+    }
+}
+extension PageExtractViewController: timelineSwitchDelegate{
+    func switchToPageAndShowCard(with uniqueID: UUID) {
+        print("inside switchToPageAndShowCard")
+        cardsList.indices.forEach{ (ind) in
+            let tlcard = cardsList[ind]
+            if let card = tlcard.bigCard{
+                if card.card.UniquIdentifier == uniqueID{
+                    selectedCell=ind
+                    print("gonna perform segue with cell at \(selectedCell!)")
+                    performSegue(withIdentifier: "showPageLinkedToCardSegue", sender: self)
+                    return
+                }
+            }
+            if let card = tlcard.smallCard{
+                if card.card.UniquIdentifier == uniqueID{
+                    selectedCell=ind
+                    print("gonna perform segue with cell at \(selectedCell!)")
+                    performSegue(withIdentifier: "showPageLinkedToCardSegue", sender: self)
+                    return
+                }
+            }
+            if let card = tlcard.mediaCard{
+                if card.card.UniquIdentifier == uniqueID{
+                    selectedCell=ind
+                    print("gonna perform segue with cell at \(selectedCell!)")
+                    performSegue(withIdentifier: "showPageLinkedToCardSegue", sender: self)
+                    return
+                }
+            }
+        }
     }
 }

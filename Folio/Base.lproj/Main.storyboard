@@ -535,6 +535,7 @@
                     </view>
                     <connections>
                         <outlet property="table" destination="3Cm-hI-ttm" id="aMS-Yh-bzt"/>
+                        <segue destination="KJv-kN-YwA" kind="show" identifier="showPageLinkedToCardSegue" id="IQB-IT-bw5"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bTN-LG-41G" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -572,6 +573,9 @@
             <point key="canvasLocation" x="2706" y="474"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="IQB-IT-bw5"/>
+    </inferredMetricsTieBreakers>
     <resources>
         <image name="arrow.down.to.line.alt" catalog="system" width="111" height="128"/>
         <image name="arrow.left.to.line.alt" catalog="system" width="128" height="89"/>
@@ -588,10 +592,10 @@
         <image name="rectangle.and.paperclip" catalog="system" width="128" height="100"/>
         <image name="rectangle.compress.vertical" catalog="system" width="128" height="128"/>
         <namedColor name="calendarColor">
-            <color red="0.99964183569999998" green="0.99612766500000005" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="1" green="0.99599999189376831" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="myBackgroundColor">
-            <color red="0.94160306449999998" green="0.94537228350000002" blue="0.91919022800000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.94900000095367432" green="0.94900000095367432" blue="0.9660000205039978" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
 </document>

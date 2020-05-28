@@ -285,6 +285,8 @@ struct timeLineCard {
     var smallCard: smallCardData?
     var bigCard: bigCardData?
     var mediaCard: mediaCardData?
+    //used for segue from PageExtractViewController to switchPageTimelineVC
+    var pageID: pageInfo?
 }
 enum showingDataType {
     case allCards
