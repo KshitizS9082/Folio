@@ -15,6 +15,7 @@ class JournalViewController: UIViewController {
     var pages = [PageData]()
     var allCards = [journalCard]()
 //    var datesPresent = [Date]()
+    var selectedDate = Date()
     var cardsForSelectedDate = [journalCard]()
     var sizeType = cardSizeMode.full
     
@@ -32,10 +33,10 @@ class JournalViewController: UIViewController {
         calendarView.scrollingMode   = .stopAtEachCalendarFrame
         calendarView.showsHorizontalScrollIndicator = false
         constraint.constant=fullCalHeight
+        self.calendarView.reloadData(withanchor: selectedDate)
         
         setupData()
         setupTable()
-        table.reloadData()
         table.reloadData()
         let pinch = UIPinchGestureRecognizer(target: self, action: #selector(handlePinch))
         table.addGestureRecognizer(pinch)
@@ -50,7 +51,8 @@ class JournalViewController: UIViewController {
                 self.view.layoutIfNeeded()
             }) { completed in
                 //NOTE: did set anchor date to todays date
-                self.calendarView.reloadData(withanchor: Date())
+                self.calendarView.reloadData(withanchor: self.selectedDate)
+//                self.calendarView.reloadData()
             }
         } else {
             self.constraint.constant = fullCalHeight
@@ -58,7 +60,9 @@ class JournalViewController: UIViewController {
             self.toggleCalendarButton.image = UIImage(systemName: "rectangle.compress.vertical")
             UIView.animate(withDuration: 0.2, animations: {
                 self.view.layoutIfNeeded()
-                self.calendarView.reloadData(withanchor: Date())
+//                self.calendarView.reloadData(withanchor: Date())
+                self.calendarView.reloadData(withanchor: self.selectedDate)
+//                self.calendarView.reloadData()
             })
         }
     }
@@ -148,6 +152,9 @@ class JournalViewController: UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         navigationController?.hidesBarsOnSwipe=false
     }
+//    override func viewDidAppear(_ animated: Bool) {
+//        self.calendarView.reloadData(withanchor: Date())
+//    }
     
     // MARK: - Navigation
     var selectedCell: Int?
@@ -268,7 +275,8 @@ extension JournalViewController: JTAppleCalendarViewDelegate {
     
     func calendar(_ calendar: JTAppleCalendarView, didSelectDate date: Date, cell: JTAppleCell?, cellState: CellState) {
         configureCell(view: cell, cellState: cellState)
-        print("selected date] = \(date)")
+//        print("selected date] = \(date)")
+        self.selectedDate=date
         for card in allCards{
             let sameDat =  Calendar.current.isDate(card.dateInCal!, equalTo: date, toGranularity: .day)
             if sameDat{
@@ -280,7 +288,7 @@ extension JournalViewController: JTAppleCalendarViewDelegate {
     
     func calendar(_ calendar: JTAppleCalendarView, didDeselectDate date: Date, cell: JTAppleCell?, cellState: CellState) {
         configureCell(view: cell, cellState: cellState)
-        print("DEselected date] = \(date)")
+//        print("DEselected date] = \(date)")
         self.cardsForSelectedDate.removeAll()
     }
 }
