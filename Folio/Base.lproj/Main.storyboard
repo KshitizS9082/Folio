@@ -459,6 +459,61 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="SoI-kp-iib">
                                 <rect key="frame" x="0.0" y="388" width="414" height="474"/>
                                 <color key="backgroundColor" name="calendarColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="addEntryCell" rowHeight="180" id="bnc-tR-mav" customClass="addEntryInJournalTableViewCell" customModule="Folio" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="414" height="180"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="bnc-tR-mav" id="0Kz-p0-EPj">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="180"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Tax-Cd-PVV">
+                                                    <rect key="frame" x="15" y="15" width="384" height="105"/>
+                                                    <color key="backgroundColor" red="1" green="0.17647058823529413" blue="0.33333333333333331" alpha="0.33958013803680981" colorSpace="custom" customColorSpace="sRGB"/>
+                                                </view>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="text.bubble" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="JB4-bc-wXl">
+                                                    <rect key="frame" x="30" y="30.5" width="75" height="74.5"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="75" id="Ea8-ax-ZNm"/>
+                                                        <constraint firstAttribute="width" secondItem="JB4-bc-wXl" secondAttribute="height" id="Wle-Ll-hLp"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="camera" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="P11-NB-2da">
+                                                    <rect key="frame" x="169.5" y="30.5" width="75" height="73"/>
+                                                </imageView>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="location" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="szy-By-Nbe">
+                                                    <rect key="frame" x="309" y="30.5" width="75" height="74"/>
+                                                </imageView>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="Tax-Cd-PVV" secondAttribute="trailing" constant="15" id="0XT-KB-hxK"/>
+                                                <constraint firstItem="JB4-bc-wXl" firstAttribute="top" secondItem="0Kz-p0-EPj" secondAttribute="top" constant="30" id="1Jw-rd-M61"/>
+                                                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="JB4-bc-wXl" secondAttribute="bottom" constant="30" id="2Wg-pP-sag"/>
+                                                <constraint firstAttribute="trailing" secondItem="szy-By-Nbe" secondAttribute="trailing" constant="30" id="32e-8X-2k7"/>
+                                                <constraint firstItem="Tax-Cd-PVV" firstAttribute="bottom" secondItem="P11-NB-2da" secondAttribute="bottom" constant="15" id="8ZD-sK-yzA"/>
+                                                <constraint firstItem="szy-By-Nbe" firstAttribute="width" secondItem="P11-NB-2da" secondAttribute="width" id="Eyd-TV-ncN"/>
+                                                <constraint firstItem="P11-NB-2da" firstAttribute="width" secondItem="JB4-bc-wXl" secondAttribute="width" id="JQd-dQ-hL2"/>
+                                                <constraint firstItem="P11-NB-2da" firstAttribute="centerX" secondItem="0Kz-p0-EPj" secondAttribute="centerX" id="LCE-tz-ZNY"/>
+                                                <constraint firstItem="P11-NB-2da" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="JB4-bc-wXl" secondAttribute="trailing" constant="15" id="PpG-6R-HhP"/>
+                                                <constraint firstItem="szy-By-Nbe" firstAttribute="top" secondItem="P11-NB-2da" secondAttribute="top" id="Zsh-MH-xrh"/>
+                                                <constraint firstItem="JB4-bc-wXl" firstAttribute="leading" secondItem="0Kz-p0-EPj" secondAttribute="leading" constant="30" id="jF1-cV-87g"/>
+                                                <constraint firstItem="Tax-Cd-PVV" firstAttribute="top" secondItem="P11-NB-2da" secondAttribute="top" constant="-15" id="kdJ-4Z-aSl"/>
+                                                <constraint firstItem="P11-NB-2da" firstAttribute="top" secondItem="JB4-bc-wXl" secondAttribute="top" id="nts-jr-NI5"/>
+                                                <constraint firstItem="P11-NB-2da" firstAttribute="bottom" secondItem="JB4-bc-wXl" secondAttribute="bottom" id="ohz-dV-dic"/>
+                                                <constraint firstItem="szy-By-Nbe" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="P11-NB-2da" secondAttribute="trailing" constant="15" id="pU1-RM-5XT"/>
+                                                <constraint firstItem="szy-By-Nbe" firstAttribute="bottom" secondItem="P11-NB-2da" secondAttribute="bottom" id="u9K-My-N1l"/>
+                                                <constraint firstItem="Tax-Cd-PVV" firstAttribute="leading" secondItem="0Kz-p0-EPj" secondAttribute="leading" constant="15" id="yDo-Zk-qQf"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="addLocation" destination="szy-By-Nbe" id="R0f-qV-cI7"/>
+                                            <outlet property="addMediaIV" destination="P11-NB-2da" id="Ukt-A9-uWl"/>
+                                            <outlet property="addTextIV" destination="JB4-bc-wXl" id="myt-d8-08O"/>
+                                            <outlet property="cardBackgrounView" destination="Tax-Cd-PVV" id="COi-qF-bzs"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" name="myBackgroundColor"/>
@@ -575,7 +630,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="r5M-ob-z1M"/>
+        <segue reference="IQB-IT-bw5"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="arrow.down.to.line.alt" catalog="system" width="111" height="128"/>
@@ -583,8 +638,10 @@
         <image name="arrow.right.square" catalog="system" width="128" height="114"/>
         <image name="arrow.right.to.line.alt" catalog="system" width="128" height="89"/>
         <image name="arrow.up.to.line.alt" catalog="system" width="111" height="128"/>
+        <image name="camera" catalog="system" width="128" height="96"/>
         <image name="delete.left" catalog="system" width="128" height="104"/>
         <image name="ellipsis" catalog="system" width="128" height="37"/>
+        <image name="location" catalog="system" width="128" height="115"/>
         <image name="pencil.circle" catalog="system" width="128" height="121"/>
         <image name="photo" catalog="system" width="128" height="93"/>
         <image name="plus.square" catalog="system" width="128" height="114"/>
@@ -592,6 +649,7 @@
         <image name="rectangle.3.offgrid" catalog="system" width="128" height="80"/>
         <image name="rectangle.and.paperclip" catalog="system" width="128" height="100"/>
         <image name="rectangle.compress.vertical" catalog="system" width="128" height="128"/>
+        <image name="text.bubble" catalog="system" width="128" height="110"/>
         <namedColor name="calendarColor">
             <color red="1" green="0.99599999189376831" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

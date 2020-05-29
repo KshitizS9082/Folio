@@ -95,7 +95,7 @@
         <image name="circle" catalog="system" width="128" height="121"/>
         <image name="link.circle" catalog="system" width="128" height="121"/>
         <namedColor name="smallCardColor">
-            <color red="0.99990183119999998" green="1" blue="0.99987989659999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
 </document>

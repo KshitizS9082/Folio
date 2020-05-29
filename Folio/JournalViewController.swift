@@ -294,11 +294,22 @@ extension JournalViewController: JTAppleCalendarViewDelegate {
 }
 
 extension JournalViewController: UITableViewDataSource, UITableViewDelegate{
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 2
+    }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if section==1{
+            return 1
+        }
         return cardsForSelectedDate.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if indexPath.section==1{
+            let cell = tableView.dequeueReusableCell(withIdentifier: "addEntryCell", for: indexPath) as! addEntryInJournalTableViewCell
+            cell.backgroundColor = .clear
+            return cell
+        }
         switch cardsForSelectedDate[indexPath.row].type {
         case .small:
             return setSmallCardCell(tableView, cellForRowAt: indexPath)
