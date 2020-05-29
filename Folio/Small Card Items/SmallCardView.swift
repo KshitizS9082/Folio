@@ -243,7 +243,9 @@ class SmallCardView: UIView {
         self.layer.masksToBounds = true
     }
     
-    
+//    override func setNeedsDisplay() {
+//        self.pageDelegate?.resizeCard(for: self)
+//    }
     //MARK: Make view resizable
     var isResizing = false
     enum Edge {

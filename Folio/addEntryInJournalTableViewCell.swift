@@ -12,9 +12,27 @@ class addEntryInJournalTableViewCell: UITableViewCell {
     
     @IBOutlet weak var cardBackgrounView: UIView!
     
-    @IBOutlet weak var addTextIV: UIImageView!
-    @IBOutlet weak var addMediaIV: UIImageView!
-    @IBOutlet weak var addLocation: UIImageView!
+    @IBOutlet weak var addTextIV: UIImageView!{
+        didSet{
+            addTextIV.isUserInteractionEnabled=true
+            addTextIV.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(addText)))
+        }
+    }
+    @IBOutlet weak var addMediaIV: UIImageView!{
+        didSet{
+            addMediaIV.isUserInteractionEnabled=true
+            addMediaIV.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(addMediaCell)))
+        }
+    }
+    @IBOutlet weak var addLocation: UIImageView!{
+        didSet{
+            addLocation.isUserInteractionEnabled=true
+            addLocation.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(addLocationEntry)))
+        }
+    }
+    
+    var addCardDelegate: addCardInJournalProtocol?
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         cardBackgrounView.layer.cornerRadius = ivCornerRadius
@@ -36,6 +54,15 @@ class addEntryInJournalTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
+    }
+    @objc func addText(){
+        addCardDelegate?.addWrittenEntry()
+    }
+    @objc func addMediaCell(){
+        addCardDelegate?.addMediaCell()
+    }
+    @objc func addLocationEntry(){
+        addCardDelegate?.addLocationEntry()
     }
 
 }

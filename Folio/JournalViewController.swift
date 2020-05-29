@@ -8,12 +8,33 @@
 
 import UIKit
 import JTAppleCalendar
+struct journalCard {
+    var type = journalCardType.small
+    var dateInCal: Date?
+    var smallCard: smallCardData?
+    var bigCard: bigCardData?
+    var mediaCard: mediaCardData?
+    //used for segue from PageExtractViewController to switchPageTimelineVC
+    var pageID: pageInfo?
+}
+enum journalCardType: String{
+    case small
+    case big
+    case media
+    case audio
+}
+protocol addCardInJournalProtocol {
+    func addMediaCell()
+    func addWrittenEntry()
+    func addLocationEntry()
+}
 
 class JournalViewController: UIViewController {
     
     var pagesListFromPLVC = pageInfoList()
     var pages = [PageData]()
     var allCards = [journalCard]()
+    var journalEntryCards = [journalCard]()
 //    var datesPresent = [Date]()
     var selectedDate = Date()
     var cardsForSelectedDate = [journalCard]()
@@ -99,10 +120,24 @@ class JournalViewController: UIViewController {
                 }
             }
         }
+        print("journalentrycards count - \(journalEntryCards.count)")
+        for card in journalEntryCards{
+            print("insed add from journalEntryCards")
+            allCards.append(card)
+        }
 //        print("self.cards ")
 //        for card in self.allCards{
 //            print(card)
 //        }
+    }
+    func setupSelectedDate(){
+        cardsForSelectedDate.removeAll()
+        for card in allCards{
+            let sameDat =  Calendar.current.isDate(card.dateInCal!, equalTo: selectedDate, toGranularity: .day)
+            if sameDat{
+                cardsForSelectedDate.append(card)
+            }
+        }
     }
     func setupTable(){
            table.dataSource=self
@@ -308,6 +343,7 @@ extension JournalViewController: UITableViewDataSource, UITableViewDelegate{
         if indexPath.section==1{
             let cell = tableView.dequeueReusableCell(withIdentifier: "addEntryCell", for: indexPath) as! addEntryInJournalTableViewCell
             cell.backgroundColor = .clear
+            cell.addCardDelegate=self
             return cell
         }
         switch cardsForSelectedDate[indexPath.row].type {
@@ -465,18 +501,31 @@ extension JournalViewController: timelineSwitchDelegate{
         }
     }
 }
-struct journalCard {
-    var type = journalCardType.small
-    var dateInCal: Date?
-    var smallCard: smallCardData?
-    var bigCard: bigCardData?
-    var mediaCard: mediaCardData?
-    //used for segue from PageExtractViewController to switchPageTimelineVC
-    var pageID: pageInfo?
+extension JournalViewController: addCardInJournalProtocol{
+    func addMediaCell() {
+        print("inside addMediaCell")
+        let card = journalCard(type: .media, dateInCal: selectedDate, smallCard: nil, bigCard:  nil, mediaCard: mediaCardData(), pageID: nil)
+        journalEntryCards.append(card)
+        setupData()
+        setupSelectedDate()
+        print("no. of cards to show \(cardsForSelectedDate.count)")
+        table.reloadData()
+        for ind in cardsForSelectedDate.indices{
+            let cr = cardsForSelectedDate[ind]
+            if cr.mediaCard?.card.UniquIdentifier == card.mediaCard?.card.UniquIdentifier{
+                table.scrollToRow(at: IndexPath(row: ind, section: 0), at: .middle, animated: true)
+            }
+        }
+    }
+    
+    func addWrittenEntry() {
+        print("inside addWrittenEntry")
+    }
+    
+    func addLocationEntry() {
+        print("inside addLocationEntry")
+    }
+    
+    
 }
-enum journalCardType: String{
-    case small
-    case big
-    case media
-    case audio
-}
+

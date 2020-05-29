@@ -82,6 +82,7 @@ class PageView: UIView {
         nv.isUserInteractionEnabled=true
         self.addSubview(nv)
         self.currentTask = .noneOfAbove
+        nv.setNeedsDisplay()
         pageDelegate?.changeContentSize(using: nv)
     }
     func addBigCard(centeredAt point: CGPoint){
@@ -174,7 +175,7 @@ extension PageView{
         return 250
     }
     var smallCardHeight: CGFloat{
-        return 150
+        return 85
     }
     var bigCardWidth: CGFloat{
         return 300
