@@ -33,6 +33,7 @@ struct locationJournalCard {
 struct mediaJournalCard {
     var UniquIdentifier = UUID()
 //    var dateOfCreation = Date()
+    var imageData: Data?
     var notesText = "Notes Text of noteJournalCard"
 }
 enum journalCardType: String{
@@ -49,6 +50,8 @@ protocol addCardInJournalProtocol {
     func addWrittenEntry()
     func addLocationEntry()
     func updateJournalNotesEntry(at index: IndexPath, with text: String)
+    func updateJournalMediasNotesEntry(at index: IndexPath, with text: String)
+    func getJournalMedia(at index: IndexPath)
 }
 
 class JournalViewController: UIViewController {
@@ -385,6 +388,8 @@ extension JournalViewController: UITableViewDataSource, UITableViewDelegate{
             return setMediaCardCell(tableView, cellForRowAt: indexPath)
         case .notes:
             return setNotesCardCell(tableView, cellForRowAt: indexPath)
+        case .journalMedia:
+            return setJournalMediaCardCell(tableView, cellForRowAt: indexPath)
         default:
             print("i dunno what card this is x")
         }
@@ -455,6 +460,29 @@ extension JournalViewController: UITableViewDataSource, UITableViewDelegate{
         formatter.dateFormat = "hh:mm a"
         cell.timeLabel.text = formatter.string(from: card.dateInCal!)
         cell.notesLabel.text = card.journalNotesCard?.notesText
+        return cell
+    }
+    func setJournalMediaCardCell(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell{
+         let cell = tableView.dequeueReusableCell(withIdentifier: "journalMediaTVC", for: indexPath) as! journalMediaTableViewCell
+        cell.delegate=self
+        cell.index = indexPath
+        let formatter = DateFormatter()
+        let card = cardsForSelectedDate[indexPath.row]
+        formatter.dateStyle = .full
+        cell.dateLabel.text = formatter.string(from: card.dateInCal!)
+        formatter.dateFormat = "hh:mm a"
+        cell.timeLabel.text = formatter.string(from: card.dateInCal!)
+        cell.notesLabel.text = card.journalMediaCard?.notesText
+        if let data = card.journalMediaCard?.imageData {
+            if let image = UIImage(data: data){
+//                cell.imageView?.image=image
+                cell.mediaImageView.image=image
+            }else{
+                cell.mediaImageView.image=UIImage(systemName: "camera")
+            }
+        }else{
+            cell.mediaImageView.image=UIImage(systemName: "camera")
+        }
         return cell
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -546,22 +574,11 @@ extension JournalViewController: timelineSwitchDelegate{
     }
 }
 extension JournalViewController: addCardInJournalProtocol{
-    func updateJournalNotesEntry(at index: IndexPath, with text: String) {
-        print("inside updateJournalNotesEntry \(text)")
-        cardsForSelectedDate[index.row].journalNotesCard!.notesText=text
-        for ind in journalEntryCards.indices{
-            let card =  journalEntryCards[ind]
-            if card.journalNotesCard?.UniquIdentifier==cardsForSelectedDate[index.row].journalNotesCard?.UniquIdentifier{
-                journalEntryCards[ind].journalNotesCard?.notesText=text
-            }
-        }
-        self.setupData()
-        self.setupSelectedDate()
-    }
+    
     
     func addMediaCell() {
         print("inside addMediaCell")
-        let card = journalCard(type: .media, dateInCal: selectedDate,mediaCard: mediaCardData(), pageID: nil)
+        let card = journalCard(type: .journalMedia, dateInCal:  selectedDate, journalMediaCard: mediaJournalCard() , pageID: nil)
         journalEntryCards.append(card)
         setupData()
         setupSelectedDate()
@@ -569,8 +586,39 @@ extension JournalViewController: addCardInJournalProtocol{
         table.reloadData()
         for ind in cardsForSelectedDate.indices{
             let cr = cardsForSelectedDate[ind]
-            if cr.mediaCard?.card.UniquIdentifier == card.mediaCard?.card.UniquIdentifier{
+            if cr.journalNotesCard?.UniquIdentifier == card.journalNotesCard?.UniquIdentifier{
                 table.scrollToRow(at: IndexPath(row: ind, section: 0), at: .middle, animated: true)
+            }
+        }
+    }
+    
+    func updateJournalMediasNotesEntry(at index: IndexPath, with text: String) {
+        print("inside updateJournalMediasNotesEntry \(text)")
+        cardsForSelectedDate[index.row].journalMediaCard!.notesText=text
+        for ind in journalEntryCards.indices{
+            let card =  journalEntryCards[ind]
+            if card.journalMediaCard?.UniquIdentifier==cardsForSelectedDate[index.row].journalMediaCard?.UniquIdentifier{
+                journalEntryCards[ind].journalMediaCard?.notesText=text
+            }
+        }
+        self.setupData()
+        self.setupSelectedDate()
+    }
+    func getJournalMedia(at index: IndexPath) {
+        print("get image")
+        JournalImagePickerManager().pickImage(self){ image in
+            //here is the image
+            if let data = image.pngData(){
+                for ind in self.journalEntryCards.indices{
+                    let card = self.journalEntryCards[ind]
+                    if card.journalMediaCard?.UniquIdentifier==self.cardsForSelectedDate[index.row].journalMediaCard?.UniquIdentifier{
+                        self.journalEntryCards[ind].journalMediaCard?.imageData=data
+                    }
+                }
+                self.setupData()
+                self.setupSelectedDate()
+                self.table.reloadRows(at: [index], with: .automatic)
+                self.table.scrollToRow(at: index, at: .middle, animated: true)
             }
         }
     }
@@ -589,6 +637,18 @@ extension JournalViewController: addCardInJournalProtocol{
                 table.scrollToRow(at: IndexPath(row: ind, section: 0), at: .middle, animated: true)
             }
         }
+    }
+    func updateJournalNotesEntry(at index: IndexPath, with text: String) {
+        print("inside updateJournalNotesEntry \(text)")
+        cardsForSelectedDate[index.row].journalNotesCard!.notesText=text
+        for ind in journalEntryCards.indices{
+            let card =  journalEntryCards[ind]
+            if card.journalNotesCard?.UniquIdentifier==cardsForSelectedDate[index.row].journalNotesCard?.UniquIdentifier{
+                journalEntryCards[ind].journalNotesCard?.notesText=text
+            }
+        }
+        self.setupData()
+        self.setupSelectedDate()
     }
     
     func addLocationEntry() {
