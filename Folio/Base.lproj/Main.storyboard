@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="sbR-Fz-OoC">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="sbR-Fz-OoC">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
@@ -384,10 +384,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="aXN-vR-B2r" customClass="JTAppleCalendarView" customModule="JTAppleCalendar">
-                                <rect key="frame" x="0.0" y="88" width="414" height="300"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="200"/>
                                 <color key="backgroundColor" name="calendarColor"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="300" id="Xom-oi-UOb"/>
+                                    <constraint firstAttribute="height" constant="200" id="Xom-oi-UOb"/>
                                 </constraints>
                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="8ck-rg-LVE">
                                     <size key="itemSize" width="128" height="128"/>
@@ -457,14 +457,14 @@
                                 </connections>
                             </collectionView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="SoI-kp-iib">
-                                <rect key="frame" x="0.0" y="388" width="414" height="474"/>
+                                <rect key="frame" x="0.0" y="288" width="414" height="574"/>
                                 <color key="backgroundColor" name="calendarColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="addEntryCell" rowHeight="180" id="bnc-tR-mav" customClass="addEntryInJournalTableViewCell" customModule="Folio" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="414" height="180"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="addEntryCell" rowHeight="136" id="bnc-tR-mav" customClass="addEntryInJournalTableViewCell" customModule="Folio" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="414" height="136"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="bnc-tR-mav" id="0Kz-p0-EPj">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="180"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="136"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Tax-Cd-PVV">
@@ -512,6 +512,72 @@
                                             <outlet property="addTextIV" destination="JB4-bc-wXl" id="myt-d8-08O"/>
                                             <outlet property="cardBackgrounView" destination="Tax-Cd-PVV" id="COi-qF-bzs"/>
                                         </connections>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="journalNotesTVC" rowHeight="118" id="L0d-Fm-usP" customClass="journalNotesTableViewCell" customModule="Folio" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="164" width="414" height="118"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="L0d-Fm-usP" id="OKk-LD-y5D">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="118"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="253" ambiguous="YES" text="Month 01, 2001 - Day" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WYt-yJ-zRp">
+                                                    <rect key="frame" x="30" y="30" width="354" height="20.5"/>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                                    <color key="textColor" systemColor="systemPinkColor" red="1" green="0.1764705882" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" ambiguous="YES" text="HH:MM AM" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4cl-5X-77W">
+                                                    <rect key="frame" x="30" y="58.5" width="354" height="18"/>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
+                                                    <color key="textColor" systemColor="systemPinkColor" red="1" green="0.1764705882" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Your Notes goes here " textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tCu-jT-kCP">
+                                                    <rect key="frame" x="30" y="84" width="354" height="24.5"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="20"/>
+                                                    <color key="textColor" systemColor="systemGrayColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Yil-9K-gnb">
+                                                    <rect key="frame" x="30" y="84" width="354" height="24.5"/>
+                                                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                    <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                                    <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                </textView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="Yil-9K-gnb" firstAttribute="leading" secondItem="tCu-jT-kCP" secondAttribute="leading" id="0kP-Wz-6Jd"/>
+                                                <constraint firstItem="WYt-yJ-zRp" firstAttribute="top" secondItem="OKk-LD-y5D" secondAttribute="top" constant="30" id="3nv-Bk-Wlg"/>
+                                                <constraint firstItem="tCu-jT-kCP" firstAttribute="top" secondItem="4cl-5X-77W" secondAttribute="bottom" constant="7.5" id="763-uU-g4Q"/>
+                                                <constraint firstItem="Yil-9K-gnb" firstAttribute="top" secondItem="tCu-jT-kCP" secondAttribute="top" id="7Ez-3k-NHV"/>
+                                                <constraint firstAttribute="trailing" secondItem="tCu-jT-kCP" secondAttribute="trailing" constant="30" id="G2J-w4-4Hp"/>
+                                                <constraint firstItem="Yil-9K-gnb" firstAttribute="bottom" secondItem="tCu-jT-kCP" secondAttribute="bottom" id="MNj-As-U8t"/>
+                                                <constraint firstItem="4cl-5X-77W" firstAttribute="leading" secondItem="WYt-yJ-zRp" secondAttribute="leading" id="O0N-sL-Y58"/>
+                                                <constraint firstAttribute="bottom" secondItem="tCu-jT-kCP" secondAttribute="bottom" constant="30" id="VTC-zb-uaP"/>
+                                                <constraint firstItem="Yil-9K-gnb" firstAttribute="trailing" secondItem="tCu-jT-kCP" secondAttribute="trailing" id="Vo0-YD-TmX"/>
+                                                <constraint firstItem="WYt-yJ-zRp" firstAttribute="leading" secondItem="OKk-LD-y5D" secondAttribute="leading" constant="30" id="Y1V-Py-OMZ"/>
+                                                <constraint firstItem="4cl-5X-77W" firstAttribute="trailing" secondItem="OKk-LD-y5D" secondAttribute="trailing" constant="-30" id="Ys4-MD-TF3"/>
+                                                <constraint firstAttribute="trailing" secondItem="WYt-yJ-zRp" secondAttribute="trailing" constant="30" id="dLl-4T-4oJ"/>
+                                                <constraint firstItem="tCu-jT-kCP" firstAttribute="leading" secondItem="4cl-5X-77W" secondAttribute="leading" id="jlV-nK-qeB"/>
+                                                <constraint firstItem="4cl-5X-77W" firstAttribute="top" secondItem="WYt-yJ-zRp" secondAttribute="bottom" constant="8" id="lLZ-pt-f4G"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="dateLabel" destination="WYt-yJ-zRp" id="aPA-NN-aEv"/>
+                                            <outlet property="notesIsEditingTextView" destination="Yil-9K-gnb" id="Phn-un-ojH"/>
+                                            <outlet property="notesLabel" destination="tCu-jT-kCP" id="RhX-El-5oT"/>
+                                            <outlet property="timeLabel" destination="4cl-5X-77W" id="8QY-3p-bv3"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="118" id="HeU-3V-tlj">
+                                        <rect key="frame" x="0.0" y="282" width="414" height="118"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="HeU-3V-tlj" id="851-mX-7Kg">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="118"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>

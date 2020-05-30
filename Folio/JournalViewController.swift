@@ -14,19 +14,41 @@ struct journalCard {
     var smallCard: smallCardData?
     var bigCard: bigCardData?
     var mediaCard: mediaCardData?
+    var journalNotesCard: noteJournalCard?
+    var journalLocationCard: locationJournalCard?
+    var journalMediaCard: mediaJournalCard?
     //used for segue from PageExtractViewController to switchPageTimelineVC
     var pageID: pageInfo?
+}
+struct noteJournalCard {
+    var UniquIdentifier = UUID()
+//    var dateOfCreation = Date()
+    var notesText = "Notes Text of noteJournalCard is like this can you handle this long string when it exceedes your limit by a lot of texts"
+}
+struct locationJournalCard {
+    var UniquIdentifier = UUID()
+//    var dateOfCreation = Date()
+    var notesText = "Notes Text of noteJournalCard"
+}
+struct mediaJournalCard {
+    var UniquIdentifier = UUID()
+//    var dateOfCreation = Date()
+    var notesText = "Notes Text of noteJournalCard"
 }
 enum journalCardType: String{
     case small
     case big
     case media
     case audio
+    case notes
+    case location
+    case journalMedia
 }
 protocol addCardInJournalProtocol {
     func addMediaCell()
     func addWrittenEntry()
     func addLocationEntry()
+    func updateJournalNotesEntry(at index: IndexPath, with text: String)
 }
 
 class JournalViewController: UIViewController {
@@ -137,6 +159,9 @@ class JournalViewController: UIViewController {
             if sameDat{
                 cardsForSelectedDate.append(card)
             }
+        }
+        cardsForSelectedDate.sort { (firstCard, secondCard) -> Bool in
+            firstCard.dateInCal! < secondCard.dateInCal!
         }
     }
     func setupTable(){
@@ -312,12 +337,17 @@ extension JournalViewController: JTAppleCalendarViewDelegate {
         configureCell(view: cell, cellState: cellState)
 //        print("selected date] = \(date)")
         self.selectedDate=date
-        for card in allCards{
-            let sameDat =  Calendar.current.isDate(card.dateInCal!, equalTo: date, toGranularity: .day)
-            if sameDat{
-                cardsForSelectedDate.append(card)
-            }
+        let calenar = Calendar.current
+        if calenar.isDateInToday(date){
+            self.selectedDate=Date()
         }
+//        for card in allCards{
+//            let sameDat =  Calendar.current.isDate(card.dateInCal!, equalTo: date, toGranularity: .day)
+//            if sameDat{
+//                cardsForSelectedDate.append(card)
+//            }
+//        }
+        self.setupSelectedDate()
         table.reloadData()
     }
     
@@ -353,6 +383,8 @@ extension JournalViewController: UITableViewDataSource, UITableViewDelegate{
             return setBigCardCell(tableView, cellForRowAt: indexPath)
         case .media:
             return setMediaCardCell(tableView, cellForRowAt: indexPath)
+        case .notes:
+            return setNotesCardCell(tableView, cellForRowAt: indexPath)
         default:
             print("i dunno what card this is x")
         }
@@ -412,7 +444,19 @@ extension JournalViewController: UITableViewDataSource, UITableViewDelegate{
         cell.awakeFromNib()
         return cell
     }
-    
+    func setNotesCardCell(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell{
+         let cell = tableView.dequeueReusableCell(withIdentifier: "journalNotesTVC", for: indexPath) as! journalNotesTableViewCell
+        cell.delegate=self
+        cell.index = indexPath
+        let formatter = DateFormatter()
+        let card = cardsForSelectedDate[indexPath.row]
+        formatter.dateStyle = .full
+        cell.dateLabel.text = formatter.string(from: card.dateInCal!)
+        formatter.dateFormat = "hh:mm a"
+        cell.timeLabel.text = formatter.string(from: card.dateInCal!)
+        cell.notesLabel.text = card.journalNotesCard?.notesText
+        return cell
+    }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.table.deselectRow(at: indexPath, animated: false)
     }
@@ -502,9 +546,22 @@ extension JournalViewController: timelineSwitchDelegate{
     }
 }
 extension JournalViewController: addCardInJournalProtocol{
+    func updateJournalNotesEntry(at index: IndexPath, with text: String) {
+        print("inside updateJournalNotesEntry \(text)")
+        cardsForSelectedDate[index.row].journalNotesCard!.notesText=text
+        for ind in journalEntryCards.indices{
+            let card =  journalEntryCards[ind]
+            if card.journalNotesCard?.UniquIdentifier==cardsForSelectedDate[index.row].journalNotesCard?.UniquIdentifier{
+                journalEntryCards[ind].journalNotesCard?.notesText=text
+            }
+        }
+        self.setupData()
+        self.setupSelectedDate()
+    }
+    
     func addMediaCell() {
         print("inside addMediaCell")
-        let card = journalCard(type: .media, dateInCal: selectedDate, smallCard: nil, bigCard:  nil, mediaCard: mediaCardData(), pageID: nil)
+        let card = journalCard(type: .media, dateInCal: selectedDate,mediaCard: mediaCardData(), pageID: nil)
         journalEntryCards.append(card)
         setupData()
         setupSelectedDate()
@@ -520,6 +577,18 @@ extension JournalViewController: addCardInJournalProtocol{
     
     func addWrittenEntry() {
         print("inside addWrittenEntry")
+        let card = journalCard(type: .notes, dateInCal: selectedDate,journalNotesCard: noteJournalCard() , pageID: nil)
+        journalEntryCards.append(card)
+        setupData()
+        setupSelectedDate()
+        print("no. of cards to show \(cardsForSelectedDate.count)")
+        table.reloadData()
+        for ind in cardsForSelectedDate.indices{
+            let cr = cardsForSelectedDate[ind]
+            if cr.journalNotesCard?.UniquIdentifier == card.journalNotesCard?.UniquIdentifier{
+                table.scrollToRow(at: IndexPath(row: ind, section: 0), at: .middle, animated: true)
+            }
+        }
     }
     
     func addLocationEntry() {
