@@ -11,7 +11,7 @@ import JTAppleCalendar
 import MapKit
 import CoreLocation
 
-struct journalCard {
+struct journalCard: Codable {
     var type = journalCardType.small
     var dateInCal: Date?
     var smallCard: smallCardData?
@@ -23,25 +23,40 @@ struct journalCard {
     //used for segue from PageExtractViewController to switchPageTimelineVC
     var pageID: pageInfo?
 }
-struct noteJournalCard {
+struct journalCardList: Codable{
+    var jCards = [journalCard]()
+    init(){
+    }
+    init?(json: Data){
+        if let newValue = try? JSONDecoder().decode(journalCardList.self, from: json) {
+            self = newValue
+        } else {
+            return nil
+        }
+    }
+    var json: Data? {
+        return try? JSONEncoder().encode(self)
+    }
+}
+struct noteJournalCard: Codable {
     var UniquIdentifier = UUID()
 //    var dateOfCreation = Date()
     var notesText = "Notes Text of noteJournalCard is like this can you handle this long string when it exceedes your limit by a lot of texts"
 }
-struct locationJournalCard {
+struct locationJournalCard: Codable {
     var UniquIdentifier = UUID()
 //    var dateOfCreation = Date()
-    var locationAnnotations = [MKPointAnnotation]()
+    var locationAnnotations = [CodableMKPointAnnotation]()
     var locationData: Data?
     var notesText = "Notes Text of locationJournalCard"
 }
-struct mediaJournalCard {
+struct mediaJournalCard: Codable {
     var UniquIdentifier = UUID()
 //    var dateOfCreation = Date()
     var imageData: Data?
     var notesText = "Notes Text of mediaJournalCard"
 }
-enum journalCardType: String{
+enum journalCardType: String, Codable{
     case small
     case big
     case media
@@ -59,7 +74,7 @@ protocol addCardInJournalProtocol {
     func getJournalMedia(at index: IndexPath)
     func updateJournalLocationNotesEntry(at index: IndexPath, with text: String)
     func getJournalLocation(at index: IndexPath)
-    func setJournalLocation(at index: IndexPath, to locations: [MKPointAnnotation])
+    func setJournalLocation(at index: IndexPath, to locations: [CodableMKPointAnnotation])
 }
 
 class JournalViewController: UIViewController {
@@ -221,13 +236,52 @@ class JournalViewController: UIViewController {
     }
     override func viewWillAppear(_ animated: Bool) {
         navigationController?.hidesBarsOnSwipe=true
+        if let url = try? FileManager.default.url(
+            for: .documentDirectory,
+            in: .userDomainMask,
+            appropriateFor: nil,
+            create: true
+        ).appendingPathComponent("journalCards.json"){
+            if let jsonData = try? Data(contentsOf: url){
+                if let extract = journalCardList(json: jsonData){
+                    print("did set self.journalEntryCards to \(extract.jCards)")
+                    self.journalEntryCards = extract.jCards
+                }else{
+                    print("ERROR: found PageData(json: jsonData) to be nil so didn't set it")
+                }
+            }else{
+                print("error no file named journalCards.json found")
+            }
+        }
+        setupData()
+        setupTable()
+        table.reloadData()
     }
     override func viewWillDisappear(_ animated: Bool) {
         navigationController?.hidesBarsOnSwipe=false
+        save()
     }
-//    override func viewDidAppear(_ animated: Bool) {
-//        self.calendarView.reloadData(withanchor: Date())
-//    }
+    
+    func save() {
+        var jcl = journalCardList()
+        jcl.jCards=self.journalEntryCards
+        if let json = jcl.json {
+            if let url = try? FileManager.default.url(
+                for: .documentDirectory,
+                in: .userDomainMask,
+                appropriateFor: nil,
+                create: true
+            ).appendingPathComponent("journalCards.json"){
+                do {
+                    try json.write(to: url)
+                    print ("saved successfully")
+                } catch let error {
+                    print ("couldn't save \(error)")
+                }
+            }
+        }
+    }
+    
     
     // MARK: - Navigation
     var selectedCell: Int?
@@ -738,7 +792,7 @@ extension JournalViewController: addCardInJournalProtocol{
         }
         present(vc, animated: true, completion:nil)
     }
-    func setJournalLocation(at index: IndexPath, to locations: [MKPointAnnotation]){
+    func setJournalLocation(at index: IndexPath, to locations: [CodableMKPointAnnotation]){
         for ind in journalEntryCards.indices{
             let card =  journalEntryCards[ind]
             if card.journalLocationCard?.UniquIdentifier==cardsForSelectedDate[index.row].journalLocationCard?.UniquIdentifier{
@@ -760,7 +814,7 @@ extension JournalViewController: CLLocationManagerDelegate,MKMapViewDelegate{
         let region = MKCoordinateRegion(center: locValue, span: span)
         mapView.setRegion(region, animated: true)
 
-        let annotation = MKPointAnnotation()
+        let annotation = CodableMKPointAnnotation()
         annotation.coordinate = locValue
         annotation.title = "Javed Multani"
         annotation.subtitle = "current location"

@@ -19,9 +19,9 @@ class journalLocationPickerViewController: UIViewController {
     var delegate: addCardInJournalProtocol?
     @IBOutlet weak var mapView: MKMapView!
     let locationManager = CLLocationManager()
-    var locationAnnotations = [MKPointAnnotation]()
+    var locationAnnotations = [CodableMKPointAnnotation]()
     var myIndex = IndexPath(row: 0, section: 0)
-    var currentLocationAnnotation: MKPointAnnotation?
+    var currentLocationAnnotation: CodableMKPointAnnotation?
     override func viewDidLoad() {
         super.viewDidLoad()
         self.locationManager.requestAlwaysAuthorization()
@@ -92,7 +92,7 @@ class journalLocationPickerViewController: UIViewController {
         let span = MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05)
         let region = MKCoordinateRegion(center: locationCoordinate, span: span)
         mapView.setRegion(region, animated: true)
-        let annotation = MKPointAnnotation()
+        let annotation = CodableMKPointAnnotation()
         annotation.coordinate = locationCoordinate
         annotation.title = "selected location"
         //        annotation.subtitle = "current location"
@@ -126,7 +126,7 @@ extension journalLocationPickerViewController: CLLocationManagerDelegate,MKMapVi
         let region = MKCoordinateRegion(center: locValue, span: span)
         mapView.setRegion(region, animated: true)
         
-        let curanot = MKPointAnnotation()
+        let curanot = CodableMKPointAnnotation()
         curanot.coordinate = locValue
         curanot.subtitle = "current location"
         if currentLocationAnnotation==nil{
@@ -138,7 +138,7 @@ extension journalLocationPickerViewController: CLLocationManagerDelegate,MKMapVi
             mapView.addAnnotation(curanot)
         }
 
-        let annotation = MKPointAnnotation()
+        let annotation = CodableMKPointAnnotation()
         annotation.coordinate = locValue
         annotation.title = "instant location"
         if locationAnnotations.count==0{
