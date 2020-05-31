@@ -31,6 +31,9 @@ class journalLocationTableViewCell: UITableViewCell, UITextViewDelegate {
             // Initialization code
             self.mediaImageView.tintColor = ivTintColor
             self.mediaImageView.layer.cornerRadius=ivCornerRadius
+            mediaImageView.isUserInteractionEnabled=true
+            mediaImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(getLocation)))
+            
         }
         @objc func didSelctTextView() {
             print("didselect in setSelected")
@@ -39,12 +42,15 @@ class journalLocationTableViewCell: UITableViewCell, UITextViewDelegate {
             notesIsEditingTextView.text = notesLabel.text
             notesIsEditingTextView.becomeFirstResponder()
         }
+    @objc func getLocation(){
+        delegate?.getJournalLocation(at: index)
+    }
         func textViewDidEndEditing(_ textView: UITextView) {
             notesLabel.text = notesIsEditingTextView.text
             notesLabel.isHidden=false
             notesIsEditingTextView.isHidden=true
     //        delegate?.updateJournalNotesEntry(at: index, with:  notesIsEditingTextView.text)
-            delegate?.updateJournalMediasNotesEntry(at: index, with: notesIsEditingTextView.text)
+            delegate?.updateJournalLocationNotesEntry(at: index, with: notesIsEditingTextView.text)
         }
         func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
             if text=="\n"{

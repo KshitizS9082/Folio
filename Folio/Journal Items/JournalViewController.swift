@@ -8,6 +8,9 @@
 
 import UIKit
 import JTAppleCalendar
+import MapKit
+import CoreLocation
+
 struct journalCard {
     var type = journalCardType.small
     var dateInCal: Date?
@@ -28,13 +31,15 @@ struct noteJournalCard {
 struct locationJournalCard {
     var UniquIdentifier = UUID()
 //    var dateOfCreation = Date()
-    var notesText = "Notes Text of noteJournalCard"
+    var locationAnnotations = [MKPointAnnotation]()
+    var locationData: Data?
+    var notesText = "Notes Text of locationJournalCard"
 }
 struct mediaJournalCard {
     var UniquIdentifier = UUID()
 //    var dateOfCreation = Date()
     var imageData: Data?
-    var notesText = "Notes Text of noteJournalCard"
+    var notesText = "Notes Text of mediaJournalCard"
 }
 enum journalCardType: String{
     case small
@@ -42,7 +47,7 @@ enum journalCardType: String{
     case media
     case audio
     case notes
-    case location
+    case journalLocation
     case journalMedia
 }
 protocol addCardInJournalProtocol {
@@ -52,6 +57,9 @@ protocol addCardInJournalProtocol {
     func updateJournalNotesEntry(at index: IndexPath, with text: String)
     func updateJournalMediasNotesEntry(at index: IndexPath, with text: String)
     func getJournalMedia(at index: IndexPath)
+    func updateJournalLocationNotesEntry(at index: IndexPath, with text: String)
+    func getJournalLocation(at index: IndexPath)
+    func setJournalLocation(at index: IndexPath, to locations: [MKPointAnnotation])
 }
 
 class JournalViewController: UIViewController {
@@ -64,8 +72,10 @@ class JournalViewController: UIViewController {
     var selectedDate = Date()
     var cardsForSelectedDate = [journalCard]()
     var sizeType = cardSizeMode.full
+    let locationManager = CLLocationManager()
     
     @IBOutlet weak var calendarView: JTAppleCalendarView!
+    @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var constraint: NSLayoutConstraint!
     @IBOutlet weak var toggleCalendarButton: UIBarButtonItem!
     var numberOfRows = 6
@@ -390,6 +400,8 @@ extension JournalViewController: UITableViewDataSource, UITableViewDelegate{
             return setNotesCardCell(tableView, cellForRowAt: indexPath)
         case .journalMedia:
             return setJournalMediaCardCell(tableView, cellForRowAt: indexPath)
+        case .journalLocation:
+            return setJournalLocationCardCell(tableView, cellForRowAt: indexPath)
         default:
             print("i dunno what card this is x")
         }
@@ -485,6 +497,35 @@ extension JournalViewController: UITableViewDataSource, UITableViewDelegate{
         }
         return cell
     }
+    func setJournalLocationCardCell(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell{
+             let cell = tableView.dequeueReusableCell(withIdentifier: "journalLocationTVC", for: indexPath) as! journalLocationTableViewCell
+            cell.delegate=self
+            cell.index = indexPath
+            let formatter = DateFormatter()
+            let card = cardsForSelectedDate[indexPath.row]
+            formatter.dateStyle = .full
+            cell.dateLabel.text = formatter.string(from: card.dateInCal!)
+            formatter.dateFormat = "hh:mm a"
+            cell.timeLabel.text = formatter.string(from: card.dateInCal!)
+            cell.notesLabel.text = card.journalLocationCard?.notesText
+        if let locs=card.journalLocationCard?.locationAnnotations, locs.count>0{
+            cell.mediaImageView.tintColor = UIColor.systemPink
+            cell.mediaImageView.image = UIImage(systemName: "location.fill")
+        }else{
+            cell.mediaImageView.tintColor = UIColor(named: "subMainTextColor") ?? UIColor.red
+            cell.mediaImageView.image = UIImage(systemName: "location.slash")
+        }
+//            if let data = card.journalLocationCard?.locationData {
+//                if let image = UIImage(data: data){
+//                    cell.mediaImageView.image=image
+//                }else{
+//                    cell.mediaImageView.image=UIImage(systemName: "camera")
+//                }
+//            }else{
+//                cell.mediaImageView.image=UIImage(systemName: "camera")
+//            }
+            return cell
+        }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.table.deselectRow(at: indexPath, animated: false)
     }
@@ -591,7 +632,6 @@ extension JournalViewController: addCardInJournalProtocol{
             }
         }
     }
-    
     func updateJournalMediasNotesEntry(at index: IndexPath, with text: String) {
         print("inside updateJournalMediasNotesEntry \(text)")
         cardsForSelectedDate[index.row].journalMediaCard!.notesText=text
@@ -653,8 +693,79 @@ extension JournalViewController: addCardInJournalProtocol{
     
     func addLocationEntry() {
         print("inside addLocationEntry")
+        let card = journalCard(type: .journalLocation, dateInCal:  selectedDate, journalLocationCard: locationJournalCard() , pageID: nil)
+        journalEntryCards.append(card)
+        setupData()
+        setupSelectedDate()
+        print("no. of cards to show \(cardsForSelectedDate.count)")
+        table.reloadData()
+        for ind in cardsForSelectedDate.indices{
+            let cr = cardsForSelectedDate[ind]
+            if cr.journalLocationCard?.UniquIdentifier == card.journalLocationCard?.UniquIdentifier{
+                table.scrollToRow(at: IndexPath(row: ind, section: 0), at: .middle, animated: true)
+            }
+        }
     }
-    
-    
+    func updateJournalLocationNotesEntry(at index: IndexPath, with text: String) {
+        print("inside updateJournalMediasNotesEntry \(text)")
+        cardsForSelectedDate[index.row].journalLocationCard!.notesText=text
+        for ind in journalEntryCards.indices{
+            let card =  journalEntryCards[ind]
+            if card.journalLocationCard?.UniquIdentifier==cardsForSelectedDate[index.row].journalLocationCard?.UniquIdentifier{
+                journalEntryCards[ind].journalLocationCard?.notesText=text
+            }
+        }
+        self.setupData()
+        self.setupSelectedDate()
+    }
+    func getJournalLocation(at index: IndexPath){
+        print("get journalLocation")
+        let storyboard : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: "journalLocationPickerNavigationViewController")
+        vc.modalPresentationStyle = .popover
+        //TODO: just useed here to avoide fault in ipad, to be changed and set appropriately later
+        vc.popoverPresentationController?.barButtonItem=toggleCalendarButton
+        if let x = vc as? UINavigationController{
+            print("is uinav controller")
+            if let y = x.viewControllers.first as? journalLocationPickerViewController{
+                print("insid journalLocationPickerViewController")
+                y.delegate=self
+                y.myIndex=index
+                if let locs=cardsForSelectedDate[index.row].journalLocationCard?.locationAnnotations{
+                    y.locationAnnotations=locs
+                }
+            }
+        }
+        present(vc, animated: true, completion:nil)
+    }
+    func setJournalLocation(at index: IndexPath, to locations: [MKPointAnnotation]){
+        for ind in journalEntryCards.indices{
+            let card =  journalEntryCards[ind]
+            if card.journalLocationCard?.UniquIdentifier==cardsForSelectedDate[index.row].journalLocationCard?.UniquIdentifier{
+                journalEntryCards[ind].journalLocationCard?.locationAnnotations=locations
+            }
+        }
+        self.setupData()
+        self.setupSelectedDate()
+        self.table.reloadRows(at: [index], with: .automatic)
+    }
 }
+extension JournalViewController: CLLocationManagerDelegate,MKMapViewDelegate{
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        let locValue:CLLocationCoordinate2D = manager.location!.coordinate
 
+        mapView.mapType = MKMapType.standard
+
+        let span = MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05)
+        let region = MKCoordinateRegion(center: locValue, span: span)
+        mapView.setRegion(region, animated: true)
+
+        let annotation = MKPointAnnotation()
+        annotation.coordinate = locValue
+        annotation.title = "Javed Multani"
+        annotation.subtitle = "current location"
+        mapView.addAnnotation(annotation)
+
+        //centerMap(locValue)
+    }
+}

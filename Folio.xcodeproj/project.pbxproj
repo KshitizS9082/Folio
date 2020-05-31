@@ -70,6 +70,7 @@
 		E26FD6AD2482A4FB004DA918 /* journalLocationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E26FD6AC2482A4FB004DA918 /* journalLocationTableViewCell.swift */; };
 		E26FD6B02482AD0D004DA918 /* journalImagePickerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E26FD6AF2482AD0D004DA918 /* journalImagePickerManager.swift */; };
 		E284B6242472D9BD00CC6465 /* uniqueFileName.swift in Sources */ = {isa = PBXBuildFile; fileRef = E284B6232472D9BD00CC6465 /* uniqueFileName.swift */; };
+		E2CB87F52483581B002F3E6A /* journalLocationPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2CB87F42483581B002F3E6A /* journalLocationPickerViewController.swift */; };
 		E2D4B87D247901A1005F566F /* pageListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D4B87C247901A1005F566F /* pageListTableViewCell.swift */; };
 		E2FEE2B0247C1DDD00DD7069 /* DateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2FEE2AF247C1DDC00DD7069 /* DateCell.swift */; };
 		E2FEE2B2247CC24200DD7069 /* DateHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2FEE2B1247CC24200DD7069 /* DateHeader.swift */; };
@@ -166,6 +167,7 @@
 		E26FD6AC2482A4FB004DA918 /* journalLocationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = journalLocationTableViewCell.swift; sourceTree = "<group>"; };
 		E26FD6AF2482AD0D004DA918 /* journalImagePickerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = journalImagePickerManager.swift; sourceTree = "<group>"; };
 		E284B6232472D9BD00CC6465 /* uniqueFileName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = uniqueFileName.swift; sourceTree = "<group>"; };
+		E2CB87F42483581B002F3E6A /* journalLocationPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = journalLocationPickerViewController.swift; sourceTree = "<group>"; };
 		E2D4B87C247901A1005F566F /* pageListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = pageListTableViewCell.swift; sourceTree = "<group>"; };
 		E2FEE2AF247C1DDC00DD7069 /* DateCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateCell.swift; sourceTree = "<group>"; };
 		E2FEE2B1247CC24200DD7069 /* DateHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateHeader.swift; sourceTree = "<group>"; };
@@ -408,6 +410,7 @@
 				E2FEE2AF247C1DDC00DD7069 /* DateCell.swift */,
 				E26A31222480A8AB007F2289 /* addEntryInJournalTableViewCell.swift */,
 				E26FD6AF2482AD0D004DA918 /* journalImagePickerManager.swift */,
+				E2CB87F42483581B002F3E6A /* journalLocationPickerViewController.swift */,
 				E2FEE2B1247CC24200DD7069 /* DateHeader.swift */,
 			);
 			path = "Journal Items";
@@ -659,6 +662,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E25BA4F024715A29000D1DF7 /* cardView.swift in Sources */,
+				E2CB87F52483581B002F3E6A /* journalLocationPickerViewController.swift in Sources */,
 				E252B04D246C4041003F8718 /* ViewController.swift in Sources */,
 				E252B094246CEE55003F8718 /* PageView.swift in Sources */,
 				E252B090246C4E6D003F8718 /* PageViewController.swift in Sources */,
