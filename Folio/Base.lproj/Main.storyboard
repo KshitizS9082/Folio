@@ -437,7 +437,7 @@
             </objects>
             <point key="canvasLocation" x="-1" y="1240"/>
         </scene>
-        <!--Journal View Controller-->
+        <!--   Journal   -->
         <scene sceneID="JsJ-HB-AVz">
             <objects>
                 <viewController id="iHJ-Ix-OFG" customClass="JournalViewController" customModule="Folio" customModuleProvider="target" sceneMemberID="viewController">
@@ -815,7 +815,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="tmd-xt-zwT"/>
                     </view>
-                    <navigationItem key="navigationItem" id="LHS-SP-7NN">
+                    <navigationItem key="navigationItem" title="   Journal   " id="LHS-SP-7NN">
                         <barButtonItem key="rightBarButtonItem" title="Item" image="rectangle.compress.vertical" catalog="system" id="bUs-VX-RXK">
                             <color key="tintColor" systemColor="systemPinkColor" red="1" green="0.1764705882" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>

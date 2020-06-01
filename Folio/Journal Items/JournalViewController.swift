@@ -54,6 +54,7 @@ struct mediaJournalCard: Codable {
     var UniquIdentifier = UUID()
 //    var dateOfCreation = Date()
     var imageData: Data?
+    var imageFileName = [String]()
     var notesText = "Notes Text of mediaJournalCard"
 }
 enum journalCardType: String, Codable{
@@ -236,6 +237,14 @@ class JournalViewController: UIViewController {
     }
     override func viewWillAppear(_ animated: Bool) {
         navigationController?.hidesBarsOnSwipe=true
+        let attrs = [
+            NSAttributedString.Key.foregroundColor: UIColor.red,
+            NSAttributedString.Key.font: UIFont(name: "SnellRoundhand-Black", size: 24)!
+        ]
+
+//        UINavigationBar.appearance().titleTextAttributes = attrs
+        self.navigationController?.navigationBar.titleTextAttributes = attrs
+        
         if let url = try? FileManager.default.url(
             for: .documentDirectory,
             in: .userDomainMask,
@@ -539,16 +548,11 @@ extension JournalViewController: UITableViewDataSource, UITableViewDelegate{
         formatter.dateFormat = "hh:mm a"
         cell.timeLabel.text = formatter.string(from: card.dateInCal!)
         cell.notesLabel.text = card.journalMediaCard?.notesText
-        if let data = card.journalMediaCard?.imageData {
-            if let image = UIImage(data: data){
-//                cell.imageView?.image=image
-                cell.mediaImageView.image=image
-            }else{
-                cell.mediaImageView.image=UIImage(systemName: "camera")
-            }
-        }else{
-            cell.mediaImageView.image=UIImage(systemName: "camera")
+//        if let data = card.journalMediaCard?.imageData {
+        if let fileNames = card.journalMediaCard?.imageFileName{
+            cell.imageFileNames = fileNames
         }
+        cell.awakeFromNib()
         return cell
     }
     func setJournalLocationCardCell(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell{
@@ -700,19 +704,70 @@ extension JournalViewController: addCardInJournalProtocol{
     }
     func getJournalMedia(at index: IndexPath) {
         print("get image")
+        //MARK: currently stores only 1 image but later can be extended to multiple images as stored in a array
+        let fileManager = FileManager.default
         JournalImagePickerManager().pickImage(self){ image in
-            //here is the image
-            if let data = image.pngData(){
-                for ind in self.journalEntryCards.indices{
-                    let card = self.journalEntryCards[ind]
-                    if card.journalMediaCard?.UniquIdentifier==self.cardsForSelectedDate[index.row].journalMediaCard?.UniquIdentifier{
-                        self.journalEntryCards[ind].journalMediaCard?.imageData=data
+            //Delete thr old image if any
+            for ind in self.journalEntryCards.indices{
+                let card =  self.journalEntryCards[ind]
+                if card.journalMediaCard?.UniquIdentifier==self.cardsForSelectedDate[index.row].journalMediaCard?.UniquIdentifier{
+                    if let fnms = self.journalEntryCards[ind].journalMediaCard?.imageFileName{
+                        for fileName in fnms{
+                            if let url = try? FileManager.default.url(
+                                for: .documentDirectory,
+                                in: .userDomainMask,
+                                appropriateFor: nil,
+                                create: true
+                            ).appendingPathComponent(fileName){
+                                do{
+                                    try fileManager.removeItem(at: url)
+                                    print("deleted item \(url) succefully")
+                                } catch{
+                                    print("ERROR: item  at \(url) couldn't be deleted")
+                                    //TODO: check if return works this way if file deletionf fails
+                                    return
+                                }
+                            }
+                        }
+                    }
+                    self.journalEntryCards[ind].journalMediaCard?.imageFileName.removeAll()
+                }
+            }
+//            self.setupData()
+//            self.setupSelectedDate()
+            //MARK: set a new json and use corrosponding url for new image
+            let fileName=String.uniqueFilename(withPrefix: "iamgeData")+".json"
+            DispatchQueue.global(qos: .background).async {
+                if let json = imageData(instData: (image.resizedTo1MB()!).pngData()!).json {
+                    if let url = try? FileManager.default.url(
+                        for: .documentDirectory,
+                        in: .userDomainMask,
+                        appropriateFor: nil,
+                        create: true
+                    ).appendingPathComponent(fileName){
+                        do {
+                            try json.write(to: url)
+                            print ("saved successfully")
+                            //MARK: is a data leak to be corrected
+                            //TODO: sometimes fileName added but not deleted
+                            for ind in self.journalEntryCards.indices{
+                                let card = self.journalEntryCards[ind]
+                                //MARK: new url based implementation for images
+                                if card.journalMediaCard?.UniquIdentifier==self.cardsForSelectedDate[index.row].journalMediaCard?.UniquIdentifier{
+                                    self.journalEntryCards[ind].journalMediaCard?.imageFileName.append(fileName)
+                                }
+                            }
+                            DispatchQueue.main.sync {
+                                self.setupData()
+                                self.setupSelectedDate()
+                                self.table.reloadRows(at: [index], with: .automatic)
+                                self.table.scrollToRow(at: index, at: .middle, animated: true)
+                            }
+                        } catch let error {
+                            print ("couldn't save \(error)")
+                        }
                     }
                 }
-                self.setupData()
-                self.setupSelectedDate()
-                self.table.reloadRows(at: [index], with: .automatic)
-                self.table.scrollToRow(at: index, at: .middle, animated: true)
             }
         }
     }
