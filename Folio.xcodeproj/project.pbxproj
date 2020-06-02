@@ -77,6 +77,13 @@
 		E2E15258248604B900079B79 /* habitsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2E15257248604B900079B79 /* habitsTableViewController.swift */; };
 		E2E1525A248604CC00079B79 /* HabitsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2E15259248604CC00079B79 /* HabitsViewController.swift */; };
 		E2E1525C2486122000079B79 /* AddHabbitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2E1525B2486122000079B79 /* AddHabbitViewController.swift */; };
+		E2E1525E2486426700079B79 /* habiCardData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2E1525D2486426700079B79 /* habiCardData.swift */; };
+		E2E152602486562900079B79 /* addHabbitTitleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2E1525F2486562900079B79 /* addHabbitTitleTableViewCell.swift */; };
+		E2E152622486563500079B79 /* addHabbitStyleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2E152612486563500079B79 /* addHabbitStyleTableViewCell.swift */; };
+		E2E152642486564100079B79 /* addHabbitGoalPeriodTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2E152632486564100079B79 /* addHabbitGoalPeriodTableViewCell.swift */; };
+		E2E152662486564C00079B79 /* addHabbitReminderValueTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2E152652486564C00079B79 /* addHabbitReminderValueTableViewCell.swift */; };
+		E2E152682486565C00079B79 /* addHabbitGoalCountTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2E152672486565C00079B79 /* addHabbitGoalCountTableViewCell.swift */; };
+		E2E1526A2486566C00079B79 /* addHabbitTargetDateTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2E152692486566C00079B79 /* addHabbitTargetDateTableViewCell.swift */; };
 		E2FEE2B0247C1DDD00DD7069 /* DateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2FEE2AF247C1DDC00DD7069 /* DateCell.swift */; };
 		E2FEE2B2247CC24200DD7069 /* DateHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2FEE2B1247CC24200DD7069 /* DateHeader.swift */; };
 /* End PBXBuildFile section */
@@ -179,6 +186,13 @@
 		E2E15257248604B900079B79 /* habitsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = habitsTableViewController.swift; sourceTree = "<group>"; };
 		E2E15259248604CC00079B79 /* HabitsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitsViewController.swift; sourceTree = "<group>"; };
 		E2E1525B2486122000079B79 /* AddHabbitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddHabbitViewController.swift; sourceTree = "<group>"; };
+		E2E1525D2486426700079B79 /* habiCardData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = habiCardData.swift; sourceTree = "<group>"; };
+		E2E1525F2486562900079B79 /* addHabbitTitleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = addHabbitTitleTableViewCell.swift; sourceTree = "<group>"; };
+		E2E152612486563500079B79 /* addHabbitStyleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = addHabbitStyleTableViewCell.swift; sourceTree = "<group>"; };
+		E2E152632486564100079B79 /* addHabbitGoalPeriodTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = addHabbitGoalPeriodTableViewCell.swift; sourceTree = "<group>"; };
+		E2E152652486564C00079B79 /* addHabbitReminderValueTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = addHabbitReminderValueTableViewCell.swift; sourceTree = "<group>"; };
+		E2E152672486565C00079B79 /* addHabbitGoalCountTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = addHabbitGoalCountTableViewCell.swift; sourceTree = "<group>"; };
+		E2E152692486566C00079B79 /* addHabbitTargetDateTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = addHabbitTargetDateTableViewCell.swift; sourceTree = "<group>"; };
 		E2FEE2AF247C1DDC00DD7069 /* DateCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateCell.swift; sourceTree = "<group>"; };
 		E2FEE2B1247CC24200DD7069 /* DateHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateHeader.swift; sourceTree = "<group>"; };
 		F32C815244D1C255A7FDD23A /* Pods_Folio.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Folio.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -435,6 +449,13 @@
 				E2E15257248604B900079B79 /* habitsTableViewController.swift */,
 				E2E15259248604CC00079B79 /* HabitsViewController.swift */,
 				E2E1525B2486122000079B79 /* AddHabbitViewController.swift */,
+				E2E1525D2486426700079B79 /* habiCardData.swift */,
+				E2E1525F2486562900079B79 /* addHabbitTitleTableViewCell.swift */,
+				E2E152612486563500079B79 /* addHabbitStyleTableViewCell.swift */,
+				E2E152632486564100079B79 /* addHabbitGoalPeriodTableViewCell.swift */,
+				E2E152652486564C00079B79 /* addHabbitReminderValueTableViewCell.swift */,
+				E2E152672486565C00079B79 /* addHabbitGoalCountTableViewCell.swift */,
+				E2E152692486566C00079B79 /* addHabbitTargetDateTableViewCell.swift */,
 			);
 			path = "Habits Items";
 			sourceTree = "<group>";
@@ -686,6 +707,7 @@
 			files = (
 				E25BA4F024715A29000D1DF7 /* cardView.swift in Sources */,
 				E2CB87F52483581B002F3E6A /* journalLocationPickerViewController.swift in Sources */,
+				E2E152682486565C00079B79 /* addHabbitGoalCountTableViewCell.swift in Sources */,
 				E252B04D246C4041003F8718 /* ViewController.swift in Sources */,
 				E252B094246CEE55003F8718 /* PageView.swift in Sources */,
 				E2E15258248604B900079B79 /* habitsTableViewController.swift in Sources */,
@@ -702,16 +724,19 @@
 				E252B087246C4601003F8718 /* PageData.swift in Sources */,
 				E26FD6B02482AD0D004DA918 /* journalImagePickerManager.swift in Sources */,
 				E2FEE2B2247CC24200DD7069 /* DateHeader.swift in Sources */,
+				E2E152662486564C00079B79 /* addHabbitReminderValueTableViewCell.swift in Sources */,
 				E25BA51A24728AA9000D1DF7 /* MediaCardTableViewCell.swift in Sources */,
 				E25BA50D2472285F000D1DF7 /* pickImage.swift in Sources */,
 				E252B08C246C4681003F8718 /* PageListViewController.swift in Sources */,
 				E252B081246C45C0003F8718 /* Card.swift in Sources */,
 				E25BA4EA24714CBD000D1DF7 /* smallCardTitleTableViewCell.swift in Sources */,
+				E2E152622486563500079B79 /* addHabbitStyleTableViewCell.swift in Sources */,
 				E269476524702D0900F9E21F /* UITextView+Expanding.swift in Sources */,
 				E25BA50A24721F93000D1DF7 /* Extensions0.swift in Sources */,
 				E25BA4F9247163CE000D1DF7 /* drawingCardFullViewController.swift in Sources */,
 				E252B085246C45F2003F8718 /* MediaCard.swift in Sources */,
 				E216884D2474E19B00D079A4 /* UIImageCompressor.swift in Sources */,
+				E2E152602486562900079B79 /* addHabbitTitleTableViewCell.swift in Sources */,
 				E26947672470320B00F9E21F /* SmallCardView.swift in Sources */,
 				E25BA51124727508000D1DF7 /* ScardTimelineTableViewCell.swift in Sources */,
 				E252B07D246C44DF003F8718 /* removeAllConstraints.swift in Sources */,
@@ -720,6 +745,7 @@
 				E252B04B246C4041003F8718 /* SceneDelegate.swift in Sources */,
 				E252B07C246C44DF003F8718 /* textViewPlaceholder.swift in Sources */,
 				E25BA50924721F93000D1DF7 /* SCardCollectionViewCell.swift in Sources */,
+				E2E1525E2486426700079B79 /* habiCardData.swift in Sources */,
 				E216884F2475965500D079A4 /* DrawingView.swift in Sources */,
 				E25BA50B24721F93000D1DF7 /* GalleryFlowLayout.swift in Sources */,
 				E2E1525A248604CC00079B79 /* HabitsViewController.swift in Sources */,
@@ -730,12 +756,14 @@
 				E25BA50624721F93000D1DF7 /* ThumbCell.swift in Sources */,
 				E25B0E9B247BD055004F3BDA /* UITextField+Extensions.swift in Sources */,
 				E260F152247AA91E00CFB697 /* PageExtractViewController.swift in Sources */,
+				E2E1526A2486566C00079B79 /* addHabbitTargetDateTableViewCell.swift in Sources */,
 				E25BA4FA247163CE000D1DF7 /* NotesFullViewController.swift in Sources */,
 				E25BA4FF24716DC0000D1DF7 /* ImagePickerManager.swift in Sources */,
 				E26FD6AD2482A4FB004DA918 /* journalLocationTableViewCell.swift in Sources */,
 				E252B083246C45E6003F8718 /* checkListItem.swift in Sources */,
 				E25BA51624727B79000D1DF7 /* BigcardTimelineTableViewCell.swift in Sources */,
 				E252B089246C4620003F8718 /* smallCard.swift in Sources */,
+				E2E152642486564100079B79 /* addHabbitGoalPeriodTableViewCell.swift in Sources */,
 				E25BA50824721F93000D1DF7 /* GalleryViewController.swift in Sources */,
 				E25BA4F424716196000D1DF7 /* EditCardViewController.swift in Sources */,
 				E2D4B87D247901A1005F566F /* pageListTableViewCell.swift in Sources */,
