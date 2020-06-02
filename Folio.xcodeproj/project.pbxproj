@@ -74,6 +74,9 @@
 		E2C1F340248579F0004A8050 /* PageListSideMenuTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2C1F33F248579F0004A8050 /* PageListSideMenuTableViewController.swift */; };
 		E2CB87F52483581B002F3E6A /* journalLocationPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2CB87F42483581B002F3E6A /* journalLocationPickerViewController.swift */; };
 		E2D4B87D247901A1005F566F /* pageListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D4B87C247901A1005F566F /* pageListTableViewCell.swift */; };
+		E2E15258248604B900079B79 /* habitsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2E15257248604B900079B79 /* habitsTableViewController.swift */; };
+		E2E1525A248604CC00079B79 /* HabitsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2E15259248604CC00079B79 /* HabitsViewController.swift */; };
+		E2E1525C2486122000079B79 /* AddHabbitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2E1525B2486122000079B79 /* AddHabbitViewController.swift */; };
 		E2FEE2B0247C1DDD00DD7069 /* DateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2FEE2AF247C1DDC00DD7069 /* DateCell.swift */; };
 		E2FEE2B2247CC24200DD7069 /* DateHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2FEE2B1247CC24200DD7069 /* DateHeader.swift */; };
 /* End PBXBuildFile section */
@@ -173,6 +176,9 @@
 		E2C1F33F248579F0004A8050 /* PageListSideMenuTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageListSideMenuTableViewController.swift; sourceTree = "<group>"; };
 		E2CB87F42483581B002F3E6A /* journalLocationPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = journalLocationPickerViewController.swift; sourceTree = "<group>"; };
 		E2D4B87C247901A1005F566F /* pageListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = pageListTableViewCell.swift; sourceTree = "<group>"; };
+		E2E15257248604B900079B79 /* habitsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = habitsTableViewController.swift; sourceTree = "<group>"; };
+		E2E15259248604CC00079B79 /* HabitsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitsViewController.swift; sourceTree = "<group>"; };
+		E2E1525B2486122000079B79 /* AddHabbitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddHabbitViewController.swift; sourceTree = "<group>"; };
 		E2FEE2AF247C1DDC00DD7069 /* DateCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateCell.swift; sourceTree = "<group>"; };
 		E2FEE2B1247CC24200DD7069 /* DateHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateHeader.swift; sourceTree = "<group>"; };
 		F32C815244D1C255A7FDD23A /* Pods_Folio.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Folio.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -259,6 +265,7 @@
 				E252B04E246C4041003F8718 /* Main.storyboard */,
 				E252B08D246C4AD7003F8718 /* SwitchPageTimelineViewController.swift */,
 				E252B08B246C4681003F8718 /* PageListViewController.swift */,
+				E2E152562486045500079B79 /* Habits Items */,
 				E26FD6AE2482A7AA004DA918 /* Journal Items */,
 				E252B093246CEE55003F8718 /* PageView.swift */,
 				E25B0E97247BA803004F3BDA /* Page List Items */,
@@ -420,6 +427,16 @@
 				E2FEE2B1247CC24200DD7069 /* DateHeader.swift */,
 			);
 			path = "Journal Items";
+			sourceTree = "<group>";
+		};
+		E2E152562486045500079B79 /* Habits Items */ = {
+			isa = PBXGroup;
+			children = (
+				E2E15257248604B900079B79 /* habitsTableViewController.swift */,
+				E2E15259248604CC00079B79 /* HabitsViewController.swift */,
+				E2E1525B2486122000079B79 /* AddHabbitViewController.swift */,
+			);
+			path = "Habits Items";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -671,6 +688,7 @@
 				E2CB87F52483581B002F3E6A /* journalLocationPickerViewController.swift in Sources */,
 				E252B04D246C4041003F8718 /* ViewController.swift in Sources */,
 				E252B094246CEE55003F8718 /* PageView.swift in Sources */,
+				E2E15258248604B900079B79 /* habitsTableViewController.swift in Sources */,
 				E252B090246C4E6D003F8718 /* PageViewController.swift in Sources */,
 				E26FD6AB24828DF1004DA918 /* journalMediaTableViewCell.swift in Sources */,
 				E2B1D0542483EEA100BA8C7D /* MKPointAnnotation-Codable.swift in Sources */,
@@ -680,6 +698,7 @@
 				E284B6242472D9BD00CC6465 /* uniqueFileName.swift in Sources */,
 				E2C1F340248579F0004A8050 /* PageListSideMenuTableViewController.swift in Sources */,
 				E2252E0B247943AA00EF26C9 /* PagesExtractTableViewCell.swift in Sources */,
+				E2E1525C2486122000079B79 /* AddHabbitViewController.swift in Sources */,
 				E252B087246C4601003F8718 /* PageData.swift in Sources */,
 				E26FD6B02482AD0D004DA918 /* journalImagePickerManager.swift in Sources */,
 				E2FEE2B2247CC24200DD7069 /* DateHeader.swift in Sources */,
@@ -703,6 +722,7 @@
 				E25BA50924721F93000D1DF7 /* SCardCollectionViewCell.swift in Sources */,
 				E216884F2475965500D079A4 /* DrawingView.swift in Sources */,
 				E25BA50B24721F93000D1DF7 /* GalleryFlowLayout.swift in Sources */,
+				E2E1525A248604CC00079B79 /* HabitsViewController.swift in Sources */,
 				E252B07E246C44DF003F8718 /* UnderlinedTextView.swift in Sources */,
 				E2FEE2B0247C1DDD00DD7069 /* DateCell.swift in Sources */,
 				E25B0E9D247C010C004F3BDA /* JournalViewController.swift in Sources */,

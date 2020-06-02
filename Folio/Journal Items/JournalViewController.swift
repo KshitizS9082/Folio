@@ -236,10 +236,15 @@ class JournalViewController: UIViewController {
         calendarView.viewWillTransition(to: .zero, with: coordinator, anchorDate: visibleDates.monthDates.first?.date)
     }
     override func viewWillAppear(_ animated: Bool) {
+        // Make the navigation bar background clear
+        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        navigationController?.navigationBar.shadowImage = UIImage()
+        navigationController?.navigationBar.isTranslucent = true
+        
         navigationController?.hidesBarsOnSwipe=true
         let attrs = [
             NSAttributedString.Key.foregroundColor: UIColor.systemPink,
-            NSAttributedString.Key.font: UIFont(name: "SnellRoundhand-Black", size: 24)!
+            NSAttributedString.Key.font: UIFont(name: "SnellRoundhand-Black", size: 30)!
         ]
 
 //        UINavigationBar.appearance().titleTextAttributes = attrs
@@ -284,6 +289,11 @@ class JournalViewController: UIViewController {
         table.reloadData()
     }
     override func viewWillDisappear(_ animated: Bool) {
+        // Restore the navigation bar to default
+        navigationController?.navigationBar.setBackgroundImage(nil, for: .default)
+        navigationController?.navigationBar.shadowImage = nil
+        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black]
+
         navigationController?.hidesBarsOnSwipe=false
         save()
     }
