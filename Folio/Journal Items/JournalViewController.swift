@@ -238,12 +238,29 @@ class JournalViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         navigationController?.hidesBarsOnSwipe=true
         let attrs = [
-            NSAttributedString.Key.foregroundColor: UIColor.red,
+            NSAttributedString.Key.foregroundColor: UIColor.systemPink,
             NSAttributedString.Key.font: UIFont(name: "SnellRoundhand-Black", size: 24)!
         ]
 
 //        UINavigationBar.appearance().titleTextAttributes = attrs
         self.navigationController?.navigationBar.titleTextAttributes = attrs
+        if let url = try? FileManager.default.url(
+            for: .documentDirectory,
+            in: .userDomainMask,
+            appropriateFor: nil,
+            create: true
+        ).appendingPathComponent("PageList.json"){
+            print("trying to extract contents of jsonData")
+            if let jsonData = try? Data(contentsOf: url){
+                //                pageList = pageInfo(json: jsonData)
+                if let x = pageInfoList(json: jsonData){
+                    pagesListFromPLVC = x
+                }else{
+                    print("WARNING: COULDN'T UNWRAP JSON DATA TO FIND PAGELIST")
+                }
+            }
+            viewDidLoad()
+        }
         
         if let url = try? FileManager.default.url(
             for: .documentDirectory,

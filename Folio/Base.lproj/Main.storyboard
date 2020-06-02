@@ -9,7 +9,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Page List View Controller-->
+        <!--Page's-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="PageListViewController" customModule="Folio" customModuleProvider="target" sceneMemberID="viewController">
@@ -150,7 +150,26 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
-                    <navigationItem key="navigationItem" id="t8V-zW-KSq"/>
+                    <navigationItem key="navigationItem" title="Page's" id="t8V-zW-KSq">
+                        <barButtonItem key="leftBarButtonItem" title="Item" image="line.horizontal.3" catalog="system" id="Hrl-3p-jxu">
+                            <color key="tintColor" systemColor="systemGrayColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <connections>
+                                <segue destination="c77-aF-p03" kind="presentation" id="ZBy-tn-SAW"/>
+                            </connections>
+                        </barButtonItem>
+                        <rightBarButtonItems>
+                            <barButtonItem title="Item" image="plus.circle" catalog="system" id="d2g-GT-B2z">
+                                <connections>
+                                    <action selector="addPageNavBarButtonClick:" destination="BYZ-38-t0r" id="R23-qK-hfQ"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem title="Item" image="book.circle" catalog="system" id="ef1-5j-9PW">
+                                <connections>
+                                    <action selector="showJournalNavButtonClick:" destination="BYZ-38-t0r" id="S5k-sR-fa8"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
+                    </navigationItem>
                     <connections>
                         <outlet property="table" destination="mer-jd-fz9" id="asQ-Se-gox"/>
                         <segue destination="KJv-kN-YwA" kind="show" identifier="openPage" id="to3-FM-KxV"/>
@@ -160,7 +179,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="833" y="139"/>
+            <point key="canvasLocation" x="1212" y="139"/>
         </scene>
         <!--Switch Page Timeline View Controller-->
         <scene sceneID="o1K-2h-VbR">
@@ -232,7 +251,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Loy-cI-Nnn" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2036" y="139"/>
+            <point key="canvasLocation" x="2280" y="139"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="2RY-cH-zdR">
@@ -250,7 +269,131 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TjL-Od-8Uf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-104" y="139"/>
+            <point key="canvasLocation" x="1212" y="-573"/>
+        </scene>
+        <!--Folio's-->
+        <scene sceneID="zUU-86-RTx">
+            <objects>
+                <tableViewController id="mSG-Qj-YNs" customClass="PageListSideMenuTableViewController" customModule="Folio" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" sectionIndexMinimumDisplayRowCount="1" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="W1f-1x-HQC">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" name="myBackgroundColor"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="pageCellIdentifier" textLabel="bGa-XJ-P7g" imageView="YWl-U7-2bd" rowHeight="125" style="IBUITableViewCellStyleDefault" id="J2Z-Kx-LG1">
+                                <rect key="frame" x="0.0" y="28" width="414" height="125"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="J2Z-Kx-LG1" id="HaY-ZY-Wjy">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="125"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="My Page's" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="bGa-XJ-P7g">
+                                            <rect key="frame" x="59" y="0.0" width="335" height="125"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
+                                            <color key="textColor" name="subMainTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" image="rectangle.and.paperclip" catalog="system" id="YWl-U7-2bd">
+                                            <rect key="frame" x="20.25" y="52.5" width="23.5" height="18.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </imageView>
+                                    </subviews>
+                                    <color key="backgroundColor" name="myBackgroundColor"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="journalCellIdentifier" textLabel="WUE-pX-RRX" imageView="0Pe-f7-4EI" rowHeight="125" style="IBUITableViewCellStyleDefault" id="2nY-23-ICS">
+                                <rect key="frame" x="0.0" y="153" width="414" height="125"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="2nY-23-ICS" id="wDi-VT-Tch">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="125"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="My Journal" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="WUE-pX-RRX">
+                                            <rect key="frame" x="59" y="0.0" width="335" height="125"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
+                                            <color key="textColor" name="subMainTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" image="book" catalog="system" id="0Pe-f7-4EI">
+                                            <rect key="frame" x="21.25" y="54" width="21.5" height="17"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </imageView>
+                                    </subviews>
+                                    <color key="backgroundColor" name="myBackgroundColor"/>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="iHJ-Ix-OFG" kind="show" id="ohb-na-BjG"/>
+                                </connections>
+                            </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="habitsCellIdentifier" textLabel="07h-d7-BKw" imageView="ifh-Bv-7xD" rowHeight="125" style="IBUITableViewCellStyleDefault" id="ueQ-Lj-iUI">
+                                <rect key="frame" x="0.0" y="278" width="414" height="125"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ueQ-Lj-iUI" id="KS0-of-oiS">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="125"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="My Habit's" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="07h-d7-BKw">
+                                            <rect key="frame" x="59" y="0.0" width="335" height="125"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
+                                            <color key="textColor" name="subMainTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" image="calendar" catalog="system" id="ifh-Bv-7xD">
+                                            <rect key="frame" x="21.5" y="53.5" width="21" height="17.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </imageView>
+                                    </subviews>
+                                    <color key="backgroundColor" name="myBackgroundColor"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="mSG-Qj-YNs" id="K6s-Lt-BQN"/>
+                            <outlet property="delegate" destination="mSG-Qj-YNs" id="wez-Vy-en6"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Folio's" id="LB3-RY-B5b">
+                        <barButtonItem key="rightBarButtonItem" title="Item" image="exclamationmark.icloud" catalog="system" id="Wp9-H8-W32">
+                            <color key="tintColor" systemColor="systemTealColor" red="0.35294117650000001" green="0.7843137255" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="table" destination="W1f-1x-HQC" id="YYn-v4-RaA"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9zg-zb-jOF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="80" y="139"/>
+        </scene>
+        <!--Side Menu Navigation Controller-->
+        <scene sceneID="62i-C5-rXu">
+            <objects>
+                <navigationController id="c77-aF-p03" customClass="SideMenuNavigationController" customModule="SideMenu" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="1bR-5N-41k">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="108"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" name="myBackgroundColor"/>
+                        <color key="barTintColor" name="myBackgroundColor"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" name="subMainTextColor"/>
+                        </textAttributes>
+                        <textAttributes key="largeTitleTextAttributes">
+                            <color key="textColor" name="subMainTextColor"/>
+                        </textAttributes>
+                    </navigationBar>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="leftSide" value="YES"/>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <segue destination="mSG-Qj-YNs" kind="relationship" relationship="rootViewController" id="a6G-bi-Ksw"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Xk0-pO-6FL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="80" y="-573"/>
         </scene>
         <!--Page View Controller-->
         <scene sceneID="ywQ-Al-Nd4">
@@ -373,7 +516,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fmJ-eK-wcs" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2704.347826086957" y="-304.6875"/>
+            <point key="canvasLocation" x="3664" y="-190"/>
         </scene>
         <!--Journal Location Picker View Controller-->
         <scene sceneID="QW0-JB-bQn">
@@ -435,21 +578,21 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CtJ-1e-PbO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1" y="1240"/>
+            <point key="canvasLocation" x="639" y="1637"/>
         </scene>
         <!--   Journal   -->
         <scene sceneID="JsJ-HB-AVz">
             <objects>
                 <viewController id="iHJ-Ix-OFG" customClass="JournalViewController" customModule="Folio" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="gDp-Ju-277">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="Hzb-TY-Ddq">
-                                <rect key="frame" x="30" y="118" width="354" height="714"/>
+                                <rect key="frame" x="30" y="138" width="354" height="640"/>
                             </mapView>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="aXN-vR-B2r" customClass="JTAppleCalendarView" customModule="JTAppleCalendar">
-                                <rect key="frame" x="0.0" y="88" width="414" height="48"/>
+                                <rect key="frame" x="0.0" y="108" width="414" height="48"/>
                                 <color key="backgroundColor" name="calendarColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="48" id="Xom-oi-UOb"/>
@@ -522,7 +665,7 @@
                                 </connections>
                             </collectionView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="SoI-kp-iib">
-                                <rect key="frame" x="0.0" y="136" width="414" height="726"/>
+                                <rect key="frame" x="0.0" y="156" width="414" height="652"/>
                                 <color key="backgroundColor" name="calendarColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="addEntryCell" rowHeight="136" id="bnc-tR-mav" customClass="addEntryInJournalTableViewCell" customModule="Folio" customModuleProvider="target">
@@ -932,11 +1075,12 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ef2-gO-6N9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="832" y="1240"/>
+            <point key="canvasLocation" x="1558" y="1637"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="r5M-ob-z1M"/>
+        <segue reference="ohb-na-BjG"/>
+        <segue reference="to3-FM-KxV"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="arrow.down.to.line.alt" catalog="system" width="111" height="128"/>
@@ -944,15 +1088,21 @@
         <image name="arrow.right.square" catalog="system" width="128" height="114"/>
         <image name="arrow.right.to.line.alt" catalog="system" width="128" height="89"/>
         <image name="arrow.up.to.line.alt" catalog="system" width="111" height="128"/>
+        <image name="book" catalog="system" width="128" height="101"/>
+        <image name="book.circle" catalog="system" width="128" height="121"/>
+        <image name="calendar" catalog="system" width="128" height="106"/>
         <image name="camera" catalog="system" width="128" height="96"/>
         <image name="delete.left" catalog="system" width="128" height="104"/>
         <image name="ellipsis" catalog="system" width="128" height="37"/>
+        <image name="exclamationmark.icloud" catalog="system" width="128" height="88"/>
+        <image name="line.horizontal.3" catalog="system" width="128" height="64"/>
         <image name="location" catalog="system" width="128" height="115"/>
         <image name="location.fill" catalog="system" width="128" height="115"/>
         <image name="mappin" catalog="system" width="105" height="128"/>
         <image name="mappin.and.ellipse" catalog="system" width="118" height="128"/>
         <image name="pencil.circle" catalog="system" width="128" height="121"/>
         <image name="photo" catalog="system" width="128" height="93"/>
+        <image name="plus.circle" catalog="system" width="128" height="121"/>
         <image name="plus.square" catalog="system" width="128" height="114"/>
         <image name="plus.square.fill" catalog="system" width="128" height="114"/>
         <image name="rectangle.3.offgrid" catalog="system" width="128" height="80"/>
@@ -964,6 +1114,9 @@
         </namedColor>
         <namedColor name="myBackgroundColor">
             <color red="0.94900000095367432" green="0.94900000095367432" blue="0.9660000205039978" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="subMainTextColor">
+            <color red="0.3580000102519989" green="0.38400000333786011" blue="0.414000004529953" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
 </document>

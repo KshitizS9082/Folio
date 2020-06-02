@@ -58,56 +58,64 @@ class PageListViewController: UIViewController {
     
     @IBOutlet weak var table: UITableView!
     private func configureHeading(){
-        if view.subviews.contains(addPageButton)==false{
-            view.addSubview(addPageButton)
-        }
-        addPageButton.translatesAutoresizingMaskIntoConstraints=false
-        [
-            addPageButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 5),
-            addPageButton.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor, constant: -10),
-            addPageButton.widthAnchor.constraint(equalToConstant: topButtonsDimenstions),
-            addPageButton.heightAnchor.constraint(equalToConstant: topButtonsDimenstions)
-            ].forEach { (cst) in
-                cst.isActive=true
-        }
-        addPageButton.isUserInteractionEnabled=true
-        addPageButton.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(addPage)))
-        
-        if view.subviews.contains(journalButton)==false{
-            view.addSubview(journalButton)
-        }
-        journalButton.translatesAutoresizingMaskIntoConstraints=false
-        [
-            journalButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 5),
-            journalButton.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor, constant: 10),
-            journalButton.widthAnchor.constraint(equalToConstant: topButtonsDimenstions),
-            journalButton.heightAnchor.constraint(equalToConstant: topButtonsDimenstions)
-            ].forEach { (cst) in
-                cst.isActive=true
-        }
-        journalButton.isUserInteractionEnabled=true
-        journalButton.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(showJournal)))
-        
-        if view.subviews.contains(titleLabel)==false{
-            view.addSubview(titleLabel)
-        }
-        titleLabel.translatesAutoresizingMaskIntoConstraints=false
-        [
-            titleLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 5),
-            titleLabel.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
-            titleLabel.rightAnchor.constraint(lessThanOrEqualTo: addPageButton.leftAnchor)//,
-            //            titleLabel.heightAnchor.constraint(equalToConstant: 45)
-            ].forEach { (cst) in
-                cst.isActive=true
-        }
-        titleLabel.text = "Folio's"//or chronicle
-        titleLabel.font = UIFont(name: "SnellRoundhand-Black", size: 40)
+//        if view.subviews.contains(addPageButton)==false{
+//            view.addSubview(addPageButton)
+//        }
+//        addPageButton.translatesAutoresizingMaskIntoConstraints=false
+//        [
+//            addPageButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 5),
+//            addPageButton.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor, constant: -10),
+//            addPageButton.widthAnchor.constraint(equalToConstant: topButtonsDimenstions),
+//            addPageButton.heightAnchor.constraint(equalToConstant: topButtonsDimenstions)
+//            ].forEach { (cst) in
+//                cst.isActive=true
+//        }
+//        addPageButton.isUserInteractionEnabled=true
+//        addPageButton.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(addPage)))
+//
+//        if view.subviews.contains(journalButton)==false{
+//            view.addSubview(journalButton)
+//        }
+//        journalButton.translatesAutoresizingMaskIntoConstraints=false
+//        [
+//            journalButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 5),
+//            journalButton.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor, constant: 10),
+//            journalButton.widthAnchor.constraint(equalToConstant: topButtonsDimenstions),
+//            journalButton.heightAnchor.constraint(equalToConstant: topButtonsDimenstions)
+//            ].forEach { (cst) in
+//                cst.isActive=true
+//        }
+//        journalButton.isUserInteractionEnabled=true
+//        journalButton.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(showJournal)))
+//
+//        if view.subviews.contains(titleLabel)==false{
+//            view.addSubview(titleLabel)
+//        }
+//        titleLabel.translatesAutoresizingMaskIntoConstraints=false
+//        [
+//            titleLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 5),
+//            titleLabel.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
+//            titleLabel.rightAnchor.constraint(lessThanOrEqualTo: addPageButton.leftAnchor)//,
+//            //            titleLabel.heightAnchor.constraint(equalToConstant: 45)
+//            ].forEach { (cst) in
+//                cst.isActive=true
+//        }
+//        titleLabel.text = "Folio's"//or chronicle
+//        titleLabel.font = UIFont(name: "SnellRoundhand-Black", size: 40)
     }
+    
+    @IBAction func addPageNavBarButtonClick(_ sender: Any) {
+        addPage()
+    }
+    @IBAction func showJournalNavButtonClick(_ sender: Any) {
+        showJournal()
+    }
+    
     
     private func configureTable(){
         table.translatesAutoresizingMaskIntoConstraints=false
         [
-            table.topAnchor.constraint(equalTo: addPageButton.bottomAnchor, constant: 10),
+            table.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
             table.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor),
             table.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor),
             table.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
@@ -122,7 +130,16 @@ class PageListViewController: UIViewController {
 //        table.register(UINib(nibName: "pageListTableViewCell", bundle: nil), forCellReuseIdentifier: "customPageCell")
     }
     override func viewWillAppear(_ animated: Bool) {
-        self.navigationController?.setNavigationBarHidden(true, animated: true)
+        //        self.navigationController?.setNavigationBarHidden(true, animated: true)
+        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        navigationController?.navigationBar.shadowImage = UIImage()
+        navigationController?.navigationBar.isTranslucent = true
+        let attrs = [
+            NSAttributedString.Key.foregroundColor: UIColor.systemGray,
+            NSAttributedString.Key.font: UIFont(name: "SnellRoundhand-Black", size: 35)!
+        ]
+        self.navigationController?.navigationBar.titleTextAttributes = attrs
+        
         if let url = try? FileManager.default.url(
             for: .documentDirectory,
             in: .userDomainMask,
@@ -131,7 +148,7 @@ class PageListViewController: UIViewController {
         ).appendingPathComponent("PageList.json"){
             print("trying to extract contents of jsonData")
             if let jsonData = try? Data(contentsOf: url){
-//                pageList = pageInfo(json: jsonData)
+                //                pageList = pageInfo(json: jsonData)
                 if let x = pageInfoList(json: jsonData){
                     pages = x
                 }else{
@@ -160,12 +177,16 @@ class PageListViewController: UIViewController {
         }
     }
     override func viewWillDisappear(_ animated: Bool) {
-        self.navigationController?.setNavigationBarHidden(false, animated: animated)
+//        self.navigationController?.setNavigationBarHidden(false, animated: animated)
+        navigationController?.navigationBar.setBackgroundImage(nil, for: .default)
+        navigationController?.navigationBar.shadowImage = nil
+        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black]
+        navigationController?.navigationBar.tintColor = UIColor.systemBlue
         save()
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(image:  UIImage(systemName: "plus.circle.fill"), style: .plain, target: self, action: #selector(addPage))
+//        self.navigationItem.rightBarButtonItem = UIBarButtonItem(image:  UIImage(systemName: "plus.circle.fill"), style: .plain, target: self, action: #selector(addPage))
         configureHeading()
         configureTable()
         // Do any additional setup after loading the view.
@@ -201,9 +222,9 @@ class PageListViewController: UIViewController {
         }
         if segue.identifier == "showJournalSegue"{
             print("now set journalvc")
-            if let targetController = segue.destination as? JournalViewController{
-                targetController.pagesListFromPLVC=self.pages
-            }
+//            if let targetController = segue.destination as? JournalViewController{
+//                targetController.pagesListFromPLVC=self.pages
+//            }
         }
     }
     
