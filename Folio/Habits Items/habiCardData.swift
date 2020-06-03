@@ -8,17 +8,17 @@
 
 import Foundation
 
-struct habitCardData {
+struct habitCardData: Codable {
     var UniquIdentifier=UUID()
     var constructionDate = Date()
     var targetDate: Date?
     var title = ""
-    enum HabitStyle {
+    enum HabitStyle: String, Codable {
         case Build
         case Quit
     }
     var habitStyle = HabitStyle.Build
-    enum recurencePeriod {
+    enum recurencePeriod: String, Codable  {
         case daily
         case weekly
         case monthly
@@ -27,7 +27,7 @@ struct habitCardData {
     var habitGoalPeriod = recurencePeriod.daily
     
     var goalCount = 0.0
-    enum ReminderTime{
+    enum ReminderTime: String, Codable {
         case morning
         case noon
         case night
@@ -36,4 +36,21 @@ struct habitCardData {
         case notSet
     }
     var reminderValue = ReminderTime.notSet
+    
+    var entriesList : [Date: Double] = [:]
+    
+    init(){
+    }
+    init?(json: Data){
+        if let newValue = try? JSONDecoder().decode(habitCardData.self, from: json) {
+            self = newValue
+        } else {
+            return nil
+        }
+    }
+    var json: Data? {
+        return try? JSONEncoder().encode(self)
+    }
 }
+
+

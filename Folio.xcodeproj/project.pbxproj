@@ -70,6 +70,8 @@
 		E26FD6AD2482A4FB004DA918 /* journalLocationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E26FD6AC2482A4FB004DA918 /* journalLocationTableViewCell.swift */; };
 		E26FD6B02482AD0D004DA918 /* journalImagePickerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E26FD6AF2482AD0D004DA918 /* journalImagePickerManager.swift */; };
 		E284B6242472D9BD00CC6465 /* uniqueFileName.swift in Sources */ = {isa = PBXBuildFile; fileRef = E284B6232472D9BD00CC6465 /* uniqueFileName.swift */; };
+		E291F00B24873B3D0006D147 /* habitTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E291F00A24873B3D0006D147 /* habitTableViewCell.swift */; };
+		E291F00D24875B900006D147 /* weekExtractFromDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E291F00C24875B900006D147 /* weekExtractFromDate.swift */; };
 		E2B1D0542483EEA100BA8C7D /* MKPointAnnotation-Codable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2B1D0532483EEA100BA8C7D /* MKPointAnnotation-Codable.swift */; };
 		E2C1F340248579F0004A8050 /* PageListSideMenuTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2C1F33F248579F0004A8050 /* PageListSideMenuTableViewController.swift */; };
 		E2CB87F52483581B002F3E6A /* journalLocationPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2CB87F42483581B002F3E6A /* journalLocationPickerViewController.swift */; };
@@ -179,6 +181,8 @@
 		E26FD6AC2482A4FB004DA918 /* journalLocationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = journalLocationTableViewCell.swift; sourceTree = "<group>"; };
 		E26FD6AF2482AD0D004DA918 /* journalImagePickerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = journalImagePickerManager.swift; sourceTree = "<group>"; };
 		E284B6232472D9BD00CC6465 /* uniqueFileName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = uniqueFileName.swift; sourceTree = "<group>"; };
+		E291F00A24873B3D0006D147 /* habitTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = habitTableViewCell.swift; sourceTree = "<group>"; };
+		E291F00C24875B900006D147 /* weekExtractFromDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = weekExtractFromDate.swift; sourceTree = "<group>"; };
 		E2B1D0532483EEA100BA8C7D /* MKPointAnnotation-Codable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MKPointAnnotation-Codable.swift"; sourceTree = "<group>"; };
 		E2C1F33F248579F0004A8050 /* PageListSideMenuTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageListSideMenuTableViewController.swift; sourceTree = "<group>"; };
 		E2CB87F42483581B002F3E6A /* journalLocationPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = journalLocationPickerViewController.swift; sourceTree = "<group>"; };
@@ -338,6 +342,7 @@
 				E284B6232472D9BD00CC6465 /* uniqueFileName.swift */,
 				E216884C2474E19B00D079A4 /* UIImageCompressor.swift */,
 				E216884E2475965500D079A4 /* DrawingView.swift */,
+				E291F00C24875B900006D147 /* weekExtractFromDate.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -450,6 +455,7 @@
 				E2E15259248604CC00079B79 /* HabitsViewController.swift */,
 				E2E1525B2486122000079B79 /* AddHabbitViewController.swift */,
 				E2E1525D2486426700079B79 /* habiCardData.swift */,
+				E291F00A24873B3D0006D147 /* habitTableViewCell.swift */,
 				E2E1525F2486562900079B79 /* addHabbitTitleTableViewCell.swift */,
 				E2E152612486563500079B79 /* addHabbitStyleTableViewCell.swift */,
 				E2E152632486564100079B79 /* addHabbitGoalPeriodTableViewCell.swift */,
@@ -756,6 +762,7 @@
 				E25BA50624721F93000D1DF7 /* ThumbCell.swift in Sources */,
 				E25B0E9B247BD055004F3BDA /* UITextField+Extensions.swift in Sources */,
 				E260F152247AA91E00CFB697 /* PageExtractViewController.swift in Sources */,
+				E291F00D24875B900006D147 /* weekExtractFromDate.swift in Sources */,
 				E2E1526A2486566C00079B79 /* addHabbitTargetDateTableViewCell.swift in Sources */,
 				E25BA4FA247163CE000D1DF7 /* NotesFullViewController.swift in Sources */,
 				E25BA4FF24716DC0000D1DF7 /* ImagePickerManager.swift in Sources */,
@@ -765,6 +772,7 @@
 				E252B089246C4620003F8718 /* smallCard.swift in Sources */,
 				E2E152642486564100079B79 /* addHabbitGoalPeriodTableViewCell.swift in Sources */,
 				E25BA50824721F93000D1DF7 /* GalleryViewController.swift in Sources */,
+				E291F00B24873B3D0006D147 /* habitTableViewCell.swift in Sources */,
 				E25BA4F424716196000D1DF7 /* EditCardViewController.swift in Sources */,
 				E2D4B87D247901A1005F566F /* pageListTableViewCell.swift in Sources */,
 				E252B092246C4E79003F8718 /* TimelineViewController.swift in Sources */,
