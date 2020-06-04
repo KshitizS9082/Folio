@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import JTAppleCalendar
 
 class habitTableViewCell: UITableViewCell {
     var index = IndexPath(row: 0, section: 0)
@@ -14,15 +15,46 @@ class habitTableViewCell: UITableViewCell {
     var currentCount = 0.0
     var strakCount = 0
     var habitData: habitCardData?
+    var numberOfRows = 1
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var currentCountLabel: UILabel!
     @IBOutlet weak var streakLabel: UILabel!
     @IBOutlet weak var cardBackgroundView: UIView!
     @IBOutlet weak var stepper: UIStepper!
+    @IBOutlet weak var calendar: JTAppleCalendarView!{
+        didSet{
+            calendar.ibCalendarDataSource=self
+            calendar.ibCalendarDelegate=self
+            calendar.layer.cornerRadius = calendarCornerRadius
+        }
+    }
+    @IBOutlet weak var calendarHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var toggleCalSizeIV: UIImageView!{
+        didSet{
+            toggleCalSizeIV.tintColor = UIColor.systemTeal
+            toggleCalSizeIV.isUserInteractionEnabled=true
+            toggleCalSizeIV.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(toggleCalendar)))
+        }
+    }
+    
+    var selectedDate = Date()
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        self.contentView.isUserInteractionEnabled=true
         self.cardBackgroundView.layer.cornerRadius=cornerRadius
+        //set calendar
+        calendar.scrollDirection = .horizontal
+        calendar.isPagingEnabled=true
+        if numberOfRows == 6 {
+            self.calendarHeightConstraint.constant = fullCalHeight
+            self.toggleCalSizeIV.image = UIImage(systemName: "chevron.up.circle")
+        } else {
+            self.calendarHeightConstraint.constant = singleRohCalHeight
+            self.toggleCalSizeIV.image = UIImage(systemName: "chevron.down.circle")
+        }
+        self.calendar.reloadData(withanchor: self.selectedDate)
+        
         var date = Date()
         titleLabel.text = habitData?.title
         switch habitData?.habitGoalPeriod {
@@ -37,23 +69,21 @@ class habitTableViewCell: UITableViewCell {
             date=date.startOfMonth
         case .yearly:
             currentCountLabel.text = "This Year: "
-             date=date.startOfYear
+            date=date.startOfYear
         default:
             print("ERROR: UNKNOWN HABITGOALPERIOD IN HABITTABLEVIEWCELL")
             currentCountLabel.text = ""
         }
         //TODO: calculate count
         currentCount=habitData?.entriesList[date] ?? 0
-        
-        
         if let gc = habitData?.goalCount{
-         currentCountLabel.text! += String(currentCount) + " / " + String(gc)
+            currentCountLabel.text! += String(currentCount) + " / " + String(gc)
             stepper.value=currentCount
-//            stepper.maximumValue=gc
+            //            stepper.maximumValue=gc
         }else{
             currentCountLabel.text! += String(currentCount) + " / y"
         }
-        //TODO: calculate streak count
+        // calculate streak count
         strakCount=0
         if let hdt = habitData{
             if let cnt = hdt.entriesList[date]{
@@ -95,16 +125,169 @@ class habitTableViewCell: UITableViewCell {
         
         streakLabel.text = "Streak: \(strakCount)"
     }
-
+    
     @IBAction func stepperChanged(_ sender: UIStepper) {
         currentCount=stepper.value
         delegate?.changeHabitCurentCount(at: index, to: currentCount)
 //        awakeFromNib()
     }
-    
+    @objc func toggleCalendar(){
+        print("inside toggle cal")
+//        if numberOfRows==1{
+//            self.calendarHeightConstraint.constant=100
+//            delegate?.updated(indexpath: index)
+//        }else{
+        //            self.calendarHeightConstraint.constant=300
+        //            delegate?.updated(indexpath: index)
+        //        }
+        //        awakeFromNib()
+        if numberOfRows == 6 {
+            self.calendarHeightConstraint.constant = singleRohCalHeight
+            self.numberOfRows = 1
+            self.toggleCalSizeIV.image = UIImage(systemName: "chevron.down.circle")
+        } else {
+            self.calendarHeightConstraint.constant = fullCalHeight
+            self.numberOfRows = 6
+            self.toggleCalSizeIV.image = UIImage(systemName: "chevron.up.circle")
+//            UIView.animate(withDuration: 0.2, animations: {
+////                self.layoutIfNeeded()
+//                self.delegate?.updated(indexpath: self.index)
+//                self.calendar.reloadData(withanchor: self.selectedDate)
+//            })
+            
+        }
+//        UIView.animate(withDuration: 0.2, animations: {
+//            self.layoutIfNeeded()
+//            self.delegate?.updated(indexpath: self.index)
+//        }) { completed in
+//            self.calendar.reloadData(withanchor: self.selectedDate)
+//        }
+        UIView.animate(withDuration: 0.4, animations: {
+                            self.layoutIfNeeded()
+            self.delegate?.updated(indexpath: self.index)
+            self.calendar.reloadData(withanchor: self.selectedDate)
+        })
+    }
 }
 extension habitTableViewCell{
     var cornerRadius: CGFloat{
         return 15
+    }
+    var fullCalHeight: CGFloat{
+        return 500
+    }
+    var singleRohCalHeight: CGFloat{
+        return 100
+    }
+    var calendarCornerRadius: CGFloat{
+        return 15
+    }
+}
+
+extension habitTableViewCell: JTAppleCalendarViewDataSource, JTAppleCalendarViewDelegate{
+    func calendar(_ calendar: JTAppleCalendarView, willDisplay cell: JTAppleCell, forItemAt date: Date, cellState: CellState, indexPath: IndexPath) {
+        configureCell(view: cell, cellState: cellState)
+    }
+    
+     func calendar(_ calendar: JTAppleCalendarView, cellForItemAt date: Date, cellState: CellState, indexPath: IndexPath) -> JTAppleCell {
+           let cell = calendar.dequeueReusableJTAppleCell(withReuseIdentifier: "habitsDateCell", for: indexPath) as! habitsCellCalendarCell
+           self.calendar(calendar, willDisplay: cell, forItemAt: date, cellState: cellState, indexPath: indexPath)
+           //        if cellState.dateBelongsTo == .thisMonth {
+           //           cell.isHidden = false
+           //        } else {
+           //           cell.isHidden = true
+           //        }
+        if let hdt = habitData{
+            var sameDay = false
+            switch hdt.habitGoalPeriod {
+            case .daily:
+                let a = hdt.entriesList[date.startOfDay] ?? 0.0
+                cell.countLabel.text = a.description
+                sameDay = Calendar.current.isDate(date, equalTo: date.startOfDay, toGranularity: .day)
+            case .weekly:
+                let a = hdt.entriesList[date.startOfWeek] ?? 0.0
+                cell.countLabel.text = a.description
+                sameDay = Calendar.current.isDate(date, equalTo: date.startOfWeek, toGranularity: .day)
+            case .monthly:
+                let a = hdt.entriesList[date.startOfMonth] ?? 0.0
+                cell.countLabel.text = a.description
+                sameDay = Calendar.current.isDate(date, equalTo: date.startOfMonth, toGranularity: .day)
+            case .yearly:
+                let a = hdt.entriesList[date.startOfYear] ?? 0.0
+                cell.countLabel.text = a.description
+                sameDay = Calendar.current.isDate(date, equalTo: date.startOfYear, toGranularity: .day)
+            }
+            if sameDay{
+                print("is first day of categ")
+                if hdt.habitGoalPeriod != .daily{
+                    cell.contentView.layer.borderColor = #colorLiteral(red: 1, green: 0.1764705882, blue: 0.3333333333, alpha: 0.3976947623)
+                    cell.contentView.layer.borderWidth = 1
+                }
+            }else{
+                print("is not first day of categ")
+                cell.contentView.layer.borderWidth = 0
+            }
+        }else{
+            cell.countLabel.text = "noHdt"
+        }
+        return cell
+    }
+    
+    func configureCalendar(_ calendar: JTAppleCalendarView) -> ConfigurationParameters {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy MM dd"
+        
+//        let startDate = formatter.date(from: "2018 01 01")!
+        let startDate = habitData?.constructionDate ??  formatter.date(from: "2018 01 01")!
+        let endDate = habitData?.targetDate ?? Calendar.current.date(byAdding: .month, value: 3, to: Date())!
+        
+        if numberOfRows == 6 {
+            return ConfigurationParameters(startDate: startDate, endDate: endDate, numberOfRows: numberOfRows)
+        } else {
+            return ConfigurationParameters(startDate: startDate,
+                                           endDate: endDate,
+                                           numberOfRows: numberOfRows,
+                                           generateInDates: .forFirstMonthOnly,
+                                           generateOutDates: .off,
+                                           hasStrictBoundaries: false)
+        }
+    }
+    
+    func configureCell(view: JTAppleCell?, cellState: CellState) {
+            guard let cell = view as? habitsCellCalendarCell  else { return }
+            cell.dateLabel.text = cellState.text
+            handleCellTextColor(cell: cell, cellState: cellState)
+    //        handleCellSelected(cell: cell, cellState: cellState)
+        }
+    func handleCellTextColor(cell: habitsCellCalendarCell, cellState: CellState) {
+        if cellState.dateBelongsTo == .thisMonth {
+            cell.dateLabel.textColor = UIColor(named: "mainTextColor")
+        } else {
+            cell.dateLabel.textColor = UIColor(named: "subMainTextColor")
+        }
+    }
+    
+    //ask if to allow selectinog a cell
+    func calendar(_ calendar: JTAppleCalendarView, shouldSelectDate date: Date, cell: JTAppleCell?, cellState: CellState) -> Bool {
+//        if cellState.dateBelongsTo == .thisMonth{
+//            return true
+//        }else{
+//            return false
+//        }
+        return true
+    }
+    
+    //set header view
+    func calendar(_ calendar: JTAppleCalendarView, headerViewForDateRange range: (start: Date, end: Date), at indexPath: IndexPath) -> JTAppleCollectionReusableView {
+        let formatter = DateFormatter()  // Declare this outside, to avoid instancing this heavy class multiple times.
+        formatter.dateFormat = "MMM YYYY"
+        
+        let header = calendar.dequeueReusableJTAppleSupplementaryView(withReuseIdentifier: "habitDateHeader", for: indexPath) as! habitDateCellHeader
+        header.monthTitle.text = formatter.string(from: range.start)
+        return header
+    }
+
+    func calendarSizeForMonths(_ calendar: JTAppleCalendarView?) -> MonthSize? {
+        return MonthSize(defaultSize: 40)
     }
 }

@@ -12,6 +12,7 @@ import UserNotifications
 protocol habitsVCProtocol {
     func addHabitCard(_ newCard: habitCardData)
     func changeHabitCurentCount(at index: IndexPath, to count: Double)
+    func updated(indexpath: IndexPath)
 }
 struct HabitsData: Codable{
     var cardList = [habitCardData]()
@@ -47,7 +48,7 @@ class HabitsViewController: UIViewController {
         navigationController?.navigationBar.isTranslucent = true
         
         let attrs = [
-            NSAttributedString.Key.foregroundColor: UIColor(named: "mainTextColor") ,
+            NSAttributedString.Key.foregroundColor: UIColor.systemTeal ,
             NSAttributedString.Key.font: UIFont(name: "SnellRoundhand-Black", size: 30)!
         ]
         self.navigationController?.navigationBar.titleTextAttributes = attrs
@@ -149,6 +150,20 @@ extension HabitsViewController: habitsVCProtocol{
         habits.cardList.append(newCard)
         table.reloadData()
     }
+    func updated(indexpath: IndexPath) {
+        //TODO: maybe use this stord height method, but not required
+        
+        // Disabling animations gives us our desired behaviour
+        UIView.setAnimationsEnabled(false)
+        /* These will causes table cell heights to be recaluclated,
+         without reloading the entire cell */
+        table.beginUpdates()
+        table.endUpdates()
+        // Re-enable animations
+        UIView.setAnimationsEnabled(true)
+        
+        table.scrollToRow(at: indexpath, at: .bottom, animated: false)
+    }
 }
 extension HabitsViewController: UITableViewDataSource, UITableViewDelegate{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -190,7 +205,7 @@ extension HabitsViewController: UITableViewDataSource, UITableViewDelegate{
                                             completionHandler(true)
         })
         action.backgroundColor = .systemRed
-        
+
         if self.habits.cardList[indexPath.row].firstReminder != nil{
             var title="Unset"
             switch self.habits.cardList[indexPath.row].reminderValue {
@@ -228,11 +243,11 @@ extension HabitsViewController: UITableViewDataSource, UITableViewDelegate{
             default:
                 changeAlarm.backgroundColor = .systemYellow
             }
-            
+
             let configuration = UISwipeActionsConfiguration(actions: [action, changeAlarm])
             return configuration
         }
-        
+
         let configuration = UISwipeActionsConfiguration(actions: [action])
         return configuration
     }
@@ -296,17 +311,3 @@ extension HabitsViewController: UITableViewDataSource, UITableViewDelegate{
         })
     }
 }
-
-/*
- UNUserNotificationCenter.current().getPendingNotificationRequests { (notificationRequests) in
-     var identifiers: [String] = []
-     for notification:UNNotificationRequest in notificationRequests {
-         if notification.identifier == String(describing: (self.habits.cardList[indexPath.row].UniquIdentifier)) {
-             identifiers.append(notification.identifier)
-         }
-     }
-     print("removing notifs with identifiers \(identifiers)")
-     UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: identifiers)
- }
- 
- */
