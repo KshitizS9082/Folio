@@ -43,6 +43,7 @@ struct habitCardData: Codable {
         case notSet
     }
     var reminderValue = ReminderTime.notSet
+    var reminderValueBeforePausing = ReminderTime.notSet
     
     var entriesList : [Date: Double] = [:]
     
