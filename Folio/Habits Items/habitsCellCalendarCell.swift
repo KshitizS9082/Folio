@@ -14,7 +14,15 @@ class habitsCellCalendarCell: JTAppleCell {
      @IBOutlet var dateLabel: UILabel!
     @IBOutlet weak var countLabel: UILabel!
     
-    @IBOutlet weak var dateBackgroundView: UIView!
-    @IBOutlet weak var countBackgroundView: UIView!
+    @IBOutlet weak var dateBackgroundView: UIView!{
+        didSet{
+            dateBackgroundView.layer.cornerRadius=20
+        }
+    }
+    @IBOutlet weak var countBackgroundView: UIView!{
+        didSet{
+            countBackgroundView.layer.cornerRadius=countBackgroundView.layer.bounds.width/2
+        }
+    }
     
 }

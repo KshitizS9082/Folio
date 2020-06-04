@@ -684,39 +684,41 @@
                                                                 <autoresizingMask key="autoresizingMask"/>
                                                                 <subviews>
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NXV-gY-80K">
-                                                                        <rect key="frame" x="46.5" y="40" width="35" height="24.5"/>
+                                                                        <rect key="frame" x="44" y="36" width="40" height="40"/>
                                                                         <color key="backgroundColor" red="1" green="0.17332952570857241" blue="0.33152657969256716" alpha="0.20262984154929578" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                        <constraints>
+                                                                            <constraint firstAttribute="width" constant="40" id="9Sc-57-y9V"/>
+                                                                            <constraint firstAttribute="width" secondItem="NXV-gY-80K" secondAttribute="height" id="avL-HO-qs3"/>
+                                                                        </constraints>
                                                                     </view>
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Nd0-A2-Oid">
-                                                                        <rect key="frame" x="46.5" y="66" width="35" height="28"/>
-                                                                        <color key="backgroundColor" red="0.35294117650000001" green="0.7843137255" blue="0.98039215690000003" alpha="0.40132592429577463" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                        <rect key="frame" x="46.5" y="66.5" width="35" height="28"/>
+                                                                        <color key="backgroundColor" name="myBackgroundColor"/>
                                                                     </view>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="13" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jer-V2-WX9">
-                                                                        <rect key="frame" x="54.5" y="44" width="19" height="20.5"/>
-                                                                        <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                                                        <rect key="frame" x="55" y="46" width="18" height="20.5"/>
+                                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                         <color key="textColor" name="subMainTextColor"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="30" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WMJ-8e-0cv">
-                                                                        <rect key="frame" x="54.5" y="66" width="19" height="20"/>
-                                                                        <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="17"/>
-                                                                        <color key="textColor" name="mainTextColor"/>
-                                                                        <nil key="highlightedColor"/>
+                                                                        <rect key="frame" x="54.5" y="66.5" width="19" height="20"/>
+                                                                        <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="17"/>
+                                                                        <color key="textColor" systemColor="systemTealColor" red="0.35294117650000001" green="0.7843137255" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                        <color key="highlightedColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                                     </label>
                                                                 </subviews>
                                                                 <constraints>
-                                                                    <constraint firstItem="NXV-gY-80K" firstAttribute="leading" secondItem="Jer-V2-WX9" secondAttribute="leading" constant="-8" id="ANP-1V-RLi"/>
+                                                                    <constraint firstItem="NXV-gY-80K" firstAttribute="centerY" secondItem="Jer-V2-WX9" secondAttribute="centerY" id="2hT-2a-PJc"/>
                                                                     <constraint firstItem="Nd0-A2-Oid" firstAttribute="top" secondItem="WMJ-8e-0cv" secondAttribute="top" id="C5W-Ru-jO2"/>
-                                                                    <constraint firstItem="NXV-gY-80K" firstAttribute="top" secondItem="Jer-V2-WX9" secondAttribute="top" constant="-4" id="Dvw-rA-ega"/>
                                                                     <constraint firstItem="Nd0-A2-Oid" firstAttribute="trailing" secondItem="WMJ-8e-0cv" secondAttribute="trailing" constant="8" id="GWR-9u-7ic"/>
                                                                     <constraint firstItem="Nd0-A2-Oid" firstAttribute="leading" secondItem="WMJ-8e-0cv" secondAttribute="leading" constant="-8" id="Hz8-tW-6lM"/>
-                                                                    <constraint firstItem="Jer-V2-WX9" firstAttribute="centerY" secondItem="tvN-zR-KmK" secondAttribute="centerY" constant="-10" id="RzJ-t5-q0V"/>
+                                                                    <constraint firstItem="NXV-gY-80K" firstAttribute="centerX" secondItem="Jer-V2-WX9" secondAttribute="centerX" id="Rlg-26-tBz"/>
+                                                                    <constraint firstItem="Jer-V2-WX9" firstAttribute="centerY" secondItem="tvN-zR-KmK" secondAttribute="centerY" constant="-8" id="RzJ-t5-q0V"/>
                                                                     <constraint firstItem="WMJ-8e-0cv" firstAttribute="centerX" secondItem="tvN-zR-KmK" secondAttribute="centerX" id="Vk2-hg-k8Q"/>
-                                                                    <constraint firstItem="WMJ-8e-0cv" firstAttribute="top" secondItem="Jer-V2-WX9" secondAttribute="bottom" constant="1.5" id="euN-3M-H88"/>
-                                                                    <constraint firstItem="NXV-gY-80K" firstAttribute="trailing" secondItem="Jer-V2-WX9" secondAttribute="trailing" constant="8" id="gvy-BM-HNn"/>
+                                                                    <constraint firstItem="WMJ-8e-0cv" firstAttribute="top" secondItem="Jer-V2-WX9" secondAttribute="bottom" id="euN-3M-H88"/>
                                                                     <constraint firstItem="Jer-V2-WX9" firstAttribute="centerX" secondItem="tvN-zR-KmK" secondAttribute="centerX" id="hZC-Ri-aeD"/>
                                                                     <constraint firstItem="Nd0-A2-Oid" firstAttribute="bottom" secondItem="WMJ-8e-0cv" secondAttribute="bottom" constant="8" id="oDh-fa-Ekd"/>
-                                                                    <constraint firstItem="NXV-gY-80K" firstAttribute="bottom" secondItem="Jer-V2-WX9" secondAttribute="bottom" id="yvq-mc-iBT"/>
                                                                 </constraints>
                                                             </collectionViewCellContentView>
                                                             <connections>
