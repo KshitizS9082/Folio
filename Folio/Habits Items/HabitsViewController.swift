@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import UserNotifications
+
 protocol habitsVCProtocol {
     func addHabitCard(_ newCard: habitCardData)
     func changeHabitCurentCount(at index: IndexPath, to count: Double)
@@ -95,8 +97,8 @@ class HabitsViewController: UIViewController {
                }
            }
        }
+    
     // MARK: - Navigation
-
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
@@ -139,7 +141,7 @@ extension HabitsViewController: habitsVCProtocol{
 //        habits.cardList[index.row].entriesList[x]=count.advanced(by: -1.0)
         
         table.reloadRows(at: [index], with: .automatic)
-        print("dict = \( habits.cardList[index.row].entriesList)")
+//        print("dict = \( habits.cardList[index.row].entriesList)")
     }
     
     func addHabitCard(_ newCard: habitCardData) {
@@ -159,6 +161,20 @@ extension HabitsViewController: UITableViewDataSource, UITableViewDelegate{
         cell.delegate=self
         cell.index=indexPath
         cell.habitData = habits.cardList[indexPath.row]
+        if let lastDate = cell.habitData?.targetDate{
+            if Date()>lastDate{
+                UNUserNotificationCenter.current().getPendingNotificationRequests { (notificationRequests) in
+                    var identifiers: [String] = []
+                    for notification:UNNotificationRequest in notificationRequests {
+                        if notification.identifier == String(describing: (cell.habitData?.UniquIdentifier)) {
+                            identifiers.append(notification.identifier)
+                        }
+                    }
+                    print("removing notifs with identifiers \(identifiers)")
+                    UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: identifiers)
+                }
+            }
+        }
         cell.backgroundColor = .clear
         cell.awakeFromNib()
         return cell

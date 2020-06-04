@@ -102,7 +102,6 @@ class habitTableViewCell: UITableViewCell {
 //        awakeFromNib()
     }
     
-
 }
 extension habitTableViewCell{
     var cornerRadius: CGFloat{

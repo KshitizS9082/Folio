@@ -11,6 +11,7 @@ import Foundation
 struct habitCardData: Codable {
     var UniquIdentifier=UUID()
     var constructionDate = Date()
+    var firstReminder: Date?
     var targetDate: Date?
     var title = ""
     enum HabitStyle: String, Codable {
@@ -28,11 +29,16 @@ struct habitCardData: Codable {
     
     var goalCount = 0.0
     enum ReminderTime: String, Codable {
-        case morning
-        case noon
-        case night
-        case fifteenMinute
-        case oneHour
+//        case morning
+//        case noon
+//        case night
+//        case fifteenMinute
+//        case oneHour
+//        case notSet
+        case daily
+        case weekly
+        case monthly
+        case yearly
         case notSet
     }
     var reminderValue = ReminderTime.notSet

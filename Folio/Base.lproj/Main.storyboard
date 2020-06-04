@@ -870,44 +870,44 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="goalCountCellIdentifier" id="jCJ-eF-60t" customClass="addHabbitGoalCountTableViewCell" customModule="Folio" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="332.5" width="414" height="103"/>
+                                        <rect key="frame" x="0.0" y="332.5" width="414" height="103.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="jCJ-eF-60t" id="SSN-cY-OOf">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="103"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="103.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Goal Count:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ydu-dw-rDd">
-                                                    <rect key="frame" x="20" y="20" width="91" height="21"/>
+                                                    <rect key="frame" x="20" y="20" width="91" height="21.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="per day" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C74-aR-Z4C">
-                                                    <rect key="frame" x="89.5" y="56.5" width="57.5" height="21"/>
+                                                    <rect key="frame" x="89.5" y="57" width="57.5" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="33l-fU-Owr">
-                                                    <rect key="frame" x="61.5" y="56.5" width="8" height="21"/>
+                                                    <rect key="frame" x="61.5" y="57" width="8" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="TCd-ax-A4n">
-                                                    <rect key="frame" x="183" y="51" width="94" height="32"/>
+                                                    <rect key="frame" x="183" y="51.5" width="94" height="32"/>
                                                     <connections>
                                                         <action selector="stepperClick:" destination="jCJ-eF-60t" eventType="valueChanged" id="jqM-TA-Ozl"/>
                                                     </connections>
                                                 </stepper>
                                                 <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="hSd-Jz-cdX">
-                                                    <rect key="frame" x="300" y="51" width="94" height="32"/>
+                                                    <rect key="frame" x="300" y="51.5" width="94" height="32"/>
                                                     <connections>
                                                         <action selector="decimalStepperClick:" destination="jCJ-eF-60t" eventType="valueChanged" id="PCR-41-boh"/>
                                                     </connections>
                                                 </stepper>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xUd-pK-VBu">
-                                                    <rect key="frame" x="285" y="56.5" width="7" height="21"/>
+                                                    <rect key="frame" x="285" y="57" width="7" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" weight="black" pointSize="18"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -937,10 +937,10 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="reminderValuesCellIdentifier" id="gT1-1z-ZF4" customClass="addHabbitReminderValueTableViewCell" customModule="Folio" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="435.5" width="414" height="107.5"/>
+                                        <rect key="frame" x="0.0" y="436" width="414" height="240"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="gT1-1z-ZF4" id="Yem-TM-XCR">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="107.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="240"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Reminder Value:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yjJ-a4-HVZ">
@@ -956,58 +956,71 @@
                                                     </connections>
                                                 </switch>
                                                 <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="mIk-eL-96f">
-                                                    <rect key="frame" x="20" y="56" width="374" height="32.5"/>
+                                                    <rect key="frame" x="20" y="56" width="279" height="32.5"/>
                                                     <segments>
-                                                        <segment title="Morning"/>
-                                                        <segment title="Noon"/>
-                                                        <segment title="Night"/>
-                                                        <segment title="T-15 min. "/>
-                                                        <segment title="T-1 hr."/>
+                                                        <segment title="Daily"/>
+                                                        <segment title="Weekly"/>
+                                                        <segment title="Monthly"/>
+                                                        <segment title="Yearly"/>
                                                     </segments>
                                                     <color key="selectedSegmentTintColor" systemColor="systemGray4Color" red="0.81960784310000001" green="0.81960784310000001" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <connections>
                                                         <action selector="segmentChanged:" destination="gT1-1z-ZF4" eventType="valueChanged" id="BTE-0g-e4Y"/>
                                                     </connections>
                                                 </segmentedControl>
+                                                <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="wId-NB-EYS">
+                                                    <rect key="frame" x="0.0" y="95" width="414" height="125"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="125" id="sk8-or-eTG"/>
+                                                    </constraints>
+                                                    <connections>
+                                                        <action selector="datePickerDidChange:" destination="gT1-1z-ZF4" eventType="valueChanged" id="37G-Hl-vAB"/>
+                                                    </connections>
+                                                </datePicker>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="xTg-ka-3Xh" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="yjJ-a4-HVZ" secondAttribute="trailing" constant="8" symbolic="YES" id="7bs-wN-ZNS"/>
-                                                <constraint firstAttribute="bottom" secondItem="mIk-eL-96f" secondAttribute="bottom" constant="20" id="Lxz-DT-x2M"/>
+                                                <constraint firstAttribute="trailing" secondItem="wId-NB-EYS" secondAttribute="trailing" id="Mvf-Re-jEC"/>
                                                 <constraint firstItem="mIk-eL-96f" firstAttribute="top" secondItem="yjJ-a4-HVZ" secondAttribute="bottom" constant="15" id="OUM-HZ-5VU"/>
                                                 <constraint firstItem="yjJ-a4-HVZ" firstAttribute="leading" secondItem="Yem-TM-XCR" secondAttribute="leading" constant="20" id="RYU-X0-jJm"/>
                                                 <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="mIk-eL-96f" secondAttribute="trailing" constant="20" id="VLF-pm-FqY"/>
                                                 <constraint firstItem="yjJ-a4-HVZ" firstAttribute="top" secondItem="Yem-TM-XCR" secondAttribute="top" constant="20" id="bEu-0A-JNP"/>
                                                 <constraint firstItem="xTg-ka-3Xh" firstAttribute="centerY" secondItem="yjJ-a4-HVZ" secondAttribute="centerY" id="iXQ-Fh-WuD"/>
+                                                <constraint firstAttribute="bottom" secondItem="wId-NB-EYS" secondAttribute="bottom" constant="20" id="rk1-Xq-cJ9"/>
                                                 <constraint firstAttribute="trailing" secondItem="xTg-ka-3Xh" secondAttribute="trailing" constant="20" id="t5X-LK-l3G"/>
+                                                <constraint firstItem="wId-NB-EYS" firstAttribute="top" secondItem="mIk-eL-96f" secondAttribute="bottom" constant="7.5" id="t79-cg-PcI"/>
                                                 <constraint firstItem="mIk-eL-96f" firstAttribute="leading" secondItem="yjJ-a4-HVZ" secondAttribute="leading" id="u3p-Av-dvf"/>
+                                                <constraint firstItem="wId-NB-EYS" firstAttribute="leading" secondItem="Yem-TM-XCR" secondAttribute="leading" id="wGc-q1-NH7"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="datePicker" destination="wId-NB-EYS" id="LBt-Yt-FFl"/>
+                                            <outlet property="datePickerHeightConstraint" destination="sk8-or-eTG" id="RJ6-nO-ERH"/>
                                             <outlet property="segment" destination="mIk-eL-96f" id="dlc-kx-wUl"/>
                                             <outlet property="switchButton" destination="xTg-ka-3Xh" id="92l-sF-fsw"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="targetDateCellIdentifier" id="7eW-ID-gqg" customClass="addHabbitTargetDateTableViewCell" customModule="Folio" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="543" width="414" height="231.5"/>
+                                        <rect key="frame" x="0.0" y="676" width="414" height="231"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="7eW-ID-gqg" id="f2H-YV-0rZ">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="231.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="231"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Targe Date:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UkP-vX-mWE">
-                                                    <rect key="frame" x="20" y="20" width="88" height="21.5"/>
+                                                    <rect key="frame" x="20" y="20" width="88" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Uoh-i3-mH0">
-                                                    <rect key="frame" x="345" y="15.5" width="51" height="31"/>
+                                                    <rect key="frame" x="345" y="15" width="51" height="31"/>
                                                     <connections>
                                                         <action selector="switchButtonClick:" destination="7eW-ID-gqg" eventType="valueChanged" id="aCu-DK-emM"/>
                                                     </connections>
                                                 </switch>
                                                 <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="KNC-N4-FUX">
-                                                    <rect key="frame" x="0.0" y="61.5" width="414" height="150"/>
+                                                    <rect key="frame" x="0.0" y="61" width="414" height="150"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="150" id="98n-F2-BAy"/>
                                                     </constraints>

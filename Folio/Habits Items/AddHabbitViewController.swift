@@ -12,8 +12,9 @@ protocol addHabiitVCProtocol {
     func setHabitStyle(_ style: habitCardData.HabitStyle)
     func setHabitGoalPeriod(_ period: habitCardData.recurencePeriod)
     func setHabitGoalCount(_ count: Double)
-    func setReminderValue(_ reminderValue: habitCardData.ReminderTime)
+    func setReminderValue(_ reminderValue: habitCardData.ReminderTime, firstDate: Date?)
     func setHabitTargetDate(_ targetDate: Date?)
+    func showNotificationNotPresentAlert()
     func updated(indexpath: IndexPath)
 }
 
@@ -41,6 +42,7 @@ class AddHabbitViewController: UIViewController {
     }
     @IBAction func handleCancelButton(_ sender: Any) {
         print("in handle cancel")
+        unSetReminder()
         self.dismiss(animated: true, completion: nil)
     }
     
@@ -48,21 +50,81 @@ class AddHabbitViewController: UIViewController {
         print("in handle done")
         if card.title.count>0{
             delegate?.addHabitCard(card)
+        }else{
+            unSetReminder()
         }
         self.dismiss(animated: true, completion: nil)
     }
     
     
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    func setReminder(with reminderTime: Date){
+        UNUserNotificationCenter.current().getPendingNotificationRequests { (notificationRequests) in
+            var identifiers: [String] = []
+            for notification:UNNotificationRequest in notificationRequests {
+                if notification.identifier == String(describing: (self.card.UniquIdentifier)) {
+                    identifiers.append(notification.identifier)
+                }
+            }
+            print("removing notifs with identifiers \(identifiers)")
+            UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: identifiers)
+        }
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound], completionHandler: { success, error in
+            if success {
+                // schedule test
+                print("scheduling a test")
+                let content = UNMutableNotificationContent()
+                content.title = self.card.title
+                content.sound = .default
+                content.body = "You have a scheduled reminder"
+                
+                //                let targetDate = Date().addingTimeInterval(5)
+                //TODO: Change according to recurrence
+                let targetDate = self.card.firstReminder!
+                print("setting reminder to \(targetDate)")
+                var trigger = UNCalendarNotificationTrigger(dateMatching: Calendar.current.dateComponents([.year, .month, .day, .hour, .minute, .second],from: targetDate), repeats: false)
+                switch self.card.reminderValue {
+                case .daily:
+                    print("daily")
+                    trigger = UNCalendarNotificationTrigger(dateMatching: Calendar.current.dateComponents([.hour, .minute, .second],from: targetDate), repeats: true)
+                case .weekly:
+                    print("weekly")
+                    trigger = UNCalendarNotificationTrigger(dateMatching: Calendar.current.dateComponents([.weekday ,.hour, .minute, .second],from: targetDate), repeats: true)
+                case .monthly:
+                    print("monthly")
+                    trigger = UNCalendarNotificationTrigger(dateMatching: Calendar.current.dateComponents([.day ,.hour, .minute, .second],from: targetDate), repeats: true)
+                case .yearly:
+                    print("yearly")
+                    trigger = UNCalendarNotificationTrigger(dateMatching: Calendar.current.dateComponents([.month ,.day ,.hour, .minute, .second],from: targetDate), repeats: true)
+                case .notSet:
+                    print("not setting")
+                    return
+                }
+                
+                let request = UNNotificationRequest(identifier: String(describing: (self.card.UniquIdentifier)), content: content, trigger: trigger)
+                UNUserNotificationCenter.current().add(request, withCompletionHandler: { error in
+                    if error != nil {
+                        print("something went wrong")
+                    }
+                })
+            }
+            else if error != nil {
+                print("error occurred")
+            }
+        })
     }
-    */
-
+    func unSetReminder(){
+        UNUserNotificationCenter.current().getPendingNotificationRequests { (notificationRequests) in
+            var identifiers: [String] = []
+            for notification:UNNotificationRequest in notificationRequests {
+                if notification.identifier == String(describing: (self.card.UniquIdentifier)) {
+                    identifiers.append(notification.identifier)
+                }
+            }
+            print("removing notifs with identifiers \(identifiers)")
+            UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: identifiers)
+        }
+    }
+    
 }
 
 extension AddHabbitViewController: UITableViewDataSource, UITableViewDelegate{
@@ -99,6 +161,7 @@ extension AddHabbitViewController: UITableViewDataSource, UITableViewDelegate{
         case 4:
             let cell = tableView.dequeueReusableCell(withIdentifier: "reminderValuesCellIdentifier") as! addHabbitReminderValueTableViewCell
             cell.delegate=self
+            cell.index = indexPath
             cell.selectionStyle = .none
             cell.reminderValue = card.reminderValue
             cell.backgroundColor = UIColor(named: "myBackgroundColor")
@@ -115,7 +178,6 @@ extension AddHabbitViewController: UITableViewDataSource, UITableViewDelegate{
             return UITableViewCell()
         }
     }
-    
 }
 
 extension AddHabbitViewController: addHabiitVCProtocol{
@@ -135,9 +197,16 @@ extension AddHabbitViewController: addHabiitVCProtocol{
     func setHabitGoalPeriod(_ period: habitCardData.recurencePeriod) {
         self.card.habitGoalPeriod = period
     }
-    
-    func setReminderValue(_ reminderValue: habitCardData.ReminderTime) {
+    //TODO: make reminder recurring
+    func setReminderValue(_ reminderValue: habitCardData.ReminderTime, firstDate: Date?) {
         self.card.reminderValue = reminderValue
+        self.card.firstReminder = firstDate
+        print("new card value = \(self.card)")
+        if let date = firstDate{
+            setReminder(with: date)
+        }else{
+            unSetReminder()
+        }
     }
     
     func setHabitTargetDate(_ targetDate: Date?) {
@@ -157,5 +226,13 @@ extension AddHabbitViewController: addHabiitVCProtocol{
         
         table.scrollToRow(at: indexpath, at: .bottom, animated: false)
     }
-    
+    func showNotificationNotPresentAlert(){
+        let alert = UIAlertController(title: "We Don't have permision to notify you :(", message: "Please enable them from settings>App>Notfication ;)", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Ok Sure :)", style: .default, handler: { (action) in
+            UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { (succes, error) in
+                print("autho \(succes)")
+            }
+        }))
+        self.present(alert, animated: true)
+    }
 }
