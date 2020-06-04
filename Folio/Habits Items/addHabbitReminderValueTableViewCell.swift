@@ -66,6 +66,8 @@ class addHabbitReminderValueTableViewCell: UITableViewCell {
                 delegate?.setReminderValue(.monthly, firstDate: firstReminderDate)
             case 3:
                 delegate?.setReminderValue(.yearly, firstDate: firstReminderDate)
+            case 4:
+                delegate?.setReminderValue(.nonRepeating, firstDate: firstReminderDate)
             default:
                 print("ERROR: unhandled index in addHabbitReminderValueTableViewCell")
             }
@@ -89,6 +91,8 @@ class addHabbitReminderValueTableViewCell: UITableViewCell {
             delegate?.setReminderValue(.monthly, firstDate: firstReminderDate)
         case 3:
             delegate?.setReminderValue(.yearly, firstDate: firstReminderDate)
+        case 4:
+            delegate?.setReminderValue(.nonRepeating, firstDate: firstReminderDate)
         default:
             print("ERROR: unhandled index in addHabbitReminderValueTableViewCell")
         }
@@ -104,6 +108,8 @@ class addHabbitReminderValueTableViewCell: UITableViewCell {
             delegate?.setReminderValue(.monthly, firstDate: firstReminderDate)
         case 3:
             delegate?.setReminderValue(.yearly, firstDate: firstReminderDate)
+        case 4:
+            delegate?.setReminderValue(.nonRepeating, firstDate: firstReminderDate)
         default:
             print("ERROR: unhandled index in addHabbitReminderValueTableViewCell")
         }

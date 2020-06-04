@@ -73,9 +73,9 @@ class AddHabbitViewController: UIViewController {
                 // schedule test
                 print("scheduling a test")
                 let content = UNMutableNotificationContent()
-                content.title = self.card.title
+                content.title = "Habit: " + self.card.title
                 content.sound = .default
-                content.body = "You have a scheduled reminder"
+                content.body = "Habit: " + self.card.title
                 
                 //                let targetDate = Date().addingTimeInterval(5)
                 //TODO: Change according to recurrence
@@ -95,6 +95,9 @@ class AddHabbitViewController: UIViewController {
                 case .yearly:
                     print("yearly")
                     trigger = UNCalendarNotificationTrigger(dateMatching: Calendar.current.dateComponents([.month ,.day ,.hour, .minute, .second],from: targetDate), repeats: true)
+                case .nonRepeating:
+                    print("non repeating")
+                    trigger = UNCalendarNotificationTrigger(dateMatching: Calendar.current.dateComponents([.year, .month, .day, .hour, .minute, .second],from: targetDate), repeats: false)
                 case .notSet:
                     print("not setting")
                     return

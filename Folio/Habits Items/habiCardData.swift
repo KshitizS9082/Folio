@@ -35,6 +35,7 @@ struct habitCardData: Codable {
 //        case fifteenMinute
 //        case oneHour
 //        case notSet
+        case nonRepeating
         case daily
         case weekly
         case monthly
