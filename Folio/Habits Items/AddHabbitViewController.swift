@@ -13,8 +13,8 @@ protocol addHabiitVCProtocol {
     func setHabitGoalPeriod(_ period: habitCardData.recurencePeriod)
     func setHabitGoalCount(_ count: Double)
     func setReminderValue(_ reminderValue: habitCardData.ReminderTime, firstDate: Date?)
-    func setHabitTargetDate(_ targetDate: Date?)
     func showNotificationNotPresentAlert()
+    func setHabitTargetDate(_ targetDate: Date?)
     func updated(indexpath: IndexPath)
 }
 

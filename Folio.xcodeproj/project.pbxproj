@@ -72,6 +72,10 @@
 		E284B6242472D9BD00CC6465 /* uniqueFileName.swift in Sources */ = {isa = PBXBuildFile; fileRef = E284B6232472D9BD00CC6465 /* uniqueFileName.swift */; };
 		E291F00B24873B3D0006D147 /* habitTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E291F00A24873B3D0006D147 /* habitTableViewCell.swift */; };
 		E291F00D24875B900006D147 /* weekExtractFromDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E291F00C24875B900006D147 /* weekExtractFromDate.swift */; };
+		E29A586B248A360D00FA7D7C /* newEditCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E29A586A248A360D00FA7D7C /* newEditCardViewController.swift */; };
+		E29A586D248A383B00FA7D7C /* cardTitleAndDateTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E29A586C248A383B00FA7D7C /* cardTitleAndDateTableViewCell.swift */; };
+		E29A586F248A385600FA7D7C /* cardTypeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E29A586E248A385600FA7D7C /* cardTypeTableViewCell.swift */; };
+		E29A5871248A386100FA7D7C /* cardReminderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E29A5870248A386100FA7D7C /* cardReminderTableViewCell.swift */; };
 		E2A35B522488C38900FDF4C6 /* habitsCellCalendarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A35B512488C38900FDF4C6 /* habitsCellCalendarCell.swift */; };
 		E2A35B542488EC3200FDF4C6 /* habitDateCellHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A35B532488EC3200FDF4C6 /* habitDateCellHeader.swift */; };
 		E2B1D0542483EEA100BA8C7D /* MKPointAnnotation-Codable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2B1D0532483EEA100BA8C7D /* MKPointAnnotation-Codable.swift */; };
@@ -185,6 +189,10 @@
 		E284B6232472D9BD00CC6465 /* uniqueFileName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = uniqueFileName.swift; sourceTree = "<group>"; };
 		E291F00A24873B3D0006D147 /* habitTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = habitTableViewCell.swift; sourceTree = "<group>"; };
 		E291F00C24875B900006D147 /* weekExtractFromDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = weekExtractFromDate.swift; sourceTree = "<group>"; };
+		E29A586A248A360D00FA7D7C /* newEditCardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = newEditCardViewController.swift; sourceTree = "<group>"; };
+		E29A586C248A383B00FA7D7C /* cardTitleAndDateTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = cardTitleAndDateTableViewCell.swift; sourceTree = "<group>"; };
+		E29A586E248A385600FA7D7C /* cardTypeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = cardTypeTableViewCell.swift; sourceTree = "<group>"; };
+		E29A5870248A386100FA7D7C /* cardReminderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = cardReminderTableViewCell.swift; sourceTree = "<group>"; };
 		E2A35B512488C38900FDF4C6 /* habitsCellCalendarCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = habitsCellCalendarCell.swift; sourceTree = "<group>"; };
 		E2A35B532488EC3200FDF4C6 /* habitDateCellHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = habitDateCellHeader.swift; sourceTree = "<group>"; };
 		E2B1D0532483EEA100BA8C7D /* MKPointAnnotation-Codable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MKPointAnnotation-Codable.swift"; sourceTree = "<group>"; };
@@ -378,9 +386,13 @@
 			children = (
 				E25BA4EF24715A29000D1DF7 /* cardView.swift */,
 				E25BA4F324716196000D1DF7 /* EditCardViewController.swift */,
+				E29A586A248A360D00FA7D7C /* newEditCardViewController.swift */,
 				E25BA4F5247163CD000D1DF7 /* checkListFullViewController.swift */,
 				E25BA4F6247163CD000D1DF7 /* drawingCardFullViewController.swift */,
 				E25BA4F7247163CE000D1DF7 /* NotesFullViewController.swift */,
+				E29A586C248A383B00FA7D7C /* cardTitleAndDateTableViewCell.swift */,
+				E29A586E248A385600FA7D7C /* cardTypeTableViewCell.swift */,
+				E29A5870248A386100FA7D7C /* cardReminderTableViewCell.swift */,
 			);
 			path = "Big Card Items";
 			sourceTree = "<group>";
@@ -726,6 +738,7 @@
 				E252B090246C4E6D003F8718 /* PageViewController.swift in Sources */,
 				E26FD6AB24828DF1004DA918 /* journalMediaTableViewCell.swift in Sources */,
 				E2B1D0542483EEA100BA8C7D /* MKPointAnnotation-Codable.swift in Sources */,
+				E29A586D248A383B00FA7D7C /* cardTitleAndDateTableViewCell.swift in Sources */,
 				E25BA4F224716130000D1DF7 /* SmallCardInfoViewController.swift in Sources */,
 				E252B08E246C4AD7003F8718 /* SwitchPageTimelineViewController.swift in Sources */,
 				E252B049246C4041003F8718 /* AppDelegate.swift in Sources */,
@@ -737,6 +750,7 @@
 				E26FD6B02482AD0D004DA918 /* journalImagePickerManager.swift in Sources */,
 				E2FEE2B2247CC24200DD7069 /* DateHeader.swift in Sources */,
 				E2E152662486564C00079B79 /* addHabbitReminderValueTableViewCell.swift in Sources */,
+				E29A586F248A385600FA7D7C /* cardTypeTableViewCell.swift in Sources */,
 				E25BA51A24728AA9000D1DF7 /* MediaCardTableViewCell.swift in Sources */,
 				E25BA50D2472285F000D1DF7 /* pickImage.swift in Sources */,
 				E252B08C246C4681003F8718 /* PageListViewController.swift in Sources */,
@@ -760,6 +774,7 @@
 				E25BA50924721F93000D1DF7 /* SCardCollectionViewCell.swift in Sources */,
 				E2E1525E2486426700079B79 /* habiCardData.swift in Sources */,
 				E216884F2475965500D079A4 /* DrawingView.swift in Sources */,
+				E29A586B248A360D00FA7D7C /* newEditCardViewController.swift in Sources */,
 				E25BA50B24721F93000D1DF7 /* GalleryFlowLayout.swift in Sources */,
 				E2E1525A248604CC00079B79 /* HabitsViewController.swift in Sources */,
 				E252B07E246C44DF003F8718 /* UnderlinedTextView.swift in Sources */,
@@ -774,6 +789,7 @@
 				E25BA4FA247163CE000D1DF7 /* NotesFullViewController.swift in Sources */,
 				E25BA4FF24716DC0000D1DF7 /* ImagePickerManager.swift in Sources */,
 				E26FD6AD2482A4FB004DA918 /* journalLocationTableViewCell.swift in Sources */,
+				E29A5871248A386100FA7D7C /* cardReminderTableViewCell.swift in Sources */,
 				E252B083246C45E6003F8718 /* checkListItem.swift in Sources */,
 				E25BA51624727B79000D1DF7 /* BigcardTimelineTableViewCell.swift in Sources */,
 				E252B089246C4620003F8718 /* smallCard.swift in Sources */,

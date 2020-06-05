@@ -332,6 +332,18 @@ class PageViewController: UIViewController {
             }
         }
     }
+    
+    //variables for show big card edit view segure
+    var bigCardViewLinkedTo: cardView?
+    var bigCardForLinkedView = Card()
+    
+    //MARK: Navigaion
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let vc = segue.destination as? newEditCardViewController{
+            vc.viewLinkedTo=bigCardViewLinkedTo
+            vc.card=self.bigCardForLinkedView
+        }
+    }
 }
 extension PageViewController{
     var basePageViewHeight: CGFloat{
@@ -415,24 +427,27 @@ extension PageViewController: pageProtocol{
     
     func showCardEditView(for cardView: cardView) {
         print("inside showCardEditView")
-        let controller = EditCardViewController()
-        let transitionDelegate = SPStorkTransitioningDelegate()
-        transitionDelegate.customHeight = 500
-        transitionDelegate.showIndicator = true
-        transitionDelegate.indicatorColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
-        transitionDelegate.indicatorMode = .auto
-        transitionDelegate.hideIndicatorWhenScroll = true
-        transitionDelegate.showCloseButton = true
-        transitionDelegate.swipeToDismissEnabled = true
-        transitionDelegate.tapAroundToDismissEnabled = true
-        controller.transitioningDelegate = transitionDelegate
-        controller.modalPresentationStyle = .custom
-        controller.modalPresentationCapturesStatusBarAppearance = true
-        transitionDelegate.hapticMoments = [.willPresent, .willDismiss]
-        transitionDelegate.cornerRadius = 10
-        controller.card=cardView.card
-        controller.viewLinkedTo=cardView
-        self.present(controller, animated: true, completion: nil)
+//        let controller = EditCardViewController()
+//        let transitionDelegate = SPStorkTransitioningDelegate()
+//        transitionDelegate.customHeight = 500
+//        transitionDelegate.showIndicator = true
+//        transitionDelegate.indicatorColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
+//        transitionDelegate.indicatorMode = .auto
+//        transitionDelegate.hideIndicatorWhenScroll = true
+//        transitionDelegate.showCloseButton = true
+//        transitionDelegate.swipeToDismissEnabled = true
+//        transitionDelegate.tapAroundToDismissEnabled = true
+//        controller.transitioningDelegate = transitionDelegate
+//        controller.modalPresentationStyle = .custom
+//        controller.modalPresentationCapturesStatusBarAppearance = true
+//        transitionDelegate.hapticMoments = [.willPresent, .willDismiss]
+//        transitionDelegate.cornerRadius = 10
+//        controller.card=cardView.card
+//        controller.viewLinkedTo=cardView
+//        self.present(controller, animated: true, completion: nil)
+        self.bigCardViewLinkedTo=cardView
+        self.bigCardForLinkedView=cardView.card
+        performSegue(withIdentifier: "bigCardEditViewSegue", sender: self)
         
     }
     func showSmallCardInfoView(for cardView: SmallCardView) {

@@ -325,6 +325,7 @@ class EditCardViewController: UIViewController, UITextViewDelegate, UIPickerView
         //done button & cancel button
         let doneButton = UIBarButtonItem(title: "Set", style: .done, target: self, action: #selector(doneCardTypeChange));
         let spaceButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.flexibleSpace, target: nil, action: nil)
+        //MISTAKE: should be cancleCardTypeChange
         let cancelButton = UIBarButtonItem(title: "Cancel", style: .done, target: self, action: #selector(cancelDatePicker));
         let centerButton = UIBarButtonItem(title: "Card Type", style: .plain, target: nil, action: nil)
         toolbar.setItems([cancelButton,spaceButton,centerButton,spaceButton,doneButton], animated: false)

@@ -274,7 +274,7 @@ extension habitTableViewCell: JTAppleCalendarViewDataSource, JTAppleCalendarView
 //        }else{
 //            return false
 //        }
-        return true
+        return false
     }
     
     //set header view
