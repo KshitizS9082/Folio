@@ -556,10 +556,10 @@
                                 <color key="backgroundColor" name="myBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="bigCardEdVTitleCell" id="WvX-2I-0gq" customClass="cardTitleAndDateTableViewCell" customModule="Folio" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="414" height="150"/>
+                                        <rect key="frame" x="0.0" y="28" width="414" height="168.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="WvX-2I-0gq" id="pyk-Ua-OWh">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="150"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="168.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" text="Sample text for title label in big card edit view" textAlignment="natural" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hqM-gy-GWH">
@@ -569,28 +569,28 @@
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences" enablesReturnKeyAutomatically="YES"/>
                                                 </textView>
                                                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Event Start Date" placeholder="Event Start Date" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="K9X-xH-Bs8">
-                                                    <rect key="frame" x="20" y="100" width="131" height="22"/>
+                                                    <rect key="frame" x="20" y="118.5" width="131" height="22"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <color key="textColor" name="subMainTextColor"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                 </textField>
                                                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Even End Date" placeholder="Even End Date" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ZC7-jN-Cen">
-                                                    <rect key="frame" x="279" y="100" width="115" height="22"/>
+                                                    <rect key="frame" x="279" y="118.5" width="115" height="22"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <color key="textColor" name="subMainTextColor"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                 </textField>
                                                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Time" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="259-cl-tXp">
-                                                    <rect key="frame" x="20" y="123" width="34" height="19.5"/>
+                                                    <rect key="frame" x="20" y="141.5" width="34" height="19.5"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <color key="textColor" name="subMainTextColor"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                 </textField>
                                                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Time" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="77e-H4-FCJ">
-                                                    <rect key="frame" x="360" y="123" width="34" height="19.5"/>
+                                                    <rect key="frame" x="360" y="141.5" width="34" height="19.5"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <color key="textColor" name="subMainTextColor"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
@@ -611,7 +611,7 @@
                                                 <constraint firstItem="ZC7-jN-Cen" firstAttribute="trailing" secondItem="hqM-gy-GWH" secondAttribute="trailing" id="fFH-TX-i9x"/>
                                                 <constraint firstAttribute="bottom" secondItem="259-cl-tXp" secondAttribute="bottom" constant="7.5" id="gE2-pj-vdF"/>
                                                 <constraint firstItem="77e-H4-FCJ" firstAttribute="top" secondItem="259-cl-tXp" secondAttribute="top" id="h0X-JA-OTA"/>
-                                                <constraint firstItem="K9X-xH-Bs8" firstAttribute="top" secondItem="hqM-gy-GWH" secondAttribute="bottom" constant="1.5" id="i17-e6-GpN"/>
+                                                <constraint firstItem="K9X-xH-Bs8" firstAttribute="top" secondItem="hqM-gy-GWH" secondAttribute="bottom" constant="20" id="i17-e6-GpN"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
@@ -623,7 +623,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="bigCardEdVTypeCell" id="Sji-l1-cIj" customClass="cardTypeTableViewCell" customModule="Folio" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="178" width="414" height="84.5"/>
+                                        <rect key="frame" x="0.0" y="196.5" width="414" height="84.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Sji-l1-cIj" id="uzA-hn-VNg">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="84.5"/>
@@ -658,7 +658,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="bigCardEdVReminderCell" id="rHA-ys-hrg" customClass="cardReminderTableViewCell" customModule="Folio" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="262.5" width="414" height="84.5"/>
+                                        <rect key="frame" x="0.0" y="281" width="414" height="84.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="rHA-ys-hrg" id="igc-hF-5HK">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="84.5"/>

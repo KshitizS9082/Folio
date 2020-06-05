@@ -12,7 +12,14 @@ class cardTitleAndDateTableViewCell: UITableViewCell {
     var card = Card()
     var index = IndexPath(row: 0, section: 0)
     var delegate: newEditCardViewControllerProtocol?
-    @IBOutlet weak var headingTextView: UITextView!
+    @IBOutlet weak var headingTextView: UITextView!{
+        didSet{
+            headingTextView.addDoneButton(title: "Done", target: self, selector: #selector(tapDone(sender:)))
+        }
+    }
+    @objc func tapDone(sender: Any) {
+        self.endEditing(true)
+    }
     
     @IBOutlet weak var startTimeLabel: UITextField!
     @IBOutlet weak var startTimeSubLabel: UITextField!
@@ -38,8 +45,8 @@ class cardTitleAndDateTableViewCell: UITableViewCell {
             formatter.dateFormat = "hh:mm a"
             startTimeSubLabel.text = formatter.string(from: time)
         }else{
-            startTimeLabel.text = "Event Start Time"
-            startTimeSubLabel.text = ""
+            startTimeLabel.text = "Event Start Date"
+            startTimeSubLabel.text = "Time"
         }
         //        startTimeLabel.allowsEditingTextAttributes=false
         if let time = card.endTime{
@@ -50,8 +57,8 @@ class cardTitleAndDateTableViewCell: UITableViewCell {
             formatter.dateFormat = "hh:mm a"
             endTimeSubLabel.text = formatter.string(from: time)
         }else{
-            endTimeLabel.text = "Event Finish Time"
-            endTimeSubLabel.text = ""
+            endTimeLabel.text = "Event Finish Date"
+            endTimeSubLabel.text = "Time"
         }
         setDatePicker()
         setEndDatePicker()

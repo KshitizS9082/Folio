@@ -57,6 +57,11 @@ class SmallCardView: UIView {
         configureNotesTextView()
         addNotesBottomBorderWithColor()
 //        pageDelegate?.resizeCard(for: self)
+        titleTextView.addDoneButton(title: "Done", target: self, selector: #selector(tapDone(sender:)))
+        notesTextView.addDoneButton(title: "Done", target: self, selector: #selector(tapDone(sender:)))
+    }
+    @objc func tapDone(sender: Any) {
+        self.endEditing(true)
     }
    var resizingButton = UIImageView(image: UIImage(systemName: "crop"));
     private func configureResizingButton(){
@@ -433,16 +438,16 @@ extension SmallCardView: UITextViewDelegate{
             notesTextView.textColor=UIColor.systemGray2
         }
     }
-    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
-        print("shouldchange")
-        if text == "\n" {
-            textView.resignFirstResponder()
-            isEditting=false
-            card.title = titleTextView.text
-            card.notes = notesTextView.text
-            layoutSubviews()
-            return false
-        }
-        return true
-    }
+//    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+//        print("shouldchange")
+//        if text == "\n" {
+//            textView.resignFirstResponder()
+//            isEditting=false
+//            card.title = titleTextView.text
+//            card.notes = notesTextView.text
+//            layoutSubviews()
+//            return false
+//        }
+//        return true
+//    }
 }

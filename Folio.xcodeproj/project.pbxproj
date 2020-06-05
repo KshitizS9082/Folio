@@ -76,6 +76,7 @@
 		E29A586D248A383B00FA7D7C /* cardTitleAndDateTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E29A586C248A383B00FA7D7C /* cardTitleAndDateTableViewCell.swift */; };
 		E29A586F248A385600FA7D7C /* cardTypeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E29A586E248A385600FA7D7C /* cardTypeTableViewCell.swift */; };
 		E29A5871248A386100FA7D7C /* cardReminderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E29A5870248A386100FA7D7C /* cardReminderTableViewCell.swift */; };
+		E29A5873248A695500FA7D7C /* doneToDismissTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E29A5872248A695500FA7D7C /* doneToDismissTextView.swift */; };
 		E2A35B522488C38900FDF4C6 /* habitsCellCalendarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A35B512488C38900FDF4C6 /* habitsCellCalendarCell.swift */; };
 		E2A35B542488EC3200FDF4C6 /* habitDateCellHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A35B532488EC3200FDF4C6 /* habitDateCellHeader.swift */; };
 		E2B1D0542483EEA100BA8C7D /* MKPointAnnotation-Codable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2B1D0532483EEA100BA8C7D /* MKPointAnnotation-Codable.swift */; };
@@ -193,6 +194,7 @@
 		E29A586C248A383B00FA7D7C /* cardTitleAndDateTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = cardTitleAndDateTableViewCell.swift; sourceTree = "<group>"; };
 		E29A586E248A385600FA7D7C /* cardTypeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = cardTypeTableViewCell.swift; sourceTree = "<group>"; };
 		E29A5870248A386100FA7D7C /* cardReminderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = cardReminderTableViewCell.swift; sourceTree = "<group>"; };
+		E29A5872248A695500FA7D7C /* doneToDismissTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = doneToDismissTextView.swift; sourceTree = "<group>"; };
 		E2A35B512488C38900FDF4C6 /* habitsCellCalendarCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = habitsCellCalendarCell.swift; sourceTree = "<group>"; };
 		E2A35B532488EC3200FDF4C6 /* habitDateCellHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = habitDateCellHeader.swift; sourceTree = "<group>"; };
 		E2B1D0532483EEA100BA8C7D /* MKPointAnnotation-Codable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MKPointAnnotation-Codable.swift"; sourceTree = "<group>"; };
@@ -355,6 +357,7 @@
 				E216884C2474E19B00D079A4 /* UIImageCompressor.swift */,
 				E216884E2475965500D079A4 /* DrawingView.swift */,
 				E291F00C24875B900006D147 /* weekExtractFromDate.swift */,
+				E29A5872248A695500FA7D7C /* doneToDismissTextView.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -790,6 +793,7 @@
 				E25BA4FF24716DC0000D1DF7 /* ImagePickerManager.swift in Sources */,
 				E26FD6AD2482A4FB004DA918 /* journalLocationTableViewCell.swift in Sources */,
 				E29A5871248A386100FA7D7C /* cardReminderTableViewCell.swift in Sources */,
+				E29A5873248A695500FA7D7C /* doneToDismissTextView.swift in Sources */,
 				E252B083246C45E6003F8718 /* checkListItem.swift in Sources */,
 				E25BA51624727B79000D1DF7 /* BigcardTimelineTableViewCell.swift in Sources */,
 				E252B089246C4620003F8718 /* smallCard.swift in Sources */,

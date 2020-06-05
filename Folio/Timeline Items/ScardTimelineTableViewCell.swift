@@ -82,7 +82,9 @@ class ScardTimelineTableViewCell: UITableViewCell {
         self.checkBox.isUserInteractionEnabled=true
         self.checkBox.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleCheckBoxTap)))
         titleTextView.text = title
-        notesTextView.text = notes
+//        titleTextView.addDoneButton(title: "Done", target: self, selector: #selector(tapDone(sender:)))
+//        notesTextView.text = notes
+//        notesTextView.addDoneButton(title: "Done", target: self, selector: #selector(tapDone(sender:)))
         if titleTextView.text.count==0{
             titleTextView.text = titlePlaceHolder
             titleTextView.textColor = UIColor.lightGray
@@ -137,6 +139,9 @@ class ScardTimelineTableViewCell: UITableViewCell {
         }
     }
 
+    @objc func tapDone(sender: Any) {
+        self.endEditing(true)
+    }
     
     func updateHeight(){
         var maxy = baseHeight-6

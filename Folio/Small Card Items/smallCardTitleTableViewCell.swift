@@ -20,17 +20,15 @@ class smallCardTitleTableViewCell: UITableViewCell, UITextViewDelegate {
         // Initialization code
         titleText.delegate = self
         titleText.font = UIFont.preferredFont(forTextStyle: .body)
+        titleText.addDoneButton(title: "Done", target: self, selector: #selector(tapDone(sender:)))
     }
     func setHeight(){
         let height = titleText.newHeight(withBaseHeight: baseHeight)
         delegate?.updated(height: height, row: rowValue)
     }
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
+    @objc func tapDone(sender: Any) {
+        self.endEditing(true)
     }
-    
 }
 
 extension smallCardTitleTableViewCell{

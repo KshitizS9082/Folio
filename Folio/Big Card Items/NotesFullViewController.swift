@@ -16,13 +16,14 @@ class NotesFullViewController: UIViewController, SPStorkControllerDelegate {
     var card: Card = Card()
     let navBar = SPFakeBarView(style: .stork)
     
-    var notesTextView = UnderlinedTextView()
+    var notesTextView = UITextView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = noteColour
         configureNavBar()
         configureNotesTextView()
+        notesTextView.addDoneButton(title: "Done", target: self, selector: #selector(tapDone(sender:)))
         NotificationCenter.default.addObserver( self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
     }
     @objc private func editButtonPressed(){
@@ -37,7 +38,7 @@ class NotesFullViewController: UIViewController, SPStorkControllerDelegate {
     private func configureNavBar(){
         self.navBar.titleLabel.text = "Notes"
         if(isEditing){
-            self.navBar.leftButton.setTitle("Done", for: .normal)
+            self.navBar.leftButton.setTitle("Save", for: .normal)
         }
         else {
             self.navBar.leftButton.setTitle("Edit", for: .normal)
@@ -86,6 +87,10 @@ class NotesFullViewController: UIViewController, SPStorkControllerDelegate {
             notesTextView.textContainerInset = insets
         }
     }
+    
+    @objc func tapDone(sender: Any) {
+        self.view.endEditing(true)
+       }
     /*
      // MARK: - Navigation
      
