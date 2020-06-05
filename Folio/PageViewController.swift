@@ -333,15 +333,23 @@ class PageViewController: UIViewController {
         }
     }
     
-    //variables for show big card edit view segure
+    //variables for show big card edit view segue
     var bigCardViewLinkedTo: cardView?
     var bigCardForLinkedView = Card()
+    
+    //variables for show small card info view segue
+    var smallCardViewLinkedTo: SmallCardView?
+    var smallCardForLinkedView = SmallCard()
     
     //MARK: Navigaion
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let vc = segue.destination as? newEditCardViewController{
             vc.viewLinkedTo=bigCardViewLinkedTo
             vc.card=self.bigCardForLinkedView
+        }
+        if let vc = segue.destination as? newSmallCardInfoViewController{
+            vc.viewLinkedTo=smallCardViewLinkedTo
+            vc.sCard=self.smallCardForLinkedView
         }
     }
 }
@@ -452,26 +460,29 @@ extension PageViewController: pageProtocol{
     }
     func showSmallCardInfoView(for cardView: SmallCardView) {
         print("yet to implement showSmallCardInfoView")
-        let controller = SmallCardInfoViewController()
-        let transitionDelegate = SPStorkTransitioningDelegate()
-        transitionDelegate.customHeight = self.view.bounds.height * 0.85
-        transitionDelegate.showIndicator = true
-        transitionDelegate.indicatorColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
-        transitionDelegate.indicatorMode = .auto
-        transitionDelegate.hideIndicatorWhenScroll = true
-        transitionDelegate.showCloseButton = true
-        transitionDelegate.swipeToDismissEnabled = true
-        transitionDelegate.tapAroundToDismissEnabled = true
-        controller.transitioningDelegate = transitionDelegate
-        controller.modalPresentationStyle = .custom
-        controller.modalPresentationCapturesStatusBarAppearance = true
-//        controller.smallcardDelegate=self
-        transitionDelegate.storkDelegate = controller
-        controller.sCard = cardView.card
-        controller.viewLinkedTo = cardView
-        transitionDelegate.hapticMoments = [.willPresent, .willDismiss]
-        transitionDelegate.cornerRadius = 10
-        self.present(controller, animated: true, completion: nil)
+//        let controller = SmallCardInfoViewController()
+//        let transitionDelegate = SPStorkTransitioningDelegate()
+//        transitionDelegate.customHeight = self.view.bounds.height * 0.85
+//        transitionDelegate.showIndicator = true
+//        transitionDelegate.indicatorColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
+//        transitionDelegate.indicatorMode = .auto
+//        transitionDelegate.hideIndicatorWhenScroll = true
+//        transitionDelegate.showCloseButton = true
+//        transitionDelegate.swipeToDismissEnabled = true
+//        transitionDelegate.tapAroundToDismissEnabled = true
+//        controller.transitioningDelegate = transitionDelegate
+//        controller.modalPresentationStyle = .custom
+//        controller.modalPresentationCapturesStatusBarAppearance = true
+////        controller.smallcardDelegate=self
+//        transitionDelegate.storkDelegate = controller
+//        controller.sCard = cardView.card
+//        controller.viewLinkedTo = cardView
+//        transitionDelegate.hapticMoments = [.willPresent, .willDismiss]
+//        transitionDelegate.cornerRadius = 10
+//        self.present(controller, animated: true, completion: nil)
+        self.smallCardViewLinkedTo=cardView
+        self.smallCardForLinkedView=cardView.card
+        performSegue(withIdentifier: "smallCardInfoViewSegue", sender: self)
     }
     
     func showFullCardView(for cardView: cardView) {

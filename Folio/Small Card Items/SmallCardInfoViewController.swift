@@ -13,6 +13,12 @@ import UserNotifications
 
 protocol ExpandingCellDelegate {
     func updated(height: CGFloat, row: Int)
+//    func updateCard(to newCardValue: SmallCard)
+//    func updateTitle(to text: String)
+//    func updateNotes(to text: String)
+//    func updateURL(to text: String)
+//    func updateDetailedNotes(to text: String)
+//    func updateReminderValue(to date: Date?)
 }
 
 class SmallCardInfoViewController: UIViewController, UITableViewDataSource, SPStorkControllerDelegate, DatePickerTableViewCellDelegate {
@@ -349,7 +355,7 @@ extension SmallCardInfoViewController{
 //        return #colorLiteral(red: 0.9214739799, green: 0.9253779054, blue: 0.942587316, alpha: 1)
     }
     var cellBackgroundColor: UIColor{
-        return UIColor(named: "smallCardColor") ?? #colorLiteral(red: 0.9254902005, green: 0.2352941185, blue: 0.1019607857, alpha: 1)
+        return UIColor(named: "myBackgroundColor") ?? #colorLiteral(red: 0.9254902005, green: 0.2352941185, blue: 0.1019607857, alpha: 1)
 //        return #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
     }
     var navBarBackgroundColor: UIColor{
@@ -408,7 +414,6 @@ extension SmallCardInfoViewController: UITableViewDelegate {
     }
 }
 extension SmallCardInfoViewController: ExpandingCellDelegate {
-    
     func updated(height: CGFloat, row: Int) {
 //        titleHeight = height
         cellHeights[row] = height

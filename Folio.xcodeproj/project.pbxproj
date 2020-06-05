@@ -77,6 +77,9 @@
 		E29A586F248A385600FA7D7C /* cardTypeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E29A586E248A385600FA7D7C /* cardTypeTableViewCell.swift */; };
 		E29A5871248A386100FA7D7C /* cardReminderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E29A5870248A386100FA7D7C /* cardReminderTableViewCell.swift */; };
 		E29A5873248A695500FA7D7C /* doneToDismissTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E29A5872248A695500FA7D7C /* doneToDismissTextView.swift */; };
+		E29A5875248A734A00FA7D7C /* newSmallCardInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E29A5874248A734A00FA7D7C /* newSmallCardInfoViewController.swift */; };
+		E29A5877248A783000FA7D7C /* ExpandableTextSCardInfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E29A5876248A783000FA7D7C /* ExpandableTextSCardInfoTableViewCell.swift */; };
+		E29A5879248AA51000FA7D7C /* sCardReminderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E29A5878248AA51000FA7D7C /* sCardReminderTableViewCell.swift */; };
 		E2A35B522488C38900FDF4C6 /* habitsCellCalendarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A35B512488C38900FDF4C6 /* habitsCellCalendarCell.swift */; };
 		E2A35B542488EC3200FDF4C6 /* habitDateCellHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A35B532488EC3200FDF4C6 /* habitDateCellHeader.swift */; };
 		E2B1D0542483EEA100BA8C7D /* MKPointAnnotation-Codable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2B1D0532483EEA100BA8C7D /* MKPointAnnotation-Codable.swift */; };
@@ -195,6 +198,9 @@
 		E29A586E248A385600FA7D7C /* cardTypeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = cardTypeTableViewCell.swift; sourceTree = "<group>"; };
 		E29A5870248A386100FA7D7C /* cardReminderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = cardReminderTableViewCell.swift; sourceTree = "<group>"; };
 		E29A5872248A695500FA7D7C /* doneToDismissTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = doneToDismissTextView.swift; sourceTree = "<group>"; };
+		E29A5874248A734A00FA7D7C /* newSmallCardInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = newSmallCardInfoViewController.swift; sourceTree = "<group>"; };
+		E29A5876248A783000FA7D7C /* ExpandableTextSCardInfoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpandableTextSCardInfoTableViewCell.swift; sourceTree = "<group>"; };
+		E29A5878248AA51000FA7D7C /* sCardReminderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = sCardReminderTableViewCell.swift; sourceTree = "<group>"; };
 		E2A35B512488C38900FDF4C6 /* habitsCellCalendarCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = habitsCellCalendarCell.swift; sourceTree = "<group>"; };
 		E2A35B532488EC3200FDF4C6 /* habitDateCellHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = habitDateCellHeader.swift; sourceTree = "<group>"; };
 		E2B1D0532483EEA100BA8C7D /* MKPointAnnotation-Codable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MKPointAnnotation-Codable.swift"; sourceTree = "<group>"; };
@@ -446,6 +452,9 @@
 				E25BA4E724714CBC000D1DF7 /* SmallCardDatePickerTableViewCell.xib */,
 				E25BA4E524714CBC000D1DF7 /* smallCardTitleTableViewCell.swift */,
 				E25BA4E624714CBC000D1DF7 /* smallCardTitleTableViewCell.xib */,
+				E29A5874248A734A00FA7D7C /* newSmallCardInfoViewController.swift */,
+				E29A5876248A783000FA7D7C /* ExpandableTextSCardInfoTableViewCell.swift */,
+				E29A5878248AA51000FA7D7C /* sCardReminderTableViewCell.swift */,
 			);
 			path = "Small Card Items";
 			sourceTree = "<group>";
@@ -741,6 +750,7 @@
 				E252B090246C4E6D003F8718 /* PageViewController.swift in Sources */,
 				E26FD6AB24828DF1004DA918 /* journalMediaTableViewCell.swift in Sources */,
 				E2B1D0542483EEA100BA8C7D /* MKPointAnnotation-Codable.swift in Sources */,
+				E29A5879248AA51000FA7D7C /* sCardReminderTableViewCell.swift in Sources */,
 				E29A586D248A383B00FA7D7C /* cardTitleAndDateTableViewCell.swift in Sources */,
 				E25BA4F224716130000D1DF7 /* SmallCardInfoViewController.swift in Sources */,
 				E252B08E246C4AD7003F8718 /* SwitchPageTimelineViewController.swift in Sources */,
@@ -750,6 +760,7 @@
 				E2252E0B247943AA00EF26C9 /* PagesExtractTableViewCell.swift in Sources */,
 				E2E1525C2486122000079B79 /* AddHabbitViewController.swift in Sources */,
 				E252B087246C4601003F8718 /* PageData.swift in Sources */,
+				E29A5877248A783000FA7D7C /* ExpandableTextSCardInfoTableViewCell.swift in Sources */,
 				E26FD6B02482AD0D004DA918 /* journalImagePickerManager.swift in Sources */,
 				E2FEE2B2247CC24200DD7069 /* DateHeader.swift in Sources */,
 				E2E152662486564C00079B79 /* addHabbitReminderValueTableViewCell.swift in Sources */,
@@ -767,6 +778,7 @@
 				E216884D2474E19B00D079A4 /* UIImageCompressor.swift in Sources */,
 				E2E152602486562900079B79 /* addHabbitTitleTableViewCell.swift in Sources */,
 				E26947672470320B00F9E21F /* SmallCardView.swift in Sources */,
+				E29A5875248A734A00FA7D7C /* newSmallCardInfoViewController.swift in Sources */,
 				E25BA51124727508000D1DF7 /* ScardTimelineTableViewCell.swift in Sources */,
 				E2A35B542488EC3200FDF4C6 /* habitDateCellHeader.swift in Sources */,
 				E252B07D246C44DF003F8718 /* removeAllConstraints.swift in Sources */,
