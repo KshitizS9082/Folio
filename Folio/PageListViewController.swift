@@ -251,7 +251,9 @@ extension PageListViewController:UITableViewDelegate, UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section==0{
-            return self.setupExtractTableViewCell(tableView, cellForRowAt: indexPath)
+            let cell=self.setupExtractTableViewCell(tableView, cellForRowAt: indexPath)
+            cell.selectionStyle = .none
+            return cell
         }
         let cell = tableView.dequeueReusableCell(withIdentifier: "customPageCell", for: indexPath) as! pageListTableViewCell
         cell.accessoryType = .disclosureIndicator

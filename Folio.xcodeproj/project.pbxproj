@@ -10,6 +10,8 @@
 		870E12556BF0317058D31A09 /* Pods_Folio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F32C815244D1C255A7FDD23A /* Pods_Folio.framework */; };
 		87DB04D9E8C0C19EDD6FF265 /* Pods_FolioTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC6B6DB7D06A4FC4A090E6A3 /* Pods_FolioTests.framework */; };
 		A3922D801270C8842263D3B3 /* Pods_Folio_FolioUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5CDFF065539CE4B3E77C16F8 /* Pods_Folio_FolioUITests.framework */; };
+		E211905C248BA61C00DE9D92 /* newCheckListFullViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E211905B248BA61C00DE9D92 /* newCheckListFullViewController.swift */; };
+		E211905E248BABA100DE9D92 /* fullChecklistViewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E211905D248BABA100DE9D92 /* fullChecklistViewTableViewCell.swift */; };
 		E216884D2474E19B00D079A4 /* UIImageCompressor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E216884C2474E19B00D079A4 /* UIImageCompressor.swift */; };
 		E216884F2475965500D079A4 /* DrawingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E216884E2475965500D079A4 /* DrawingView.swift */; };
 		E2252E0B247943AA00EF26C9 /* PagesExtractTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2252E0A247943AA00EF26C9 /* PagesExtractTableViewCell.swift */; };
@@ -125,6 +127,8 @@
 		AB7282A2BE03B60D0F69806A /* Pods-Folio.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Folio.debug.xcconfig"; path = "Target Support Files/Pods-Folio/Pods-Folio.debug.xcconfig"; sourceTree = "<group>"; };
 		B7F7E37428634E233DB6CFDE /* Pods-FolioTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FolioTests.release.xcconfig"; path = "Target Support Files/Pods-FolioTests/Pods-FolioTests.release.xcconfig"; sourceTree = "<group>"; };
 		BC6B6DB7D06A4FC4A090E6A3 /* Pods_FolioTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FolioTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E211905B248BA61C00DE9D92 /* newCheckListFullViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = newCheckListFullViewController.swift; sourceTree = "<group>"; };
+		E211905D248BABA100DE9D92 /* fullChecklistViewTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = fullChecklistViewTableViewCell.swift; sourceTree = "<group>"; };
 		E216884C2474E19B00D079A4 /* UIImageCompressor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageCompressor.swift; sourceTree = "<group>"; };
 		E216884E2475965500D079A4 /* DrawingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrawingView.swift; sourceTree = "<group>"; };
 		E2252E0A247943AA00EF26C9 /* PagesExtractTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PagesExtractTableViewCell.swift; sourceTree = "<group>"; };
@@ -402,6 +406,8 @@
 				E29A586C248A383B00FA7D7C /* cardTitleAndDateTableViewCell.swift */,
 				E29A586E248A385600FA7D7C /* cardTypeTableViewCell.swift */,
 				E29A5870248A386100FA7D7C /* cardReminderTableViewCell.swift */,
+				E211905B248BA61C00DE9D92 /* newCheckListFullViewController.swift */,
+				E211905D248BABA100DE9D92 /* fullChecklistViewTableViewCell.swift */,
 			);
 			path = "Big Card Items";
 			sourceTree = "<group>";
@@ -766,6 +772,7 @@
 				E2E152662486564C00079B79 /* addHabbitReminderValueTableViewCell.swift in Sources */,
 				E29A586F248A385600FA7D7C /* cardTypeTableViewCell.swift in Sources */,
 				E25BA51A24728AA9000D1DF7 /* MediaCardTableViewCell.swift in Sources */,
+				E211905C248BA61C00DE9D92 /* newCheckListFullViewController.swift in Sources */,
 				E25BA50D2472285F000D1DF7 /* pickImage.swift in Sources */,
 				E252B08C246C4681003F8718 /* PageListViewController.swift in Sources */,
 				E252B081246C45C0003F8718 /* Card.swift in Sources */,
@@ -795,6 +802,7 @@
 				E252B07E246C44DF003F8718 /* UnderlinedTextView.swift in Sources */,
 				E2FEE2B0247C1DDD00DD7069 /* DateCell.swift in Sources */,
 				E25B0E9D247C010C004F3BDA /* JournalViewController.swift in Sources */,
+				E211905E248BABA100DE9D92 /* fullChecklistViewTableViewCell.swift in Sources */,
 				E25BA4FD24716AD0000D1DF7 /* MediaCardView.swift in Sources */,
 				E25BA50624721F93000D1DF7 /* ThumbCell.swift in Sources */,
 				E25B0E9B247BD055004F3BDA /* UITextField+Extensions.swift in Sources */,

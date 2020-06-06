@@ -475,6 +475,7 @@ extension JournalViewController: UITableViewDataSource, UITableViewDelegate{
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section==1{
             let cell = tableView.dequeueReusableCell(withIdentifier: "addEntryCell", for: indexPath) as! addEntryInJournalTableViewCell
+            cell.selectionStyle = .none
             cell.backgroundColor = .clear
             cell.addCardDelegate=self
             return cell
@@ -500,6 +501,7 @@ extension JournalViewController: UITableViewDataSource, UITableViewDelegate{
     
     func setSmallCardCell(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell{
         let cell = tableView.dequeueReusableCell(withIdentifier: "smallCardCell", for: indexPath) as! ScardTimelineTableViewCell
+        cell.selectionStyle = .none
         cell.delegate=self
         cell.showLinkDelegate=self
         cell.sizeType = self.sizeType
@@ -519,6 +521,7 @@ extension JournalViewController: UITableViewDataSource, UITableViewDelegate{
     }
     func setBigCardCell(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell{
         let cell = tableView.dequeueReusableCell(withIdentifier: "bigCardCell", for: indexPath) as! BigcardTimelineTableViewCell
+        cell.selectionStyle = .none
         cell.delegate=self
         cell.showLinkDelegate=self
         cell.sizeType = self.sizeType
@@ -537,6 +540,7 @@ extension JournalViewController: UITableViewDataSource, UITableViewDelegate{
     }
     func setMediaCardCell(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell{
         let cell = tableView.dequeueReusableCell(withIdentifier: "mediaCardCell", for: indexPath) as! MediaCardTableViewCell
+        cell.selectionStyle = .none
         //reload data added to remove a bug where previous cell without image deleted in page view and new cell with image added would result in crash DO NOT REMOVE!!
         cell.collectionView.reloadData()
         cell.showLinkDelegate=self
@@ -553,6 +557,7 @@ extension JournalViewController: UITableViewDataSource, UITableViewDelegate{
     }
     func setNotesCardCell(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell{
          let cell = tableView.dequeueReusableCell(withIdentifier: "journalNotesTVC", for: indexPath) as! journalNotesTableViewCell
+        cell.selectionStyle = .none
         cell.delegate=self
         cell.index = indexPath
         let formatter = DateFormatter()
@@ -566,6 +571,7 @@ extension JournalViewController: UITableViewDataSource, UITableViewDelegate{
     }
     func setJournalMediaCardCell(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell{
          let cell = tableView.dequeueReusableCell(withIdentifier: "journalMediaTVC", for: indexPath) as! journalMediaTableViewCell
+        cell.selectionStyle = .none
         cell.delegate=self
         cell.index = indexPath
         let formatter = DateFormatter()
@@ -584,6 +590,7 @@ extension JournalViewController: UITableViewDataSource, UITableViewDelegate{
     }
     func setJournalLocationCardCell(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell{
              let cell = tableView.dequeueReusableCell(withIdentifier: "journalLocationTVC", for: indexPath) as! journalLocationTableViewCell
+        cell.selectionStyle = .none
             cell.delegate=self
             cell.index = indexPath
             let formatter = DateFormatter()

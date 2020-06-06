@@ -111,6 +111,7 @@ class PageExtractViewController: UIViewController {
         table.register(UINib(nibName: "MediaCardTableViewCell", bundle: nil), forCellReuseIdentifier: "mediaCardCell")
         table.backgroundColor = pageColor
         table.rowHeight = UITableView.automaticDimension
+        table.separatorStyle = .none
     }
     @objc func handlePinch(pinch: UIPinchGestureRecognizer){
         if pinch.state == .ended{
@@ -144,6 +145,30 @@ class PageExtractViewController: UIViewController {
         table.reloadData()
         let pinch = UIPinchGestureRecognizer(target: self, action: #selector(handlePinch))
         view.addGestureRecognizer(pinch)
+        
+//        var textColor = UIColor.black
+//        var text = ""
+//        switch self.selectedExtractView {
+//        case 0:
+//            textColor = UIColor.systemBlue
+//            text = "Today Card's"
+//        case 1:
+//            textColor = UIColor.systemYellow
+//            text = "Scheduled Card's"
+//        case 2:
+//            textColor = UIColor.systemGray
+//            text = "All Card's"
+//        case 3:
+//            textColor = UIColor.systemRed
+//            text = "Due Card's"
+//        default:
+//            textColor = UIColor.black
+//        }
+//        navigationController?.navigationBar.topItem?.title = text
+//        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor:textColor]
+//        navigationController?.navigationBar.tintColor = textColor
+        
+        
         //to dismiss keyboard
         let tap=UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing(_:)))
         view.addGestureRecognizer(tap)
@@ -242,9 +267,9 @@ extension PageExtractViewController: UITableViewDataSource, UITableViewDelegate{
 //        }
         return UITableViewCell()
     }
-//    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-//        return "TempTitle"
-//    }
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return "TempTitle"
+    }
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let headerView = UIView()
         headerView.backgroundColor = UIColor.clear
@@ -295,6 +320,7 @@ extension PageExtractViewController: UITableViewDataSource, UITableViewDelegate{
     }
     func setSmallCardCell(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell{
         let cell = tableView.dequeueReusableCell(withIdentifier: "smallCardCell", for: indexPath) as! ScardTimelineTableViewCell
+        cell.selectionStyle = .none
         cell.delegate=self
         cell.showLinkDelegate = self
         cell.sizeType = self.sizeType
@@ -314,6 +340,7 @@ extension PageExtractViewController: UITableViewDataSource, UITableViewDelegate{
     }
     func setBigCardCell(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell{
         let cell = tableView.dequeueReusableCell(withIdentifier: "bigCardCell", for: indexPath) as! BigcardTimelineTableViewCell
+        cell.selectionStyle = .none
         cell.delegate=self
         //        cell.updateCardDelegate=self
         cell.showLinkDelegate = self
@@ -332,6 +359,7 @@ extension PageExtractViewController: UITableViewDataSource, UITableViewDelegate{
     }
     func setMediaCardCell(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell{
         let cell = tableView.dequeueReusableCell(withIdentifier: "mediaCardCell", for: indexPath) as! MediaCardTableViewCell
+        cell.selectionStyle = .none
         //reload data added to remove a bug where previous cell without image deleted in page view and new cell with image added would result in crash DO NOT REMOVE!!
         cell.collectionView.reloadData()
         cell.showLinkDelegate = self

@@ -349,13 +349,14 @@ class PageViewController: UIViewController {
         }
     }
     
-    //variables for show big card edit view segue
+    //variables for show big card edit view segue and //variables for show card checklist full view segue
     var bigCardViewLinkedTo: cardView?
     var bigCardForLinkedView = Card()
     
     //variables for show small card info view segue
     var smallCardViewLinkedTo: SmallCardView?
     var smallCardForLinkedView = SmallCard()
+    
     
     //MARK: Navigaion
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -366,6 +367,10 @@ class PageViewController: UIViewController {
         if let vc = segue.destination as? newSmallCardInfoViewController{
             vc.viewLinkedTo=smallCardViewLinkedTo
             vc.sCard=self.smallCardForLinkedView
+        }
+        if let vc = segue.destination as? newCheckListFullViewController{
+            vc.viewLinkedTo=bigCardViewLinkedTo
+            vc.card=self.bigCardForLinkedView
         }
     }
 }
@@ -561,25 +566,28 @@ extension PageViewController: pageProtocol{
         self.present(controller, animated: true, completion: nil)
     }
     private func showFullCheckListView(for cardView: cardView){
-        let controller = checkListFullViewController()
-        let transitionDelegate = SPStorkTransitioningDelegate()
-        transitionDelegate.customHeight = 800
-        transitionDelegate.showIndicator = true
-        transitionDelegate.indicatorColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
-        transitionDelegate.indicatorMode = .auto
-        transitionDelegate.hideIndicatorWhenScroll = true
-        transitionDelegate.showCloseButton = true
-        transitionDelegate.swipeToDismissEnabled = false
-        transitionDelegate.tapAroundToDismissEnabled = true
-        controller.transitioningDelegate = transitionDelegate
-        controller.modalPresentationStyle = .custom
-        controller.modalPresentationCapturesStatusBarAppearance = true
-        transitionDelegate.hapticMoments = [.willPresent, .willDismiss]
-        transitionDelegate.cornerRadius = 10
-        transitionDelegate.storkDelegate = controller
-        controller.card=cardView.card
-        controller.viewLinkedTo=cardView
-        self.present(controller, animated: true, completion: nil)
+//        let controller = checkListFullViewController()
+//        let transitionDelegate = SPStorkTransitioningDelegate()
+//        transitionDelegate.customHeight = 800
+//        transitionDelegate.showIndicator = true
+//        transitionDelegate.indicatorColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
+//        transitionDelegate.indicatorMode = .auto
+//        transitionDelegate.hideIndicatorWhenScroll = true
+//        transitionDelegate.showCloseButton = true
+//        transitionDelegate.swipeToDismissEnabled = false
+//        transitionDelegate.tapAroundToDismissEnabled = true
+//        controller.transitioningDelegate = transitionDelegate
+//        controller.modalPresentationStyle = .custom
+//        controller.modalPresentationCapturesStatusBarAppearance = true
+//        transitionDelegate.hapticMoments = [.willPresent, .willDismiss]
+//        transitionDelegate.cornerRadius = 10
+//        transitionDelegate.storkDelegate = controller
+//        controller.card=cardView.card
+//        controller.viewLinkedTo=cardView
+//        self.present(controller, animated: true, completion: nil)
+        self.bigCardViewLinkedTo = cardView
+        self.bigCardForLinkedView = cardView.card
+        performSegue(withIdentifier: "showCardCheckLIstSegue", sender: self)
     }
     
     func getMeMedia(for cardView: MediaCardView) {
