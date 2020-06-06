@@ -33,14 +33,14 @@ class PageViewController: UIViewController {
             }
             pageView.subviews.forEach { (sv) in
                 if let cv = sv as? SmallCardView{
-                    retVal.smallCards.append(smallCardData(card: cv.card, frame: cv.frame))
+                    retVal.smallCards.append(smallCardData(card: cv.card, frame: cv.frame, isHidden: cv.isHidden))
                 }
                 if let cv = sv as? cardView{
-                    retVal.bigCards.append(bigCardData(card: cv.card, frame: cv.frame))
+                    retVal.bigCards.append(bigCardData(card: cv.card, frame: cv.frame, isHidden: cv.isHidden))
                 }
                 //TODO: Gesture recognisers for mediacard not added automatically
                 if let cv =  sv as? MediaCardView{
-                    retVal.mediaCards.append(mediaCardData(card: cv.card, frame: cv.frame))
+                    retVal.mediaCards.append(mediaCardData(card: cv.card, frame: cv.frame, isHidden: cv.isHidden))
                 }
             }
             print("gonna get page: PageData? ")
@@ -68,19 +68,21 @@ class PageViewController: UIViewController {
                     nc.card=cardData.card
                     nc.pageDelegate=self
                     pageView.addSubview(nc)
-                    
+                    nc.isHidden=cardData.isHidden
                 })
                 newValue.smallCards.forEach({ (cardData) in
                     let nc = SmallCardView(frame: cardData.frame)
                     nc.card=cardData.card
                     nc.pageDelegate=self
                     pageView.addSubview(nc)
+                    nc.isHidden=cardData.isHidden
                 })
                 newValue.mediaCards.forEach({ (cardData) in
                     let nc = MediaCardView(frame: cardData.frame)
                     nc.card=cardData.card
                     nc.pageDelegate=self
                     pageView.addSubview(nc)
+                    nc.isHidden=cardData.isHidden
                 })
                 pageView.layoutSubviews()
             }else{
@@ -459,7 +461,7 @@ extension PageViewController: pageProtocol{
         
     }
     func showSmallCardInfoView(for cardView: SmallCardView) {
-        print("yet to implement showSmallCardInfoView")
+//        print("yet to implement showSmallCardInfoView")
 //        let controller = SmallCardInfoViewController()
 //        let transitionDelegate = SPStorkTransitioningDelegate()
 //        transitionDelegate.customHeight = self.view.bounds.height * 0.85
@@ -480,6 +482,7 @@ extension PageViewController: pageProtocol{
 //        transitionDelegate.hapticMoments = [.willPresent, .willDismiss]
 //        transitionDelegate.cornerRadius = 10
 //        self.present(controller, animated: true, completion: nil)
+        //New verions
         self.smallCardViewLinkedTo=cardView
         self.smallCardForLinkedView=cardView.card
         performSegue(withIdentifier: "smallCardInfoViewSegue", sender: self)

@@ -43,6 +43,7 @@ class newEditCardViewController: UIViewController {
     //set Delete button
     @IBOutlet weak var deleteButton: UIImageView!{
         didSet{
+            deleteButton.isUserInteractionEnabled=true
              let tap = UITapGestureRecognizer(target: self, action: #selector(handleTapDelete))
             deleteButton.addGestureRecognizer(tap)
         }

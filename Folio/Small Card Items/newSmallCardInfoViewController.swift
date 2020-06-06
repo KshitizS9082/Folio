@@ -36,7 +36,37 @@ class newSmallCardInfoViewController: UIViewController {
             navBar.isTranslucent = true
         }
     }
-    @IBOutlet weak var deleteButton: UIImageView!
+    @IBOutlet weak var deleteButton: UIImageView!{
+        didSet{
+            deleteButton.isUserInteractionEnabled=true
+            let tap=UITapGestureRecognizer(target: self, action: #selector(deleteCard))
+            deleteButton.addGestureRecognizer(tap)
+        }
+    }
+    @objc func deleteCard(){
+        print("yet to implement deleting card")
+        let deleteAction = UIAlertAction(title: "Delete", style: .destructive){
+            UIAlertAction in
+            print("in delete")
+            self.unSetReminder()
+            self.viewLinkedTo?.removeFromSuperview()
+            self.dismiss(animated: true)
+        }
+        let deleteFromPageAction = UIAlertAction(title: "Remove From Page", style: .destructive){
+            UIAlertAction in
+            print("in Remove From Page")
+            self.viewLinkedTo?.isHidden=true
+            self.dismiss(animated: true)
+        }
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel){
+            UIAlertAction in
+        }
+        let alert = UIAlertController(title: "Delete Card?", message: "Deleting this card will also delete it's data", preferredStyle: .actionSheet)
+        alert.addAction(deleteFromPageAction)
+        alert.addAction(deleteAction)
+        alert.addAction(cancelAction)
+        self.present(alert, animated: true, completion: nil)
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
 

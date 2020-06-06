@@ -53,12 +53,15 @@ struct connectingViewTupple: Codable{
 struct bigCardData: Codable {
     var card = Card()
     var frame = CGRect.zero
+    var isHidden=false
 }
 struct smallCardData: Codable {
     var card = SmallCard()
     var frame = CGRect.zero
+    var isHidden=false
 }
 struct mediaCardData: Codable{
     var card = MediaCard()
     var frame = CGRect.zero
+    var isHidden=false
 }
