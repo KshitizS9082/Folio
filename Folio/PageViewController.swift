@@ -104,6 +104,8 @@ class PageViewController: UIViewController {
                 let dragInteraction = UIDragInteraction(delegate: self)
                 dragInteraction.isEnabled=true
                 iv.addInteraction(dragInteraction)
+                iv.layer.cornerRadius=iv.bounds.width/2.0
+                iv.layer.masksToBounds=true
             }
         }
     }
@@ -306,10 +308,22 @@ class PageViewController: UIViewController {
         }
     }
     
-    @IBOutlet weak var ivHeightConstraint: NSLayoutConstraint!
+    @IBOutlet var ivHeightConstraintLists: [NSLayoutConstraint]!
+    
+    @IBOutlet var ivTopConstraints: [NSLayoutConstraint]!
+    
+    //    @IBOutlet weak var ivHeightConstraint: NSLayoutConstraint!
     func toggleToolBar(){
-        self.ivHeightConstraint.constant=44-self.ivHeightConstraint.constant
-        UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseInOut, animations: {
+        if ivTopConstraints[0].constant==0{
+            for ind in ivTopConstraints.indices{
+                ivTopConstraints[ind].constant=CGFloat(50+50*ind)
+            }
+        }else{
+            for ind in ivTopConstraints.indices{
+                ivTopConstraints[ind].constant=CGFloat(0)
+            }
+        }
+        UIView.animate(withDuration: 0.25, delay: 0, options: .curveEaseInOut, animations: {
             self.view.layoutIfNeeded()
         }, completion: nil)
     }

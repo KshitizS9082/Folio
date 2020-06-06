@@ -232,11 +232,13 @@
                         </segmentedControl>
                         <rightBarButtonItems>
                             <barButtonItem title="Item" image="rectangle.3.offgrid" catalog="system" id="9ol-Mv-YGa">
+                                <color key="tintColor" systemColor="systemTealColor" red="0.35294117650000001" green="0.7843137255" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <connections>
                                     <action selector="rightButtonClick:" destination="KJv-kN-YwA" id="51J-n6-DjT"/>
                                 </connections>
                             </barButtonItem>
                             <barButtonItem title="Item" image="ellipsis" catalog="system" id="saA-Rf-gVW">
+                                <color key="tintColor" systemColor="systemTealColor" red="0.35294117650000001" green="0.7843137255" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <connections>
                                     <action selector="leftButtonClick:" destination="KJv-kN-YwA" id="0lO-ti-zB0"/>
                                 </connections>
@@ -408,105 +410,142 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="700"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="plus.square" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="9gP-HQ-60U">
-                                <rect key="frame" x="364" y="51" width="44" height="41.5"/>
+                            <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="plus.circle" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="9gP-HQ-60U">
+                                <rect key="frame" x="354" y="52.5" width="44" height="39.5"/>
+                                <color key="backgroundColor" name="smallCardColor"/>
+                                <color key="tintColor" systemColor="systemTealColor" red="0.35294117650000001" green="0.7843137255" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
+                                    <constraint firstAttribute="width" constant="44" id="8BB-qN-mML"/>
                                     <constraint firstAttribute="width" secondItem="9gP-HQ-60U" secondAttribute="height" id="obE-m0-122"/>
-                                    <constraint firstAttribute="height" constant="44" id="zUf-Nv-Z7c"/>
                                 </constraints>
+                                <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="small"/>
                             </imageView>
-                            <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="plus.square.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="KFd-ea-Pal">
-                                <rect key="frame" x="364" y="101" width="44" height="41.5"/>
+                            <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="plus.circle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="KFd-ea-Pal">
+                                <rect key="frame" x="354" y="108.5" width="44" height="39.5"/>
+                                <color key="backgroundColor" name="smallCardColor"/>
+                                <color key="tintColor" systemColor="systemTealColor" red="0.35294117650000001" green="0.7843137255" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="KFd-ea-Pal" secondAttribute="height" id="2UR-lM-NnJ"/>
                                 </constraints>
+                                <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="small"/>
                             </imageView>
                             <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pencil.circle" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="xBB-M9-Ju6">
-                                <rect key="frame" x="364" y="150.5" width="44" height="43"/>
+                                <rect key="frame" x="354" y="158.5" width="44" height="39.5"/>
+                                <color key="backgroundColor" name="smallCardColor"/>
+                                <color key="tintColor" systemColor="systemTealColor" red="0.35294117650000001" green="0.7843137255" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="xBB-M9-Ju6" secondAttribute="height" id="i2F-4q-Oiu"/>
                                 </constraints>
+                                <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="small"/>
                             </imageView>
-                            <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="delete.left" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="wOQ-Sg-Khi">
-                                <rect key="frame" x="364" y="201" width="44" height="41.5"/>
+                            <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="circle" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="wOQ-Sg-Khi">
+                                <rect key="frame" x="354" y="208.5" width="44" height="39.5"/>
+                                <color key="backgroundColor" name="smallCardColor"/>
+                                <color key="tintColor" systemColor="systemTealColor" red="0.35294117650000001" green="0.7843137255" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="wOQ-Sg-Khi" secondAttribute="height" id="PEN-KR-prY"/>
                                 </constraints>
+                                <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="small"/>
                             </imageView>
-                            <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="photo" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="J4H-vX-fqK">
-                                <rect key="frame" x="364" y="251" width="44" height="41.5"/>
+                            <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="camera.circle" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="J4H-vX-fqK">
+                                <rect key="frame" x="354" y="258.5" width="44" height="39.5"/>
+                                <color key="backgroundColor" name="smallCardColor"/>
+                                <color key="tintColor" systemColor="systemTealColor" red="0.35294117650000001" green="0.7843137255" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="J4H-vX-fqK" secondAttribute="height" id="E6d-il-hFu"/>
                                 </constraints>
+                                <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="small"/>
                             </imageView>
-                            <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="arrow.right.square" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="bK9-KC-QTQ">
-                                <rect key="frame" x="364" y="301" width="44" height="41.5"/>
+                            <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="trash.circle" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="bK9-KC-QTQ">
+                                <rect key="frame" x="354" y="308.5" width="44" height="39.5"/>
+                                <color key="backgroundColor" name="smallCardColor"/>
+                                <color key="tintColor" systemColor="systemTealColor" red="0.35294117650000001" green="0.7843137255" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="bK9-KC-QTQ" secondAttribute="height" id="mcN-hI-uME"/>
                                 </constraints>
+                                <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="small"/>
                             </imageView>
-                            <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="arrow.up.to.line.alt" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="TOD-aV-QW7">
-                                <rect key="frame" x="364" y="350" width="44" height="43.5"/>
+                            <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="chevron.up.circle" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="TOD-aV-QW7">
+                                <rect key="frame" x="354" y="358.5" width="44" height="39.5"/>
+                                <color key="backgroundColor" name="smallCardColor"/>
+                                <color key="tintColor" systemColor="systemTealColor" red="0.35294117650000001" green="0.7843137255" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="TOD-aV-QW7" secondAttribute="height" id="9rB-bn-gca"/>
                                 </constraints>
+                                <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="small"/>
                             </imageView>
-                            <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="arrow.left.to.line.alt" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="DJ1-Mi-ymj">
-                                <rect key="frame" x="364" y="452" width="44" height="39"/>
+                            <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="chevron.left.circle" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="DJ1-Mi-ymj">
+                                <rect key="frame" x="354" y="458.5" width="44" height="39.5"/>
+                                <color key="backgroundColor" name="smallCardColor"/>
+                                <color key="tintColor" systemColor="systemTealColor" red="0.35294117650000001" green="0.7843137255" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="DJ1-Mi-ymj" secondAttribute="height" id="0B7-Ub-F5M"/>
                                 </constraints>
+                                <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="small"/>
                             </imageView>
-                            <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="arrow.down.to.line.alt" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="43G-7N-ko0">
-                                <rect key="frame" x="364" y="400" width="44" height="43.5"/>
+                            <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="chevron.down.circle" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="43G-7N-ko0">
+                                <rect key="frame" x="354" y="408.5" width="44" height="39.5"/>
+                                <color key="backgroundColor" name="smallCardColor"/>
+                                <color key="tintColor" systemColor="systemTealColor" red="0.35294117650000001" green="0.7843137255" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="43G-7N-ko0" secondAttribute="height" id="xEI-j8-QGS"/>
                                 </constraints>
+                                <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="small"/>
                             </imageView>
-                            <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="arrow.right.to.line.alt" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="jHa-WE-XxO">
-                                <rect key="frame" x="364" y="502" width="44" height="38"/>
+                            <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="chevron.right.circle" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="jHa-WE-XxO">
+                                <rect key="frame" x="354" y="508.5" width="44" height="38.5"/>
+                                <color key="backgroundColor" name="smallCardColor"/>
+                                <color key="tintColor" systemColor="systemTealColor" red="0.35294117650000001" green="0.7843137255" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="jHa-WE-XxO" secondAttribute="height" constant="1" id="iu2-wt-BYX"/>
                                 </constraints>
+                                <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="small"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" name="myBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="xBB-M9-Ju6" firstAttribute="trailing" secondItem="KFd-ea-Pal" secondAttribute="trailing" id="33l-BK-Cbd"/>
-                            <constraint firstItem="jHa-WE-XxO" firstAttribute="trailing" secondItem="DJ1-Mi-ymj" secondAttribute="trailing" id="4lP-gK-lME"/>
-                            <constraint firstItem="TOD-aV-QW7" firstAttribute="top" secondItem="bK9-KC-QTQ" secondAttribute="bottom" constant="6" id="4ss-vc-Doy"/>
-                            <constraint firstItem="wOQ-Sg-Khi" firstAttribute="top" secondItem="xBB-M9-Ju6" secondAttribute="bottom" constant="6" id="5ei-pJ-Qbr"/>
-                            <constraint firstItem="xBB-M9-Ju6" firstAttribute="leading" secondItem="KFd-ea-Pal" secondAttribute="leading" id="6AA-7C-3FG"/>
-                            <constraint firstItem="9gP-HQ-60U" firstAttribute="centerX" secondItem="7ZQ-M8-LUC" secondAttribute="trailing" constant="-28" id="79a-0m-ogn"/>
-                            <constraint firstItem="bK9-KC-QTQ" firstAttribute="top" secondItem="J4H-vX-fqK" secondAttribute="bottom" constant="6" id="AwJ-Ts-exw"/>
-                            <constraint firstItem="TOD-aV-QW7" firstAttribute="trailing" secondItem="bK9-KC-QTQ" secondAttribute="trailing" id="C6Q-IM-Aj0"/>
-                            <constraint firstItem="43G-7N-ko0" firstAttribute="top" secondItem="TOD-aV-QW7" secondAttribute="bottom" constant="6" id="Dke-F2-6VQ"/>
-                            <constraint firstItem="bK9-KC-QTQ" firstAttribute="trailing" secondItem="J4H-vX-fqK" secondAttribute="trailing" id="Hkv-Be-wcy"/>
-                            <constraint firstItem="KFd-ea-Pal" firstAttribute="trailing" secondItem="9gP-HQ-60U" secondAttribute="trailing" id="JWw-6s-Eid"/>
-                            <constraint firstItem="wOQ-Sg-Khi" firstAttribute="trailing" secondItem="xBB-M9-Ju6" secondAttribute="trailing" id="Jal-K5-8r5"/>
-                            <constraint firstItem="9gP-HQ-60U" firstAttribute="top" secondItem="7ZQ-M8-LUC" secondAttribute="top" constant="6" id="Jsm-pe-Ipr"/>
-                            <constraint firstItem="KFd-ea-Pal" firstAttribute="leading" secondItem="9gP-HQ-60U" secondAttribute="leading" id="JuF-4T-WIu"/>
-                            <constraint firstItem="bK9-KC-QTQ" firstAttribute="leading" secondItem="J4H-vX-fqK" secondAttribute="leading" id="K0K-5Q-Ue7"/>
-                            <constraint firstItem="J4H-vX-fqK" firstAttribute="leading" secondItem="wOQ-Sg-Khi" secondAttribute="leading" id="NTe-v6-J9i"/>
-                            <constraint firstItem="43G-7N-ko0" firstAttribute="leading" secondItem="TOD-aV-QW7" secondAttribute="leading" id="P4F-So-Pr1"/>
-                            <constraint firstItem="jHa-WE-XxO" firstAttribute="top" secondItem="DJ1-Mi-ymj" secondAttribute="bottom" constant="6" id="Sbn-T6-7F6"/>
-                            <constraint firstItem="jHa-WE-XxO" firstAttribute="width" secondItem="jHa-WE-XxO" secondAttribute="height" constant="1" id="Uif-QG-LNv"/>
-                            <constraint firstItem="xBB-M9-Ju6" firstAttribute="top" secondItem="KFd-ea-Pal" secondAttribute="bottom" constant="6" id="a15-21-W9N"/>
-                            <constraint firstItem="wOQ-Sg-Khi" firstAttribute="leading" secondItem="xBB-M9-Ju6" secondAttribute="leading" id="aUz-J3-xu6"/>
-                            <constraint firstItem="jHa-WE-XxO" firstAttribute="leading" secondItem="DJ1-Mi-ymj" secondAttribute="leading" id="jS2-TJ-r03"/>
-                            <constraint firstItem="DJ1-Mi-ymj" firstAttribute="trailing" secondItem="43G-7N-ko0" secondAttribute="trailing" id="kuN-12-RhZ"/>
-                            <constraint firstItem="KFd-ea-Pal" firstAttribute="top" secondItem="9gP-HQ-60U" secondAttribute="bottom" constant="6" id="nDS-kM-Zof"/>
-                            <constraint firstItem="TOD-aV-QW7" firstAttribute="leading" secondItem="bK9-KC-QTQ" secondAttribute="leading" id="nH6-hL-lk7"/>
-                            <constraint firstItem="DJ1-Mi-ymj" firstAttribute="leading" secondItem="43G-7N-ko0" secondAttribute="leading" id="nIT-oS-DQH"/>
-                            <constraint firstItem="J4H-vX-fqK" firstAttribute="top" secondItem="wOQ-Sg-Khi" secondAttribute="bottom" constant="6" id="o3b-O4-jKa"/>
-                            <constraint firstItem="43G-7N-ko0" firstAttribute="trailing" secondItem="TOD-aV-QW7" secondAttribute="trailing" id="prp-Bs-kkC"/>
-                            <constraint firstItem="DJ1-Mi-ymj" firstAttribute="top" secondItem="43G-7N-ko0" secondAttribute="bottom" constant="6" id="tLz-Ne-E6K"/>
-                            <constraint firstItem="J4H-vX-fqK" firstAttribute="trailing" secondItem="wOQ-Sg-Khi" secondAttribute="trailing" id="uZz-dA-TYd"/>
+                            <constraint firstItem="wOQ-Sg-Khi" firstAttribute="top" secondItem="9gP-HQ-60U" secondAttribute="bottom" priority="750" constant="106" id="0YT-pC-KEt"/>
+                            <constraint firstItem="bK9-KC-QTQ" firstAttribute="centerX" secondItem="9gP-HQ-60U" secondAttribute="centerX" id="3Ud-yE-00b"/>
+                            <constraint firstItem="J4H-vX-fqK" firstAttribute="top" secondItem="9gP-HQ-60U" secondAttribute="bottom" priority="750" constant="156" id="6Y1-RM-ypS"/>
+                            <constraint firstItem="KFd-ea-Pal" firstAttribute="width" secondItem="9gP-HQ-60U" secondAttribute="width" id="9Sr-JT-m2b"/>
+                            <constraint firstItem="J4H-vX-fqK" firstAttribute="width" secondItem="9gP-HQ-60U" secondAttribute="width" id="EfX-m2-ol9"/>
+                            <constraint firstItem="jHa-WE-XxO" firstAttribute="width" secondItem="9gP-HQ-60U" secondAttribute="width" id="F5d-mw-7nG"/>
+                            <constraint firstItem="KFd-ea-Pal" firstAttribute="top" secondItem="9gP-HQ-60U" secondAttribute="bottom" priority="750" constant="6" id="FRX-jW-9WO"/>
+                            <constraint firstItem="TOD-aV-QW7" firstAttribute="centerX" secondItem="9gP-HQ-60U" secondAttribute="centerX" id="GwT-Gw-nZf"/>
+                            <constraint firstItem="xBB-M9-Ju6" firstAttribute="top" secondItem="9gP-HQ-60U" secondAttribute="top" constant="106" id="I6S-i0-d1k"/>
+                            <constraint firstItem="DJ1-Mi-ymj" firstAttribute="centerX" secondItem="9gP-HQ-60U" secondAttribute="centerX" id="OxW-B8-IeP"/>
+                            <constraint firstItem="jHa-WE-XxO" firstAttribute="centerX" secondItem="9gP-HQ-60U" secondAttribute="centerX" id="RrU-cC-aE0"/>
+                            <constraint firstItem="7ZQ-M8-LUC" firstAttribute="trailing" secondItem="9gP-HQ-60U" secondAttribute="trailing" constant="16" id="S8J-VM-adR"/>
+                            <constraint firstItem="DJ1-Mi-ymj" firstAttribute="top" secondItem="9gP-HQ-60U" secondAttribute="top" constant="406" id="WHn-rR-RP2"/>
+                            <constraint firstItem="43G-7N-ko0" firstAttribute="top" secondItem="9gP-HQ-60U" secondAttribute="bottom" priority="750" constant="306" id="WqR-RI-nPs"/>
+                            <constraint firstItem="wOQ-Sg-Khi" firstAttribute="width" secondItem="9gP-HQ-60U" secondAttribute="width" id="YKJ-2i-BNr"/>
+                            <constraint firstItem="43G-7N-ko0" firstAttribute="top" secondItem="9gP-HQ-60U" secondAttribute="top" constant="356" id="YpB-HD-cKA"/>
+                            <constraint firstItem="J4H-vX-fqK" firstAttribute="top" secondItem="9gP-HQ-60U" secondAttribute="top" constant="206" id="Yv4-8G-u3q"/>
+                            <constraint firstItem="43G-7N-ko0" firstAttribute="width" secondItem="9gP-HQ-60U" secondAttribute="width" id="byh-nx-cqF"/>
+                            <constraint firstItem="TOD-aV-QW7" firstAttribute="width" secondItem="9gP-HQ-60U" secondAttribute="width" id="eLB-AS-TY1"/>
+                            <constraint firstItem="xBB-M9-Ju6" firstAttribute="top" secondItem="9gP-HQ-60U" secondAttribute="bottom" priority="750" constant="56" id="eMC-H0-dc6"/>
+                            <constraint firstItem="wOQ-Sg-Khi" firstAttribute="centerX" secondItem="9gP-HQ-60U" secondAttribute="centerX" id="f2v-yl-hmU"/>
+                            <constraint firstItem="xBB-M9-Ju6" firstAttribute="width" secondItem="9gP-HQ-60U" secondAttribute="width" id="fDc-bE-ix9"/>
+                            <constraint firstItem="TOD-aV-QW7" firstAttribute="top" secondItem="9gP-HQ-60U" secondAttribute="top" constant="306" id="fkj-Ie-jtx"/>
+                            <constraint firstItem="bK9-KC-QTQ" firstAttribute="top" secondItem="9gP-HQ-60U" secondAttribute="bottom" priority="750" constant="206" id="isw-LG-64c"/>
+                            <constraint firstItem="J4H-vX-fqK" firstAttribute="centerX" secondItem="9gP-HQ-60U" secondAttribute="centerX" id="nKg-nz-hSK"/>
+                            <constraint firstItem="jHa-WE-XxO" firstAttribute="top" secondItem="9gP-HQ-60U" secondAttribute="top" constant="456" id="oz3-vL-pO4"/>
+                            <constraint firstItem="43G-7N-ko0" firstAttribute="centerX" secondItem="9gP-HQ-60U" secondAttribute="centerX" id="pBz-ht-UaZ"/>
+                            <constraint firstItem="KFd-ea-Pal" firstAttribute="centerX" secondItem="9gP-HQ-60U" secondAttribute="centerX" id="qbN-Kj-f8E"/>
+                            <constraint firstItem="DJ1-Mi-ymj" firstAttribute="width" secondItem="9gP-HQ-60U" secondAttribute="width" id="rLS-fl-BEi"/>
+                            <constraint firstItem="xBB-M9-Ju6" firstAttribute="centerX" secondItem="9gP-HQ-60U" secondAttribute="centerX" id="sEa-lS-Dus"/>
+                            <constraint firstItem="9gP-HQ-60U" firstAttribute="top" secondItem="7ZQ-M8-LUC" secondAttribute="top" constant="6" id="tTe-nB-xXW"/>
+                            <constraint firstItem="wOQ-Sg-Khi" firstAttribute="top" secondItem="9gP-HQ-60U" secondAttribute="top" constant="156" id="tj0-Hr-Pq8"/>
+                            <constraint firstItem="KFd-ea-Pal" firstAttribute="top" secondItem="9gP-HQ-60U" secondAttribute="top" constant="56" id="uJr-n9-z2n"/>
+                            <constraint firstItem="bK9-KC-QTQ" firstAttribute="top" secondItem="9gP-HQ-60U" secondAttribute="top" constant="256" id="vR9-nU-Sgy"/>
+                            <constraint firstItem="jHa-WE-XxO" firstAttribute="top" secondItem="9gP-HQ-60U" secondAttribute="bottom" priority="750" constant="406" id="vWt-0j-sWg"/>
+                            <constraint firstItem="DJ1-Mi-ymj" firstAttribute="top" secondItem="9gP-HQ-60U" secondAttribute="bottom" priority="750" constant="356" id="yiz-l0-ohs"/>
+                            <constraint firstItem="bK9-KC-QTQ" firstAttribute="width" secondItem="9gP-HQ-60U" secondAttribute="width" id="zDJ-IT-Xwk"/>
+                            <constraint firstItem="TOD-aV-QW7" firstAttribute="top" secondItem="9gP-HQ-60U" secondAttribute="bottom" priority="750" constant="256" id="zxa-C0-YsA"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="7ZQ-M8-LUC"/>
                     </view>
                     <connections>
-                        <outlet property="ivHeightConstraint" destination="zUf-Nv-Z7c" id="Qce-kc-QbX"/>
                         <outletCollection property="ImageViews" destination="9gP-HQ-60U" collectionClass="NSMutableArray" id="Lhm-5g-xw9"/>
                         <outletCollection property="ImageViews" destination="KFd-ea-Pal" collectionClass="NSMutableArray" id="2ft-WV-Hbs"/>
                         <outletCollection property="ImageViews" destination="xBB-M9-Ju6" collectionClass="NSMutableArray" id="H64-aP-wRX"/>
@@ -517,6 +556,24 @@
                         <outletCollection property="ImageViews" destination="43G-7N-ko0" collectionClass="NSMutableArray" id="3jf-1w-Cu8"/>
                         <outletCollection property="ImageViews" destination="DJ1-Mi-ymj" collectionClass="NSMutableArray" id="UuP-px-DAt"/>
                         <outletCollection property="ImageViews" destination="jHa-WE-XxO" collectionClass="NSMutableArray" id="Imq-Ih-Xas"/>
+                        <outletCollection property="ivHeightConstraintLists" destination="FRX-jW-9WO" collectionClass="NSMutableArray" id="XXE-l3-p7n"/>
+                        <outletCollection property="ivHeightConstraintLists" destination="eMC-H0-dc6" collectionClass="NSMutableArray" id="eCr-3a-qkP"/>
+                        <outletCollection property="ivHeightConstraintLists" destination="0YT-pC-KEt" collectionClass="NSMutableArray" id="qxU-kg-JmC"/>
+                        <outletCollection property="ivHeightConstraintLists" destination="6Y1-RM-ypS" collectionClass="NSMutableArray" id="ioc-ea-edE"/>
+                        <outletCollection property="ivHeightConstraintLists" destination="isw-LG-64c" collectionClass="NSMutableArray" id="Mtc-Qe-05D"/>
+                        <outletCollection property="ivHeightConstraintLists" destination="zxa-C0-YsA" collectionClass="NSMutableArray" id="ntc-kg-Yoi"/>
+                        <outletCollection property="ivHeightConstraintLists" destination="WqR-RI-nPs" collectionClass="NSMutableArray" id="faa-kL-rEG"/>
+                        <outletCollection property="ivHeightConstraintLists" destination="yiz-l0-ohs" collectionClass="NSMutableArray" id="hzc-Wf-MDu"/>
+                        <outletCollection property="ivHeightConstraintLists" destination="vWt-0j-sWg" collectionClass="NSMutableArray" id="anC-WV-tVX"/>
+                        <outletCollection property="ivTopConstraints" destination="uJr-n9-z2n" collectionClass="NSMutableArray" id="8VV-al-Nva"/>
+                        <outletCollection property="ivTopConstraints" destination="I6S-i0-d1k" collectionClass="NSMutableArray" id="XLE-u1-Q44"/>
+                        <outletCollection property="ivTopConstraints" destination="tj0-Hr-Pq8" collectionClass="NSMutableArray" id="4mp-1d-qki"/>
+                        <outletCollection property="ivTopConstraints" destination="Yv4-8G-u3q" collectionClass="NSMutableArray" id="DDm-Gg-4mR"/>
+                        <outletCollection property="ivTopConstraints" destination="vR9-nU-Sgy" collectionClass="NSMutableArray" id="iWy-Ez-VdI"/>
+                        <outletCollection property="ivTopConstraints" destination="fkj-Ie-jtx" collectionClass="NSMutableArray" id="OAP-gY-wFr"/>
+                        <outletCollection property="ivTopConstraints" destination="YpB-HD-cKA" collectionClass="NSMutableArray" id="OFt-0S-pXP"/>
+                        <outletCollection property="ivTopConstraints" destination="WHn-rR-RP2" collectionClass="NSMutableArray" id="8W4-Wo-amT"/>
+                        <outletCollection property="ivTopConstraints" destination="oz3-vL-pO4" collectionClass="NSMutableArray" id="qhb-Wh-DNC"/>
                         <segue destination="o65-JX-5II" kind="presentation" identifier="bigCardEditViewSegue" id="uL0-JT-Wth"/>
                         <segue destination="8TX-W8-QyG" kind="presentation" identifier="smallCardInfoViewSegue" id="ULs-Nm-O8G"/>
                     </connections>
@@ -2026,18 +2083,18 @@
         <segue reference="r5M-ob-z1M"/>
     </inferredMetricsTieBreakers>
     <resources>
-        <image name="arrow.down.to.line.alt" catalog="system" width="111" height="128"/>
-        <image name="arrow.left.to.line.alt" catalog="system" width="128" height="89"/>
-        <image name="arrow.right.square" catalog="system" width="128" height="114"/>
-        <image name="arrow.right.to.line.alt" catalog="system" width="128" height="89"/>
-        <image name="arrow.up.to.line.alt" catalog="system" width="111" height="128"/>
         <image name="book" catalog="system" width="128" height="101"/>
         <image name="book.circle" catalog="system" width="128" height="121"/>
         <image name="calendar" catalog="system" width="128" height="106"/>
         <image name="camera" catalog="system" width="128" height="96"/>
+        <image name="camera.circle" catalog="system" width="128" height="121"/>
         <image name="chart.bar" catalog="system" width="128" height="90"/>
+        <image name="chevron.down.circle" catalog="system" width="128" height="121"/>
         <image name="chevron.down.circle.fill" catalog="system" width="128" height="121"/>
-        <image name="delete.left" catalog="system" width="128" height="104"/>
+        <image name="chevron.left.circle" catalog="system" width="128" height="121"/>
+        <image name="chevron.right.circle" catalog="system" width="128" height="121"/>
+        <image name="chevron.up.circle" catalog="system" width="128" height="121"/>
+        <image name="circle" catalog="system" width="128" height="121"/>
         <image name="ellipsis" catalog="system" width="128" height="37"/>
         <image name="icloud.slash" catalog="system" width="128" height="101"/>
         <image name="line.horizontal.3" catalog="system" width="128" height="64"/>
@@ -2047,15 +2104,14 @@
         <image name="mappin.and.ellipse" catalog="system" width="118" height="128"/>
         <image name="pencil.and.ellipsis.rectangle" catalog="system" width="128" height="81"/>
         <image name="pencil.circle" catalog="system" width="128" height="121"/>
-        <image name="photo" catalog="system" width="128" height="93"/>
         <image name="plus" catalog="system" width="128" height="113"/>
         <image name="plus.circle" catalog="system" width="128" height="121"/>
-        <image name="plus.square" catalog="system" width="128" height="114"/>
-        <image name="plus.square.fill" catalog="system" width="128" height="114"/>
+        <image name="plus.circle.fill" catalog="system" width="128" height="121"/>
         <image name="rectangle.3.offgrid" catalog="system" width="128" height="80"/>
         <image name="rectangle.and.paperclip" catalog="system" width="128" height="100"/>
         <image name="rectangle.compress.vertical" catalog="system" width="128" height="128"/>
         <image name="text.bubble" catalog="system" width="128" height="110"/>
+        <image name="trash.circle" catalog="system" width="128" height="121"/>
         <image name="trash.circle.fill" catalog="system" width="128" height="121"/>
         <namedColor name="calendarColor">
             <color red="1" green="0.99599999189376831" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
