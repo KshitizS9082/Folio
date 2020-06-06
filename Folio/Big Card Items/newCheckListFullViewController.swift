@@ -44,6 +44,7 @@ class newCheckListFullViewController: UIViewController {
     @IBOutlet weak var addButtonIV: UIImageView!{
         didSet{
             addButtonIV.isUserInteractionEnabled=true
+            addButtonIV.tintColor = .systemTeal
             addButtonIV.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(didTapAddButton)))
         }
     }

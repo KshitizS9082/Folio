@@ -109,6 +109,42 @@ class TimelineViewController: UIViewController {
         }
     }
     
+    func addTimelineCard(of type: cardType){
+        switch type {
+        case .small:
+            let nc = SmallCard()
+            //            self.page?.sma.append(bigCardData(card: nc, frame: CGRect(x: 10, y: 10, width: PageView().bigCardWidth, height: PageView().bigCardHeight), isHidden: true))
+            self.page?.smallCards.append(smallCardData(card: nc, frame: CGRect(x: 10, y: 10, width: PageView().smallCardWidth, height: PageView().smallCardHeight), isHidden: true))
+            viewDidLoad()
+            for ind in cardsList.indices{
+                if cardsList[ind].type == .small , cardsList[ind].smallCard?.card.UniquIdentifier==nc.UniquIdentifier{
+                    table.scrollToRow(at: IndexPath(row: ind, section: 0), at: .middle, animated: true)
+                    return
+                }
+            }
+        case .big:
+            let nc = Card()
+            self.page?.bigCards.append(bigCardData(card: nc, frame: CGRect(x: 10, y: 10, width: PageView().bigCardWidth, height: PageView().bigCardHeight), isHidden: true))
+            viewDidLoad()
+            for ind in cardsList.indices{
+                if cardsList[ind].type == .big , cardsList[ind].bigCard?.card.UniquIdentifier==nc.UniquIdentifier{
+                    table.scrollToRow(at: IndexPath(row: ind, section: 0), at: .middle, animated: true)
+                    return
+                }
+            }
+        case .media:
+            let nc = MediaCard()
+            self.page?.mediaCards.append(mediaCardData(card: nc, frame: CGRect(x: 10, y: 10, width: PageView().mediaCardDimension, height: PageView().mediaCardDimension), isHidden: true))
+            viewDidLoad()
+            for ind in cardsList.indices{
+                if cardsList[ind].type == .media , cardsList[ind].mediaCard?.card.UniquIdentifier==nc.UniquIdentifier{
+                    table.scrollToRow(at: IndexPath(row: ind, section: 0), at: .middle, animated: true)
+                    return
+                }
+            }
+        }
+    }
+    
     func save() {
         print("attempting to save page")
         if let json = page?.json {

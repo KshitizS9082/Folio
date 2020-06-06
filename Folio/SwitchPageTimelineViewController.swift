@@ -44,6 +44,9 @@ class SwitchPageTimelineViewController: UIViewController {
         switch segmentControl.selectedSegmentIndex {
         case 0:
             pageVController?.toggleToolBar()
+        case 1:
+            print("lfb 1")
+            handleAddCardButtton()
         default:
             print("showing timeline so do nothing")
         }
@@ -120,6 +123,40 @@ class SwitchPageTimelineViewController: UIViewController {
         }
         
     }
+    
+    private func handleAddCardButtton(){
+            let addSmall = UIAlertAction(title: "Add Small Card",
+                                        style: .default) { (action) in
+                                             self.timeLineVController?.addTimelineCard(of: .small)
+            }
+            let addBig = UIAlertAction(title: "Add Big Card",
+                                          style: .default) { (action) in
+                                            self.timeLineVController?.addTimelineCard(of: .big)
+            }
+            let addMedia = UIAlertAction(title: "Add Media Card",
+                                           style: .default) { (action) in
+                                             self.timeLineVController?.addTimelineCard(of: .media)
+            }
+            let cancelAction = UIAlertAction(title: "Cancel",
+                                             style: .cancel) { (action) in
+                                                // Respond to user selection of the action
+            }
+            
+            let alert = UIAlertController(title: "Add Card",
+                                          message: "NOTE: You will automatically be switched to View All Card",
+                                          preferredStyle: .actionSheet)
+            alert.addAction(addSmall)
+            alert.addAction(addBig)
+            alert.addAction(addMedia)
+            alert.addAction(cancelAction)
+            // On iPad, action sheets must be presented from a popover.
+            alert.popoverPresentationController?.barButtonItem =
+                self.navBarRightRightButton
+            self.present(alert, animated: true) {
+                // The alert was presented
+            }
+        }
+    
     @objc private func addTimelineSmallCard(){
         print("show tool bar")
     }

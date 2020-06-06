@@ -15,6 +15,7 @@ class fullChecklistViewTableViewCell: UITableViewCell, UITextViewDelegate {
     
     @IBOutlet weak var doneImageView: UIImageView!{
         didSet{
+            doneImageView.tintColor = .systemTeal
             doneImageView.isUserInteractionEnabled=true
             doneImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleDoneTap)))
         }

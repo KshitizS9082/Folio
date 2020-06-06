@@ -83,7 +83,7 @@ class newEditCardViewController: UIViewController {
             navBar.isTranslucent = true
         }
     }
-    @IBAction func cancelButtonTap(_ sender: Any) {
+    @IBAction func cancelButtonTap(_ sender:  Any) {
         self.unSetReminder()
         self.dismiss(animated: true, completion: nil)
     }
