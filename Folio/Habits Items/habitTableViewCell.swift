@@ -85,16 +85,17 @@ class habitTableViewCell: UITableViewCell {
         self.contentView.isUserInteractionEnabled=true
         self.cardBackgroundView.layer.cornerRadius=cornerRadius
         //set calendar
+        self.calendar.reloadData(withanchor: self.selectedDate)
         calendar.scrollDirection = .horizontal
         calendar.isPagingEnabled=true
-        if numberOfRows == 6 {
-            self.calendarHeightConstraint.constant = fullCalHeight
-            self.toggleCalSizeIV.image = UIImage(systemName: "chevron.up.circle")
-        } else {
-            self.calendarHeightConstraint.constant = singleRohCalHeight
-            self.toggleCalSizeIV.image = UIImage(systemName: "chevron.down.circle")
-        }
-        self.calendar.reloadData(withanchor: self.selectedDate)
+//        if numberOfRows == 6 {
+//            self.calendarHeightConstraint.constant = fullCalHeight
+//            self.toggleCalSizeIV.image = UIImage(systemName: "chevron.up.circle")
+//        } else {
+//            self.calendarHeightConstraint.constant = singleRohCalHeight
+//            self.toggleCalSizeIV.image = UIImage(systemName: "chevron.down.circle")
+//        }
+//        self.calendar.reloadData(withanchor: self.selectedDate)
         
         var date = Date()
         titleLabel.text = habitData?.title
@@ -177,6 +178,7 @@ class habitTableViewCell: UITableViewCell {
             print("is not set")
             reminderButtonIV.image = UIImage(systemName: "bell.slash")
         }
+        //collapse both calendar and chart
     }
     func setupChartData(){
         yValues.removeAll()
@@ -337,6 +339,7 @@ class habitTableViewCell: UITableViewCell {
             self.calendar.reloadData(withanchor: self.selectedDate)
         })
     }
+    
 }
 extension habitTableViewCell{
     var cornerRadius: CGFloat{
@@ -382,20 +385,20 @@ extension habitTableViewCell: JTAppleCalendarViewDataSource, JTAppleCalendarView
             var sameDay = false
             switch hdt.habitGoalPeriod {
             case .daily:
-                let a = hdt.entriesList[date.startOfDay] ?? 0.0
+                let a = hdt.allEntries[date.startOfDay] ?? 0.0
 //                cell.countLabel.text = a.description
                 cell.countLabel.text = String(Int(a))
                 sameDay = Calendar.current.isDate(date, equalTo: date.startOfDay, toGranularity: .day)
             case .weekly:
-                let a = hdt.entriesList[date.startOfWeek] ?? 0.0
+                let a = hdt.allEntries[date.startOfWeek] ?? 0.0
                 cell.countLabel.text = String(Int(a))
                 sameDay = Calendar.current.isDate(date, equalTo: date.startOfWeek, toGranularity: .day)
             case .monthly:
-                let a = hdt.entriesList[date.startOfMonth] ?? 0.0
+                let a = hdt.allEntries[date.startOfMonth] ?? 0.0
                 cell.countLabel.text = String(Int(a))
                 sameDay = Calendar.current.isDate(date, equalTo: date.startOfMonth, toGranularity: .day)
             case .yearly:
-                let a = hdt.entriesList[date.startOfYear] ?? 0.0
+                let a = hdt.allEntries[date.startOfYear] ?? 0.0
                 cell.countLabel.text = String(Int(a))
                 sameDay = Calendar.current.isDate(date, equalTo: date.startOfYear, toGranularity: .day)
             }

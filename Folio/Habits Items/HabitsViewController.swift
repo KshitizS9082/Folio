@@ -114,8 +114,22 @@ extension HabitsViewController: habitsVCProtocol{
         //MARK: currently not working
         //TODO: do somethign to update this
 //        habits.cardList[index.row].goalCount=count
-        
         var date = Date()
+        if count==0.0{
+            habits.cardList[index.row].allEntries.removeValue(forKey: date.startOfDay)
+        }else{
+            habits.cardList[index.row].allEntries[date.startOfDay]=count
+            //Used for debugging
+//            var x = Calendar.current.date(byAdding: .day, value:  -(1), to: Date())!.startOfDay
+//            habits.cardList[index.row].allEntries[x.startOfDay]=count*2
+//            x = Calendar.current.date(byAdding: .day, value:  -(5), to: Date())!.startOfDay
+//            habits.cardList[index.row].allEntries[x.startOfDay]=count+6
+//            x = Calendar.current.date(byAdding: .day, value:  -(3), to: Date())!.startOfDay
+//            habits.cardList[index.row].allEntries[x.startOfDay]=count-3
+//            x = Calendar.current.date(byAdding: .day, value:  -(5), to: Date())!.startOfDay
+//            habits.cardList[index.row].allEntries[x.startOfDay]=count-4
+        }
+        
         switch habits.cardList[index.row].habitGoalPeriod {
         case .daily:
             date=date.startOfDay
@@ -131,17 +145,17 @@ extension HabitsViewController: habitsVCProtocol{
         }else{
             habits.cardList[index.row].entriesList[date]=count
         }
-        //MARK: next lines to be removed used for debginnh
-        //TODO: next lines to be removed used for debginnh
-        habits.cardList[index.row].constructionDate =  Calendar.current.date(byAdding: .day, value:  -(20), to: Date())!.startOfDay
-        var x = Calendar.current.date(byAdding: .day, value:  -(1), to: Date())!.startOfDay
-        habits.cardList[index.row].entriesList[x]=count.advanced(by: -3.0)
-        x = Calendar.current.date(byAdding: .day, value:  -(2), to: Date())!.startOfDay
-        habits.cardList[index.row].entriesList[x]=count.advanced(by: -1.0)
-        x = Calendar.current.date(byAdding: .day, value:  -(3), to: Date())!.startOfDay
-        habits.cardList[index.row].entriesList[x]=count.advanced(by: -4.0)
-        x = Calendar.current.date(byAdding: .day, value:  -(5), to: Date())!.startOfDay
-        habits.cardList[index.row].entriesList[x]=count.advanced(by: -1.0)
+//        //MARK: next lines to be removed used for debginnh
+//        //TODO: next lines to be removed used for debginnh
+//        habits.cardList[index.row].constructionDate =  Calendar.current.date(byAdding: .day, value:  -(20), to: Date())!.startOfDay
+//        var x = Calendar.current.date(byAdding: .day, value:  -(1), to: Date())!.startOfDay
+//        habits.cardList[index.row].entriesList[x]=count.advanced(by: -3.0)
+//        x = Calendar.current.date(byAdding: .day, value:  -(2), to: Date())!.startOfDay
+//        habits.cardList[index.row].entriesList[x]=count.advanced(by: -1.0)
+//        x = Calendar.current.date(byAdding: .day, value:  -(3), to: Date())!.startOfDay
+//        habits.cardList[index.row].entriesList[x]=count.advanced(by: -4.0)
+//        x = Calendar.current.date(byAdding: .day, value:  -(5), to: Date())!.startOfDay
+//        habits.cardList[index.row].entriesList[x]=count.advanced(by: -1.0)
         
         table.reloadRows(at: [index], with: .automatic)
 //        print("dict = \( habits.cardList[index.row].entriesList)")

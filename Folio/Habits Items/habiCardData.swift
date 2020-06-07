@@ -29,12 +29,6 @@ struct habitCardData: Codable {
     
     var goalCount = 0.0
     enum ReminderTime: String, Codable {
-//        case morning
-//        case noon
-//        case night
-//        case fifteenMinute
-//        case oneHour
-//        case notSet
         case nonRepeating
         case daily
         case weekly
@@ -46,6 +40,7 @@ struct habitCardData: Codable {
     var reminderValueBeforePausing = ReminderTime.notSet
     
     var entriesList : [Date: Double] = [:]
+    var allEntries : [Date: Double] = [:]
     
     init(){
     }
