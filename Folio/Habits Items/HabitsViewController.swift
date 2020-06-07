@@ -111,8 +111,6 @@ class HabitsViewController: UIViewController {
 }
 extension HabitsViewController: habitsVCProtocol{
     func changeHabitCurentCount(at index: IndexPath, to count: Double) {
-        //MARK: currently not working
-        //TODO: do somethign to update this
 //        habits.cardList[index.row].goalCount=count
         var date = Date()
         if count==0.0{
@@ -145,19 +143,27 @@ extension HabitsViewController: habitsVCProtocol{
         }else{
             habits.cardList[index.row].entriesList[date]=count
         }
-//        //MARK: next lines to be removed used for debginnh
-//        //TODO: next lines to be removed used for debginnh
-//        habits.cardList[index.row].constructionDate =  Calendar.current.date(byAdding: .day, value:  -(20), to: Date())!.startOfDay
+        //MARK: next lines to be removed used for debginnh
+        //TODO: next lines to be removed used for debginnh
 //        var x = Calendar.current.date(byAdding: .day, value:  -(1), to: Date())!.startOfDay
 //        habits.cardList[index.row].entriesList[x]=count.advanced(by: -3.0)
 //        x = Calendar.current.date(byAdding: .day, value:  -(2), to: Date())!.startOfDay
 //        habits.cardList[index.row].entriesList[x]=count.advanced(by: -1.0)
 //        x = Calendar.current.date(byAdding: .day, value:  -(3), to: Date())!.startOfDay
 //        habits.cardList[index.row].entriesList[x]=count.advanced(by: -4.0)
+//        x = Calendar.current.date(byAdding: .day, value:  -(4), to: Date())!.startOfDay
+//        habits.cardList[index.row].entriesList[x]=count.advanced(by: 9.0)
 //        x = Calendar.current.date(byAdding: .day, value:  -(5), to: Date())!.startOfDay
 //        habits.cardList[index.row].entriesList[x]=count.advanced(by: -1.0)
+//        habits.cardList[index.row].constructionDate = x
         
-        table.reloadRows(at: [index], with: .automatic)
+//        table.reloadRows(at: [index], with: .automatic)
+//        cell.habitData = habits.cardList[indexPath.row]
+        if let cell = table.cellForRow(at: index) as? habitTableViewCell{
+            cell.habitData = habits.cardList[index.row]
+            print("setting habitData to \(String(describing: cell.habitData))")
+            cell.awakeFromNib()
+        }
 //        print("dict = \( habits.cardList[index.row].entriesList)")
     }
     

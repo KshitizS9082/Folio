@@ -128,29 +128,14 @@ class habitTableViewCell: UITableViewCell {
         // calculate streak count
         strakCount=0
         if let hdt = habitData{
-            if let cnt = hdt.entriesList[date]{
-                if (cnt.isLess(than: hdt.goalCount))==false{
-                    self.strakCount+=1
+            switch hdt.habitStyle {
+            case .Build:
+                if let cnt = hdt.entriesList[date]{
+                    if (cnt.isLess(than: hdt.goalCount))==false{
+                        self.strakCount+=1
+                    }
                 }
-            }
-            var temp=1
-            switch hdt.habitGoalPeriod {
-            case .daily:
-                date =  Calendar.current.date(byAdding: .day,value: -(temp), to: Date())!.startOfDay
-            case .weekly:
-                date =  Calendar.current.date(byAdding: .weekOfYear,value:  -(temp), to: Date())!.startOfWeek
-            case .monthly:
-                date =  Calendar.current.date(byAdding: .month,value:  -(temp), to: Date())!.startOfMonth
-            case .yearly:
-                date =  Calendar.current.date(byAdding: .year,value: -(temp), to: Date())!.startOfYear
-            }
-            while(hdt.entriesList[date] != nil ){
-                if(hdt.entriesList[date]!.isLess(than: hdt.goalCount)){
-                    break
-                }else{
-                    temp+=1
-                }
-                //decrease date by that goal period to check if done in last time duration
+                var temp=1
                 switch hdt.habitGoalPeriod {
                 case .daily:
                     date =  Calendar.current.date(byAdding: .day,value: -(temp), to: Date())!.startOfDay
@@ -161,14 +146,43 @@ class habitTableViewCell: UITableViewCell {
                 case .yearly:
                     date =  Calendar.current.date(byAdding: .year,value: -(temp), to: Date())!.startOfYear
                 }
+                while(hdt.entriesList[date] != nil ){
+                    if(hdt.entriesList[date]!.isLess(than: hdt.goalCount)){
+                        break
+                    }else{
+                        temp+=1
+                    }
+                    //decrease date by that goal period to check if done in last time duration
+                    switch hdt.habitGoalPeriod {
+                    case .daily:
+                        date =  Calendar.current.date(byAdding: .day,value: -(temp), to: Date())!.startOfDay
+                    case .weekly:
+                        date =  Calendar.current.date(byAdding: .weekOfYear,value:  -(temp), to: Date())!.startOfWeek
+                    case .monthly:
+                        date =  Calendar.current.date(byAdding: .month,value:  -(temp), to: Date())!.startOfMonth
+                    case .yearly:
+                        date =  Calendar.current.date(byAdding: .year,value: -(temp), to: Date())!.startOfYear
+                    }
+                }
+                strakCount+=temp-1
+            case .Quit:
+                var testing = Date()
+                while((hdt.entriesList[testing.startOfDay] ?? 0.0).isLessThanOrEqualTo(hdt.goalCount)){
+                    if testing.startOfDay < hdt.constructionDate.startOfDay{
+                        break
+                    }
+                    strakCount+=1
+                    testing =  Calendar.current.date(byAdding: .day,value: -1, to: testing)!.startOfDay
+                }
             }
-            strakCount+=temp-1
         }
         
         streakLabel.text = "Streak: \(strakCount)"
         
         //setup chart
         setupChartData()
+        print("new chart data= \(self.yValues)")
+        self.lineChartView.setNeedsLayout()
         
         //setup reminder button
         if let val = habitData?.reminderValue, val != .notSet {
@@ -178,7 +192,8 @@ class habitTableViewCell: UITableViewCell {
             print("is not set")
             reminderButtonIV.image = UIImage(systemName: "bell.slash")
         }
-        //collapse both calendar and chart
+        
+        
     }
     func setupChartData(){
         yValues.removeAll()
@@ -190,30 +205,32 @@ class habitTableViewCell: UITableViewCell {
             
             var date = hdt.constructionDate
             var counter = 1.0
+            print("will enter switch")
             switch hdt.habitGoalPeriod {
             case .daily:
                 while(date <= Date()){
-                    yValues.append(ChartDataEntry(x: counter, y: hdt.entriesList[date] ?? 0.0))
+                    print("appended one element")
+                    yValues.append(ChartDataEntry(x: counter, y: hdt.entriesList[date.startOfDay] ?? 0.0))
                     counter += 1.0
                     date = Calendar.current.date(byAdding: .day,value: 1, to: date)!.startOfDay
                 }
             case .weekly:
                 while(date <= Date()){
-                    yValues.append(ChartDataEntry(x: counter, y: hdt.entriesList[date] ?? 0.0))
+                    yValues.append(ChartDataEntry(x: counter, y: hdt.entriesList[date.startOfWeek] ?? 0.0))
                     counter += 1.0
                     date = Calendar.current.date(byAdding: .day ,value: 7, to: date)!.startOfWeek
                 }
             case .monthly:
             while(date <= Date()){
-                yValues.append(ChartDataEntry(x: counter, y: hdt.entriesList[date] ?? 0.0))
+                yValues.append(ChartDataEntry(x: counter, y: hdt.entriesList[date.startOfMonth] ?? 0.0))
                 counter += 1.0
                 date = Calendar.current.date(byAdding: .month ,value: 1, to: date)!.startOfMonth
             }
             case .yearly:
                 while(date <= Date()){
-                    yValues.append(ChartDataEntry(x: counter, y: hdt.entriesList[date] ?? 0.0))
+                    yValues.append(ChartDataEntry(x: counter, y: hdt.entriesList[date.startOfYear] ?? 0.0))
                     counter += 1.0
-                    date = Calendar.current.date(byAdding: .year ,value: 1, to: date)!.startOfDay
+                    date = Calendar.current.date(byAdding: .year ,value: 1, to: date)!.startOfYear
                 }
             }
         }
@@ -261,6 +278,7 @@ class habitTableViewCell: UITableViewCell {
     
     @IBAction func stepperChanged(_ sender: UIStepper) {
         currentCount=stepper.value
+        print("trying to set to \(currentCount)")
         delegate?.changeHabitCurentCount(at: index, to: currentCount)
 //        awakeFromNib()
     }
