@@ -106,6 +106,7 @@ class JournalViewController: UIViewController {
         calendarView.showsHorizontalScrollIndicator = false
         constraint.constant=fullCalHeight
         self.calendarView.reloadData(withanchor: selectedDate)
+        self.calendarView.selectDates([selectedDate])
         
         setupData()
         setupTable()
