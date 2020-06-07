@@ -35,18 +35,26 @@ class habitTableViewCell: UITableViewCell {
         didSet{
             toggleCalSizeIV.tintColor = UIColor.systemTeal
             toggleCalSizeIV.isUserInteractionEnabled=true
-            toggleCalSizeIV.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(toggleCalendar)))
+            toggleCalSizeIV.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(toggleCalendarSize)))
+        }
+    }
+    @IBOutlet weak var reminderButtonIV: UIImageView!{
+        didSet{
+            reminderButtonIV.tintColor = .systemTeal
+//            reminderButtonIV.addGestureRecognizer(UITapGestureRecognizer(target: self, action: <#T##Selector?#>))
         }
     }
     
     var yValues = [ChartDataEntry]()
+//    var targetValues = [ChartDataEntry]()
     @IBOutlet weak var lineChartView: LineChartView!{
         didSet{
             self.lineChartView.backgroundColor = UIColor(named: "myBackgroundColor")
             self.lineChartView.layer.cornerRadius = chartCornerRadius
             self.lineChartView.layer.masksToBounds = true
             self.lineChartView.delegate = self
-            self.lineChartView.rightAxis.enabled=false
+//            self.lineChartView.rightAxis.enabled=false
+            self.lineChartView.rightAxis.gridColor = .clear
             
             self.lineChartView.leftAxis.setLabelCount(6, force: true)
             self.lineChartView.leftAxis.labelFont = .boldSystemFont(ofSize: 12)
@@ -73,6 +81,7 @@ class habitTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        print("called awake from nib")
         self.contentView.isUserInteractionEnabled=true
         self.cardBackgroundView.layer.cornerRadius=cornerRadius
         //set calendar
@@ -159,10 +168,24 @@ class habitTableViewCell: UITableViewCell {
         
         //setup chart
         setupChartData()
+        
+        //setup reminder button
+        if let val = habitData?.reminderValue, val != .notSet {
+            print("is set")
+            reminderButtonIV.image = UIImage(systemName: "bell")
+        }else{
+            print("is not set")
+            reminderButtonIV.image = UIImage(systemName: "bell.slash")
+        }
     }
     func setupChartData(){
         yValues.removeAll()
         if let hdt = habitData{
+            if lineChartView.rightAxis.limitLines.count==0{
+                let ll = ChartLimitLine(limit: hdt.goalCount, label: "Target")
+                lineChartView.rightAxis.addLimitLine(ll)
+            }
+            
             var date = hdt.constructionDate
             var counter = 1.0
             switch hdt.habitGoalPeriod {
@@ -172,19 +195,32 @@ class habitTableViewCell: UITableViewCell {
                     counter += 1.0
                     date = Calendar.current.date(byAdding: .day,value: 1, to: date)!.startOfDay
                 }
-            default:
-                print("yet to handdle")
+            case .weekly:
+                while(date <= Date()){
+                    yValues.append(ChartDataEntry(x: counter, y: hdt.entriesList[date] ?? 0.0))
+                    counter += 1.0
+                    date = Calendar.current.date(byAdding: .day ,value: 7, to: date)!.startOfWeek
+                }
+            case .monthly:
+            while(date <= Date()){
+                yValues.append(ChartDataEntry(x: counter, y: hdt.entriesList[date] ?? 0.0))
+                counter += 1.0
+                date = Calendar.current.date(byAdding: .month ,value: 1, to: date)!.startOfMonth
+            }
+            case .yearly:
+                while(date <= Date()){
+                    yValues.append(ChartDataEntry(x: counter, y: hdt.entriesList[date] ?? 0.0))
+                    counter += 1.0
+                    date = Calendar.current.date(byAdding: .year ,value: 1, to: date)!.startOfDay
+                }
             }
         }
+        //Date of entrieds
         let set1 = LineChartDataSet(entries: self.yValues, label: "Count Entry")
         set1.drawCirclesEnabled=false
         set1.mode = .cubicBezier
         set1.lineWidth = 3
         set1.setColor(.systemPink)
-        
-//        set1.fill = Fill(color: .systemPink)
-//        set1.fillAlpha = 0.6
-//        set1.drawFilledEnabled=true
         
         let gradientColors = [UIColor.systemPink.cgColor, UIColor.clear.cgColor] as CFArray // Colors of the gradient
         let colorLocations:[CGFloat] = [1.0, 0.0] // Positioning of the gradient
@@ -192,8 +228,29 @@ class habitTableViewCell: UITableViewCell {
         set1.fill = Fill.fillWithLinearGradient(gradient!, angle: 90.0) // Set the Gradient
         set1.drawFilledEnabled = true // Draw the Gradient
         
+        //Date of goalcount
+//        let set2 = LineChartDataSet(entries: self.targetValues)
+//        set2.drawCirclesEnabled=false
+//        set2.mode = .cubicBezier
+//        set2.lineWidth = 1
+//        set2.setColor(.systemTeal)
+//
+//        let gradientColors2 = [UIColor.systemPink.cgColor, UIColor.clear.cgColor] as CFArray // Colors of the gradient
+//        let colorLocations2:[CGFloat] = [1.0, 0.0] // Positioning of the gradient
+//        let gradient2 = CGGradient.init(colorsSpace: CGColorSpaceCreateDeviceRGB(), colors: gradientColors2, locations: colorLocations2) // Gradient Object
+//        set2.fill = Fill.fillWithLinearGradient(gradient2!, angle: 90.0) // Set the Gradient
+//        set2.drawFilledEnabled = true // Draw the Gradient
+        
+
         let data = LineChartData(dataSet: set1)
-//        data.setDrawValues(false)
+        
+        let numberFormatter = NumberFormatter()
+        numberFormatter.numberStyle = .decimal
+        numberFormatter.maximumFractionDigits = 1
+        numberFormatter.locale = Locale.current
+        let valuesNumberFormatter = ChartValueFormatter(numberFormatter: numberFormatter)
+        set1.valueFormatter = valuesNumberFormatter
+        
         data.setValueTextColor(UIColor(named: "subMainTextColor") ?? UIColor.red)
         data.setValueFont(.boldSystemFont(ofSize: 10))
         lineChartView.data = data
@@ -205,7 +262,7 @@ class habitTableViewCell: UITableViewCell {
         delegate?.changeHabitCurentCount(at: index, to: currentCount)
 //        awakeFromNib()
     }
-    @objc func toggleCalendar(){
+    @objc func toggleCalendarSize(){
         print("inside toggle cal")
 //        if numberOfRows==1{
 //            self.calendarHeightConstraint.constant=100
@@ -242,6 +299,44 @@ class habitTableViewCell: UITableViewCell {
             self.calendar.reloadData(withanchor: self.selectedDate)
         })
     }
+    
+    @IBOutlet weak var chartToCalHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var chartHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var chartButton: UIImageView!{
+        didSet{
+            chartButton.tintColor = .systemTeal
+            chartButton.isUserInteractionEnabled=true
+            chartButton.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(toggleChart)))
+        }
+    }
+    @objc func toggleChart(){
+        chartToCalHeightConstraint.constant=20-chartToCalHeightConstraint.constant
+        chartHeightConstraint.constant=200-chartHeightConstraint.constant
+        UIView.animate(withDuration: 0.4, animations: {
+                            self.layoutIfNeeded()
+            self.delegate?.updated(indexpath: self.index)
+            self.lineChartView.layoutSubviews()
+        })
+    }
+    @IBOutlet weak var calendarButton: UIImageView!{
+        didSet{
+            calendarButton.tintColor = .systemTeal
+            calendarButton.isUserInteractionEnabled=true
+            calendarButton.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(hideOrUnHideChart)))
+        }
+    }
+    @objc func hideOrUnHideChart(){
+        if numberOfRows == 6 {
+            self.calendarHeightConstraint.constant = fullCalHeight-self.calendarHeightConstraint.constant
+        } else {
+            self.calendarHeightConstraint.constant = singleRohCalHeight-self.calendarHeightConstraint.constant
+        }
+        UIView.animate(withDuration: 0.4, animations: {
+                            self.layoutIfNeeded()
+            self.delegate?.updated(indexpath: self.index)
+            self.calendar.reloadData(withanchor: self.selectedDate)
+        })
+    }
 }
 extension habitTableViewCell{
     var cornerRadius: CGFloat{
@@ -258,6 +353,9 @@ extension habitTableViewCell{
     }
     var chartCornerRadius: CGFloat{
         return 15
+    }
+    var chartHeight: CGFloat{
+        return 175
     }
 }
 extension habitTableViewCell: ChartViewDelegate{
@@ -301,13 +399,13 @@ extension habitTableViewCell: JTAppleCalendarViewDataSource, JTAppleCalendarView
                 sameDay = Calendar.current.isDate(date, equalTo: date.startOfYear, toGranularity: .day)
             }
             if sameDay{
-                print("is first day of categ")
+//                print("is first day of categ")
                 if hdt.habitGoalPeriod != .daily{
                     cell.contentView.layer.borderColor = #colorLiteral(red: 1, green: 0.1764705882, blue: 0.3333333333, alpha: 0.3976947623)
                     cell.contentView.layer.borderWidth = 1
                 }
             }else{
-                print("is not first day of categ")
+//                print("is not first day of categ")
                 cell.contentView.layer.borderWidth = 0
             }
         }else{
@@ -372,5 +470,21 @@ extension habitTableViewCell: JTAppleCalendarViewDataSource, JTAppleCalendarView
 
     func calendarSizeForMonths(_ calendar: JTAppleCalendarView?) -> MonthSize? {
         return MonthSize(defaultSize: 40)
+    }
+}
+class ChartValueFormatter: NSObject, IValueFormatter {
+    fileprivate var numberFormatter: NumberFormatter?
+
+    convenience init(numberFormatter: NumberFormatter) {
+        self.init()
+        self.numberFormatter = numberFormatter
+    }
+
+    func stringForValue(_ value: Double, entry: ChartDataEntry, dataSetIndex: Int, viewPortHandler: ViewPortHandler?) -> String {
+        guard let numberFormatter = numberFormatter
+            else {
+                return ""
+        }
+        return numberFormatter.string(for: value)!
     }
 }

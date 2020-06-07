@@ -201,9 +201,21 @@ extension HabitsViewController: UITableViewDataSource, UITableViewDelegate{
         let action = UIContextualAction(style: .destructive, title: "Delete",
                                         handler: { (action, view, completionHandler) in
                                             print("handle delete")
-//                                            self.deletePage(for: self.pages.items[indexPath.row])
-//                                            self.pages.items.remove(at: indexPath.row)
-//                                            self.table.reloadData()
+                                            UNUserNotificationCenter.current().getPendingNotificationRequests { (notificationRequests) in
+                                                var identifiers: [String] = []
+                                                for notification:UNNotificationRequest in notificationRequests {
+                                                    if notification.identifier == String(describing: (self.habits.cardList[indexPath.row].UniquIdentifier)) {
+                                                        identifiers.append(notification.identifier)
+                                                    }
+                                                }
+                                                print("indrow = \(indexPath.row), adn id = \(self.habits.cardList[indexPath.row].UniquIdentifier)")
+                                                print("removing notifs with identifiers \(identifiers)")
+                                                UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: identifiers)
+                                                DispatchQueue.main.async {
+                                                    self.habits.cardList.remove(at: indexPath.row)
+                                                    self.table.deleteRows(at: [indexPath], with: .automatic)
+                                                }
+                                            }
                                             completionHandler(true)
         })
         action.backgroundColor = .systemRed
@@ -234,8 +246,12 @@ extension HabitsViewController: UITableViewDataSource, UITableViewDelegate{
                                                             print("removing notifs with identifiers \(identifiers)")
                                                             UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: identifiers)
                                                         }
-                                                         self.habits.cardList[indexPath.row].reminderValueBeforePausing = self.habits.cardList[indexPath.row].reminderValue
+                                                        self.habits.cardList[indexPath.row].reminderValueBeforePausing = self.habits.cardList[indexPath.row].reminderValue
                                                         self.habits.cardList[indexPath.row].reminderValue = .notSet
+                                                    }
+                                                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                                                        // your code here
+                                                        self.table.reloadRows(at: [indexPath], with: .none)
                                                     }
                                                     completionHandler(true)
             })
@@ -245,7 +261,7 @@ extension HabitsViewController: UITableViewDataSource, UITableViewDelegate{
             default:
                 changeAlarm.backgroundColor = .systemYellow
             }
-
+            
             let configuration = UISwipeActionsConfiguration(actions: [action, changeAlarm])
             return configuration
         }
