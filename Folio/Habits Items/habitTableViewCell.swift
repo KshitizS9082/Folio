@@ -60,8 +60,10 @@ class habitTableViewCell: UITableViewCell {
             self.lineChartView.xAxis.labelTextColor = .systemTeal
             self.lineChartView.xAxis.axisLineColor = UIColor(named: "subMainTextColor") ?? UIColor.systemRed
             
-            self.lineChartView.noDataText = "You need to provide data for the chart."
+            self.lineChartView.leftAxis.gridColor = .clear
+            self.lineChartView.xAxis.gridColor = .clear
             
+            self.lineChartView.noDataText = "You need to provide data for the chart."
             self.lineChartView.animate(xAxisDuration: 1.5)
         }
     }
@@ -179,9 +181,17 @@ class habitTableViewCell: UITableViewCell {
         set1.mode = .cubicBezier
         set1.lineWidth = 3
         set1.setColor(.systemPink)
-        set1.fill = Fill(color: .systemPink)
-        set1.fillAlpha = 0.6
-        set1.drawFilledEnabled=true
+        
+//        set1.fill = Fill(color: .systemPink)
+//        set1.fillAlpha = 0.6
+//        set1.drawFilledEnabled=true
+        
+        let gradientColors = [UIColor.systemPink.cgColor, UIColor.clear.cgColor] as CFArray // Colors of the gradient
+        let colorLocations:[CGFloat] = [1.0, 0.0] // Positioning of the gradient
+        let gradient = CGGradient.init(colorsSpace: CGColorSpaceCreateDeviceRGB(), colors: gradientColors, locations: colorLocations) // Gradient Object
+        set1.fill = Fill.fillWithLinearGradient(gradient!, angle: 90.0) // Set the Gradient
+        set1.drawFilledEnabled = true // Draw the Gradient
+        
         let data = LineChartData(dataSet: set1)
 //        data.setDrawValues(false)
         data.setValueTextColor(UIColor(named: "subMainTextColor") ?? UIColor.red)

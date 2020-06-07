@@ -133,7 +133,7 @@ extension HabitsViewController: habitsVCProtocol{
         }
         //MARK: next lines to be removed used for debginnh
         //TODO: next lines to be removed used for debginnh
-        habits.cardList[index.row].constructionDate =  Calendar.current.date(byAdding: .day, value:  -(10), to: Date())!.startOfDay
+        habits.cardList[index.row].constructionDate =  Calendar.current.date(byAdding: .day, value:  -(20), to: Date())!.startOfDay
         var x = Calendar.current.date(byAdding: .day, value:  -(1), to: Date())!.startOfDay
         habits.cardList[index.row].entriesList[x]=count.advanced(by: -3.0)
         x = Calendar.current.date(byAdding: .day, value:  -(2), to: Date())!.startOfDay
