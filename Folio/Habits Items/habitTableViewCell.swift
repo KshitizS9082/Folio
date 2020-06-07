@@ -8,6 +8,7 @@
 
 import UIKit
 import JTAppleCalendar
+import Charts
 
 class habitTableViewCell: UITableViewCell {
     var index = IndexPath(row: 0, section: 0)
@@ -16,6 +17,7 @@ class habitTableViewCell: UITableViewCell {
     var strakCount = 0
     var habitData: habitCardData?
     var numberOfRows = 1
+    
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var currentCountLabel: UILabel!
     @IBOutlet weak var streakLabel: UILabel!
@@ -36,6 +38,34 @@ class habitTableViewCell: UITableViewCell {
             toggleCalSizeIV.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(toggleCalendar)))
         }
     }
+    
+    var yValues = [ChartDataEntry]()
+    @IBOutlet weak var lineChartView: LineChartView!{
+        didSet{
+            self.lineChartView.backgroundColor = UIColor(named: "myBackgroundColor")
+            self.lineChartView.layer.cornerRadius = chartCornerRadius
+            self.lineChartView.layer.masksToBounds = true
+            self.lineChartView.delegate = self
+            self.lineChartView.rightAxis.enabled=false
+            
+            self.lineChartView.leftAxis.setLabelCount(6, force: true)
+            self.lineChartView.leftAxis.labelFont = .boldSystemFont(ofSize: 12)
+            self.lineChartView.leftAxis.labelTextColor = .systemTeal
+            self.lineChartView.leftAxis.axisLineColor = UIColor(named: "subMainTextColor") ?? UIColor.systemRed
+            self.lineChartView.leftAxis.labelPosition = .outsideChart
+            
+            self.lineChartView.xAxis.labelPosition = .bottom
+            self.lineChartView.xAxis.setLabelCount(7, force: false)
+            self.lineChartView.xAxis.labelFont = .boldSystemFont(ofSize: 12)
+            self.lineChartView.xAxis.labelTextColor = .systemTeal
+            self.lineChartView.xAxis.axisLineColor = UIColor(named: "subMainTextColor") ?? UIColor.systemRed
+            
+            self.lineChartView.noDataText = "You need to provide data for the chart."
+            
+            self.lineChartView.animate(xAxisDuration: 1.5)
+        }
+    }
+    
     
     var selectedDate = Date()
     
@@ -124,6 +154,40 @@ class habitTableViewCell: UITableViewCell {
         }
         
         streakLabel.text = "Streak: \(strakCount)"
+        
+        //setup chart
+        setupChartData()
+    }
+    func setupChartData(){
+        yValues.removeAll()
+        if let hdt = habitData{
+            var date = hdt.constructionDate
+            var counter = 1.0
+            switch hdt.habitGoalPeriod {
+            case .daily:
+                while(date <= Date()){
+                    yValues.append(ChartDataEntry(x: counter, y: hdt.entriesList[date] ?? 0.0))
+                    counter += 1.0
+                    date = Calendar.current.date(byAdding: .day,value: 1, to: date)!.startOfDay
+                }
+            default:
+                print("yet to handdle")
+            }
+        }
+        let set1 = LineChartDataSet(entries: self.yValues, label: "Count Entry")
+        set1.drawCirclesEnabled=false
+        set1.mode = .cubicBezier
+        set1.lineWidth = 3
+        set1.setColor(.systemPink)
+        set1.fill = Fill(color: .systemPink)
+        set1.fillAlpha = 0.6
+        set1.drawFilledEnabled=true
+        let data = LineChartData(dataSet: set1)
+//        data.setDrawValues(false)
+        data.setValueTextColor(UIColor(named: "subMainTextColor") ?? UIColor.red)
+        data.setValueFont(.boldSystemFont(ofSize: 10))
+        lineChartView.data = data
+        
     }
     
     @IBAction func stepperChanged(_ sender: UIStepper) {
@@ -182,7 +246,16 @@ extension habitTableViewCell{
     var calendarCornerRadius: CGFloat{
         return 15
     }
+    var chartCornerRadius: CGFloat{
+        return 15
+    }
 }
+extension habitTableViewCell: ChartViewDelegate{
+    func chartValueSelected(_ chartView: ChartViewBase, entry: ChartDataEntry, highlight: Highlight) {
+        print(entry)
+    }
+}
+
 
 extension habitTableViewCell: JTAppleCalendarViewDataSource, JTAppleCalendarViewDelegate{
     func calendar(_ calendar: JTAppleCalendarView, willDisplay cell: JTAppleCell, forItemAt date: Date, cellState: CellState, indexPath: IndexPath) {

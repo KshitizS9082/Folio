@@ -131,15 +131,17 @@ extension HabitsViewController: habitsVCProtocol{
         }else{
             habits.cardList[index.row].entriesList[date]=count
         }
-        
-//        var x = Calendar.current.date(byAdding: .month, value:  -(1), to: Date())!.startOfMonth
-//        habits.cardList[index.row].entriesList[x]=count.advanced(by: -3.0)
-//        x = Calendar.current.date(byAdding: .month, value:  -(2), to: Date())!.startOfMonth
-//        habits.cardList[index.row].entriesList[x]=count.advanced(by: -1.0)
-//        x = Calendar.current.date(byAdding: .month, value:  -(3), to: Date())!.startOfMonth
-//        habits.cardList[index.row].entriesList[x]=count.advanced(by: -4.0)
-//        x = Calendar.current.date(byAdding: .month, value:  -(5), to: Date())!.startOfMonth
-//        habits.cardList[index.row].entriesList[x]=count.advanced(by: -1.0)
+        //MARK: next lines to be removed used for debginnh
+        //TODO: next lines to be removed used for debginnh
+        habits.cardList[index.row].constructionDate =  Calendar.current.date(byAdding: .day, value:  -(10), to: Date())!.startOfDay
+        var x = Calendar.current.date(byAdding: .day, value:  -(1), to: Date())!.startOfDay
+        habits.cardList[index.row].entriesList[x]=count.advanced(by: -3.0)
+        x = Calendar.current.date(byAdding: .day, value:  -(2), to: Date())!.startOfDay
+        habits.cardList[index.row].entriesList[x]=count.advanced(by: -1.0)
+        x = Calendar.current.date(byAdding: .day, value:  -(3), to: Date())!.startOfDay
+        habits.cardList[index.row].entriesList[x]=count.advanced(by: -4.0)
+        x = Calendar.current.date(byAdding: .day, value:  -(5), to: Date())!.startOfDay
+        habits.cardList[index.row].entriesList[x]=count.advanced(by: -1.0)
         
         table.reloadRows(at: [index], with: .automatic)
 //        print("dict = \( habits.cardList[index.row].entriesList)")
