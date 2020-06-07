@@ -118,11 +118,11 @@ class habitTableViewCell: UITableViewCell {
         //TODO: calculate count
         currentCount=habitData?.entriesList[date] ?? 0
         if let gc = habitData?.goalCount{
-            currentCountLabel.text! += String(currentCount) + " / " + String(gc)
+            currentCountLabel.text! += String(Int(currentCount)) + " / " + String(Int(gc))
             stepper.value=currentCount
             //            stepper.maximumValue=gc
         }else{
-            currentCountLabel.text! += String(currentCount) + " / y"
+            currentCountLabel.text! += String(Int(currentCount)) + " / y"
         }
         // calculate streak count
         strakCount=0
@@ -343,7 +343,7 @@ extension habitTableViewCell{
         return 15
     }
     var fullCalHeight: CGFloat{
-        return 500
+        return 400
     }
     var singleRohCalHeight: CGFloat{
         return 100
@@ -383,19 +383,20 @@ extension habitTableViewCell: JTAppleCalendarViewDataSource, JTAppleCalendarView
             switch hdt.habitGoalPeriod {
             case .daily:
                 let a = hdt.entriesList[date.startOfDay] ?? 0.0
-                cell.countLabel.text = a.description
+//                cell.countLabel.text = a.description
+                cell.countLabel.text = String(Int(a))
                 sameDay = Calendar.current.isDate(date, equalTo: date.startOfDay, toGranularity: .day)
             case .weekly:
                 let a = hdt.entriesList[date.startOfWeek] ?? 0.0
-                cell.countLabel.text = a.description
+                cell.countLabel.text = String(Int(a))
                 sameDay = Calendar.current.isDate(date, equalTo: date.startOfWeek, toGranularity: .day)
             case .monthly:
                 let a = hdt.entriesList[date.startOfMonth] ?? 0.0
-                cell.countLabel.text = a.description
+                cell.countLabel.text = String(Int(a))
                 sameDay = Calendar.current.isDate(date, equalTo: date.startOfMonth, toGranularity: .day)
             case .yearly:
                 let a = hdt.entriesList[date.startOfYear] ?? 0.0
-                cell.countLabel.text = a.description
+                cell.countLabel.text = String(Int(a))
                 sameDay = Calendar.current.isDate(date, equalTo: date.startOfYear, toGranularity: .day)
             }
             if sameDay{

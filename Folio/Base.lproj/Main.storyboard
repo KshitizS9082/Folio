@@ -1102,10 +1102,10 @@
                                                                 <autoresizingMask key="autoresizingMask"/>
                                                                 <subviews>
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NXV-gY-80K">
-                                                                        <rect key="frame" x="44" y="36" width="40" height="40"/>
+                                                                        <rect key="frame" x="49" y="41" width="30" height="30"/>
                                                                         <color key="backgroundColor" red="1" green="0.17332952570857241" blue="0.33152657969256716" alpha="0.20262984154929578" colorSpace="custom" customColorSpace="sRGB"/>
                                                                         <constraints>
-                                                                            <constraint firstAttribute="width" constant="40" id="9Sc-57-y9V"/>
+                                                                            <constraint firstAttribute="width" constant="30" id="9Sc-57-y9V"/>
                                                                             <constraint firstAttribute="width" secondItem="NXV-gY-80K" secondAttribute="height" id="avL-HO-qs3"/>
                                                                         </constraints>
                                                                     </view>
@@ -1450,43 +1450,26 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="TCd-ax-A4n">
-                                                    <rect key="frame" x="183" y="51.5" width="94" height="32"/>
+                                                    <rect key="frame" x="300" y="51.5" width="94" height="32"/>
                                                     <connections>
                                                         <action selector="stepperClick:" destination="jCJ-eF-60t" eventType="valueChanged" id="jqM-TA-Ozl"/>
                                                     </connections>
                                                 </stepper>
-                                                <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="hSd-Jz-cdX">
-                                                    <rect key="frame" x="300" y="51.5" width="94" height="32"/>
-                                                    <connections>
-                                                        <action selector="decimalStepperClick:" destination="jCJ-eF-60t" eventType="valueChanged" id="PCR-41-boh"/>
-                                                    </connections>
-                                                </stepper>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xUd-pK-VBu">
-                                                    <rect key="frame" x="285" y="57" width="7" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" weight="black" pointSize="18"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="TCd-ax-A4n" firstAttribute="centerY" secondItem="33l-fU-Owr" secondAttribute="centerY" id="1ZA-rw-Tok"/>
-                                                <constraint firstItem="xUd-pK-VBu" firstAttribute="leading" secondItem="TCd-ax-A4n" secondAttribute="trailing" constant="8" id="3rp-tV-BeY"/>
                                                 <constraint firstAttribute="bottom" secondItem="TCd-ax-A4n" secondAttribute="bottom" constant="20" id="DDc-Cg-d2v"/>
                                                 <constraint firstItem="C74-aR-Z4C" firstAttribute="firstBaseline" secondItem="33l-fU-Owr" secondAttribute="firstBaseline" id="DVi-Rt-og6"/>
                                                 <constraint firstItem="33l-fU-Owr" firstAttribute="centerX" secondItem="ydu-dw-rDd" secondAttribute="centerX" id="GIu-nY-ySq"/>
                                                 <constraint firstItem="33l-fU-Owr" firstAttribute="top" secondItem="ydu-dw-rDd" secondAttribute="bottom" constant="15.5" id="Ing-WX-yhe"/>
                                                 <constraint firstItem="TCd-ax-A4n" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="C74-aR-Z4C" secondAttribute="trailing" constant="8" id="Uxu-b0-gFb"/>
-                                                <constraint firstItem="hSd-Jz-cdX" firstAttribute="centerY" secondItem="TCd-ax-A4n" secondAttribute="centerY" id="aLo-jM-Wpp"/>
-                                                <constraint firstAttribute="trailing" secondItem="hSd-Jz-cdX" secondAttribute="trailing" constant="20" id="bU8-30-YsO"/>
-                                                <constraint firstItem="hSd-Jz-cdX" firstAttribute="leading" secondItem="xUd-pK-VBu" secondAttribute="trailing" constant="8" id="blq-Xb-77K"/>
+                                                <constraint firstAttribute="trailing" secondItem="TCd-ax-A4n" secondAttribute="trailing" constant="20" id="ajE-Rs-jxy"/>
                                                 <constraint firstItem="C74-aR-Z4C" firstAttribute="leading" secondItem="33l-fU-Owr" secondAttribute="trailing" constant="20" id="jdl-f8-Dwb"/>
                                                 <constraint firstItem="ydu-dw-rDd" firstAttribute="leading" secondItem="SSN-cY-OOf" secondAttribute="leading" constant="20" id="tsy-9E-Y2s"/>
-                                                <constraint firstItem="xUd-pK-VBu" firstAttribute="centerY" secondItem="TCd-ax-A4n" secondAttribute="centerY" id="uKd-U3-TwE"/>
                                                 <constraint firstItem="ydu-dw-rDd" firstAttribute="top" secondItem="SSN-cY-OOf" secondAttribute="top" constant="20" id="zIN-Jv-XRU"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="decimalStepper" destination="hSd-Jz-cdX" id="6Cz-hu-LYt"/>
                                             <outlet property="goalCountLabel" destination="33l-fU-Owr" id="McS-KI-cKa"/>
                                             <outlet property="stepper" destination="TCd-ax-A4n" id="xbO-Yj-984"/>
                                         </connections>

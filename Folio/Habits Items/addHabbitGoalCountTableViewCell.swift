@@ -17,16 +17,17 @@ var delegate: addHabiitVCProtocol?
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        decimalStepper.stepValue=0.10
-        stepper.value = floor(goalCount)
-        decimalStepper.value=goalCount.truncatingRemainder(dividingBy: 1)
-        goalCountLabel.text = String(goalCount)
+//        decimalStepper.stepValue=0.10
+        stepper.value = goalCount
+//        decimalStepper.value=goalCount.truncatingRemainder(dividingBy: 1)
+        goalCountLabel.text = String(Int(goalCount))
         // Initialization code
         
     }
     @IBAction func stepperClick(_ sender: UIStepper) {
-        let val = stepper.value+decimalStepper.value
-        goalCount=(val*10).rounded()/10.0
+//        let val = stepper.value+decimalStepper.value
+//        goalCount=(val*10).rounded()/10.0
+        goalCount = floor(stepper.value)
         awakeFromNib()
         delegate?.setHabitGoalCount(goalCount)
     }
