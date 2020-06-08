@@ -487,21 +487,42 @@ extension PageViewController: pageProtocol{
             pageView.setupViewListDict()
         }else if connectingViews.first != uid{
             connectingViews.second = uid
-            var shouldReturn = false
-            pageView.page.conntectedViews.forEach({ (cvt) in
+//            var shouldReturn = false
+//            var duplicatValue = connectingViewTupple()
+//            pageView.page.conntectedViews.forEach({ (cvt) in
+//                if cvt.first==connectingViews.first && cvt.second==connectingViews.second{
+//                    print("found same so returning")
+//                    self.connectingViews.first=nil; self.connectingViews.second=nil
+//                    shouldReturn=true
+//                    duplicatValue=cvt
+//                }
+//                if cvt.first==connectingViews.second && cvt.second==connectingViews.first{
+//                    print("found same so returning")
+//                    self.connectingViews.first=nil; self.connectingViews.second=nil
+//                    shouldReturn=true
+//                    duplicatValue=cvt
+//                }
+//            })
+            for (i,_) in pageView.page.conntectedViews.enumerated().reversed(){
+                let cvt =  pageView.page.conntectedViews[i]
                 if cvt.first==connectingViews.first && cvt.second==connectingViews.second{
                     print("found same so returning")
                     self.connectingViews.first=nil; self.connectingViews.second=nil
-                    shouldReturn=true
+                    pageView.page.conntectedViews.remove(at: i)
+//                    self.reloadLine(with: cvt.first!, animated: false)
+//                    self.reloadLine(with: cvt.second!, animated: false)
+                    self.reloadAllLines(animated: false)
+                    return
                 }
                 if cvt.first==connectingViews.second && cvt.second==connectingViews.first{
                     print("found same so returning")
                     self.connectingViews.first=nil; self.connectingViews.second=nil
-                    shouldReturn=true
+                    pageView.page.conntectedViews.remove(at: i)
+//                    self.reloadLine(with: cvt.first!, animated: false)
+//                    self.reloadLine(with: cvt.second!, animated: false)
+                    self.reloadAllLines(animated: false)
+                    return
                 }
-            })
-            if shouldReturn{
-                return
             }
             print("going to add")
             self.addLines(from: connectingViews.first!, to: connectingViews.second!, animated: true)
