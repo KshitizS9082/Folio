@@ -183,7 +183,8 @@ class PageViewController: UIViewController {
                 pageView.currentTask = .addMediaCard
             case 5:
                 print("5")
-                pageView.currentTask = .delete
+                pageView.currentTask = .noneOfAbove
+                togglePageResize()
             case 6:
                 print("6")
                 self.changePageView(horizontalFactor: 0, verticalFactor: -1)
@@ -360,12 +361,26 @@ class PageViewController: UIViewController {
     //    @IBOutlet weak var ivHeightConstraint: NSLayoutConstraint!
     func toggleToolBar(){
         if ivTopConstraints[0].constant==0{
-            for ind in ivTopConstraints.indices{
+            for ind in 0..<9{
                 ivTopConstraints[ind].constant=CGFloat(50+50*ind)
             }
         }else{
-            for ind in ivTopConstraints.indices{
+            for ind in 0..<9{
                 ivTopConstraints[ind].constant=CGFloat(0)
+            }
+        }
+        UIView.animate(withDuration: 0.25, delay: 0, options: .curveEaseInOut, animations: {
+            self.view.layoutIfNeeded()
+        }, completion: nil)
+    }
+    func togglePageResize(){
+        if ivTopConstraints[5].constant==ivTopConstraints[4].constant{
+            for ind in 5..<9{
+                ivTopConstraints[ind].constant=ivTopConstraints[4].constant+CGFloat(50*(ind-4))
+            }
+        }else{
+            for ind in 5..<9{
+                ivTopConstraints[ind].constant=ivTopConstraints[4].constant
             }
         }
         UIView.animate(withDuration: 0.25, delay: 0, options: .curveEaseInOut, animations: {
