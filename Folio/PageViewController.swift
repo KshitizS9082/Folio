@@ -19,10 +19,16 @@ protocol pageProtocol {
     func showCardEditView(for cardView: cardView)
     func getMeMedia(for cardView: MediaCardView)
     func showMedias(for cardView: MediaCardView)
+    func updateCurrentTaskToNone()
+    
+    func addMeAsWantingToJoinConnectLines(for newView: UIView, with uid: UUID)
+    func reloadAllLines(animated: Bool)
+    func reloadLine(with uid: UUID, animated: Bool)
 }
 
 class PageViewController: UIViewController {
     var pageID: pageInfo?
+    //WARNING: never use page.connecteviews as it is inconsistent with pageView.page.connectedviews which is correct one
     var page: PageData? {
         get{
             var retVal = PageData()
@@ -43,6 +49,7 @@ class PageViewController: UIViewController {
                     retVal.mediaCards.append(mediaCardData(card: cv.card, frame: cv.frame, isHidden: cv.isHidden))
                 }
             }
+            retVal.conntectedViews = pageView.page.conntectedViews
             print("gonna get page: PageData? ")
             return retVal
         }
@@ -51,39 +58,55 @@ class PageViewController: UIViewController {
             pageView.subviews.forEach { (sv) in
                 sv.removeFromSuperview()
             }
-            if let newValue = newValue{
-                pageViewWidhtConstraint?.constant = CGFloat(newValue.pageWidth)
-                pageViewHeightConstraint?.constant = CGFloat(newValue.pageHeight)
+            if let newVal = newValue{
+                pageViewWidhtConstraint?.constant = CGFloat(newVal.pageWidth)
+                pageViewHeightConstraint?.constant = CGFloat(newVal.pageHeight)
                 self.updateMinZoomScale()
+//                pageView.page=newVal
                 pageView.setNeedsDisplay()//TODO: check if needed
                 var d=PKDrawing()
                 do {
-                    try d = PKDrawing.init(data: newValue.drawingData)
+                    try d = PKDrawing.init(data: newVal.drawingData)
                     pageView.canvas?.drawing = d
                 } catch  {
                     print("Error loading drawing object")
                 }
-                newValue.bigCards.forEach({ (cardData) in
+                newVal.bigCards.forEach({ (cardData) in
                     let nc = cardView(frame: cardData.frame)
                     nc.card=cardData.card
                     nc.pageDelegate=self
                     pageView.addSubview(nc)
                     nc.isHidden=cardData.isHidden
                 })
-                newValue.smallCards.forEach({ (cardData) in
+                newVal.smallCards.forEach({ (cardData) in
                     let nc = SmallCardView(frame: cardData.frame)
                     nc.card=cardData.card
                     nc.pageDelegate=self
                     pageView.addSubview(nc)
                     nc.isHidden=cardData.isHidden
                 })
-                newValue.mediaCards.forEach({ (cardData) in
+                newVal.mediaCards.forEach({ (cardData) in
                     let nc = MediaCardView(frame: cardData.frame)
                     nc.card=cardData.card
                     nc.pageDelegate=self
                     pageView.addSubview(nc)
                     nc.isHidden=cardData.isHidden
                 })
+                pageView.setupViewListDict()
+//                print("adding lines from \( newValue.conntectedViews)")
+                pageView.page=newVal
+                pageView.page.conntectedViews = doConnectingLInesDataCleanupAndSetupViewListDict(connectingViews: pageView.page.conntectedViews)
+//                pageView.page.conntectedViews.forEach { (cvTupple) in
+//                    self.addLines(from: cvTupple.first!, to: cvTupple.second!, animated: true)
+//                }
+                for (i,_) in  pageView.page.conntectedViews.enumerated().reversed() {
+//                    a.removeAtIndex(i)
+                    let cvTupple = pageView.page.conntectedViews[i]
+                    if self.addLines(from: cvTupple.first!, to: cvTupple.second!, animated: true)==false{
+                        print("removed a line not found")
+                        pageView.page.conntectedViews.remove(at: i)
+                    }
+                }
                 pageView.layoutSubviews()
             }else{
                 print("got nil for newValue in set in PageData in PageViewController")
@@ -114,7 +137,18 @@ class PageViewController: UIViewController {
         print("pageviewframe = \(pageView.frame)")
         print("pageviewbounds = \(pageView.bounds)")
         if let x = sender.view as? UIImageView{
+            self.connectingViews.first=nil; self.connectingViews.second=nil
 //            print("did select image at: \(ImageViews.firstIndex(of: x))")
+            if x.tintColor == .systemTeal{
+                x.tintColor = .systemPink
+            }else{
+                x.tintColor = .systemTeal
+            }
+            pageView.subviews.forEach { (subv) in
+                subv.subviews.forEach { (sv) in
+                    sv.isUserInteractionEnabled=true
+                }
+            }
             switch ImageViews.firstIndex(of: x) {
             case 0:
                 print("0")
@@ -133,13 +167,23 @@ class PageViewController: UIViewController {
                 pageView.setupDrawing()
             case 3:
                 print("3")
-                pageView.currentTask = .delete
+                switch pageView.currentTask {
+                case .connectViews:
+                    pageView.currentTask = .noneOfAbove
+                default:
+                    pageView.currentTask = .connectViews
+                    pageView.subviews.forEach { (subv) in
+                        subv.subviews.forEach { (sv) in
+                            sv.isUserInteractionEnabled=false
+                        }
+                    }
+                }
             case 4:
                 print("4")
                 pageView.currentTask = .addMediaCard
             case 5:
                 print("5")
-                pageView.currentTask = .connectViews
+                pageView.currentTask = .delete
             case 6:
                 print("6")
                 self.changePageView(horizontalFactor: 0, verticalFactor: -1)
@@ -262,6 +306,7 @@ class PageViewController: UIViewController {
     }
     
     func save() {
+//        print("is now saving page with cvs \(page?.conntectedViews)")
         if let json = page?.json {
             if let url = try? FileManager.default.url(
                 for: .documentDirectory,
@@ -348,7 +393,6 @@ class PageViewController: UIViewController {
             }
         }
     }
-    
     //variables for show big card edit view segue and //variables for show card checklist full view segue
     var bigCardViewLinkedTo: cardView?
     var bigCardForLinkedView = Card()
@@ -356,7 +400,11 @@ class PageViewController: UIViewController {
     //variables for show small card info view segue
     var smallCardViewLinkedTo: SmallCardView?
     var smallCardForLinkedView = SmallCard()
-    
+        
+    //variables for connecting views
+    var connectingViews = connectingViewTupple()
+//    weak var shapeLayer: CAShapeLayer?
+    var linesShapeLayers = [CAShapeLayer]()
     
     //MARK: Navigaion
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -429,6 +477,142 @@ extension PageViewController: UIDragInteractionDelegate{
     
 }
 extension PageViewController: pageProtocol{
+    func addMeAsWantingToJoinConnectLines(for newView: UIView, with uid: UUID) {
+        print("inside addMeAsWantingToJoinConnectLines")
+        if pageView.currentTask != .connectViews{
+            return
+        }
+        if connectingViews.first==nil{
+            connectingViews.first = uid
+            pageView.setupViewListDict()
+        }else if connectingViews.first != uid{
+            connectingViews.second = uid
+            var shouldReturn = false
+            pageView.page.conntectedViews.forEach({ (cvt) in
+                if cvt.first==connectingViews.first && cvt.second==connectingViews.second{
+                    print("found same so returning")
+                    self.connectingViews.first=nil; self.connectingViews.second=nil
+                    shouldReturn=true
+                }
+                if cvt.first==connectingViews.second && cvt.second==connectingViews.first{
+                    print("found same so returning")
+                    self.connectingViews.first=nil; self.connectingViews.second=nil
+                    shouldReturn=true
+                }
+            })
+            if shouldReturn{
+                return
+            }
+            print("going to add")
+            self.addLines(from: connectingViews.first!, to: connectingViews.second!, animated: true)
+            pageView.page.conntectedViews.append(self.connectingViews)
+            print("new cv = \(pageView.page.conntectedViews)")
+            self.connectingViews.first=nil; self.connectingViews.second=nil
+        }
+    }
+    func doConnectingLInesDataCleanupAndSetupViewListDict(connectingViews: [connectingViewTupple]) -> [connectingViewTupple]{
+        pageView.setupViewListDict()
+        return connectingViews.filter { (cvt) -> Bool in
+            return (self.pageView.viewListDictionary.keys.contains(cvt.first!) || self.pageView.viewListDictionary.keys.contains(cvt.second!))
+        }
+    }
+    //Returns false on failure if vies is deleted i.e. not in view
+    func addLines(from firstID: UUID, to secondId: UUID, animated: Bool) -> Bool{
+//        // remove old shape layer if any
+//        self.shapeLayer?.removeFromSuperlayer()
+        // create whatever path you want
+
+        //TODO: make this work, probably something like this being calles somewhere elser
+        let path = UIBezierPath()
+        if pageView.viewListDictionary[firstID]==nil{
+            return false
+        }
+        let first = pageView.viewListDictionary[firstID]!
+        path.move(to: CGPoint(x: first.frame.midX, y: first.frame.midY))
+        
+        if pageView.viewListDictionary[secondId]==nil{
+            return false
+        }
+        let second = pageView.viewListDictionary[secondId]!
+        path.addLine(to: CGPoint(x: second.frame.midX, y: second.frame.midY))
+
+        // create shape layer for that path
+
+        let shapeLayer = CAShapeLayer()
+        shapeLayer.fillColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0).cgColor
+        shapeLayer.strokeColor = UIColor.systemTeal.cgColor
+        shapeLayer.lineWidth = 2
+        shapeLayer.path = path.cgPath
+
+        // animate it
+
+//        pageView.layer.addSublayer(shapeLayer)
+        pageView.layer.insertSublayer(shapeLayer, at: 1)
+        pageView.bringSubviewToFront(first)
+        pageView.bringSubviewToFront(second)
+        if animated{
+            let animation = CABasicAnimation(keyPath: "strokeEnd")
+            animation.fromValue = 0
+            animation.duration = 0.4
+            shapeLayer.add(animation, forKey: "MyAnimation")
+        }
+
+        // save shape layer
+
+        self.linesShapeLayers.append(shapeLayer)
+        return true
+    }
+    
+    func reloadAllLines(animated: Bool){
+        self.linesShapeLayers.forEach { (lineLayer) in
+            lineLayer.removeFromSuperlayer()
+        }
+        pageView.setupViewListDict()
+        pageView.page.conntectedViews.forEach { (cvTupple) in
+            addLines(from: cvTupple.first!, to: cvTupple.second!, animated: animated)
+        }
+    }
+    func reloadLine(with uid: UUID, animated: Bool){
+        for ind in pageView.page.conntectedViews.indices{
+            if pageView.page.conntectedViews[ind].first == uid || pageView.page.conntectedViews[ind].second==uid{
+                self.linesShapeLayers[ind].removeFromSuperlayer()
+                let path = UIBezierPath()
+                let first = pageView.viewListDictionary[pageView.page.conntectedViews[ind].first!]!
+                path.move(to: CGPoint(x: first.frame.midX, y: first.frame.midY))
+                let second = pageView.viewListDictionary[pageView.page.conntectedViews[ind].second!]!
+                path.addLine(to: CGPoint(x: second.frame.midX, y: second.frame.midY))
+                
+                // create shape layer for that path
+                
+                let shapeLayer = CAShapeLayer()
+                shapeLayer.fillColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0).cgColor
+                shapeLayer.strokeColor = UIColor.systemTeal.cgColor
+                shapeLayer.lineWidth = 2
+                shapeLayer.path = path.cgPath
+                
+                // animate it
+                pageView.layer.insertSublayer(shapeLayer, at: 1)
+                pageView.bringSubviewToFront(first)
+                pageView.bringSubviewToFront(second)
+                if animated{
+                    let animation = CABasicAnimation(keyPath: "strokeEnd")
+                    animation.fromValue = 0
+                    animation.duration = 0.4
+                    shapeLayer.add(animation, forKey: "MyAnimation")
+                }
+                
+                // save shape layer
+                self.linesShapeLayers[ind]=shapeLayer
+            }
+        }
+    }
+    
+    func updateCurrentTaskToNone() {
+        ImageViews.forEach { (iv) in
+            iv.tintColor = .systemTeal
+        }
+    }
+    
     
     func resizeCard(for cardView: UIView){
         var maxy = CGFloat(0)
@@ -642,7 +826,10 @@ extension PageViewController: pageProtocol{
     }
     //TODO: optimise as animation very laggy for now
     func showMedias(for cardView: MediaCardView) {
-        print("yet to implement show medias")
+        if pageView.currentTask == .connectViews{
+            return
+        }
+        
         var images = [UIImage]()
 //        for dat in cardView.card.mediaData{
 //             //MARK: media dat to img conversion

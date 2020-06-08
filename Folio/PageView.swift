@@ -107,6 +107,55 @@ class PageView: UIView {
         self.currentTask = .noneOfAbove
         pageDelegate?.changeContentSize(using: nv)
     }
+    
+    //For drawing connections
+    var viewListDictionary = [UUID: UIView]()
+    func setupViewListDict(){
+        viewListDictionary.removeAll()
+        self.subviews.forEach { (sv) in
+            if let sv = sv as? cardView{
+                viewListDictionary[sv.card.UniquIdentifier]=sv
+            }else if let sv = sv as? SmallCardView{
+                viewListDictionary[sv.card.UniquIdentifier]=sv
+            }else if let sv = sv as? MediaCardView{
+                viewListDictionary[sv.card.UniquIdentifier]=sv
+            }
+        }
+    }
+    
+    weak var shapeLayer: CAShapeLayer?
+//    func addLines(from firstID: UUID, to secondId: UUID){
+//        // remove old shape layer if any
+//
+//        self.shapeLayer?.removeFromSuperlayer()
+//
+//        // create whatever path you want
+//
+//        let path = UIBezierPath()
+//        path.move(to: CGPoint(x: 10, y: 50))
+//        path.addLine(to: CGPoint(x: 200, y: 50))
+//        path.addLine(to: CGPoint(x: 200, y: 240))
+//
+//        // create shape layer for that path
+//
+//        let shapeLayer = CAShapeLayer()
+//        shapeLayer.fillColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0).cgColor
+//        shapeLayer.strokeColor = #colorLiteral(red: 1, green: 0, blue: 0, alpha: 1).cgColor
+//        shapeLayer.lineWidth = 4
+//        shapeLayer.path = path.cgPath
+//
+//        // animate it
+//
+//        self.layer.addSublayer(shapeLayer)
+//        let animation = CABasicAnimation(keyPath: "strokeEnd")
+//        animation.fromValue = 0
+//        animation.duration = 2
+//        shapeLayer.add(animation, forKey: "MyAnimation")
+//
+//        // save shape layer
+//
+//        self.shapeLayer = shapeLayer
+//    }
 
     func setupDrawing(){
         switch currentTask {
@@ -137,9 +186,11 @@ class PageView: UIView {
         case .addSmallCard:
             print("addSmallCard")
             self.addSmallCard(centeredAt: point)
+            self.pageDelegate?.updateCurrentTaskToNone()
         case .addCard:
             print("addCard")
             self.addBigCard(centeredAt: point)
+            self.pageDelegate?.updateCurrentTaskToNone()
         case .drawLines:
             print("drawLines")
             return
@@ -148,6 +199,7 @@ class PageView: UIView {
         case .addMediaCard:
             print("addMediaCard")
             self.addMediaCard(centeredAt: point)
+            self.pageDelegate?.updateCurrentTaskToNone()
         case .connectViews:
             print("connectViews")
         case .noneOfAbove:
@@ -159,6 +211,7 @@ class PageView: UIView {
     }
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.currentTask = .noneOfAbove
+        self.pageDelegate?.updateCurrentTaskToNone()
     }
 }
 extension PageView{

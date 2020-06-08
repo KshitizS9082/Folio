@@ -435,6 +435,7 @@ class cardView: UIView, UITextFieldDelegate, UITableViewDataSource {
     var touchStart = CGPoint.zero
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
 //        joiningViewsDelegate?.joinMe(with: self, forID: self.card.UniquIdentifier!)
+        pageDelegate?.addMeAsWantingToJoinConnectLines(for: self, with: self.card.UniquIdentifier)
         if isResizing{
             if let touch = touches.first {
                 
@@ -502,9 +503,10 @@ class cardView: UIView, UITextFieldDelegate, UITableViewDataSource {
                     self.frame = CGRect(x: originX+deltaWidth, y: originY+deltaHeight, width: width, height: height)
                 }
             }
-            if let page = superview as? PageView{
-                page.setNeedsDisplay()
-            }
+//            if let page = superview as? PageView{
+//                page.setNeedsDisplay()
+//            }
+            pageDelegate?.reloadLine(with: self.card.UniquIdentifier, animated: false)
         }
     }
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -558,9 +560,10 @@ class cardView: UIView, UITextFieldDelegate, UITableViewDataSource {
             layoutSubviews()
             pageDelegate?.changeContentSize(using: self)
             currentEdge = .none
-            if let page = superview as? PageView{
-                page.setNeedsDisplay()
-            }
+//            if let page = superview as? PageView{
+//                page.setNeedsDisplay()
+//            }
+            pageDelegate?.reloadLine(with: self.card.UniquIdentifier, animated: false)
         }
     }
     

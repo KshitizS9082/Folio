@@ -143,6 +143,7 @@ class MediaCardView: UIView {
     var touchStart = CGPoint.zero
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         print("found touch")
+        pageDelegate?.addMeAsWantingToJoinConnectLines(for: self, with: self.card.UniquIdentifier)
         if isResizing{
             if let touch = touches.first {
                 
@@ -210,10 +211,11 @@ class MediaCardView: UIView {
                     self.frame = CGRect(x: originX+deltaWidth, y: originY+deltaHeight, width: width, height: height)
                 }
             }
-            //used to redraw connecting lines if either view is moved
-            if let page = superview as? PageView{
-                page.setNeedsDisplay()
-            }
+//            //used to redraw connecting lines if either view is moved
+//            if let page = superview as? PageView{
+//                page.setNeedsDisplay()
+//            }
+            pageDelegate?.reloadLine(with: self.card.UniquIdentifier, animated: false)
         }
     }
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -272,10 +274,11 @@ class MediaCardView: UIView {
             currentEdge = .none
             pageDelegate?.changeContentSize(using: self)
             
-            //used to redraw connecting lines if either view is moved
-            if let page = superview as? PageView{
-                page.setNeedsDisplay()
-            }
+//            //used to redraw connecting lines if either view is moved
+//            if let page = superview as? PageView{
+//                page.setNeedsDisplay()
+//            }
+            pageDelegate?.reloadLine(with: self.card.UniquIdentifier, animated: false)
         }
     }
     

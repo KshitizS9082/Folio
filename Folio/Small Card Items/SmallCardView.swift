@@ -52,10 +52,10 @@ class SmallCardView: UIView {
         configureCheckBox()
         configureResizingButton()
         configureTitleTextAndInfoView()
-        addTitleBottomBorderWithColor()
+//        addTitleBottomBorderWithColor()
         configureReminderTextField()
         configureNotesTextView()
-        addNotesBottomBorderWithColor()
+//        addNotesBottomBorderWithColor()
 //        pageDelegate?.resizeCard(for: self)
         titleTextView.addDoneButton(title: "Done", target: self, selector: #selector(tapDone(sender:)))
         notesTextView.addDoneButton(title: "Done", target: self, selector: #selector(tapDone(sender:)))
@@ -251,6 +251,7 @@ class SmallCardView: UIView {
 //    override func setNeedsDisplay() {
 //        self.pageDelegate?.resizeCard(for: self)
 //    }
+    
     //MARK: Make view resizable
     var isResizing = false
     enum Edge {
@@ -262,6 +263,7 @@ class SmallCardView: UIView {
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         print("found touch")
         //        joiningViewsDelegate?.joinMe(with: self, forID: self.sCard.UniquIdentifier!)
+        pageDelegate?.addMeAsWantingToJoinConnectLines(for: self, with: self.card.UniquIdentifier)
         if isResizing{
             if let touch = touches.first {
                 
@@ -329,10 +331,11 @@ class SmallCardView: UIView {
                     self.frame = CGRect(x: originX+deltaWidth, y: originY+deltaHeight, width: width, height: height)
                 }
             }
-            //used to redraw connecting lines if either view is moved
-            if let page = superview as? PageView{
-                page.setNeedsDisplay()
-            }
+//            //used to redraw connecting lines if either view is moved
+//            if let page = superview as? PageView{
+//                page.setNeedsDisplay()
+//            }
+            pageDelegate?.reloadLine(with: self.card.UniquIdentifier, animated: false)
         }
     }
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -387,10 +390,11 @@ class SmallCardView: UIView {
             layoutSubviews()
             currentEdge = .none
             pageDelegate?.changeContentSize(using: self)
-            //used to redraw connecting lines if either view is moved
-            if let page = superview as? PageView{
-                page.setNeedsDisplay()
-            }
+//            //used to redraw connecting lines if either view is moved
+//            if let page = superview as? PageView{
+//                page.setNeedsDisplay()
+//            }
+            pageDelegate?.reloadLine(with: self.card.UniquIdentifier, animated: false)
         }
     }
 }
