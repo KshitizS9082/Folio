@@ -549,12 +549,18 @@ extension PageViewController: pageProtocol{
             return false
         }
         let first = pageView.viewListDictionary[firstID]!
+        if first.isHidden{
+            return true
+        }
         path.move(to: CGPoint(x: first.frame.midX, y: first.frame.midY))
         
         if pageView.viewListDictionary[secondId]==nil{
             return false
         }
         let second = pageView.viewListDictionary[secondId]!
+        if second.isHidden{
+            return true
+        }
         path.addLine(to: CGPoint(x: second.frame.midX, y: second.frame.midY))
 
         // create shape layer for that path
