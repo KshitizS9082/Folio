@@ -12,7 +12,7 @@ protocol addHabiitVCProtocol {
     func setHabitStyle(_ style: habitCardData.HabitStyle)
     func setHabitGoalPeriod(_ period: habitCardData.recurencePeriod)
     func setHabitGoalCount(_ count: Double)
-    func setReminderValue(_ reminderValue: habitCardData.ReminderTime, firstDate: Date?)
+    func setReminderValue(_ reminderValue: habitCardData.ReminderTime, firstDate: Date?, weekDays: [Bool])
     func showNotificationNotPresentAlert()
     func setHabitTargetDate(_ targetDate: Date?)
     func updated(indexpath: IndexPath)
@@ -56,13 +56,20 @@ class AddHabbitViewController: UIViewController {
         self.dismiss(animated: true, completion: nil)
     }
     
-    
+    func setDailyWithBreakDaysReminder(with reminderTime: Date, weekDays: [Bool]){
+        
+    }
     func setReminder(with reminderTime: Date){
         UNUserNotificationCenter.current().getPendingNotificationRequests { (notificationRequests) in
             var identifiers: [String] = []
             for notification:UNNotificationRequest in notificationRequests {
                 if notification.identifier == String(describing: (self.card.UniquIdentifier)) {
                     identifiers.append(notification.identifier)
+                }
+                for i in 0...9{
+                    if notification.identifier == String(describing: (self.card.UniquIdentifier))+String(i) {
+                        identifiers.append(notification.identifier)
+                    }
                 }
             }
             print("removing notifs with identifiers \(identifiers)")
@@ -85,7 +92,21 @@ class AddHabbitViewController: UIViewController {
                 switch self.card.reminderValue {
                 case .daily:
                     print("daily")
-                    trigger = UNCalendarNotificationTrigger(dateMatching: Calendar.current.dateComponents([.hour, .minute, .second],from: targetDate), repeats: true)
+                    for ind in 0..<7{
+                        let tempDate = Calendar.current.date(byAdding: .day, value:  ind, to: targetDate)!
+                        let weekDay = Calendar.current.component(.weekday, from: tempDate)
+                        print("weekday = \(weekDay)")
+                        if self.card.weekDayArray[weekDay-1]{
+                            print("adding reminders with weekday= \(weekDay)")
+                            trigger = UNCalendarNotificationTrigger(dateMatching: Calendar.current.dateComponents([.weekday , .hour, .minute, .second],from: targetDate), repeats: true)
+                            let request = UNNotificationRequest(identifier: String(describing: (self.card.UniquIdentifier))+String(ind), content: content, trigger: trigger)
+                            UNUserNotificationCenter.current().add(request, withCompletionHandler: { error in
+                                if error != nil {
+                                    print("something went wrong")
+                                }
+                            })
+                        }
+                    }
                 case .weekly:
                     print("weekly")
                     trigger = UNCalendarNotificationTrigger(dateMatching: Calendar.current.dateComponents([.weekday ,.hour, .minute, .second],from: targetDate), repeats: true)
@@ -102,13 +123,14 @@ class AddHabbitViewController: UIViewController {
                     print("not setting")
                     return
                 }
-                
-                let request = UNNotificationRequest(identifier: String(describing: (self.card.UniquIdentifier)), content: content, trigger: trigger)
-                UNUserNotificationCenter.current().add(request, withCompletionHandler: { error in
-                    if error != nil {
-                        print("something went wrong")
-                    }
-                })
+                if self.card.reminderValue != .daily{
+                    let request = UNNotificationRequest(identifier: String(describing: (self.card.UniquIdentifier)), content: content, trigger: trigger)
+                    UNUserNotificationCenter.current().add(request, withCompletionHandler: { error in
+                        if error != nil {
+                            print("something went wrong")
+                        }
+                    })
+                }
             }
             else if error != nil {
                 print("error occurred")
@@ -121,6 +143,11 @@ class AddHabbitViewController: UIViewController {
             for notification:UNNotificationRequest in notificationRequests {
                 if notification.identifier == String(describing: (self.card.UniquIdentifier)) {
                     identifiers.append(notification.identifier)
+                }
+                for i in 0...9{
+                    if notification.identifier == String(describing: (self.card.UniquIdentifier))+String(i) {
+                        identifiers.append(notification.identifier)
+                    }
                 }
             }
             print("removing notifs with identifiers \(identifiers)")
@@ -201,9 +228,10 @@ extension AddHabbitViewController: addHabiitVCProtocol{
         self.card.habitGoalPeriod = period
     }
     //TODO: make reminder recurring
-    func setReminderValue(_ reminderValue: habitCardData.ReminderTime, firstDate: Date?) {
+    func setReminderValue(_ reminderValue: habitCardData.ReminderTime, firstDate: Date?, weekDays: [Bool]) {
         self.card.reminderValue = reminderValue
         self.card.firstReminder = firstDate
+        self.card.weekDayArray = weekDays
         print("new card value = \(self.card)")
         if let date = firstDate{
             setReminder(with: date)

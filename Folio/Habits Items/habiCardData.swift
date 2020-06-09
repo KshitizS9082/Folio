@@ -12,6 +12,7 @@ struct habitCardData: Codable {
     var UniquIdentifier=UUID()
     var constructionDate = Date()
     var firstReminder: Date?
+    var weekDayArray = [true, true, true, true, true, true, true]
     var targetDate: Date?
     var title = ""
     enum HabitStyle: String, Codable {

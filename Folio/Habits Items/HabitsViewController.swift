@@ -58,7 +58,7 @@ class HabitsViewController: UIViewController {
             self.tableTopConstraint.priority = .defaultLow
             self.view.layoutIfNeeded()
         }, completion:{ (something) in
-            UIView.animate(withDuration: 1, delay: 0, options: .curveEaseInOut, animations: {
+            UIView.animate(withDuration: 0.6, delay: 0, options: .curveEaseInOut, animations: {
 //                self.tableTopConstraint.isActive=false
 //                NSLayoutConstraint.deactivate([self.tableTopConstraint])
                 self.tableTopConstraint.priority = .required
@@ -120,6 +120,7 @@ class HabitsViewController: UIViewController {
                 }
             }else{
                 print("error no file named habitCardsData.json found")
+                self.archivedHabits = HabitsData()
             }
         }
     }
@@ -292,6 +293,11 @@ extension HabitsViewController: UITableViewDataSource, UITableViewDelegate{
                         if notification.identifier == String(describing: (cell.habitData?.UniquIdentifier)) {
                             identifiers.append(notification.identifier)
                         }
+                        for i in 0...9{
+                            if notification.identifier == String(describing: (cell.habitData?.UniquIdentifier))+String(i) {
+                                identifiers.append(notification.identifier)
+                            }
+                        }
                     }
                     print("removing notifs with identifiers \(identifiers)")
                     UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: identifiers)
@@ -316,11 +322,19 @@ extension HabitsViewController: UITableViewDataSource, UITableViewDelegate{
                                                         if notification.identifier == String(describing: (self.habits.cardList[indexPath.row].UniquIdentifier)) {
                                                             identifiers.append(notification.identifier)
                                                         }
+                                                        for i in 0...9{
+                                                            if notification.identifier == String(describing: (self.habits.cardList[indexPath.row].UniquIdentifier))+String(i) {
+                                                                identifiers.append(notification.identifier)
+                                                            }
+                                                        }
                                                     }
                                                     print("indrow = \(indexPath.row), adn id = \(self.habits.cardList[indexPath.row].UniquIdentifier)")
                                                     print("removing notifs with identifiers \(identifiers)")
-                                                    UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: identifiers)
+                                                    UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers:   identifiers)
                                                     DispatchQueue.main.async {
+                                                        if self.archivedHabits==nil{
+                                                            self.archivedHabits = HabitsData()
+                                                        }
                                                         self.archivedHabits!.deletedCardList.append(self.habits.cardList[indexPath.row])
                                                         self.habits.cardList.remove(at: indexPath.row)
                                                         self.table.deleteRows(at: [indexPath], with: .right)
@@ -343,8 +357,8 @@ extension HabitsViewController: UITableViewDataSource, UITableViewDelegate{
                                                         print("handle \(title) alarm")
                                                         switch self.habits.cardList[indexPath.row].reminderValue {
                                                         case .notSet:
-                                                            self.setReminder(with: self.habits.cardList[indexPath.row])
                                                             self.habits.cardList[indexPath.row].reminderValue = self.habits.cardList[indexPath.row].reminderValueBeforePausing
+                                                            self.setReminder(with: self.habits.cardList[indexPath.row])
                                                         default:
                                                             UNUserNotificationCenter.current().getPendingNotificationRequests { (notificationRequests) in
                                                                 var identifiers: [String] = []
@@ -352,6 +366,12 @@ extension HabitsViewController: UITableViewDataSource, UITableViewDelegate{
                                                                     if notification.identifier == String(describing: (self.habits.cardList[indexPath.row].UniquIdentifier)) {
                                                                         identifiers.append(notification.identifier)
                                                                     }
+                                                                    for i in 0...9{
+                                                                        if notification.identifier == String(describing: (self.habits.cardList[indexPath.row].UniquIdentifier))+String(i) {
+                                                                            identifiers.append(notification.identifier)
+                                                                        }
+                                                                    }
+                                                                    
                                                                 }
                                                                 print("removing notifs with identifiers \(identifiers)")
                                                                 UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: identifiers)
@@ -420,6 +440,11 @@ extension HabitsViewController: UITableViewDataSource, UITableViewDelegate{
                 if notification.identifier == String(describing: (card.UniquIdentifier)) {
                     identifiers.append(notification.identifier)
                 }
+                for i in 0...9{
+                    if notification.identifier == String(describing: (card.UniquIdentifier))+String(i) {
+                        identifiers.append(notification.identifier)
+                    }
+                }
             }
             print("removing notifs with identifiers \(identifiers)")
             UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: identifiers)
@@ -442,6 +467,21 @@ extension HabitsViewController: UITableViewDataSource, UITableViewDelegate{
                 case .daily:
                     print("daily")
                     trigger = UNCalendarNotificationTrigger(dateMatching: Calendar.current.dateComponents([.hour, .minute, .second],from: targetDate), repeats: true)
+                    for ind in 0..<7{
+                        let tempDate = Calendar.current.date(byAdding: .day, value:  ind, to: targetDate)!
+                        let weekDay = Calendar.current.component(.weekday, from: tempDate)
+                        print("weekday = \(weekDay)")
+                        if card.weekDayArray[weekDay-1]{
+                            print("adding reminders with weekday= \(weekDay)")
+                            trigger = UNCalendarNotificationTrigger(dateMatching: Calendar.current.dateComponents([.weekday , .hour, .minute, .second],from: targetDate), repeats: true)
+                            let request = UNNotificationRequest(identifier: String(describing: (card.UniquIdentifier))+String(ind), content: content, trigger: trigger)
+                            UNUserNotificationCenter.current().add(request, withCompletionHandler: { error in
+                                if error != nil {
+                                    print("something went wrong")
+                                }
+                            })
+                        }
+                    }
                 case .weekly:
                     print("weekly")
                     trigger = UNCalendarNotificationTrigger(dateMatching: Calendar.current.dateComponents([.weekday ,.hour, .minute, .second],from: targetDate), repeats: true)
@@ -458,13 +498,15 @@ extension HabitsViewController: UITableViewDataSource, UITableViewDelegate{
                     print("not setting")
                     return
                 }
+                if card.reminderValue != .daily{
+                    let request = UNNotificationRequest(identifier: String(describing: (card.UniquIdentifier)), content: content, trigger: trigger)
+                    UNUserNotificationCenter.current().add(request, withCompletionHandler: { error in
+                        if error != nil {
+                            print("something went wrong")
+                        }
+                    })
+                }
                 
-                let request = UNNotificationRequest(identifier: String(describing: (card.UniquIdentifier)), content: content, trigger: trigger)
-                UNUserNotificationCenter.current().add(request, withCompletionHandler: { error in
-                    if error != nil {
-                        print("something went wrong")
-                    }
-                })
             }
             else if error != nil {
                 print("error occurred")
