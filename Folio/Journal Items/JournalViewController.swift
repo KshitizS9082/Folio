@@ -10,6 +10,7 @@ import UIKit
 import JTAppleCalendar
 import MapKit
 import CoreLocation
+//TODO: instead of calling setupdata at updates try doing somethign like updateJournalNotesCard as setupdata may be very inefficient
 
 struct journalCard: Codable {
     var type = journalCardType.small
@@ -42,6 +43,7 @@ struct noteJournalCard: Codable {
     var UniquIdentifier = UUID()
 //    var dateOfCreation = Date()
     var notesText = "Notes Text of noteJournalCard is like this can you handle this long string when it exceedes your limit by a lot of texts"
+    var subNotesText = "SubNotes goes here"
 }
 struct locationJournalCard: Codable {
     var UniquIdentifier = UUID()
@@ -71,6 +73,8 @@ protocol addCardInJournalProtocol {
     func addWrittenEntry()
     func addLocationEntry()
     func updateJournalNotesEntry(at index: IndexPath, with text: String)
+    func updateJournalNotesCard(at index: IndexPath, with card: noteJournalCard)
+    func showJournalFullView(at index: IndexPath)
     func updateJournalMediasNotesEntry(at index: IndexPath, with text: String)
     func getJournalMedia(at index: IndexPath)
     func updateJournalLocationNotesEntry(at index: IndexPath, with text: String)
@@ -329,6 +333,14 @@ class JournalViewController: UIViewController {
                 targetController.pageID = cardsForSelectedDate[selectedCell!].pageID
                 targetController.uniqueIdOfCardToShow = self.uniqueIdOfCardToShow
                 self.uniqueIdOfCardToShow=nil
+            }
+        }
+        if segue.identifier == "showJournalFullViewSegue"{
+            if let targetController = segue.destination as? journalCardFullViewViewController{
+                targetController.type = cardsForSelectedDate[selectedCell!].type
+                targetController.card = cardsForSelectedDate[selectedCell!].journalNotesCard
+                targetController.index = IndexPath(row: selectedCell!, section: 0)
+                targetController.delegate=self
             }
         }
     }
@@ -708,7 +720,30 @@ extension JournalViewController: timelineSwitchDelegate{
     }
 }
 extension JournalViewController: addCardInJournalProtocol{
+    func showJournalFullView(at index: IndexPath) {
+        selectedCell=index.row
+        self.performSegue(withIdentifier: "showJournalFullViewSegue", sender: self)
+    }
     
+    func updateJournalNotesCard(at index: IndexPath, with card: noteJournalCard) {
+        print("inside updateJournalNotesCard")
+         cardsForSelectedDate[index.row].journalNotesCard!=card
+        for ind in journalEntryCards.indices{
+            let valcard =  journalEntryCards[ind]
+            if valcard.journalNotesCard?.UniquIdentifier==cardsForSelectedDate[index.row].journalNotesCard?.UniquIdentifier{
+                print("found place to set in journalEntryCards")
+                journalEntryCards[ind].journalNotesCard = card
+            }
+        }
+//        self.setupData()
+//        self.setupSelectedDate()
+        for ind in allCards.indices{
+            if allCards[ind].type == .notes, allCards[ind].journalNotesCard?.UniquIdentifier==card.UniquIdentifier{
+                allCards[ind].journalNotesCard = card
+            }
+        }
+        table.reloadRows(at: [index], with: .automatic)
+    }
     
     func addMediaCell() {
         print("inside addMediaCell")

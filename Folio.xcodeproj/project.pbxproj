@@ -84,6 +84,7 @@
 		E29A5879248AA51000FA7D7C /* sCardReminderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E29A5878248AA51000FA7D7C /* sCardReminderTableViewCell.swift */; };
 		E2A35B522488C38900FDF4C6 /* habitsCellCalendarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A35B512488C38900FDF4C6 /* habitsCellCalendarCell.swift */; };
 		E2A35B542488EC3200FDF4C6 /* habitDateCellHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A35B532488EC3200FDF4C6 /* habitDateCellHeader.swift */; };
+		E2A6F99C248FB9510041616A /* journalCardFullViewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A6F99B248FB9510041616A /* journalCardFullViewViewController.swift */; };
 		E2B1D0542483EEA100BA8C7D /* MKPointAnnotation-Codable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2B1D0532483EEA100BA8C7D /* MKPointAnnotation-Codable.swift */; };
 		E2C1F340248579F0004A8050 /* PageListSideMenuTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2C1F33F248579F0004A8050 /* PageListSideMenuTableViewController.swift */; };
 		E2CB87F52483581B002F3E6A /* journalLocationPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2CB87F42483581B002F3E6A /* journalLocationPickerViewController.swift */; };
@@ -207,6 +208,7 @@
 		E29A5878248AA51000FA7D7C /* sCardReminderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = sCardReminderTableViewCell.swift; sourceTree = "<group>"; };
 		E2A35B512488C38900FDF4C6 /* habitsCellCalendarCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = habitsCellCalendarCell.swift; sourceTree = "<group>"; };
 		E2A35B532488EC3200FDF4C6 /* habitDateCellHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = habitDateCellHeader.swift; sourceTree = "<group>"; };
+		E2A6F99B248FB9510041616A /* journalCardFullViewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = journalCardFullViewViewController.swift; sourceTree = "<group>"; };
 		E2B1D0532483EEA100BA8C7D /* MKPointAnnotation-Codable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MKPointAnnotation-Codable.swift"; sourceTree = "<group>"; };
 		E2C1F33F248579F0004A8050 /* PageListSideMenuTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageListSideMenuTableViewController.swift; sourceTree = "<group>"; };
 		E2CB87F42483581B002F3E6A /* journalLocationPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = journalLocationPickerViewController.swift; sourceTree = "<group>"; };
@@ -478,6 +480,7 @@
 				E2CB87F42483581B002F3E6A /* journalLocationPickerViewController.swift */,
 				E2B1D0532483EEA100BA8C7D /* MKPointAnnotation-Codable.swift */,
 				E2FEE2B1247CC24200DD7069 /* DateHeader.swift */,
+				E2A6F99B248FB9510041616A /* journalCardFullViewViewController.swift */,
 			);
 			path = "Journal Items";
 			sourceTree = "<group>";
@@ -767,6 +770,7 @@
 				E2E1525C2486122000079B79 /* AddHabbitViewController.swift in Sources */,
 				E252B087246C4601003F8718 /* PageData.swift in Sources */,
 				E29A5877248A783000FA7D7C /* ExpandableTextSCardInfoTableViewCell.swift in Sources */,
+				E2A6F99C248FB9510041616A /* journalCardFullViewViewController.swift in Sources */,
 				E26FD6B02482AD0D004DA918 /* journalImagePickerManager.swift in Sources */,
 				E2FEE2B2247CC24200DD7069 /* DateHeader.swift in Sources */,
 				E2E152662486564C00079B79 /* addHabbitReminderValueTableViewCell.swift in Sources */,

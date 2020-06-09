@@ -25,7 +25,6 @@ class AddHabbitViewController: UIViewController {
 //    var recurdate = Date(
     @IBOutlet weak var navBar: UINavigationBar!{
         didSet{
-            //TODO: make it transparent
             navBar.setBackgroundImage(UIImage(), for: .default)
             navBar.shadowImage = UIImage()
             navBar.isTranslucent = true

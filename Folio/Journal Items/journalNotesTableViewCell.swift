@@ -29,6 +29,16 @@ class journalNotesTableViewCell: UITableViewCell, UITextViewDelegate {
         super.awakeFromNib()
         // Initialization code
     }
+    
+    @IBOutlet weak var showFullViewImageView: UIImageView!{
+        didSet{
+            showFullViewImageView.isUserInteractionEnabled=true
+            showFullViewImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(showFullJournal)))
+        }
+    }
+    @objc func showFullJournal(){
+        delegate?.showJournalFullView(at: index)
+    }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
