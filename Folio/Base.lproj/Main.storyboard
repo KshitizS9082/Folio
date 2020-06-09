@@ -1949,9 +1949,18 @@
                                                         <constraint firstItem="Q8z-wx-4pc" firstAttribute="leading" secondItem="ct3-Jb-Pvy" secondAttribute="leading" id="mnV-Tu-IBC"/>
                                                     </constraints>
                                                 </view>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="arrow.right.circle" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="IH6-cv-XoV">
+                                                    <rect key="frame" x="361" y="20.5" width="33" height="32"/>
+                                                    <color key="tintColor" red="1" green="0.1764705882" blue="0.33333333329999998" alpha="0.3976947623" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" secondItem="IH6-cv-XoV" secondAttribute="height" id="IjJ-G9-zzD"/>
+                                                        <constraint firstAttribute="width" constant="33" id="grQ-Tu-tNV"/>
+                                                    </constraints>
+                                                </imageView>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstAttribute="trailing" secondItem="RcE-2z-3RR" secondAttribute="trailing" constant="30" id="6C1-Dz-srt"/>
+                                                <constraint firstAttribute="trailing" secondItem="IH6-cv-XoV" secondAttribute="trailing" constant="20" id="84K-Wg-5Dj"/>
                                                 <constraint firstItem="RcE-2z-3RR" firstAttribute="top" secondItem="851-mX-7Kg" secondAttribute="top" constant="30" id="B5O-h3-C2d"/>
                                                 <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="ct3-Jb-Pvy" secondAttribute="bottom" constant="30" id="Cbq-pu-sLf"/>
                                                 <constraint firstItem="zRK-wJ-vk6" firstAttribute="top" secondItem="OJM-JK-asA" secondAttribute="top" id="F0e-pN-WPp"/>
@@ -1962,6 +1971,7 @@
                                                 <constraint firstItem="RcE-2z-3RR" firstAttribute="leading" secondItem="851-mX-7Kg" secondAttribute="leading" constant="30" id="P1S-uX-BcJ"/>
                                                 <constraint firstAttribute="trailing" secondItem="OJM-JK-asA" secondAttribute="trailing" constant="30" id="Ri3-az-ZH8"/>
                                                 <constraint firstItem="zRK-wJ-vk6" firstAttribute="bottom" secondItem="OJM-JK-asA" secondAttribute="bottom" id="bjQ-IV-0WB"/>
+                                                <constraint firstItem="IH6-cv-XoV" firstAttribute="top" secondItem="851-mX-7Kg" secondAttribute="top" constant="20" id="d8P-mD-n7w"/>
                                                 <constraint firstItem="v3y-IF-ACH" firstAttribute="trailing" secondItem="RcE-2z-3RR" secondAttribute="trailing" id="kFe-Ou-VY6"/>
                                                 <constraint firstItem="v3y-IF-ACH" firstAttribute="leading" secondItem="RcE-2z-3RR" secondAttribute="leading" id="pun-9g-zGn"/>
                                                 <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="OJM-JK-asA" secondAttribute="bottom" constant="30" id="s1S-7I-eU4"/>
@@ -1975,6 +1985,7 @@
                                             <outlet property="mediaImageView" destination="Q8z-wx-4pc" id="trc-Rc-FEt"/>
                                             <outlet property="notesIsEditingTextView" destination="zRK-wJ-vk6" id="Zeb-vs-mCO"/>
                                             <outlet property="notesLabel" destination="OJM-JK-asA" id="rBi-Rn-ri9"/>
+                                            <outlet property="showFullViewImageView" destination="IH6-cv-XoV" id="MEx-GC-9Xh"/>
                                             <outlet property="timeLabel" destination="v3y-IF-ACH" id="WqR-s3-SHw"/>
                                         </connections>
                                     </tableViewCell>
@@ -2284,6 +2295,33 @@
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <connections>
                                             <outlet property="contentTextView" destination="etT-ke-RoA" id="6j3-HH-Gxf"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="journalImageCell" rowHeight="237" id="91P-ZI-AHm" customClass="journalFullViewImageCell" customModule="Folio" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="327" width="414" height="237"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="91P-ZI-AHm" id="UwK-Lo-uaO">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="237"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="IkP-5S-Yei">
+                                                    <rect key="frame" x="0.0" y="0.0" width="414" height="237"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="150" id="Emf-yo-Zn2"/>
+                                                    </constraints>
+                                                </imageView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="IkP-5S-Yei" firstAttribute="top" secondItem="UwK-Lo-uaO" secondAttribute="top" id="IKZ-EW-Fgt"/>
+                                                <constraint firstAttribute="trailing" secondItem="IkP-5S-Yei" secondAttribute="trailing" id="TMr-L1-FD2"/>
+                                                <constraint firstItem="IkP-5S-Yei" firstAttribute="leading" secondItem="UwK-Lo-uaO" secondAttribute="leading" id="dKQ-lF-ZMp"/>
+                                                <constraint firstAttribute="bottom" secondItem="IkP-5S-Yei" secondAttribute="bottom" id="hC6-os-IJF"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <connections>
+                                            <outlet property="heightConstraint" destination="Emf-yo-Zn2" id="ZWi-6y-ZvV"/>
+                                            <outlet property="journalImage" destination="IkP-5S-Yei" id="bO1-WV-3ws"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>

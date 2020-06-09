@@ -51,6 +51,7 @@ struct locationJournalCard: Codable {
     var locationAnnotations = [CodableMKPointAnnotation]()
     var locationData: Data?
     var notesText = "Notes Text of locationJournalCard"
+    var subNotesText = "SubNotes goes here"
 }
 struct mediaJournalCard: Codable {
     var UniquIdentifier = UUID()
@@ -58,6 +59,7 @@ struct mediaJournalCard: Codable {
     var imageData: Data?
     var imageFileName = [String]()
     var notesText = "Notes Text of mediaJournalCard"
+    var subNotesText = "SubNotes goes here"
 }
 enum journalCardType: String, Codable{
     case small
@@ -74,6 +76,7 @@ protocol addCardInJournalProtocol {
     func addLocationEntry()
     func updateJournalNotesEntry(at index: IndexPath, with text: String)
     func updateJournalNotesCard(at index: IndexPath, with card: noteJournalCard)
+    func updateJournalMediaCard(at index: IndexPath, with card: mediaJournalCard)
     func showJournalFullView(at index: IndexPath)
     func updateJournalMediasNotesEntry(at index: IndexPath, with text: String)
     func getJournalMedia(at index: IndexPath)
@@ -339,6 +342,7 @@ class JournalViewController: UIViewController {
             if let targetController = segue.destination as? journalCardFullViewViewController{
                 targetController.type = cardsForSelectedDate[selectedCell!].type
                 targetController.card = cardsForSelectedDate[selectedCell!].journalNotesCard
+                targetController.mediaCard = cardsForSelectedDate[selectedCell!].journalMediaCard
                 targetController.index = IndexPath(row: selectedCell!, section: 0)
                 targetController.delegate=self
             }
@@ -720,9 +724,30 @@ extension JournalViewController: timelineSwitchDelegate{
     }
 }
 extension JournalViewController: addCardInJournalProtocol{
+    
     func showJournalFullView(at index: IndexPath) {
         selectedCell=index.row
         self.performSegue(withIdentifier: "showJournalFullViewSegue", sender: self)
+    }
+    func updateJournalMediaCard(at index: IndexPath, with card: mediaJournalCard) {
+        print("inside updateJournalMediaCard")
+                 cardsForSelectedDate[index.row].journalMediaCard!=card
+                for ind in journalEntryCards.indices{
+                    let valcard =  journalEntryCards[ind]
+                    if valcard.journalMediaCard?.UniquIdentifier==cardsForSelectedDate[index.row].journalMediaCard?.UniquIdentifier{
+                        print("found place to set in journalEntryCards")
+                        journalEntryCards[ind].journalMediaCard = card
+                    }
+                }
+        //        self.setupData()
+        //        self.setupSelectedDate()
+                for ind in allCards.indices{
+                    if allCards[ind].type == .journalMedia, allCards[ind].journalMediaCard?.UniquIdentifier==card.UniquIdentifier{
+                        print("dound to update in allcard.jormedia")
+                        allCards[ind].journalMediaCard = card
+                    }
+                }
+                table.reloadRows(at: [index], with: .automatic)
     }
     
     func updateJournalNotesCard(at index: IndexPath, with card: noteJournalCard) {

@@ -17,6 +17,7 @@ class journalCardFullViewViewController: UIViewController, UITableViewDataSource
     
     var type: journalCardType?
     var card: noteJournalCard?
+    var mediaCard: mediaJournalCard?
     var index = IndexPath(row: 0, section: 0)
     var delegate: addCardInJournalProtocol?
     @IBOutlet weak var table: UITableView!{
@@ -28,27 +29,85 @@ class journalCardFullViewViewController: UIViewController, UITableViewDataSource
     
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        2
+        if self.type == journalCardType.notes{
+            return 2
+        }else{
+            return 3
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        switch indexPath.row {
-        case 0:
-            let cell = table.dequeueReusableCell(withIdentifier: "headingCell") as! journalFullViewHeadingCell
+        if self.type == journalCardType.notes{
+            switch indexPath.row {
+            case 0:
+                let cell = table.dequeueReusableCell(withIdentifier: "headingCell") as! journalFullViewHeadingCell
+                cell.delegate=self
+                cell.index = indexPath
+                cell.contentTextView.text=card?.notesText
+                return cell
+            case 1:
+            let cell = table.dequeueReusableCell(withIdentifier: "subNotesCell") as! journalFullViewSubNotesCell
             cell.delegate=self
             cell.index = indexPath
-            cell.contentTextView.text=card?.notesText
+            cell.contentTextView.text=card?.subNotesText
             return cell
-        case 1:
-        let cell = table.dequeueReusableCell(withIdentifier: "subNotesCell") as! journalFullViewSubNotesCell
-        cell.delegate=self
-        cell.index = indexPath
-        cell.contentTextView.text=card?.subNotesText
-        return cell
-        default:
-            let cell = UITableViewCell()
-            cell.backgroundColor = .red
-            return cell
+            default:
+                let cell = UITableViewCell()
+                cell.backgroundColor = .red
+                return cell
+            }
+        }else{
+            switch indexPath.row {
+            case 0:
+                let cell = table.dequeueReusableCell(withIdentifier: "headingCell") as! journalFullViewHeadingCell
+                cell.delegate=self
+                cell.index = indexPath
+                cell.contentTextView.text=mediaCard?.notesText
+                return cell
+            case 1:
+                let cell = table.dequeueReusableCell(withIdentifier: "journalImageCell") as! journalFullViewImageCell
+                cell.delegate=self
+                cell.index = indexPath
+//                cell.journalImage.image=mediaCard?.imageData
+                if mediaCard!.imageFileName.count>0 {
+                    let fileName = mediaCard!.imageFileName[0]
+                    DispatchQueue.global(qos: .background).async {
+                        if let url = try? FileManager.default.url(
+                            for: .documentDirectory,
+                            in: .userDomainMask,
+                            appropriateFor: nil,
+                            create: true
+                        ).appendingPathComponent(fileName){
+                            if let jsonData = try? Data(contentsOf: url){
+                                if let extract = imageData(json: jsonData){
+                                    if let image = UIImage(data: extract.data){
+                                        DispatchQueue.main.async {
+                                            cell.journalImage.image=image
+                                            cell.journalImage.setupImageViewer(images: [image])
+                                            cell.awakeFromNib()
+                                        }
+                                    }else{
+                                        print("couldn't get UIImage from extrated data, check if sure this file doesn't exist and if so delete it from array")
+                                    }
+                                }else{
+                                    print("couldnt get json from URL")
+                                }
+                            }
+                        }
+                    }
+                }
+                return cell
+            case 2:
+                let cell = table.dequeueReusableCell(withIdentifier: "subNotesCell") as! journalFullViewSubNotesCell
+                cell.delegate=self
+                cell.index = indexPath
+                cell.contentTextView.text=mediaCard?.subNotesText
+                return cell
+            default:
+                let cell = UITableViewCell()
+                cell.backgroundColor = .red
+                return cell
+            }
         }
     }
     @IBOutlet weak var navBar: UINavigationBar!{
@@ -64,7 +123,11 @@ class journalCardFullViewViewController: UIViewController, UITableViewDataSource
     
     @IBAction func handleDone(_ sender: UIBarButtonItem) {
         self.dismiss(animated: true) {
+            if self.type == journalCardType.notes{
             self.delegate?.updateJournalNotesCard(at: self.index, with: self.card!)
+            }else{
+                self.delegate?.updateJournalMediaCard(at: self.index, with: self.mediaCard!)
+            }
         }
     }
     
@@ -78,12 +141,20 @@ class journalCardFullViewViewController: UIViewController, UITableViewDataSource
     
     func updateTitle(title: String) {
         print("in update title inside journalCardFullViewViewController wtih text: \(title) ")
+        if self.type == journalCardType.notes{
         self.card?.notesText=title
+        }else{
+            self.mediaCard?.notesText=title
+        }
 //        delegate?.updateJournalNotesEntry(at: index, with: title)
     }
     
     func updateSubNotes(title: String) {
-        self.card?.subNotesText=title
+        if self.type == journalCardType.notes{
+            self.card?.subNotesText=title
+        }else{
+            self.mediaCard?.subNotesText=title
+        }
     }
 }
 
@@ -122,4 +193,20 @@ var index = IndexPath()
     @objc func tapDone(sender: Any) {
            self.endEditing(true)
        }
+}
+class journalFullViewImageCell: UITableViewCell{
+    var delegate: journalFullViewTableProtocol?
+    var index = IndexPath()
+    @IBOutlet weak var journalImage: UIImageView!
+    @IBOutlet weak var heightConstraint: NSLayoutConstraint!
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        if journalImage.image==nil{
+            self.heightConstraint.constant=0
+        }else{
+            self.heightConstraint.constant=250
+        }
+        delegate?.updated(inded: index)
+    }
+    
 }

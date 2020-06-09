@@ -86,6 +86,16 @@ class journalMediaTableViewCell: UITableViewCell, UITextViewDelegate{
 //        }
 //        self.mediaImageView.setupImageViewer(urls: urlList)
     }
+    
+    @IBOutlet weak var showFullViewImageView: UIImageView!{
+        didSet{
+            showFullViewImageView.isUserInteractionEnabled=true
+            showFullViewImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(showFullJournal)))
+        }
+    }
+    @objc func showFullJournal(){
+        delegate?.showJournalFullView(at: index)
+    }
     @objc func didSelctTextView() {
         print("didselect in setSelected")
         notesIsEditingTextView.isHidden=false
