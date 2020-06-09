@@ -16,6 +16,9 @@ protocol habitsVCProtocol {
 }
 struct HabitsData: Codable{
     var cardList = [habitCardData]()
+    //used for archive tab
+    var completedCardList = [habitCardData]()
+    var deletedCardList = [habitCardData]()
     init(){
     }
     init?(json: Data){
@@ -31,8 +34,39 @@ struct HabitsData: Codable{
 }
 class HabitsViewController: UIViewController {
     var habits = HabitsData()
+//    var archivedHabits = HabitsData()
+    var archivedHabits: HabitsData?
+    var currentlyShowingType = 0 //0 for curetn habits, 1 for archived
     @IBOutlet weak var table: UITableView!
     
+    @IBOutlet weak var tableTopConstraint: NSLayoutConstraint!
+    @IBAction func switchArchive(_ sender: UIBarButtonItem) {
+        switch currentlyShowingType {
+        case 0:
+            currentlyShowingType=1
+            sender.image=UIImage(systemName: "rectangle.grid.1x2")
+        case 1:
+            currentlyShowingType=0
+            sender.image=UIImage(systemName: "archivebox")
+        default:
+            print("unknown case")
+        }
+        
+        UIView.animate(withDuration: 0, delay: 0, options: .curveEaseInOut, animations: {
+//            self.tableTopConstraint.isActive=true
+//            NSLayoutConstraint.activate([self.tableTopConstraint])
+            self.tableTopConstraint.priority = .defaultLow
+            self.view.layoutIfNeeded()
+        }, completion:{ (something) in
+            UIView.animate(withDuration: 1, delay: 0, options: .curveEaseInOut, animations: {
+//                self.tableTopConstraint.isActive=false
+//                NSLayoutConstraint.deactivate([self.tableTopConstraint])
+                self.tableTopConstraint.priority = .required
+                self.view.layoutIfNeeded()
+            }, completion: nil)
+        })
+        table.reloadData()
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         table.dataSource=self
@@ -70,6 +104,24 @@ class HabitsViewController: UIViewController {
                 print("error no file named habitCardsData.json found")
             }
         }
+        //TODO: make this happen not in view will appear if causes lags
+        if let url = try? FileManager.default.url(
+            for: .documentDirectory,
+            in: .userDomainMask,
+            appropriateFor: nil,
+            create: true
+        ).appendingPathComponent("ArchivedHabitCardsData.json"){
+            if let jsonData = try? Data(contentsOf: url){
+                if let extract = HabitsData(json: jsonData){
+                    print("did set self.habits to \(extract)")
+                    self.archivedHabits = extract
+                }else{
+                    print("ERROR: found HabitsData(json: jsonData) to be nil so didn't set it")
+                }
+            }else{
+                print("error no file named habitCardsData.json found")
+            }
+        }
     }
     override func viewWillDisappear(_ animated: Bool) {
         // Restore the navigation bar to default
@@ -80,24 +132,42 @@ class HabitsViewController: UIViewController {
         save()
     }
     func save() {
-           var jcl = HabitsData()
-           jcl=self.habits
-           if let json = jcl.json {
-               if let url = try? FileManager.default.url(
-                   for: .documentDirectory,
-                   in: .userDomainMask,
-                   appropriateFor: nil,
-                   create: true
-               ).appendingPathComponent("habitCardsData.json"){
-                   do {
-                       try json.write(to: url)
-                       print ("saved successfully")
-                   } catch let error {
-                       print ("couldn't save \(error)")
-                   }
-               }
-           }
-       }
+        var jcl = HabitsData()
+        jcl=self.habits
+        if let json = jcl.json {
+            if let url = try? FileManager.default.url(
+                for: .documentDirectory,
+                in: .userDomainMask,
+                appropriateFor: nil,
+                create: true
+            ).appendingPathComponent("habitCardsData.json"){
+                do {
+                    try json.write(to: url)
+                    print ("saved successfully")
+                } catch let error {
+                    print ("couldn't save \(error)")
+                }
+            }
+        }
+        if let archivedHabits = self.archivedHabits{
+            jcl=archivedHabits
+            if let json = jcl.json {
+                if let url = try? FileManager.default.url(
+                    for: .documentDirectory,
+                    in: .userDomainMask,
+                    appropriateFor: nil,
+                    create: true
+                ).appendingPathComponent("ArchivedHabitCardsData.json"){
+                    do {
+                        try json.write(to: url)
+                        print ("saved successfully")
+                    } catch let error {
+                        print ("couldn't save \(error)")
+                    }
+                }
+            }
+        }
+    }
     
     // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -189,7 +259,15 @@ extension HabitsViewController: habitsVCProtocol{
 }
 extension HabitsViewController: UITableViewDataSource, UITableViewDelegate{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return habits.cardList.count
+        switch currentlyShowingType {
+        case 0:
+            return habits.cardList.count
+        case 1:
+            return archivedHabits?.deletedCardList.count ?? 0 //+ archivedHabits.completedCardList.count
+        default:
+            print("unknown case")
+        }
+        return 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -197,7 +275,15 @@ extension HabitsViewController: UITableViewDataSource, UITableViewDelegate{
         cell.selectionStyle = .none
         cell.delegate=self
         cell.index=indexPath
-        cell.habitData = habits.cardList[indexPath.row]
+        switch currentlyShowingType {
+        case 0:
+            cell.habitData = habits.cardList[indexPath.row]
+        case 1:
+            cell.habitData = archivedHabits!.deletedCardList[indexPath.row]
+            cell.stepper.isUserInteractionEnabled=false
+        default:
+            print("unknown case")
+        }
         if let lastDate = cell.habitData?.targetDate{
             if Date()>lastDate{
                 UNUserNotificationCenter.current().getPendingNotificationRequests { (notificationRequests) in
@@ -218,76 +304,113 @@ extension HabitsViewController: UITableViewDataSource, UITableViewDelegate{
     }
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        let action = UIContextualAction(style: .destructive, title: "Delete",
-                                        handler: { (action, view, completionHandler) in
-                                            print("handle delete")
-                                            UNUserNotificationCenter.current().getPendingNotificationRequests { (notificationRequests) in
-                                                var identifiers: [String] = []
-                                                for notification:UNNotificationRequest in notificationRequests {
-                                                    if notification.identifier == String(describing: (self.habits.cardList[indexPath.row].UniquIdentifier)) {
-                                                        identifiers.append(notification.identifier)
+        switch currentlyShowingType {
+        case 0:
+            print("just paste below code")
+            let action = UIContextualAction(style: .destructive, title: "Archive",
+                                            handler: { (action, view, completionHandler) in
+                                                print("handle delete")
+                                                UNUserNotificationCenter.current().getPendingNotificationRequests { (notificationRequests) in
+                                                    var identifiers: [String] = []
+                                                    for notification:UNNotificationRequest in notificationRequests {
+                                                        if notification.identifier == String(describing: (self.habits.cardList[indexPath.row].UniquIdentifier)) {
+                                                            identifiers.append(notification.identifier)
+                                                        }
+                                                    }
+                                                    print("indrow = \(indexPath.row), adn id = \(self.habits.cardList[indexPath.row].UniquIdentifier)")
+                                                    print("removing notifs with identifiers \(identifiers)")
+                                                    UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: identifiers)
+                                                    DispatchQueue.main.async {
+                                                        self.archivedHabits!.deletedCardList.append(self.habits.cardList[indexPath.row])
+                                                        self.habits.cardList.remove(at: indexPath.row)
+                                                        self.table.deleteRows(at: [indexPath], with: .right)
                                                     }
                                                 }
-                                                print("indrow = \(indexPath.row), adn id = \(self.habits.cardList[indexPath.row].UniquIdentifier)")
-                                                print("removing notifs with identifiers \(identifiers)")
-                                                UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: identifiers)
+                                                completionHandler(true)
+            })
+            action.backgroundColor = .systemRed
+
+            if self.habits.cardList[indexPath.row].firstReminder != nil{
+                var title="Unset"
+                switch self.habits.cardList[indexPath.row].reminderValue {
+                case .notSet:
+                    title="Unpause Alarms"
+                default:
+                    title="Pause Alarms"
+                }
+                let changeAlarm = UIContextualAction(style: .normal, title: title,
+                                                     handler: { (action, view, completionHandler) in
+                                                        print("handle \(title) alarm")
+                                                        switch self.habits.cardList[indexPath.row].reminderValue {
+                                                        case .notSet:
+                                                            self.setReminder(with: self.habits.cardList[indexPath.row])
+                                                            self.habits.cardList[indexPath.row].reminderValue = self.habits.cardList[indexPath.row].reminderValueBeforePausing
+                                                        default:
+                                                            UNUserNotificationCenter.current().getPendingNotificationRequests { (notificationRequests) in
+                                                                var identifiers: [String] = []
+                                                                for notification:UNNotificationRequest in notificationRequests {
+                                                                    if notification.identifier == String(describing: (self.habits.cardList[indexPath.row].UniquIdentifier)) {
+                                                                        identifiers.append(notification.identifier)
+                                                                    }
+                                                                }
+                                                                print("removing notifs with identifiers \(identifiers)")
+                                                                UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: identifiers)
+                                                            }
+                                                            self.habits.cardList[indexPath.row].reminderValueBeforePausing = self.habits.cardList[indexPath.row].reminderValue
+                                                            self.habits.cardList[indexPath.row].reminderValue = .notSet
+                                                        }
+                                                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                                                            // your code here
+                                                            self.table.reloadRows(at: [indexPath], with: .none)
+                                                        }
+                                                        completionHandler(true)
+                })
+                switch self.habits.cardList[indexPath.row].reminderValue {
+                case .notSet:
+                    changeAlarm.backgroundColor = .systemGray
+                default:
+                    changeAlarm.backgroundColor = .systemYellow
+                }
+                
+                let configuration = UISwipeActionsConfiguration(actions: [action, changeAlarm])
+                return configuration
+            }
+
+            let configuration = UISwipeActionsConfiguration(actions: [action])
+            return configuration
+        case 1:
+            print("todo: remove from archive put back and set it's reminder")
+            let action = UIContextualAction(style: .normal, title: "Unarchive",
+                                            handler: { (action, view, completionHandler) in
+                                                print("handle Unarchive")
+                                                if self.archivedHabits!.deletedCardList[indexPath.row].reminderValue != .notSet,
+                                                    self.archivedHabits!.deletedCardList[indexPath.row].firstReminder != nil{
+                                                    self.setReminder(with: self.archivedHabits!.deletedCardList[indexPath.row])
+                                                }
                                                 DispatchQueue.main.async {
-                                                    self.habits.cardList.remove(at: indexPath.row)
+                                                    self.habits.cardList.append( self.archivedHabits!.deletedCardList[indexPath.row])
+                                                    self.archivedHabits!.deletedCardList.remove(at: indexPath.row)
+                                                    self.table.deleteRows(at: [indexPath], with: .left)
+                                                }
+                                                completionHandler(true)
+            })
+            action.backgroundColor = .systemTeal
+            let delete = UIContextualAction(style: .destructive, title: "Delete",
+                                            handler: { (action, view, completionHandler) in
+                                                print("handle delete")
+                                                DispatchQueue.main.async {
+                                                    self.archivedHabits!.deletedCardList.remove(at: indexPath.row)
                                                     self.table.deleteRows(at: [indexPath], with: .automatic)
                                                 }
-                                            }
-                                            completionHandler(true)
-        })
-        action.backgroundColor = .systemRed
-
-        if self.habits.cardList[indexPath.row].firstReminder != nil{
-            var title="Unset"
-            switch self.habits.cardList[indexPath.row].reminderValue {
-            case .notSet:
-                title="Unpause Alarms"
-            default:
-                title="Pause Alarms"
-            }
-            let changeAlarm = UIContextualAction(style: .normal, title: title,
-                                                 handler: { (action, view, completionHandler) in
-                                                    print("handle \(title) alarm")
-                                                    switch self.habits.cardList[indexPath.row].reminderValue {
-                                                    case .notSet:
-                                                        self.setReminder(with: self.habits.cardList[indexPath.row])
-                                                        self.habits.cardList[indexPath.row].reminderValue = self.habits.cardList[indexPath.row].reminderValueBeforePausing
-                                                    default:
-                                                        UNUserNotificationCenter.current().getPendingNotificationRequests { (notificationRequests) in
-                                                            var identifiers: [String] = []
-                                                            for notification:UNNotificationRequest in notificationRequests {
-                                                                if notification.identifier == String(describing: (self.habits.cardList[indexPath.row].UniquIdentifier)) {
-                                                                    identifiers.append(notification.identifier)
-                                                                }
-                                                            }
-                                                            print("removing notifs with identifiers \(identifiers)")
-                                                            UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: identifiers)
-                                                        }
-                                                        self.habits.cardList[indexPath.row].reminderValueBeforePausing = self.habits.cardList[indexPath.row].reminderValue
-                                                        self.habits.cardList[indexPath.row].reminderValue = .notSet
-                                                    }
-                                                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                                                        // your code here
-                                                        self.table.reloadRows(at: [indexPath], with: .none)
-                                                    }
-                                                    completionHandler(true)
+                                                completionHandler(true)
             })
-            switch self.habits.cardList[indexPath.row].reminderValue {
-            case .notSet:
-                changeAlarm.backgroundColor = .systemGray
-            default:
-                changeAlarm.backgroundColor = .systemYellow
-            }
-            
-            let configuration = UISwipeActionsConfiguration(actions: [action, changeAlarm])
+            delete.backgroundColor = .systemRed
+            let configuration = UISwipeActionsConfiguration(actions: [delete, action])
             return configuration
+        default:
+            print("unknown case")
         }
-
-        let configuration = UISwipeActionsConfiguration(actions: [action])
-        return configuration
+        return nil
     }
 
     func setReminder(with card: habitCardData){

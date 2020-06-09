@@ -36,7 +36,7 @@ class WithImagesViewController:UIViewController {
             self.images.append(image)
             self.collectionView.reloadData()
             let fileName=String.uniqueFilename(withPrefix: "iamgeData")+".json"
-            if let json = imageData(instData: image.pngData()!).json {
+            if let json = imageData(instData: (image.resizedTo1MB()!).pngData()!).json {
                 if let url = try? FileManager.default.url(
                     for: .documentDirectory,
                     in: .userDomainMask,
