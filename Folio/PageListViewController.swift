@@ -114,6 +114,8 @@ class PageListViewController: UIViewController {
     }
     @IBOutlet weak var lockingView: UIView!
     
+    
+    @IBOutlet weak var menuButton: UIBarButtonItem!
     @IBAction func authenticatButtonTapped(_ sender: UIButton) {
         authenticateApp()
     }
@@ -133,6 +135,7 @@ class PageListViewController: UIViewController {
                                 // User authenticated successfully, take appropriate action
                                 self?.appIsUnlocked=true
                                 self?.lockingView.isHidden=true
+                                self?.menuButton.isEnabled=true
                                 print("Awesome!!... User authenticated successfully")
                             } else {
                                 // User did not authenticate successfully, look at error and take appropriate action
@@ -174,6 +177,7 @@ class PageListViewController: UIViewController {
             let name = UserDefaults.standard.bool(forKey: "AppIsLocked")
             if name{
                 self.appIsUnlocked = false
+                menuButton.isEnabled=false
                 authenticateApp()
             }else{
                 self.lockingView.isHidden=true
