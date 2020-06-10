@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import LocalAuthentication
 struct pageInfo: Codable{
     var title = "Title"
     var fileName = String.uniqueFilename(withPrefix: "Page")+".json"
@@ -55,6 +56,7 @@ class PageListViewController: UIViewController {
 //    let journalButton = UIImageView(image: UIImage(systemName: "square.split.2x1.fill"))
     let journalButton = UIImageView(image: UIImage(systemName: "book.circle"))
     var titleLabel = UILabel()
+    var appIsUnlocked=false
     
     @IBOutlet weak var table: UITableView!
     private func configureHeading(){
@@ -110,8 +112,46 @@ class PageListViewController: UIViewController {
     @IBAction func showJournalNavButtonClick(_ sender: Any) {
         showJournal()
     }
+    @IBOutlet weak var lockingView: UIView!
     
-    
+    @IBAction func authenticatButtonTapped(_ sender: UIButton) {
+        authenticateApp()
+    }
+    func authenticateApp(){
+        //user authentication to unlock app
+        if !appIsUnlocked{
+            let myContext = LAContext()
+            let myLocalizedReasonString = "Biometric Authntication testing !! "
+            
+            var authError: NSError?
+            if #available(iOS 8.0, macOS 10.12.1, *) {
+                if myContext.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: &authError) {
+                    myContext.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, localizedReason: myLocalizedReasonString) { [weak self] success, evaluateError in
+                        
+                        DispatchQueue.main.async {
+                            if success {
+                                // User authenticated successfully, take appropriate action
+                                self?.appIsUnlocked=true
+                                self?.lockingView.isHidden=true
+                                print("Awesome!!... User authenticated successfully")
+                            } else {
+                                // User did not authenticate successfully, look at error and take appropriate action
+                                print("Sorry!!... User did not authenticate successfully")
+                            }
+                        }
+                    }
+                } else {
+                    // Could not evaluate policy; look at authError and present an appropriate message to user
+                    self.appIsUnlocked=true
+                    self.lockingView.isHidden=true
+                    print("Sorry!!.. Could not evaluate policy.")
+                }
+            } else {
+                // Fallback on earlier versions
+                print("Ooops!!.. This feature is not supported.")
+            }
+        }
+    }
     private func configureTable(){
         table.translatesAutoresizingMaskIntoConstraints=false
         [
@@ -130,6 +170,17 @@ class PageListViewController: UIViewController {
 //        table.register(UINib(nibName: "pageListTableViewCell", bundle: nil), forCellReuseIdentifier: "customPageCell")
     }
     override func viewWillAppear(_ animated: Bool) {
+        if appIsUnlocked==false{
+            let name = UserDefaults.standard.bool(forKey: "AppIsLocked")
+            if name{
+                self.appIsUnlocked = false
+                authenticateApp()
+            }else{
+                self.lockingView.isHidden=true
+            }
+        }else{
+            self.lockingView.isHidden=true
+        }
         //        self.navigationController?.setNavigationBarHidden(true, animated: true)
         navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
         navigationController?.navigationBar.shadowImage = UIImage()

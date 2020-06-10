@@ -68,6 +68,8 @@
 	</array>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>Application wants to use your location</string>
+	<key>NSFaceIDUsageDescription</key>
+	<string>Application uses face id to unlock app </string>
 	<key>NSLocationAlwaysUsageDescription</key>
 	<string>Application wants to use your location</string>
 </dict>
