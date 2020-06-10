@@ -15,6 +15,7 @@
 		E216884D2474E19B00D079A4 /* UIImageCompressor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E216884C2474E19B00D079A4 /* UIImageCompressor.swift */; };
 		E216884F2475965500D079A4 /* DrawingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E216884E2475965500D079A4 /* DrawingView.swift */; };
 		E2252E0B247943AA00EF26C9 /* PagesExtractTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2252E0A247943AA00EF26C9 /* PagesExtractTableViewCell.swift */; };
+		E24382682490CEAC00C7F016 /* themeChooserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E24382672490CEAC00C7F016 /* themeChooserViewController.swift */; };
 		E252B049246C4041003F8718 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E252B048246C4041003F8718 /* AppDelegate.swift */; };
 		E252B04B246C4041003F8718 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E252B04A246C4041003F8718 /* SceneDelegate.swift */; };
 		E252B04D246C4041003F8718 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E252B04C246C4041003F8718 /* ViewController.swift */; };
@@ -85,6 +86,7 @@
 		E2A35B522488C38900FDF4C6 /* habitsCellCalendarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A35B512488C38900FDF4C6 /* habitsCellCalendarCell.swift */; };
 		E2A35B542488EC3200FDF4C6 /* habitDateCellHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A35B532488EC3200FDF4C6 /* habitDateCellHeader.swift */; };
 		E2A6F99C248FB9510041616A /* journalCardFullViewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A6F99B248FB9510041616A /* journalCardFullViewViewController.swift */; };
+		E2A942092490B7FE003716A2 /* settingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A942082490B7FE003716A2 /* settingsViewController.swift */; };
 		E2B1D0542483EEA100BA8C7D /* MKPointAnnotation-Codable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2B1D0532483EEA100BA8C7D /* MKPointAnnotation-Codable.swift */; };
 		E2C1F340248579F0004A8050 /* PageListSideMenuTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2C1F33F248579F0004A8050 /* PageListSideMenuTableViewController.swift */; };
 		E2CB87F52483581B002F3E6A /* journalLocationPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2CB87F42483581B002F3E6A /* journalLocationPickerViewController.swift */; };
@@ -133,6 +135,7 @@
 		E216884C2474E19B00D079A4 /* UIImageCompressor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageCompressor.swift; sourceTree = "<group>"; };
 		E216884E2475965500D079A4 /* DrawingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrawingView.swift; sourceTree = "<group>"; };
 		E2252E0A247943AA00EF26C9 /* PagesExtractTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PagesExtractTableViewCell.swift; sourceTree = "<group>"; };
+		E24382672490CEAC00C7F016 /* themeChooserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = themeChooserViewController.swift; sourceTree = "<group>"; };
 		E252B045246C4041003F8718 /* Folio.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Folio.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E252B048246C4041003F8718 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E252B04A246C4041003F8718 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -209,6 +212,7 @@
 		E2A35B512488C38900FDF4C6 /* habitsCellCalendarCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = habitsCellCalendarCell.swift; sourceTree = "<group>"; };
 		E2A35B532488EC3200FDF4C6 /* habitDateCellHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = habitDateCellHeader.swift; sourceTree = "<group>"; };
 		E2A6F99B248FB9510041616A /* journalCardFullViewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = journalCardFullViewViewController.swift; sourceTree = "<group>"; };
+		E2A942082490B7FE003716A2 /* settingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = settingsViewController.swift; sourceTree = "<group>"; };
 		E2B1D0532483EEA100BA8C7D /* MKPointAnnotation-Codable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MKPointAnnotation-Codable.swift"; sourceTree = "<group>"; };
 		E2C1F33F248579F0004A8050 /* PageListSideMenuTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageListSideMenuTableViewController.swift; sourceTree = "<group>"; };
 		E2CB87F42483581B002F3E6A /* journalLocationPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = journalLocationPickerViewController.swift; sourceTree = "<group>"; };
@@ -307,6 +311,8 @@
 			children = (
 				E252B04C246C4041003F8718 /* ViewController.swift */,
 				E252B04E246C4041003F8718 /* Main.storyboard */,
+				E2A942082490B7FE003716A2 /* settingsViewController.swift */,
+				E24382672490CEAC00C7F016 /* themeChooserViewController.swift */,
 				E252B08D246C4AD7003F8718 /* SwitchPageTimelineViewController.swift */,
 				E252B08B246C4681003F8718 /* PageListViewController.swift */,
 				E2E152562486045500079B79 /* Habits Items */,
@@ -776,6 +782,7 @@
 				E2E152662486564C00079B79 /* addHabbitReminderValueTableViewCell.swift in Sources */,
 				E29A586F248A385600FA7D7C /* cardTypeTableViewCell.swift in Sources */,
 				E25BA51A24728AA9000D1DF7 /* MediaCardTableViewCell.swift in Sources */,
+				E24382682490CEAC00C7F016 /* themeChooserViewController.swift in Sources */,
 				E211905C248BA61C00DE9D92 /* newCheckListFullViewController.swift in Sources */,
 				E25BA50D2472285F000D1DF7 /* pickImage.swift in Sources */,
 				E252B08C246C4681003F8718 /* PageListViewController.swift in Sources */,
@@ -797,6 +804,7 @@
 				E25BA4F8247163CE000D1DF7 /* checkListFullViewController.swift in Sources */,
 				E252B04B246C4041003F8718 /* SceneDelegate.swift in Sources */,
 				E252B07C246C44DF003F8718 /* textViewPlaceholder.swift in Sources */,
+				E2A942092490B7FE003716A2 /* settingsViewController.swift in Sources */,
 				E25BA50924721F93000D1DF7 /* SCardCollectionViewCell.swift in Sources */,
 				E2E1525E2486426700079B79 /* habiCardData.swift in Sources */,
 				E216884F2475965500D079A4 /* DrawingView.swift in Sources */,

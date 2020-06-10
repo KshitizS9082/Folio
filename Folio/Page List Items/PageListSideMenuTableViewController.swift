@@ -17,6 +17,7 @@ class PageListSideMenuTableViewController: UITableViewController {
         super.viewDidLoad()
         table.dataSource=self
         table.delegate=self
+        self.navigationController?.navigationBar.isHidden=true
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -42,7 +43,7 @@ class PageListSideMenuTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         print("asking for count")
-        return 3
+        return 5
     }
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 100
@@ -64,15 +65,21 @@ class PageListSideMenuTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch indexPath.row {
         case 0:
+            let cell = tableView.dequeueReusableCell(withIdentifier: "titleCellIdentifier", for: indexPath)
+            return cell
+        case 1:
             let cell = tableView.dequeueReusableCell(withIdentifier: "pageCellIdentifier", for: indexPath)
             cell.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(dismissSideMenu)))
             return cell
-        case 1:
+        case 2:
             let cell = tableView.dequeueReusableCell(withIdentifier: "journalCellIdentifier", for: indexPath)
             return cell
-        case 2:
+        case 3:
             let cell = tableView.dequeueReusableCell(withIdentifier: "habitsCellIdentifier", for: indexPath)
             return cell
+        case 4:
+        let cell = tableView.dequeueReusableCell(withIdentifier: "settingsCellIdentifier", for: indexPath)
+        return cell
         default:
             let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
             return cell
