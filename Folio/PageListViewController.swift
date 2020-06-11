@@ -306,9 +306,13 @@ extension PageListViewController:UITableViewDelegate, UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section==0{
-            let cell=self.setupExtractTableViewCell(tableView, cellForRowAt: indexPath)
-            cell.selectionStyle = .none
-            return cell
+//            if indexPath.row==0{
+//            let cell=self.setupExtractTableViewCell(tableView, cellForRowAt: indexPath)
+//            cell.selectionStyle = .none
+//            return cell
+//            }else{
+                return setupNewExtractTableViewCell(tableView, cellForRowAt: indexPath)
+//            }
         }
         let cell = tableView.dequeueReusableCell(withIdentifier: "customPageCell", for: indexPath) as! pageListTableViewCell
         cell.accessoryType = .disclosureIndicator
@@ -324,7 +328,64 @@ extension PageListViewController:UITableViewDelegate, UITableViewDataSource{
         cell.subtitleText?.textColor =  UIColor(named: "subMainTextColor") ?? #colorLiteral(red: 0.9254902005, green: 0.2352941185, blue: 0.1019607857, alpha: 1)
         return cell
     }
-    
+    func setupNewExtractTableViewCell(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> newPageExtractTableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "newPageExtractTVCell") as! newPageExtractTableViewCell
+        cell.delegate=self
+        var fileName=""
+        var count = [Int](repeating: 0, count: 4)
+        for info in pages.items{
+            fileName=info.fileName
+            if let url = try? FileManager.default.url(
+                for: .documentDirectory,
+                in: .userDomainMask,
+                appropriateFor: nil,
+                create: true
+            ).appendingPathComponent(fileName){
+                if let jsonData = try? Data(contentsOf: url){
+                    if let page = PageData(json: jsonData){
+                        let calendar = Calendar.current
+                        page.bigCards.forEach { (card) in
+                            count[2]+=1
+                            if let date = card.card.reminder{
+                                count[1]+=1
+                                if calendar.isDateInToday(date){
+                                    count[0]+=1
+                                }
+                                if date<Date(){
+                                    count[2]+=1
+                                }
+                            }
+                        }
+                        page.smallCards.forEach { (card) in
+                            count[2]+=1
+                            if let date = card.card.reminderDate{
+                                count[1]+=1
+                                if calendar.isDateInToday(date){
+                                    count[0]+=1
+                                }
+                                if date<Date(){
+                                    count[2]+=1
+                                }
+                            }
+                        }
+                        page.mediaCards.forEach { (card) in
+                            count[2]+=1
+                        }
+                    }else{
+                        print("WARNING: DROPPED A PAGE INSIDE PAGEEXTRACTVC")
+                    }
+                }
+            }
+        }
+//        for ind in cell.extractCardList.indices{
+//            cell.extractCardList[ind].numberLabel.text = String(count[ind])
+//        }
+        for ind in cell.countValues.indices{
+            cell.countValues[ind]=count[ind]
+        }
+        cell.awakeFromNib()
+        return cell
+    }
     func setupExtractTableViewCell(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "PageExtractTVCell", for: indexPath) as! PagesExtractTableViewCell
         cell.backgroundColor = UIColor.clear
@@ -383,7 +444,11 @@ extension PageListViewController:UITableViewDelegate, UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.section==0{
-            return 270
+//            if indexPath.row==0{
+//            return 270
+//            }else{
+            return 190
+//            }
         }
         return cellHeight
     }
@@ -433,6 +498,9 @@ extension PageListViewController:UITableViewDelegate, UITableViewDataSource{
         }
     }
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        if indexPath.section==0{
+            return nil
+        }
         let action = UIContextualAction(style: .destructive, title: "Delete",
                                         handler: { (action, view, completionHandler) in
                                             self.deletePage(for: self.pages.items[indexPath.row])

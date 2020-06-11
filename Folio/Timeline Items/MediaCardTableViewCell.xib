@@ -67,7 +67,7 @@
     <resources>
         <image name="link.circle" catalog="system" width="128" height="121"/>
         <namedColor name="mediaCardColor">
-            <color red="0.99964183569999998" green="0.99612766500000005" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="1" green="0.99599999189376831" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
 </document>
