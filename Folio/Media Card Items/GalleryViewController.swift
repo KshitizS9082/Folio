@@ -62,7 +62,12 @@ class WithImagesViewController:UIViewController {
         super.loadView()
         view = UIView()
         self.navBar.titleLabel.text = "Media"
-        navBar.backgroundColor=navBarColour
+        navBar.backgroundColor = navBarColour
+        navBar.rightButton = UIButton()
+//        navBar.rightButton.titleLabel?.text = "Done"
+//        navBar.rightButton.titleLabel?.tintColor = .systemTeal
+//        navBar.rightButton.actions(forTarget: self.dismiss(animated: true, completion: nil), forControlEvent: .touchDown)
+        navBar.titleLabel.textColor = UIColor.systemTeal
         if(view.subviews.contains(self.navBar)==false){
             view.addSubview(self.navBar)
         }
@@ -141,7 +146,11 @@ extension WithImagesViewController:UICollectionViewDataSource {
                 images: images,
                 initialIndex: indexPath.item)
         }else{
-            cell.imageView.image = UIImage(systemName: "plus")
+            let image =  UIImage(systemName: "plus")!
+//            cell.imageView.preferredSymbolConfiguration = .some(UIImage.SymbolConfiguration.init(pointSize: 20, weight: .thin))
+            cell.imageView.preferredSymbolConfiguration = .init(pointSize: 20, weight: .thin, scale: .small)
+            cell.imageView.image = image
+            cell.imageView.tintColor = .systemTeal
             cell.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(addImage)))
         }
         return cell
@@ -156,10 +165,10 @@ extension WithImagesViewController: UICollectionViewDelegate, UIScrollViewDelega
 
 extension WithImagesViewController{
     var navBarColour: UIColor{
-        return UIColor(named: "mediaCardColor") ?? #colorLiteral(red: 0.9254902005, green: 0.2352941185, blue: 0.1019607857, alpha: 1)
+        return UIColor(named: "myBackgroundColor") ?? #colorLiteral(red: 0.9254902005, green: 0.2352941185, blue: 0.1019607857, alpha: 1)
     }
     var backgroundColor: UIColor{
-        return UIColor(named: "mediaCardColor") ?? #colorLiteral(red: 0.9254902005, green: 0.2352941185, blue: 0.1019607857, alpha: 1)
+        return UIColor(named: "myBackgroundColor") ?? #colorLiteral(red: 0.9254902005, green: 0.2352941185, blue: 0.1019607857, alpha: 1)
     }
     var cellCornerRadius: CGFloat{
         return 4.0

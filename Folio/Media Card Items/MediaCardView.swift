@@ -15,6 +15,7 @@ class MediaCardView: UIView {
     //    var UniquIdentifier: UUID?
     var card = MediaCard()
     var imageViews = [UIImageView]()
+    var labelView = UILabel()
     
     override func layoutSubviews() {
         self.layer.backgroundColor = #colorLiteral(red: 0.1764705926, green: 0.4980392158, blue: 0.7568627596, alpha: 0.269393706)
@@ -104,6 +105,24 @@ class MediaCardView: UIView {
         self.isUserInteractionEnabled=true
         self.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(showPreview)))
         self.addGestureRecognizer(UILongPressGestureRecognizer(target: self, action: #selector(didLongPressMediaView)))
+        
+        if subviews.contains(labelView)==false{
+            addSubview(labelView)
+        }
+        labelView.translatesAutoresizingMaskIntoConstraints=false
+        [
+            labelView.leftAnchor.constraint(equalTo: safeAreaLayoutGuide.leftAnchor, constant: self.bounds.width/13),
+            labelView.widthAnchor.constraint(equalToConstant: self.bounds.width/8),
+            labelView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor),
+            labelView.heightAnchor.constraint(equalToConstant: labelViewHeight)
+            ].forEach { (cst) in
+                cst.isActive=true
+        }
+        labelView.text = String(card.mediaDataURLs.count)
+        labelView.backgroundColor = UIColor.white.withAlphaComponent(0.8)
+        labelView.font = UIFont.boldSystemFont(ofSize: 10)
+        labelView.textColor = UIColor(named: "subMainTextColor") ?? UIColor.red
+        labelView.textAlignment = .center
     }
     //MARK: set a new json and use corrosponding url for new image
     @objc func showPreview(){
@@ -299,20 +318,27 @@ class MediaCardView: UIView {
             scrollView.pinchGestureRecognizer?.isEnabled = false
         }
     }
+    override func draw(_ rect: CGRect) {
+        let backgroundImage = UIImage(named: "mediaCardBacgroundImage")
+        backgroundImage?.draw(in: bounds)
+    }
     
 }
 extension MediaCardView{
     var numberOfImagesToShow: Int{
-        return 3
+        return 1
     }
     var distanceOfEachNewImageFromPreviousImage: CGFloat{
-        return 7.0
+        return self.bounds.size.width/60
     }
     var shadowRadius: CGFloat{
         return 2.0
     }
     var cornerRadius: CGFloat{
-        return 6.0
+        return self.bounds.size.width/25
+    }
+    var labelViewHeight: CGFloat{
+        return self.bounds.size.height/7
     }
     var shadowColor: CGColor{
         return #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)
