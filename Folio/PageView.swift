@@ -26,6 +26,43 @@ protocol SCardProtocol {
     func showSmallCardInfoView(for scard: SmallCard, at sCardView: SmallCardView)
     func deleteSCard(for scard: SmallCard, at sCardView: SmallCardView)
 }
+//class gridUIView: UIView {
+//    var isGrid = false
+//    override func draw(_ rect: CGRect) {
+//        if isGrid{
+//            let lineSpacing = CGFloat(50)
+//            let rect = UIBezierPath(rect: bounds)
+//            rect.addClip()
+//            pageColor.setFill()
+//            rect.fill()
+//            let stripes = UIBezierPath()
+//            var i=0
+//            while( lineSpacing*CGFloat(i)<=bounds.height){
+//                stripes.move(to: CGPoint(x: 0, y: lineSpacing*CGFloat(i)) )
+//                lineColor.setStroke()
+//                stripes.addLine(to: CGPoint(x: bounds.width, y: lineSpacing*CGFloat(i)) )
+//                stripes.lineWidth = 1.0
+//                stripes.stroke()
+//                i+=1
+//            }
+//            i=0
+//            while( lineSpacing*CGFloat(i)<=bounds.width){
+//                stripes.move(to: CGPoint(x: lineSpacing*CGFloat(i), y: 0) )
+//                lineColor.setStroke()
+//                stripes.addLine(to: CGPoint(x: lineSpacing*CGFloat(i), y: bounds.height) )
+//                stripes.lineWidth = 1.0
+//                stripes.stroke()
+//                i+=1
+//            }
+//        }
+//    }
+//    var pageColor: UIColor{
+//        return UIColor(named: "myBackgroundColor") ?? #colorLiteral(red: 0.9254902005, green: 0.2352941185, blue: 0.1019607857, alpha: 1)
+//    }
+//    var lineColor: UIColor{
+//        return #colorLiteral(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 1)
+//    }
+//}
 
 class PageView: UIView {
     var page=PageData()
@@ -34,6 +71,8 @@ class PageView: UIView {
     var myViewController: PageViewController?
     var drawing = DrawingView()
     var canvas: PKCanvasView?
+    
+//    var gridView = gridUIView()
 
     // MARK: - Initialization
 
@@ -51,28 +90,31 @@ class PageView: UIView {
         addInteraction(UIDropInteraction(delegate: self))
     }
     override func draw(_ rect: CGRect) {
-//        let rect = UIBezierPath(rect: bounds)
-//        rect.addClip()
-//        pageColor.setFill()
-//        rect.fill()
-//        let stripes = UIBezierPath()
-//        var i=0
-//        while( 50*CGFloat(i)<=bounds.height){
-//            stripes.move(to: CGPoint(x: 0, y: 50*CGFloat(i)) )
-//            lineColor.setStroke()
-//            stripes.addLine(to: CGPoint(x: bounds.width, y: 50*CGFloat(i)) )
-//            stripes.lineWidth = 1.0
-//            stripes.stroke()
-//            i+=1
-//        }
-//        i=0
-//        while( 50*CGFloat(i)<=bounds.width){
-//            stripes.move(to: CGPoint(x: 50*CGFloat(i), y: 0) )
-//            lineColor.setStroke()
-//            stripes.addLine(to: CGPoint(x: 50*CGFloat(i), y: bounds.height) )
-//            stripes.lineWidth = 1.0
-//            stripes.stroke()
-//            i+=1
+//        if isGrid{
+//            let lineSpacing = CGFloat(50)
+//            let rect = UIBezierPath(rect: bounds)
+//            rect.addClip()
+//            pageColor.setFill()
+//            rect.fill()
+//            let stripes = UIBezierPath()
+//            var i=0
+//            while( lineSpacing*CGFloat(i)<=bounds.height){
+//                stripes.move(to: CGPoint(x: 0, y: lineSpacing*CGFloat(i)) )
+//                lineColor.setStroke()
+//                stripes.addLine(to: CGPoint(x: bounds.width, y: lineSpacing*CGFloat(i)) )
+//                stripes.lineWidth = 1.0
+//                stripes.stroke()
+//                i+=1
+//            }
+//            i=0
+//            while( lineSpacing*CGFloat(i)<=bounds.width){
+//                stripes.move(to: CGPoint(x: lineSpacing*CGFloat(i), y: 0) )
+//                lineColor.setStroke()
+//                stripes.addLine(to: CGPoint(x: lineSpacing*CGFloat(i), y: bounds.height) )
+//                stripes.lineWidth = 1.0
+//                stripes.stroke()
+//                i+=1
+//            }
 //        }
     }
     func addSmallCard(centeredAt point: CGPoint){
@@ -231,10 +273,10 @@ extension PageView{
         return 85
     }
     var bigCardWidth: CGFloat{
-        return 300
+        return 250
     }
     var bigCardHeight: CGFloat{
-        return 200
+        return 85
     }
     var mediaCardDimension: CGFloat{
         return 100

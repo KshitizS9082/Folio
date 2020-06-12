@@ -53,8 +53,8 @@ class TimelineViewController: UIViewController {
                 page.mediaCards.forEach { (card) in
                     cardsList.append(timeLineCard(type: .media, smallCard: nil, bigCard: nil, mediaCard: card))
                 }
-            default:
-                print("dunnow what type")
+//            default:
+//                print("dunnow what type")
             }
         }
     }
@@ -215,10 +215,10 @@ extension TimelineViewController: UITableViewDataSource, UITableViewDelegate{
             return setBigCardCell(tableView, cellForRowAt: indexPath)
         case .media:
             return setMediaCardCell(tableView, cellForRowAt: indexPath)
-        default:
-            print("i dunno what card this is")
+//        default:
+//            print("i dunno what card this is")
         }
-        return UITableViewCell()
+//        return UITableViewCell()
     }
     func setSmallCardCell(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell{
         let cell = tableView.dequeueReusableCell(withIdentifier: "smallCardCell", for: indexPath) as! ScardTimelineTableViewCell

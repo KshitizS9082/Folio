@@ -29,9 +29,10 @@ class SwitchPageTimelineViewController: UIViewController {
         switch segmentControl.selectedSegmentIndex {
         case 0:
             print("lfb 0")
-            UNUserNotificationCenter.current().getPendingNotificationRequests { (notificationRequests) in
-                print(notificationRequests)
-            }
+//            UNUserNotificationCenter.current().getPendingNotificationRequests { (notificationRequests) in
+//                print(notificationRequests)
+//            }
+            self.editPageTap()
         case 1:
             print("lfb 1")
             timeLineToolBar()
@@ -156,6 +157,32 @@ class SwitchPageTimelineViewController: UIViewController {
                 // The alert was presented
             }
         }
+    func editPageTap(){
+        let toggleGrids = UIAlertAction(title: "Toggle Grids",
+                                     style: .default) { (action) in
+                                        self.pageVController?.toggleGridStyle()
+        }
+        let toggleScroll = UIAlertAction(title: "Toggle Scroll Direction",
+                                   style: .default) { (action) in
+                                    //                                        self.timeLineVController?.addTimelineCard(of: .big)
+        }
+        let cancelAction = UIAlertAction(title: "Cancel",
+                                         style: .cancel) { (action) in
+                                            // Respond to user selection of the action
+        }
+        let alert = UIAlertController(title: "Change page style",
+                                      message: "Actions will change how you interact with your page",
+                                      preferredStyle: .actionSheet)
+        alert.addAction(toggleGrids)
+        alert.addAction(toggleScroll)
+        alert.addAction(cancelAction)
+        // On iPad, action sheets must be presented from a popover.
+        alert.popoverPresentationController?.barButtonItem =
+            self.navBarRightLeftButton
+        self.present(alert, animated: true) {
+            // The alert was presented
+        }
+    }
     
     @objc private func addTimelineSmallCard(){
         print("show tool bar")

@@ -61,7 +61,9 @@ class SmallCardView: UIView {
         notesTextView.addDoneButton(title: "Done", target: self, selector: #selector(tapDone(sender:)))
     }
     @objc func tapDone(sender: Any) {
+        self.isEditting=false
         self.endEditing(true)
+        self.layoutSubviews()
     }
    var resizingButton = UIImageView(image: UIImage(systemName: "crop"));
     private func configureResizingButton(){

@@ -13,7 +13,7 @@ struct Card: Codable {
     var UniquIdentifier=UUID()
     var dateOfConstruction = Date()
     var dateOfCompletion: Date?
-    var type: cardType = cardType.CheckList
+    var type: cardType = cardType.Notes
     enum cardType: String, Codable {
         case CheckList
         case Notes

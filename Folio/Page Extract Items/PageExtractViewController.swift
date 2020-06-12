@@ -259,8 +259,8 @@ extension PageExtractViewController: UITableViewDataSource, UITableViewDelegate{
             return setBigCardCell(tableView, cellForRowAt: indexPath)
         case .media:
             return setMediaCardCell(tableView, cellForRowAt: indexPath)
-        default:
-            print("i dunno what card this is x")
+//        default:
+//            print("i dunno what card this is x")
         }
 //        default:
 //            print("i dunno what card this is y")

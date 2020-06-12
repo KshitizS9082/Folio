@@ -102,7 +102,7 @@ class settingSwitchTableViewCell: UITableViewCell{
         case .touchID:
             if sender.isOn{
                 let myContext = LAContext()
-                let myLocalizedReasonString = "Biometric Authntication testing !! "
+//                let myLocalizedReasonString = "Biometric Authntication testing !! "
                 var authError: NSError?
                 if !myContext.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: &authError) {
                     let ac = UIAlertController(title: "Bio Metric Unavailable", message: "Your device isn't configured for biometric authentication", preferredStyle: .alert)

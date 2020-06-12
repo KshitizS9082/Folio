@@ -133,6 +133,8 @@ class PageViewController: UIViewController {
         }
     }
     
+    
+    
     @objc func handleImageViewTap(_ sender: UITapGestureRecognizer){
         print("pageviewframe = \(pageView.frame)")
         print("pageviewbounds = \(pageView.bounds)")
@@ -286,7 +288,7 @@ class PageViewController: UIViewController {
             toolPicker.addObserver(pageView.canvas!)
             toolPicker.addObserver(self)
         }
-        
+        setGridLayer()
     }
     var pageViewHeightConstraint: NSLayoutConstraint?
     var pageViewWidhtConstraint: NSLayoutConstraint?
@@ -358,7 +360,7 @@ class PageViewController: UIViewController {
     
     @IBOutlet var ivTopConstraints: [NSLayoutConstraint]!
     
-    //    @IBOutlet weak var ivHeightConstraint: NSLayoutConstraint!
+    
     func toggleToolBar(){
         if ivTopConstraints[0].constant==0{
             for ind in 0..<9{
@@ -386,6 +388,47 @@ class PageViewController: UIViewController {
         UIView.animate(withDuration: 0.25, delay: 0, options: .curveEaseInOut, animations: {
             self.view.layoutIfNeeded()
         }, completion: nil)
+    }
+    var isGrid=false
+    var gridShapeLayers = [CAShapeLayer]()
+    func toggleGridStyle(){
+        print("tgsyle")
+        isGrid = !isGrid
+        self.viewDidLoad()
+    }
+    func setGridLayer(){
+        if isGrid{
+            let lineSpacing = CGFloat(250)
+            let stripes = UIBezierPath()
+            var i=0
+            while( lineSpacing*CGFloat(i)<=pageView.bounds.height){
+                stripes.move(to: CGPoint(x: 0, y: lineSpacing*CGFloat(i)) )
+                stripes.addLine(to: CGPoint(x: pageView.bounds.width, y: lineSpacing*CGFloat(i)) )
+                i+=1
+            }
+            i=0
+            while( lineSpacing*CGFloat(i)<=pageView.bounds.width){
+                stripes.move(to: CGPoint(x: lineSpacing*CGFloat(i), y: 0) )
+                stripes.addLine(to: CGPoint(x: lineSpacing*CGFloat(i), y: pageView.bounds.height) )
+                i+=1
+            }
+            let shapeLayer = CAShapeLayer()
+            shapeLayer.path = stripes.cgPath
+            shapeLayer.strokeColor = pageView.lineColor.cgColor
+            shapeLayer.fillColor = UIColor.clear.cgColor
+            shapeLayer.lineWidth = 1
+            gridShapeLayers.append(shapeLayer)
+            pageView.layer.addSublayer(shapeLayer)
+            pageView.subviews.forEach { (sv) in
+                if sv != shapeLayer && sv != pageView.canvas{
+                    pageView.bringSubviewToFront(sv)
+                }
+            }
+        }else{
+            gridShapeLayers.forEach { (shlayer) in
+                shlayer.removeFromSuperlayer()
+            }
+        }
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -418,7 +461,6 @@ class PageViewController: UIViewController {
         
     //variables for connecting views
     var connectingViews = connectingViewTupple()
-//    weak var shapeLayer: CAShapeLayer?
     var linesShapeLayers = [CAShapeLayer]()
     
     //MARK: Navigaion
@@ -662,16 +704,12 @@ extension PageViewController: pageProtocol{
     }
     func changeContentSize(using newView: UIView) {
         print("yet to implement changeContentSize")
-//        if(newView.frame.maxX >= pageView.bounds.maxX){
-//            print("x crossed")
-//            pageView.frame = CGRect(origin: CGPoint.zero, size: CGSize(width: pageView.frame.width+widthToIncreaseOnHorizontalOutOfBonds, height: pageView.frame.height))
-//        }
-//        if(newView.frame.maxY >= pageView.bounds.maxY){
-//            print("y crossed")
-//            print("(newView.frame.maxY, self.frame.maxY \(newView.frame.maxY), \(pageView.frame.maxY)")
-//            pageView.frame = CGRect(origin: CGPoint.zero, size: CGSize(width: pageView.frame.width, height:  pageView.frame.height+HeightToIncreaseOnVerticalOutOfBonds))
-//        }
-//        updateMinZoomScale()
+        if isGrid{
+            var origin = newView.frame.origin
+            let lineSpacing = CGFloat(250)
+            origin = CGPoint(x: lineSpacing*CGFloat(Int(origin.x/lineSpacing))+5, y: lineSpacing*CGFloat(Int(origin.y/lineSpacing))+5)
+            newView.frame=CGRect(origin: origin, size: newView.frame.size)
+        }
     }
     
     func showCardEditView(for cardView: cardView) {
