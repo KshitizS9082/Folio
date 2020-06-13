@@ -20,7 +20,13 @@ struct PageData: Codable{
     var conntectedViews = [connectingViewTupple]()
     var pageWidth = 0.0
     var pageHeight = 0.0
-    
+    var gridStyle = gridValues.gridless
+    enum gridValues: String, Codable{
+        case horizontal
+        case vertical
+        case cross
+        case gridless
+    }
     init(){
     }
     init?(json: Data){

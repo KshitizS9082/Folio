@@ -34,6 +34,7 @@ class PageViewController: UIViewController {
             var retVal = PageData()
             retVal.pageWidth = Double(pageViewWidhtConstraint!.constant)
             retVal.pageHeight = Double(pageViewHeightConstraint!.constant)
+            retVal.gridStyle = self.gridStyle
             if let dat = pageView.canvas?.drawing.dataRepresentation(){
                     retVal.drawingData = dat
             }
@@ -61,6 +62,7 @@ class PageViewController: UIViewController {
             if let newVal = newValue{
                 pageViewWidhtConstraint?.constant = CGFloat(newVal.pageWidth)
                 pageViewHeightConstraint?.constant = CGFloat(newVal.pageHeight)
+                self.gridStyle=newVal.gridStyle
                 self.updateMinZoomScale()
 //                pageView.page=newVal
                 pageView.setNeedsDisplay()//TODO: check if needed
@@ -114,6 +116,7 @@ class PageViewController: UIViewController {
             viewDidLoad()
         }
     }
+    var gridStyle = PageData.gridValues.gridless
     var isToolBarHidden=true
     
     var dropZone: UIView = UIView()
@@ -389,18 +392,46 @@ class PageViewController: UIViewController {
             self.view.layoutIfNeeded()
         }, completion: nil)
     }
-    var isGrid=false
+//    var isGrid=false
     var gridShapeLayers = [CAShapeLayer]()
     func toggleGridStyle(){
         print("tgsyle")
-        isGrid = !isGrid
+         print("set from to \(self.gridStyle)")
+        switch self.gridStyle {
+        case .horizontal:
+            self.gridStyle = .vertical
+        case .vertical:
+            self.gridStyle = .cross
+        case .cross:
+            self.gridStyle = .gridless
+        case .gridless:
+            self.gridStyle = .horizontal
+        }
+        print("set to \(self.gridStyle)")
         self.viewDidLoad()
     }
     func setGridLayer(){
-        if isGrid{
-            let lineSpacing = CGFloat(250)
-            let stripes = UIBezierPath()
-            var i=0
+         print("setting using \(self.gridStyle)")
+        gridShapeLayers.forEach { (shlayer) in
+            shlayer.removeFromSuperlayer()
+        }
+        let lineSpacing = CGFloat(250)
+        let stripes = UIBezierPath()
+        var i=0
+        switch self.gridStyle {
+        case .horizontal:
+            while( lineSpacing*CGFloat(i)<=pageView.bounds.height){
+                stripes.move(to: CGPoint(x: 0, y: lineSpacing*CGFloat(i)) )
+                stripes.addLine(to: CGPoint(x: pageView.bounds.width, y: lineSpacing*CGFloat(i)) )
+                i+=1
+            }
+        case .vertical:
+            while( lineSpacing*CGFloat(i)<=pageView.bounds.width){
+                stripes.move(to: CGPoint(x: lineSpacing*CGFloat(i), y: 0) )
+                stripes.addLine(to: CGPoint(x: lineSpacing*CGFloat(i), y: pageView.bounds.height) )
+                i+=1
+            }
+        case .cross:
             while( lineSpacing*CGFloat(i)<=pageView.bounds.height){
                 stripes.move(to: CGPoint(x: 0, y: lineSpacing*CGFloat(i)) )
                 stripes.addLine(to: CGPoint(x: pageView.bounds.width, y: lineSpacing*CGFloat(i)) )
@@ -412,21 +443,22 @@ class PageViewController: UIViewController {
                 stripes.addLine(to: CGPoint(x: lineSpacing*CGFloat(i), y: pageView.bounds.height) )
                 i+=1
             }
-            let shapeLayer = CAShapeLayer()
-            shapeLayer.path = stripes.cgPath
-            shapeLayer.strokeColor = pageView.lineColor.cgColor
-            shapeLayer.fillColor = UIColor.clear.cgColor
-            shapeLayer.lineWidth = 1
-            gridShapeLayers.append(shapeLayer)
-            pageView.layer.addSublayer(shapeLayer)
-            pageView.subviews.forEach { (sv) in
-                if sv != shapeLayer && sv != pageView.canvas{
-                    pageView.bringSubviewToFront(sv)
-                }
-            }
-        }else{
+        case .gridless:
             gridShapeLayers.forEach { (shlayer) in
                 shlayer.removeFromSuperlayer()
+            }
+            return
+        }
+        let shapeLayer = CAShapeLayer()
+        shapeLayer.path = stripes.cgPath
+        shapeLayer.strokeColor = pageView.lineColor.cgColor
+        shapeLayer.fillColor = UIColor.clear.cgColor
+        shapeLayer.lineWidth = 1
+        gridShapeLayers.append(shapeLayer)
+        pageView.layer.addSublayer(shapeLayer)
+        pageView.subviews.forEach { (sv) in
+            if sv != shapeLayer && sv != pageView.canvas{
+                pageView.bringSubviewToFront(sv)
             }
         }
     }
@@ -704,12 +736,27 @@ extension PageViewController: pageProtocol{
     }
     func changeContentSize(using newView: UIView) {
         print("yet to implement changeContentSize")
-        if isGrid{
-            var origin = newView.frame.origin
-            let lineSpacing = CGFloat(250)
+//        if isGrid{
+//            var origin = newView.frame.origin
+//            let lineSpacing = CGFloat(250)
+//            origin = CGPoint(x: lineSpacing*CGFloat(Int(origin.x/lineSpacing))+5, y: lineSpacing*CGFloat(Int(origin.y/lineSpacing))+5)
+//            newView.frame=CGRect(origin: origin, size: newView.frame.size)
+//        }
+        var origin = newView.frame.origin
+        let lineSpacing = CGFloat(250)
+        switch self.gridStyle {
+        case .horizontal:
+            origin = CGPoint(x: origin.x, y: lineSpacing*CGFloat(Int(origin.y/lineSpacing))+5)
+        case .vertical:
+            origin = CGPoint(x: lineSpacing*CGFloat(Int(origin.x/lineSpacing))+5, y: origin.y)
+        case .cross:
             origin = CGPoint(x: lineSpacing*CGFloat(Int(origin.x/lineSpacing))+5, y: lineSpacing*CGFloat(Int(origin.y/lineSpacing))+5)
-            newView.frame=CGRect(origin: origin, size: newView.frame.size)
+        case .gridless:
+            return
+        default:
+            print("ERROR: unknown grid value")
         }
+        newView.frame=CGRect(origin: origin, size: newView.frame.size)
     }
     
     func showCardEditView(for cardView: cardView) {
