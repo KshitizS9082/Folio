@@ -1451,6 +1451,17 @@
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9Lq-Hx-xkE">
                                                     <rect key="frame" x="10" y="10" width="394" height="143.5"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This Week: x / y" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TOj-AF-lNF">
+                                                            <rect key="frame" x="48" y="98" width="104" height="21"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="21" id="rXb-h9-Kh9"/>
+                                                            </constraints>
+                                                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
+                                                            <color key="textColor" name="subMainTextColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
                                                     <color key="backgroundColor" name="smallCardColor"/>
                                                 </view>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="chart.bar" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="3gP-5B-UAQ">
@@ -1483,7 +1494,7 @@
                                                     </connections>
                                                 </stepper>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This Week: x / y" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2wx-Va-v9f">
-                                                    <rect key="frame" x="40" y="72.5" width="123" height="21"/>
+                                                    <rect key="frame" x="30" y="72.5" width="123" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="21" id="6Vh-n9-3nJ"/>
                                                     </constraints>
@@ -1607,7 +1618,7 @@
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="2wx-Va-v9f" firstAttribute="baseline" secondItem="bCG-O1-njp" secondAttribute="baseline" id="1QA-IT-PqJ"/>
-                                                <constraint firstItem="2wx-Va-v9f" firstAttribute="leading" secondItem="1gh-bP-IQn" secondAttribute="leading" constant="20" id="32S-3t-TOz"/>
+                                                <constraint firstItem="2wx-Va-v9f" firstAttribute="leading" secondItem="1gh-bP-IQn" secondAttribute="leading" constant="10" id="32S-3t-TOz"/>
                                                 <constraint firstItem="1gh-bP-IQn" firstAttribute="leading" secondItem="rkX-qD-a6M" secondAttribute="leading" constant="20" id="5d6-GP-iNB"/>
                                                 <constraint firstItem="Eu7-aG-IOz" firstAttribute="trailing" secondItem="D5e-pD-reE" secondAttribute="trailing" id="9Dj-zi-zOt"/>
                                                 <constraint firstItem="9Lq-Hx-xkE" firstAttribute="top" secondItem="rkX-qD-a6M" secondAttribute="top" constant="10" id="DNn-22-ZOh"/>
@@ -1627,6 +1638,7 @@
                                                 <constraint firstAttribute="trailing" secondItem="bCG-O1-njp" secondAttribute="trailing" constant="20" id="aMK-Lf-VHp"/>
                                                 <constraint firstItem="187-5N-7cj" firstAttribute="leading" secondItem="3gP-5B-UAQ" secondAttribute="trailing" constant="20" id="dOK-Hl-6K2"/>
                                                 <constraint firstItem="P3F-Ow-ipD" firstAttribute="leading" secondItem="1gh-bP-IQn" secondAttribute="leading" id="dyz-dR-lcO"/>
+                                                <constraint firstItem="TOj-AF-lNF" firstAttribute="leading" secondItem="P3F-Ow-ipD" secondAttribute="trailing" constant="8" id="e6S-fm-Hoj"/>
                                                 <constraint firstItem="BIw-D6-702" firstAttribute="top" secondItem="Eu7-aG-IOz" secondAttribute="top" priority="750" constant="8" id="e6k-px-Rmw"/>
                                                 <constraint firstAttribute="trailing" secondItem="9Lq-Hx-xkE" secondAttribute="trailing" constant="10" id="eVh-df-zPQ"/>
                                                 <constraint firstItem="bCG-O1-njp" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="2wx-Va-v9f" secondAttribute="trailing" constant="8" symbolic="YES" id="fgJ-e0-K6T"/>
@@ -1640,6 +1652,7 @@
                                                 <constraint firstItem="9Lq-Hx-xkE" firstAttribute="leading" secondItem="rkX-qD-a6M" secondAttribute="leading" constant="10" id="tDf-Ma-Wk2"/>
                                                 <constraint firstAttribute="trailing" secondItem="bSx-Qd-83j" secondAttribute="trailing" constant="20" id="wkH-eZ-0FP"/>
                                                 <constraint firstItem="9Lq-Hx-xkE" firstAttribute="bottom" secondItem="bSx-Qd-83j" secondAttribute="bottom" constant="10" id="ycS-FL-GvK"/>
+                                                <constraint firstItem="TOj-AF-lNF" firstAttribute="centerY" secondItem="P3F-Ow-ipD" secondAttribute="centerY" id="yfJ-iH-D7f"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
@@ -1653,6 +1666,7 @@
                                             <outlet property="currentCountLabel" destination="2wx-Va-v9f" id="Yi0-3C-bgb"/>
                                             <outlet property="lineChartView" destination="bSx-Qd-83j" id="Lap-8p-ihj"/>
                                             <outlet property="reminderButtonIV" destination="P3F-Ow-ipD" id="w0l-hb-4dZ"/>
+                                            <outlet property="reminderValueLabel" destination="TOj-AF-lNF" id="IA8-hS-L6g"/>
                                             <outlet property="stepper" destination="D5e-pD-reE" id="u3E-nf-WA2"/>
                                             <outlet property="streakLabel" destination="bCG-O1-njp" id="6ec-hz-SVG"/>
                                             <outlet property="titleLabel" destination="1gh-bP-IQn" id="a6b-OX-oLB"/>

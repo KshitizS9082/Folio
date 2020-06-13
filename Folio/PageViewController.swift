@@ -116,7 +116,22 @@ class PageViewController: UIViewController {
             viewDidLoad()
         }
     }
-    var gridStyle = PageData.gridValues.gridless
+    var gridStyle = PageData.gridValues.gridless{
+        didSet{
+            if ImageViews.count>6{
+                switch self.gridStyle {
+                case .horizontal:
+                    ImageViews[5].image = UIImage(systemName: "rectangle.grid.1x2")
+                case .vertical:
+                    ImageViews[5].image = UIImage(systemName: "rectangle.split.3x1")
+                case .cross:
+                    ImageViews[5].image = UIImage(systemName: "rectangle.split.3x3")
+                case .gridless:
+                    ImageViews[5].image = UIImage(systemName: "rectangle.3.offgrid")
+                }
+            }
+        }
+    }
     var isToolBarHidden=true
     
     var dropZone: UIView = UIView()
@@ -133,6 +148,7 @@ class PageViewController: UIViewController {
                 iv.layer.cornerRadius=iv.bounds.width/2.0
                 iv.layer.masksToBounds=true
             }
+            ImageViews[5].layer.cornerRadius=0
         }
     }
     
@@ -144,7 +160,7 @@ class PageViewController: UIViewController {
         if let x = sender.view as? UIImageView{
             self.connectingViews.first=nil; self.connectingViews.second=nil
 //            print("did select image at: \(ImageViews.firstIndex(of: x))")
-            if x.tintColor == .systemTeal{
+            if x.tintColor == .systemTeal, [5, 6, 7 , 8, 9, 10].contains(ImageViews.firstIndex(of: x))==false {
                 x.tintColor = .systemPink
             }else{
                 x.tintColor = .systemTeal
@@ -299,6 +315,7 @@ class PageViewController: UIViewController {
     var pageViewHeightConstraint: NSLayoutConstraint?
     var pageViewWidhtConstraint: NSLayoutConstraint?
     func updateMinZoomScale(){
+        print("in updateminzoomscale")
         var minZoom = min(self.view.bounds.size.width / pageViewWidhtConstraint!.constant, self.view.bounds.size.height / pageViewHeightConstraint!.constant);
         if (minZoom > 1.0) {
             minZoom = 1.0;

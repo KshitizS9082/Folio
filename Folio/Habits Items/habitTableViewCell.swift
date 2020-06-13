@@ -44,6 +44,7 @@ class habitTableViewCell: UITableViewCell {
 //            reminderButtonIV.addGestureRecognizer(UITapGestureRecognizer(target: self, action: <#T##Selector?#>))
         }
     }
+    @IBOutlet weak var reminderValueLabel: UILabel!
     
     var yValues = [ChartDataEntry]()
 //    var targetValues = [ChartDataEntry]()
@@ -188,8 +189,39 @@ class habitTableViewCell: UITableViewCell {
         if let val = habitData?.reminderValue, val != .notSet {
             print("is set")
             reminderButtonIV.image = UIImage(systemName: "bell")
+            
+            if let start =  habitData?.firstReminder{
+                let formatter = DateFormatter()
+                //        formatter.dateFormat = "d/M/yy, hh:mm a"
+                formatter.dateStyle = .full
+                switch habitData?.reminderValue {
+                case .daily:
+                    formatter.dateFormat = "hh:mm a"
+                    reminderValueLabel.text = "Daily: " + formatter.string(from: start)
+                case .weekly:
+                    formatter.dateFormat = "EEE, hh:mm a"
+                    reminderValueLabel.text = "Weekly: " + formatter.string(from: start)
+                case .monthly:
+                    formatter.dateFormat = "dd, hh:mm a"
+                    reminderValueLabel.text = "Monthly: " + formatter.string(from: start)
+                case .yearly:
+                    formatter.dateFormat = "d MMM, hh:mm a"
+                    reminderValueLabel.text = "Yearly: " + formatter.string(from: start)
+                case .nonRepeating:
+//                    formatter.dateStyle = .short
+                    formatter.dateFormat = "d MMM, hh:mm a"
+                    reminderValueLabel.text = "Once: " + formatter.string(from: start)
+                default:
+                    print("unknown case xsg")
+                }
+                
+            }
         }else{
             print("is not set")
+            reminderValueLabel.text = ""
+            if habitData?.firstReminder != nil{
+                reminderValueLabel.text = "Paused"
+            }
             reminderButtonIV.image = UIImage(systemName: "bell.slash")
         }
         
