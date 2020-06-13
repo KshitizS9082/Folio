@@ -188,19 +188,22 @@ class PageViewController: UIViewController {
                 pageView.currentTask = .addMediaCard
             case 5:
                 print("5")
-                pageView.currentTask = .noneOfAbove
-                togglePageResize()
+                toggleGridStyle()
             case 6:
                 print("6")
-                self.changePageView(horizontalFactor: 0, verticalFactor: -1)
+                pageView.currentTask = .noneOfAbove
+                togglePageResize()
             case 7:
                 print("7")
-                self.changePageView(horizontalFactor: 0, verticalFactor: 1)
+                self.changePageView(horizontalFactor: 0, verticalFactor: -1)
             case 8:
                 print("8")
-                self.changePageView(horizontalFactor: -1, verticalFactor: 0)
+                self.changePageView(horizontalFactor: 0, verticalFactor: 1)
             case 9:
                 print("9")
+                self.changePageView(horizontalFactor: -1, verticalFactor: 0)
+            case 10:
+                print("10")
                 self.changePageView(horizontalFactor: 1, verticalFactor: 0)
             default:
                 print("unexpected index")
@@ -366,11 +369,11 @@ class PageViewController: UIViewController {
     
     func toggleToolBar(){
         if ivTopConstraints[0].constant==0{
-            for ind in 0..<9{
+            for ind in 0..<10{
                 ivTopConstraints[ind].constant=CGFloat(50+50*ind)
             }
         }else{
-            for ind in 0..<9{
+            for ind in 0..<10{
                 ivTopConstraints[ind].constant=CGFloat(0)
             }
         }
@@ -379,13 +382,13 @@ class PageViewController: UIViewController {
         }, completion: nil)
     }
     func togglePageResize(){
-        if ivTopConstraints[5].constant==ivTopConstraints[4].constant{
-            for ind in 5..<9{
-                ivTopConstraints[ind].constant=ivTopConstraints[4].constant+CGFloat(50*(ind-4))
+        if ivTopConstraints[6].constant==ivTopConstraints[7].constant{
+            for ind in 7..<10{
+                ivTopConstraints[ind].constant=ivTopConstraints[6].constant+CGFloat(50*(ind-6))
             }
         }else{
-            for ind in 5..<9{
-                ivTopConstraints[ind].constant=ivTopConstraints[4].constant
+            for ind in 7..<10{
+                ivTopConstraints[ind].constant=ivTopConstraints[6].constant
             }
         }
         UIView.animate(withDuration: 0.25, delay: 0, options: .curveEaseInOut, animations: {
