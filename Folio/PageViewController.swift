@@ -382,15 +382,16 @@ class PageViewController: UIViewController {
         }, completion: nil)
     }
     func togglePageResize(){
-        if ivTopConstraints[6].constant==ivTopConstraints[7].constant{
-            for ind in 7..<10{
-                ivTopConstraints[ind].constant=ivTopConstraints[6].constant+CGFloat(50*(ind-6))
+        if ivTopConstraints[6].constant==ivTopConstraints[5].constant{
+            for ind in 6..<10{
+                ivTopConstraints[ind].constant=ivTopConstraints[5].constant+CGFloat(50*(ind-5))
             }
         }else{
-            for ind in 7..<10{
-                ivTopConstraints[ind].constant=ivTopConstraints[6].constant
+            for ind in 6..<10{
+                ivTopConstraints[ind].constant=ivTopConstraints[5].constant
             }
         }
+        view.bringSubviewToFront(ImageViews[6])
         UIView.animate(withDuration: 0.25, delay: 0, options: .curveEaseInOut, animations: {
             self.view.layoutIfNeeded()
         }, completion: nil)
