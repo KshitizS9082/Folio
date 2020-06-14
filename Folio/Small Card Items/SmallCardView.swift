@@ -238,6 +238,7 @@ class SmallCardView: UIView {
         }
         notesTextView.delegate=self
         notesTextView.font = UIFont.preferredFont(forTextStyle: .subheadline)
+        notesTextView.textColor = UIColor(named: "subMainTextColor") ?? UIColor.red
         notesTextView.isScrollEnabled=false
         notesTextView.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0)
     }
@@ -354,7 +355,7 @@ class SmallCardView: UIView {
             if frame.width < minwidth{
                 self.frame = CGRect(x: self.frame.origin.x, y: self.frame.origin.y, width: minwidth, height: self.frame.height)
             }
-            self.frame = CGRect(x: self.frame.origin.x, y: self.frame.origin.y, width: max(minwidth, self.frame.width), height: max(self.frame.height, checkBoxDimensions*2+cornerRadius*2))
+            self.frame = CGRect(x: self.frame.origin.x, y: self.frame.origin.y, width: max(minwidth, self.frame.width), height: max(self.frame.height, checkBoxDimensions*2+cornerRadius*3))
             self.subviews.forEach { (sv) in
                 sv.isHidden = false
                 sv.isUserInteractionEnabled = true

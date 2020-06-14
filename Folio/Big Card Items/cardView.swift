@@ -21,31 +21,80 @@ class cardView: UIView, UITextFieldDelegate, UITableViewDataSource {
 //    var joiningViewsDelegate: joinViewsProtocol?
     //set heading
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    var headingTextField: MFTextField = MFTextField()
+    var headingTextField: UITextField = UITextField()
     private func configureHeadingLabel(){
         if(self.subviews.contains(headingTextField)==false){
             addSubview(headingTextField)
         }
         self.headingTextField.delegate = self
-        headingTextField.font = UIFont.preferredFont(forTextStyle: .subheadline)
-        headingTextField.font = UIFontMetrics(forTextStyle: .subheadline).scaledFont(for: headingTextField.font!)
-        headingTextField.placeholderFont = headingTextField.font
+        headingTextField.font = UIFont.preferredFont(forTextStyle: .headline)
+//        headingTextField.font = UIFontMetrics(forTextStyle: .subheadline).scaledFont(for: headingTextField.font!)
         headingTextField.translatesAutoresizingMaskIntoConstraints = false
         [
-            headingTextField.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
-            headingTextField.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: cornerRadius),
-            headingTextField.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -cornerRadius)
+            headingTextField.topAnchor.constraint(equalTo: toolBar.topAnchor, constant: cornerRadius),
+            headingTextField.leftAnchor.constraint(equalTo: toolBar.rightAnchor, constant: spacings),
+            headingTextField.rightAnchor.constraint(equalTo: safeAreaLayoutGuide.rightAnchor, constant: -cornerRadius),
+            headingTextField.heightAnchor.constraint(equalToConstant: 30)
             ].forEach { (constraints) in
                 constraints.isActive = true
         }
         if let headingText = card.Heading{
             headingTextField.text = headingText
-        }else{
-            headingTextField.placeholder = "Heading of card"
         }
-        headingTextField.textAlignment = .center
-        headingTextField.animatesPlaceholder = false
-        headingTextField.placeholderAnimatesOnFocus = true
+        headingTextField.placeholder = "Heading of card"
+        
+        headingTextField.textAlignment = .left
+//        headingTextField.animatesPlaceholder = false
+//        headingTextField.placeholderAnimatesOnFocus = true
+    }
+    
+    //set time label
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    var timeLable = UILabel()
+    var timeLabelHeadingConstraint: NSLayoutConstraint?
+    private func configureTimeLabel(){
+        if(self.subviews.contains(timeLable)==false){
+            addSubview(timeLable)
+        }
+        timeLable.translatesAutoresizingMaskIntoConstraints = false
+        [
+            timeLable.topAnchor.constraint(equalTo: headingTextField.bottomAnchor),
+            timeLable.leftAnchor.constraint(equalTo: toolBar.rightAnchor, constant: spacings),
+            timeLable.rightAnchor.constraint(equalTo: safeAreaLayoutGuide.rightAnchor, constant: -cornerRadius)
+            ].forEach { (constraints) in
+                constraints.isActive = true
+        }
+        if timeLabelHeadingConstraint==nil{
+            timeLabelHeadingConstraint=timeLable.heightAnchor.constraint(equalToConstant: checkBoxDimensions)
+        }
+        timeLabelHeadingConstraint?.isActive=true
+        timeLable.font = UIFont.preferredFont(forTextStyle: .subheadline)
+        if let time = card.reminder{
+            timeLabelHeadingConstraint?.constant = checkBoxDimensions
+            let formatter = DateFormatter()
+            formatter.dateFormat = "d/M/yy, hh:mm a"
+            timeLable.text = formatter.string(from: time)
+            formatter.dateFormat = "d/M/yy"
+            if(formatter.string(from: time)==formatter.string(from: Date()) ){
+                if(card.isCompleted){
+                    timeLable.textColor = UIColor.systemGreen
+                }else{
+                    timeLable.textColor = UIColor.systemOrange
+                }
+            }else if(time<Date()){
+                timeLable.textColor = UIColor.systemRed
+                if(card.isCompleted){
+                    timeLable.textColor = UIColor.systemGray2
+                }else{
+                    timeLable.textColor = UIColor.systemRed
+                }
+            }else{
+                timeLable.textColor = UIColor.systemGray2
+            }
+        }else{
+            timeLabelHeadingConstraint?.constant = 0
+            timeLable.text = nil
+        }
     }
     
     //Set bottom toolbar
@@ -58,9 +107,9 @@ class cardView: UIView, UITextFieldDelegate, UITableViewDataSource {
         toolBar.translatesAutoresizingMaskIntoConstraints = false
         [
             toolBar.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor),
-            toolBar.rightAnchor.constraint(equalTo: safeAreaLayoutGuide.rightAnchor),
+            toolBar.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
             toolBar.leftAnchor.constraint(equalTo: safeAreaLayoutGuide.leftAnchor),
-            toolBar.heightAnchor.constraint(equalTo: headingTextField.heightAnchor)
+            toolBar.widthAnchor.constraint(equalToConstant: checkBoxDimensions)
             ].forEach { (constraints) in
                 constraints?.isActive=true
         }
@@ -68,10 +117,10 @@ class cardView: UIView, UITextFieldDelegate, UITableViewDataSource {
         
         //create checkmark option
         if(card.isCompleted){
-            toolBar.checkMark.image = UIImage(systemName: "checkmark.square.fill")
-            self.alpha = completedCardOpacity
+            toolBar.checkMark.image = UIImage(systemName: "largecircle.fill.circle")
+//            self.alpha = completedCardOpacity
         }else{
-            toolBar.checkMark.image = UIImage(systemName: "checkmark.square")
+            toolBar.checkMark.image = UIImage(systemName: "circle")
             self.alpha = 1.0
         }
         if self.toolBar.subviews.contains(toolBar.checkMark) == false {
@@ -79,9 +128,9 @@ class cardView: UIView, UITextFieldDelegate, UITableViewDataSource {
         }
         toolBar.checkMark.translatesAutoresizingMaskIntoConstraints = false
         [
-            toolBar.checkMark.bottomAnchor.constraint(equalTo: toolBar.bottomAnchor),
-            toolBar.checkMark.topAnchor.constraint(equalTo: toolBar.topAnchor),
+            toolBar.checkMark.topAnchor.constraint(equalTo: toolBar.topAnchor, constant: cornerRadius),
             toolBar.checkMark.leftAnchor.constraint(equalTo: toolBar.leftAnchor, constant: +cornerRadius),
+            toolBar.checkMark.heightAnchor.constraint(equalToConstant: checkBoxDimensions),
             toolBar.checkMark.widthAnchor.constraint(equalTo: toolBar.checkMark.heightAnchor)
             ].forEach { (constratints) in
                 constratints?.isActive = true
@@ -91,24 +140,23 @@ class cardView: UIView, UITextFieldDelegate, UITableViewDataSource {
         toolBar.checkMark.addGestureRecognizer(tap)
         
         //create reminderclock option
-        if(card.reminder != nil){
-            toolBar.reminderClock.image = UIImage(systemName: "bell.circle");
-        }else{
-            toolBar.reminderClock.image =  UIImage(systemName: "circle")
-        }
-        if self.toolBar.subviews.contains(toolBar.reminderClock) == false {
-            toolBar.addSubview(toolBar.reminderClock)
-        }
-        toolBar.reminderClock.translatesAutoresizingMaskIntoConstraints = false
-        [
-            toolBar.reminderClock.bottomAnchor.constraint(equalTo: toolBar.bottomAnchor),
-            toolBar.reminderClock.topAnchor.constraint(equalTo: toolBar.topAnchor),
-            toolBar.reminderClock.leftAnchor.constraint(equalTo: toolBar.checkMark.rightAnchor, constant: +cornerRadius),
-            toolBar.reminderClock.widthAnchor.constraint(equalTo: toolBar.reminderClock.heightAnchor),
-            toolBar.reminderClock.rightAnchor.constraint(lessThanOrEqualTo: toolBar.rightAnchor)//TODO: dependant on next elemnt's left anchor
-            ].forEach { (constratints) in
-                constratints?.isActive = true
-        }
+//        if(card.reminder != nil){
+//            toolBar.reminderClock.image = UIImage(systemName: "bell.circle");
+//        }else{
+//            toolBar.reminderClock.image =  UIImage(systemName: "circle")
+//        }
+//        if self.toolBar.subviews.contains(toolBar.reminderClock) == false {
+//            toolBar.addSubview(toolBar.reminderClock)
+//        }
+//        toolBar.reminderClock.translatesAutoresizingMaskIntoConstraints = false
+//        [
+//            toolBar.reminderClock.topAnchor.constraint(equalTo: toolBar.checkMark.bottomAnchor, constant: cornerRadius),
+//            toolBar.reminderClock.leftAnchor.constraint(equalTo: toolBar.checkMark.leftAnchor),
+//            toolBar.reminderClock.widthAnchor.constraint(equalTo: toolBar.checkMark.widthAnchor),
+//            toolBar.reminderClock.heightAnchor.constraint(equalTo: toolBar.checkMark.widthAnchor),
+//            ].forEach { (constratints) in
+//                constratints?.isActive = true
+//        }
         
         //create editboundsbutton
         if self.toolBar.subviews.contains(toolBar.editBounds) == false {
@@ -117,10 +165,11 @@ class cardView: UIView, UITextFieldDelegate, UITableViewDataSource {
         }
         toolBar.editBounds.translatesAutoresizingMaskIntoConstraints = false
         [
-            toolBar.editBounds.bottomAnchor.constraint(equalTo: toolBar.bottomAnchor),
-            toolBar.editBounds.topAnchor.constraint(equalTo: toolBar.topAnchor),
-            toolBar.editBounds.leftAnchor.constraint(equalTo: toolBar.reminderClock.rightAnchor, constant: cornerRadius),
-            toolBar.editBounds.widthAnchor.constraint(equalTo: toolBar.editBounds.heightAnchor)
+//            toolBar.editBounds.bottomAnchor.constraint(equalTo: toolBar.bottomAnchor),
+            toolBar.editBounds.topAnchor.constraint(equalTo: toolBar.checkMark.bottomAnchor, constant: cornerRadius),
+            toolBar.editBounds.leftAnchor.constraint(equalTo: toolBar.checkMark.leftAnchor),
+            toolBar.editBounds.widthAnchor.constraint(equalTo: toolBar.checkMark.heightAnchor),
+            toolBar.editBounds.heightAnchor.constraint(equalTo: toolBar.checkMark.heightAnchor)
             ].forEach { (constraints) in
                 constraints.isActive = true
         }
@@ -134,10 +183,10 @@ class cardView: UIView, UITextFieldDelegate, UITableViewDataSource {
         }
         toolBar.fullView.translatesAutoresizingMaskIntoConstraints = false
         [
-            toolBar.fullView.bottomAnchor.constraint(equalTo: toolBar.bottomAnchor),
-            toolBar.fullView.topAnchor.constraint(equalTo: toolBar.topAnchor),
-            toolBar.fullView.widthAnchor.constraint(equalTo: toolBar.fullView.heightAnchor),
-            toolBar.fullView.centerXAnchor.constraint(equalTo: toolBar.centerXAnchor)
+            toolBar.fullView.leftAnchor.constraint(equalTo: toolBar.checkMark.leftAnchor),
+            toolBar.fullView.topAnchor.constraint(equalTo: toolBar.editBounds.bottomAnchor, constant: cornerRadius),
+            toolBar.fullView.widthAnchor.constraint(equalTo: toolBar.checkMark.heightAnchor),
+            toolBar.fullView.heightAnchor.constraint(equalTo: toolBar.checkMark.heightAnchor)
             ].forEach { (constratints) in
                 constratints?.isActive = true
         }
@@ -152,11 +201,12 @@ class cardView: UIView, UITextFieldDelegate, UITableViewDataSource {
         }
         toolBar.editMenu.translatesAutoresizingMaskIntoConstraints = false
         [
-            toolBar.editMenu.rightAnchor.constraint(equalTo: toolBar.rightAnchor, constant: -cornerRadius),
-            toolBar.editMenu.bottomAnchor.constraint(equalTo: toolBar.bottomAnchor),
-            toolBar.editMenu.topAnchor.constraint(equalTo: toolBar.topAnchor),
-            toolBar.editMenu.widthAnchor.constraint(equalTo: toolBar.editMenu.heightAnchor),
-            toolBar.editMenu.leftAnchor.constraint(greaterThanOrEqualTo: toolBar.leftAnchor)
+//            toolBar.editMenu.rightAnchor.constraint(equalTo: toolBar.rightAnchor, constant: -cornerRadius),
+//            toolBar.editMenu.bottomAnchor.constraint(equalTo: toolBar.bottomAnchor),
+            toolBar.editMenu.leftAnchor.constraint(equalTo: toolBar.checkMark.leftAnchor),
+            toolBar.editMenu.topAnchor.constraint(equalTo: toolBar.fullView.bottomAnchor, constant: cornerRadius),
+            toolBar.editMenu.widthAnchor.constraint(equalTo: toolBar.checkMark.heightAnchor),
+            toolBar.editMenu.heightAnchor.constraint(equalTo: toolBar.checkMark.heightAnchor)
             ].forEach { (constratints) in
                 constratints?.isActive = true
         }
@@ -202,10 +252,10 @@ class cardView: UIView, UITextFieldDelegate, UITableViewDataSource {
         notesTextView.font = UIFontMetrics(forTextStyle: .body).scaledFont(for: notesTextView.font!)
         notesTextView.translatesAutoresizingMaskIntoConstraints = false
         [
-            notesTextView.topAnchor.constraint(equalTo: headingTextField.bottomAnchor),
-            notesTextView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: cornerRadius),
-            notesTextView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -cornerRadius)
-            ,notesTextView.bottomAnchor.constraint(equalTo: toolBar.topAnchor, constant: -toolBarToUpperViewSafeDistance)
+            notesTextView.topAnchor.constraint(equalTo: timeLable.bottomAnchor),
+            notesTextView.leftAnchor.constraint(equalTo: toolBar.rightAnchor, constant: spacings),
+            notesTextView.rightAnchor.constraint(equalTo: safeAreaLayoutGuide.rightAnchor, constant: -cornerRadius)
+            ,notesTextView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -spacings)
             ].forEach { (constraints) in
                 constraints.isActive = true
         }
@@ -233,10 +283,10 @@ class cardView: UIView, UITextFieldDelegate, UITableViewDataSource {
         }
         checkListTable.translatesAutoresizingMaskIntoConstraints = false
         [
-            checkListTable.topAnchor.constraint(equalTo: headingTextField.bottomAnchor),
-            checkListTable.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: cornerRadius),
-            checkListTable.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -cornerRadius)
-            ,checkListTable.bottomAnchor.constraint(equalTo: toolBar.topAnchor, constant: -toolBarToUpperViewSafeDistance)
+            checkListTable.topAnchor.constraint(equalTo: timeLable.bottomAnchor),
+            checkListTable.leftAnchor.constraint(equalTo: toolBar.rightAnchor, constant: spacings),
+            checkListTable.rightAnchor.constraint(equalTo: safeAreaLayoutGuide.rightAnchor, constant: -cornerRadius),
+            checkListTable.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -spacings)
             ].forEach { (constraints) in
                 constraints.isActive = true
         }
@@ -260,6 +310,8 @@ class cardView: UIView, UITextFieldDelegate, UITableViewDataSource {
             cell.imageView?.image = UIImage(systemName: "circle")
         }
         cell.imageView?.isUserInteractionEnabled=true
+        cell.textLabel?.font = UIFont.preferredFont(forTextStyle: .subheadline)
+        cell.textLabel?.textColor = UIColor(named: "subMainTextColor") ?? UIColor.red
         let tap = myTapRecogniser(target: self, action: #selector(toggleCheckBox(sender:)))
         tap.indexPath = indexPath
         cell.imageView?.addGestureRecognizer(tap)
@@ -296,10 +348,10 @@ class cardView: UIView, UITextFieldDelegate, UITableViewDataSource {
         drawingViewPreview.layer.cornerRadius = cornerRadius
         drawingViewPreview.translatesAutoresizingMaskIntoConstraints = false
         [
-            drawingViewPreview.topAnchor.constraint(equalTo: headingTextField.bottomAnchor),
-            drawingViewPreview.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: cornerRadius),
-            drawingViewPreview.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -cornerRadius),
-            drawingViewPreview.bottomAnchor.constraint(equalTo: toolBar.topAnchor, constant: -toolBarToUpperViewSafeDistance)
+            drawingViewPreview.topAnchor.constraint(equalTo: timeLable.bottomAnchor),
+            drawingViewPreview.leftAnchor.constraint(equalTo: toolBar.rightAnchor, constant: spacings),
+            drawingViewPreview.rightAnchor.constraint(equalTo: safeAreaLayoutGuide.rightAnchor, constant: -cornerRadius),
+            drawingViewPreview.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -spacings)
             ].forEach { (constraints) in
                 constraints.isActive = true
         }
@@ -388,8 +440,9 @@ class cardView: UIView, UITextFieldDelegate, UITableViewDataSource {
         self.subviews.forEach { (view) in
             view.removeFromSuperview()
         }
-        configureHeadingLabel()
         configureToolbar()
+        configureHeadingLabel()
+        configureTimeLabel()
         switch card.type {
         case .CheckList:
             checkListTable.reloadData()
@@ -517,15 +570,20 @@ class cardView: UIView, UITextFieldDelegate, UITableViewDataSource {
                 scrollView.pinchGestureRecognizer?.isEnabled = true
             }
             isResizing=false
-            var minwidth =  self.toolBar.subviews[0].bounds.width+cornerRadius
-            minwidth *= 7
-//            let minheight = self.headingTextField.bounds.height*2
-            if frame.width < minwidth{
-                self.frame = CGRect(x: self.frame.origin.x, y: self.frame.origin.y, width: minwidth, height: self.frame.height)
-            }
-            self.frame = CGRect(x: self.frame.origin.x, y: self.frame.origin.y, width: max(minwidth, self.frame.width), height: max(self.frame.height, minCardHeight))
+//            var minwidth =  self.toolBar.subviews[0].bounds.width+cornerRadius
+//            minwidth *= 7
+//            if frame.width < minwidth{
+//                self.frame = CGRect(x: self.frame.origin.x, y: self.frame.origin.y, width: minwidth, height: self.frame.height)
+//            }
+//            self.frame = CGRect(x: self.frame.origin.x, y: self.frame.origin.y, width: max(minwidth, self.frame.width), height: max(self.frame.height, minCardHeight))
+//            self.subviews.forEach { (sv) in
+//                            sv.isHidden = false
+//                sv.isUserInteractionEnabled = true
+//            }
+            let minwidth =  checkBoxDimensions*4
+            self.frame = CGRect(x: self.frame.origin.x, y: self.frame.origin.y, width: max(minwidth, self.frame.width), height: max(self.frame.height, checkBoxDimensions*4+cornerRadius*5))
             self.subviews.forEach { (sv) in
-                            sv.isHidden = false
+                sv.isHidden = false
                 sv.isUserInteractionEnabled = true
             }
             //TODO: make more strong conditions for this else well as elsewhere this is used
@@ -571,7 +629,14 @@ class cardView: UIView, UITextFieldDelegate, UITableViewDataSource {
 
 extension cardView{
     var cornerRadius: CGFloat {
-        return bounds.size.height * 0.03
+        return 6
+//        return bounds.size.height * 0.03
+    }
+    var spacings:CGFloat {
+        return 15
+    }
+    var checkBoxDimensions: CGFloat{
+        return 30
     }
     var cardColour: UIColor{
         return UIColor(named: "bigCardColor") ?? #colorLiteral(red: 0.9254902005, green: 0.2352941185, blue: 0.1019607857, alpha: 1)
