@@ -190,9 +190,9 @@ extension newEditCardViewController: newEditCardViewControllerProtocol{
                 // schedule test
                 print("scheduling a test")
                 let content = UNMutableNotificationContent()
-                content.title = self.card.Heading ?? "Folio Reminder"
+               content.title = "Folio Page Reminder"
                 content.sound = .default
-                content.body = "You have a scheduled reminder"
+                content.body = "You have a scheduled reminder for " + (self.card.Heading ?? "")
                 
                 //                let targetDate = Date().addingTimeInterval(5)
                 let targetDate = self.card.reminder!
@@ -223,6 +223,13 @@ extension newEditCardViewController: newEditCardViewControllerProtocol{
             UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: identifiers)
         }
     }
+//    override func viewWillDisappear(_ animated: Bool) {
+//        if let date = self.card.reminder{
+//            setReminder(with: date)
+//        }else{
+//            unSetReminder()
+//        }
+//    }
     
     func updated(indexpath: IndexPath) {
         print("updated at indexpath: \(indexpath)")

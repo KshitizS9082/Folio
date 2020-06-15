@@ -101,9 +101,9 @@ class newSmallCardInfoViewController: UIViewController {
                 // schedule test
                 print("scheduling a test")
                 let content = UNMutableNotificationContent()
-                content.title = self.sCard.title
+                content.title = "Folio Page Reminder" //self.sCard.title
                 content.sound = .default
-                content.body = "You have a scheduled reminder"
+                content.body = "You have a scheduled reminder for " + self.sCard.title
                 
                 //                let targetDate = Date().addingTimeInterval(5)
                 let targetDate = self.sCard.reminderDate!

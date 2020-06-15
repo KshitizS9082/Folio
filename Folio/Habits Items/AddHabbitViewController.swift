@@ -79,9 +79,19 @@ class AddHabbitViewController: UIViewController {
                 // schedule test
                 print("scheduling a test")
                 let content = UNMutableNotificationContent()
-                content.title = "Habit: " + self.card.title
+                content.title = "Habit Reminder "
                 content.sound = .default
-                content.body = "Habit: " + self.card.title
+                content.body = "You have a reminder for " + self.card.title + " "
+                switch self.card.habitGoalPeriod {
+                case .daily:
+                    content.body += "Today"
+                case .weekly:
+                    content.body += "this week"
+                case .monthly:
+                    content.body += "this month"
+                case .yearly:
+                    content.body += "this year"
+                }
                 
                 //                let targetDate = Date().addingTimeInterval(5)
                 //TODO: Change according to recurrence
@@ -97,7 +107,7 @@ class AddHabbitViewController: UIViewController {
                         print("weekday = \(weekDay)")
                         if self.card.weekDayArray[weekDay-1]{
                             print("adding reminders with weekday= \(weekDay)")
-                            trigger = UNCalendarNotificationTrigger(dateMatching: Calendar.current.dateComponents([.weekday , .hour, .minute, .second],from: targetDate), repeats: true)
+                            trigger = UNCalendarNotificationTrigger(dateMatching: Calendar.current.dateComponents([.weekday , .hour, .minute, .second],from: tempDate), repeats: true)
                             let request = UNNotificationRequest(identifier: String(describing: (self.card.UniquIdentifier))+String(ind), content: content, trigger: trigger)
                             UNUserNotificationCenter.current().add(request, withCompletionHandler: { error in
                                 if error != nil {
