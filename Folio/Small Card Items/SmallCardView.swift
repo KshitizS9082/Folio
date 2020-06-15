@@ -404,7 +404,7 @@ class SmallCardView: UIView {
 
 extension SmallCardView{
     var cornerRadius: CGFloat {
-        return 6
+        return 10
     }
     var checkBoxDimensions: CGFloat{
         return 30

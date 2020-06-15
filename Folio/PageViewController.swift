@@ -437,13 +437,14 @@ class PageViewController: UIViewController {
             shlayer.removeFromSuperlayer()
         }
         let lineSpacing = CGFloat(250)
+        let horSpacing = CGFloat(100)
         let stripes = UIBezierPath()
         var i=0
         switch self.gridStyle {
         case .horizontal:
-            while( lineSpacing*CGFloat(i)<=pageView.bounds.height){
-                stripes.move(to: CGPoint(x: 0, y: lineSpacing*CGFloat(i)) )
-                stripes.addLine(to: CGPoint(x: pageView.bounds.width, y: lineSpacing*CGFloat(i)) )
+            while( horSpacing*CGFloat(i)<=pageView.bounds.height){
+                stripes.move(to: CGPoint(x: 0, y: horSpacing*CGFloat(i)) )
+                stripes.addLine(to: CGPoint(x: pageView.bounds.width, y: horSpacing*CGFloat(i)) )
                 i+=1
             }
         case .vertical:
@@ -453,9 +454,9 @@ class PageViewController: UIViewController {
                 i+=1
             }
         case .cross:
-            while( lineSpacing*CGFloat(i)<=pageView.bounds.height){
-                stripes.move(to: CGPoint(x: 0, y: lineSpacing*CGFloat(i)) )
-                stripes.addLine(to: CGPoint(x: pageView.bounds.width, y: lineSpacing*CGFloat(i)) )
+            while( horSpacing*CGFloat(i)<=pageView.bounds.height){
+                stripes.move(to: CGPoint(x: 0, y: horSpacing*CGFloat(i)) )
+                stripes.addLine(to: CGPoint(x: pageView.bounds.width, y: horSpacing*CGFloat(i)) )
                 i+=1
             }
             i=0
@@ -537,7 +538,7 @@ extension PageViewController{
         return UIScreen.main.bounds.height * 1.5
     }
     var basePageViewWidth: CGFloat{
-        return UIScreen.main.bounds.width * 1.5
+        return UIScreen.main.bounds.width * 3.0
     }
     var widthToIncreaseOnHorizontalOutOfBonds: CGFloat{
         return 150
@@ -765,13 +766,14 @@ extension PageViewController: pageProtocol{
 //        }
         var origin = newView.frame.origin
         let lineSpacing = CGFloat(250)
+        let horSpacing = CGFloat(100)
         switch self.gridStyle {
         case .horizontal:
-            origin = CGPoint(x: origin.x, y: lineSpacing*CGFloat(Int(origin.y/lineSpacing))+5)
+            origin = CGPoint(x: origin.x, y: horSpacing*CGFloat(Int(origin.y/horSpacing))+5)
         case .vertical:
             origin = CGPoint(x: lineSpacing*CGFloat(Int(origin.x/lineSpacing))+5, y: origin.y)
         case .cross:
-            origin = CGPoint(x: lineSpacing*CGFloat(Int(origin.x/lineSpacing))+5, y: lineSpacing*CGFloat(Int(origin.y/lineSpacing))+5)
+            origin = CGPoint(x: lineSpacing*CGFloat(Int(origin.x/lineSpacing))+5, y: horSpacing*CGFloat(Int(origin.y/horSpacing))+5)
         case .gridless:
             return
         default:

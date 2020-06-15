@@ -267,16 +267,16 @@ extension PageView{
 //        return #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
     }
     var smallCardWidth: CGFloat{
-        return 250
+        return 240
     }
     var smallCardHeight: CGFloat{
         return 85
     }
     var bigCardWidth: CGFloat{
-        return 250
+        return 240
     }
     var bigCardHeight: CGFloat{
-        return 85
+        return 170
     }
     var mediaCardDimension: CGFloat{
         return 100

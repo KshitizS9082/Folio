@@ -629,7 +629,7 @@ class cardView: UIView, UITextFieldDelegate, UITableViewDataSource {
 
 extension cardView{
     var cornerRadius: CGFloat {
-        return 6
+        return 10
 //        return bounds.size.height * 0.03
     }
     var spacings:CGFloat {
