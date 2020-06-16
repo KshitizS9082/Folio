@@ -251,7 +251,7 @@ class JournalViewController: UIViewController {
         
         navigationController?.hidesBarsOnSwipe=true
         let attrs = [
-            NSAttributedString.Key.foregroundColor: UIColor.systemPink,
+            NSAttributedString.Key.foregroundColor: UIColor(named: "calendarAccent") ?? UIColor.red,
             NSAttributedString.Key.font: UIFont(name: "SnellRoundhand-Black", size: 30)!
         ]
 
@@ -618,7 +618,8 @@ extension JournalViewController: UITableViewDataSource, UITableViewDelegate{
             cell.timeLabel.text = formatter.string(from: card.dateInCal!)
             cell.notesLabel.text = card.journalLocationCard?.notesText
         if let locs=card.journalLocationCard?.locationAnnotations, locs.count>0{
-            cell.mediaImageView.tintColor = UIColor.systemPink
+//            cell.mediaImageView.tintColor = UIColor.systemPink
+            cell.mediaImageView.tintColor = UIColor(named: "calendarAccent") ?? UIColor.red
             cell.mediaImageView.image = UIImage(systemName: "location.fill")
         }else{
             cell.mediaImageView.tintColor = UIColor(named: "subMainTextColor") ?? UIColor.red

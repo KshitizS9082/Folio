@@ -28,7 +28,7 @@ class DateCell: JTAppleCell {
                 cst.isActive=true
         }
         isPresentView.layer.cornerRadius=2.5
-        isPresentView.backgroundColor = #colorLiteral(red: 1, green: 0.2156862745, blue: 0.3725490196, alpha: 0.9215994056)
+        isPresentView.backgroundColor = UIColor(named: "calendarAccent") ?? UIColor.red
         isPresentView.isHidden=true
     }
     

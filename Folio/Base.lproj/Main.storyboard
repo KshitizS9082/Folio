@@ -410,7 +410,7 @@
             <objects>
                 <viewController id="XfM-or-A3R" customClass="themeChooserViewController" customModule="Folio" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="vrU-8H-wid">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="9eH-EG-LBM">
@@ -489,7 +489,7 @@
             <objects>
                 <viewController id="UAC-d8-kH1" customClass="settingsViewController" customModule="Folio" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Aye-7T-CTY">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="rI9-iM-VtK">
@@ -636,7 +636,7 @@
             <objects>
                 <tableViewController id="mSG-Qj-YNs" customClass="PageListSideMenuTableViewController" customModule="Folio" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" sectionIndexMinimumDisplayRowCount="1" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="W1f-1x-HQC">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" name="myBackgroundColor"/>
                         <prototypes>
@@ -1367,6 +1367,7 @@
                         </barButtonItem>
                         <rightBarButtonItems>
                             <barButtonItem title="Done" style="done" id="4aU-09-ahy">
+                                <color key="tintColor" systemColor="systemTealColor" red="0.35294117650000001" green="0.7843137255" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <connections>
                                     <action selector="handleDone:" destination="m77-22-dYJ" id="lTJ-hv-xnS"/>
                                 </connections>
@@ -1404,7 +1405,7 @@
             <objects>
                 <viewController id="QbT-Ef-xWD" customClass="HabitsViewController" customModule="Folio" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="uKv-JE-6bL">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="vC7-ph-HfX">
@@ -1717,7 +1718,7 @@
             <objects>
                 <viewController id="JiT-sl-JN2" customClass="AddHabbitViewController" customModule="Folio" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="mKD-2I-TYl">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zU5-aF-w7p">
@@ -2127,14 +2128,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="Hzb-TY-Ddq">
-                                <rect key="frame" x="30" y="118" width="354" height="714"/>
-                            </mapView>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="aXN-vR-B2r" customClass="JTAppleCalendarView" customModule="JTAppleCalendar">
-                                <rect key="frame" x="0.0" y="88" width="414" height="48"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="100"/>
                                 <color key="backgroundColor" name="calendarColor"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="48" id="Xom-oi-UOb"/>
+                                    <constraint firstAttribute="height" constant="100" id="Xom-oi-UOb"/>
                                 </constraints>
                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="8ck-rg-LVE">
                                     <size key="itemSize" width="128" height="128"/>
@@ -2152,7 +2150,7 @@
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4B0-2k-E2N">
                                                     <rect key="frame" x="49" y="49" width="30" height="30"/>
-                                                    <color key="backgroundColor" red="1" green="0.21568627450980393" blue="0.37254901960784315" alpha="0.50511646855828218" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <color key="backgroundColor" name="calendarAccent"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="30" id="QKG-xw-7pW"/>
                                                         <constraint firstAttribute="width" secondItem="4B0-2k-E2N" secondAttribute="height" id="Ype-g5-zfR"/>
@@ -2185,7 +2183,7 @@
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Month Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9TO-WA-0YB">
                                             <rect key="frame" x="159.5" y="14.5" width="95.5" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <color key="textColor" name="systemPinkColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="textColor" name="calendarAccent"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
@@ -2204,7 +2202,7 @@
                                 </connections>
                             </collectionView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="SoI-kp-iib">
-                                <rect key="frame" x="0.0" y="136" width="414" height="726"/>
+                                <rect key="frame" x="0.0" y="196" width="414" height="666"/>
                                 <color key="backgroundColor" name="calendarColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="addEntryCell" rowHeight="136" id="bnc-tR-mav" customClass="addEntryInJournalTableViewCell" customModule="Folio" customModuleProvider="target">
@@ -2270,13 +2268,13 @@
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="253" text="Month 01, 2001 - Day" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WYt-yJ-zRp">
                                                     <rect key="frame" x="30" y="30" width="354" height="20.5"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
-                                                    <color key="textColor" systemColor="systemPinkColor" red="1" green="0.1764705882" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <color key="textColor" name="calendarAccent"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="HH:MM AM" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4cl-5X-77W">
                                                     <rect key="frame" x="30" y="58.5" width="354" height="18"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
-                                                    <color key="textColor" systemColor="systemPinkColor" red="1" green="0.1764705882" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <color key="textColor" name="calendarAccent"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your Notes goes here " textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tCu-jT-kCP">
@@ -2295,7 +2293,7 @@
                                                 </textView>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="arrow.right.circle" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="0bw-Va-F5Q">
                                                     <rect key="frame" x="361" y="20.5" width="33" height="32"/>
-                                                    <color key="tintColor" red="1" green="0.1764705882" blue="0.33333333329999998" alpha="0.3976947623" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <color key="tintColor" name="calendarAccent"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="33" id="2a0-wc-IwR"/>
                                                         <constraint firstAttribute="width" secondItem="0bw-Va-F5Q" secondAttribute="height" id="zYJ-vL-Iov"/>
@@ -2339,13 +2337,13 @@
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="253" text="Month 01, 2001 - Day" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RcE-2z-3RR">
                                                     <rect key="frame" x="30" y="30" width="354" height="20.5"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
-                                                    <color key="textColor" systemColor="systemPinkColor" red="1" green="0.1764705882" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <color key="textColor" name="calendarAccent"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="HH:MM AM" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v3y-IF-ACH">
                                                     <rect key="frame" x="30" y="58.5" width="354" height="18"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
-                                                    <color key="textColor" systemColor="systemPinkColor" red="1" green="0.1764705882" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <color key="textColor" name="calendarAccent"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your Notes goes here you have a text view to do the editting here so go ahead do it" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OJM-JK-asA">
@@ -2382,7 +2380,7 @@
                                                 </view>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="arrow.right.circle" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="IH6-cv-XoV">
                                                     <rect key="frame" x="361" y="20.5" width="33" height="32"/>
-                                                    <color key="tintColor" red="1" green="0.1764705882" blue="0.33333333329999998" alpha="0.3976947623" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <color key="tintColor" name="calendarAccent"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" secondItem="IH6-cv-XoV" secondAttribute="height" id="IjJ-G9-zzD"/>
                                                         <constraint firstAttribute="width" constant="33" id="grQ-Tu-tNV"/>
@@ -2430,13 +2428,13 @@
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="253" text="Month 01, 2001 - Day" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pfy-ls-aAl">
                                                     <rect key="frame" x="30" y="30" width="354" height="20.5"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
-                                                    <color key="textColor" systemColor="systemPinkColor" red="1" green="0.1764705882" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <color key="textColor" name="calendarAccent"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="HH:MM AM" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lN9-lX-fFC">
                                                     <rect key="frame" x="30" y="58.5" width="354" height="18"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
-                                                    <color key="textColor" systemColor="systemPinkColor" red="1" green="0.1764705882" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <color key="textColor" name="calendarAccent"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your Notes goes here you have a text view to do the editting here so go ahead do it" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ONi-5c-2M8">
@@ -2506,22 +2504,18 @@
                         <color key="backgroundColor" name="myBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="tmd-xt-zwT" firstAttribute="trailing" secondItem="aXN-vR-B2r" secondAttribute="trailing" id="6Md-DL-EQc"/>
-                            <constraint firstItem="tmd-xt-zwT" firstAttribute="bottom" secondItem="Hzb-TY-Ddq" secondAttribute="bottom" constant="30" id="GFy-FP-QG3"/>
-                            <constraint firstItem="SoI-kp-iib" firstAttribute="top" secondItem="aXN-vR-B2r" secondAttribute="bottom" id="JZA-eY-WFh"/>
+                            <constraint firstItem="SoI-kp-iib" firstAttribute="top" secondItem="aXN-vR-B2r" secondAttribute="bottom" constant="8" symbolic="YES" id="JZA-eY-WFh"/>
                             <constraint firstItem="tmd-xt-zwT" firstAttribute="trailing" secondItem="SoI-kp-iib" secondAttribute="trailing" id="MRd-jZ-iyb"/>
                             <constraint firstItem="SoI-kp-iib" firstAttribute="leading" secondItem="tmd-xt-zwT" secondAttribute="leading" id="T0f-Mv-QMb"/>
-                            <constraint firstItem="Hzb-TY-Ddq" firstAttribute="top" secondItem="tmd-xt-zwT" secondAttribute="top" constant="30" id="Vfr-kf-Zfb"/>
                             <constraint firstItem="aXN-vR-B2r" firstAttribute="top" secondItem="tmd-xt-zwT" secondAttribute="top" id="gzA-zY-7Mg"/>
                             <constraint firstItem="aXN-vR-B2r" firstAttribute="leading" secondItem="tmd-xt-zwT" secondAttribute="leading" id="j76-xV-hMx"/>
-                            <constraint firstItem="tmd-xt-zwT" firstAttribute="trailing" secondItem="Hzb-TY-Ddq" secondAttribute="trailing" constant="30" id="qcV-u6-any"/>
-                            <constraint firstItem="Hzb-TY-Ddq" firstAttribute="leading" secondItem="tmd-xt-zwT" secondAttribute="leading" constant="30" id="w9S-fl-AxA"/>
                             <constraint firstItem="tmd-xt-zwT" firstAttribute="bottom" secondItem="SoI-kp-iib" secondAttribute="bottom" id="xhd-hj-OjS"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="tmd-xt-zwT"/>
                     </view>
                     <navigationItem key="navigationItem" title="Journal" id="LHS-SP-7NN">
                         <barButtonItem key="rightBarButtonItem" title="Item" image="rectangle.compress.vertical" catalog="system" id="bUs-VX-RXK">
-                            <color key="tintColor" systemColor="systemPinkColor" red="1" green="0.1764705882" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <color key="tintColor" name="calendarAccent"/>
                             <connections>
                                 <action selector="toggleCalendar:" destination="iHJ-Ix-OFG" id="mkl-z2-Jva"/>
                             </connections>
@@ -2530,7 +2524,6 @@
                     <connections>
                         <outlet property="calendarView" destination="aXN-vR-B2r" id="oRX-IU-82l"/>
                         <outlet property="constraint" destination="Xom-oi-UOb" id="XMU-x9-Icz"/>
-                        <outlet property="mapView" destination="Hzb-TY-Ddq" id="LNj-mH-ugU"/>
                         <outlet property="table" destination="SoI-kp-iib" id="s5T-nI-fXH"/>
                         <outlet property="toggleCalendarButton" destination="bUs-VX-RXK" id="itW-td-gs8"/>
                         <segue destination="KJv-kN-YwA" kind="show" identifier="fromCalendarShowCardSegue" id="r5M-ob-z1M"/>
@@ -2683,7 +2676,7 @@
                                                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" text="Some Headline" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="HlG-zl-bwY">
                                                     <rect key="frame" x="20" y="10" width="374" height="38"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    <color key="textColor" systemColor="systemPinkColor" red="1" green="0.1764705882" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <color key="textColor" name="calendarAccent"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                 </textView>
@@ -2815,10 +2808,10 @@
                                 <color key="sectionIndexColor" systemColor="systemTealColor" red="0.35294117650000001" green="0.7843137255" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="expandTextInpCell" id="6BD-mt-3xq" customClass="ExpandableTextSCardInfoTableViewCell" customModule="Folio" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="414" height="116"/>
+                                        <rect key="frame" x="0.0" y="28" width="414" height="116.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="6BD-mt-3xq" id="uin-eD-Bs6">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="116"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="116.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Type of TextView:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wKZ-U8-68f">
@@ -2828,7 +2821,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" text="Some text inside textview" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="BSh-gZ-7iL">
-                                                    <rect key="frame" x="20" y="48" width="374" height="48"/>
+                                                    <rect key="frame" x="20" y="48" width="374" height="48.5"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <color key="textColor" name="subMainTextColor"/>
                                                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="26"/>
@@ -2853,7 +2846,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="sCardEdVReminderCell" id="d24-sJ-qlp" customClass="sCardReminderTableViewCell" customModule="Folio" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="144" width="414" height="94.5"/>
+                                        <rect key="frame" x="0.0" y="144.5" width="414" height="94.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="d24-sJ-qlp" id="2rp-Pm-mDK">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="94.5"/>
@@ -2925,7 +2918,7 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="262-yF-jhR"/>
-        <segue reference="to3-FM-KxV"/>
+        <segue reference="r5M-ob-z1M"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="archivebox" catalog="system" width="128" height="106"/>
@@ -2973,6 +2966,9 @@
         <image name="text.bubble" catalog="system" width="128" height="110"/>
         <image name="trash.circle.fill" catalog="system" width="128" height="121"/>
         <image name="w.circle.fill" catalog="system" width="128" height="121"/>
+        <namedColor name="calendarAccent">
+            <color red="0.49310463669999999" green="0.74003881220000001" blue="0.76007014510000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <namedColor name="calendarColor">
             <color red="1" green="0.99599999189376831" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
@@ -2980,7 +2976,7 @@
             <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="myBackgroundColor">
-            <color red="0.94900000095367432" green="0.94900000095367432" blue="0.9660000205039978" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.97271484139999997" green="0.97655695679999999" blue="0.97208958860000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="smallCardColor">
             <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
