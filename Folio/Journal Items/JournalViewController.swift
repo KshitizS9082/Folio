@@ -534,6 +534,8 @@ extension JournalViewController: UITableViewDataSource, UITableViewDelegate{
         cell.titleTextView.isEditable=false
         cell.notesTextView.isEditable=false
         cell.linkView.isUserInteractionEnabled=true
+        cell.linkView.tintColor =  UIColor(named: "calendarAccent") ?? UIColor.red
+        cell.checkBox.tintColor =  UIColor(named: "calendarAccent") ?? UIColor.red
         return cell
     }
     func setBigCardCell(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell{
@@ -553,6 +555,9 @@ extension JournalViewController: UITableViewDataSource, UITableViewDelegate{
         cell.titleTextView.isEditable=false
         cell.additionalView.isUserInteractionEnabled=false
         cell.linkView.isUserInteractionEnabled=true
+        cell.linkView.tintColor =  UIColor(named: "calendarAccent") ?? UIColor.red
+        cell.checkBox.tintColor =  UIColor(named: "calendarAccent") ?? UIColor.red
+        
         return cell
     }
     func setMediaCardCell(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell{
@@ -569,6 +574,7 @@ extension JournalViewController: UITableViewDataSource, UITableViewDelegate{
         cell.backgroundColor = .clear
         cell.sizeType = self.sizeType
 //        cell.linkView.isHidden=true
+        cell.linkView.tintColor =  UIColor(named: "calendarAccent") ?? UIColor.red
         cell.awakeFromNib()
         return cell
     }

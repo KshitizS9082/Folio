@@ -315,7 +315,7 @@ extension PageListViewController:UITableViewDelegate, UITableViewDataSource{
 //            }
         }
         let cell = tableView.dequeueReusableCell(withIdentifier: "customPageCell", for: indexPath) as! pageListTableViewCell
-        cell.accessoryType = .disclosureIndicator
+//        cell.accessoryType = .disclosureIndicator
         cell.myIndexPath=indexPath
         cell.pageListDelegate=self
         cell.titleTextField.text = pages.items[indexPath.row].title
@@ -325,7 +325,7 @@ extension PageListViewController:UITableViewDelegate, UITableViewDataSource{
         //        formatter.dateFormat = "d/M/yy, hh:mm a"
         formatter.dateStyle = .full
         cell.subtitleText?.text = formatter.string(from: time)
-        cell.subtitleText?.textColor =  UIColor(named: "subMainTextColor") ?? #colorLiteral(red: 0.9254902005, green: 0.2352941185, blue: 0.1019607857, alpha: 1)
+//        cell.subtitleText?.textColor =  UIColor(named: "subMainTextColor") ?? #colorLiteral(red: 0.9254902005, green: 0.2352941185, blue: 0.1019607857, alpha: 1)
         return cell
     }
     func setupNewExtractTableViewCell(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> newPageExtractTableViewCell {
@@ -447,7 +447,7 @@ extension PageListViewController:UITableViewDelegate, UITableViewDataSource{
 //            if indexPath.row==0{
 //            return 270
 //            }else{
-            return 190
+            return 140
 //            }
         }
         return cellHeight
@@ -564,7 +564,7 @@ extension PageListViewController:UITableViewDelegate, UITableViewDataSource{
 }
 extension PageListViewController{
     var cellHeight: CGFloat{
-        return 75
+        return 130
     }
     var cellColour: UIColor{
         return UIColor(named: "myBackgroundColor") ?? #colorLiteral(red: 0.9254902005, green: 0.2352941185, blue: 0.1019607857, alpha: 1)

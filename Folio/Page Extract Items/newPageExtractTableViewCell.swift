@@ -33,7 +33,7 @@ class newPageExtractTableViewCell: UITableViewCell, UICollectionViewDataSource, 
                 layout.minimumLineSpacing = verticalSpacing
 //                layout.itemSize = CGSize(width: self.collectionView.frame.size.height-spacings, height: self.collectionView.frame.size.height-spacings)
 //                layout.itemSize = CGSize(width: (self.collectionView.frame.size.height-spacings)*1.6, height: self.collectionView.frame.size.height-spacings)
-                layout.itemSize = CGSize(width: 160, height: 110)
+                layout.itemSize = CGSize(width: 120, height: 110)
                 layout.invalidateLayout()
             }
             collectionView.reloadData()
@@ -100,16 +100,20 @@ class newPageExtractTableViewCell: UITableViewCell, UICollectionViewDataSource, 
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! MyCollectionViewCell
         cell.contentView.backgroundColor = UIColor(named: "smallCardColor") ?? UIColor.red
         
-        cell.contentView.layer.cornerRadius = 2.0
-        cell.contentView.layer.borderWidth = 1.0
-        cell.contentView.layer.borderColor = UIColor.clear.cgColor
-        cell.contentView.layer.masksToBounds = true
-        cell.layer.shadowColor = UIColor.lightGray.cgColor
-        cell.layer.shadowOffset = CGSize(width: 0, height: 2.0)
-        cell.layer.shadowRadius = 2.0
-        cell.layer.shadowOpacity = 1.0
+        cell.layer.cornerRadius = 15.0
+        cell.contentView.layer.cornerRadius = 15.0
         cell.layer.masksToBounds = false
-        cell.layer.shadowPath = UIBezierPath(roundedRect: cell.bounds, cornerRadius: cell.contentView.layer.cornerRadius).cgPath
+        //Draw shaddow
+//        cell.contentView.layer.cornerRadius = 2.0
+//        cell.contentView.layer.borderWidth = 1.0
+//        cell.contentView.layer.borderColor = UIColor.clear.cgColor
+//        cell.contentView.layer.masksToBounds = true
+//        cell.layer.shadowColor = UIColor.lightGray.cgColor
+//        cell.layer.shadowOffset = CGSize(width: 0, height: 2.0)
+//        cell.layer.shadowRadius = 2.0
+//        cell.layer.shadowOpacity = 1.0
+//        cell.layer.masksToBounds = false
+//        cell.layer.shadowPath = UIBezierPath(roundedRect: cell.bounds, cornerRadius: cell.contentView.layer.cornerRadius).cgPath
         return cell
     }
     @objc func selectedIndex(_ sender: UITapGestureRecognizer){

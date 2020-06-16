@@ -13,6 +13,11 @@ class pageListTableViewCell: UITableViewCell, UITextFieldDelegate {
     var pageListDelegate: pageListeProtocol?
     var myIndexPath: IndexPath?
     @IBOutlet weak var describitngImage: UIImageView!
+    @IBOutlet weak var cardBackgroundView: UIView!{
+        didSet{
+            cardBackgroundView.layer.cornerRadius = 10
+        }
+    }
     
     @IBOutlet weak var titleTextField: UITextField!{
         didSet{
