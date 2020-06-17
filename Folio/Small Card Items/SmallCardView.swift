@@ -360,7 +360,7 @@ class SmallCardView: UIView {
             if frame.width < minwidth{
                 self.frame = CGRect(x: self.frame.origin.x, y: self.frame.origin.y, width: minwidth, height: self.frame.height)
             }
-            self.frame = CGRect(x: self.frame.origin.x, y: self.frame.origin.y, width: max(minwidth, self.frame.width), height: max(self.frame.height, checkBoxDimensions*2+cornerRadius*3))
+            self.frame = CGRect(x: self.frame.origin.x, y: self.frame.origin.y, width: max(minwidth, self.frame.width), height: max(self.notesTextView.frame.maxY+cornerRadius , max(self.frame.height, checkBoxDimensions*2+cornerRadius*3)))
             self.subviews.forEach { (sv) in
                 sv.isHidden = false
                 sv.isUserInteractionEnabled = true

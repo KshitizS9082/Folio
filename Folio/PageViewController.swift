@@ -437,7 +437,7 @@ class PageViewController: UIViewController {
             shlayer.removeFromSuperlayer()
         }
         let lineSpacing = CGFloat(250)
-        let horSpacing = CGFloat(100)
+        let horSpacing = CGFloat(125)
         let stripes = UIBezierPath()
         var i=0
         switch self.gridStyle {
@@ -766,7 +766,7 @@ extension PageViewController: pageProtocol{
 //        }
         var origin = newView.frame.origin
         let lineSpacing = CGFloat(250)
-        let horSpacing = CGFloat(100)
+        let horSpacing = CGFloat(125)
         switch self.gridStyle {
         case .horizontal:
             origin = CGPoint(x: origin.x, y: horSpacing*CGFloat(Int(origin.y/horSpacing))+5)
