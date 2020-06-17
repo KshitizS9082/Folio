@@ -430,9 +430,15 @@ class cardView: UIView, UITextFieldDelegate, UITableViewDataSource {
     
     
     override func layoutSubviews() {
-        self.backgroundColor = cardColour
+        self.layer.backgroundColor = cardColour.cgColor
         self.layer.cornerRadius = cornerRadius
-        self.layer.masksToBounds=true
+        //Draw shaddow for layer
+        self.layer.shadowColor = UIColor.gray.cgColor
+        self.layer.shadowOffset = CGSize(width: 0.0, height: 3.0)
+        self.layer.shadowRadius = 3.0
+        self.layer.shadowOpacity = 0.2
+        
+//        self.layer.masksToBounds=true
         if(isResizing){
             return
         }

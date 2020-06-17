@@ -35,6 +35,16 @@ class journalLocationTableViewCell: UITableViewCell, UITextViewDelegate {
             mediaImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(getLocation)))
             
         }
+    @IBOutlet weak var cardBackgroundView: UIView!{
+        didSet{
+            cardBackgroundView.layer.cornerRadius = 10
+            //Draw shaddow for layer
+            cardBackgroundView.layer.shadowColor = UIColor.gray.cgColor
+            cardBackgroundView.layer.shadowOffset = CGSize(width: 0.0, height: 0.0)
+            cardBackgroundView.layer.shadowRadius = 5.0
+            cardBackgroundView.layer.shadowOpacity = 0.2
+        }
+    }
         @objc func didSelctTextView() {
             print("didselect in setSelected")
             notesIsEditingTextView.isHidden=false

@@ -136,7 +136,7 @@ class settingSwitchTableViewCell: UITableViewCell{
             }
             let name = UserDefaults.standard.bool(forKey: "AppIsLocked")
             switchButton.setOn(name, animated: false)
-            titleLabel.text="Require Authentication To Unlock"
+            titleLabel.text="Screen Lock"
         case .hapticFeedBack:
             let name = UserDefaults.standard.bool(forKey: "hapticFeedBackDisabled")
             switchButton.setOn(name, animated: false)

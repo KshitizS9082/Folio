@@ -23,7 +23,11 @@ class TimelineViewController: UIViewController {
     var cardsList = [timeLineCard]()
     var myViewController: SwitchPageTimelineViewController?
     
-    @IBOutlet weak var table: UITableView!
+    @IBOutlet weak var table: UITableView!{
+        didSet{
+            table.separatorStyle = .none
+        }
+    }
     private func setCardsList(){
         cardsList = []
         if let page = page{

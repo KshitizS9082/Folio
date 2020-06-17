@@ -9,7 +9,7 @@
 import UIKit
 import LocalAuthentication
 struct pageInfo: Codable{
-    var title = "Title"
+    var title = ""
     var fileName = String.uniqueFilename(withPrefix: "Page")+".json"
     var dateOfMaking =  Date()
     init(){
