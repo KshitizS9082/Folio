@@ -22,6 +22,7 @@ class WithImagesViewController:UIViewController {
     
     lazy var collectionView:UICollectionView = {
         // Flow layout setup
+//        layout.sectionInset = UIEdgeInsets(top: 50, left: 50, bottom: 0, right: 0)
         let cv = UICollectionView(
             frame: .zero, collectionViewLayout: layout)
         cv.register(
@@ -222,6 +223,6 @@ extension WithImagesViewController{
         return UIColor(named: "myBackgroundColor") ?? #colorLiteral(red: 0.9254902005, green: 0.2352941185, blue: 0.1019607857, alpha: 1)
     }
     var cellCornerRadius: CGFloat{
-        return 4.0
+        return 8.0
     }
 }

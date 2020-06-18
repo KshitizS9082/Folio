@@ -145,10 +145,23 @@ class PageViewController: UIViewController {
                 let dragInteraction = UIDragInteraction(delegate: self)
                 dragInteraction.isEnabled=true
                 iv.addInteraction(dragInteraction)
-                iv.layer.cornerRadius=iv.bounds.width/2.0
-                iv.layer.masksToBounds=true
+//                view.bringSubviewToFront(iv)
+//                iv.layer.cornerRadius=iv.bounds.width/2.0
+//                iv.layer.masksToBounds=true
             }
-            ImageViews[5].layer.cornerRadius=0
+//            ImageViews[5].layer.cornerRadius=0
+        }
+    }
+    @IBOutlet weak var toolBarBackgroundView: UIView!{
+        didSet{
+            toolBarBackgroundView.layer.cornerRadius = 20
+            toolBarBackgroundView.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMinXMinYCorner]
+            toolBarBackgroundView.layer.opacity = 0.93
+            //Draw shaddow for layer
+            toolBarBackgroundView.layer.shadowColor = UIColor.gray.cgColor
+            toolBarBackgroundView.layer.shadowOffset = CGSize(width: 0.0, height: 0.0)
+            toolBarBackgroundView.layer.shadowRadius = 3.0
+            toolBarBackgroundView.layer.shadowOpacity = 0.2
         }
     }
     
@@ -311,6 +324,10 @@ class PageViewController: UIViewController {
             toolPicker.addObserver(self)
         }
         setGridLayer()
+        ImageViews.forEach { (iv) in
+            self.view.bringSubviewToFront(iv)
+        }
+        view.bringSubviewToFront(ImageViews[6])
     }
     var pageViewHeightConstraint: NSLayoutConstraint?
     var pageViewWidhtConstraint: NSLayoutConstraint?
