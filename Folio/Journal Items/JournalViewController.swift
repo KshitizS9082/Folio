@@ -10,6 +10,7 @@ import UIKit
 import JTAppleCalendar
 import MapKit
 import CoreLocation
+import ImagePicker
 //TODO: instead of calling setupdata at updates try doing somethign like updateJournalNotesCard as setupdata may be very inefficient
 
 struct journalCard: Codable {
@@ -326,6 +327,8 @@ class JournalViewController: UIViewController {
         }
     }
     
+    //index used for getting journal media
+    var index = IndexPath()
     
     // MARK: - Navigation
     var selectedCell: Int?
@@ -806,6 +809,15 @@ extension JournalViewController: addCardInJournalProtocol{
     }
     func getJournalMedia(at index: IndexPath) {
         print("get image")
+//        var configuration = Configuration()
+//        configuration.
+        let imagePickerController = ImagePickerController()
+        imagePickerController.imageLimit = 1
+        imagePickerController.delegate = self
+        self.index=index
+        self.present(imagePickerController, animated: true, completion: nil)
+        
+        /*
         //MARK: currently stores only 1 image but later can be extended to multiple images as stored in a array
         let fileManager = FileManager.default
         JournalImagePickerManager().pickImage(self){ image in
@@ -835,8 +847,8 @@ extension JournalViewController: addCardInJournalProtocol{
                     self.journalEntryCards[ind].journalMediaCard?.imageFileName.removeAll()
                 }
             }
-//            self.setupData()
-//            self.setupSelectedDate()
+            
+            
             //MARK: set a new json and use corrosponding url for new image
             let fileName=String.uniqueFilename(withPrefix: "iamgeData")+".json"
             DispatchQueue.global(qos: .background).async {
@@ -871,7 +883,9 @@ extension JournalViewController: addCardInJournalProtocol{
                     }
                 }
             }
+            
         }
+        */
     }
     
     func addWrittenEntry() {
@@ -979,4 +993,89 @@ extension JournalViewController: CLLocationManagerDelegate,MKMapViewDelegate{
 
         //centerMap(locValue)
     }
+}
+extension JournalViewController: ImagePickerDelegate{
+    func wrapperDidPress(_ imagePicker: ImagePickerController, images: [UIImage]) {
+        print("x")
+        imagePicker.expandGalleryView()
+    }
+    
+    func doneButtonDidPress(_ imagePicker: ImagePickerController, images: [UIImage]) {
+        print("y")
+        if images.count<1 {
+            imagePicker.dismiss(animated: true, completion: nil)
+            return
+        }
+        //MARK: currently stores only 1 image but later can be extended to multiple images as stored in a array
+        let fileManager = FileManager.default
+        imagePicker.dismiss(animated: true) {
+            //Delete thr old image if any
+            for ind in self.journalEntryCards.indices{
+                let card =  self.journalEntryCards[ind]
+                if card.journalMediaCard?.UniquIdentifier==self.cardsForSelectedDate[self.index.row].journalMediaCard?.UniquIdentifier{
+                    if let fnms = self.journalEntryCards[ind].journalMediaCard?.imageFileName{
+                        for fileName in fnms{
+                            if let url = try? FileManager.default.url(
+                                for: .documentDirectory,
+                                in: .userDomainMask,
+                                appropriateFor: nil,
+                                create: true
+                            ).appendingPathComponent(fileName){
+                                do{
+                                    try fileManager.removeItem(at: url)
+                                    print("deleted item \(url) succefully")
+                                } catch{
+                                    print("ERROR: item  at \(url) couldn't be deleted")
+                                    //TODO: check if return works this way if file deletionf fails
+                                    return
+                                }
+                            }
+                        }
+                    }
+                    self.journalEntryCards[ind].journalMediaCard?.imageFileName.removeAll()
+                }
+            }
+            //MARK: set a new json and use corrosponding url for new image
+            let fileName=String.uniqueFilename(withPrefix: "iamgeData")+".json"
+            DispatchQueue.global(qos: .background).async {
+                if let json = imageData(instData: (images[0].resizedTo1MB()!).pngData()!).json {
+                    if let url = try? FileManager.default.url(
+                        for: .documentDirectory,
+                        in: .userDomainMask,
+                        appropriateFor: nil,
+                        create: true
+                    ).appendingPathComponent(fileName){
+                        do {
+                            try json.write(to: url)
+                            print ("saved successfully")
+                            //MARK: is a data leak to be corrected
+                            //TODO: sometimes fileName added but not deleted
+                            for ind in self.journalEntryCards.indices{
+                                let card = self.journalEntryCards[ind]
+                                //MARK: new url based implementation for images
+                                if card.journalMediaCard?.UniquIdentifier==self.cardsForSelectedDate[self.index.row].journalMediaCard?.UniquIdentifier{
+                                    self.journalEntryCards[ind].journalMediaCard?.imageFileName.append(fileName)
+                                }
+                            }
+                            DispatchQueue.main.sync {
+                                self.setupData()
+                                self.setupSelectedDate()
+                                self.table.reloadRows(at: [self.index], with: .automatic)
+                                self.table.scrollToRow(at: self.index, at: .middle, animated: true)
+                            }
+                        } catch let error {
+                            print ("couldn't save \(error)")
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+    func cancelButtonDidPress(_ imagePicker: ImagePickerController) {
+        print("z")
+        imagePicker.dismiss(animated: true, completion: nil)
+    }
+    
+    
 }
