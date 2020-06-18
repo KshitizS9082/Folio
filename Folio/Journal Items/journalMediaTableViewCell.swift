@@ -82,6 +82,8 @@ class journalMediaTableViewCell: UITableViewCell, UITextViewDelegate{
             }
         }else{
             self.mediaImageView.image = UIImage(systemName: "camera")
+            self.mediaImageView.gestureRecognizers?.removeAll()
+            self.mediaImageView.addGestureRecognizer(UILongPressGestureRecognizer(target: self, action:  #selector(getImage)))
         }
 //        var urlList = [URL]()
 //        for file in imageFileNames{
