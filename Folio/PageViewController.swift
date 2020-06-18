@@ -161,7 +161,7 @@ class PageViewController: UIViewController {
             toolBarBackgroundView.layer.shadowColor = UIColor.gray.cgColor
             toolBarBackgroundView.layer.shadowOffset = CGSize(width: 0.0, height: 0.0)
             toolBarBackgroundView.layer.shadowRadius = 3.0
-            toolBarBackgroundView.layer.shadowOpacity = 0.2
+            toolBarBackgroundView.layer.shadowOpacity = 0.4
         }
     }
     
@@ -192,13 +192,7 @@ class PageViewController: UIViewController {
                 pageView.currentTask = .addCard
             case 2:
                 print("2")
-                switch pageView.currentTask {
-                case .drawLines:
-                    pageView.currentTask = .noneOfAbove
-                default:
-                    pageView.currentTask = .drawLines
-                }
-                pageView.setupDrawing()
+                pageView.currentTask = .addMediaCard
             case 3:
                 print("3")
                 switch pageView.currentTask {
@@ -214,7 +208,13 @@ class PageViewController: UIViewController {
                 }
             case 4:
                 print("4")
-                pageView.currentTask = .addMediaCard
+                switch pageView.currentTask {
+                case .drawLines:
+                    pageView.currentTask = .noneOfAbove
+                default:
+                    pageView.currentTask = .drawLines
+                }
+                pageView.setupDrawing()
             case 5:
                 print("5")
                 toggleGridStyle()

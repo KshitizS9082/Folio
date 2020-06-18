@@ -127,8 +127,8 @@ class PageListViewController: UIViewController {
             
             var authError: NSError?
             if #available(iOS 8.0, macOS 10.12.1, *) {
-                if myContext.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: &authError) {
-                    myContext.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, localizedReason: myLocalizedReasonString) { [weak self] success, evaluateError in
+                if myContext.canEvaluatePolicy(.deviceOwnerAuthentication, error: &authError) {
+                    myContext.evaluatePolicy(.deviceOwnerAuthentication, localizedReason: myLocalizedReasonString) { [weak self] success, evaluateError in
                         
                         DispatchQueue.main.async {
                             if success {
