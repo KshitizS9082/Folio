@@ -9,6 +9,7 @@ import UIKit
 import ImageViewer_swift
 import SPStorkController
 import SPFakeBar
+import ImagePicker
 
 class WithImagesViewController:UIViewController {
 
@@ -32,6 +33,12 @@ class WithImagesViewController:UIViewController {
     @objc func addImage(){
         //MARK: set a new json and use corrosponding url for new image
         print("now have to add image")
+        
+        let imagePickerController = ImagePickerController()
+        imagePickerController.imageLimit = 0
+        imagePickerController.delegate = self
+        self.present(imagePickerController, animated: true, completion: nil)
+        /*
         pickImage().pickImage(self) { (image) in
             self.images.append(image)
             self.collectionView.reloadData()
@@ -56,6 +63,7 @@ class WithImagesViewController:UIViewController {
                 }
             }
         }
+        */
     }
     
     override func loadView() {
@@ -161,6 +169,49 @@ extension WithImagesViewController: UICollectionViewDelegate, UIScrollViewDelega
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         SPStorkController.scrollViewDidScroll(scrollView)
     }
+}
+extension WithImagesViewController: ImagePickerDelegate{
+    func wrapperDidPress(_ imagePicker: ImagePickerController, images: [UIImage]) {
+        print("x")
+        imagePicker.expandGalleryView()
+    }
+    
+    func doneButtonDidPress(_ imagePicker: ImagePickerController, images: [UIImage]) {
+        print("y")
+        imagePicker.dismiss(animated: true) {
+            self.images.append(contentsOf: images)
+            self.collectionView.reloadData()
+            for image in images{
+                let fileName=String.uniqueFilename(withPrefix: "iamgeData")+".json"
+                if let json = imageData(instData: (image.resizedTo1MB()!).pngData()!).json {
+                    if let url = try? FileManager.default.url(
+                        for: .documentDirectory,
+                        in: .userDomainMask,
+                        appropriateFor: nil,
+                        create: true
+                    ).appendingPathComponent(fileName){
+                        do {
+                            try json.write(to: url)
+                            print ("saved successfully")
+                            //MARK: is a data leak to be corrected
+                            //TODO: sometimes fileName added but not deleted
+                            self.viewLinkedTo?.card.mediaDataURLs.append(fileName)
+                            self.viewLinkedTo?.layoutSubviews()
+                        } catch let error {
+                            print ("couldn't save \(error)")
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+    func cancelButtonDidPress(_ imagePicker: ImagePickerController) {
+        print("z")
+        imagePicker.dismiss(animated: true, completion: nil)
+    }
+    
+    
 }
 
 extension WithImagesViewController{
