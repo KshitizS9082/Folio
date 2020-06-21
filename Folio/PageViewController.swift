@@ -64,6 +64,7 @@ class PageViewController: UIViewController {
                 pageViewHeightConstraint?.constant = CGFloat(newVal.pageHeight)
                 self.gridStyle=newVal.gridStyle
                 self.updateMinZoomScale()
+                
 //                pageView.page=newVal
                 pageView.setNeedsDisplay()//TODO: check if needed
                 var d=PKDrawing()
@@ -338,6 +339,7 @@ class PageViewController: UIViewController {
             minZoom = 1.0;
         }
         scrollView.minimumZoomScale = minZoom;
+        print("min = \(scrollView.minimumZoomScale), max = \(scrollView.maximumZoomScale), cur= \(scrollView.zoomScale)")
     }
     func changePageView(horizontalFactor x: CGFloat, verticalFactor y: CGFloat){
         print("old pageView frame = \(pageView.frame)")

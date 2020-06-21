@@ -22,8 +22,17 @@ struct journalCard: Codable {
     var journalNotesCard: noteJournalCard?
     var journalLocationCard: locationJournalCard?
     var journalMediaCard: mediaJournalCard?
+    var habitCard: habitJournalCard?
     //used for segue from PageExtractViewController to switchPageTimelineVC
     var pageID: pageInfo?
+}
+struct habitJournalCard: Codable{
+    var UniquIdentifier=UUID()
+    var title = ""
+    var entryCount = 0.0
+    var goalCount = 0.0
+    var entryDate: Date?
+    var habitGoalPeriod = habitCardData.recurencePeriod.daily
 }
 struct journalCardList: Codable{
     var jCards = [journalCard]()
@@ -70,6 +79,7 @@ enum journalCardType: String, Codable{
     case notes
     case journalLocation
     case journalMedia
+    case habits
 }
 protocol addCardInJournalProtocol {
     func addMediaCell()
@@ -92,6 +102,7 @@ class JournalViewController: UIViewController {
     var pages = [PageData]()
     var allCards = [journalCard]()
     var journalEntryCards = [journalCard]()
+    var habits = HabitsData()
 //    var datesPresent = [Date]()
     var selectedDate = Date()
     var cardsForSelectedDate = [journalCard]()
@@ -184,6 +195,11 @@ class JournalViewController: UIViewController {
         for card in journalEntryCards{
             print("insed add from journalEntryCards")
             allCards.append(card)
+        }
+        for card in habits.cardList{
+            for val in card.allEntries{
+                self.allCards.append(journalCard(type: .habits, dateInCal: val.key, habitCard: habitJournalCard(UniquIdentifier: card.UniquIdentifier, title: card.title, entryCount: val.value, goalCount: card.goalCount, entryDate: val.key, habitGoalPeriod: card.habitGoalPeriod)))
+            }
         }
 //        print("self.cards ")
 //        for card in self.allCards{
@@ -293,6 +309,25 @@ class JournalViewController: UIViewController {
                 print("error no file named journalCards.json found")
             }
         }
+        
+        if let url = try? FileManager.default.url(
+            for: .documentDirectory,
+            in: .userDomainMask,
+            appropriateFor: nil,
+            create: true
+        ).appendingPathComponent("habitCardsData.json"){
+            if let jsonData = try? Data(contentsOf: url){
+                if let extract = HabitsData(json: jsonData){
+                    print("did set self.habits to \(extract)")
+                    self.habits = extract
+                }else{
+                    print("ERROR: found HabitsData(json: jsonData) to be nil so didn't set it")
+                }
+            }else{
+                print("error no file named habitCardsData.json found")
+            }
+        }
+        
         setupData()
         setupTable()
         table.reloadData()
@@ -513,6 +548,8 @@ extension JournalViewController: UITableViewDataSource, UITableViewDelegate{
             return setJournalMediaCardCell(tableView, cellForRowAt: indexPath)
         case .journalLocation:
             return setJournalLocationCardCell(tableView, cellForRowAt: indexPath)
+        case .habits:
+            return setJournalHabitCardCell(tableView, cellForRowAt: indexPath)
         default:
             print("i dunno what card this is x")
         }
@@ -645,6 +682,23 @@ extension JournalViewController: UITableViewDataSource, UITableViewDelegate{
 //            }
             return cell
         }
+    func setJournalHabitCardCell(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell{
+        let cell = tableView.dequeueReusableCell(withIdentifier: "journalHabitsTVC", for: indexPath) as! journalHabitTableViewCell
+        cell.selectionStyle = .none
+        cell.delegate=self
+        cell.index = indexPath
+        let formatter = DateFormatter()
+        let card = cardsForSelectedDate[indexPath.row]
+        formatter.dateStyle = .full
+        cell.dateLabel.text = formatter.string(from: card.dateInCal!)
+        formatter.dateFormat = "hh:mm a"
+        cell.timeLabel.text = formatter.string(from: card.dateInCal!)
+        if let habitcrd = card.habitCard{
+            cell.notesLabel.text = habitcrd.habitGoalPeriod.rawValue + " Habit: " + habitcrd.title + " :- " + String(habitcrd.entryCount)
+        }
+        return cell
+    }
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.table.deselectRow(at: indexPath, animated: false)
     }

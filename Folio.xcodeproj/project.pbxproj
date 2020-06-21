@@ -65,6 +65,7 @@
 		E25BA51924728AA9000D1DF7 /* MediaCardTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E25BA51724728AA9000D1DF7 /* MediaCardTableViewCell.xib */; };
 		E25BA51A24728AA9000D1DF7 /* MediaCardTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E25BA51824728AA9000D1DF7 /* MediaCardTableViewCell.swift */; };
 		E260F152247AA91E00CFB697 /* PageExtractViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E260F151247AA91E00CFB697 /* PageExtractViewController.swift */; };
+		E2623829249F1F3500BC510A /* journalHabitTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2623828249F1F3500BC510A /* journalHabitTableViewCell.swift */; };
 		E269476524702D0900F9E21F /* UITextView+Expanding.swift in Sources */ = {isa = PBXBuildFile; fileRef = E269476424702D0900F9E21F /* UITextView+Expanding.swift */; };
 		E26947672470320B00F9E21F /* SmallCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E26947662470320B00F9E21F /* SmallCardView.swift */; };
 		E26A31232480A8AB007F2289 /* addEntryInJournalTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E26A31222480A8AB007F2289 /* addEntryInJournalTableViewCell.swift */; };
@@ -192,6 +193,7 @@
 		E25BA51724728AA9000D1DF7 /* MediaCardTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MediaCardTableViewCell.xib; sourceTree = "<group>"; };
 		E25BA51824728AA9000D1DF7 /* MediaCardTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediaCardTableViewCell.swift; sourceTree = "<group>"; };
 		E260F151247AA91E00CFB697 /* PageExtractViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageExtractViewController.swift; sourceTree = "<group>"; };
+		E2623828249F1F3500BC510A /* journalHabitTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = journalHabitTableViewCell.swift; sourceTree = "<group>"; };
 		E269476424702D0900F9E21F /* UITextView+Expanding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITextView+Expanding.swift"; sourceTree = "<group>"; };
 		E26947662470320B00F9E21F /* SmallCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmallCardView.swift; sourceTree = "<group>"; };
 		E26A31222480A8AB007F2289 /* addEntryInJournalTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = addEntryInJournalTableViewCell.swift; sourceTree = "<group>"; };
@@ -490,6 +492,7 @@
 				E2B1D0532483EEA100BA8C7D /* MKPointAnnotation-Codable.swift */,
 				E2FEE2B1247CC24200DD7069 /* DateHeader.swift */,
 				E2A6F99B248FB9510041616A /* journalCardFullViewViewController.swift */,
+				E2623828249F1F3500BC510A /* journalHabitTableViewCell.swift */,
 			);
 			path = "Journal Items";
 			sourceTree = "<group>";
@@ -819,6 +822,7 @@
 				E2FEE2B0247C1DDD00DD7069 /* DateCell.swift in Sources */,
 				E25B0E9D247C010C004F3BDA /* JournalViewController.swift in Sources */,
 				E211905E248BABA100DE9D92 /* fullChecklistViewTableViewCell.swift in Sources */,
+				E2623829249F1F3500BC510A /* journalHabitTableViewCell.swift in Sources */,
 				E25BA4FD24716AD0000D1DF7 /* MediaCardView.swift in Sources */,
 				E25BA50624721F93000D1DF7 /* ThumbCell.swift in Sources */,
 				E25B0E9B247BD055004F3BDA /* UITextField+Extensions.swift in Sources */,

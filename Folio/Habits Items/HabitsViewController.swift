@@ -214,7 +214,7 @@ extension HabitsViewController: habitsVCProtocol{
         }else{
             habits.cardList[index.row].entriesList[date]=count
         }
-        //MARK: next lines to be removed used for debginnh
+        //MARK: next lines to be removed used for debugging
         //TODO: next lines to be removed used for debginnh
 //        var x = Calendar.current.date(byAdding: .day, value:  -(1), to: Date())!.startOfDay
 //        habits.cardList[index.row].entriesList[x]=count.advanced(by: -3.0)
