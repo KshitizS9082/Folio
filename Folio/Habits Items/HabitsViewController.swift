@@ -195,8 +195,12 @@ extension HabitsViewController: habitsVCProtocol{
 //            habits.cardList[index.row].allEntries[x.startOfDay]=count+6
 //            x = Calendar.current.date(byAdding: .day, value:  -(3), to: Date())!.startOfDay
 //            habits.cardList[index.row].allEntries[x.startOfDay]=count-3
-//            x = Calendar.current.date(byAdding: .day, value:  -(5), to: Date())!.startOfDay
+//            x = Calendar.current.date(byAdding: .day, value:  -(7), to: Date())!.startOfDay
 //            habits.cardList[index.row].allEntries[x.startOfDay]=count-4
+//            x = Calendar.current.date(byAdding: .day, value:  -(8), to: Date())!.startOfDay
+//            habits.cardList[index.row].allEntries[x.startOfDay]=count-4
+//            x = Calendar.current.date(byAdding: .day, value:  -(12), to: Date())!.startOfDay
+//            habits.cardList[index.row].allEntries[x.startOfDay]=count*2
         }
         
         switch habits.cardList[index.row].habitGoalPeriod {
@@ -209,11 +213,64 @@ extension HabitsViewController: habitsVCProtocol{
         case .yearly:
             date=date.startOfYear
         }
-        if count==0.0{
-            habits.cardList[index.row].entriesList.removeValue(forKey: date)
-        }else{
-            habits.cardList[index.row].entriesList[date]=count
+//        var startCount=0
+//        for entry in habits.cardList[index.row].allEntries{
+//            switch habits.cardList[index.row].habitGoalPeriod {
+//            case .daily:
+//                if date==entry.key.startOfDay{
+//                    startCount+=Int(entry.value)
+//                }
+//            case .weekly:
+//                if date==entry.key.startOfWeek{
+//                    startCount+=Int(entry.value)
+//                }
+//            case .monthly:
+//                if date==entry.key.startOfMonth{
+//                    startCount+=Int(entry.value)
+//                }
+//            case .yearly:
+//                if date==entry.key.startOfYear{
+//                    startCount+=Int(entry.value)
+//                }
+//            }
+//        }
+//        if startCount==0{
+//            habits.cardList[index.row].entriesList.removeValue(forKey: date)
+//        }else{
+//            habits.cardList[index.row].entriesList[date]=Double(startCount)
+//        }
+        
+        //TODO: check if needed to remove if not very efficient and implement above commented version: recalculates all entriesList
+        habits.cardList[index.row].entriesList.removeAll()
+        for entry in habits.cardList[index.row].allEntries{
+            switch habits.cardList[index.row].habitGoalPeriod {
+            case .daily:
+                if habits.cardList[index.row].entriesList[entry.key.startOfDay]==nil{
+                    habits.cardList[index.row].entriesList[entry.key.startOfDay]=entry.value
+                }else{
+                    habits.cardList[index.row].entriesList[entry.key.startOfDay]!+=entry.value
+                }
+            case .weekly:
+                if habits.cardList[index.row].entriesList[entry.key.startOfWeek]==nil{
+                    habits.cardList[index.row].entriesList[entry.key.startOfWeek]=entry.value
+                }else{
+                    habits.cardList[index.row].entriesList[entry.key.startOfWeek]!+=entry.value
+                }
+            case .monthly:
+                if habits.cardList[index.row].entriesList[entry.key.startOfMonth]==nil{
+                    habits.cardList[index.row].entriesList[entry.key.startOfMonth]=entry.value
+                }else{
+                    habits.cardList[index.row].entriesList[entry.key.startOfMonth]!+=entry.value
+                }
+            case .yearly:
+                if habits.cardList[index.row].entriesList[entry.key.startOfYear]==nil{
+                    habits.cardList[index.row].entriesList[entry.key.startOfYear]=entry.value
+                }else{
+                    habits.cardList[index.row].entriesList[entry.key.startOfYear]!+=entry.value
+                }
+            }
         }
+        
         //MARK: next lines to be removed used for debugging
         //TODO: next lines to be removed used for debginnh
 //        var x = Calendar.current.date(byAdding: .day, value:  -(1), to: Date())!.startOfDay

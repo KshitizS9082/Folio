@@ -132,6 +132,17 @@ class JournalViewController: UIViewController {
         table.reloadData()
         let pinch = UIPinchGestureRecognizer(target: self, action: #selector(handlePinch))
         table.addGestureRecognizer(pinch)
+        // register for notifications when the keyboard appears:
+        NotificationCenter.default.addObserver( self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
+    }
+    @objc func keyboardWillShow( note:NSNotification ){
+        // read the CGRect from the notification (if any)
+        if let newFrame = (note.userInfo?[ UIResponder.keyboardFrameEndUserInfoKey ] as? NSValue)?.cgRectValue {
+            print("increease by \(newFrame.height)")
+            let insets = UIEdgeInsets( top: 0, left: 0, bottom: newFrame.height, right: 0 )
+            table.contentInset = insets
+            table.scrollIndicatorInsets = insets
+        }
     }
     
     @IBAction func toggleCalendar(_ sender: Any) {
@@ -193,7 +204,7 @@ class JournalViewController: UIViewController {
         }
         print("journalentrycards count - \(journalEntryCards.count)")
         for card in journalEntryCards{
-            print("insed add from journalEntryCards")
+//            print("insed add from journalEntryCards")
             allCards.append(card)
         }
         for card in habits.cardList{

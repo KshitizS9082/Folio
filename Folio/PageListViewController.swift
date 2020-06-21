@@ -245,7 +245,18 @@ class PageListViewController: UIViewController {
         configureHeading()
         configureTable()
         // Do any additional setup after loading the view.
+        // register for notifications when the keyboard appears:
+        NotificationCenter.default.addObserver( self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
     }
+    @objc func keyboardWillShow( note:NSNotification ){
+        // read the CGRect from the notification (if any)
+        if let newFrame = (note.userInfo?[ UIResponder.keyboardFrameEndUserInfoKey ] as? NSValue)?.cgRectValue {
+            let insets = UIEdgeInsets( top: 0, left: 0, bottom: newFrame.height, right: 0 )
+            table.contentInset = insets
+            table.scrollIndicatorInsets = insets
+        }
+    }
+    
     
     @objc func addPage(){
 //        pages.append(PageData())

@@ -253,8 +253,10 @@ class habitTableViewCell: UITableViewCell {
                 let ll = ChartLimitLine(limit: hdt.goalCount, label: "Target")
                 lineChartView.rightAxis.addLimitLine(ll)
             }
-            
+            print("setting chart using entrylist \(hdt.entriesList)")
+            print("setting chart using allentry \(hdt.allEntries)")
             var date = hdt.constructionDate
+//            var date = Calendar.current.date(byAdding: .day, value:  -(15), to: Date())!
             var counter = 1.0
             print("will enter switch")
             switch hdt.habitGoalPeriod {
