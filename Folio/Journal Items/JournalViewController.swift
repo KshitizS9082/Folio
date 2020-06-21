@@ -215,7 +215,12 @@ class JournalViewController: UIViewController {
             }
         }
         cardsForSelectedDate.sort { (firstCard, secondCard) -> Bool in
-            firstCard.dateInCal! < secondCard.dateInCal!
+            if firstCard.type == .habits{
+                return false
+            }else if secondCard.type == .habits{
+                return true
+            }
+            return firstCard.dateInCal! < secondCard.dateInCal!
         }
     }
     func setupTable(){
@@ -687,14 +692,15 @@ extension JournalViewController: UITableViewDataSource, UITableViewDelegate{
         cell.selectionStyle = .none
         cell.delegate=self
         cell.index = indexPath
-        let formatter = DateFormatter()
         let card = cardsForSelectedDate[indexPath.row]
-        formatter.dateStyle = .full
-        cell.dateLabel.text = formatter.string(from: card.dateInCal!)
-        formatter.dateFormat = "hh:mm a"
-        cell.timeLabel.text = formatter.string(from: card.dateInCal!)
+//        let formatter = DateFormatter()
+//        formatter.dateStyle = .full
+//        cell.dateLabel.text = formatter.string(from: card.dateInCal!)
+//        formatter.dateFormat = "hh:mm a"
+//        cell.timeLabel.text = formatter.string(from: card.dateInCal!)
         if let habitcrd = card.habitCard{
-            cell.notesLabel.text = habitcrd.habitGoalPeriod.rawValue + " Habit: " + habitcrd.title + " :- " + String(habitcrd.entryCount)
+            cell.timeLabel.text =  "Habit: "+habitcrd.title+" ("+habitcrd.habitGoalPeriod.rawValue+")"
+            cell.notesLabel.text = "Entry Today: " + String(Int(habitcrd.entryCount))
         }
         return cell
     }
