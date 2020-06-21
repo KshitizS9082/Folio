@@ -30,6 +30,15 @@ class habitTableViewCell: UITableViewCell {
             calendar.layer.cornerRadius = calendarCornerRadius
         }
     }
+    @IBOutlet weak var calendarShadowView: UIView!{
+        didSet{
+            calendarShadowView.layer.shadowColor = UIColor.gray.cgColor
+            calendarShadowView.layer.shadowOffset = CGSize(width: 0.0, height: 3.0)
+            calendarShadowView.layer.shadowRadius = 5.0
+            calendarShadowView.layer.shadowOpacity = 0.4
+            calendarShadowView.layer.cornerRadius = calendarCornerRadius
+        }
+    }
     @IBOutlet weak var calendarHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var toggleCalSizeIV: UIImageView!{
         didSet{
@@ -50,9 +59,14 @@ class habitTableViewCell: UITableViewCell {
 //    var targetValues = [ChartDataEntry]()
     @IBOutlet weak var lineChartView: LineChartView!{
         didSet{
-            self.lineChartView.backgroundColor = UIColor(named: "myBackgroundColor")
+            self.lineChartView.backgroundColor = UIColor(named: "smallCardColor")
             self.lineChartView.layer.cornerRadius = chartCornerRadius
-            self.lineChartView.layer.masksToBounds = true
+            self.lineChartView.layer.masksToBounds = false
+            self.lineChartView.layer.shadowColor = UIColor.gray.cgColor
+            self.lineChartView.layer.shadowOffset = CGSize(width: 0.0, height: 2.0)
+            self.lineChartView.layer.shadowRadius = 5.0
+            self.lineChartView.layer.shadowOpacity = 0.4
+            
             self.lineChartView.delegate = self
 //            self.lineChartView.rightAxis.enabled=false
             self.lineChartView.rightAxis.gridColor = .clear
@@ -460,12 +474,14 @@ extension habitTableViewCell: JTAppleCalendarViewDataSource, JTAppleCalendarView
             if sameDay{
 //                print("is first day of categ")
                 if hdt.habitGoalPeriod != .daily{
-                    cell.contentView.layer.borderColor = #colorLiteral(red: 1, green: 0.1764705882, blue: 0.3333333333, alpha: 0.3976947623)
-                    cell.contentView.layer.borderWidth = 1
+//                    cell.contentView.layer.borderColor = #colorLiteral(red: 1, green: 0.1764705882, blue: 0.3333333333, alpha: 0.3976947623)
+//                    cell.contentView.layer.borderWidth = 1
+                    cell.dateBackgroundView.isHidden=false
                 }
             }else{
 //                print("is not first day of categ")
                 cell.contentView.layer.borderWidth = 0
+                cell.dateBackgroundView.isHidden=true
             }
         }else{
             cell.countLabel.text = "noHdt"
