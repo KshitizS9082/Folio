@@ -14,6 +14,8 @@ class PageExtractViewController: UIViewController {
     var selectedExtractView : Int = 0
     var sizeType = cardSizeMode.full
     var cardsList = [timeLineCard]()
+    //needs to be consistent with colorScheme in newPageExtractTableViewCell
+    var colorScheme: [UIColor] = [#colorLiteral(red: 0.2697139382, green: 0.4841310382, blue: 0.6147911549, alpha: 1), #colorLiteral(red: 0.9570466876, green: 0.8270440698, blue: 0.3706027269, alpha: 1), #colorLiteral(red: 0.3162998855, green: 0.5962183475, blue: 0.4454712272, alpha: 1), #colorLiteral(red: 0.9781618714, green: 0.3885442615, blue: 0.5711895823, alpha: 1)]
     
     @IBOutlet weak var table: UITableView!
     
@@ -288,18 +290,19 @@ extension PageExtractViewController: UITableViewDataSource, UITableViewDelegate{
                 cst.isActive=true
         }
         headerLabel.font = UIFont.boldSystemFont(ofSize: 30)
+        headerLabel.textColor = colorScheme[self.selectedExtractView]
         switch self.selectedExtractView {
         case 0:
-            headerLabel.textColor = UIColor.systemBlue
+//            headerLabel.textColor = UIColor.systemBlue
             headerLabel.text = "Today Card's"
         case 1:
-            headerLabel.textColor = UIColor.systemYellow
+//            headerLabel.textColor = UIColor.systemYellow
             headerLabel.text = "Scheduled Card's"
         case 2:
-            headerLabel.textColor = UIColor.systemGray
+//            headerLabel.textColor = UIColor.systemGray
             headerLabel.text = "All Card's"
         case 3:
-            headerLabel.textColor = UIColor.systemRed
+//            headerLabel.textColor = UIColor.systemRed
             headerLabel.text = "Due Card's"
         default:
             headerLabel.textColor = UIColor.black

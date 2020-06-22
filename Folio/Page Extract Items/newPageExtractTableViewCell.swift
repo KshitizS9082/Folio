@@ -12,6 +12,8 @@ class newPageExtractTableViewCell: UITableViewCell, UICollectionViewDataSource, 
     var delegate: pageListeProtocol?
     var cardTitles = ["Today", "Scheduled", "All", "Due"]
     var countValues = [0, 0, 0, 0]
+    //needs to be consistent with colorScheme in PageExtractViewController
+    var colorScheme: [UIColor] = [#colorLiteral(red: 0.2697139382, green: 0.4841310382, blue: 0.6147911549, alpha: 1), #colorLiteral(red: 0.9570466876, green: 0.8270440698, blue: 0.3706027269, alpha: 1), #colorLiteral(red: 0.3162998855, green: 0.5962183475, blue: 0.4454712272, alpha: 1), #colorLiteral(red: 0.9781618714, green: 0.3885442615, blue: 0.5711895823, alpha: 1)]
     
     @IBOutlet weak var collectionView: UICollectionView!{
         didSet{
@@ -58,7 +60,7 @@ class newPageExtractTableViewCell: UITableViewCell, UICollectionViewDataSource, 
             let cell = cardCell(collectionView, cellForItemAt: indexPath)
             cell.myIndex=indexPath.row
             cell.image.image = UIImage(systemName: "calendar.circle.fill")
-            cell.image.tintColor = .systemBlue
+            cell.image.tintColor = colorScheme[indexPath.row]
             cell.textLablel.text = "Today"
             cell.numberLabel.text = String(countValues[indexPath.row])
             cell.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(selectedIndex)))
@@ -67,7 +69,7 @@ class newPageExtractTableViewCell: UITableViewCell, UICollectionViewDataSource, 
             let cell = cardCell(collectionView, cellForItemAt: indexPath)
             cell.myIndex=indexPath.row
             cell.image.image = UIImage(systemName: "clock.fill")
-            cell.image.tintColor = .systemYellow
+            cell.image.tintColor = colorScheme[indexPath.row]
             cell.textLablel.text = "Scheduled"
             cell.numberLabel.text = String(countValues[indexPath.row])
             cell.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(selectedIndex)))
@@ -76,7 +78,7 @@ class newPageExtractTableViewCell: UITableViewCell, UICollectionViewDataSource, 
             let cell = cardCell(collectionView, cellForItemAt: indexPath)
             cell.myIndex=indexPath.row
             cell.image.image = UIImage(systemName: "tray.fill")
-            cell.image.tintColor = .systemGray
+            cell.image.tintColor = colorScheme[indexPath.row]
             cell.textLablel.text = "All"
             cell.numberLabel.text = String(countValues[indexPath.row])
             cell.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(selectedIndex)))
@@ -85,7 +87,7 @@ class newPageExtractTableViewCell: UITableViewCell, UICollectionViewDataSource, 
             let cell = cardCell(collectionView, cellForItemAt: indexPath)
             cell.myIndex=indexPath.row
             cell.image.image = UIImage(systemName: "exclamationmark.circle.fill")
-            cell.image.tintColor = .systemRed
+            cell.image.tintColor = colorScheme[indexPath.row]
             cell.textLablel.text = "Due"
             cell.numberLabel.text = String(countValues[indexPath.row])
             cell.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(selectedIndex)))
