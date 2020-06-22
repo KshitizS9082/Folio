@@ -277,6 +277,7 @@ class JournalViewController: UIViewController {
         calendarView.viewWillTransition(to: .zero, with: coordinator, anchorDate: visibleDates.monthDates.first?.date)
     }
     override func viewWillAppear(_ animated: Bool) {
+        print("in viewwillappear")
         // Make the navigation bar background clear
         navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
         navigationController?.navigationBar.shadowImage = UIImage()

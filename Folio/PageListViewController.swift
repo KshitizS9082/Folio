@@ -170,6 +170,7 @@ class PageListViewController: UIViewController {
         view.backgroundColor = backgroundColour
         table.dataSource=self
         table.delegate=self
+        table.reloadData()
 //        table.register(UINib(nibName: "pageListTableViewCell", bundle: nil), forCellReuseIdentifier: "customPageCell")
     }
     override func viewWillAppear(_ animated: Bool) {

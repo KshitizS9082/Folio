@@ -67,6 +67,7 @@ class PageExtractViewController: UIViewController {
         }
     }
     func setupData(){
+        cardsList.removeAll()
         var fileName=""
         var info = pageInfo()
         for ind in pagesListFromPLVC.items.indices{
@@ -140,6 +141,7 @@ class PageExtractViewController: UIViewController {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
+        print("vdl")
         setupData()
         setupTable()
         table.reloadData()
@@ -185,11 +187,13 @@ class PageExtractViewController: UIViewController {
        }
     
     override func viewWillAppear(_ animated: Bool) {
+        print("in viewalr")
         super.viewWillAppear(animated)
         // Make the navigation bar background clear
         navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
         navigationController?.navigationBar.shadowImage = UIImage()
         navigationController?.navigationBar.isTranslucent = true
+        viewDidLoad()
     }
     override func viewWillDisappear(_ animated: Bool) {
         // Restore the navigation bar to default
@@ -203,6 +207,7 @@ class PageExtractViewController: UIViewController {
     var selectedCell: Int?
       var uniqueIdOfCardToShow: UUID?
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        print("gonna segue")
         if segue.identifier == "showPageLinkedToCardSegue"{
             if let targetController = segue.destination as? SwitchPageTimelineViewController{
                 targetController.pageID = cardsList[selectedCell!].pageID
@@ -441,7 +446,7 @@ extension PageExtractViewController: timelineSwitchDelegate{
             if let card = tlcard.bigCard{
                 if card.card.UniquIdentifier == uniqueID{
                     selectedCell=ind
-                    print("gonna perform segue with cell at \(selectedCell!)")
+                    print("gonna perform segue with bigcell at \(selectedCell!)")
                     performSegue(withIdentifier: "showPageLinkedToCardSegue", sender: self)
                     return
                 }
@@ -449,7 +454,7 @@ extension PageExtractViewController: timelineSwitchDelegate{
             if let card = tlcard.smallCard{
                 if card.card.UniquIdentifier == uniqueID{
                     selectedCell=ind
-                    print("gonna perform segue with cell at \(selectedCell!)")
+                    print("gonna perform segue with smallcell at \(selectedCell!)")
                     performSegue(withIdentifier: "showPageLinkedToCardSegue", sender: self)
                     return
                 }
@@ -457,7 +462,7 @@ extension PageExtractViewController: timelineSwitchDelegate{
             if let card = tlcard.mediaCard{
                 if card.card.UniquIdentifier == uniqueID{
                     selectedCell=ind
-                    print("gonna perform segue with cell at \(selectedCell!)")
+                    print("gonna perform segue with mediacell at \(selectedCell!)")
                     performSegue(withIdentifier: "showPageLinkedToCardSegue", sender: self)
                     return
                 }
