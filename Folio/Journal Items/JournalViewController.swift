@@ -775,6 +775,7 @@ extension JournalViewController: myUpdateCellHeightDelegate{
 extension JournalViewController: timelineSwitchDelegate{
     func switchToPageAndShowCard(with uniqueID: UUID) {
         print("inside switchToPageAndShowCard")
+        self.navigationController?.setNavigationBarHidden(false, animated: true)
         self.uniqueIdOfCardToShow=uniqueID
         cardsForSelectedDate.indices.forEach{ (ind) in
             let tlcard = cardsForSelectedDate[ind]
