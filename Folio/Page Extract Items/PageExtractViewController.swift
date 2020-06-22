@@ -270,7 +270,7 @@ extension PageExtractViewController: UITableViewDataSource, UITableViewDelegate{
 //        default:
 //            print("i dunno what card this is y")
 //        }
-        return UITableViewCell()
+//        return UITableViewCell()
     }
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return "TempTitle"

@@ -262,7 +262,10 @@ class PageListViewController: UIViewController {
     @objc func addPage(){
 //        pages.append(PageData())
         pages.items.append(pageInfo())
-        table.reloadData()
+        table.beginUpdates()
+        table.insertRows(at: [IndexPath(row: pages.items.count-1, section: 1)], with: .automatic)
+        table.endUpdates()
+        table.scrollToRow(at: IndexPath(row: pages.items.count-1, section: 1), at: .middle, animated: true)
     }
     @objc func showJournal(){
         performSegue(withIdentifier: "showJournalSegue", sender: self)

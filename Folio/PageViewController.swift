@@ -795,8 +795,8 @@ extension PageViewController: pageProtocol{
             origin = CGPoint(x: lineSpacing*CGFloat(Int(origin.x/lineSpacing))+5, y: horSpacing*CGFloat(Int(origin.y/horSpacing))+5)
         case .gridless:
             return
-        default:
-            print("ERROR: unknown grid value")
+//        default:
+//            print("ERROR: unknown grid value")
         }
         newView.frame=CGRect(origin: origin, size: newView.frame.size)
     }

@@ -246,9 +246,9 @@ class PageView: UIView {
             print("connectViews")
         case .noneOfAbove:
             print("noneOfAbove")
-        default:
-            print("dunno what to do with touch began")
-            canvas?.isUserInteractionEnabled=false
+//        default:
+//            print("dunno what to do with touch began")
+//            canvas?.isUserInteractionEnabled=false
         }
     }
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
