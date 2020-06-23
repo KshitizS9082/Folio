@@ -1020,9 +1020,9 @@ extension JournalViewController: addCardInJournalProtocol{
         print("get journalLocation")
         let storyboard : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         let vc = storyboard.instantiateViewController(withIdentifier: "journalLocationPickerNavigationViewController")
-        vc.modalPresentationStyle = .popover
+        vc.modalPresentationStyle = .automatic
         //TODO: just useed here to avoide fault in ipad, to be changed and set appropriately later
-        vc.popoverPresentationController?.barButtonItem=toggleCalendarButton
+//        vc.popoverPresentationController?.barButtonItem=toggleCalendarButton
         if let x = vc as? UINavigationController{
             print("is uinav controller")
             if let y = x.viewControllers.first as? journalLocationPickerViewController{

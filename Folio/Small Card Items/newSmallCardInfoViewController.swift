@@ -65,6 +65,7 @@ class newSmallCardInfoViewController: UIViewController {
         alert.addAction(deleteFromPageAction)
         alert.addAction(deleteAction)
         alert.addAction(cancelAction)
+        alert.popoverPresentationController?.sourceView = deleteButton
         self.present(alert, animated: true, completion: nil)
     }
     override func viewDidLoad() {

@@ -938,6 +938,7 @@ extension PageViewController: pageProtocol{
     }
     
     func getMeMedia(for cardView: MediaCardView) {
+        /*
         ImagePickerManager().pickImage(self){ image, shouldDelete, shouldDeleteFromPage, resizeView in
             print("should delete = \(shouldDelete)")
             if let img = image{
@@ -985,6 +986,30 @@ extension PageViewController: pageProtocol{
                 cardView.startResizing()
             }
         }
+         */
+        
+        let alert = UIAlertController(title: "Edit Media Card", message: nil, preferredStyle: .actionSheet)
+        let deleteAction = UIAlertAction(title: "Delete", style: .destructive){
+            UIAlertAction in
+            cardView.deleteMe()
+        }
+        let deleteFromPageAction = UIAlertAction(title: "Remove From Page", style: .destructive){
+            UIAlertAction in
+            cardView.isHidden=true
+        }
+        let resizeView = UIAlertAction(title: "Resize Card", style: .default){
+            UIAlertAction in
+            cardView.startResizing()
+        }
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel){
+            UIAlertAction in
+        }
+        alert.addAction(resizeView)
+        alert.addAction(cancelAction)
+        alert.addAction(deleteFromPageAction)
+        alert.addAction(deleteAction)
+        alert.popoverPresentationController?.sourceView = cardView
+        self.present(alert, animated: true, completion: nil)
         print("WARNING: COULDN'T inserted image in pagedata")
     }
     //TODO: optimise as animation very laggy for now
