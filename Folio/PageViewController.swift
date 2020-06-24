@@ -115,6 +115,7 @@ class PageViewController: UIViewController {
                 print("got nil for newValue in set in PageData in PageViewController")
             }
             viewDidLoad()
+//            scrollView.setZoomScale(scrollView.minimumZoomScale, animated: true)
         }
     }
     var gridStyle = PageData.gridValues.gridless{
@@ -262,10 +263,9 @@ class PageViewController: UIViewController {
                 cst.isActive=true
         }
         dropZone.addInteraction(UIDropInteraction(delegate: self))
-        
         if dropZone.subviews.contains(scrollView)==false{
             dropZone.addSubview(scrollView)
-            scrollView.setZoomScale(1.0, animated: true)
+//            scrollView.setZoomScale(1.0, animated: true)
         }
         scrollView.translatesAutoresizingMaskIntoConstraints=false
         [
@@ -329,6 +329,7 @@ class PageViewController: UIViewController {
             self.view.bringSubviewToFront(iv)
         }
         view.bringSubviewToFront(ImageViews[6])
+//        scrollView.setZoomScale(scrollView.minimumZoomScale, animated: true)
     }
     var pageViewHeightConstraint: NSLayoutConstraint?
     var pageViewWidhtConstraint: NSLayoutConstraint?
@@ -518,6 +519,7 @@ class PageViewController: UIViewController {
 //                    print("did set page = extract i.e. \(extract) succesfully")
                     page = extract
 //                    viewDidLoad()
+                    scrollView.setZoomScale(scrollView.minimumZoomScale, animated: true)
                 }else{
                     print("ERROR: found PageData(json: jsonData) to be nil so didn't set it")
                 }
