@@ -556,6 +556,10 @@ class PageViewController: UIViewController {
             vc.viewLinkedTo=bigCardViewLinkedTo
             vc.card=self.bigCardForLinkedView
         }
+        if let vc = segue.destination as? drawingCardFullViewController{
+            vc.viewLinkedTo=bigCardViewLinkedTo
+            vc.card=self.bigCardForLinkedView
+        }
     }
 }
 extension PageViewController{
@@ -876,26 +880,29 @@ extension PageViewController: pageProtocol{
         cardView.layoutSubviews()//Check if required
     }
     private func showFullDrawingView(for cardView: cardView){
-        let controller = drawingCardFullViewController()
-        let transitionDelegate = SPStorkTransitioningDelegate()
-        transitionDelegate.customHeight = 800
-        transitionDelegate.showIndicator = true
-        transitionDelegate.indicatorColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
-        transitionDelegate.indicatorMode = .auto
-        transitionDelegate.hideIndicatorWhenScroll = true
-        transitionDelegate.showCloseButton = true
-        transitionDelegate.swipeToDismissEnabled = false
-        transitionDelegate.tapAroundToDismissEnabled = true
-        controller.transitioningDelegate = transitionDelegate
-        controller.modalPresentationStyle = .custom
-        controller.modalPresentationCapturesStatusBarAppearance = true
-        transitionDelegate.hapticMoments = [.willPresent, .willDismiss]
-        transitionDelegate.cornerRadius = 10
-        transitionDelegate.storkDelegate = controller
-        controller.card=cardView.card
-        controller.isEditing = true
-        controller.viewLinkedTo=cardView
-        self.present(controller, animated: true, completion: nil)
+//        let controller = drawingCardFullViewController()
+//        let transitionDelegate = SPStorkTransitioningDelegate()
+//        transitionDelegate.customHeight = 800
+//        transitionDelegate.showIndicator = true
+//        transitionDelegate.indicatorColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
+//        transitionDelegate.indicatorMode = .auto
+//        transitionDelegate.hideIndicatorWhenScroll = true
+//        transitionDelegate.showCloseButton = true
+//        transitionDelegate.swipeToDismissEnabled = false
+//        transitionDelegate.tapAroundToDismissEnabled = true
+//        controller.transitioningDelegate = transitionDelegate
+//        controller.modalPresentationStyle = .custom
+//        controller.modalPresentationCapturesStatusBarAppearance = true
+//        transitionDelegate.hapticMoments = [.willPresent, .willDismiss]
+//        transitionDelegate.cornerRadius = 10
+//        transitionDelegate.storkDelegate = controller
+//        controller.card=cardView.card
+//        controller.isEditing = true
+//        controller.viewLinkedTo=cardView
+//        self.present(controller, animated: true, completion: nil)
+        self.bigCardViewLinkedTo = cardView
+        self.bigCardForLinkedView = cardView.card
+        performSegue(withIdentifier: "showCardDrawingSegue", sender: self)
     }
     private func showFullNotesView(for cardView: cardView){
 //        let controller = NotesFullViewController()

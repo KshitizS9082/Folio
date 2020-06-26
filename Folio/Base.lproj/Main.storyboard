@@ -1010,6 +1010,7 @@
                         <segue destination="8TX-W8-QyG" kind="presentation" identifier="smallCardInfoViewSegue" id="ULs-Nm-O8G"/>
                         <segue destination="WaY-nZ-q6R" kind="presentation" identifier="showCardCheckLIstSegue" id="fsJ-3Y-aCS"/>
                         <segue destination="2A4-er-TFF" kind="presentation" identifier="showCardNotesSegue" id="ezG-eb-Vx4"/>
+                        <segue destination="UGx-u1-6Co" kind="presentation" identifier="showCardDrawingSegue" id="l5f-Fo-zBn"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fmJ-eK-wcs" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1350,6 +1351,53 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aah-5L-EA6" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="5510.144927536232" y="-458.03571428571428"/>
+        </scene>
+        <!--Drawing Card Full View Controller-->
+        <scene sceneID="n5f-Up-dDK">
+            <objects>
+                <viewController id="UGx-u1-6Co" customClass="drawingCardFullViewController" customModule="Folio" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="En2-Rf-ybA">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="720"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="s80-n4-ewt">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
+                                <textAttributes key="titleTextAttributes">
+                                    <color key="textColor" systemColor="systemTealColor" red="0.35294117650000001" green="0.7843137255" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </textAttributes>
+                                <items>
+                                    <navigationItem title="Drawing" id="yvY-no-mqd">
+                                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="pJf-CL-szW">
+                                            <color key="tintColor" systemColor="systemPinkColor" red="1" green="0.1764705882" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <connections>
+                                                <action selector="handleCancel:" destination="UGx-u1-6Co" id="GNe-s8-1cN"/>
+                                            </connections>
+                                        </barButtonItem>
+                                        <barButtonItem key="rightBarButtonItem" title="Done" id="1VN-PB-cfZ">
+                                            <color key="tintColor" systemColor="systemTealColor" red="0.35294117650000001" green="0.7843137255" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <connections>
+                                                <action selector="handleDone:" destination="UGx-u1-6Co" id="ZsC-8v-1sm"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="s80-n4-ewt" firstAttribute="top" secondItem="h9v-T2-5p6" secondAttribute="top" id="3TR-jF-vBX"/>
+                            <constraint firstItem="s80-n4-ewt" firstAttribute="trailing" secondItem="h9v-T2-5p6" secondAttribute="trailing" id="Xl4-VM-2wg"/>
+                            <constraint firstItem="s80-n4-ewt" firstAttribute="leading" secondItem="h9v-T2-5p6" secondAttribute="leading" id="hOU-lQ-zf2"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="h9v-T2-5p6"/>
+                    </view>
+                    <connections>
+                        <outlet property="navBar" destination="s80-n4-ewt" id="OWZ-DJ-0mw"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="keY-gp-Q6T" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="6293" y="-457"/>
         </scene>
         <!--Journal Location Picker View Controller-->
         <scene sceneID="QW0-JB-bQn">

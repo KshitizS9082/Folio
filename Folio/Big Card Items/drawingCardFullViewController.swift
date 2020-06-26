@@ -17,10 +17,11 @@ class drawingCardFullViewController: UIViewController, SPStorkControllerDelegate
 //    var delegate: UpdateCardProtocol?
     var viewLinkedTo: cardView?
     var card: Card = Card()
-    let navBar = SPFakeBarView(style: .stork)
+//    let navBar = SPFakeBarView(style: .stork)
     var myCanvasView = PKCanvasView(frame: .zero)
     var toolPicker : PKToolPicker? = nil
-        
+    @IBOutlet weak var navBar: UINavigationBar!
+    
     private func setDrawingCanvaa(){
         self.view.backgroundColor = canvasBackgroundColoer
         myCanvasView.backgroundColor = canvasBackgroundColoer
@@ -56,26 +57,26 @@ class drawingCardFullViewController: UIViewController, SPStorkControllerDelegate
         myCanvasView.becomeFirstResponder()
         
     }
-    private func configureNavBar(){
-        self.navBar.titleLabel.text = "Drawing"
-        if(isEditing){
-            self.navBar.leftButton.setTitle("Done", for: .normal)
-        }
-        else {
-            self.navBar.leftButton.setTitle("Edit", for: .normal)
-        }
-        self.navBar.leftButton.addTarget(self, action: #selector(editButtonPressed), for: .touchUpInside)
-        if(view.subviews.contains(self.navBar)==false){
-            self.view.addSubview(self.navBar)
-        }
-    }
+//    private func configureNavBar(){
+//        self.navBar.titleLabel.text = "Drawing"
+//        if(isEditing){
+//            self.navBar.leftButton.setTitle("Done", for: .normal)
+//        }
+//        else {
+//            self.navBar.leftButton.setTitle("Edit", for: .normal)
+//        }
+//        self.navBar.leftButton.addTarget(self, action: #selector(editButtonPressed), for: .touchUpInside)
+//        if(view.subviews.contains(self.navBar)==false){
+//            self.view.addSubview(self.navBar)
+//        }
+//    }
     private func reconfigureAll(){
-        if(isEditing){
-            self.navBar.leftButton.setTitle("Done", for: .normal)
-        }
-        else {
-            self.navBar.leftButton.setTitle("Edit", for: .normal)
-        }
+//        if(isEditing){
+//            self.navBar.left.setTitle("Done", for: .normal)
+//        }
+//        else {
+//            self.navBar.leftButton.setTitle("Edit", for: .normal)
+//        }
         if isEditing{
             myCanvasView.becomeFirstResponder()
         }else{
@@ -84,7 +85,7 @@ class drawingCardFullViewController: UIViewController, SPStorkControllerDelegate
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-        configureNavBar()
+//        configureNavBar()
     }
     override func viewDidLayoutSubviews() {
 //        reconfigureAll()
@@ -110,16 +111,26 @@ class drawingCardFullViewController: UIViewController, SPStorkControllerDelegate
         print("did initilise data from pkd")
            
     }
-    func didDismissStorkByTap() {
-        print("dismissed by tap")
-//        delegate?.nowUpdateCard(newCard: card, for: viewLinkedTo!)
-        viewLinkedTo?.card=card
-        viewLinkedTo?.layoutSubviews()
+//    func didDismissStorkByTap() {
+//        print("dismissed by tap")
+////        delegate?.nowUpdateCard(newCard: card, for: viewLinkedTo!)
+//        viewLinkedTo?.card=card
+//        viewLinkedTo?.layoutSubviews()
+//    }
+//    func didDismissStorkBySwipe() {
+//        print("dismissed by swipe")
+//        didDismissStorkByTap()
+//    }
+    @IBAction func handleCancel(_ sender: UIBarButtonItem) {
+        self.dismiss(animated: true, completion: nil)
     }
-    func didDismissStorkBySwipe() {
-        print("dismissed by swipe")
-        didDismissStorkByTap()
+    @IBAction func handleDone(_ sender: UIBarButtonItem) {
+        self.dismiss(animated: true) {
+            self.viewLinkedTo?.card=self.card
+            self.viewLinkedTo?.layoutSubviews()
+        }
     }
+    
     @objc func togglePicker() {
         if myCanvasView.isFirstResponder{
             myCanvasView.resignFirstResponder()
