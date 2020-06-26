@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6BD51DB324A5A5DF00253290 /* newNotesFullViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BD51DB224A5A5DF00253290 /* newNotesFullViewController.swift */; };
 		870E12556BF0317058D31A09 /* Pods_Folio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F32C815244D1C255A7FDD23A /* Pods_Folio.framework */; };
 		87DB04D9E8C0C19EDD6FF265 /* Pods_FolioTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC6B6DB7D06A4FC4A090E6A3 /* Pods_FolioTests.framework */; };
 		A3922D801270C8842263D3B3 /* Pods_Folio_FolioUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5CDFF065539CE4B3E77C16F8 /* Pods_Folio_FolioUITests.framework */; };
@@ -128,6 +129,7 @@
 		170C7B5029BAD70FCD668261 /* Pods-Folio-FolioUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Folio-FolioUITests.debug.xcconfig"; path = "Target Support Files/Pods-Folio-FolioUITests/Pods-Folio-FolioUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		19AA4F4EE3EA7DC3617C074A /* Pods-Folio.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Folio.release.xcconfig"; path = "Target Support Files/Pods-Folio/Pods-Folio.release.xcconfig"; sourceTree = "<group>"; };
 		5CDFF065539CE4B3E77C16F8 /* Pods_Folio_FolioUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Folio_FolioUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6BD51DB224A5A5DF00253290 /* newNotesFullViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = newNotesFullViewController.swift; path = "Big Card Items/newNotesFullViewController.swift"; sourceTree = "<group>"; };
 		6D725AB9D78B9CC0FD8B1825 /* Pods-Folio-FolioUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Folio-FolioUITests.release.xcconfig"; path = "Target Support Files/Pods-Folio-FolioUITests/Pods-Folio-FolioUITests.release.xcconfig"; sourceTree = "<group>"; };
 		AB7282A2BE03B60D0F69806A /* Pods-Folio.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Folio.debug.xcconfig"; path = "Target Support Files/Pods-Folio/Pods-Folio.debug.xcconfig"; sourceTree = "<group>"; };
 		B7F7E37428634E233DB6CFDE /* Pods-FolioTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FolioTests.release.xcconfig"; path = "Target Support Files/Pods-FolioTests/Pods-FolioTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -316,6 +318,7 @@
 				E252B04C246C4041003F8718 /* ViewController.swift */,
 				E252B04E246C4041003F8718 /* Main.storyboard */,
 				E2A942082490B7FE003716A2 /* settingsViewController.swift */,
+				6BD51DB224A5A5DF00253290 /* newNotesFullViewController.swift */,
 				E24382672490CEAC00C7F016 /* themeChooserViewController.swift */,
 				E252B08D246C4AD7003F8718 /* SwitchPageTimelineViewController.swift */,
 				E252B08B246C4681003F8718 /* PageListViewController.swift */,
@@ -845,6 +848,7 @@
 				E2A35B522488C38900FDF4C6 /* habitsCellCalendarCell.swift in Sources */,
 				E252B092246C4E79003F8718 /* TimelineViewController.swift in Sources */,
 				E26FD6A924823E87004DA918 /* journalNotesTableViewCell.swift in Sources */,
+				6BD51DB324A5A5DF00253290 /* newNotesFullViewController.swift in Sources */,
 				E26A31232480A8AB007F2289 /* addEntryInJournalTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
