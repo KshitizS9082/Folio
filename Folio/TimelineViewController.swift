@@ -237,6 +237,13 @@ extension TimelineViewController: UITableViewDataSource, UITableViewDelegate{
         if let done = cell.card?.isDone{
             cell.isDone = done
         }
+        if let hid = cardsList[indexPath.row].smallCard?.isHidden{
+            if hid{
+                cell.linkView.tintColor = .systemGray
+            }else{
+                cell.linkView.tintColor = .systemBlue
+            }
+        }
         cell.awakeFromNib()
         return cell
     }
@@ -250,6 +257,13 @@ extension TimelineViewController: UITableViewDataSource, UITableViewDelegate{
         cell.row = indexPath.row
         cell.backgroundColor = .clear
         cell.card=cardsList[indexPath.row].bigCard?.card
+        if let hid = cardsList[indexPath.row].bigCard?.isHidden{
+            if hid{
+                cell.linkView.tintColor = .systemGray
+            }else{
+                cell.linkView.tintColor = .systemBlue
+            }
+        }
         cell.awakeFromNib()
         return cell
     }
@@ -264,6 +278,13 @@ extension TimelineViewController: UITableViewDataSource, UITableViewDelegate{
         cell.indexpath=indexPath
         cell.row=indexPath.row
         cell.sizeType=self.sizeType
+        if let hid = cardsList[indexPath.row].mediaCard?.isHidden{
+            if hid{
+                cell.linkView.tintColor = .systemGray
+            }else{
+                cell.linkView.tintColor = .systemBlue
+            }
+        }
         cell.awakeFromNib()
         return cell
     }

@@ -674,7 +674,7 @@ extension cardView{
 }
 
 class toolBarView: UIView{
-    var editMenu: UIImageView = UIImageView(image: UIImage(systemName: "ellipsis.circle"));
+    var editMenu: UIImageView = UIImageView(image: UIImage(systemName: "info.circle"));
     var reminderClock: UIImageView = UIImageView(image: UIImage(systemName: "clock"));
     var checkMark: UIImageView = UIImageView(image: UIImage(systemName: "checkmark.square"));
     var fullView  = UIImageView(image: UIImage(systemName: "chevron.down"));

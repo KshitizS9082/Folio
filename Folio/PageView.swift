@@ -143,7 +143,7 @@ class PageView: UIView {
         nv.isUserInteractionEnabled=true
         self.addSubview(nv)
         nv.layer.masksToBounds=true
-        nv.pageDelegate?.getMeMedia(for: nv)
+//        nv.pageDelegate?.getMeMedia(for: nv)
 //        pageDelegate?.getMeMedia(for: newCardView)
 //        nv.addGestureRecognizer(UILongPressGestureRecognizer(target: self, action: #selector(didLongPressMediaView)))
         self.currentTask = .noneOfAbove
@@ -270,7 +270,7 @@ extension PageView{
         return 240
     }
     var smallCardHeight: CGFloat{
-        return 85
+        return 90
     }
     var bigCardWidth: CGFloat{
         return 240

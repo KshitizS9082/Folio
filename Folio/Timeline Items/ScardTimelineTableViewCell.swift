@@ -164,6 +164,7 @@ class ScardTimelineTableViewCell: UITableViewCell {
         card?.isDone=self.isDone
         card?.title=self.titleTextView.text
         card?.notes=self.notesTextView.text
+        print("updateing to \(self.card)")
         delegate?.saveSmallCard(with: self.card!)
     }
 }

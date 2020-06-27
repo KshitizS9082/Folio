@@ -520,7 +520,11 @@ extension PageListViewController:UITableViewDelegate, UITableViewDataSource{
                                         handler: { (action, view, completionHandler) in
                                             self.deletePage(for: self.pages.items[indexPath.row])
                                             self.pages.items.remove(at: indexPath.row)
-                                            self.table.reloadData()
+                                            self.table.beginUpdates()
+//                                            table.insertRows(at: [IndexPath(row: pages.items.count-1, section: 1)], with: .automatic)
+                                            self.table.deleteRows(at: [indexPath], with: .automatic)
+                                            self.table.endUpdates()
+//                                            self.table.reloadData()
                                             completionHandler(true)
         })
         action.backgroundColor = .systemRed

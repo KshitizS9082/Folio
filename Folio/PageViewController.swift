@@ -603,7 +603,7 @@ extension PageViewController: UIDragInteractionDelegate{
                         item = "Small Card"
                     case ImageViews[1].frame:
                         item = "Big Card"
-                    case ImageViews[4].frame:
+                    case ImageViews[2].frame:
                         item = "Media Card"
                     default:
                         print("couldn't identify type of drag interaction card")
