@@ -117,7 +117,7 @@ class SmallCardView: UIView {
         titleTextView.text = card.title
         if card.title.count==0 {
             titleTextView.text = "Title"
-            titleTextView.textColor = UIColor.systemGray2
+            titleTextView.textColor = (UIColor(named: "subMainTextColor") ?? UIColor.systemRed)
         }
         [
             titleTextView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: cornerRadius),
@@ -135,9 +135,9 @@ class SmallCardView: UIView {
             infoButtonView.removeFromSuperview()
         }else{
             
-            if titleTextView.textColor == UIColor.systemGray2{
+            if titleTextView.textColor == (UIColor(named: "subMainTextColor") ?? UIColor.systemRed){
                 titleTextView.text=""
-                titleTextView.textColor = UIColor.black
+                titleTextView.textColor = UIColor(named: "mainTextColor") ?? UIColor.systemRed
             }
             infoButtonView.isHidden=false
             infoButtonView.isUserInteractionEnabled = true
@@ -229,9 +229,9 @@ class SmallCardView: UIView {
         notesTextView.text = card.notes
         if card.notes.count==0 {
             notesTextView.text="Notes"
-            notesTextView.textColor=UIColor.systemGray2
+            notesTextView.textColor=(UIColor(named: "subMainTextColor") ?? UIColor.systemRed).withAlphaComponent(0.6)
         }else{
-            notesTextView.textColor = UIColor.systemGray
+            notesTextView.textColor = (UIColor(named: "subMainTextColor") ?? UIColor.systemRed)
         }
         [
             notesTextView.topAnchor.constraint(equalTo: reminderTextField.bottomAnchor),
@@ -243,7 +243,7 @@ class SmallCardView: UIView {
         }
         notesTextView.delegate=self
         notesTextView.font = UIFont.preferredFont(forTextStyle: .subheadline)
-        notesTextView.textColor = UIColor(named: "subMainTextColor") ?? UIColor.red
+//        notesTextView.textColor = UIColor(named: "subMainTextColor") ?? UIColor.red
         notesTextView.isScrollEnabled=false
         notesTextView.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0)
     }
@@ -423,13 +423,19 @@ extension SmallCardView: UITextViewDelegate{
     //TODO: too many saves, remove the one's which are unnecessary
     func textViewDidBeginEditing(_ textView: UITextView) {
         print("didbegin")
-        if textView.textColor == UIColor.systemGray2{
-            textView.textColor = UIColor.black
+        if textView==titleTextView, textView.textColor == (UIColor(named: "subMainTextColor") ?? UIColor.systemRed){
+            print("in axk")
+            textView.textColor = (UIColor(named: "mainTextColor") ?? UIColor.systemRed)
+            textView.text = ""
+        }
+        if textView==notesTextView, textView.textColor == (UIColor(named: "subMainTextColor") ?? UIColor.systemRed).withAlphaComponent(0.6){
+            print("in bck")
+            textView.textColor = (UIColor(named: "subMainTextColor") ?? UIColor.systemRed)
             textView.text = ""
         }
         if !isEditting{
             isEditting = true
-            layoutSubviews()
+//            layoutSubviews()
         }
         pageDelegate?.resizeCard(for: self)
     }
@@ -443,11 +449,11 @@ extension SmallCardView: UITextViewDelegate{
         card.notes=self.notesTextView.text
         if titleTextView.text.count==0{
             titleTextView.text="Title"
-            titleTextView.textColor=UIColor.systemGray2
+            titleTextView.textColor=UIColor(named: "subMainTextColor") ?? UIColor.systemRed
         }
         if notesTextView.text.count==0{
             notesTextView.text="Notes"
-            notesTextView.textColor=UIColor.systemGray2
+            notesTextView.textColor=(UIColor(named: "subMainTextColor") ?? UIColor.systemRed).withAlphaComponent(0.6)
         }
     }
 //    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {

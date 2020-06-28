@@ -290,6 +290,7 @@ extension TimelineViewController: UITableViewDataSource, UITableViewDelegate{
         cell.indexpath = indexPath
         cell.row = indexPath.row
         cell.backgroundColor = .clear
+        print("setting scard to \(cardsList[indexPath.row].smallCard?.card)")
         cell.card=cardsList[indexPath.row].smallCard?.card
         if let done = cell.card?.isDone{
             cell.isDone = done

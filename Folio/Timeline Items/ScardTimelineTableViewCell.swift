@@ -18,10 +18,15 @@ class ScardTimelineTableViewCell: UITableViewCell {
         didSet{
             if (card?.title.count ?? 0)>0{
                 title = card?.title ?? titlePlaceHolder
+            }else{
+                title=""
             }
+//            print("setting fdf using \(card?.notes)")
             if (card?.notes.count ?? 0)>0{
                 notes = card?.notes ?? notesPlaceHolder
                 print("setting notest to \(notes)")
+            }else{
+                notes=""
             }
             isDone = card?.isDone ?? false
         }
@@ -90,6 +95,7 @@ class ScardTimelineTableViewCell: UITableViewCell {
         titleTextView.text = title
 //        titleTextView.addDoneButton(title: "Done", target: self, selector: #selector(tapDone(sender:)))
         notesTextView.text = notes
+        print("set adad notes to \(notesTextView.text)")
 //        notesTextView.addDoneButton(title: "Done", target: self, selector: #selector(tapDone(sender:)))
         if titleTextView.text.count==0{
             titleTextView.text = titlePlaceHolder
