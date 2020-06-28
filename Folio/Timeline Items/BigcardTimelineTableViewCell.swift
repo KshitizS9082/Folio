@@ -93,9 +93,9 @@ class BigcardTimelineTableViewCell: UITableViewCell {
         titleTextView.text = title
         if titleTextView.text.count==0{
             titleTextView.text = titlePlaceHolder
-            titleTextView.textColor = UIColor.lightGray
+            titleTextView.textColor =  UIColor(named: "subMainTextColor") ?? UIColor.systemRed
         }else{
-            titleTextView.textColor = UIColor.black
+            titleTextView.textColor =  UIColor(named: "mainTextColor") ?? UIColor.systemRed
         }
         titleTextView.font = UIFont.preferredFont(forTextStyle: .headline)
         setReminderLabe()
@@ -127,12 +127,12 @@ class BigcardTimelineTableViewCell: UITableViewCell {
                 }else if(time<Date()){
                     reminderLabel.textColor = UIColor.systemRed
                     if(sCard.isCompleted){
-                        reminderLabel.textColor = UIColor.systemGray2
+                        reminderLabel.textColor =  UIColor(named: "subMainTextColor") ?? UIColor.systemRed
                     }else{
                         reminderLabel.textColor = UIColor.systemRed
                     }
                 }else{
-                    reminderLabel.textColor = UIColor.systemGray2
+                    reminderLabel.textColor = UIColor(named: "subMainTextColor") ?? UIColor.systemRed
                 }
             }else{
                 reminderLabel.text = nil
@@ -278,8 +278,9 @@ class BigcardTimelineTableViewCell: UITableViewCell {
 
 extension BigcardTimelineTableViewCell: UITextViewDelegate{
      func textViewDidBeginEditing(_ textView: UITextView) {
-            if titleTextView.textColor == UIColor.lightGray, textView.frame==titleTextView.frame {                titleTextView.text=""
-                titleTextView.textColor = UIColor.black
+            if titleTextView.textColor ==  (UIColor(named: "subMainTextColor") ?? UIColor.systemRed), textView.frame==titleTextView.frame {
+                titleTextView.text=""
+                titleTextView.textColor =  UIColor(named: "mainTextColor") ?? UIColor.systemRed
             }
         }
         func textViewDidChange(_ textView: UITextView) {
@@ -288,12 +289,12 @@ extension BigcardTimelineTableViewCell: UITextViewDelegate{
         }
         func textViewDidEndEditing(_ textView: UITextView) {
             print("didennd")
-            if titleTextView.textColor != UIColor.lightGray{
-                if titleTextView.text.count==0{
-                    titleTextView.text = titlePlaceHolder
-                    titleTextView.textColor = UIColor.lightGray
-                }
+//            if titleTextView.textColor != UIColor.lightGray{
+            if titleTextView.text.count==0{
+                titleTextView.text = titlePlaceHolder
+                titleTextView.textColor = UIColor(named: "subMainTextColor") ?? UIColor.systemRed
             }
+//            }
             updateCard()
         }
         
