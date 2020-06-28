@@ -21,6 +21,7 @@ class ScardTimelineTableViewCell: UITableViewCell {
             }
             if (card?.notes.count ?? 0)>0{
                 notes = card?.notes ?? notesPlaceHolder
+                print("setting notest to \(notes)")
             }
             isDone = card?.isDone ?? false
         }
@@ -88,13 +89,13 @@ class ScardTimelineTableViewCell: UITableViewCell {
         self.checkBox.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleCheckBoxTap)))
         titleTextView.text = title
 //        titleTextView.addDoneButton(title: "Done", target: self, selector: #selector(tapDone(sender:)))
-//        notesTextView.text = notes
+        notesTextView.text = notes
 //        notesTextView.addDoneButton(title: "Done", target: self, selector: #selector(tapDone(sender:)))
         if titleTextView.text.count==0{
             titleTextView.text = titlePlaceHolder
-            titleTextView.textColor = UIColor.lightGray
+            titleTextView.textColor = UIColor(named: "subMainTextColor") ?? UIColor.systemRed
         }else{
-            titleTextView.textColor = UIColor.black
+            titleTextView.textColor = UIColor(named: "mainTextColor") ?? UIColor.systemRed
         }
         
         switch self.sizeType {
@@ -102,9 +103,9 @@ class ScardTimelineTableViewCell: UITableViewCell {
             constr.isActive=false
             if notesTextView.text.count==0{
                 notesTextView.text = notesPlaceHolder
-                notesTextView.textColor = UIColor.lightGray
+                notesTextView.textColor = (UIColor(named: "subMainTextColor") ?? UIColor.systemRed).withAlphaComponent(0.7)
             }else{
-                notesTextView.textColor = UIColor.darkGray
+                notesTextView.textColor = UIColor(named: "subMainTextColor") ?? UIColor.systemRed
             }
         case .medium:
             constr.isActive=true
@@ -130,12 +131,12 @@ class ScardTimelineTableViewCell: UITableViewCell {
                 }else if(time<Date()){
                     reminderLabel.textColor = UIColor.systemRed
                     if(sCard.isDone){
-                        reminderLabel.textColor = UIColor.systemGray2
+                        reminderLabel.textColor = UIColor(named: "subMainTextColor") ?? UIColor.systemRed
                     }else{
                         reminderLabel.textColor = UIColor.systemRed
                     }
                 }else{
-                    reminderLabel.textColor = UIColor.systemGray2
+                    reminderLabel.textColor = UIColor(named: "subMainTextColor") ?? UIColor.systemRed
                 }
             }else{
                 reminderLabel.text = nil
@@ -170,11 +171,11 @@ class ScardTimelineTableViewCell: UITableViewCell {
 }
 extension ScardTimelineTableViewCell: UITextViewDelegate{
     func textViewDidBeginEditing(_ textView: UITextView) {
-        if titleTextView.textColor == UIColor.lightGray, textView.frame==titleTextView.frame {
+        if titleTextView.textColor == (UIColor(named: "subMainTextColor") ?? UIColor.systemRed), textView.frame==titleTextView.frame {
             titleTextView.text=""
-            titleTextView.textColor = UIColor.black
+            titleTextView.textColor = UIColor(named: "mainTextColor") ?? UIColor.systemRed
         }
-        if notesTextView.textColor == UIColor.lightGray, notesTextView.frame==textView.frame{
+        if notesTextView.textColor == (UIColor(named: "subMainTextColor") ?? UIColor.systemRed).withAlphaComponent(0.7), notesTextView.frame==textView.frame{
             notesTextView.text=""
             notesTextView.textColor = UIColor.darkGray
         }
@@ -186,18 +187,18 @@ extension ScardTimelineTableViewCell: UITextViewDelegate{
     }
     func textViewDidEndEditing(_ textView: UITextView) {
         print("didennd")
-        if titleTextView.textColor != UIColor.lightGray{
+//        if titleTextView.textColor != UIColor.lightGray{
             if titleTextView.text.count==0{
                 titleTextView.text = titlePlaceHolder
-                titleTextView.textColor = UIColor.lightGray
+                titleTextView.textColor = UIColor(named: "subMainTextColor") ?? UIColor.systemRed
             }
-        }
-        if notesTextView.textColor != UIColor.lightGray{
+//        }
+//        if notesTextView.textColor != UIColor.lightGray{
             if notesTextView.text.count==0{
                 notesTextView.text = notesPlaceHolder
-                notesTextView.textColor = UIColor.lightGray
+                notesTextView.textColor = (UIColor(named: "subMainTextColor") ?? UIColor.systemRed).withAlphaComponent(0.7)
             }
-        }
+//        }
         self.updateCard()
     }
     

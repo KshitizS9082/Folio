@@ -84,9 +84,9 @@ class TimelineViewController: UIViewController {
                 indb=second.mediaCard?.card.timelineIndex
             }
             if inda==nil && indb != nil{
-                return false
-            }else if inda != nil && indb == nil{
                 return true
+            }else if inda != nil && indb == nil{
+                return false
             }else  if inda != nil && indb != nil{
                 return (inda! < indb!)
             }
