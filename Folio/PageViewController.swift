@@ -352,7 +352,7 @@ class PageViewController: UIViewController {
     }
     
     func save() {
-//        print("is now saving page with cvs \(page?.conntectedViews)")
+//        print("is now saving page with pageviewc \(page)")
         if let json = page?.json {
             if let url = try? FileManager.default.url(
                 for: .documentDirectory,
@@ -519,6 +519,7 @@ class PageViewController: UIViewController {
 //                    print("did set page = extract i.e. \(extract) succesfully")
                     page = extract
 //                    viewDidLoad()
+                    print("pageviewc opened page \(page)")
                     scrollView.setZoomScale(scrollView.minimumZoomScale, animated: true)
                 }else{
                     print("ERROR: found PageData(json: jsonData) to be nil so didn't set it")
@@ -597,21 +598,21 @@ extension PageViewController: UIDropInteractionDelegate{
 extension PageViewController: UIDragInteractionDelegate{
     func dragInteraction(_ interaction: UIDragInteraction, itemsForBeginning session: UIDragSession) -> [UIDragItem] {
         var item = "bakaluka string"
-                if let imgview = interaction.view as! UIImageView?{
-                    switch imgview.frame {
-                    case ImageViews[0].frame:
-                        item = "Small Card"
-                    case ImageViews[1].frame:
-                        item = "Big Card"
-                    case ImageViews[2].frame:
-                        item = "Media Card"
-                    default:
-                        print("couldn't identify type of drag interaction card")
-                    }
-                }
-                let dragItem = UIDragItem(itemProvider: NSItemProvider(object: item as String as NSItemProviderWriting))
-                dragItem.localObject = item
-                return [dragItem]
+        if let imgview = interaction.view as! UIImageView?{
+            switch imgview.frame {
+            case ImageViews[0].frame:
+                item = "Small Card"
+            case ImageViews[1].frame:
+                item = "Big Card"
+            case ImageViews[2].frame:
+                item = "Media Card"
+            default:
+                print("couldn't identify type of drag interaction card")
+            }
+        }
+        let dragItem = UIDragItem(itemProvider: NSItemProvider(object: item as String as NSItemProviderWriting))
+        dragItem.localObject = item
+        return [dragItem]
     }
     
     

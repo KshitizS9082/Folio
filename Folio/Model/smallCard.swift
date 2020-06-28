@@ -13,6 +13,7 @@ struct SmallCard: Codable {
     var UniquIdentifier=UUID()
     var dateOfCompletion: Date?
     var dateOfConstruction = Date()
+    var timelineIndex: Int?
     var isDone = false{
         didSet{
             if self.isDone{

@@ -60,14 +60,17 @@ struct bigCardData: Codable {
     var card = Card()
     var frame = CGRect.zero
     var isHidden=false
+//    var timelineIndex: Int?
 }
 struct smallCardData: Codable {
     var card = SmallCard()
     var frame = CGRect.zero
     var isHidden=false
+//    var timelineIndex: Int?
 }
 struct mediaCardData: Codable{
     var card = MediaCard()
     var frame = CGRect.zero
     var isHidden=false
+//    var timelineIndex: Int?
 }

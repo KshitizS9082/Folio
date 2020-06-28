@@ -10,6 +10,7 @@ import Foundation
 //import PencilKit
 
 struct Card: Codable {
+    var timelineIndex: Int?
     var UniquIdentifier=UUID()
     var dateOfConstruction = Date()
     var dateOfCompletion: Date?

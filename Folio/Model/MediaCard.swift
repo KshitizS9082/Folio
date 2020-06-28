@@ -13,6 +13,7 @@ struct MediaCard: Codable {
 //    var data = (Any?, mediaType?)()
     var title: String?
     var dateOfConstruction = Date()
+    var timelineIndex: Int?
 //    var data = [AnyObject]()
 //    var mediaData = [Data]()
     var mediaDataURLs = [String]()

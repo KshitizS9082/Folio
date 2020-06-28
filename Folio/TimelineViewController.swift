@@ -26,6 +26,9 @@ class TimelineViewController: UIViewController {
     @IBOutlet weak var table: UITableView!{
         didSet{
             table.separatorStyle = .none
+//            table.dragInteractionEnabled=true
+//            table.dragDelegate=self
+//            table.dropDelegate=self
         }
     }
     private func setCardsList(){
@@ -61,6 +64,34 @@ class TimelineViewController: UIViewController {
 //                print("dunnow what type")
             }
         }
+        cardsList.sort { (first, second) -> Bool in
+            var inda: Int?
+            switch first.type{
+            case .big:
+                inda=first.bigCard?.card.timelineIndex
+            case .small:
+                inda=first.smallCard?.card.timelineIndex
+            case .media:
+                inda=first.mediaCard?.card.timelineIndex
+            }
+            var indb: Int?
+            switch second.type{
+            case .big:
+                indb=second.bigCard?.card.timelineIndex
+            case .small:
+                indb=second.smallCard?.card.timelineIndex
+            case .media:
+                indb=second.mediaCard?.card.timelineIndex
+            }
+            if inda==nil && indb != nil{
+                return false
+            }else if inda != nil && indb == nil{
+                return true
+            }else  if inda != nil && indb != nil{
+                return (inda! < indb!)
+            }
+            return true
+        }
     }
     func setTable(){
         table.dataSource=self
@@ -79,6 +110,7 @@ class TimelineViewController: UIViewController {
         setCardsList()
         setTable()
         table.reloadData()
+        table.isEditing=true
         let pinch = UIPinchGestureRecognizer(target: self, action: #selector(handlePinch))
         view.addGestureRecognizer(pinch)
         //to dismiss keyboard
@@ -150,7 +182,31 @@ class TimelineViewController: UIViewController {
     }
     
     func save() {
-        print("attempting to save page")
+//        print("attempting to save page")
+        if let page = page{
+            for ind in cardsList.indices{
+                switch cardsList[ind].type {
+                case .big:
+                    for i in page.bigCards.indices {
+                        if page.bigCards[i].card.UniquIdentifier==cardsList[ind].bigCard?.card.UniquIdentifier{
+                            self.page!.bigCards[i].card.timelineIndex=ind
+                        }
+                    }
+                case .small:
+                    for i in page.smallCards.indices {
+                        if page.smallCards[i].card.UniquIdentifier==cardsList[ind].smallCard?.card.UniquIdentifier{
+                            self.page!.smallCards[i].card.timelineIndex=ind
+                        }
+                    }
+                case .media:
+                    for i in page.mediaCards.indices {
+                        if page.mediaCards[i].card.UniquIdentifier==cardsList[ind].mediaCard?.card.UniquIdentifier{
+                            self.page!.mediaCards[i].card.timelineIndex=ind
+                        }
+                    }
+                }
+            }
+        }
         if let json = page?.json {
             if let url = try? FileManager.default.url(
                 for: .documentDirectory,
@@ -193,6 +249,7 @@ class TimelineViewController: UIViewController {
             table.scrollIndicatorInsets = insets
         }
     }
+    var sourceIndPathForDrag = IndexPath()
 }
 
 extension TimelineViewController{
@@ -288,7 +345,112 @@ extension TimelineViewController: UITableViewDataSource, UITableViewDelegate{
         cell.awakeFromNib()
         return cell
     }
+    
+    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
+        return .none
+    }
+
+    func tableView(_ tableView: UITableView, shouldIndentWhileEditingRowAt indexPath: IndexPath) -> Bool {
+        return false
+    }
+    func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+        let movedObject = self.cardsList[sourceIndexPath.row]
+        cardsList.remove(at: sourceIndexPath.row)
+        cardsList.insert(movedObject, at: destinationIndexPath.row)
+    }
 }
+
+/*
+extension TimelineViewController: UITableViewDragDelegate, UITableViewDropDelegate{
+    func tableView(_ tableView: UITableView, itemsForBeginning session: UIDragSession, at indexPath: IndexPath) -> [UIDragItem] {
+        self.sourceIndPathForDrag = indexPath
+        var id = UUID()
+        switch cardsList[indexPath.row].type {
+        case .big:
+            id = cardsList[indexPath.row].bigCard!.card.UniquIdentifier
+        case .small:
+            id=cardsList[indexPath.row].smallCard!.card.UniquIdentifier
+        case .media:
+            id=cardsList[indexPath.row].mediaCard!.card.UniquIdentifier
+        }
+        print("providing string \(id.uuidString)")
+        let itemProvider = NSItemProvider(object: id.uuidString as NSItemProviderWriting)
+        let dragItem = UIDragItem(itemProvider: itemProvider)
+        return [dragItem]
+    }
+    func tableView(_ tableView: UITableView, canHandle session: UIDropSession) -> Bool {
+        return session.canLoadObjects(ofClass: NSString.self)
+    }
+    func tableView(_ tableView: UITableView, performDropWith coordinator: UITableViewDropCoordinator) {
+        let destinationIndexPath: IndexPath
+        if let indexPath = coordinator.destinationIndexPath {
+            destinationIndexPath = indexPath
+        } else {
+            let section = tableView.numberOfSections - 1
+            let row = tableView.numberOfRows(inSection: section)
+            destinationIndexPath = IndexPath(row: row, section: section)
+        }
+        coordinator.session.loadObjects(ofClass: NSString.self) { items in
+            guard let string = items as? [String] else { return }
+            print("found string \(string)")
+            var indexPaths = [IndexPath]()
+            var sourceIndP = IndexPath()
+            for (index, value) in string.enumerated() {
+                if index>0{continue}
+                let indexPath = IndexPath(row: destinationIndexPath.row + index, section: destinationIndexPath.section)
+                var tc = timeLineCard()
+                for ind in self.cardsList.indices{
+                    var card = self.cardsList[ind]
+                    switch card.type {
+                    case .big:
+                        if card.bigCard?.card.UniquIdentifier.uuidString==string[0]{
+                            tc=card
+//                            sourceIndP=IndexPath(row: ind, section: 0)
+                            print("found card for \(string)")
+                        }
+                    case .small:
+                        if card.smallCard?.card.UniquIdentifier.uuidString==string[0]{
+                            tc=card
+//                            sourceIndP=IndexPath(row: ind, section: 0)
+                            print("found card for \(string)")
+                        }
+                    case .media:
+                        if card.mediaCard?.card.UniquIdentifier.uuidString==string[0]{
+                            tc=card
+//                            sourceIndP=IndexPath(row: ind, section: 0)
+                            print("found card for \(string)")
+                        }
+                    }
+                }
+                self.cardsList.insert(tc, at: indexPath.row)
+                indexPaths.append(indexPath)
+            }
+            tableView.insertRows(at: indexPaths, with: .automatic)
+//            DispatchQueue.main.async {
+//                print("shmove from \(self.sourceIndPathForDrag) to \(indexPaths[0]) when count \(self.cardsList.count)")
+//                tableView.beginUpdates()
+//                tableView.moveRow(at:self.sourceIndPathForDrag , to: indexPaths[0])
+//                tableView.endUpdates()
+//            }
+        }
+    }
+    func tableView(_ tableView: UITableView, dropSessionDidUpdate session: UIDropSession, withDestinationIndexPath destinationIndexPath: IndexPath?) -> UITableViewDropProposal {
+        // The .move operation is available only for dragging within a single app.
+        if tableView.hasActiveDrag {
+            print("has drag activiey")
+            if session.items.count > 1 {
+                return UITableViewDropProposal(operation: .cancel)
+            } else {
+                print("gonna drop")
+                return UITableViewDropProposal(operation: .move, intent: .insertAtDestinationIndexPath)
+            }
+        } else {
+            return UITableViewDropProposal(operation: .copy, intent: .insertAtDestinationIndexPath)
+        }
+    }
+    
+}
+*/
 extension TimelineViewController: myUpdateCellHeightDelegate{
     func saveBigCard(with card: Card) {
         let uniqueID = card.UniquIdentifier
@@ -298,6 +460,11 @@ extension TimelineViewController: myUpdateCellHeightDelegate{
                     print("found the place to save to")
                     page?.bigCards[ind].card = card
                 }
+            }
+        }
+        for ind in self.cardsList.indices{
+            if cardsList[ind].bigCard?.card.UniquIdentifier==uniqueID{
+                cardsList[ind].bigCard?.card = card
             }
         }
     }
@@ -312,6 +479,11 @@ extension TimelineViewController: myUpdateCellHeightDelegate{
                 }
             }
         }
+        for ind in self.cardsList.indices{
+            if cardsList[ind].mediaCard?.card.UniquIdentifier==uniqueID{
+                cardsList[ind].mediaCard?.card = card
+            }
+        }
     }
     
     func saveSmallCard(with card: SmallCard) {
@@ -321,6 +493,11 @@ extension TimelineViewController: myUpdateCellHeightDelegate{
                 if cardDatas[ind].card.UniquIdentifier==uniqueID{
                     page?.smallCards[ind].card = card
                 }
+            }
+        }
+        for ind in self.cardsList.indices{
+            if cardsList[ind].smallCard?.card.UniquIdentifier==uniqueID{
+                cardsList[ind].smallCard?.card = card
             }
         }
     }
