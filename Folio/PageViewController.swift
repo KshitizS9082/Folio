@@ -406,8 +406,11 @@ class PageViewController: UIViewController {
     
     func toggleToolBar(){
         if ivTopConstraints[0].constant==0{
-            for ind in 0..<10{
+            for ind in 0..<7{
                 ivTopConstraints[ind].constant=CGFloat(50+50*ind)
+            }
+            for ind in 6..<10{
+                ivTopConstraints[ind].constant=CGFloat(50+50*5)
             }
         }else{
             for ind in 0..<10{

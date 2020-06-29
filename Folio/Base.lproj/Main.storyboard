@@ -414,7 +414,7 @@
             <objects>
                 <viewController id="XfM-or-A3R" customClass="themeChooserViewController" customModule="Folio" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="vrU-8H-wid">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="9eH-EG-LBM">
@@ -493,7 +493,7 @@
             <objects>
                 <viewController id="UAC-d8-kH1" customClass="settingsViewController" customModule="Folio" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Aye-7T-CTY">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="rI9-iM-VtK">
@@ -640,7 +640,7 @@
             <objects>
                 <tableViewController id="mSG-Qj-YNs" customClass="PageListSideMenuTableViewController" customModule="Folio" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" sectionIndexMinimumDisplayRowCount="1" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="W1f-1x-HQC">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" name="myBackgroundColor"/>
                         <prototypes>
@@ -830,7 +830,7 @@
                                 <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="small"/>
                             </imageView>
                             <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="plus.circle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="KFd-ea-Pal">
-                                <rect key="frame" x="363" y="126.5" width="44" height="39.5"/>
+                                <rect key="frame" x="363" y="70.5" width="44" height="39.5"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="tintColor" systemColor="systemTealColor" red="0.35294117650000001" green="0.7843137255" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
@@ -839,7 +839,7 @@
                                 <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="small"/>
                             </imageView>
                             <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="camera.circle" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="xBB-M9-Ju6">
-                                <rect key="frame" x="363" y="176.5" width="44" height="39.5"/>
+                                <rect key="frame" x="363" y="70.5" width="44" height="39.5"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="tintColor" systemColor="systemTealColor" red="0.35294117650000001" green="0.7843137255" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
@@ -848,7 +848,7 @@
                                 <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="small"/>
                             </imageView>
                             <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="link.circle" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="wOQ-Sg-Khi">
-                                <rect key="frame" x="363" y="226.5" width="44" height="39.5"/>
+                                <rect key="frame" x="363" y="70.5" width="44" height="39.5"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="tintColor" systemColor="systemTealColor" red="0.35294117650000001" green="0.7843137255" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
@@ -857,7 +857,7 @@
                                 <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="small"/>
                             </imageView>
                             <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pencil.circle" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="J4H-vX-fqK">
-                                <rect key="frame" x="363" y="276.5" width="44" height="39.5"/>
+                                <rect key="frame" x="363" y="70.5" width="44" height="39.5"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="tintColor" systemColor="systemTealColor" red="0.35294117650000001" green="0.7843137255" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
@@ -866,7 +866,7 @@
                                 <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="small"/>
                             </imageView>
                             <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="rectangle.expand.vertical" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="TOD-aV-QW7">
-                                <rect key="frame" x="363" y="375" width="44" height="42"/>
+                                <rect key="frame" x="363" y="69" width="44" height="42"/>
                                 <color key="backgroundColor" name="smallCardColor"/>
                                 <color key="tintColor" systemColor="systemTealColor" red="0.35294117650000001" green="0.7843137255" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
@@ -875,7 +875,7 @@
                                 <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="small"/>
                             </imageView>
                             <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="chevron.down.circle" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="DJ1-Mi-ymj">
-                                <rect key="frame" x="363" y="476.5" width="44" height="39.5"/>
+                                <rect key="frame" x="363" y="70.5" width="44" height="39.5"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="tintColor" systemColor="systemTealColor" red="0.35294117650000001" green="0.7843137255" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
@@ -884,7 +884,7 @@
                                 <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="small"/>
                             </imageView>
                             <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="chevron.up.circle" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="43G-7N-ko0">
-                                <rect key="frame" x="363" y="426.5" width="44" height="39.5"/>
+                                <rect key="frame" x="363" y="70.5" width="44" height="39.5"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="tintColor" systemColor="systemTealColor" red="0.35294117650000001" green="0.7843137255" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
@@ -893,7 +893,7 @@
                                 <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="small"/>
                             </imageView>
                             <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="chevron.left.circle" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="jHa-WE-XxO">
-                                <rect key="frame" x="363" y="526.5" width="44" height="38.5"/>
+                                <rect key="frame" x="363" y="70.5" width="44" height="38.5"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="tintColor" systemColor="systemTealColor" red="0.35294117650000001" green="0.7843137255" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
@@ -902,7 +902,7 @@
                                 <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="small"/>
                             </imageView>
                             <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="grid.circle" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="bK9-KC-QTQ">
-                                <rect key="frame" x="363" y="326.5" width="44" height="39.5"/>
+                                <rect key="frame" x="363" y="70.5" width="44" height="39.5"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="tintColor" systemColor="systemTealColor" red="0.35294117650000001" green="0.7843137255" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
@@ -911,7 +911,7 @@
                                 <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="small"/>
                             </imageView>
                             <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="chevron.right.circle" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="hzb-9B-we9">
-                                <rect key="frame" x="363" y="576.5" width="44" height="38.5"/>
+                                <rect key="frame" x="363" y="70.5" width="44" height="38.5"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="tintColor" systemColor="systemTealColor" red="0.35294117650000001" green="0.7843137255" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
@@ -920,7 +920,7 @@
                                 <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="small"/>
                             </imageView>
                             <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xQR-zS-HQT">
-                                <rect key="frame" x="357" y="62" width="57" height="561"/>
+                                <rect key="frame" x="357" y="62" width="57" height="55"/>
                                 <color key="backgroundColor" name="smallCardColor"/>
                             </view>
                         </subviews>
@@ -935,39 +935,39 @@
                             <constraint firstItem="jHa-WE-XxO" firstAttribute="width" secondItem="9gP-HQ-60U" secondAttribute="width" id="F5d-mw-7nG"/>
                             <constraint firstItem="KFd-ea-Pal" firstAttribute="top" secondItem="9gP-HQ-60U" secondAttribute="bottom" priority="750" constant="6" id="FRX-jW-9WO"/>
                             <constraint firstItem="TOD-aV-QW7" firstAttribute="centerX" secondItem="9gP-HQ-60U" secondAttribute="centerX" id="GwT-Gw-nZf"/>
-                            <constraint firstItem="xBB-M9-Ju6" firstAttribute="top" secondItem="9gP-HQ-60U" secondAttribute="top" constant="106" id="I6S-i0-d1k"/>
+                            <constraint firstItem="xBB-M9-Ju6" firstAttribute="top" secondItem="9gP-HQ-60U" secondAttribute="top" id="I6S-i0-d1k"/>
                             <constraint firstItem="DJ1-Mi-ymj" firstAttribute="centerX" secondItem="9gP-HQ-60U" secondAttribute="centerX" id="OxW-B8-IeP"/>
                             <constraint firstItem="7ZQ-M8-LUC" firstAttribute="trailing" secondItem="xQR-zS-HQT" secondAttribute="trailing" id="PdO-71-SE5"/>
                             <constraint firstItem="jHa-WE-XxO" firstAttribute="centerX" secondItem="9gP-HQ-60U" secondAttribute="centerX" id="RrU-cC-aE0"/>
                             <constraint firstItem="7ZQ-M8-LUC" firstAttribute="trailing" secondItem="9gP-HQ-60U" secondAttribute="trailing" constant="7" id="S8J-VM-adR"/>
-                            <constraint firstItem="DJ1-Mi-ymj" firstAttribute="top" secondItem="9gP-HQ-60U" secondAttribute="top" constant="406" id="WHn-rR-RP2"/>
+                            <constraint firstItem="DJ1-Mi-ymj" firstAttribute="top" secondItem="9gP-HQ-60U" secondAttribute="top" id="WHn-rR-RP2"/>
                             <constraint firstItem="43G-7N-ko0" firstAttribute="top" secondItem="9gP-HQ-60U" secondAttribute="bottom" priority="750" constant="306" id="WqR-RI-nPs"/>
                             <constraint firstItem="wOQ-Sg-Khi" firstAttribute="width" secondItem="9gP-HQ-60U" secondAttribute="width" id="YKJ-2i-BNr"/>
-                            <constraint firstItem="43G-7N-ko0" firstAttribute="top" secondItem="9gP-HQ-60U" secondAttribute="top" constant="356" id="YpB-HD-cKA"/>
+                            <constraint firstItem="43G-7N-ko0" firstAttribute="top" secondItem="9gP-HQ-60U" secondAttribute="top" id="YpB-HD-cKA"/>
                             <constraint firstItem="xQR-zS-HQT" firstAttribute="bottom" secondItem="hzb-9B-we9" secondAttribute="bottom" constant="6" id="Yup-HC-DLL"/>
-                            <constraint firstItem="J4H-vX-fqK" firstAttribute="top" secondItem="9gP-HQ-60U" secondAttribute="top" constant="206" id="Yv4-8G-u3q"/>
+                            <constraint firstItem="J4H-vX-fqK" firstAttribute="top" secondItem="9gP-HQ-60U" secondAttribute="top" id="Yv4-8G-u3q"/>
                             <constraint firstItem="43G-7N-ko0" firstAttribute="width" secondItem="9gP-HQ-60U" secondAttribute="width" id="byh-nx-cqF"/>
                             <constraint firstItem="TOD-aV-QW7" firstAttribute="width" secondItem="9gP-HQ-60U" secondAttribute="width" id="eLB-AS-TY1"/>
                             <constraint firstItem="xBB-M9-Ju6" firstAttribute="top" secondItem="9gP-HQ-60U" secondAttribute="bottom" priority="750" constant="56" id="eMC-H0-dc6"/>
                             <constraint firstItem="wOQ-Sg-Khi" firstAttribute="centerX" secondItem="9gP-HQ-60U" secondAttribute="centerX" id="f2v-yl-hmU"/>
                             <constraint firstItem="xBB-M9-Ju6" firstAttribute="width" secondItem="9gP-HQ-60U" secondAttribute="width" id="fDc-bE-ix9"/>
-                            <constraint firstItem="TOD-aV-QW7" firstAttribute="top" secondItem="9gP-HQ-60U" secondAttribute="top" constant="306" id="fkj-Ie-jtx"/>
+                            <constraint firstItem="TOD-aV-QW7" firstAttribute="top" secondItem="9gP-HQ-60U" secondAttribute="top" id="fkj-Ie-jtx"/>
                             <constraint firstItem="hzb-9B-we9" firstAttribute="width" secondItem="9gP-HQ-60U" secondAttribute="width" id="gnr-IV-abz"/>
                             <constraint firstItem="xQR-zS-HQT" firstAttribute="top" secondItem="9gP-HQ-60U" secondAttribute="top" constant="-6" id="hO1-eJ-DOS"/>
                             <constraint firstItem="bK9-KC-QTQ" firstAttribute="top" secondItem="9gP-HQ-60U" secondAttribute="bottom" priority="750" constant="206" id="isw-LG-64c"/>
                             <constraint firstItem="J4H-vX-fqK" firstAttribute="centerX" secondItem="9gP-HQ-60U" secondAttribute="centerX" id="nKg-nz-hSK"/>
-                            <constraint firstItem="jHa-WE-XxO" firstAttribute="top" secondItem="9gP-HQ-60U" secondAttribute="top" constant="456" id="oz3-vL-pO4"/>
+                            <constraint firstItem="jHa-WE-XxO" firstAttribute="top" secondItem="9gP-HQ-60U" secondAttribute="top" id="oz3-vL-pO4"/>
                             <constraint firstItem="43G-7N-ko0" firstAttribute="centerX" secondItem="9gP-HQ-60U" secondAttribute="centerX" id="pBz-ht-UaZ"/>
                             <constraint firstItem="KFd-ea-Pal" firstAttribute="centerX" secondItem="9gP-HQ-60U" secondAttribute="centerX" id="qbN-Kj-f8E"/>
                             <constraint firstItem="DJ1-Mi-ymj" firstAttribute="width" secondItem="9gP-HQ-60U" secondAttribute="width" id="rLS-fl-BEi"/>
                             <constraint firstItem="xBB-M9-Ju6" firstAttribute="centerX" secondItem="9gP-HQ-60U" secondAttribute="centerX" id="sEa-lS-Dus"/>
                             <constraint firstItem="9gP-HQ-60U" firstAttribute="top" secondItem="7ZQ-M8-LUC" secondAttribute="top" constant="24" id="tTe-nB-xXW"/>
-                            <constraint firstItem="wOQ-Sg-Khi" firstAttribute="top" secondItem="9gP-HQ-60U" secondAttribute="top" constant="156" id="tj0-Hr-Pq8"/>
-                            <constraint firstItem="KFd-ea-Pal" firstAttribute="top" secondItem="9gP-HQ-60U" secondAttribute="top" constant="56" id="uJr-n9-z2n"/>
+                            <constraint firstItem="wOQ-Sg-Khi" firstAttribute="top" secondItem="9gP-HQ-60U" secondAttribute="top" id="tj0-Hr-Pq8"/>
+                            <constraint firstItem="KFd-ea-Pal" firstAttribute="top" secondItem="9gP-HQ-60U" secondAttribute="top" id="uJr-n9-z2n"/>
                             <constraint firstItem="hzb-9B-we9" firstAttribute="centerX" secondItem="9gP-HQ-60U" secondAttribute="centerX" id="vJR-LN-xdA"/>
-                            <constraint firstItem="bK9-KC-QTQ" firstAttribute="top" secondItem="9gP-HQ-60U" secondAttribute="top" constant="256" id="vR9-nU-Sgy"/>
+                            <constraint firstItem="bK9-KC-QTQ" firstAttribute="top" secondItem="9gP-HQ-60U" secondAttribute="top" id="vR9-nU-Sgy"/>
                             <constraint firstItem="jHa-WE-XxO" firstAttribute="top" secondItem="9gP-HQ-60U" secondAttribute="bottom" priority="750" constant="406" id="vWt-0j-sWg"/>
-                            <constraint firstItem="hzb-9B-we9" firstAttribute="top" secondItem="9gP-HQ-60U" secondAttribute="top" constant="506" id="yMG-dC-vf1"/>
+                            <constraint firstItem="hzb-9B-we9" firstAttribute="top" secondItem="9gP-HQ-60U" secondAttribute="top" id="yMG-dC-vf1"/>
                             <constraint firstItem="DJ1-Mi-ymj" firstAttribute="top" secondItem="9gP-HQ-60U" secondAttribute="bottom" priority="750" constant="356" id="yiz-l0-ohs"/>
                             <constraint firstItem="bK9-KC-QTQ" firstAttribute="width" secondItem="9gP-HQ-60U" secondAttribute="width" id="zDJ-IT-Xwk"/>
                             <constraint firstItem="TOD-aV-QW7" firstAttribute="top" secondItem="9gP-HQ-60U" secondAttribute="bottom" priority="750" constant="256" id="zxa-C0-YsA"/>
@@ -1467,7 +1467,7 @@
             <objects>
                 <viewController id="QbT-Ef-xWD" customClass="HabitsViewController" customModule="Folio" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="uKv-JE-6bL">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="vC7-ph-HfX">
@@ -1787,7 +1787,7 @@
             <objects>
                 <viewController id="JiT-sl-JN2" customClass="AddHabbitViewController" customModule="Folio" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="mKD-2I-TYl">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zU5-aF-w7p">
@@ -2804,7 +2804,7 @@
             <objects>
                 <viewController storyboardIdentifier="journalCardFullViewStorybID" id="QcP-Pf-kuX" customClass="journalCardFullViewViewController" customModule="Folio" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="uZ9-ew-pdi">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bAa-Y5-Aaa">
@@ -2975,10 +2975,10 @@
                                 <color key="sectionIndexColor" systemColor="systemTealColor" red="0.35294117650000001" green="0.7843137255" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="expandTextInpCell" id="6BD-mt-3xq" customClass="ExpandableTextSCardInfoTableViewCell" customModule="Folio" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="414" height="116"/>
+                                        <rect key="frame" x="0.0" y="28" width="414" height="116.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="6BD-mt-3xq" id="uin-eD-Bs6">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="116"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="116.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Type of TextView:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wKZ-U8-68f">
@@ -2988,7 +2988,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" text="Some text inside textview" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="BSh-gZ-7iL">
-                                                    <rect key="frame" x="20" y="48" width="374" height="48"/>
+                                                    <rect key="frame" x="20" y="48" width="374" height="48.5"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <color key="textColor" name="subMainTextColor"/>
                                                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="26"/>
@@ -3013,7 +3013,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="sCardEdVReminderCell" id="d24-sJ-qlp" customClass="sCardReminderTableViewCell" customModule="Folio" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="144" width="414" height="94.5"/>
+                                        <rect key="frame" x="0.0" y="144.5" width="414" height="94.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="d24-sJ-qlp" id="2rp-Pm-mDK">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="94.5"/>
@@ -3197,7 +3197,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="ohb-na-BjG"/>
+        <segue reference="262-yF-jhR"/>
         <segue reference="to3-FM-KxV"/>
     </inferredMetricsTieBreakers>
     <resources>
