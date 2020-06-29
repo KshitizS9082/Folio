@@ -847,8 +847,8 @@
                                 </constraints>
                                 <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="small"/>
                             </imageView>
-                            <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="link.circle" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="wOQ-Sg-Khi">
-                                <rect key="frame" x="363" y="70.5" width="44" height="39.5"/>
+                            <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="text.aligncenter" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="wOQ-Sg-Khi">
+                                <rect key="frame" x="363" y="71" width="44" height="37.5"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="tintColor" systemColor="systemTealColor" red="0.35294117650000001" green="0.7843137255" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
@@ -856,7 +856,7 @@
                                 </constraints>
                                 <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="small"/>
                             </imageView>
-                            <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pencil.circle" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="J4H-vX-fqK">
+                            <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="link.circle" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="J4H-vX-fqK">
                                 <rect key="frame" x="363" y="70.5" width="44" height="39.5"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="tintColor" systemColor="systemTealColor" red="0.35294117650000001" green="0.7843137255" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -865,16 +865,16 @@
                                 </constraints>
                                 <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="small"/>
                             </imageView>
-                            <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="rectangle.expand.vertical" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="TOD-aV-QW7">
-                                <rect key="frame" x="363" y="69" width="44" height="42"/>
-                                <color key="backgroundColor" name="smallCardColor"/>
+                            <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="rectangle.3.offgrid" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="TOD-aV-QW7">
+                                <rect key="frame" x="363" y="70.5" width="44" height="38.5"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="tintColor" systemColor="systemTealColor" red="0.35294117650000001" green="0.7843137255" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="TOD-aV-QW7" secondAttribute="height" id="9rB-bn-gca"/>
                                 </constraints>
                                 <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="small"/>
                             </imageView>
-                            <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="chevron.down.circle" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="DJ1-Mi-ymj">
+                            <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="chevron.up.circle" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="DJ1-Mi-ymj">
                                 <rect key="frame" x="363" y="70.5" width="44" height="39.5"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="tintColor" systemColor="systemTealColor" red="0.35294117650000001" green="0.7843137255" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -883,16 +883,16 @@
                                 </constraints>
                                 <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="small"/>
                             </imageView>
-                            <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="chevron.up.circle" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="43G-7N-ko0">
-                                <rect key="frame" x="363" y="70.5" width="44" height="39.5"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="rectangle.expand.vertical" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="43G-7N-ko0">
+                                <rect key="frame" x="363" y="69" width="44" height="42"/>
+                                <color key="backgroundColor" name="smallCardColor"/>
                                 <color key="tintColor" systemColor="systemTealColor" red="0.35294117650000001" green="0.7843137255" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="43G-7N-ko0" secondAttribute="height" id="xEI-j8-QGS"/>
                                 </constraints>
                                 <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="small"/>
                             </imageView>
-                            <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="chevron.left.circle" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="jHa-WE-XxO">
+                            <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="chevron.down.circle" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="jHa-WE-XxO">
                                 <rect key="frame" x="363" y="70.5" width="44" height="38.5"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="tintColor" systemColor="systemTealColor" red="0.35294117650000001" green="0.7843137255" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -901,7 +901,7 @@
                                 </constraints>
                                 <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="small"/>
                             </imageView>
-                            <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="grid.circle" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="bK9-KC-QTQ">
+                            <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pencil.circle" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="bK9-KC-QTQ">
                                 <rect key="frame" x="363" y="70.5" width="44" height="39.5"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="tintColor" systemColor="systemTealColor" red="0.35294117650000001" green="0.7843137255" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -910,12 +910,21 @@
                                 </constraints>
                                 <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="small"/>
                             </imageView>
-                            <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="chevron.right.circle" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="hzb-9B-we9">
+                            <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="chevron.left.circle" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="hzb-9B-we9">
                                 <rect key="frame" x="363" y="70.5" width="44" height="38.5"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="tintColor" systemColor="systemTealColor" red="0.35294117650000001" green="0.7843137255" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="hzb-9B-we9" secondAttribute="height" constant="1" id="K4h-jv-54R"/>
+                                </constraints>
+                                <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="small"/>
+                            </imageView>
+                            <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="chevron.right.circle" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="krc-Pn-2bq">
+                                <rect key="frame" x="363" y="70.5" width="44" height="38.5"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="tintColor" systemColor="systemTealColor" red="0.35294117650000001" green="0.7843137255" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="krc-Pn-2bq" secondAttribute="height" constant="1" id="c9x-nz-zAR"/>
                                 </constraints>
                                 <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="small"/>
                             </imageView>
@@ -936,6 +945,7 @@
                             <constraint firstItem="KFd-ea-Pal" firstAttribute="top" secondItem="9gP-HQ-60U" secondAttribute="bottom" priority="750" constant="6" id="FRX-jW-9WO"/>
                             <constraint firstItem="TOD-aV-QW7" firstAttribute="centerX" secondItem="9gP-HQ-60U" secondAttribute="centerX" id="GwT-Gw-nZf"/>
                             <constraint firstItem="xBB-M9-Ju6" firstAttribute="top" secondItem="9gP-HQ-60U" secondAttribute="top" id="I6S-i0-d1k"/>
+                            <constraint firstItem="xQR-zS-HQT" firstAttribute="bottom" secondItem="krc-Pn-2bq" secondAttribute="bottom" constant="6" id="JQW-dK-CMS"/>
                             <constraint firstItem="DJ1-Mi-ymj" firstAttribute="centerX" secondItem="9gP-HQ-60U" secondAttribute="centerX" id="OxW-B8-IeP"/>
                             <constraint firstItem="7ZQ-M8-LUC" firstAttribute="trailing" secondItem="xQR-zS-HQT" secondAttribute="trailing" id="PdO-71-SE5"/>
                             <constraint firstItem="jHa-WE-XxO" firstAttribute="centerX" secondItem="9gP-HQ-60U" secondAttribute="centerX" id="RrU-cC-aE0"/>
@@ -944,9 +954,9 @@
                             <constraint firstItem="43G-7N-ko0" firstAttribute="top" secondItem="9gP-HQ-60U" secondAttribute="bottom" priority="750" constant="306" id="WqR-RI-nPs"/>
                             <constraint firstItem="wOQ-Sg-Khi" firstAttribute="width" secondItem="9gP-HQ-60U" secondAttribute="width" id="YKJ-2i-BNr"/>
                             <constraint firstItem="43G-7N-ko0" firstAttribute="top" secondItem="9gP-HQ-60U" secondAttribute="top" id="YpB-HD-cKA"/>
-                            <constraint firstItem="xQR-zS-HQT" firstAttribute="bottom" secondItem="hzb-9B-we9" secondAttribute="bottom" constant="6" id="Yup-HC-DLL"/>
                             <constraint firstItem="J4H-vX-fqK" firstAttribute="top" secondItem="9gP-HQ-60U" secondAttribute="top" id="Yv4-8G-u3q"/>
                             <constraint firstItem="43G-7N-ko0" firstAttribute="width" secondItem="9gP-HQ-60U" secondAttribute="width" id="byh-nx-cqF"/>
+                            <constraint firstItem="krc-Pn-2bq" firstAttribute="width" secondItem="9gP-HQ-60U" secondAttribute="width" id="cBc-TW-a8E"/>
                             <constraint firstItem="TOD-aV-QW7" firstAttribute="width" secondItem="9gP-HQ-60U" secondAttribute="width" id="eLB-AS-TY1"/>
                             <constraint firstItem="xBB-M9-Ju6" firstAttribute="top" secondItem="9gP-HQ-60U" secondAttribute="bottom" priority="750" constant="56" id="eMC-H0-dc6"/>
                             <constraint firstItem="wOQ-Sg-Khi" firstAttribute="centerX" secondItem="9gP-HQ-60U" secondAttribute="centerX" id="f2v-yl-hmU"/>
@@ -955,10 +965,12 @@
                             <constraint firstItem="hzb-9B-we9" firstAttribute="width" secondItem="9gP-HQ-60U" secondAttribute="width" id="gnr-IV-abz"/>
                             <constraint firstItem="xQR-zS-HQT" firstAttribute="top" secondItem="9gP-HQ-60U" secondAttribute="top" constant="-6" id="hO1-eJ-DOS"/>
                             <constraint firstItem="bK9-KC-QTQ" firstAttribute="top" secondItem="9gP-HQ-60U" secondAttribute="bottom" priority="750" constant="206" id="isw-LG-64c"/>
+                            <constraint firstItem="krc-Pn-2bq" firstAttribute="top" secondItem="9gP-HQ-60U" secondAttribute="top" id="jum-zL-utE"/>
                             <constraint firstItem="J4H-vX-fqK" firstAttribute="centerX" secondItem="9gP-HQ-60U" secondAttribute="centerX" id="nKg-nz-hSK"/>
                             <constraint firstItem="jHa-WE-XxO" firstAttribute="top" secondItem="9gP-HQ-60U" secondAttribute="top" id="oz3-vL-pO4"/>
                             <constraint firstItem="43G-7N-ko0" firstAttribute="centerX" secondItem="9gP-HQ-60U" secondAttribute="centerX" id="pBz-ht-UaZ"/>
                             <constraint firstItem="KFd-ea-Pal" firstAttribute="centerX" secondItem="9gP-HQ-60U" secondAttribute="centerX" id="qbN-Kj-f8E"/>
+                            <constraint firstItem="krc-Pn-2bq" firstAttribute="centerX" secondItem="9gP-HQ-60U" secondAttribute="centerX" id="r9G-DL-08d"/>
                             <constraint firstItem="DJ1-Mi-ymj" firstAttribute="width" secondItem="9gP-HQ-60U" secondAttribute="width" id="rLS-fl-BEi"/>
                             <constraint firstItem="xBB-M9-Ju6" firstAttribute="centerX" secondItem="9gP-HQ-60U" secondAttribute="centerX" id="sEa-lS-Dus"/>
                             <constraint firstItem="9gP-HQ-60U" firstAttribute="top" secondItem="7ZQ-M8-LUC" secondAttribute="top" constant="24" id="tTe-nB-xXW"/>
@@ -1006,6 +1018,8 @@
                         <outletCollection property="ivTopConstraints" destination="oz3-vL-pO4" collectionClass="NSMutableArray" id="qhb-Wh-DNC"/>
                         <outletCollection property="ImageViews" destination="hzb-9B-we9" collectionClass="NSMutableArray" id="Blj-e2-HJy"/>
                         <outletCollection property="ivTopConstraints" destination="yMG-dC-vf1" collectionClass="NSMutableArray" id="1Gc-QS-lrT"/>
+                        <outletCollection property="ImageViews" destination="krc-Pn-2bq" collectionClass="NSMutableArray" id="SmR-u2-mjV"/>
+                        <outletCollection property="ivTopConstraints" destination="jum-zL-utE" collectionClass="NSMutableArray" id="dHa-Em-edF"/>
                         <segue destination="o65-JX-5II" kind="presentation" identifier="bigCardEditViewSegue" id="uL0-JT-Wth"/>
                         <segue destination="8TX-W8-QyG" kind="presentation" identifier="smallCardInfoViewSegue" id="ULs-Nm-O8G"/>
                         <segue destination="WaY-nZ-q6R" kind="presentation" identifier="showCardCheckLIstSegue" id="fsJ-3Y-aCS"/>
@@ -2198,7 +2212,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="aXN-vR-B2r" customClass="JTAppleCalendarView" customModule="JTAppleCalendar">
-                                <rect key="frame" x="0.0" y="108" width="414" height="100"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="100"/>
                                 <color key="backgroundColor" name="calendarColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="100" id="Xom-oi-UOb"/>
@@ -2271,7 +2285,7 @@
                                 </connections>
                             </collectionView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="SoI-kp-iib">
-                                <rect key="frame" x="0.0" y="216" width="414" height="592"/>
+                                <rect key="frame" x="0.0" y="196" width="414" height="666"/>
                                 <color key="backgroundColor" name="calendarColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="addEntryCell" rowHeight="136" id="bnc-tR-mav" customClass="addEntryInJournalTableViewCell" customModule="Folio" customModuleProvider="target">
@@ -2975,10 +2989,10 @@
                                 <color key="sectionIndexColor" systemColor="systemTealColor" red="0.35294117650000001" green="0.7843137255" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="expandTextInpCell" id="6BD-mt-3xq" customClass="ExpandableTextSCardInfoTableViewCell" customModule="Folio" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="414" height="116.5"/>
+                                        <rect key="frame" x="0.0" y="28" width="414" height="116"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="6BD-mt-3xq" id="uin-eD-Bs6">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="116.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="116"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Type of TextView:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wKZ-U8-68f">
@@ -2988,7 +3002,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" text="Some text inside textview" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="BSh-gZ-7iL">
-                                                    <rect key="frame" x="20" y="48" width="374" height="48.5"/>
+                                                    <rect key="frame" x="20" y="48" width="374" height="48"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <color key="textColor" name="subMainTextColor"/>
                                                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="26"/>
@@ -3013,7 +3027,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="sCardEdVReminderCell" id="d24-sJ-qlp" customClass="sCardReminderTableViewCell" customModule="Folio" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="144.5" width="414" height="94.5"/>
+                                        <rect key="frame" x="0.0" y="144" width="414" height="94.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="d24-sJ-qlp" id="2rp-Pm-mDK">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="94.5"/>
@@ -3222,7 +3236,6 @@
         <image name="ellipsis" catalog="system" width="128" height="37"/>
         <image name="f.circle.fill" catalog="system" width="128" height="121"/>
         <image name="gear" catalog="system" width="128" height="119"/>
-        <image name="grid.circle" catalog="system" width="128" height="121"/>
         <image name="icloud.slash" catalog="system" width="128" height="101"/>
         <image name="line.horizontal.3" catalog="system" width="128" height="64"/>
         <image name="link.circle" catalog="system" width="128" height="121"/>
@@ -3243,6 +3256,7 @@
         <image name="rectangle.expand.vertical" catalog="system" width="128" height="122"/>
         <image name="s.circle.fill" catalog="system" width="128" height="121"/>
         <image name="t.circle.fill" catalog="system" width="128" height="121"/>
+        <image name="text.aligncenter" catalog="system" width="128" height="100"/>
         <image name="text.bubble" catalog="system" width="128" height="110"/>
         <image name="trash.circle.fill" catalog="system" width="128" height="121"/>
         <image name="w.circle.fill" catalog="system" width="128" height="121"/>

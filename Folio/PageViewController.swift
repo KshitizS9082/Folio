@@ -34,7 +34,8 @@ class PageViewController: UIViewController {
             var retVal = PageData()
             retVal.pageWidth = Double(pageViewWidhtConstraint!.constant)
             retVal.pageHeight = Double(pageViewHeightConstraint!.constant)
-            retVal.gridStyle = self.gridStyle
+//            retVal.gridStyle = self.gridStyle
+            retVal.gridStyle = .gridless
             if let dat = pageView.canvas?.drawing.dataRepresentation(){
                     retVal.drawingData = dat
             }
@@ -123,13 +124,13 @@ class PageViewController: UIViewController {
             if ImageViews.count>6{
                 switch self.gridStyle {
                 case .horizontal:
-                    ImageViews[5].image = UIImage(systemName: "rectangle.grid.1x2")
+                    ImageViews[6].image = UIImage(systemName: "rectangle.grid.1x2")
                 case .vertical:
-                    ImageViews[5].image = UIImage(systemName: "rectangle.split.3x1")
+                    ImageViews[6].image = UIImage(systemName: "rectangle.split.3x1")
                 case .cross:
-                    ImageViews[5].image = UIImage(systemName: "rectangle.split.3x3")
+                    ImageViews[6].image = UIImage(systemName: "rectangle.split.3x3")
                 case .gridless:
-                    ImageViews[5].image = UIImage(systemName: "rectangle.3.offgrid")
+                    ImageViews[6].image = UIImage(systemName: "rectangle.3.offgrid")
                 }
             }
         }
@@ -197,6 +198,9 @@ class PageViewController: UIViewController {
                 pageView.currentTask = .addMediaCard
             case 3:
                 print("3")
+                pageView.currentTask = .addMediaCard
+            case 4:
+                print("4")
                 switch pageView.currentTask {
                 case .connectViews:
                     pageView.currentTask = .noneOfAbove
@@ -208,8 +212,8 @@ class PageViewController: UIViewController {
                         }
                     }
                 }
-            case 4:
-                print("4")
+            case 5:
+                print("5")
                 switch pageView.currentTask {
                 case .drawLines:
                     pageView.currentTask = .noneOfAbove
@@ -217,24 +221,24 @@ class PageViewController: UIViewController {
                     pageView.currentTask = .drawLines
                 }
                 pageView.setupDrawing()
-            case 5:
-                print("5")
-                toggleGridStyle()
             case 6:
                 print("6")
-                pageView.currentTask = .noneOfAbove
-                togglePageResize()
+                toggleGridStyle()
             case 7:
                 print("7")
-                self.changePageView(horizontalFactor: 0, verticalFactor: -1)
+                pageView.currentTask = .noneOfAbove
+                togglePageResize()
             case 8:
                 print("8")
-                self.changePageView(horizontalFactor: 0, verticalFactor: 1)
+                self.changePageView(horizontalFactor: 0, verticalFactor: -1)
             case 9:
                 print("9")
-                self.changePageView(horizontalFactor: -1, verticalFactor: 0)
+                self.changePageView(horizontalFactor: 0, verticalFactor: 1)
             case 10:
                 print("10")
+                self.changePageView(horizontalFactor: -1, verticalFactor: 0)
+            case 11:
+                print("11")
                 self.changePageView(horizontalFactor: 1, verticalFactor: 0)
             default:
                 print("unexpected index")
@@ -328,7 +332,7 @@ class PageViewController: UIViewController {
         ImageViews.forEach { (iv) in
             self.view.bringSubviewToFront(iv)
         }
-        view.bringSubviewToFront(ImageViews[6])
+        view.bringSubviewToFront(ImageViews[7])
 //        scrollView.setZoomScale(scrollView.minimumZoomScale, animated: true)
     }
     var pageViewHeightConstraint: NSLayoutConstraint?
@@ -409,29 +413,34 @@ class PageViewController: UIViewController {
             for ind in 0..<7{
                 ivTopConstraints[ind].constant=CGFloat(50+50*ind)
             }
-            for ind in 6..<10{
-                ivTopConstraints[ind].constant=CGFloat(50+50*5)
+            for ind in 7..<11{
+                print("i \(ind): \(ImageViews[ind].image)")
+                ivTopConstraints[ind].constant=CGFloat(50+50*6)
             }
         }else{
-            for ind in 0..<10{
+            for ind in 0..<11{
                 ivTopConstraints[ind].constant=CGFloat(0)
             }
         }
+        view.bringSubviewToFront(ImageViews[7])
         UIView.animate(withDuration: 0.25, delay: 0, options: .curveEaseInOut, animations: {
             self.view.layoutIfNeeded()
         }, completion: nil)
     }
     func togglePageResize(){
-        if ivTopConstraints[6].constant==ivTopConstraints[5].constant{
-            for ind in 6..<10{
-                ivTopConstraints[ind].constant=ivTopConstraints[5].constant+CGFloat(50*(ind-5))
+        if ivTopConstraints[7].constant==ivTopConstraints[6].constant{
+            for ind in 0..<7{
+                ivTopConstraints[ind].constant=CGFloat(0)
+            }
+            for ind in 7..<11{
+                ivTopConstraints[ind].constant=ivTopConstraints[6].constant+CGFloat(50*(ind-6))
             }
         }else{
-            for ind in 6..<10{
-                ivTopConstraints[ind].constant=ivTopConstraints[5].constant
+            for ind in 7..<11{
+                ivTopConstraints[ind].constant=ivTopConstraints[6].constant
             }
         }
-        view.bringSubviewToFront(ImageViews[6])
+        view.bringSubviewToFront(ImageViews[7])
         UIView.animate(withDuration: 0.25, delay: 0, options: .curveEaseInOut, animations: {
             self.view.layoutIfNeeded()
         }, completion: nil)
