@@ -17,6 +17,7 @@ struct PageData: Codable{
     var bigCards = [bigCardData]()
     var smallCards = [smallCardData]()
     var mediaCards = [mediaCardData]()
+    var textCards = [textCardData]()
     var conntectedViews = [connectingViewTupple]()
     var pageWidth = 0.0
     var pageHeight = 0.0
@@ -70,6 +71,12 @@ struct smallCardData: Codable {
 }
 struct mediaCardData: Codable{
     var card = MediaCard()
+    var frame = CGRect.zero
+    var isHidden=false
+//    var timelineIndex: Int?
+}
+struct textCardData: Codable{
+    var card = TextCard()
     var frame = CGRect.zero
     var isHidden=false
 //    var timelineIndex: Int?

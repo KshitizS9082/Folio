@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6B2A257E24AA1FEC0050B2DE /* TextCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B2A257D24AA1FEC0050B2DE /* TextCardView.swift */; };
 		6BD51DB324A5A5DF00253290 /* newNotesFullViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BD51DB224A5A5DF00253290 /* newNotesFullViewController.swift */; };
 		870E12556BF0317058D31A09 /* Pods_Folio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F32C815244D1C255A7FDD23A /* Pods_Folio.framework */; };
 		87DB04D9E8C0C19EDD6FF265 /* Pods_FolioTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC6B6DB7D06A4FC4A090E6A3 /* Pods_FolioTests.framework */; };
@@ -129,6 +130,7 @@
 		170C7B5029BAD70FCD668261 /* Pods-Folio-FolioUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Folio-FolioUITests.debug.xcconfig"; path = "Target Support Files/Pods-Folio-FolioUITests/Pods-Folio-FolioUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		19AA4F4EE3EA7DC3617C074A /* Pods-Folio.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Folio.release.xcconfig"; path = "Target Support Files/Pods-Folio/Pods-Folio.release.xcconfig"; sourceTree = "<group>"; };
 		5CDFF065539CE4B3E77C16F8 /* Pods_Folio_FolioUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Folio_FolioUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6B2A257D24AA1FEC0050B2DE /* TextCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TextCardView.swift; path = Folio/TextCardView.swift; sourceTree = "<group>"; };
 		6BD51DB224A5A5DF00253290 /* newNotesFullViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = newNotesFullViewController.swift; path = "Big Card Items/newNotesFullViewController.swift"; sourceTree = "<group>"; };
 		6D725AB9D78B9CC0FD8B1825 /* Pods-Folio-FolioUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Folio-FolioUITests.release.xcconfig"; path = "Target Support Files/Pods-Folio-FolioUITests/Pods-Folio-FolioUITests.release.xcconfig"; sourceTree = "<group>"; };
 		AB7282A2BE03B60D0F69806A /* Pods-Folio.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Folio.debug.xcconfig"; path = "Target Support Files/Pods-Folio/Pods-Folio.debug.xcconfig"; sourceTree = "<group>"; };
@@ -293,6 +295,7 @@
 		E252B03C246C4041003F8718 = {
 			isa = PBXGroup;
 			children = (
+				6B2A257D24AA1FEC0050B2DE /* TextCardView.swift */,
 				E252B047246C4041003F8718 /* Folio */,
 				E252B05E246C4044003F8718 /* FolioTests */,
 				E252B069246C4044003F8718 /* FolioUITests */,
@@ -804,6 +807,7 @@
 				E252B085246C45F2003F8718 /* MediaCard.swift in Sources */,
 				E216884D2474E19B00D079A4 /* UIImageCompressor.swift in Sources */,
 				E2E152602486562900079B79 /* addHabbitTitleTableViewCell.swift in Sources */,
+				6B2A257E24AA1FEC0050B2DE /* TextCardView.swift in Sources */,
 				E26947672470320B00F9E21F /* SmallCardView.swift in Sources */,
 				E29A5875248A734A00FA7D7C /* newSmallCardInfoViewController.swift in Sources */,
 				E25BA51124727508000D1DF7 /* ScardTimelineTableViewCell.swift in Sources */,

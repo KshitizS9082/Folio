@@ -50,6 +50,9 @@ class PageViewController: UIViewController {
                 if let cv =  sv as? MediaCardView{
                     retVal.mediaCards.append(mediaCardData(card: cv.card, frame: cv.frame, isHidden: cv.isHidden))
                 }
+                if let cv = sv as? TextCardView{
+                    retVal.textCards.append(textCardData(card: cv.card, frame: cv.frame, isHidden: cv.isHidden))
+                }
             }
             retVal.conntectedViews = pageView.page.conntectedViews
             print("gonna get page: PageData? ")
@@ -91,6 +94,13 @@ class PageViewController: UIViewController {
                 })
                 newVal.mediaCards.forEach({ (cardData) in
                     let nc = MediaCardView(frame: cardData.frame)
+                    nc.card=cardData.card
+                    nc.pageDelegate=self
+                    pageView.addSubview(nc)
+                    nc.isHidden=cardData.isHidden
+                })
+                newVal.textCards.forEach({ (cardData) in
+                    let nc = TextCardView(frame: cardData.frame)
                     nc.card=cardData.card
                     nc.pageDelegate=self
                     pageView.addSubview(nc)
@@ -198,7 +208,7 @@ class PageViewController: UIViewController {
                 pageView.currentTask = .addMediaCard
             case 3:
                 print("3")
-                pageView.currentTask = .addMediaCard
+                pageView.currentTask = .addTextCard
             case 4:
                 print("4")
                 switch pageView.currentTask {

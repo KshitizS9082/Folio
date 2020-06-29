@@ -12,6 +12,7 @@ import PencilKit
 enum pageViewCurrentTask {
     case addSmallCard
     case addCard
+    case addTextCard
     case drawLines
     case delete
     case addMediaCard
@@ -136,6 +137,15 @@ class PageView: UIView {
         self.currentTask = .noneOfAbove
         pageDelegate?.changeContentSize(using: nv)
     }
+    func addTextCard(centeredAt point: CGPoint){
+        let newFrame = CGRect(origin: CGPoint(x: max(0, point.x-(textCardWidth/2)), y: max(0,point.y-(textCardHeight/2))), size: CGSize(width: textCardWidth, height: textCardHeight))
+        let nv = TextCardView(frame: newFrame)
+        nv.pageDelegate=myViewController
+        nv.isUserInteractionEnabled=true
+        self.addSubview(nv)
+        self.currentTask = .noneOfAbove
+        pageDelegate?.changeContentSize(using: nv)
+    }
     func addMediaCard(centeredAt point: CGPoint){
         let newFrame = CGRect(origin: CGPoint(x: max(0, point.x-(mediaCardDimension/2)), y: max(0,point.y-(mediaCardDimension/2))), size: CGSize(width: mediaCardDimension, height: mediaCardDimension))
         let nv = MediaCardView(frame: newFrame)
@@ -233,6 +243,10 @@ class PageView: UIView {
             print("addCard")
             self.addBigCard(centeredAt: point)
             self.pageDelegate?.updateCurrentTaskToNone()
+        case .addTextCard:
+            print("add textCard")
+            self.addTextCard(centeredAt: point)
+            self.pageDelegate?.updateCurrentTaskToNone()
         case .drawLines:
             print("drawLines")
             return
@@ -276,6 +290,12 @@ extension PageView{
         return 240
     }
     var bigCardHeight: CGFloat{
+        return 170
+    }
+    var textCardHeight: CGFloat{
+        return 60
+    }
+    var textCardWidth: CGFloat{
         return 170
     }
     var mediaCardDimension: CGFloat{
