@@ -369,7 +369,7 @@ class SmallCardView: UIView {
             //Place card allign properly to near by subviewß
             if let pagev = superview as? PageView{
                 for sv in pagev.subviews{
-                    if sv.frame==self.frame{
+                    if sv.frame==self.frame || sv.isHidden==true{
                         continue
                     }
                     if let _ = sv as? PKCanvasView{
@@ -436,6 +436,8 @@ extension SmallCardView: UITextViewDelegate{
         if !isEditting{
             isEditting = true
 //            layoutSubviews()
+            configureResizingButton()
+            configureTitleTextAndInfoView()
         }
         pageDelegate?.resizeCard(for: self)
     }
