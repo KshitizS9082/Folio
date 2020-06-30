@@ -61,13 +61,13 @@ class TextCardView: UIView, UITextViewDelegate {
             textLabel.centerYAnchor.constraint(equalTo: safeAreaLayoutGuide.centerYAnchor),
 //            textLabel.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: cornerRadius),
 //            textLabel.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -cornerRadius),
-            textLabel.leftAnchor.constraint(equalTo: resizingButton.rightAnchor, constant: cornerRadius),
+            textLabel.leftAnchor.constraint(equalTo: resizingButton.rightAnchor, constant: 2),
             textLabel.rightAnchor.constraint(equalTo: safeAreaLayoutGuide.rightAnchor, constant: -cornerRadius),
             textLabel.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -cornerRadius)
             ].forEach { (constraint) in
                 constraint.isActive=true
         }
-        textLabel.font = UIFont.preferredFont(forTextStyle: .subheadline)
+        textLabel.font = UIFont.preferredFont(forTextStyle: .title1)
         textLabel.addDoneButton(title: "Done", target: self, selector: #selector(tapDone(sender:)))
     }
     func textViewDidEndEditing(_ textView: UITextView) {

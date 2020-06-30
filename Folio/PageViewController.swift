@@ -388,6 +388,7 @@ class PageViewController: UIViewController {
         for sv in pageView.subviews{
             if let x = sv as? SmallCardView{
                 if x.card.UniquIdentifier == uniqueID{
+                    pageView.bringSubviewToFront(sv)
                     let point = CGPoint(x: max(0, x.frame.midX-view.bounds.width/2), y: max(0, x.frame.midY-view.bounds.height/2))
                     scrollView.setContentOffset(point, animated: true)
                     sv.isHidden=false
@@ -396,6 +397,7 @@ class PageViewController: UIViewController {
             }
             if let x = sv as? cardView{
                 if x.card.UniquIdentifier == uniqueID{
+                    pageView.bringSubviewToFront(sv)
                     let point = CGPoint(x: max(0, x.frame.midX-view.bounds.width/2), y: max(0, x.frame.midY-view.bounds.height/2))
                     scrollView.setContentOffset(point, animated: true)
                     sv.isHidden=false
@@ -404,6 +406,7 @@ class PageViewController: UIViewController {
             }
             if let x = sv as? MediaCardView{
                 if x.card.UniquIdentifier == uniqueID{
+                    pageView.bringSubviewToFront(sv)
                     let point = CGPoint(x: max(0, x.frame.midX-view.bounds.width/2), y: max(0, x.frame.midY-view.bounds.height/2))
                     scrollView.setContentOffset(point, animated: true)
                     sv.isHidden=false
