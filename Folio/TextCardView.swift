@@ -202,7 +202,8 @@ class TextCardView: UIView, UITextViewDelegate {
             //Place card allign properly to near by subviewß
             if let pagev = superview as? PageView{
                 for sv in pagev.subviews{
-                    if sv.frame==self.frame || sv.isHidden==true{
+                    //is UIButton is done to keep check on gridButtons
+                    if sv.frame==self.frame || sv.isHidden==true || sv is UIButton{
                         continue
                     }
                     if let _ = sv as? PKCanvasView{

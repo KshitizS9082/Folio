@@ -288,7 +288,7 @@ extension PageView{
         return 240
     }
     var smallCardHeight: CGFloat{
-        return 110
+        return 100
     }
     var bigCardWidth: CGFloat{
         return 240

@@ -880,7 +880,9 @@ extension PageViewController: pageProtocol{
         case .vertical:
             origin = CGPoint(x: lineSpacing*CGFloat(Int(origin.x/lineSpacing))+5, y: origin.y)
         case .cross:
+            print("ccs origin = \(origin)")
             origin = CGPoint(x: lineSpacing*CGFloat(Int(origin.x/lineSpacing))+5, y: horSpacing*CGFloat(Int(origin.y/horSpacing))+5)
+            print("new ccs origin = \(origin)")
         case .gridless:
             return
 //        default:
