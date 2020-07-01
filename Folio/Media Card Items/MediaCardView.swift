@@ -14,25 +14,40 @@ import PencilKit
 class MediaCardView: UIView {
     //    var UniquIdentifier: UUID?
     var card = MediaCard()
+    var backgroundImage = UIImageView(image: UIImage(named: "mediaCardBacgroundImage"))
     var imageViews = [UIImageView]()
     var labelView = UILabel()
     
     override func layoutSubviews() {
         self.layer.backgroundColor = #colorLiteral(red: 0.1764705926, green: 0.4980392158, blue: 0.7568627596, alpha: 0.269393706)
-        self.layer.masksToBounds=true
+        self.layer.masksToBounds=false
         self.layer.cornerRadius=cornerRadius
         self.layer.shadowColor=shadowColor
-        self.layer.shadowOpacity=1.0
+        self.layer.shadowOpacity=0.4
         if isResizing{
             return
         }
-        subviews.forEach { (sv) in
-            sv.removeFromSuperview()
-        }
+//        subviews.forEach { (sv) in
+//            sv.removeFromSuperview()
+//        }
         var dist = CGFloat(0)
         //        if imageViews.count != numberOfImagesToShow{
         self.subviews.forEach { (sv) in
             sv.removeFromSuperview()
+        }
+        if subviews.contains(backgroundImage)==false{
+            backgroundImage.translatesAutoresizingMaskIntoConstraints=false
+            addSubview(backgroundImage)
+            [
+                backgroundImage.leftAnchor.constraint(equalTo: safeAreaLayoutGuide.leftAnchor, constant: +dist),
+                backgroundImage.rightAnchor.constraint(equalTo: safeAreaLayoutGuide.rightAnchor, constant: -dist),
+                backgroundImage.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: +dist),
+                backgroundImage.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -dist)
+                ].forEach { (cst) in
+                    cst.isActive=true
+            }
+            backgroundImage.layer.cornerRadius=cornerRadius
+            backgroundImage.layer.masksToBounds=true
         }
         self.imageViews.removeAll()
         for _ in 0..<numberOfImagesToShow{
@@ -41,6 +56,7 @@ class MediaCardView: UIView {
             view.contentMode = .scaleAspectFill
             //TODO: if set to false shadows would appear but proper edge distance b/w subviews won't be maintained
             view.layer.masksToBounds=true
+//            view.layer.cornerRadius=cornerRadius
             view.layer.shadowColor=shadowColor
             view.layer.shadowOpacity=1.0
             //TODO: see if below line for caching causes a problem in resizing if not set it
@@ -56,7 +72,7 @@ class MediaCardView: UIView {
                 ].forEach { (cst) in
                     cst.isActive=true
             }
-                        view.isHidden=true
+            view.isHidden=true
             imageViews.append(view)
             view.addSubview(UIActivityIndicatorView())
             dist+=distanceOfEachNewImageFromPreviousImage
@@ -319,8 +335,8 @@ class MediaCardView: UIView {
         }
     }
     override func draw(_ rect: CGRect) {
-        let backgroundImage = UIImage(named: "mediaCardBacgroundImage")
-        backgroundImage?.draw(in: bounds)
+//        let backgroundImage = UIImage(named: "mediaCardBacgroundImage")
+//        backgroundImage?.draw(in: bounds)
     }
     
 }
@@ -335,7 +351,8 @@ extension MediaCardView{
         return 2.0
     }
     var cornerRadius: CGFloat{
-        return self.bounds.size.width/25
+//        return self.bounds.size.width/25
+        return 10
     }
     var labelViewHeight: CGFloat{
         return self.bounds.size.height/7

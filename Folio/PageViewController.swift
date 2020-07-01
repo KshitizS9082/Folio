@@ -267,7 +267,8 @@ class PageViewController: UIViewController {
             view.addSubview(dropZone)
         }
         dropZone.translatesAutoresizingMaskIntoConstraints=false
-        dropZone.backgroundColor=UIColor(named: "smallCardColor") ?? #colorLiteral(red: 0.9254902005, green: 0.2352941185, blue: 0.1019607857, alpha: 1)
+//        dropZone.backgroundColor=UIColor(named: "smallCardColor") ?? #colorLiteral(red: 0.9254902005, green: 0.2352941185, blue: 0.1019607857, alpha: 1)
+        dropZone.backgroundColor=pageColor
         [
             dropZone.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             dropZone.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
@@ -291,6 +292,8 @@ class PageViewController: UIViewController {
                 cst.isActive=true
         }
         scrollView.isPagingEnabled = false
+        //only allow horizontal or vertical scroll at once
+        scrollView.isDirectionalLockEnabled=true
         scrollView.minimumZoomScale = 0.1
         scrollView.maximumZoomScale = 4.0
         
@@ -464,18 +467,27 @@ class PageViewController: UIViewController {
         print("tgsyle")
          print("set from to \(self.gridStyle)")
         switch self.gridStyle {
-        case .horizontal:
-            self.gridStyle = .vertical
-        case .vertical:
+        case .gridless:
             self.gridStyle = .cross
         case .cross:
-            self.gridStyle = .gridless
-        case .gridless:
+            self.gridStyle = .vertical
+        case .vertical:
             self.gridStyle = .horizontal
+        case .horizontal:
+            self.gridStyle = .gridless
         }
         print("set to \(self.gridStyle)")
         self.viewDidLoad()
     }
+    class gridButtonGesturRecognizer: UITapGestureRecognizer{
+        var x: CGFloat = 0.0
+        var y: CGFloat = 0.0
+    }
+    @objc func tapAddCardGrid(sender : gridButtonGesturRecognizer){
+        print("ptf: \(sender.x), \(sender.y)")
+        pageView.addSmallCard(centeredAt: CGPoint(x: sender.x, y: sender.y))
+    }
+    var gridButtons = [UIButton]()
     func setGridLayer(){
          print("setting using \(self.gridStyle)")
         gridShapeLayers.forEach { (shlayer) in
@@ -485,6 +497,10 @@ class PageViewController: UIViewController {
         let horSpacing = CGFloat(125)
         let stripes = UIBezierPath()
         var i=0
+        self.gridButtons.forEach { (button) in
+            button.removeFromSuperview()
+        }
+        self.gridButtons.removeAll()
         switch self.gridStyle {
         case .horizontal:
             while( horSpacing*CGFloat(i)<=pageView.bounds.height){
@@ -499,6 +515,8 @@ class PageViewController: UIViewController {
                 i+=1
             }
         case .cross:
+            let xInit: CGFloat = lineSpacing/2.0
+            let yInit: CGFloat =  horSpacing/2.0
             while( horSpacing*CGFloat(i)<=pageView.bounds.height){
                 stripes.move(to: CGPoint(x: 0, y: horSpacing*CGFloat(i)) )
                 stripes.addLine(to: CGPoint(x: pageView.bounds.width, y: horSpacing*CGFloat(i)) )
@@ -510,6 +528,40 @@ class PageViewController: UIViewController {
                 stripes.addLine(to: CGPoint(x: lineSpacing*CGFloat(i), y: pageView.bounds.height) )
                 i+=1
             }
+            i=0
+            var j=0
+            while( horSpacing*CGFloat(i)<=pageView.bounds.height){
+                j=0
+                while( lineSpacing*CGFloat(j)<=pageView.bounds.width){
+                    let but = UIButton(type: .contactAdd)
+                    but.tintColor = pageView.lineColor
+                    pageView.addSubview(but)
+                    but.translatesAutoresizingMaskIntoConstraints=false
+                    [
+                        but.centerYAnchor.constraint(equalTo: pageView.safeAreaLayoutGuide.topAnchor, constant: horSpacing*CGFloat(i)+yInit),
+                        but.centerXAnchor.constraint(equalTo: pageView.safeAreaLayoutGuide.leftAnchor, constant:  lineSpacing*CGFloat(j)+xInit),
+                        but.widthAnchor.constraint(equalToConstant: 44),
+                        but.heightAnchor.constraint(equalTo: but.widthAnchor)
+                        ].forEach { (cst) in
+                            cst.isActive=true
+                    }
+                    let tappy = gridButtonGesturRecognizer(target: self, action: #selector(self.tapAddCardGrid))
+                    tappy.x = lineSpacing*CGFloat(j)+xInit
+                    tappy.y = horSpacing*CGFloat(i)+yInit
+                    but.addGestureRecognizer(tappy)
+                    self.gridButtons.append(but)
+                    j+=1
+                }
+                i+=1
+            }
+            pageView.subviews.forEach { (sv) in
+                if sv is cardView || sv is SmallCardView || sv is MediaCardView || sv is TextCardView{
+                    pageView.bringSubviewToFront(sv)
+                }
+//                if _ = sv as? cardView || _ = sv as? SmallCardView || _ = sv as? MediaCardView || _ = sv as? TextCardView{
+//                    pageView.bringSubviewToFront(sv)
+//                }
+            }
         case .gridless:
             gridShapeLayers.forEach { (shlayer) in
                 shlayer.removeFromSuperlayer()
@@ -518,9 +570,9 @@ class PageViewController: UIViewController {
         }
         let shapeLayer = CAShapeLayer()
         shapeLayer.path = stripes.cgPath
-        shapeLayer.strokeColor = pageView.lineColor.cgColor
+        shapeLayer.strokeColor = pageView.lineColor.cgColor.copy(alpha: 0.2)
         shapeLayer.fillColor = UIColor.clear.cgColor
-        shapeLayer.lineWidth = 1
+        shapeLayer.lineWidth = 3
         gridShapeLayers.append(shapeLayer)
         pageView.layer.addSublayer(shapeLayer)
         pageView.subviews.forEach { (sv) in
@@ -529,7 +581,6 @@ class PageViewController: UIViewController {
             }
         }
     }
-
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         if let url = try? FileManager.default.url(
@@ -545,7 +596,8 @@ class PageViewController: UIViewController {
                     page = extract
 //                    viewDidLoad()
                     print("pageviewc opened page \(page)")
-                    scrollView.setZoomScale(scrollView.minimumZoomScale, animated: true)
+                    //TODO: removed to make looke better but locks scrolling initially again, find a solution
+//                    scrollView.setZoomScale(scrollView.minimumZoomScale, animated: true)
                 }else{
                     print("ERROR: found PageData(json: jsonData) to be nil so didn't set it")
                 }

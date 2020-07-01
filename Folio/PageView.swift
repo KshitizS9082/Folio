@@ -231,6 +231,10 @@ class PageView: UIView {
         }
     }
     override func layoutSubviews() {
+        self.layer.shadowColor = UIColor.gray.cgColor
+//               self.layer.shadowOffset = CGSize(width: 0.0, height: 3.0)
+               self.layer.shadowRadius = 30.0
+               self.layer.shadowOpacity = 0.4
     }
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         guard let point = touches.first?.location(in: self) else { return }
@@ -284,7 +288,7 @@ extension PageView{
         return 240
     }
     var smallCardHeight: CGFloat{
-        return 90
+        return 110
     }
     var bigCardWidth: CGFloat{
         return 240
