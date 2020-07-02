@@ -95,6 +95,9 @@
 		E2C1F340248579F0004A8050 /* PageListSideMenuTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2C1F33F248579F0004A8050 /* PageListSideMenuTableViewController.swift */; };
 		E2CB87F52483581B002F3E6A /* journalLocationPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2CB87F42483581B002F3E6A /* journalLocationPickerViewController.swift */; };
 		E2D4B87D247901A1005F566F /* pageListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D4B87C247901A1005F566F /* pageListTableViewCell.swift */; };
+		E2DD7A2C24AD996800F9DF27 /* walletViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2DD7A2B24AD996800F9DF27 /* walletViewController.swift */; };
+		E2DD7A3024ADAAB300F9DF27 /* walletTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2DD7A2F24ADAAB300F9DF27 /* walletTabBar.swift */; };
+		E2DD7A3224ADAB2A00F9DF27 /* wallletTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2DD7A3124ADAB2A00F9DF27 /* wallletTabBarController.swift */; };
 		E2E15258248604B900079B79 /* habitsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2E15257248604B900079B79 /* habitsTableViewController.swift */; };
 		E2E1525A248604CC00079B79 /* HabitsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2E15259248604CC00079B79 /* HabitsViewController.swift */; };
 		E2E1525C2486122000079B79 /* AddHabbitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2E1525B2486122000079B79 /* AddHabbitViewController.swift */; };
@@ -105,6 +108,7 @@
 		E2E152662486564C00079B79 /* addHabbitReminderValueTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2E152652486564C00079B79 /* addHabbitReminderValueTableViewCell.swift */; };
 		E2E152682486565C00079B79 /* addHabbitGoalCountTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2E152672486565C00079B79 /* addHabbitGoalCountTableViewCell.swift */; };
 		E2E1526A2486566C00079B79 /* addHabbitTargetDateTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2E152692486566C00079B79 /* addHabbitTargetDateTableViewCell.swift */; };
+		E2E5EEF624ADFBAF00E01490 /* addWalletEntryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2E5EEF524ADFBAF00E01490 /* addWalletEntryViewController.swift */; };
 		E2FEE2B0247C1DDD00DD7069 /* DateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2FEE2AF247C1DDC00DD7069 /* DateCell.swift */; };
 		E2FEE2B2247CC24200DD7069 /* DateHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2FEE2B1247CC24200DD7069 /* DateHeader.swift */; };
 /* End PBXBuildFile section */
@@ -131,7 +135,7 @@
 		19AA4F4EE3EA7DC3617C074A /* Pods-Folio.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Folio.release.xcconfig"; path = "Target Support Files/Pods-Folio/Pods-Folio.release.xcconfig"; sourceTree = "<group>"; };
 		5CDFF065539CE4B3E77C16F8 /* Pods_Folio_FolioUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Folio_FolioUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6B2A257D24AA1FEC0050B2DE /* TextCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TextCardView.swift; path = Folio/TextCardView.swift; sourceTree = "<group>"; };
-		6BD51DB224A5A5DF00253290 /* newNotesFullViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = newNotesFullViewController.swift; path = "Big Card Items/newNotesFullViewController.swift"; sourceTree = "<group>"; };
+		6BD51DB224A5A5DF00253290 /* newNotesFullViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = newNotesFullViewController.swift; sourceTree = "<group>"; };
 		6D725AB9D78B9CC0FD8B1825 /* Pods-Folio-FolioUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Folio-FolioUITests.release.xcconfig"; path = "Target Support Files/Pods-Folio-FolioUITests/Pods-Folio-FolioUITests.release.xcconfig"; sourceTree = "<group>"; };
 		AB7282A2BE03B60D0F69806A /* Pods-Folio.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Folio.debug.xcconfig"; path = "Target Support Files/Pods-Folio/Pods-Folio.debug.xcconfig"; sourceTree = "<group>"; };
 		B7F7E37428634E233DB6CFDE /* Pods-FolioTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FolioTests.release.xcconfig"; path = "Target Support Files/Pods-FolioTests/Pods-FolioTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -225,6 +229,9 @@
 		E2C1F33F248579F0004A8050 /* PageListSideMenuTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageListSideMenuTableViewController.swift; sourceTree = "<group>"; };
 		E2CB87F42483581B002F3E6A /* journalLocationPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = journalLocationPickerViewController.swift; sourceTree = "<group>"; };
 		E2D4B87C247901A1005F566F /* pageListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = pageListTableViewCell.swift; sourceTree = "<group>"; };
+		E2DD7A2B24AD996800F9DF27 /* walletViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = walletViewController.swift; path = Folio/walletViewController.swift; sourceTree = SOURCE_ROOT; };
+		E2DD7A2F24ADAAB300F9DF27 /* walletTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = walletTabBar.swift; sourceTree = "<group>"; };
+		E2DD7A3124ADAB2A00F9DF27 /* wallletTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = wallletTabBarController.swift; sourceTree = "<group>"; };
 		E2E15257248604B900079B79 /* habitsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = habitsTableViewController.swift; sourceTree = "<group>"; };
 		E2E15259248604CC00079B79 /* HabitsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitsViewController.swift; sourceTree = "<group>"; };
 		E2E1525B2486122000079B79 /* AddHabbitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddHabbitViewController.swift; sourceTree = "<group>"; };
@@ -235,6 +242,7 @@
 		E2E152652486564C00079B79 /* addHabbitReminderValueTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = addHabbitReminderValueTableViewCell.swift; sourceTree = "<group>"; };
 		E2E152672486565C00079B79 /* addHabbitGoalCountTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = addHabbitGoalCountTableViewCell.swift; sourceTree = "<group>"; };
 		E2E152692486566C00079B79 /* addHabbitTargetDateTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = addHabbitTargetDateTableViewCell.swift; sourceTree = "<group>"; };
+		E2E5EEF524ADFBAF00E01490 /* addWalletEntryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = addWalletEntryViewController.swift; sourceTree = "<group>"; };
 		E2FEE2AF247C1DDC00DD7069 /* DateCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateCell.swift; sourceTree = "<group>"; };
 		E2FEE2B1247CC24200DD7069 /* DateHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateHeader.swift; sourceTree = "<group>"; };
 		F32C815244D1C255A7FDD23A /* Pods_Folio.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Folio.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -320,23 +328,25 @@
 			children = (
 				E252B04C246C4041003F8718 /* ViewController.swift */,
 				E252B04E246C4041003F8718 /* Main.storyboard */,
-				E2A942082490B7FE003716A2 /* settingsViewController.swift */,
-				6BD51DB224A5A5DF00253290 /* newNotesFullViewController.swift */,
-				E24382672490CEAC00C7F016 /* themeChooserViewController.swift */,
-				E252B08D246C4AD7003F8718 /* SwitchPageTimelineViewController.swift */,
+				E252B08A246C4640003F8718 /* Model */,
+				E2DD7A2A24AD964100F9DF27 /* Settings */,
+				E2DD7A2B24AD996800F9DF27 /* walletViewController.swift */,
+				E2E5EEF524ADFBAF00E01490 /* addWalletEntryViewController.swift */,
+				E2DD7A2F24ADAAB300F9DF27 /* walletTabBar.swift */,
+				E2DD7A3124ADAB2A00F9DF27 /* wallletTabBarController.swift */,
 				E252B08B246C4681003F8718 /* PageListViewController.swift */,
-				E2E152562486045500079B79 /* Habits Items */,
-				E26FD6AE2482A7AA004DA918 /* Journal Items */,
-				E252B093246CEE55003F8718 /* PageView.swift */,
 				E25B0E97247BA803004F3BDA /* Page List Items */,
 				E260F153247AA95200CFB697 /* Page Extract Items */,
+				E252B08D246C4AD7003F8718 /* SwitchPageTimelineViewController.swift */,
 				E252B08F246C4E6D003F8718 /* PageViewController.swift */,
+				E252B093246CEE55003F8718 /* PageView.swift */,
+				E269475D2470276F00F9E21F /* Small Card Items */,
+				E25BA4EE247159E2000D1DF7 /* Big Card Items */,
+				E25BA4FB24716A9D000D1DF7 /* Media Card Items */,
 				E252B091246C4E79003F8718 /* TimelineViewController.swift */,
 				E25BA50E2472695A000D1DF7 /* Timeline Items */,
-				E25BA4FB24716A9D000D1DF7 /* Media Card Items */,
-				E252B08A246C4640003F8718 /* Model */,
-				E25BA4EE247159E2000D1DF7 /* Big Card Items */,
-				E269475D2470276F00F9E21F /* Small Card Items */,
+				E2E152562486045500079B79 /* Habits Items */,
+				E26FD6AE2482A7AA004DA918 /* Journal Items */,
 				E252B07F246C44E7003F8718 /* Extensions */,
 				E252B078246C4055003F8718 /* Supporters */,
 				E252B051246C4044003F8718 /* Assets.xcassets */,
@@ -415,6 +425,7 @@
 		E25BA4EE247159E2000D1DF7 /* Big Card Items */ = {
 			isa = PBXGroup;
 			children = (
+				6BD51DB224A5A5DF00253290 /* newNotesFullViewController.swift */,
 				E25BA4EF24715A29000D1DF7 /* cardView.swift */,
 				E25BA4F324716196000D1DF7 /* EditCardViewController.swift */,
 				E29A586A248A360D00FA7D7C /* newEditCardViewController.swift */,
@@ -501,6 +512,15 @@
 				E2623828249F1F3500BC510A /* journalHabitTableViewCell.swift */,
 			);
 			path = "Journal Items";
+			sourceTree = "<group>";
+		};
+		E2DD7A2A24AD964100F9DF27 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				E2A942082490B7FE003716A2 /* settingsViewController.swift */,
+				E24382672490CEAC00C7F016 /* themeChooserViewController.swift */,
+			);
+			path = Settings;
 			sourceTree = "<group>";
 		};
 		E2E152562486045500079B79 /* Habits Items */ = {
@@ -770,6 +790,7 @@
 			files = (
 				E25BA4F024715A29000D1DF7 /* cardView.swift in Sources */,
 				E2CB87F52483581B002F3E6A /* journalLocationPickerViewController.swift in Sources */,
+				E2DD7A3024ADAAB300F9DF27 /* walletTabBar.swift in Sources */,
 				E2E152682486565C00079B79 /* addHabbitGoalCountTableViewCell.swift in Sources */,
 				E252B04D246C4041003F8718 /* ViewController.swift in Sources */,
 				E252B094246CEE55003F8718 /* PageView.swift in Sources */,
@@ -825,6 +846,7 @@
 				E29A586B248A360D00FA7D7C /* newEditCardViewController.swift in Sources */,
 				E25BA50B24721F93000D1DF7 /* GalleryFlowLayout.swift in Sources */,
 				E2E1525A248604CC00079B79 /* HabitsViewController.swift in Sources */,
+				E2E5EEF624ADFBAF00E01490 /* addWalletEntryViewController.swift in Sources */,
 				E252B07E246C44DF003F8718 /* UnderlinedTextView.swift in Sources */,
 				E2FEE2B0247C1DDD00DD7069 /* DateCell.swift in Sources */,
 				E25B0E9D247C010C004F3BDA /* JournalViewController.swift in Sources */,
@@ -839,6 +861,7 @@
 				E25BA4FA247163CE000D1DF7 /* NotesFullViewController.swift in Sources */,
 				E25BA4FF24716DC0000D1DF7 /* ImagePickerManager.swift in Sources */,
 				E26FD6AD2482A4FB004DA918 /* journalLocationTableViewCell.swift in Sources */,
+				E2DD7A3224ADAB2A00F9DF27 /* wallletTabBarController.swift in Sources */,
 				E29A5871248A386100FA7D7C /* cardReminderTableViewCell.swift in Sources */,
 				E29A5873248A695500FA7D7C /* doneToDismissTextView.swift in Sources */,
 				E252B083246C45E6003F8718 /* checkListItem.swift in Sources */,
@@ -850,6 +873,7 @@
 				E25BA4F424716196000D1DF7 /* EditCardViewController.swift in Sources */,
 				E2D4B87D247901A1005F566F /* pageListTableViewCell.swift in Sources */,
 				E2A35B522488C38900FDF4C6 /* habitsCellCalendarCell.swift in Sources */,
+				E2DD7A2C24AD996800F9DF27 /* walletViewController.swift in Sources */,
 				E252B092246C4E79003F8718 /* TimelineViewController.swift in Sources */,
 				E26FD6A924823E87004DA918 /* journalNotesTableViewCell.swift in Sources */,
 				6BD51DB324A5A5DF00253290 /* newNotesFullViewController.swift in Sources */,

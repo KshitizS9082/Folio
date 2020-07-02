@@ -43,7 +43,7 @@ class PageListSideMenuTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         print("asking for count")
-        return 5
+        return 6
     }
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 100
@@ -78,6 +78,9 @@ class PageListSideMenuTableViewController: UITableViewController {
             let cell = tableView.dequeueReusableCell(withIdentifier: "habitsCellIdentifier", for: indexPath)
             return cell
         case 4:
+            let cell = tableView.dequeueReusableCell(withIdentifier: "walletCellIdentifier", for: indexPath)
+            return cell
+        case 5:
         let cell = tableView.dequeueReusableCell(withIdentifier: "settingsCellIdentifier", for: indexPath)
         return cell
         default:
