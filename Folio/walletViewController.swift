@@ -58,6 +58,7 @@ struct walletEntry: Codable{
 }
 protocol walletProtocol {
     func addWallwtEntry(_ entry: walletEntry)
+    func updated(indexpath: IndexPath, animated: Bool)
 }
 class walletViewController: UIViewController {
     var walletData = WalletData()
@@ -137,8 +138,37 @@ extension walletViewController: walletProtocol{
             dic.append(entry)
             self.walletData.entries[entry.date.startOfDay]=dic
         }
+        //TODO: remove as used for testing/ debuggin
+        for _ in 0..<8{
+            let x = Calendar.current.date(byAdding: .day, value:  -(Int(arc4random_uniform(15)) + 1), to: entry.date)!.startOfDay
+            var testEntry = entry
+            testEntry.date=x
+            if var dic = self.walletData.entries[testEntry.date.startOfDay]{
+                dic.append(testEntry)
+                self.walletData.entries[testEntry.date.startOfDay]=dic
+            }else{
+                var dic = [walletEntry]()
+                dic.append(testEntry)
+                self.walletData.entries[testEntry.date.startOfDay]=dic
+            }
+        }
+        
         print("entries = \(self.walletData.entries)")
         table.reloadData()
+    }
+    func updated(indexpath: IndexPath, animated: Bool) {
+        print("updated at indexpath: \(indexpath)")
+        // Disabling animations gives us our desired behaviour
+        UIView.setAnimationsEnabled(animated)
+        /* These will causes table cell heights to be recaluclated,
+         without reloading the entire cell */
+        table.beginUpdates()
+        table.endUpdates()
+        // Re-enable animations
+        UIView.setAnimationsEnabled(true)
+        
+        table.scrollToRow(at: indexpath, at: .bottom, animated: false)
+        
     }
 }
 
@@ -147,12 +177,27 @@ extension walletViewController: UITableViewDataSource, UITableViewDelegate{
         return self.walletData.entries.count
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        self.walletData.entries.count
+//        self.walletData.entries.count
+        let arr = Array(self.walletData.entries)[section].value
+        return arr.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell()
-        cell.backgroundColor = .systemRed
+//        let cell = UITableViewCell()
+//        cell.backgroundColor = .systemRed
+//        return cell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "myWalletCell") as! walletEntryTableViewCell
+        let entry = Array(self.walletData.entries)[indexPath.section].value[indexPath.row]
+//        cell.textLabel?.text = entry.category.rawValue
+//        cell.detailTextLabel?.text = String(entry.value)
+        cell.wEntry=entry
+        cell.awakeFromNib()
         return cell
+    }
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        let date =  Array(self.walletData.entries)[section].key
+        let formatter = DateFormatter()
+        formatter.dateStyle = .medium
+        return formatter.string(from: date)
     }
 }
