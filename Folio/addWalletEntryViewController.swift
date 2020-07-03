@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import ImagePicker
 protocol addWalletEntryVCProtocol {
     func addType(type: walletEntry.tansferType)
     func addCategory(categ: walletEntry.spendingCategory)
@@ -15,13 +16,21 @@ protocol addWalletEntryVCProtocol {
     func addPayee(payeeName: String)
     func addPaymentType(paymentType: String)
     func addImageURL(imageURL: String)
+    func updated(indexpath: IndexPath, animated: Bool)
+    func scollTo(indexpath: IndexPath, animated: Bool)
+    func preseintViewController(vc: UIViewController)
 }
 
 class addWalletEntryViewController: UIViewController {
     var delegate: walletProtocol?
     var entry = walletEntry()
     @IBOutlet weak var categoryImageView: UIImageView!
-    @IBOutlet weak var valueLabel: UILabel!
+    
+    @IBOutlet weak var valueField: UITextField!
+    @IBAction func valueDedEndEditting(_ sender: UITextField) {
+        self.entry.value = Float(sender.text ?? "0.0") ?? Float(0.0)
+        //TODO: save number value
+    }
     @IBOutlet weak var currencyLabel: UILabel!{
         didSet{
             let locale = Locale.current
@@ -52,12 +61,31 @@ class addWalletEntryViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        // register for notifications when the keyboard appears:
+        NotificationCenter.default.addObserver( self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
     }
     @IBAction func handleCancelTap(_ sender: Any) {
+        let fileManager = FileManager.default
+        if let fileName = self.entry.imageURL{
+            if let url = try? FileManager.default.url(
+                for: .documentDirectory,
+                in: .userDomainMask,
+                appropriateFor: nil,
+                create: true
+            ).appendingPathComponent(fileName){
+                do{
+                    try fileManager.removeItem(at: url)
+                    print("deleted item \(url) succefully")
+                } catch{
+                    print("ERROR: item  at \(url) couldn't be deleted")
+                    return
+                }
+            }
+        }
         self.dismiss(animated: true, completion: nil)
     }
     @IBAction func handleDoneTap(_ sender: Any) {
+        print("wallet entry set to \(self.entry)")
         delegate?.addWallwtEntry(entry)
         self.dismiss(animated: true, completion: nil)
     }
@@ -67,6 +95,19 @@ class addWalletEntryViewController: UIViewController {
             navBar.shadowImage = UIImage()
             navBar.isTranslucent = true
         }
+    }
+    @objc func keyboardWillShow( note:NSNotification ){
+        // read the CGRect from the notification (if any)
+        if let newFrame = (note.userInfo?[ UIResponder.keyboardFrameEndUserInfoKey ] as? NSValue)?.cgRectValue {
+            let insets = UIEdgeInsets( top: 0, left: 0, bottom: newFrame.height, right: 0 )
+            table.contentInset = insets
+            table.scrollIndicatorInsets = insets
+            UIView.animate(withDuration: 0.25) {
+                self.table.layoutIfNeeded()
+                self.view.layoutIfNeeded()
+            }
+        }
+        print("did increase height")
     }
     
 
@@ -85,13 +126,23 @@ extension addWalletEntryViewController: UITableViewDataSource, UITableViewDelega
         case 1:
             let cell = table.dequeueReusableCell(withIdentifier: "addDateCellId") as! addWallEntrDateCell
             cell.delegate=self
+            cell.index = indexPath
             return cell
         case 2:
-            return UITableViewCell()
+            let cell = table.dequeueReusableCell(withIdentifier: "addNoteCellId") as! addWallEntrNoteCell
+            cell.delegate=self
+            cell.index = indexPath
+            return cell
         case 3:
-            return UITableViewCell()
+            let cell = table.dequeueReusableCell(withIdentifier: "addPayeeCellId") as! addWallEntrPayeeCell
+            cell.delegate=self
+            cell.index = indexPath
+            return cell
         case 4:
-            return UITableViewCell()
+            let cell = table.dequeueReusableCell(withIdentifier: "addImageCellId") as! addWallEntryImageCell
+            cell.delegate=self
+            cell.index = indexPath
+            return cell
         case 5:
             return UITableViewCell()
         default:
@@ -168,7 +219,27 @@ extension addWalletEntryViewController: addWalletEntryVCProtocol {
         self.entry.imageURL = imageURL
     }
     
+    func updated(indexpath: IndexPath, animated: Bool) {
+        print("updated at indexpath: \(indexpath)")
+        // Disabling animations gives us our desired behaviour
+        UIView.setAnimationsEnabled(animated)
+        /* These will causes table cell heights to be recaluclated,
+         without reloading the entire cell */
+        table.beginUpdates()
+        table.endUpdates()
+        // Re-enable animations
+        UIView.setAnimationsEnabled(true)
+        
+        table.scrollToRow(at: indexpath, at: .bottom, animated: false)
+        
+    }
+    func scollTo(indexpath: IndexPath, animated: Bool){
+        self.table.scrollToRow(at: indexpath, at: .middle, animated: true)
+    }
     
+    func preseintViewController(vc: UIViewController){
+        self.present(vc, animated: true, completion: nil)
+    }
 }
 protocol spendingCategoryCellProtocol{
     func selectedMe(index: Int)
@@ -295,6 +366,7 @@ class spendingCategCollectionViewCell: UICollectionViewCell{
 }
 class addWallEntrDateCell: UITableViewCell{
     var delegate: addWalletEntryVCProtocol?
+    var index =  IndexPath(row: 0, section: 0)
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var datePickerHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var datePicker: UIDatePicker!
@@ -321,10 +393,159 @@ class addWallEntrDateCell: UITableViewCell{
         super.setSelected(selected, animated: animated)
         if selected{
             print("is selected")
-//            datePickerHeightConstraint.constant = 175-datePickerHeightConstraint.constant
-            //TODO: update cell heigth
+            datePickerHeightConstraint.constant = 175-datePickerHeightConstraint.constant
+            self.delegate?.updated(indexpath: self.index, animated: true)
             super.setSelected(false, animated: true)
         }
         // Configure the view for the selected state
+    }
+}
+
+class addWallEntrNoteCell: UITableViewCell, UITextViewDelegate{
+    var delegate: addWalletEntryVCProtocol?
+    var index =  IndexPath(row: 0, section: 0)
+    @IBOutlet weak var textView: UITextView!{
+        didSet{
+            textView.delegate=self
+            textView.addDoneButton(title: "Done", target: self, selector: #selector(tapDone(sender:)))
+        }
+    }
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        self.delegate?.scollTo(indexpath: index, animated: true)
+    }
+    func textViewDidEndEditing(_ textView: UITextView) {
+        self.delegate?.addNote(note: textView.text)
+    }
+    @objc func tapDone(sender: Any) {
+        self.endEditing(true)
+        self.layoutSubviews()
+    }
+}
+class addWallEntrPayeeCell: UITableViewCell, UITextFieldDelegate{
+    var delegate: addWalletEntryVCProtocol?
+    var index =  IndexPath(row: 0, section: 0)
+    
+    @IBOutlet weak var nameField: UITextField!{
+        didSet{
+            nameField.delegate=self
+        }
+    }
+    func textFieldDidEndEditing(_ textField: UITextField, reason: UITextField.DidEndEditingReason) {
+        self.delegate?.addPayee(payeeName: nameField.text ?? "")
+    }
+}
+
+class addWallEntryImageCell: UITableViewCell, ImagePickerDelegate{
+    func wrapperDidPress(_ imagePicker: ImagePickerController, images: [UIImage]) {
+        print("x")
+        imagePicker.expandGalleryView()
+    }
+    
+    func doneButtonDidPress(_ imagePicker: ImagePickerController, images: [UIImage]) {
+        let fileName=String.uniqueFilename(withPrefix: "WalletImageData")+".json"
+        if images.count>0{
+            let image = images[0]
+            if let json = imageData(instData: (image.resizedTo1MB()!).pngData()!).json {
+                if let url = try? FileManager.default.url(
+                    for: .documentDirectory,
+                    in: .userDomainMask,
+                    appropriateFor: nil,
+                    create: true
+                ).appendingPathComponent(fileName){
+                    do {
+                        try json.write(to: url)
+                        print ("saved successfully")
+                        //MARK: is a data leak to be corrected
+                        //TODO: sometimes fileName added but not deleted
+                        self.imageURL = fileName
+                    } catch let error {
+                        print ("couldn't save \(error)")
+                    }
+                }
+            }
+        }
+        imagePicker.dismiss(animated: true, completion: nil)
+    }
+    
+    func cancelButtonDidPress(_ imagePicker: ImagePickerController) {
+        print("z")
+        deleteImage()
+        imagePicker.dismiss(animated: true, completion: nil)
+    }
+    
+    var delegate: addWalletEntryVCProtocol?
+    var index =  IndexPath(row: 0, section: 0)
+    var imageURL: String?{
+        didSet{
+            if imageURL != nil{
+                imagePreviewHeightConstraint.constant=125
+                delegate?.updated(indexpath: index, animated: true)
+            }else{
+                imagePreviewHeightConstraint.constant=80
+            }
+            if let fileName = imageURL{
+                if let url = try? FileManager.default.url(
+                    for: .documentDirectory,
+                    in: .userDomainMask,
+                    appropriateFor: nil,
+                    create: true
+                ).appendingPathComponent(fileName){
+                    if let jsonData = try? Data(contentsOf: url){
+                        if let extract = imageData(json: jsonData){
+                            let x=extract.data
+                            if let image = UIImage(data: x){
+                                DispatchQueue.main.async {
+                                    self.imagePreview.image = image
+                                }
+                            }
+                        }else{
+                            print("couldnt get json from URL")
+                        }
+                    }
+                }
+            }
+            if let url=imageURL{
+                delegate?.addImageURL(imageURL: url)
+            }
+        }
+    }
+    @IBOutlet weak var imagePreview: UIImageView!{
+        didSet{
+            imagePreview.isUserInteractionEnabled=true
+            imagePreview.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleImageTap)))
+//            imagePreview.layer.masksToBounds=false
+            imagePreview.layer.cornerRadius=8
+//            imagePreview.layer.shadowColor=UIColor.gray.cgColor
+//            imagePreview.layer.shadowOpacity=0.4
+        }
+    }
+    @IBOutlet weak var imagePreviewHeightConstraint: NSLayoutConstraint!
+    func deleteImage(){
+        let fileManager = FileManager.default
+        if let fileName = imageURL{
+            if let url = try? FileManager.default.url(
+                for: .documentDirectory,
+                in: .userDomainMask,
+                appropriateFor: nil,
+                create: true
+            ).appendingPathComponent(fileName){
+                do{
+                    try fileManager.removeItem(at: url)
+                    print("deleted item \(url) succefully")
+                } catch{
+                    print("ERROR: item  at \(url) couldn't be deleted")
+                    return
+                }
+            }
+        }
+    }
+    @objc func handleImageTap(){
+        deleteImage()
+        let imagePickerController = ImagePickerController()
+        imagePickerController.imageLimit = 1
+        imagePickerController.delegate = self
+//        self.present(imagePickerController, animated: true, completion: nil)
+//        self.window?.rootViewController?.present(imagePickerController, animated: true, completion: nil)
+        delegate?.preseintViewController(vc: imagePickerController)
     }
 }

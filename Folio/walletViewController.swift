@@ -26,6 +26,7 @@ struct WalletData: Codable{
     }
 }
 struct walletEntry: Codable{
+    var value: Float = 0.0
     var type = tansferType.expense
     var category = spendingCategory.others
     var date = Date()
