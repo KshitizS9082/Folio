@@ -1881,15 +1881,15 @@
                                     <constraint firstItem="GgV-1O-kUJ" firstAttribute="leading" secondItem="TAg-aZ-L2G" secondAttribute="trailing" constant="15" id="kfr-tW-HEg"/>
                                 </constraints>
                             </view>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="PYW-J1-Knz">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="PYW-J1-Knz">
                                 <rect key="frame" x="0.0" y="263" width="414" height="496"/>
                                 <color key="backgroundColor" name="smallCardColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="testingWalletCell" textLabel="51e-lv-QS7" detailTextLabel="SRv-Br-cLl" imageView="KWx-0K-BLj" style="IBUITableViewCellStyleValue1" id="Cy9-s7-LMF">
-                                        <rect key="frame" x="0.0" y="28" width="414" height="43.5"/>
+                                        <rect key="frame" x="0.0" y="28" width="414" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Cy9-s7-LMF" id="kCJ-ve-8IK">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="51e-lv-QS7">
@@ -1907,21 +1907,21 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" image="bag.fill" catalog="system" id="KWx-0K-BLj">
-                                                    <rect key="frame" x="22.5" y="11" width="19" height="19"/>
+                                                    <rect key="frame" x="22.5" y="11.5" width="19" height="19"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                 </imageView>
                                             </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="myWalletCell" id="nGQ-0H-5YX" customClass="walletEntryTableViewCell" customModule="Folio" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="71.5" width="414" height="122.5"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="myWalletCell" id="nGQ-0H-5YX" customClass="walletEntryTableViewCell" customModule="Folio" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="72" width="414" height="136"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="nGQ-0H-5YX" id="IV1-sg-tGj">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="122.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="136"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bag.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="qAP-CA-6OX">
-                                                    <rect key="frame" x="20" y="8" width="45" height="48.5"/>
+                                                    <rect key="frame" x="20" y="17" width="45" height="48.5"/>
                                                     <color key="backgroundColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <color key="tintColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                     <constraints>
@@ -1931,41 +1931,50 @@
                                                     <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large" weight="light"/>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pi8-gv-mFT">
-                                                    <rect key="frame" x="85" y="17" width="43.5" height="33"/>
+                                                    <rect key="frame" x="85" y="26" width="43.5" height="33"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="nzW-gn-dnK">
-                                                    <rect key="frame" x="85" y="58" width="49" height="49.5"/>
+                                                    <rect key="frame" x="85" y="67" width="49" height="49"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" secondItem="nzW-gn-dnK" secondAttribute="height" id="9xK-Yq-c1H"/>
                                                         <constraint firstAttribute="width" constant="49" id="afy-Lf-xSV"/>
                                                     </constraints>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K1T-w0-FI3">
-                                                    <rect key="frame" x="343" y="23" width="42" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$35.3" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K1T-w0-FI3">
+                                                    <rect key="frame" x="299" y="26" width="86" height="36"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="30"/>
+                                                    <color key="textColor" name="subMainTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WLb-zi-mJ1">
+                                                    <rect key="frame" x="347.5" y="66" width="37.5" height="18"/>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
+                                                    <color key="textColor" name="subMainTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="qAP-CA-6OX" firstAttribute="leading" secondItem="IV1-sg-tGj" secondAttribute="leading" constant="20" id="928-Dj-8R7"/>
-                                                <constraint firstAttribute="bottom" secondItem="nzW-gn-dnK" secondAttribute="bottom" constant="15" id="AAa-0S-u8J"/>
-                                                <constraint firstItem="K1T-w0-FI3" firstAttribute="centerY" secondItem="pi8-gv-mFT" secondAttribute="centerY" id="L4J-qW-FxE"/>
+                                                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="nzW-gn-dnK" secondAttribute="bottom" constant="20" id="AAa-0S-u8J"/>
+                                                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="WLb-zi-mJ1" secondAttribute="bottom" constant="20" id="CtI-JC-zMH"/>
                                                 <constraint firstItem="pi8-gv-mFT" firstAttribute="leading" secondItem="qAP-CA-6OX" secondAttribute="trailing" constant="20" id="QFX-KY-2Ug"/>
+                                                <constraint firstItem="WLb-zi-mJ1" firstAttribute="top" secondItem="K1T-w0-FI3" secondAttribute="bottom" constant="4" id="TqM-sn-saj"/>
                                                 <constraint firstItem="pi8-gv-mFT" firstAttribute="top" secondItem="qAP-CA-6OX" secondAttribute="top" constant="6" id="ULC-EN-pXU"/>
                                                 <constraint firstAttribute="trailing" secondItem="K1T-w0-FI3" secondAttribute="trailing" constant="29" id="c0F-8J-0nF"/>
                                                 <constraint firstItem="nzW-gn-dnK" firstAttribute="leading" secondItem="pi8-gv-mFT" secondAttribute="leading" id="fyK-tZ-684"/>
-                                                <constraint firstItem="qAP-CA-6OX" firstAttribute="top" secondItem="IV1-sg-tGj" secondAttribute="top" constant="11" id="hcD-Qd-LD0"/>
+                                                <constraint firstItem="K1T-w0-FI3" firstAttribute="top" secondItem="pi8-gv-mFT" secondAttribute="top" id="haZ-Wt-Cg5"/>
+                                                <constraint firstItem="qAP-CA-6OX" firstAttribute="top" secondItem="IV1-sg-tGj" secondAttribute="top" constant="20" id="hcD-Qd-LD0"/>
                                                 <constraint firstItem="nzW-gn-dnK" firstAttribute="top" secondItem="pi8-gv-mFT" secondAttribute="bottom" constant="8" symbolic="YES" id="qJ1-ez-zx8"/>
+                                                <constraint firstItem="WLb-zi-mJ1" firstAttribute="trailing" secondItem="K1T-w0-FI3" secondAttribute="trailing" id="qYq-D0-goT"/>
                                                 <constraint firstItem="pi8-gv-mFT" firstAttribute="bottom" secondItem="qAP-CA-6OX" secondAttribute="bottom" constant="-6" id="saY-5n-owe"/>
-                                                <constraint firstItem="K1T-w0-FI3" firstAttribute="top" secondItem="IV1-sg-tGj" secondAttribute="top" constant="23" id="vCS-Gg-B3z"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="categoryImageView" destination="qAP-CA-6OX" id="Duy-kI-Ivp"/>
+                                            <outlet property="dateLabel" destination="WLb-zi-mJ1" id="8D7-gl-1Uj"/>
                                             <outlet property="extraImageView" destination="nzW-gn-dnK" id="Jgj-Yo-Mjt"/>
                                             <outlet property="imageTitleDistanceConstraint" destination="qJ1-ez-zx8" id="t6e-vQ-HUd"/>
                                             <outlet property="imageWidhtConstraint" destination="afy-Lf-xSV" id="1pz-qW-Caw"/>

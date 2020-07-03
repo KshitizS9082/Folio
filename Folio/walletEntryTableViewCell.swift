@@ -29,11 +29,11 @@ class walletEntryTableViewCell: UITableViewCell {
     @IBOutlet weak var imageTitleDistanceConstraint: NSLayoutConstraint!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var valueLabel: UILabel!
+    @IBOutlet weak var dateLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
         if let entry = wEntry{
-//            self.titleLabel.text = entry.category.rawValue
             
             let locale = Locale.current
             let currencySymbol = locale.currencySymbol!
@@ -51,9 +51,11 @@ class walletEntryTableViewCell: UITableViewCell {
                             let x=extract.data
                             if let image = UIImage(data: x){
                                 DispatchQueue.main.async {
-                                    self.imageWidhtConstraint.constant=75
+                                    self.imageWidhtConstraint.constant=50
                                     self.imageTitleDistanceConstraint.constant=6
                                     self.extraImageView.image = image
+                                    self.extraImageView.isUserInteractionEnabled=true
+                                    self.extraImageView.setupImageViewer()
                                     self.delegate?.updated(indexpath: self.index, animated: false)
                                 }
                             }
@@ -65,9 +67,12 @@ class walletEntryTableViewCell: UITableViewCell {
             }else{
                 self.imageWidhtConstraint.constant=0
                 self.imageTitleDistanceConstraint.constant=0
+                self.extraImageView.isUserInteractionEnabled=false
                 self.delegate?.updated(indexpath: self.index, animated: false)
             }
-            
+            let formatter = DateFormatter()
+            formatter.dateFormat = "HH:MM a"
+            dateLabel.text = formatter.string(from: entry.date)
             switch entry.category {
                     case .foodDrinks:
                         self.categoryImageView.image = UIImage(systemName: "questionmark")

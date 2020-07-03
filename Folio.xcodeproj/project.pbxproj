@@ -76,6 +76,7 @@
 		E26FD6AD2482A4FB004DA918 /* journalLocationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E26FD6AC2482A4FB004DA918 /* journalLocationTableViewCell.swift */; };
 		E26FD6B02482AD0D004DA918 /* journalImagePickerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E26FD6AF2482AD0D004DA918 /* journalImagePickerManager.swift */; };
 		E27DBB0224AF5E6B0099617B /* walletEntryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27DBB0124AF5E6B0099617B /* walletEntryTableViewCell.swift */; };
+		E27DBB0424AF70350099617B /* walletTableViewSectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27DBB0324AF70340099617B /* walletTableViewSectionHeaderView.swift */; };
 		E284B6242472D9BD00CC6465 /* uniqueFileName.swift in Sources */ = {isa = PBXBuildFile; fileRef = E284B6232472D9BD00CC6465 /* uniqueFileName.swift */; };
 		E291F00B24873B3D0006D147 /* habitTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E291F00A24873B3D0006D147 /* habitTableViewCell.swift */; };
 		E291F00D24875B900006D147 /* weekExtractFromDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E291F00C24875B900006D147 /* weekExtractFromDate.swift */; };
@@ -211,6 +212,7 @@
 		E26FD6AC2482A4FB004DA918 /* journalLocationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = journalLocationTableViewCell.swift; sourceTree = "<group>"; };
 		E26FD6AF2482AD0D004DA918 /* journalImagePickerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = journalImagePickerManager.swift; sourceTree = "<group>"; };
 		E27DBB0124AF5E6B0099617B /* walletEntryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = walletEntryTableViewCell.swift; sourceTree = "<group>"; };
+		E27DBB0324AF70340099617B /* walletTableViewSectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = walletTableViewSectionHeaderView.swift; sourceTree = "<group>"; };
 		E284B6232472D9BD00CC6465 /* uniqueFileName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = uniqueFileName.swift; sourceTree = "<group>"; };
 		E291F00A24873B3D0006D147 /* habitTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = habitTableViewCell.swift; sourceTree = "<group>"; };
 		E291F00C24875B900006D147 /* weekExtractFromDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = weekExtractFromDate.swift; sourceTree = "<group>"; };
@@ -334,6 +336,7 @@
 				E2DD7A2A24AD964100F9DF27 /* Settings */,
 				E2DD7A2B24AD996800F9DF27 /* walletViewController.swift */,
 				E27DBB0124AF5E6B0099617B /* walletEntryTableViewCell.swift */,
+				E27DBB0324AF70340099617B /* walletTableViewSectionHeaderView.swift */,
 				E2E5EEF524ADFBAF00E01490 /* addWalletEntryViewController.swift */,
 				E2DD7A2F24ADAAB300F9DF27 /* walletTabBar.swift */,
 				E2DD7A3124ADAB2A00F9DF27 /* wallletTabBarController.swift */,
@@ -857,6 +860,7 @@
 				E2623829249F1F3500BC510A /* journalHabitTableViewCell.swift in Sources */,
 				E25BA4FD24716AD0000D1DF7 /* MediaCardView.swift in Sources */,
 				E25BA50624721F93000D1DF7 /* ThumbCell.swift in Sources */,
+				E27DBB0424AF70350099617B /* walletTableViewSectionHeaderView.swift in Sources */,
 				E25B0E9B247BD055004F3BDA /* UITextField+Extensions.swift in Sources */,
 				E260F152247AA91E00CFB697 /* PageExtractViewController.swift in Sources */,
 				E291F00D24875B900006D147 /* weekExtractFromDate.swift in Sources */,

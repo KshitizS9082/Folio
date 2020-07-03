@@ -86,6 +86,9 @@ class addWalletEntryViewController: UIViewController {
     }
     @IBAction func handleDoneTap(_ sender: Any) {
         print("wallet entry set to \(self.entry)")
+        if incomeExpenseSegmentControl.selectedSegmentIndex == 0{
+            entry.value = -entry.value
+        }
         delegate?.addWallwtEntry(entry)
         self.dismiss(animated: true, completion: nil)
     }
