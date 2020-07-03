@@ -15,7 +15,7 @@ class walletEntryTableViewCell: UITableViewCell {
 
     @IBOutlet weak var categoryImageView: UIImageView!{
         didSet{
-            categoryImageView.layer.cornerRadius = categoryImageView.layer.frame.width/2.0
+            categoryImageView.layer.cornerRadius = 7
         }
     }
     @IBOutlet weak var extraImageView: UIImageView!{

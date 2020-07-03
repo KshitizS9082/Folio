@@ -9,7 +9,7 @@
 import UIKit
 
 struct WalletData: Codable{
-    var initialBalance = 0.0
+    var initialBalance: Float = 0.0
 //    var entryList = [walletEntry]()
     var entries = [Date: [walletEntry] ]()
     init(){
@@ -64,9 +64,15 @@ class walletViewController: UIViewController {
     var walletData = WalletData()
     override func viewDidLoad() {
         super.viewDidLoad()
-//        self.table.sectionHeaderHeight = tableViewHeaderHeight
-        // Do any additional setup after loading the view.
+//        calculateCurrentBalance()
+        let blurEffect = UIBlurEffect(style: .systemThinMaterial)
+        let blurEffectView = UIVisualEffectView(effect: blurEffect)
+        blurEffectView.frame = self.view.frame
+        blurView.layer.masksToBounds=true
+        self.blurView.addSubview(blurEffectView)
     }
+    
+    @IBOutlet weak var blurView: UIView!
     @IBOutlet weak var balanceView: UIView!{
         didSet{
             balanceView.layer.cornerRadius=15
@@ -91,17 +97,43 @@ class walletViewController: UIViewController {
         didSet{
             table.dataSource=self
             table.delegate=self
+            table.layer.masksToBounds=false
         }
     }
     
+    func calculateCurrentBalance(){
+        var count=walletData.initialBalance
+        for entryListPair in Array(walletData.entries){
+            let entryList = entryListPair.value
+            for entry in entryList{
+                count+=entry.value
+            }
+        }
+        self.balanceLabel.text = String(count)
+    }
     func addEntry(){
         print("add entry")
         self.performSegue(withIdentifier: "showAddWalletEntrySegue", sender: self)
     }
     
-    func setupData(){
-        
+    func save(){
+        if let json = walletData.json {
+            if let url = try? FileManager.default.url(
+                for: .documentDirectory,
+                in: .userDomainMask,
+                appropriateFor: nil,
+                create: true
+            ).appendingPathComponent("walletData.json"){
+                do {
+                    try json.write(to: url)
+                    print ("saved successfully")
+                } catch let error {
+                    print ("couldn't save \(error)")
+                }
+            }
+        }
     }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let vc = segue.destination as? addWalletEntryViewController{
             vc.delegate=self
@@ -113,12 +145,30 @@ class walletViewController: UIViewController {
         navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
         navigationController?.navigationBar.shadowImage = UIImage()
         navigationController?.navigationBar.isTranslucent = true
-        
         let attrs = [
             NSAttributedString.Key.foregroundColor: UIColor.systemBlue ,
             NSAttributedString.Key.font: UIFont(name: "SnellRoundhand-Black", size: 30)!
         ]
         self.navigationController?.navigationBar.titleTextAttributes = attrs
+        
+        if let url = try? FileManager.default.url(
+            for: .documentDirectory,
+            in: .userDomainMask,
+            appropriateFor: nil,
+            create: true
+        ).appendingPathComponent("walletData.json"){
+            if let jsonData = try? Data(contentsOf: url){
+                if let extract = WalletData(json: jsonData){
+                    print("did set self.habits to \(extract)")
+                    self.walletData = extract
+                    self.calculateCurrentBalance()
+                }else{
+                    print("ERROR: found WalletData(json: jsonData) to be nil so didn't set it")
+                }
+            }else{
+                print("error no file named walletData.json found")
+            }
+        }
         
     }
     override func viewWillDisappear(_ animated: Bool) {
@@ -126,6 +176,7 @@ class walletViewController: UIViewController {
         navigationController?.navigationBar.setBackgroundImage(nil, for: .default)
         navigationController?.navigationBar.shadowImage = nil
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black]
+        save()
     }
 }
 extension walletViewController: walletProtocol{
@@ -155,6 +206,8 @@ extension walletViewController: walletProtocol{
         
         print("entries = \(self.walletData.entries)")
         table.reloadData()
+        //TODO: Can be improved instead of recalculation whole just add the new one
+        calculateCurrentBalance()
     }
     func updated(indexpath: IndexPath, animated: Bool) {
         print("updated at indexpath: \(indexpath)")
