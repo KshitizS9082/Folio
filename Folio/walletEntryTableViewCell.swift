@@ -37,7 +37,22 @@ class walletEntryTableViewCell: UITableViewCell {
             
             let locale = Locale.current
             let currencySymbol = locale.currencySymbol!
-            self.valueLabel.text = currencySymbol+String(entry.value)
+            if entry.value<0{
+                let valueString = "-"+currencySymbol+String(-entry.value)
+                let amountText = NSMutableAttributedString.init(string: valueString)
+                amountText.setAttributes([NSAttributedString.Key.font: UIFont.systemFont(ofSize: 22),
+                                          NSAttributedString.Key.foregroundColor: UIColor.systemGray2],
+                                         range: NSMakeRange(1, 1))
+                self.valueLabel.attributedText = amountText
+            }else{
+                let valueString = currencySymbol+String(entry.value)
+                let amountText = NSMutableAttributedString.init(string: valueString)
+                amountText.setAttributes([NSAttributedString.Key.font: UIFont.systemFont(ofSize: 22),
+                                          NSAttributedString.Key.foregroundColor: UIColor.systemGray2],
+                                         range: NSMakeRange(0, 1))
+                self.valueLabel.attributedText = amountText
+            }
+            
             
             if let fileName = entry.imageURL{
                 if let url = try? FileManager.default.url(

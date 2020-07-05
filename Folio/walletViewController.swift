@@ -296,9 +296,23 @@ extension walletViewController: UITableViewDataSource, UITableViewDelegate{
         for entry in Array(self.walletData.entries)[section].value{
             sum += entry.value
         }
-        valueLabel.text = currencySymbol + String(sum)
         valueLabel.font = UIFont.boldSystemFont(ofSize: 18.0)
-//        headerView.backgroundColor = .systemTeal
+        if sum<0{
+            let valueString = "-"+currencySymbol+String(-sum)
+            let amountText = NSMutableAttributedString.init(string: valueString)
+            amountText.setAttributes([NSAttributedString.Key.font: UIFont.systemFont(ofSize: 15),
+                                      NSAttributedString.Key.foregroundColor: UIColor.systemGray2],
+                                     range: NSMakeRange(1, 1))
+            valueLabel.attributedText = amountText
+        }else{
+            let valueString = currencySymbol+String(sum)
+            let amountText = NSMutableAttributedString.init(string: valueString)
+            amountText.setAttributes([NSAttributedString.Key.font: UIFont.systemFont(ofSize: 15),
+                                      NSAttributedString.Key.foregroundColor: UIColor.systemGray2],
+                                     range: NSMakeRange(0, 1))
+            valueLabel.attributedText = amountText
+        }
+        //        headerView.backgroundColor = .systemTeal
         return headerView
     }
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
