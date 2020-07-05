@@ -101,6 +101,24 @@ class walletViewController: UIViewController {
         }
     }
     
+    var walletEntryArray = [(Date, [walletEntry])]()
+    func setupData(){
+//        walletEntryArray = (self.walletData.entries).sorted(by: { $0.0 < $1.0 })
+        walletEntryArray = Array(self.walletData.entries)
+        walletEntryArray.sort { (first, second) -> Bool in
+            return first.0<second.0
+        }
+        for ind in self.walletEntryArray.indices{
+            self.walletEntryArray[ind].1.sort { (first, second) -> Bool in
+                return first.date<second.date
+            }
+        }
+        print("did setup data: ")
+        for elem in walletEntryArray{
+            print("da: \(elem.0)")
+        }
+    }
+    
     func calculateCurrentBalance(){
         var count=walletData.initialBalance
         for entryListPair in Array(walletData.entries){
@@ -162,6 +180,7 @@ class walletViewController: UIViewController {
                     print("did set self.habits to \(extract)")
                     self.walletData = extract
                     self.calculateCurrentBalance()
+                    self.setupData()
                 }else{
                     print("ERROR: found WalletData(json: jsonData) to be nil so didn't set it")
                 }
@@ -204,9 +223,30 @@ extension walletViewController: walletProtocol{
 //            }
 //        }
         
+        var isThere = false
+        for ind in self.walletEntryArray.indices{
+            let arrTupple = self.walletEntryArray[ind]
+            if arrTupple.0 == entry.date.startOfDay{
+                isThere=true
+                self.walletEntryArray[ind].1.append(entry)
+                self.walletEntryArray[ind].1.sort { (first, second) -> Bool in
+                    return first.date<second.date
+                }
+            }
+        }
+        var newEntryArray = [walletEntry]()
+        newEntryArray.append(entry)
+        if !isThere{
+            self.walletEntryArray.append((entry.date, newEntryArray))
+        }
+        self.walletEntryArray.sort { (first, secon) -> Bool in
+            return first.0<secon.0
+        }
         print("entries = \(self.walletData.entries)")
-        table.reloadData()
         //TODO: Can be improved instead of recalculation whole just add the new one
+//        self.setupData()
+        
+        table.reloadData()
         calculateCurrentBalance()
     }
     func updated(indexpath: IndexPath, animated: Bool) {
@@ -227,20 +267,27 @@ extension walletViewController: walletProtocol{
 
 extension walletViewController: UITableViewDataSource, UITableViewDelegate{
     func numberOfSections(in tableView: UITableView) -> Int {
-        return self.walletData.entries.count
+//        return self.walletData.entries.count
+        return self.walletEntryArray.count
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 //        self.walletData.entries.count
-        let arr = Array(self.walletData.entries)[section].value
-        return arr.count
+//        let arr = Array(self.walletData.entries)[section].value
+//        return arr.count
+        return self.walletEntryArray[section].1.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 //        let cell = UITableViewCell()
 //        cell.backgroundColor = .systemRed
 //        return cell
+        print("cellforrowat data: ")
+        for elem in walletEntryArray{
+            print("da: \(elem.0)")
+        }
         let cell = tableView.dequeueReusableCell(withIdentifier: "myWalletCell") as! walletEntryTableViewCell
-        let entry = Array(self.walletData.entries)[indexPath.section].value[indexPath.row]
+//        let entry = Array(self.walletData.entries)[indexPath.section].value[indexPath.row]
+        let entry = self.walletEntryArray[indexPath.section].1[indexPath.row]
 //        cell.textLabel?.text = entry.category.rawValue
 //        cell.detailTextLabel?.text = String(entry.value)
         cell.wEntry=entry
@@ -271,7 +318,7 @@ extension walletViewController: UITableViewDataSource, UITableViewDelegate{
         let label = UILabel()
         label.frame = CGRect.init(x: 20, y: 6, width: headerView.frame.width-10, height: headerView.frame.height-10)
         label.font = UIFont.boldSystemFont(ofSize: 23.0)
-        let date =  Array(self.walletData.entries)[section].key
+        let date =  self.walletEntryArray[section].0
         let formatter = DateFormatter()
         formatter.dateStyle = .medium
         label.text = formatter.string(from: date)
@@ -293,7 +340,7 @@ extension walletViewController: UITableViewDataSource, UITableViewDelegate{
         let locale = Locale.current
         let currencySymbol = locale.currencySymbol!
         var sum=Float(0.0)
-        for entry in Array(self.walletData.entries)[section].value{
+        for entry in self.walletEntryArray[section].1{
             sum += entry.value
         }
         valueLabel.font = UIFont.boldSystemFont(ofSize: 18.0)

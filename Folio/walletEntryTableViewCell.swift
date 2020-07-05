@@ -86,7 +86,7 @@ class walletEntryTableViewCell: UITableViewCell {
                 self.delegate?.updated(indexpath: self.index, animated: false)
             }
             let formatter = DateFormatter()
-            formatter.dateFormat = "HH:MM a"
+            formatter.dateFormat = "hh:mm a"
             dateLabel.text = formatter.string(from: entry.date)
             switch entry.category {
                     case .foodDrinks:
