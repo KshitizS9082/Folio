@@ -24,6 +24,7 @@ protocol addWalletEntryVCProtocol {
 class addWalletEntryViewController: UIViewController {
     var delegate: walletProtocol?
     var entry = walletEntry()
+    var isNewEntry = false //to distinguish between adding a new and editing a old
     @IBOutlet weak var categoryImageView: UIImageView!
     
     @IBOutlet weak var valueField: UITextField!
@@ -58,11 +59,24 @@ class addWalletEntryViewController: UIViewController {
         }
     }
     
-    
+        √
     override func viewDidLoad() {
         super.viewDidLoad()
         // register for notifications when the keyboard appears:
         NotificationCenter.default.addObserver( self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
+        self.addCategory(categ: entry.category)
+        if !isNewEntry{
+            if entry.value<0.0 {
+                valueField.text = String(-entry.value)
+            }else{
+                valueField.text = String(entry.value)
+            }
+        }
+        if entry.type == .expense{
+            incomeExpenseSegmentControl.selectedSegmentIndex=0
+        }else{
+            incomeExpenseSegmentControl.selectedSegmentIndex=1
+        }
     }
     @IBAction func handleCancelTap(_ sender: Any) {
         let fileManager = FileManager.default
@@ -89,7 +103,11 @@ class addWalletEntryViewController: UIViewController {
         if incomeExpenseSegmentControl.selectedSegmentIndex == 0{
             entry.value = -entry.value
         }
-        delegate?.addWallwtEntry(entry)
+        if isNewEntry{
+            delegate?.addWallwtEntry(entry)
+        }else{
+            delegate?.modifyWalletEntry(to: entry)
+        }
         self.dismiss(animated: true, completion: nil)
     }
     @IBOutlet weak var navBar: UINavigationBar!{
@@ -130,21 +148,30 @@ extension addWalletEntryViewController: UITableViewDataSource, UITableViewDelega
             let cell = table.dequeueReusableCell(withIdentifier: "addDateCellId") as! addWallEntrDateCell
             cell.delegate=self
             cell.index = indexPath
+            let myDateFormater = DateFormatter()
+            myDateFormater.dateStyle = .long
+            let myTimeFormater = DateFormatter()
+            myTimeFormater.dateFormat = "hh:mm a"
+            cell.dateLabel.text =  myTimeFormater.string(from:  self.entry.date) + ", " + myDateFormater.string(from:  self.entry.date)
+            cell.datePicker.setDate(self.entry.date, animated: false)
             return cell
         case 2:
             let cell = table.dequeueReusableCell(withIdentifier: "addNoteCellId") as! addWallEntrNoteCell
             cell.delegate=self
             cell.index = indexPath
+            cell.textView.text = self.entry.note
             return cell
         case 3:
             let cell = table.dequeueReusableCell(withIdentifier: "addPayeeCellId") as! addWallEntrPayeeCell
             cell.delegate=self
             cell.index = indexPath
+            cell.nameField.text = self.entry.payee
             return cell
         case 4:
             let cell = table.dequeueReusableCell(withIdentifier: "addImageCellId") as! addWallEntryImageCell
             cell.delegate=self
             cell.index = indexPath
+            cell.imageURL = self.entry.imageURL
             return cell
         case 5:
             return UITableViewCell()
@@ -482,7 +509,7 @@ class addWallEntryImageCell: UITableViewCell, ImagePickerDelegate{
         didSet{
             if imageURL != nil{
                 imagePreviewHeightConstraint.constant=125
-                delegate?.updated(indexpath: index, animated: true)
+//                delegate?.updated(indexpath: index, animated: true)
             }else{
                 imagePreviewHeightConstraint.constant=80
             }

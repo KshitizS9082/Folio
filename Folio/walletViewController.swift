@@ -26,6 +26,7 @@ struct WalletData: Codable{
     }
 }
 struct walletEntry: Codable{
+    var uniqueID = UUID()
     var value: Float = 0.0
     var type = tansferType.expense
     var category = spendingCategory.others
@@ -59,6 +60,7 @@ struct walletEntry: Codable{
 protocol walletProtocol {
     func addWallwtEntry(_ entry: walletEntry)
     func updated(indexpath: IndexPath, animated: Bool)
+    func modifyWalletEntry(to newEntry: walletEntry)
 }
 class walletViewController: UIViewController {
     var walletData = WalletData()
@@ -131,6 +133,7 @@ class walletViewController: UIViewController {
     }
     func addEntry(){
         print("add entry")
+        selectedCell=nil
         self.performSegue(withIdentifier: "showAddWalletEntrySegue", sender: self)
     }
     
@@ -152,9 +155,19 @@ class walletViewController: UIViewController {
         }
     }
     
+    var selectedCell: IndexPath?
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let vc = segue.destination as? addWalletEntryViewController{
-            vc.delegate=self
+            if selectedCell==nil{// wanting to add a new entry
+                vc.delegate=self
+                vc.isNewEntry=true
+            }else{
+                let entry = self.walletEntryArray[selectedCell!.section].1[selectedCell!.row]
+                vc.delegate=self
+                vc.isNewEntry=false
+                vc.entry = entry
+            }
         }
     }
     
@@ -228,6 +241,7 @@ extension walletViewController: walletProtocol{
             let arrTupple = self.walletEntryArray[ind]
             if arrTupple.0 == entry.date.startOfDay{
                 isThere=true
+                print("IS THERE")
                 self.walletEntryArray[ind].1.append(entry)
                 self.walletEntryArray[ind].1.sort { (first, second) -> Bool in
                     return first.date<second.date
@@ -237,17 +251,53 @@ extension walletViewController: walletProtocol{
         var newEntryArray = [walletEntry]()
         newEntryArray.append(entry)
         if !isThere{
-            self.walletEntryArray.append((entry.date, newEntryArray))
+            self.walletEntryArray.append((entry.date.startOfDay, newEntryArray))
         }
         self.walletEntryArray.sort { (first, secon) -> Bool in
             return first.0<secon.0
         }
         print("entries = \(self.walletData.entries)")
+        print("entries keycnt= \(self.walletData.entries.keys.count)")
+        for elem in self.walletEntryArray{
+            print("fsdaf = \(elem)")
+        }
         //TODO: Can be improved instead of recalculation whole just add the new one
 //        self.setupData()
         
         table.reloadData()
         calculateCurrentBalance()
+    }
+    func modifyWalletEntry(to newEntry: walletEntry){
+        for key in self.walletData.entries.keys{
+            var arr = self.walletData.entries[key]!
+            var shouldBreak=false
+            for ind in arr.indices{
+                let val = arr[ind]
+                if val.uniqueID == newEntry.uniqueID{
+                    //TODO: save changes made
+                    arr.remove(at: ind)
+                    self.walletData.entries[key]=arr
+                    shouldBreak=true
+                    break
+                }
+            }
+            if shouldBreak{
+                break
+            }
+        }
+        for ind in self.walletEntryArray.indices{
+            if self.walletEntryArray[ind].0==newEntry.date.startOfDay{
+                for indx in self.walletEntryArray[ind].1.indices{
+                    if self.walletEntryArray[ind].1[indx].uniqueID == newEntry.uniqueID{
+                        self.walletEntryArray[ind].1.remove(at: indx)
+                        self.addWallwtEntry(newEntry)
+                        return
+                    }
+                }
+            }
+        }
+        //TODO: check if needed
+        self.addWallwtEntry(newEntry)
     }
     func updated(indexpath: IndexPath, animated: Bool) {
         print("updated at indexpath: \(indexpath)")
@@ -367,5 +417,9 @@ extension walletViewController: UITableViewDataSource, UITableViewDelegate{
     }
     var tableViewHeaderHeight: CGFloat{
         return 50.0
+    }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        selectedCell=indexPath
+        self.performSegue(withIdentifier: "showAddWalletEntrySegue", sender: self)
     }
 }
