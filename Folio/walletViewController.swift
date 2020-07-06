@@ -293,6 +293,36 @@ extension walletViewController: walletProtocol{
         //TODO: check if needed
         self.addWallwtEntry(newEntry)
     }
+    func deleteWalletEntry(to newEntry: walletEntry){
+        //        print("Updated to: val \(newEntry.value) of type \(newEntry.type)")
+        for key in self.walletData.entries.keys{
+            var arr = self.walletData.entries[key]!
+            var shouldBreak=false
+            for ind in arr.indices{
+                let val = arr[ind]
+                if val.uniqueID == newEntry.uniqueID{
+                    //TODO: save changes made
+                    arr.remove(at: ind)
+                    self.walletData.entries[key]=arr
+                    shouldBreak=true
+                    break
+                }
+            }
+            if shouldBreak{
+                break
+            }
+        }
+        for ind in self.walletEntryArray.indices{
+            if self.walletEntryArray[ind].0==newEntry.date.startOfDay{
+                for indx in self.walletEntryArray[ind].1.indices{
+                    if self.walletEntryArray[ind].1[indx].uniqueID == newEntry.uniqueID{
+                        self.walletEntryArray[ind].1.remove(at: indx)
+                        return
+                    }
+                }
+            }
+        }
+    }
     func updated(indexpath: IndexPath, animated: Bool) {
         print("updated at indexpath: \(indexpath)")
         // Disabling animations gives us our desired behaviour
@@ -411,5 +441,24 @@ extension walletViewController: UITableViewDataSource, UITableViewDelegate{
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         selectedCell=indexPath
         self.performSegue(withIdentifier: "showAddWalletEntrySegue", sender: self)
+    }
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let action = UIContextualAction(style: .destructive, title: "Delete",
+                                        handler: { (action, view, completionHandler) in
+                                            //                                                self.deletePage(for: self.pages.items[indexPath.row])
+                                            //                                                self.pages.items.remove(at: indexPath.row)
+                                            self.deleteWalletEntry(to: self.walletEntryArray[indexPath.section].1[indexPath.row])
+                                            self.table.beginUpdates()
+                                            self.table.deleteRows(at: [indexPath], with: .automatic)
+                                            self.table.endUpdates()
+                                            //                                            self.table.reloadData()
+                                            completionHandler(true)
+        })
+        action.backgroundColor = .systemRed
+        let configuration = UISwipeActionsConfiguration(actions: [action])
+        return configuration
     }
 }
