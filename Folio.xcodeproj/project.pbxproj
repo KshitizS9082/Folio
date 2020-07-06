@@ -39,7 +39,7 @@
 		E252B090246C4E6D003F8718 /* PageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E252B08F246C4E6D003F8718 /* PageViewController.swift */; };
 		E252B092246C4E79003F8718 /* TimelineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E252B091246C4E79003F8718 /* TimelineViewController.swift */; };
 		E252B094246CEE55003F8718 /* PageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E252B093246CEE55003F8718 /* PageView.swift */; };
-		E25B0E9B247BD055004F3BDA /* UITextField+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E25B0E9A247BD055004F3BDA /* UITextField+Extensions.swift */; };
+		E25B0E9B247BD055004F3BDA /* UITextFieldExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E25B0E9A247BD055004F3BDA /* UITextFieldExtensions.swift */; };
 		E25B0E9D247C010C004F3BDA /* JournalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E25B0E9C247C010C004F3BDA /* JournalViewController.swift */; };
 		E25BA4E924714CBD000D1DF7 /* SmallCardDatePickerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E25BA4E424714CBC000D1DF7 /* SmallCardDatePickerTableViewCell.swift */; };
 		E25BA4EA24714CBD000D1DF7 /* smallCardTitleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E25BA4E524714CBC000D1DF7 /* smallCardTitleTableViewCell.swift */; };
@@ -75,6 +75,7 @@
 		E26FD6AB24828DF1004DA918 /* journalMediaTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E26FD6AA24828DF1004DA918 /* journalMediaTableViewCell.swift */; };
 		E26FD6AD2482A4FB004DA918 /* journalLocationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E26FD6AC2482A4FB004DA918 /* journalLocationTableViewCell.swift */; };
 		E26FD6B02482AD0D004DA918 /* journalImagePickerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E26FD6AF2482AD0D004DA918 /* journalImagePickerManager.swift */; };
+		E2771B8224B2FC3E00EF3BED /* WalletStatsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2771B8124B2FC3E00EF3BED /* WalletStatsViewController.swift */; };
 		E27DBB0224AF5E6B0099617B /* walletEntryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27DBB0124AF5E6B0099617B /* walletEntryTableViewCell.swift */; };
 		E27DBB0424AF70350099617B /* walletTableViewSectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27DBB0324AF70340099617B /* walletTableViewSectionHeaderView.swift */; };
 		E284B6242472D9BD00CC6465 /* uniqueFileName.swift in Sources */ = {isa = PBXBuildFile; fileRef = E284B6232472D9BD00CC6465 /* uniqueFileName.swift */; };
@@ -175,7 +176,7 @@
 		E252B08F246C4E6D003F8718 /* PageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageViewController.swift; sourceTree = "<group>"; };
 		E252B091246C4E79003F8718 /* TimelineViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineViewController.swift; sourceTree = "<group>"; };
 		E252B093246CEE55003F8718 /* PageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageView.swift; sourceTree = "<group>"; };
-		E25B0E9A247BD055004F3BDA /* UITextField+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITextField+Extensions.swift"; sourceTree = "<group>"; };
+		E25B0E9A247BD055004F3BDA /* UITextFieldExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITextFieldExtensions.swift; sourceTree = "<group>"; };
 		E25B0E9C247C010C004F3BDA /* JournalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalViewController.swift; sourceTree = "<group>"; };
 		E25BA4E424714CBC000D1DF7 /* SmallCardDatePickerTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SmallCardDatePickerTableViewCell.swift; sourceTree = "<group>"; };
 		E25BA4E524714CBC000D1DF7 /* smallCardTitleTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = smallCardTitleTableViewCell.swift; sourceTree = "<group>"; };
@@ -211,6 +212,7 @@
 		E26FD6AA24828DF1004DA918 /* journalMediaTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = journalMediaTableViewCell.swift; sourceTree = "<group>"; };
 		E26FD6AC2482A4FB004DA918 /* journalLocationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = journalLocationTableViewCell.swift; sourceTree = "<group>"; };
 		E26FD6AF2482AD0D004DA918 /* journalImagePickerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = journalImagePickerManager.swift; sourceTree = "<group>"; };
+		E2771B8124B2FC3E00EF3BED /* WalletStatsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletStatsViewController.swift; sourceTree = "<group>"; };
 		E27DBB0124AF5E6B0099617B /* walletEntryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = walletEntryTableViewCell.swift; sourceTree = "<group>"; };
 		E27DBB0324AF70340099617B /* walletTableViewSectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = walletTableViewSectionHeaderView.swift; sourceTree = "<group>"; };
 		E284B6232472D9BD00CC6465 /* uniqueFileName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = uniqueFileName.swift; sourceTree = "<group>"; };
@@ -331,6 +333,7 @@
 			isa = PBXGroup;
 			children = (
 				E252B04C246C4041003F8718 /* ViewController.swift */,
+				E2771B8124B2FC3E00EF3BED /* WalletStatsViewController.swift */,
 				E252B04E246C4041003F8718 /* Main.storyboard */,
 				E252B08A246C4640003F8718 /* Model */,
 				E2DD7A2A24AD964100F9DF27 /* Settings */,
@@ -393,7 +396,7 @@
 			isa = PBXGroup;
 			children = (
 				E269476424702D0900F9E21F /* UITextView+Expanding.swift */,
-				E25B0E9A247BD055004F3BDA /* UITextField+Extensions.swift */,
+				E25B0E9A247BD055004F3BDA /* UITextFieldExtensions.swift */,
 				E252B07A246C44DF003F8718 /* removeAllConstraints.swift */,
 				E252B079246C44DF003F8718 /* textViewPlaceholder.swift */,
 				E252B07B246C44DF003F8718 /* UnderlinedTextView.swift */,
@@ -861,7 +864,7 @@
 				E25BA4FD24716AD0000D1DF7 /* MediaCardView.swift in Sources */,
 				E25BA50624721F93000D1DF7 /* ThumbCell.swift in Sources */,
 				E27DBB0424AF70350099617B /* walletTableViewSectionHeaderView.swift in Sources */,
-				E25B0E9B247BD055004F3BDA /* UITextField+Extensions.swift in Sources */,
+				E25B0E9B247BD055004F3BDA /* UITextFieldExtensions.swift in Sources */,
 				E260F152247AA91E00CFB697 /* PageExtractViewController.swift in Sources */,
 				E291F00D24875B900006D147 /* weekExtractFromDate.swift in Sources */,
 				E2E1526A2486566C00079B79 /* addHabbitTargetDateTableViewCell.swift in Sources */,
@@ -885,6 +888,7 @@
 				E26FD6A924823E87004DA918 /* journalNotesTableViewCell.swift in Sources */,
 				6BD51DB324A5A5DF00253290 /* newNotesFullViewController.swift in Sources */,
 				E26A31232480A8AB007F2289 /* addEntryInJournalTableViewCell.swift in Sources */,
+				E2771B8224B2FC3E00EF3BED /* WalletStatsViewController.swift in Sources */,
 				E27DBB0224AF5E6B0099617B /* walletEntryTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

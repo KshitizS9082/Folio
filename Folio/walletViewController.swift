@@ -102,6 +102,13 @@ class walletViewController: UIViewController {
             table.layer.masksToBounds=false
         }
     }
+    @IBOutlet weak var dateSelectedImageView: UIImageView!{
+        didSet{
+            dateSelectedImageView.layer.cornerRadius = 7
+            dateSelectedImageView.isUserInteractionEnabled=true
+            dateSelectedImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(showDateSelctor)))
+        }
+    }
     
     var walletEntryArray = [(Date, [walletEntry])]()
     func setupData(){
@@ -132,7 +139,42 @@ class walletViewController: UIViewController {
         selectedCell=nil
         self.performSegue(withIdentifier: "showAddWalletEntrySegue", sender: self)
     }
-    
+    @objc func showDateSelctor(){
+        print("show date")
+        let myDatePicker: UIDatePicker = UIDatePicker()
+        // setting properties of the datePicker
+        myDatePicker.timeZone = NSTimeZone.local
+//        myDatePicker.frame = CGRect(x: 0, y: 15, width: 270, height: 200)
+        
+        let alertController = UIAlertController(title: "\n\n\n\n\n\n\n\n", message: nil, preferredStyle: UIAlertController.Style.actionSheet)
+
+        let somethingAction = UIAlertAction(title: "Ok", style: .default) { (action) in
+            print("scroll to date \(myDatePicker.date)")
+            var ind=0;
+            while(ind+1<self.walletEntryArray.count && self.walletEntryArray[ind+1].0<=myDatePicker.date.startOfDay){
+                ind+=1
+            }
+            DispatchQueue.main.async {
+                self.table.scrollToRow(at: IndexPath(row: 0, section: ind), at: .top, animated: true)
+            }
+        }
+        let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertAction.Style.cancel, handler: nil)
+        alertController.addAction(somethingAction)
+        alertController.addAction(cancelAction)
+        
+        alertController.view.addSubview(myDatePicker)
+        myDatePicker.translatesAutoresizingMaskIntoConstraints=false
+        [
+            myDatePicker.topAnchor.constraint(equalTo: alertController.view.safeAreaLayoutGuide.topAnchor, constant: 5),
+            myDatePicker.heightAnchor.constraint(equalToConstant: 175),
+            //            myDatePicker.bottomAnchor.constraint(equalTo: alertController.view.safeAreaLayoutGuide.bottomAnchor, constant: -15),
+            myDatePicker.centerXAnchor.constraint(equalTo: alertController.view.safeAreaLayoutGuide.centerXAnchor, constant: 0),
+            myDatePicker.widthAnchor.constraint(equalTo: alertController.view.safeAreaLayoutGuide.widthAnchor, constant: -20)
+            ].forEach { (cst) in
+                cst.isActive=true
+        }
+        self.present(alertController, animated: true, completion:{})
+    }
     func save(){
         if let json = walletData.json {
             if let url = try? FileManager.default.url(
@@ -448,13 +490,10 @@ extension walletViewController: UITableViewDataSource, UITableViewDelegate{
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let action = UIContextualAction(style: .destructive, title: "Delete",
                                         handler: { (action, view, completionHandler) in
-                                            //                                                self.deletePage(for: self.pages.items[indexPath.row])
-                                            //                                                self.pages.items.remove(at: indexPath.row)
                                             self.deleteWalletEntry(to: self.walletEntryArray[indexPath.section].1[indexPath.row])
                                             self.table.beginUpdates()
                                             self.table.deleteRows(at: [indexPath], with: .automatic)
                                             self.table.endUpdates()
-                                            //                                            self.table.reloadData()
                                             completionHandler(true)
         })
         action.backgroundColor = .systemRed

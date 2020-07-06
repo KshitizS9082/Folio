@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="VIi-gV-oAP">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="sbR-Fz-OoC">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
@@ -414,7 +414,7 @@
             <objects>
                 <viewController id="XfM-or-A3R" customClass="themeChooserViewController" customModule="Folio" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="vrU-8H-wid">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="9eH-EG-LBM">
@@ -493,7 +493,7 @@
             <objects>
                 <viewController id="UAC-d8-kH1" customClass="settingsViewController" customModule="Folio" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Aye-7T-CTY">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="rI9-iM-VtK">
@@ -640,7 +640,7 @@
             <objects>
                 <tableViewController id="mSG-Qj-YNs" customClass="PageListSideMenuTableViewController" customModule="Folio" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" sectionIndexMinimumDisplayRowCount="1" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="W1f-1x-HQC">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" name="myBackgroundColor"/>
                         <prototypes>
@@ -1507,7 +1507,7 @@
             <objects>
                 <viewController id="ino-4R-yPb" customClass="addWalletEntryViewController" customModule="Folio" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="oNS-u7-qj4">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Jvl-RH-VFi">
@@ -1840,12 +1840,12 @@
             </objects>
             <point key="canvasLocation" x="-2697.1014492753625" y="932.8125"/>
         </scene>
-        <!--Transaction's-->
+        <!--Title-->
         <scene sceneID="Swt-XL-LP1">
             <objects>
                 <viewController id="3Jb-0k-0wa" customClass="walletViewController" customModule="Folio" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="jqg-cT-RHx">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="PYW-J1-Knz">
@@ -1988,13 +1988,25 @@
                                     <constraint firstItem="GgV-1O-kUJ" firstAttribute="leading" secondItem="TAg-aZ-L2G" secondAttribute="trailing" constant="15" id="kfr-tW-HEg"/>
                                 </constraints>
                             </view>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="calendar" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="B5p-Se-SUg">
+                                <rect key="frame" x="372" y="227" width="35" height="29"/>
+                                <color key="backgroundColor" systemColor="systemTealColor" red="0.35294117650000001" green="0.7843137255" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="tintColor" name="smallCardColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="35" id="BZw-xr-hVY"/>
+                                    <constraint firstAttribute="width" secondItem="B5p-Se-SUg" secondAttribute="height" id="Zfg-3e-hSJ"/>
+                                </constraints>
+                                <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="small" weight="light"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" systemColor="secondarySystemBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="rrp-bf-9CG" firstAttribute="top" secondItem="mWg-Fb-Y3f" secondAttribute="top" constant="15" id="1XA-UR-1P9"/>
                             <constraint firstItem="6Vh-cA-Fod" firstAttribute="top" secondItem="jqg-cT-RHx" secondAttribute="top" id="4WN-dl-VdW"/>
                             <constraint firstItem="6Vh-cA-Fod" firstAttribute="leading" secondItem="mWg-Fb-Y3f" secondAttribute="leading" id="8FA-jE-n9L"/>
+                            <constraint firstItem="mWg-Fb-Y3f" firstAttribute="trailing" secondItem="B5p-Se-SUg" secondAttribute="trailing" constant="7" id="FLG-uv-KbN"/>
                             <constraint firstItem="mWg-Fb-Y3f" firstAttribute="trailing" secondItem="PYW-J1-Knz" secondAttribute="trailing" id="NgK-NZ-r0f"/>
+                            <constraint firstItem="PYW-J1-Knz" firstAttribute="top" secondItem="B5p-Se-SUg" secondAttribute="bottom" constant="4" id="V1m-hj-hMt"/>
                             <constraint firstItem="6Vh-cA-Fod" firstAttribute="bottom" secondItem="rrp-bf-9CG" secondAttribute="bottom" constant="15" id="Zi5-Qs-bk4"/>
                             <constraint firstItem="mWg-Fb-Y3f" firstAttribute="bottom" secondItem="PYW-J1-Knz" secondAttribute="bottom" id="bXF-Ed-2d7"/>
                             <constraint firstItem="mWg-Fb-Y3f" firstAttribute="trailing" secondItem="6Vh-cA-Fod" secondAttribute="trailing" id="fUm-9C-u7k"/>
@@ -2006,23 +2018,13 @@
                         <viewLayoutGuide key="safeArea" id="mWg-Fb-Y3f"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Transaction's" image="creditcard" catalog="system" id="lEz-Ol-OVN"/>
-                    <navigationItem key="navigationItem" id="fUW-7V-abV">
-                        <rightBarButtonItems>
-                            <barButtonItem title="Item" image="gear" catalog="system" id="Psl-tm-fOj"/>
-                            <barButtonItem style="plain" id="99k-OZ-9lK">
-                                <view key="customView" contentMode="scaleToFill" id="JWs-46-dzH">
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                </view>
-                            </barButtonItem>
-                            <barButtonItem title="Item" image="chart.pie" catalog="system" id="MGm-iP-Eii"/>
-                        </rightBarButtonItems>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Title" id="oxA-7I-Snb"/>
                     <connections>
                         <outlet property="balanceLabel" destination="TAg-aZ-L2G" id="wAP-Hz-Auc"/>
                         <outlet property="balanceView" destination="rrp-bf-9CG" id="yIR-F8-NAl"/>
                         <outlet property="blurView" destination="6Vh-cA-Fod" id="nNH-5n-Qze"/>
                         <outlet property="currencyLabel" destination="GgV-1O-kUJ" id="MX7-hN-uz5"/>
+                        <outlet property="dateSelectedImageView" destination="B5p-Se-SUg" id="Cbg-3E-UCW"/>
                         <outlet property="table" destination="PYW-J1-Knz" id="lhX-Up-cl1"/>
                         <segue destination="ino-4R-yPb" kind="presentation" identifier="showAddWalletEntrySegue" id="I5f-6s-cfJ"/>
                     </connections>
@@ -2034,9 +2036,9 @@
         <!--Statistics-->
         <scene sceneID="dZk-FX-K9l">
             <objects>
-                <viewController id="DNT-Cp-O8i" sceneMemberID="viewController">
+                <viewController id="DNT-Cp-O8i" customClass="WalletStatsViewController" customModule="Folio" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ega-13-TKz">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="L6e-fm-CpZ"/>
@@ -2045,14 +2047,14 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="621-rL-fNu" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1807" y="1606"/>
+            <point key="canvasLocation" x="-1790" y="1652"/>
         </scene>
         <!--Habit's-->
         <scene sceneID="Lk8-tL-1r0">
             <objects>
                 <viewController id="QbT-Ef-xWD" customClass="HabitsViewController" customModule="Folio" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="uKv-JE-6bL">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="vC7-ph-HfX">
@@ -2372,7 +2374,7 @@
             <objects>
                 <viewController id="JiT-sl-JN2" customClass="AddHabbitViewController" customModule="Folio" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="mKD-2I-TYl">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zU5-aF-w7p">
@@ -2779,7 +2781,7 @@
             <objects>
                 <viewController id="iHJ-Ix-OFG" customClass="JournalViewController" customModule="Folio" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="gDp-Ju-277">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="aXN-vR-B2r" customClass="JTAppleCalendarView" customModule="JTAppleCalendar">
@@ -3389,7 +3391,7 @@
             <objects>
                 <viewController storyboardIdentifier="journalCardFullViewStorybID" id="QcP-Pf-kuX" customClass="journalCardFullViewViewController" customModule="Folio" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="uZ9-ew-pdi">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bAa-Y5-Aaa">
