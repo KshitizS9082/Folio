@@ -59,7 +59,7 @@ class addWalletEntryViewController: UIViewController {
         }
     }
     
-        √
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // register for notifications when the keyboard appears:
@@ -101,7 +101,13 @@ class addWalletEntryViewController: UIViewController {
     @IBAction func handleDoneTap(_ sender: Any) {
         print("wallet entry set to \(self.entry)")
         if incomeExpenseSegmentControl.selectedSegmentIndex == 0{
-            entry.value = -entry.value
+            if entry.value>0{
+                entry.value = -entry.value
+            }
+        }else{
+            if entry.value<0{
+                entry.value = -entry.value
+            }
         }
         if isNewEntry{
             delegate?.addWallwtEntry(entry)

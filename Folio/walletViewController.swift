@@ -115,10 +115,6 @@ class walletViewController: UIViewController {
                 return first.date<second.date
             }
         }
-        print("did setup data: ")
-        for elem in walletEntryArray{
-            print("da: \(elem.0)")
-        }
     }
     
     func calculateCurrentBalance(){
@@ -258,9 +254,6 @@ extension walletViewController: walletProtocol{
         }
         print("entries = \(self.walletData.entries)")
         print("entries keycnt= \(self.walletData.entries.keys.count)")
-        for elem in self.walletEntryArray{
-            print("fsdaf = \(elem)")
-        }
         //TODO: Can be improved instead of recalculation whole just add the new one
 //        self.setupData()
         
@@ -268,6 +261,7 @@ extension walletViewController: walletProtocol{
         calculateCurrentBalance()
     }
     func modifyWalletEntry(to newEntry: walletEntry){
+//        print("Updated to: val \(newEntry.value) of type \(newEntry.type)")
         for key in self.walletData.entries.keys{
             var arr = self.walletData.entries[key]!
             var shouldBreak=false
@@ -331,10 +325,6 @@ extension walletViewController: UITableViewDataSource, UITableViewDelegate{
 //        let cell = UITableViewCell()
 //        cell.backgroundColor = .systemRed
 //        return cell
-        print("cellforrowat data: ")
-        for elem in walletEntryArray{
-            print("da: \(elem.0)")
-        }
         let cell = tableView.dequeueReusableCell(withIdentifier: "myWalletCell") as! walletEntryTableViewCell
 //        let entry = Array(self.walletData.entries)[indexPath.section].value[indexPath.row]
         let entry = self.walletEntryArray[indexPath.section].1[indexPath.row]
