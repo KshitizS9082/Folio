@@ -144,9 +144,10 @@ class walletViewController: UIViewController {
         let myDatePicker: UIDatePicker = UIDatePicker()
         // setting properties of the datePicker
         myDatePicker.timeZone = NSTimeZone.local
+        myDatePicker.datePickerMode = .date
 //        myDatePicker.frame = CGRect(x: 0, y: 15, width: 270, height: 200)
         
-        let alertController = UIAlertController(title: "\n\n\n\n\n\n\n\n", message: nil, preferredStyle: UIAlertController.Style.actionSheet)
+        let alertController = UIAlertController(title: "Scroll To Date\n\n\n\n\n\n\n\n", message: nil, preferredStyle: UIAlertController.Style.actionSheet)
 
         let somethingAction = UIAlertAction(title: "Ok", style: .default) { (action) in
             print("scroll to date \(myDatePicker.date)")
@@ -165,8 +166,8 @@ class walletViewController: UIViewController {
         alertController.view.addSubview(myDatePicker)
         myDatePicker.translatesAutoresizingMaskIntoConstraints=false
         [
-            myDatePicker.topAnchor.constraint(equalTo: alertController.view.safeAreaLayoutGuide.topAnchor, constant: 5),
-            myDatePicker.heightAnchor.constraint(equalToConstant: 175),
+            myDatePicker.topAnchor.constraint(equalTo: alertController.view.safeAreaLayoutGuide.topAnchor, constant: 25),
+            myDatePicker.heightAnchor.constraint(equalToConstant: 170),
             //            myDatePicker.bottomAnchor.constraint(equalTo: alertController.view.safeAreaLayoutGuide.bottomAnchor, constant: -15),
             myDatePicker.centerXAnchor.constraint(equalTo: alertController.view.safeAreaLayoutGuide.centerXAnchor, constant: 0),
             myDatePicker.widthAnchor.constraint(equalTo: alertController.view.safeAreaLayoutGuide.widthAnchor, constant: -20)
@@ -243,9 +244,9 @@ class walletViewController: UIViewController {
     }
     override func viewWillDisappear(_ animated: Bool) {
         // Restore the navigation bar to default
-        navigationController?.navigationBar.setBackgroundImage(nil, for: .default)
-        navigationController?.navigationBar.shadowImage = nil
-        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black]
+//        navigationController?.navigationBar.setBackgroundImage(nil, for: .default)
+//        navigationController?.navigationBar.shadowImage = nil
+//        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black]
         save()
     }
 }
