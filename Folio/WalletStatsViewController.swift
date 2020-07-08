@@ -22,13 +22,24 @@ class WalletStatsViewController: UIViewController {
                 return first.date<second.date
             }
         }
-        table.reloadData()
         if startDate==nil && endDate==nil && self.walletData.entries.keys.count>=2{
             if let min=self.walletData.entries.keys.min(), let max=self.walletData.entries.keys.max(){
                 startDate=min
                 endDate=max
             }
         }
+        setupRangedWalletEntry()
+    }
+    func setupRangedWalletEntry(){
+        if let start = startDate, let end = endDate{
+            self.rangeWalletEntrieAeeay.removeAll()
+            for entry in self.walletEntryArray{
+                if entry.0>=start.startOfDay && entry.0<=end.startOfDay{
+                    self.rangeWalletEntrieAeeay.append(entry)
+                }
+            }
+        }
+        table.reloadData()
     }
     var startDate: Date?{
         didSet{
@@ -36,6 +47,7 @@ class WalletStatsViewController: UIViewController {
             formatter.dateStyle = .medium
             if let date = startDate{
                 self.startDateLabel.text = formatter.string(from: date)
+                setupRangedWalletEntry()
                 table.reloadData()
             }
         }
@@ -46,10 +58,12 @@ class WalletStatsViewController: UIViewController {
             formatter.dateStyle = .medium
             if let date = endDate{
                 self.endDateLabel.text = formatter.string(from: date)
+                setupRangedWalletEntry()
                 table.reloadData()
             }
         }
     }
+    var rangeWalletEntrieAeeay = [(Date, [walletEntry])]()
     @IBOutlet weak var table: UITableView!{
         didSet{
             table.dataSource=self
@@ -133,6 +147,7 @@ class WalletStatsViewController: UIViewController {
         }
         self.present(alertController, animated: true, completion:{})
     }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -183,13 +198,17 @@ extension WalletStatsViewController: UITableViewDelegate, UITableViewDataSource{
              cell.endDate=self.endDate
              cell.setupChartData()
             return cell
+        case 1:
+            let cell = tableView.dequeueReusableCell(withIdentifier: "cashFlowTVCIdent") as! cashFlowTableViewCell
+            cell.rangeWalletEntrieAeeay = self.rangeWalletEntrieAeeay
+            cell.awakeFromNib()
+            return cell
         default:
             let cell = UITableViewCell()
-            cell.backgroundColor = .red
+//            cell.backgroundColor = .red
             return cell
         }
     }
-    
     
 }
 
@@ -199,9 +218,9 @@ class balanceGraphTableViewCell: UITableViewCell,ChartViewDelegate {
             cardBackgroundView.layer.cornerRadius=15
             //Draw shaddow for layer
             cardBackgroundView.layer.shadowColor = UIColor.gray.cgColor
-            cardBackgroundView.layer.shadowOffset = CGSize(width: 0.0, height: 0.0)
-            cardBackgroundView.layer.shadowRadius = 5.0
-            cardBackgroundView.layer.shadowOpacity = 0.2
+            cardBackgroundView.layer.shadowOffset = CGSize(width: 0.0, height: 2.0)
+            cardBackgroundView.layer.shadowRadius = 6.0
+            cardBackgroundView.layer.shadowOpacity = 0.4
         }
     }
     @IBOutlet weak var lineChartView: LineChartView!{
@@ -328,3 +347,91 @@ public class DateValueFormatter: NSObject, IAxisValueFormatter {
     }
 }
 
+class cashFlowTableViewCell: UITableViewCell{
+    var rangeWalletEntrieAeeay = [(Date, [walletEntry])]()
+    
+    @IBOutlet weak var cardBackgroundView: UIView!{
+        didSet{
+            cardBackgroundView.layer.cornerRadius=15
+            //Draw shaddow for layer
+            cardBackgroundView.layer.shadowColor = UIColor.gray.cgColor
+            cardBackgroundView.layer.shadowOffset = CGSize(width: 0.0, height: 2.0)
+            cardBackgroundView.layer.shadowRadius = 6.0
+            cardBackgroundView.layer.shadowOpacity = 0.4
+        }
+    }
+    @IBOutlet weak var flowValueLabel: UILabel!
+    @IBOutlet weak var currencyLabel: UILabel!{
+        didSet{
+            let locale = Locale.current
+            let currencyCode = locale.currencyCode!
+            currencyLabel.text = currencyCode
+        }
+    }
+    
+    @IBOutlet weak var incomeValueLabel: UILabel!
+    @IBOutlet weak var incomeStatusContainer: UIView!{
+        didSet{
+            incomeStatusContainer.layer.cornerRadius = 6
+            incomeStatusContainer.layer.masksToBounds=true
+        }
+    }
+    @IBOutlet weak var incomeStatusBar: UIView!
+    @IBOutlet weak var incomeStatusWidthConstraint: NSLayoutConstraint!
+    
+    @IBOutlet weak var expenseValueLabel: UILabel!
+    @IBOutlet weak var expenseStatusContainer: UIView!{
+        didSet{
+            expenseStatusContainer.layer.cornerRadius = 6
+            expenseStatusContainer.layer.masksToBounds=true
+        }
+    }
+    @IBOutlet weak var expenseStatusBar: UIView!
+    @IBOutlet weak var expenseStatusWidthConstraint: NSLayoutConstraint!
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        var income=Float(0)
+        var expense=Float(0)
+        for item in rangeWalletEntrieAeeay{
+            for entry in item.1{
+                if entry.type == .expense{
+                    expense+=entry.value
+                }else if entry.type == .income{
+                    income+=entry.value
+                }
+            }
+        }
+        self.flowValueLabel.text = String(income+expense)
+        self.incomeValueLabel.text = String(income)
+        self.expenseValueLabel.text = String(expense)
+        UIView.animate(withDuration: 0.5, delay: 0, options: .curveEaseInOut, animations: {
+            self.incomeStatusWidthConstraint.constant = 0
+            self.expenseStatusWidthConstraint.constant = 0
+            self.incomeStatusBar.alpha=0
+            self.expenseStatusBar.alpha=0
+            self.incomeStatusContainer.layoutIfNeeded()
+            self.expenseStatusContainer.layoutIfNeeded()
+        }) { (someBoolIDKUseOf) in
+            if income>0 && -expense>0{
+                if(income > -expense){
+                    self.incomeStatusWidthConstraint.constant = self.incomeStatusContainer.bounds.width
+                    self.expenseStatusWidthConstraint.constant = self.incomeStatusContainer.bounds.width * CGFloat((-expense/income))
+                }else{
+                    self.expenseStatusWidthConstraint.constant = self.expenseStatusContainer.bounds.width
+                    self.incomeStatusWidthConstraint.constant = self.incomeStatusContainer.bounds.width * CGFloat(income/(-expense))
+                }
+//                print("expenseStatusWidthConstraint.constant = \(expenseStatusWidthConstraint.constant) \n incomeStatusWidthConstraint.constant = \(incomeStatusWidthConstraint.constant)")
+                UIView.animate(withDuration: 1, delay: 0, options: .curveEaseIn, animations: {
+                    self.incomeStatusBar.alpha=1
+                    self.expenseStatusBar.alpha=1
+                    self.incomeStatusContainer.layoutIfNeeded()
+                    self.expenseStatusContainer.layoutIfNeeded()
+                }, completion: nil)
+            }
+            
+        }
+        
+    }
+    
+}
