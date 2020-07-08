@@ -23,6 +23,12 @@ class WalletStatsViewController: UIViewController {
             }
         }
         table.reloadData()
+        if startDate==nil && endDate==nil && self.walletData.entries.keys.count>=2{
+            if let min=self.walletData.entries.keys.min(), let max=self.walletData.entries.keys.max(){
+                startDate=min
+                endDate=max
+            }
+        }
     }
     var startDate: Date?{
         didSet{
@@ -129,7 +135,6 @@ class WalletStatsViewController: UIViewController {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-        
     }
     override func viewWillAppear(_ animated: Bool) {
         // Make the navigation bar background clear
@@ -250,12 +255,17 @@ class balanceGraphTableViewCell: UITableViewCell,ChartViewDelegate {
             self.yValues.sort { (first, secon) -> Bool in
                 return first.x<secon.x
             }
+            for ind in self.yValues.indices{
+                if ind>0{
+                    self.yValues[ind].y+=self.yValues[ind-1].y
+                }
+            }
             print("set data to \(self.yValues)")
             
             //Date of entrieds
             let set1 = LineChartDataSet(entries: self.yValues, label: "Date")
             set1.drawCirclesEnabled=false
-            set1.mode = .cubicBezier
+            set1.mode = .stepped
             set1.lineWidth = 3
             set1.setColor(.systemPink)
             
@@ -309,13 +319,12 @@ extension balanceGraphTableViewCell{
 }
 public class DateValueFormatter: NSObject, IAxisValueFormatter {
     private let dateFormatter = DateFormatter()
-    
     override init() {
         super.init()
         dateFormatter.dateFormat = "dd/M"
     }
-    
     public func stringForValue(_ value: Double, axis: AxisBase?) -> String {
         return dateFormatter.string(from: Date(timeIntervalSince1970: value))
     }
 }
+

@@ -2058,24 +2058,24 @@
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="balGraphIdentifier" id="27t-hg-UsT" customClass="balanceGraphTableViewCell" customModule="Folio" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="414" height="190.5"/>
+                                        <rect key="frame" x="0.0" y="28" width="414" height="255.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="27t-hg-UsT" id="dGH-VG-6gC">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="190.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="255.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ziX-Bl-Ta9">
-                                                    <rect key="frame" x="15" y="15" width="384" height="160.5"/>
+                                                    <rect key="frame" x="15" y="15" width="384" height="225.5"/>
                                                     <subviews>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="00o-s6-aNv" customClass="LineChartView" customModule="Charts">
-                                                            <rect key="frame" x="8" y="8" width="368" height="144.5"/>
+                                                            <rect key="frame" x="8" y="8" width="368" height="209.5"/>
                                                             <color key="backgroundColor" systemColor="systemGray3Color" red="0.78039215689999997" green="0.78039215689999997" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         </view>
                                                     </subviews>
                                                     <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                     <constraints>
                                                         <constraint firstAttribute="trailing" secondItem="00o-s6-aNv" secondAttribute="trailing" constant="8" id="Jm6-LR-PYg"/>
-                                                        <constraint firstAttribute="height" constant="160" id="KcU-zq-bIw"/>
+                                                        <constraint firstAttribute="height" constant="225" id="KcU-zq-bIw"/>
                                                         <constraint firstAttribute="bottom" secondItem="00o-s6-aNv" secondAttribute="bottom" constant="8" id="NZi-qJ-StO"/>
                                                         <constraint firstItem="00o-s6-aNv" firstAttribute="top" secondItem="ziX-Bl-Ta9" secondAttribute="top" constant="8" id="YDU-2a-VMk"/>
                                                         <constraint firstItem="00o-s6-aNv" firstAttribute="leading" secondItem="ziX-Bl-Ta9" secondAttribute="leading" constant="8" id="cpa-Zj-W6O"/>
