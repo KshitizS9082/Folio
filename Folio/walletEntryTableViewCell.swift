@@ -67,7 +67,7 @@ class walletEntryTableViewCell: UITableViewCell {
                             let x=extract.data
                             if let image = UIImage(data: x){
                                 DispatchQueue.main.async {
-//                                    self.imageWidhtConstraint.constant=50
+                                    self.imageWidhtConstraint.constant=35
 //                                    self.imageTitleDistanceConstraint.constant=6
                                     self.extraImageView.image = image
                                     self.extraImageView.isUserInteractionEnabled=true
@@ -81,7 +81,7 @@ class walletEntryTableViewCell: UITableViewCell {
                     }
                 }
             }else{
-//                self.imageWidhtConstraint.constant=0
+                self.imageWidhtConstraint.constant=0
 //                self.imageTitleDistanceConstraint.constant=0
                 self.extraImageView.isUserInteractionEnabled=false
                 self.delegate?.updated(indexpath: self.index, animated: false)

@@ -1910,7 +1910,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WLb-zi-mJ1">
-                                                    <rect key="frame" x="315" y="31.5" width="31" height="14.5"/>
+                                                    <rect key="frame" x="298.5" y="31.5" width="47.5" height="14.5"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
                                                     <color key="textColor" name="subMainTextColor"/>
                                                     <nil key="highlightedColor"/>
@@ -1924,10 +1924,11 @@
                                                 </imageView>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="K1T-w0-FI3" firstAttribute="leading" secondItem="nzW-gn-dnK" secondAttribute="trailing" constant="20" id="06Y-50-qN3"/>
+                                                <constraint firstItem="K1T-w0-FI3" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="nzW-gn-dnK" secondAttribute="trailing" constant="20" id="06Y-50-qN3"/>
                                                 <constraint firstItem="qAP-CA-6OX" firstAttribute="leading" secondItem="IV1-sg-tGj" secondAttribute="leading" constant="20" id="928-Dj-8R7"/>
                                                 <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="WLb-zi-mJ1" secondAttribute="bottom" constant="7" id="CtI-JC-zMH"/>
                                                 <constraint firstItem="pi8-gv-mFT" firstAttribute="leading" secondItem="qAP-CA-6OX" secondAttribute="trailing" constant="15" id="QFX-KY-2Ug"/>
+                                                <constraint firstItem="WLb-zi-mJ1" firstAttribute="leading" secondItem="nzW-gn-dnK" secondAttribute="trailing" priority="750" constant="20" id="QYa-Pg-Bl7"/>
                                                 <constraint firstItem="nzW-gn-dnK" firstAttribute="centerY" secondItem="qAP-CA-6OX" secondAttribute="centerY" id="S4O-NW-Tdq"/>
                                                 <constraint firstItem="WLb-zi-mJ1" firstAttribute="top" secondItem="K1T-w0-FI3" secondAttribute="bottom" constant="1" id="TqM-sn-saj"/>
                                                 <constraint firstItem="pi8-gv-mFT" firstAttribute="top" secondItem="qAP-CA-6OX" secondAttribute="top" constant="3" id="ULC-EN-pXU"/>
@@ -2016,7 +2017,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5dR-F3-Cch" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1807.2463768115942" y="932.8125"/>
+            <point key="canvasLocation" x="-1808.8" y="932.38380809595208"/>
         </scene>
         <!--Statistics-->
         <scene sceneID="dZk-FX-K9l">
