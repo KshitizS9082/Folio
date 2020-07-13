@@ -27,12 +27,17 @@ class wallletTabBarController: UITabBarController {
         middleBtn.setImage( UIImage(systemName: "plus", withConfiguration: UIImage.SymbolConfiguration(pointSize: 25, weight: .medium)), for: .normal)
         middleBtn.layer.cornerRadius = middleBtn.layer.bounds.width/2.0
         middleBtn.backgroundColor = .systemTeal
-        middleBtn.tintColor = .white
+        middleBtn.tintColor = UIColor.systemBackground
         //add to the tabbar and add click event
         self.tabBar.addSubview(middleBtn)
         middleBtn.addTarget(self, action: #selector(self.menuButtonAction), for: .touchUpInside)
-        
         self.view.layoutIfNeeded()
+    }
+    @IBOutlet weak var rightButton: UINavigationItem!
+    @IBAction func handleRightRightButton(_ sender: Any) {
+        if let vc = self.viewControllers?.first as? walletViewController{
+            vc.showDateSelctor()
+        }
     }
     
     // Menu Button Touch Action

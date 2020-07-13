@@ -14,14 +14,14 @@ class walletTabBar: UITabBar {
     private func addShape() {
         let shapeLayer = CAShapeLayer()
         shapeLayer.path = createPath()
-        shapeLayer.strokeColor = UIColor.lightGray.cgColor
-        shapeLayer.fillColor = UIColor.white.cgColor
+        shapeLayer.strokeColor = UIColor.systemGray4.cgColor
+        shapeLayer.fillColor = UIColor.systemBackground.cgColor
         shapeLayer.lineWidth = 1.0
         
         //The below 4 lines are for shadow above the bar. you can skip them if you do not want a shadow
         shapeLayer.shadowOffset = CGSize(width:0, height:0)
         shapeLayer.shadowRadius = 10
-        shapeLayer.shadowColor = UIColor.gray.cgColor
+        shapeLayer.shadowColor = UIColor.systemGray.cgColor
         shapeLayer.shadowOpacity = 0.3
 
         if let oldShapeLayer = self.shapeLayer {

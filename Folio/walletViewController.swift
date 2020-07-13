@@ -73,6 +73,12 @@ class walletViewController: UIViewController {
         blurView.layer.masksToBounds=true
         self.blurView.addSubview(blurEffectView)
     }
+//    override func viewDidAppear(_ animated: Bool) {
+//        self.navigationController?.hidesBarsOnSwipe=true
+//    }
+//    override func viewDidDisappear(_ animated: Bool) {
+//        self.navigationController?.hidesBarsOnSwipe=false
+//    }
     
     @IBOutlet weak var blurView: UIView!
     @IBOutlet weak var balanceView: UIView!{
@@ -211,6 +217,7 @@ class walletViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        self.navigationController?.hidesBarsOnSwipe=true
         // Make the navigation bar background clear
         navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
         navigationController?.navigationBar.shadowImage = UIImage()
@@ -243,6 +250,7 @@ class walletViewController: UIViewController {
         
     }
     override func viewWillDisappear(_ animated: Bool) {
+        self.navigationController?.hidesBarsOnSwipe=true
         // Restore the navigation bar to default
 //        navigationController?.navigationBar.setBackgroundImage(nil, for: .default)
 //        navigationController?.navigationBar.shadowImage = nil
@@ -426,11 +434,11 @@ extension walletViewController: UITableViewDataSource, UITableViewDelegate{
 //        }
 //        view.valueLabel.text=String(sum)
         //        return view
-        let headerView = UIView.init(frame: CGRect.init(x: 0, y: 0, width: tableView.frame.width, height: 50))
-
+        let headerView = UIView.init(frame: CGRect.init(x: 0, y: 0, width: tableView.frame.width, height: 40))
+        headerView.backgroundColor = UIColor.systemBackground
         let label = UILabel()
         label.frame = CGRect.init(x: 20, y: 6, width: headerView.frame.width-10, height: headerView.frame.height-10)
-        label.font = UIFont.boldSystemFont(ofSize: 23.0)
+        label.font = UIFont.boldSystemFont(ofSize: 20.0)
         let date =  self.walletEntryArray[section].0
         let formatter = DateFormatter()
         formatter.dateStyle = .medium
@@ -444,8 +452,9 @@ extension walletViewController: UITableViewDataSource, UITableViewDelegate{
         }
         [
             valueLabel.rightAnchor.constraint(equalTo: headerView.safeAreaLayoutGuide.rightAnchor, constant: -25),
-            valueLabel.topAnchor.constraint(equalTo:headerView.safeAreaLayoutGuide.topAnchor, constant: 15),
-            valueLabel.bottomAnchor.constraint(equalTo: headerView.safeAreaLayoutGuide.bottomAnchor, constant: -15)
+//            valueLabel.topAnchor.constraint(equalTo:headerView.safeAreaLayoutGuide.topAnchor, constant: 15),
+//            valueLabel.bottomAnchor.constraint(equalTo: headerView.safeAreaLayoutGuide.bottomAnchor, constant: -15)
+            valueLabel.centerYAnchor.constraint(equalTo: label.centerYAnchor)
             //            ,label.rightAnchor.constraint(equalTo: safeAreaLayoutGuide.rightAnchor, constant: 25)
             ].forEach { (cst) in
                 cst.isActive=true
@@ -456,7 +465,7 @@ extension walletViewController: UITableViewDataSource, UITableViewDelegate{
         for entry in self.walletEntryArray[section].1{
             sum += entry.value
         }
-        valueLabel.font = UIFont.boldSystemFont(ofSize: 18.0)
+        valueLabel.font = UIFont.boldSystemFont(ofSize: 15.0)
         if sum<0{
             let valueString = "-"+currencySymbol+String(-sum)
             let amountText = NSMutableAttributedString.init(string: valueString)

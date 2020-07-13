@@ -15,7 +15,7 @@ class walletEntryTableViewCell: UITableViewCell {
 
     @IBOutlet weak var categoryImageView: UIImageView!{
         didSet{
-            categoryImageView.layer.cornerRadius = 7
+            categoryImageView.layer.cornerRadius = 4
         }
     }
     @IBOutlet weak var extraImageView: UIImageView!{
@@ -26,7 +26,7 @@ class walletEntryTableViewCell: UITableViewCell {
         }
     }
     @IBOutlet weak var imageWidhtConstraint: NSLayoutConstraint!
-    @IBOutlet weak var imageTitleDistanceConstraint: NSLayoutConstraint!
+//    @IBOutlet weak var imageTitleDistanceConstraint: NSLayoutConstraint!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var valueLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
@@ -40,15 +40,16 @@ class walletEntryTableViewCell: UITableViewCell {
             if entry.value<0{
                 let valueString = "-"+currencySymbol+String(-entry.value)
                 let amountText = NSMutableAttributedString.init(string: valueString)
-                amountText.setAttributes([NSAttributedString.Key.font: UIFont.systemFont(ofSize: 22),
-                                          NSAttributedString.Key.foregroundColor: UIColor.systemGray2],
-                                         range: NSMakeRange(1, 1))
+//                amountText.setAttributes([NSAttributedString.Key.font: UIFont.systemFont(ofSize: 22),
+//                                          NSAttributedString.Key.foregroundColor: UIColor.systemGray2],
+//                                         range: NSMakeRange(1, 1))
+                amountText.setAttributes([NSAttributedString.Key.foregroundColor: UIColor.systemGray2],
+                range: NSMakeRange(1, 1))
                 self.valueLabel.attributedText = amountText
             }else{
                 let valueString = currencySymbol+String(entry.value)
                 let amountText = NSMutableAttributedString.init(string: valueString)
-                amountText.setAttributes([NSAttributedString.Key.font: UIFont.systemFont(ofSize: 22),
-                                          NSAttributedString.Key.foregroundColor: UIColor.systemGray2],
+                amountText.setAttributes([NSAttributedString.Key.foregroundColor: UIColor.systemGray2],
                                          range: NSMakeRange(0, 1))
                 self.valueLabel.attributedText = amountText
             }
@@ -66,8 +67,8 @@ class walletEntryTableViewCell: UITableViewCell {
                             let x=extract.data
                             if let image = UIImage(data: x){
                                 DispatchQueue.main.async {
-                                    self.imageWidhtConstraint.constant=50
-                                    self.imageTitleDistanceConstraint.constant=6
+//                                    self.imageWidhtConstraint.constant=50
+//                                    self.imageTitleDistanceConstraint.constant=6
                                     self.extraImageView.image = image
                                     self.extraImageView.isUserInteractionEnabled=true
                                     self.extraImageView.setupImageViewer()
@@ -80,8 +81,8 @@ class walletEntryTableViewCell: UITableViewCell {
                     }
                 }
             }else{
-                self.imageWidhtConstraint.constant=0
-                self.imageTitleDistanceConstraint.constant=0
+//                self.imageWidhtConstraint.constant=0
+//                self.imageTitleDistanceConstraint.constant=0
                 self.extraImageView.isUserInteractionEnabled=false
                 self.delegate?.updated(indexpath: self.index, animated: false)
             }

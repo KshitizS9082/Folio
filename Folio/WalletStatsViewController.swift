@@ -405,7 +405,7 @@ class cashFlowTableViewCell: UITableViewCell{
         self.flowValueLabel.text = String(income+expense)
         self.incomeValueLabel.text = String(income)
         self.expenseValueLabel.text = String(expense)
-        UIView.animate(withDuration: 0.5, delay: 0, options: .curveEaseInOut, animations: {
+        UIView.animate(withDuration: 0.4, delay: 0, options: .curveEaseOut, animations: {
             self.incomeStatusWidthConstraint.constant = 0
             self.expenseStatusWidthConstraint.constant = 0
             self.incomeStatusBar.alpha=0
@@ -422,7 +422,7 @@ class cashFlowTableViewCell: UITableViewCell{
                     self.incomeStatusWidthConstraint.constant = self.incomeStatusContainer.bounds.width * CGFloat(income/(-expense))
                 }
 //                print("expenseStatusWidthConstraint.constant = \(expenseStatusWidthConstraint.constant) \n incomeStatusWidthConstraint.constant = \(incomeStatusWidthConstraint.constant)")
-                UIView.animate(withDuration: 1, delay: 0, options: .curveEaseIn, animations: {
+                UIView.animate(withDuration: 0.8, delay: 0, options: .curveEaseIn, animations: {
                     self.incomeStatusBar.alpha=1
                     self.expenseStatusBar.alpha=1
                     self.incomeStatusContainer.layoutIfNeeded()
