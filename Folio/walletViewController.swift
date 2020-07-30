@@ -217,7 +217,7 @@ class walletViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        self.navigationController?.hidesBarsOnSwipe=true
+//        self.navigationController?.hidesBarsOnSwipe=true
         // Make the navigation bar background clear
         navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
         navigationController?.navigationBar.shadowImage = UIImage()
@@ -250,7 +250,7 @@ class walletViewController: UIViewController {
         
     }
     override func viewWillDisappear(_ animated: Bool) {
-        self.navigationController?.hidesBarsOnSwipe=true
+//        self.navigationController?.hidesBarsOnSwipe=false
         // Restore the navigation bar to default
 //        navigationController?.navigationBar.setBackgroundImage(nil, for: .default)
 //        navigationController?.navigationBar.shadowImage = nil
@@ -354,7 +354,11 @@ extension walletViewController: walletProtocol{
                 if val.uniqueID == newEntry.uniqueID{
                     //TODO: save changes made
                     arr.remove(at: ind)
-                    self.walletData.entries[key]=arr
+                    if arr.count>0{
+                        self.walletData.entries[key]=arr
+                    }else{
+                        self.walletData.entries.removeValue(forKey: key)
+                    }
                     shouldBreak=true
                     break
                 }
