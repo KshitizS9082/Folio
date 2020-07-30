@@ -15,7 +15,7 @@ class PageExtractViewController: UIViewController {
     var sizeType = cardSizeMode.full
     var cardsList = [timeLineCard]()
     //needs to be consistent with colorScheme in newPageExtractTableViewCell
-    var colorScheme: [UIColor] = [#colorLiteral(red: 0.2697139382, green: 0.4841310382, blue: 0.6147911549, alpha: 1), #colorLiteral(red: 0.9570466876, green: 0.8270440698, blue: 0.3706027269, alpha: 1), #colorLiteral(red: 0.3162998855, green: 0.5962183475, blue: 0.4454712272, alpha: 1), #colorLiteral(red: 0.9781618714, green: 0.3885442615, blue: 0.5711895823, alpha: 1)]
+    var colorScheme: [UIColor] = [#colorLiteral(red: 0.1969698071, green: 0.5599908233, blue: 1, alpha: 1), #colorLiteral(red: 0.968898952, green: 0.5462294221, blue: 0.2176432312, alpha: 1), #colorLiteral(red: 0.2600299716, green: 0.8386341929, blue: 0.3872584999, alpha: 1), #colorLiteral(red: 0.9601965547, green: 0.1390784979, blue: 0.327912569, alpha: 1)]
     
     @IBOutlet weak var table: UITableView!
     
