@@ -186,7 +186,7 @@ class WalletStatsViewController: UIViewController {
 
 extension WalletStatsViewController: UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
+        return 4
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -204,7 +204,15 @@ extension WalletStatsViewController: UITableViewDelegate, UITableViewDataSource{
             cell.awakeFromNib()
             return cell
         case 2:
-            let cell = tableView.dequeueReusableCell(withIdentifier: "spendingCell") as! spendingTableViewCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: "incomeCell") as! piChartTableViewCell
+            cell.type = .expense
+            cell.rangeWalletEntrieAeeay = self.rangeWalletEntrieAeeay
+            cell.setupChartData()
+            cell.awakeFromNib()
+            return cell
+        case 3:
+            let cell = tableView.dequeueReusableCell(withIdentifier: "incomeCell") as! piChartTableViewCell
+            cell.type = .income
             cell.rangeWalletEntrieAeeay = self.rangeWalletEntrieAeeay
             cell.setupChartData()
             cell.awakeFromNib()
@@ -442,17 +450,24 @@ class cashFlowTableViewCell: UITableViewCell{
     
 }
 
-class spendingTableViewCell: UITableViewCell, ChartViewDelegate{
-    @IBOutlet weak var cardBackgroundView: UIView!{
-        didSet{
-            cardBackgroundView.layer.cornerRadius=15
-            //Draw shaddow for layer
-            cardBackgroundView.layer.shadowColor = UIColor.gray.cgColor
-            cardBackgroundView.layer.shadowOffset = CGSize(width: 0.0, height: 2.0)
-            cardBackgroundView.layer.shadowRadius = 6.0
-            cardBackgroundView.layer.shadowOpacity = 0.4
-        }
+class piChartTableViewCell: UITableViewCell, ChartViewDelegate{
+    enum spendingType{
+        case expense
+        case income
     }
+    
+    @IBOutlet weak var headingLabel: UILabel!
+    var type = spendingType.expense
+    @IBOutlet weak var cardBackgroundView: UIView!{
+            didSet{
+                cardBackgroundView.layer.cornerRadius=15
+                //Draw shaddow for layer
+                cardBackgroundView.layer.shadowColor = UIColor.gray.cgColor
+                cardBackgroundView.layer.shadowOffset = CGSize(width: 0.0, height: 2.0)
+                cardBackgroundView.layer.shadowRadius = 6.0
+                cardBackgroundView.layer.shadowOpacity = 0.4
+            }
+        }
     @IBOutlet weak var pieChartView: PieChartView!{
         didSet{
             pieChartView.delegate=self
@@ -476,8 +491,8 @@ class spendingTableViewCell: UITableViewCell, ChartViewDelegate{
     var rangeWalletEntrieAeeay = [(Date, [walletEntry])]()
     var incomeChartData = [String:Float]()
     var expenseChartData = [String:Float]()
-     var total: Float = 0
-//    walletEntry.spendingCategory
+    var total: Float = 0
+    //    walletEntry.spendingCategory
     func setupChartData(){
         self.incomeChartData.removeAll()
         self.expenseChartData.removeAll()
@@ -502,17 +517,28 @@ class spendingTableViewCell: UITableViewCell, ChartViewDelegate{
         }
         var dataEntries: [PieChartDataEntry] = []
         total = 0
-        for dat in expenseChartData{
-            print("dat \(dat.key) : \(dat.value)")
-            let dataEntry1 = PieChartDataEntry(value: Double(dat.value), label: dat.key)
-            total+=dat.value
-            dataEntries.append(dataEntry1)
+        if type == .expense{
+            headingLabel.text = "EXPENSE:"
+            for dat in expenseChartData{
+                print("dat \(dat.key) : \(dat.value)")
+                let dataEntry1 = PieChartDataEntry(value: Double(dat.value), label: dat.key)
+                total+=dat.value
+                dataEntries.append(dataEntry1)
+            }
+        }else{
+            headingLabel.text = "INCOME:"
+            for dat in incomeChartData{
+                print("dat \(dat.key) : \(dat.value)")
+                let dataEntry1 = PieChartDataEntry(value: Double(dat.value), label: dat.key)
+                total+=dat.value
+                dataEntries.append(dataEntry1)
+            }
         }
         // 3. chart setup
         let set = PieChartDataSet( entries: dataEntries, label: "Pie Chart")
         // this is custom extension method. Download the code for more details.
         var colors: [UIColor] = [#colorLiteral(red: 0.2472914755, green: 0.7382606864, blue: 0.9648630023, alpha: 1),#colorLiteral(red: 0.3088667095, green: 0.3236599565, blue: 0.7085254788, alpha: 1),#colorLiteral(red: 0.9662043452, green: 0.4643479586, blue: 0.2853257358, alpha: 1),#colorLiteral(red: 0.2087099254, green: 0.2372429073, blue: 0.2610303164, alpha: 1),#colorLiteral(red: 0.9698334336, green: 0.8557072282, blue: 0.9197189212, alpha: 1),#colorLiteral(red: 0.1912389398, green: 0.6214295626, blue: 0.5693827868, alpha: 1),#colorLiteral(red: 0.4321666956, green: 0.5721588731, blue: 0.7323411107, alpha: 1),#colorLiteral(red: 0.4618343115, green: 0.6808426976, blue: 0.434892118, alpha: 1)]
-
+        
         for _ in 0..<dataEntries.count {
             let red = Double(arc4random_uniform(256))
             let green = Double(arc4random_uniform(256))
@@ -524,22 +550,22 @@ class spendingTableViewCell: UITableViewCell, ChartViewDelegate{
         set.sliceSpace = 1.5
         let data = PieChartData(dataSet: set)
         //So that values don't appear in chart
-        data.setDrawValues(false)
-        pieChartView.data = data
-        pieChartView.noDataText = "No data available"
-        // user interaction
-        pieChartView.isUserInteractionEnabled = true
-        let d = Description()
-        d.text = "Expenses"
-        pieChartView.chartDescription = d
-        
-        let locale = Locale.current
-        let symbol = locale.currencySymbol
-        pieChartView.centerText = "Expenses \n " + symbol! + " " + String(total)
-        pieChartView.animate(yAxisDuration: 1)
+            data.setDrawValues(false)
+            pieChartView.data = data
+            pieChartView.noDataText = "No data available"
+            // user interaction
+            pieChartView.isUserInteractionEnabled = true
+//            let d = Description()
+//            d.text = "Expenses"
+//            pieChartView.chartDescription = d
+            
+            let locale = Locale.current
+            let symbol = locale.currencySymbol
+            pieChartView.centerText = "Total \n " + symbol! + " " + String(total)
+            pieChartView.animate(yAxisDuration: 1)
     }
     func chartValueSelected(_ chartView: ChartViewBase, entry: ChartDataEntry, highlight: Highlight) {
-//        pieChartView.centerText = entry.accessibilityLabel
+        //        pieChartView.centerText = entry.accessibilityLabel
         let ind = Int(highlight.x)
         let locale = Locale.current
         let symbol = locale.currencySymbol
@@ -548,6 +574,6 @@ class spendingTableViewCell: UITableViewCell, ChartViewDelegate{
     func chartValueNothingSelected(_ chartView: ChartViewBase) {
         let locale = Locale.current
         let symbol = locale.currencySymbol
-        pieChartView.centerText = "Expenses \n " + symbol! + " " + String(total)
+        pieChartView.centerText = "Total \n " + symbol! + " " + String(total)
     }
 }
