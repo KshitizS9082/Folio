@@ -192,16 +192,16 @@ extension WalletStatsViewController: UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch indexPath.row {
         case 0:
-             let cell = tableView.dequeueReusableCell(withIdentifier: "balGraphIdentifier") as! balanceGraphTableViewCell
-             cell.walletData=self.walletData
-             cell.startDate=self.startDate
-             cell.endDate=self.endDate
-             cell.setupChartData()
-            return cell
-        case 1:
             let cell = tableView.dequeueReusableCell(withIdentifier: "cashFlowTVCIdent") as! cashFlowTableViewCell
             cell.rangeWalletEntrieAeeay = self.rangeWalletEntrieAeeay
             cell.awakeFromNib()
+            return cell
+        case 1:
+            let cell = tableView.dequeueReusableCell(withIdentifier: "balGraphIdentifier") as! balanceGraphTableViewCell
+            cell.walletData=self.walletData
+            cell.startDate=self.startDate
+            cell.endDate=self.endDate
+            cell.setupChartData()
             return cell
         case 2:
             let cell = tableView.dequeueReusableCell(withIdentifier: "incomeCell") as! piChartTableViewCell
@@ -252,21 +252,24 @@ class balanceGraphTableViewCell: UITableViewCell,ChartViewDelegate {
             
             self.lineChartView.leftAxis.setLabelCount(6, force: true)
             self.lineChartView.leftAxis.labelFont = .boldSystemFont(ofSize: 12)
-            self.lineChartView.leftAxis.labelTextColor = .systemTeal
+            self.lineChartView.leftAxis.labelTextColor = UIColor.systemGray
             self.lineChartView.leftAxis.axisLineColor = UIColor(named: "subMainTextColor") ?? UIColor.systemRed
             self.lineChartView.leftAxis.labelPosition = .outsideChart
             
             self.lineChartView.xAxis.labelPosition = .bottom
             self.lineChartView.xAxis.setLabelCount(7, force: false)
             self.lineChartView.xAxis.labelFont = .boldSystemFont(ofSize: 12)
-            self.lineChartView.xAxis.labelTextColor = .systemTeal
+            self.lineChartView.xAxis.labelTextColor = UIColor.systemGray
             self.lineChartView.xAxis.axisLineColor = UIColor(named: "subMainTextColor") ?? UIColor.systemRed
             
-            self.lineChartView.leftAxis.gridColor = .clear
-            self.lineChartView.xAxis.gridColor = .clear
+            self.lineChartView.leftAxis.gridColor = UIColor.systemGray3
+            self.lineChartView.xAxis.gridColor = UIColor.systemGray4
+            
+            self.lineChartView.rightAxis.enabled=false
             
             self.lineChartView.noDataText = "You need to provide data for the chart."
-            self.lineChartView.animate(xAxisDuration: 1.5)
+            
+//            self.lineChartView.animate(xAxisDuration: 1.0)
         }
     }
     var yValues = [ChartDataEntry]()
@@ -296,13 +299,13 @@ class balanceGraphTableViewCell: UITableViewCell,ChartViewDelegate {
             print("set data to \(self.yValues)")
             
             //Date of entrieds
-            let set1 = LineChartDataSet(entries: self.yValues, label: "Date")
+            let set1 = LineChartDataSet(entries: self.yValues, label: Locale.current.currencyCode)
             set1.drawCirclesEnabled=false
-            set1.mode = .stepped
+            set1.mode = .horizontalBezier
             set1.lineWidth = 3
-            set1.setColor(.systemPink)
+            set1.setColor(#colorLiteral(red: 0.2433572114, green: 0.7530457377, blue: 0.7532768846, alpha: 1))
             
-            let gradientColors = [UIColor.systemPink.cgColor, UIColor.clear.cgColor] as CFArray // Colors of the gradient
+            let gradientColors = [#colorLiteral(red: 0.2433572114, green: 0.7530457377, blue: 0.7532768846, alpha: 1).cgColor, #colorLiteral(red: 0.2433572114, green: 0.7530457377, blue: 0.7532768846, alpha: 0.4575814261).cgColor] as CFArray // Colors of the gradient
             let colorLocations:[CGFloat] = [1.0, 0.0] // Positioning of the gradient
             let gradient = CGGradient.init(colorsSpace: CGColorSpaceCreateDeviceRGB(), colors: gradientColors, locations: colorLocations) // Gradient Object
             set1.fill = Fill.fillWithLinearGradient(gradient!, angle: 90.0) // Set the Gradient
@@ -317,12 +320,17 @@ class balanceGraphTableViewCell: UITableViewCell,ChartViewDelegate {
             let valuesNumberFormatter = ChartValueFormatter(numberFormatter: numberFormatter)
             set1.valueFormatter = valuesNumberFormatter
             
-            data.setValueTextColor(UIColor(named: "subMainTextColor") ?? UIColor.red)
-            data.setValueFont(.boldSystemFont(ofSize: 10))
+            
+//            data.setValueTextColor(UIColor(named: "subMainTextColor") ?? UIColor.red)
+//            data.setValueFont(.boldSystemFont(ofSize: 10))
+            //Don't show values in graph
+            data.setDrawValues(false)
             lineChartView.data = data
             
             lineChartView.xAxis.valueFormatter = DateValueFormatter()
             lineChartView.notifyDataSetChanged()
+            
+            self.lineChartView.animate(xAxisDuration: 1.0)
         }
     }
     
@@ -419,7 +427,7 @@ class cashFlowTableViewCell: UITableViewCell{
         self.flowValueLabel.text = String(income+expense)
         self.incomeValueLabel.text = String(income)
         self.expenseValueLabel.text = String(expense)
-        UIView.animate(withDuration: 0.4, delay: 0, options: .curveEaseOut, animations: {
+        UIView.animate(withDuration: 0.5, delay: 0, options: .curveEaseOut, animations: {
             self.incomeStatusWidthConstraint.constant = 0
             self.expenseStatusWidthConstraint.constant = 0
             self.incomeStatusBar.alpha=0
@@ -436,7 +444,7 @@ class cashFlowTableViewCell: UITableViewCell{
                     self.incomeStatusWidthConstraint.constant = self.incomeStatusContainer.bounds.width * CGFloat(income/(-expense))
                 }
 //                print("expenseStatusWidthConstraint.constant = \(expenseStatusWidthConstraint.constant) \n incomeStatusWidthConstraint.constant = \(incomeStatusWidthConstraint.constant)")
-                UIView.animate(withDuration: 0.8, delay: 0, options: .curveEaseIn, animations: {
+                UIView.animate(withDuration: 0.5, delay: 0, options: .curveEaseIn, animations: {
                     self.incomeStatusBar.alpha=1
                     self.expenseStatusBar.alpha=1
                     self.incomeStatusContainer.layoutIfNeeded()
@@ -455,7 +463,6 @@ class piChartTableViewCell: UITableViewCell, ChartViewDelegate{
         case expense
         case income
     }
-    
     @IBOutlet weak var headingLabel: UILabel!
     var type = spendingType.expense
     @IBOutlet weak var cardBackgroundView: UIView!{
