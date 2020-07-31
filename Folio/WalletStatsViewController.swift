@@ -203,6 +203,12 @@ extension WalletStatsViewController: UITableViewDelegate, UITableViewDataSource{
             cell.rangeWalletEntrieAeeay = self.rangeWalletEntrieAeeay
             cell.awakeFromNib()
             return cell
+        case 2:
+            let cell = tableView.dequeueReusableCell(withIdentifier: "spendingCell") as! spendingTableViewCell
+            cell.rangeWalletEntrieAeeay = self.rangeWalletEntrieAeeay
+            cell.setupChartData()
+            cell.awakeFromNib()
+            return cell
         default:
             let cell = UITableViewCell()
 //            cell.backgroundColor = .red
@@ -434,4 +440,80 @@ class cashFlowTableViewCell: UITableViewCell{
         
     }
     
+}
+
+class spendingTableViewCell: UITableViewCell{
+    @IBOutlet weak var cardBackgroundView: UIView!{
+        didSet{
+            cardBackgroundView.layer.cornerRadius=15
+            //Draw shaddow for layer
+            cardBackgroundView.layer.shadowColor = UIColor.gray.cgColor
+            cardBackgroundView.layer.shadowOffset = CGSize(width: 0.0, height: 2.0)
+            cardBackgroundView.layer.shadowRadius = 6.0
+            cardBackgroundView.layer.shadowOpacity = 0.4
+        }
+    }
+    @IBOutlet weak var pieChartView: PieChartView!
+    var rangeWalletEntrieAeeay = [(Date, [walletEntry])]()
+    var incomeChartData = [String:Float]()
+    var expenseChartData = [String:Float]()
+//    walletEntry.spendingCategory
+    func setupChartData(){
+        self.incomeChartData.removeAll()
+        self.expenseChartData.removeAll()
+        for tup in self.rangeWalletEntrieAeeay{
+            let entryarr = tup.1
+            for entry in entryarr{
+                if entry.type == .income{
+                    let categString = entry.category.rawValue
+                    if incomeChartData[categString]==nil{
+                        incomeChartData[categString]=Float(0)
+                    }
+                    incomeChartData[categString]!+=entry.value
+                }
+                if entry.type == .expense{
+                    let categString = entry.category.rawValue
+                    if expenseChartData[categString]==nil{
+                        expenseChartData[categString]=Float(0)
+                    }
+                    expenseChartData[categString]!+=abs(entry.value)
+                }
+            }
+        }
+        var dataEntries: [PieChartDataEntry] = []
+        var total: Float = 0
+        for dat in expenseChartData{
+            print("dat \(dat.key) : \(dat.value)")
+            let dataEntry1 = PieChartDataEntry(value: Double(dat.value), label: dat.key)
+            total+=dat.value
+            dataEntries.append(dataEntry1)
+        }
+        // 3. chart setup
+        let set = PieChartDataSet( entries: dataEntries, label: "Pie Chart")
+        // this is custom extension method. Download the code for more details.
+        var colors: [UIColor] = []
+
+        for _ in 0..<dataEntries.count {
+            let red = Double(arc4random_uniform(256))
+            let green = Double(arc4random_uniform(256))
+            let blue = Double(arc4random_uniform(256))
+            let color = UIColor(red: CGFloat(red/255), green: CGFloat(green/255), blue: CGFloat(blue/255), alpha: 1)
+            colors.append(color)
+        }
+        set.colors = colors
+        let data = PieChartData(dataSet: set)
+        pieChartView.data = data
+        pieChartView.noDataText = "No data available"
+        // user interaction
+        pieChartView.isUserInteractionEnabled = true
+        let d = Description()
+        d.text = "iOSCharts.io"
+        pieChartView.chartDescription = d
+        
+        let locale = Locale.current
+        let symbol = locale.currencySymbol
+        pieChartView.centerText = "Expense \n " + symbol! + " " + String(total)
+        pieChartView.holeRadiusPercent = 0.3
+        pieChartView.transparentCircleColor = UIColor.clear
+    }
 }
