@@ -21,15 +21,14 @@ class DateCell: JTAppleCell {
         isPresentView.translatesAutoresizingMaskIntoConstraints=false
         [
             isPresentView.centerXAnchor.constraint(equalTo: safeAreaLayoutGuide.centerXAnchor),
-            isPresentView.topAnchor.constraint(equalTo: selectedView.bottomAnchor, constant: 0),
-            isPresentView.widthAnchor.constraint(equalToConstant: 5),
+            isPresentView.topAnchor.constraint(equalTo: selectedView.bottomAnchor, constant: 1),
+            isPresentView.widthAnchor.constraint(equalToConstant: 4),
             isPresentView.heightAnchor.constraint(equalTo: isPresentView.widthAnchor)
             ].forEach { (cst) in
                 cst.isActive=true
         }
-        isPresentView.layer.cornerRadius=2.5
+        isPresentView.layer.cornerRadius=2
         isPresentView.backgroundColor = UIColor(named: "calendarAccent") ?? UIColor.red
         isPresentView.isHidden=true
     }
-    
 }

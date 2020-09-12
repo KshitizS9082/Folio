@@ -103,11 +103,15 @@ class JournalViewController: UIViewController {
     var allCards = [journalCard]()
     var journalEntryCards = [journalCard]()
     var habits = HabitsData()
-//    var datesPresent = [Date]()
     var selectedDate = Date()
     var cardsForSelectedDate = [journalCard]()
     var sizeType = cardSizeMode.full
     let locationManager = CLLocationManager()
+//    var typesToShow
+    var showJournalCards = true
+    var showPageCards = true
+    var showHabitCards = true
+    var showWalletCards = true
     
     @IBOutlet weak var calendarView: JTAppleCalendarView!
     @IBOutlet weak var mapView: MKMapView!
@@ -169,47 +173,95 @@ class JournalViewController: UIViewController {
             })
         }
     }
+    @IBAction func setCardsToShow(_ sender: UIBarButtonItem) {
+        let toggleJournal = UIAlertAction(title: self.showJournalCards ? "Hide Journal Cards": "Unhide Journal Cards", style: .default) { (action) in
+            self.showJournalCards  = !self.showJournalCards
+            self.setupData()
+            self.setupSelectedDate()
+            self.table.reloadData()
+        }
+        let togglePage = UIAlertAction(title: self.showPageCards ? "Hide Page Cards": "Unhide Page Cards", style: .default) { (action) in
+            self.showPageCards  = !self.showPageCards
+            self.setupData()
+            self.setupSelectedDate()
+            self.table.reloadData()
+        }
+        let toggleHabit = UIAlertAction(title: self.showHabitCards ? "Hide Habit Cards": "Unhide Habit Cards", style: .default) { (action) in
+            self.showHabitCards  = !self.showHabitCards
+            self.setupData()
+            self.setupSelectedDate()
+            self.table.reloadData()
+        }
+        let toggleWallet = UIAlertAction(title: self.showWalletCards ? "Hide Wallet Cards": "Unhide Wallet Cards", style: .default) { (action) in
+            self.showWalletCards  = !self.showWalletCards
+            self.setupData()
+            self.setupSelectedDate()
+            self.table.reloadData()
+        }
+        let cancelAction = UIAlertAction(title: "Cancel",
+                                         style: .cancel) { (action) in
+                                            // Respond to user selection of the action
+        }
+        let alert = UIAlertController(title: "Select Cards To Show",
+                                      message: "Only cards from selected category will be shown",
+                                      preferredStyle: .actionSheet)
+        alert.addAction(toggleJournal)
+        alert.addAction(togglePage)
+        alert.addAction(toggleHabit)
+        alert.addAction(toggleWallet)
+        alert.addAction(cancelAction)
+        // On iPad, action sheets must be presented from a popover.
+        alert.popoverPresentationController?.barButtonItem = sender
+        self.present(alert, animated: true) {
+            // The alert was presented
+        }
+    }
     func setupData(){
         var fileName=""
         self.allCards.removeAll()
-        for info in pagesListFromPLVC.items{
-            fileName=info.fileName
-            if let url = try? FileManager.default.url(
-                for: .documentDirectory,
-                in: .userDomainMask,
-                appropriateFor: nil,
-                create: true
-            ).appendingPathComponent(fileName){
-                if let jsonData = try? Data(contentsOf: url){
-                    if let page = PageData(json: jsonData){
-//                        pages.append(page)
-                        page.bigCards.forEach { (card) in
-                            if let doc=card.card.dateOfCompletion{
-                            self.allCards.append(journalCard(type: .big, dateInCal: doc, smallCard: nil, bigCard: card, mediaCard: nil, pageID: info))
+        if showPageCards{
+            for info in pagesListFromPLVC.items{
+                fileName=info.fileName
+                if let url = try? FileManager.default.url(
+                    for: .documentDirectory,
+                    in: .userDomainMask,
+                    appropriateFor: nil,
+                    create: true
+                ).appendingPathComponent(fileName){
+                    if let jsonData = try? Data(contentsOf: url){
+                        if let page = PageData(json: jsonData){
+    //                        pages.append(page)
+                            page.bigCards.forEach { (card) in
+                                if let doc=card.card.dateOfCompletion{
+                                self.allCards.append(journalCard(type: .big, dateInCal: doc, smallCard: nil, bigCard: card, mediaCard: nil, pageID: info))
+                                }
                             }
-                        }
-                        page.smallCards.forEach { (card) in
-                            if let doc=card.card.dateOfCompletion{
-                            self.allCards.append(journalCard(type: .small, dateInCal: doc, smallCard: card, bigCard: nil, mediaCard: nil, pageID: info))
+                            page.smallCards.forEach { (card) in
+                                if let doc=card.card.dateOfCompletion{
+                                self.allCards.append(journalCard(type: .small, dateInCal: doc, smallCard: card, bigCard: nil, mediaCard: nil, pageID: info))
+                                }
                             }
+                            page.mediaCards.forEach { (card) in
+                                self.allCards.append(journalCard(type: .media, dateInCal: card.card.dateOfConstruction, smallCard: nil, bigCard: nil, mediaCard: card, pageID: info))
+                            }
+                        }else{
+                            print("WARNING: DROPPED A PAGE INSIDE PAGEEXTRACTVC")
                         }
-                        page.mediaCards.forEach { (card) in
-                            self.allCards.append(journalCard(type: .media, dateInCal: card.card.dateOfConstruction, smallCard: nil, bigCard: nil, mediaCard: card, pageID: info))
-                        }
-                    }else{
-                        print("WARNING: DROPPED A PAGE INSIDE PAGEEXTRACTVC")
                     }
                 }
             }
         }
         print("journalentrycards count - \(journalEntryCards.count)")
-        for card in journalEntryCards{
-//            print("insed add from journalEntryCards")
-            allCards.append(card)
+        if showJournalCards{
+            for card in journalEntryCards{
+                allCards.append(card)
+            }
         }
-        for card in habits.cardList{
-            for val in card.allEntries{
-                self.allCards.append(journalCard(type: .habits, dateInCal: val.key, habitCard: habitJournalCard(UniquIdentifier: card.UniquIdentifier, title: card.title, entryCount: val.value, goalCount: card.goalCount, entryDate: val.key, habitGoalPeriod: card.habitGoalPeriod)))
+        if showHabitCards{
+            for card in habits.cardList{
+                for val in card.allEntries{
+                    self.allCards.append(journalCard(type: .habits, dateInCal: val.key, habitCard: habitJournalCard(UniquIdentifier: card.UniquIdentifier, title: card.title, entryCount: val.value, goalCount: card.goalCount, entryDate: val.key, habitGoalPeriod: card.habitGoalPeriod)))
+                }
             }
         }
 //        print("self.cards ")
