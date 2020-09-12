@@ -235,7 +235,7 @@
 		E2C1F33F248579F0004A8050 /* PageListSideMenuTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageListSideMenuTableViewController.swift; sourceTree = "<group>"; };
 		E2CB87F42483581B002F3E6A /* journalLocationPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = journalLocationPickerViewController.swift; sourceTree = "<group>"; };
 		E2D4B87C247901A1005F566F /* pageListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = pageListTableViewCell.swift; sourceTree = "<group>"; };
-		E2DD7A2B24AD996800F9DF27 /* walletViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = walletViewController.swift; path = Folio/walletViewController.swift; sourceTree = SOURCE_ROOT; };
+		E2DD7A2B24AD996800F9DF27 /* walletViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = walletViewController.swift; path = Folio/Wallet/walletViewController.swift; sourceTree = SOURCE_ROOT; };
 		E2DD7A2F24ADAAB300F9DF27 /* walletTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = walletTabBar.swift; sourceTree = "<group>"; };
 		E2DD7A3124ADAB2A00F9DF27 /* wallletTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = wallletTabBarController.swift; sourceTree = "<group>"; };
 		E2E15257248604B900079B79 /* habitsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = habitsTableViewController.swift; sourceTree = "<group>"; };
@@ -334,16 +334,11 @@
 			children = (
 				E252B04C246C4041003F8718 /* ViewController.swift */,
 				E2771B8124B2FC3E00EF3BED /* WalletStatsViewController.swift */,
+				E252B08B246C4681003F8718 /* PageListViewController.swift */,
 				E252B04E246C4041003F8718 /* Main.storyboard */,
 				E252B08A246C4640003F8718 /* Model */,
 				E2DD7A2A24AD964100F9DF27 /* Settings */,
-				E2DD7A2B24AD996800F9DF27 /* walletViewController.swift */,
-				E27DBB0124AF5E6B0099617B /* walletEntryTableViewCell.swift */,
-				E27DBB0324AF70340099617B /* walletTableViewSectionHeaderView.swift */,
-				E2E5EEF524ADFBAF00E01490 /* addWalletEntryViewController.swift */,
-				E2DD7A2F24ADAAB300F9DF27 /* walletTabBar.swift */,
-				E2DD7A3124ADAB2A00F9DF27 /* wallletTabBarController.swift */,
-				E252B08B246C4681003F8718 /* PageListViewController.swift */,
+				E2E6E10D250B92CC00C1B198 /* Wallet */,
 				E25B0E97247BA803004F3BDA /* Page List Items */,
 				E260F153247AA95200CFB697 /* Page Extract Items */,
 				E252B08D246C4AD7003F8718 /* SwitchPageTimelineViewController.swift */,
@@ -550,6 +545,19 @@
 				E2A35B532488EC3200FDF4C6 /* habitDateCellHeader.swift */,
 			);
 			path = "Habits Items";
+			sourceTree = "<group>";
+		};
+		E2E6E10D250B92CC00C1B198 /* Wallet */ = {
+			isa = PBXGroup;
+			children = (
+				E2DD7A2B24AD996800F9DF27 /* walletViewController.swift */,
+				E2DD7A2F24ADAAB300F9DF27 /* walletTabBar.swift */,
+				E2DD7A3124ADAB2A00F9DF27 /* wallletTabBarController.swift */,
+				E27DBB0124AF5E6B0099617B /* walletEntryTableViewCell.swift */,
+				E27DBB0324AF70340099617B /* walletTableViewSectionHeaderView.swift */,
+				E2E5EEF524ADFBAF00E01490 /* addWalletEntryViewController.swift */,
+			);
+			path = Wallet;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

@@ -407,7 +407,7 @@ class JournalViewController: UIViewController {
 }
 extension JournalViewController{
     var fullCalHeight: CGFloat{
-        return 300
+        return 250
     }
     var singleRohCalHeight: CGFloat{
         return 100

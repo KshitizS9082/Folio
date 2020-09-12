@@ -14,14 +14,14 @@ class DateCell: JTAppleCell {
     @IBOutlet weak var selectedView: UIView!
     var isPresentView = UIView()
     override func awakeFromNib() {
-        selectedView.layer.cornerRadius=15
+        selectedView.layer.cornerRadius=selectedView.layer.frame.width/2
         if subviews.contains(isPresentView)==false{
             addSubview(isPresentView)
         }
         isPresentView.translatesAutoresizingMaskIntoConstraints=false
         [
             isPresentView.centerXAnchor.constraint(equalTo: safeAreaLayoutGuide.centerXAnchor),
-            isPresentView.topAnchor.constraint(equalTo: selectedView.bottomAnchor, constant: 2),
+            isPresentView.topAnchor.constraint(equalTo: selectedView.bottomAnchor, constant: 0),
             isPresentView.widthAnchor.constraint(equalToConstant: 5),
             isPresentView.heightAnchor.constraint(equalTo: isPresentView.widthAnchor)
             ].forEach { (cst) in
