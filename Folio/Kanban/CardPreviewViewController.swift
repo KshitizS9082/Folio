@@ -119,13 +119,29 @@ extension CardPreviewViewController: cardPreviewTableProtocol{
     func addChecklistItem(text: String) {
         let x = CheckListItem(item: text, done: false)
         card.checkList.items.append(x)
-        
-        tableView.reloadData()
+        tableView.beginUpdates()
+        tableView.insertRows(at: [IndexPath(row: 5+(card.checkList.items.count)-1, section: 0)], with: .automatic)
+        tableView.endUpdates()
+//        tableView.reloadData()
     }
     
     func showFullChecklist(show: Bool) {
         showChecklist=show
-        tableView.reloadData()
+        tableView.beginUpdates()
+        if show{
+            var indexes = [IndexPath]()
+            for ind in 5...(5+card.checkList.items.count){
+                indexes.append(IndexPath(row: ind, section: 0))
+            }
+            tableView.insertRows(at: indexes, with: .automatic)
+        }else{
+            var indexes = [IndexPath]()
+            for ind in 5...(5+card.checkList.items.count){
+                indexes.append(IndexPath(row: ind, section: 0))
+            }
+            tableView.deleteRows(at: indexes, with: .automatic)
+        }
+        tableView.endUpdates()
     }
 
     
