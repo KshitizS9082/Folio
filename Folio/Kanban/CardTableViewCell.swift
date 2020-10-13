@@ -36,6 +36,7 @@ class CardTableViewCell: UITableViewCell {
     }
     func setupCard(){
         titleTextView.text = card.title
+        initiateTitleTextViewWithPlaceholder()
         setupPreviewImages()
     }
     func setupPreviewImages(){
@@ -73,6 +74,24 @@ extension CardTableViewCell: UITextViewDelegate{
             delegate?.updateHeights()
         }
         self.delegate?.updateCard(to: card)
+    }
+    //for placeholder
+    func initiateTitleTextViewWithPlaceholder(){
+        if titleTextView.text.isEmpty{
+            titleTextView.text = "Add Title..."
+            titleTextView.textColor = UIColor.systemGray
+        }else{
+            titleTextView.textColor = UIColor.black
+        }
+    }
+    func textViewDidEndEditing(_ textView: UITextView) {
+        initiateTitleTextViewWithPlaceholder()
+    }
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        if textView==titleTextView && textView.textColor == UIColor.systemGray {
+            textView.text = nil
+            textView.textColor = UIColor.black
+        }
     }
 }
 extension CardTableViewCell: cardPreviewProtocol{

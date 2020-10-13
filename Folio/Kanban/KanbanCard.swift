@@ -11,7 +11,7 @@ import Foundation
 struct KanbanCard: Codable{
     var UniquIdentifier=UUID()
     var title: String = ""
-    var notes: String?
+    var notes: String? = nil
     var linkURL: URL?
     var scheduledDate: Date?
     var dateOfConstruction = Date()

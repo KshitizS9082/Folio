@@ -57,13 +57,15 @@ extension CardPreviewViewController: UITableViewDataSource, UITableViewDelegate{
         switch indexPath.row {
         case 0:
             let cell=tableView.dequeueReusableCell(withIdentifier: "titleCell") as! titleCellCardPreview
-            cell.textView.text = card.title
             cell.delegate=self
+            cell.textView.text = card.title
+            cell.initiateTextViewWithPlaceholder()
             return cell
         case 1:
             let cell=tableView.dequeueReusableCell(withIdentifier: "noteCell") as! notesCellCardPreview
-            cell.textView.text = card.notes
             cell.delegate=self
+            cell.textView.text = card.notes
+            cell.initiateTextViewWithPlaceholder()
             return cell
         case 2:
             let cell=tableView.dequeueReusableCell(withIdentifier: "dateCell") as! dateCellCardPreview
@@ -97,6 +99,8 @@ extension CardPreviewViewController: UITableViewDataSource, UITableViewDelegate{
             if indexPath.row == 5+(card.checkList.items.count){
                 let cell=tableView.dequeueReusableCell(withIdentifier: "addCheckListCell") as! addCheckListItemCell
                 cell.delegate=self
+                
+                cell.initiateTextViewWithPlaceholder()
                 return cell
             }
         }
@@ -183,6 +187,22 @@ class titleCellCardPreview: UITableViewCell, UITextViewDelegate{
         delegate?.updateHeights()
         delegate?.updateTitle(to: textView.text)
     }
+    //for placeholder
+    func initiateTextViewWithPlaceholder(){
+        if textView.text.isEmpty{
+            textView.text = "Add Title..."
+            textView.textColor = UIColor.systemGray
+        }
+    }
+    func textViewDidEndEditing(_ textView: UITextView) {
+        initiateTextViewWithPlaceholder()
+    }
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        if textView.textColor == UIColor.systemGray {
+            textView.text = nil
+            textView.textColor = UIColor.black
+        }
+    }
 }
 class notesCellCardPreview: UITableViewCell, UITextViewDelegate{
     var delegate: cardPreviewTableProtocol?
@@ -195,10 +215,27 @@ class notesCellCardPreview: UITableViewCell, UITextViewDelegate{
         delegate?.updateHeights()
         delegate?.updateNotes(to: textView.text)
     }
+    //for placeholder
+    func initiateTextViewWithPlaceholder(){
+        if textView.text.isEmpty{
+            textView.text = "Add Notes..."
+            textView.textColor = UIColor.systemGray
+        }
+    }
+    func textViewDidEndEditing(_ textView: UITextView) {
+        initiateTextViewWithPlaceholder()
+    }
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        if textView.textColor == UIColor.systemGray {
+            textView.text = nil
+            textView.textColor = UIColor.black
+        }
+    }
 }
 class reminderCellCardPreview: UITableViewCell{
     var delegate: cardPreviewTableProtocol?
     var reminderDate: Date?
+    @IBOutlet weak var datePickerHeightConstraint: NSLayoutConstraint!
     
     @IBOutlet weak var reminderSwitch: UISwitch!
     @IBAction func switchChanged(_ sender: UISwitch) {
@@ -209,7 +246,8 @@ class reminderCellCardPreview: UITableViewCell{
             datePicker.isHidden=true
             reminderDate=nil
         }
-        delegate?.updateHeights()
+//        delegate?.updateHeights()
+        updateLook()
         delegate?.updateReminder(to: reminderDate)
     }
     @IBOutlet weak var datePicker: UIDatePicker!
@@ -225,9 +263,15 @@ class reminderCellCardPreview: UITableViewCell{
         if reminderDate==nil{
             reminderSwitch.setOn(false, animated: true)
             datePicker.isHidden=true
+            datePickerHeightConstraint.constant=0
         }else{
             datePicker.setDate(reminderDate!, animated: true)
             reminderSwitch.setOn(true, animated: true)
+            if #available(iOS 14, *){
+                datePickerHeightConstraint.constant = 35
+            }else{
+                datePickerHeightConstraint.constant = 200
+            }
             datePicker.isHidden=false
         }
         delegate?.updateHeights()
@@ -238,6 +282,7 @@ class reminderCellCardPreview: UITableViewCell{
 class dateCellCardPreview: UITableViewCell{
     var delegate: cardPreviewTableProtocol?
     var date: Date?
+    @IBOutlet weak var datePickerHeightConstraint: NSLayoutConstraint!
     
     
     @IBOutlet weak var scheduleDateSwitch: UISwitch!
@@ -249,7 +294,8 @@ class dateCellCardPreview: UITableViewCell{
             datePicker.isHidden=true
             date=nil
         }
-        delegate?.updateHeights()
+//        delegate?.updateHeights()
+        updateLook()
         delegate?.updateScheduledDate(to: date)
     }
     @IBOutlet weak var datePicker: UIDatePicker!
@@ -264,10 +310,16 @@ class dateCellCardPreview: UITableViewCell{
     func updateLook(){
         if date==nil{
             scheduleDateSwitch.setOn(false, animated: true)
+            datePickerHeightConstraint.constant = 0
             datePicker.isHidden=true
         }else{
             datePicker.setDate(date!, animated: true)
             scheduleDateSwitch.setOn(true, animated: true)
+            if #available(iOS 14, *){
+                datePickerHeightConstraint.constant = 35
+            }else{
+                datePickerHeightConstraint.constant = 200
+            }
             datePicker.isHidden=false
         }
         delegate?.updateHeights()
@@ -336,6 +388,11 @@ class addCheckListItemCell: UITableViewCell, UITextViewDelegate{
             textView.delegate=self
         }
     }
+    func initiateTextViewWithPlaceholder(){
+        textView.text = "Add item..."
+        textView.textColor = UIColor.systemGray
+    }
+    
     func textViewDidChange(_ textView: UITextView) {
         print("update heightys")
         delegate?.updateHeights()
@@ -351,7 +408,18 @@ class addCheckListItemCell: UITableViewCell, UITextViewDelegate{
         if textView.text.count>0{
             delegate?.addChecklistItem(text: textView.text)
         }
-        textView.text=""
+        if textView.text.isEmpty {
+            textView.text = "Placeholder"
+            textView.textColor = UIColor.systemGray
+        }
+        textView.text=nil
+        initiateTextViewWithPlaceholder()
+    }
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        if textView.textColor == UIColor.systemGray {
+            textView.text = nil
+            textView.textColor = UIColor.black
+        }
     }
 }
 
