@@ -11,7 +11,8 @@ class ThumbCell:UICollectionViewCell {
     
     static let reuseIdentifier: String = "ThumbCell"
     var imageView:UIImageView = UIImageView(frame: .zero)
-    
+    //media link used for addMediaKabanCell
+  
     override init(frame: CGRect) {
         super.init(frame: frame)
         addSubview(imageView)

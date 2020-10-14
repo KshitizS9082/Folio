@@ -6,6 +6,8 @@
 //  Copyright © 2020 Kshitiz Sharma. All rights reserved.
 //
 import UIKit
+import ImagePicker
+
 protocol cardPreviewProtocol {
     func saveCard(to newCard: KanbanCard)
 }
@@ -18,6 +20,8 @@ protocol cardPreviewTableProtocol {
     func showFullChecklist(show: Bool)
     func addChecklistItem(text: String)
     func updateChecklistItem(item: CheckListItem)
+    func preseintViewController(vc: UIViewController)
+    func updateMediaLinks(to links: [String])
 }
 class CardPreviewViewController: UIViewController {
     var delegate: cardPreviewProtocol?
@@ -45,7 +49,7 @@ class CardPreviewViewController: UIViewController {
 }
 extension CardPreviewViewController: UITableViewDataSource, UITableViewDelegate{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        var ret = 5
+        var ret = 5+1
         if showChecklist{
             ret += (card.checkList.items.count)
             ret+=1
@@ -86,7 +90,9 @@ extension CardPreviewViewController: UITableViewDataSource, UITableViewDelegate{
         default:
             print("xyz")
         }
+        var postCheckListStartpoint=5
         if showChecklist{
+            postCheckListStartpoint=5+(card.checkList.items.count)+1
             if indexPath.row < 5+(card.checkList.items.count){
 //                let cell=UITableViewCell()
 //                cell.backgroundColor = .green
@@ -104,12 +110,25 @@ extension CardPreviewViewController: UITableViewDataSource, UITableViewDelegate{
                 return cell
             }
         }
+        if indexPath.row==postCheckListStartpoint{
+            let cell=tableView.dequeueReusableCell(withIdentifier: "addMediaKabanId") as! addMediaKabanCell
+            cell.delegate=self
+            return cell
+        }
         return UITableViewCell()
     }
     
     
 }
 extension CardPreviewViewController: cardPreviewTableProtocol{
+    func updateMediaLinks(to links: [String]) {
+        card.mediaLinks = links
+    }
+    
+    func preseintViewController(vc: UIViewController) {
+        self.present(vc, animated: true, completion: nil)
+    }
+    
     func updateChecklistItem(item: CheckListItem) {
         for ind in card.checkList.items.indices{
             if card.checkList.items[ind].uid == item.uid{
@@ -423,3 +442,133 @@ class addCheckListItemCell: UITableViewCell, UITextViewDelegate{
     }
 }
 
+class addMediaKabanCell: UITableViewCell{
+    var mediaLinks = [String]()
+    var delegate: cardPreviewTableProtocol?
+    @IBOutlet weak var addImageButton: UIImageView!{
+        didSet{
+            addImageButton.isUserInteractionEnabled=true
+            addImageButton.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(addImage)))
+        }
+    }
+    @objc func addImage(){
+        print("add image")
+        let imagePickerController = ImagePickerController()
+        imagePickerController.imageLimit = 1
+        imagePickerController.delegate = self
+        delegate?.preseintViewController(vc: imagePickerController)
+    }
+    @IBOutlet weak var collectionView: UICollectionView!{
+        didSet{
+            collectionView.dataSource=self
+//            collectionView.delegate=self
+//            collectionView.register(ThumbCell.self,forCellWithReuseIdentifier: ThumbCell.reuseIdentifier)
+            
+        }
+    }
+    override func awakeFromNib() {
+//        let layout = UICollectionViewFlowLayout()
+//        layout.scrollDirection = .horizontal
+//        if collectionView != nil{
+//            self.collectionView.collectionViewLayout = layout
+//            self.collectionView!.contentInset = UIEdgeInsets(top: 0, left: 0, bottom:0, right: 0)
+//            self.collectionView.isPagingEnabled=true
+//            if let layout = self.collectionView.collectionViewLayout as? UICollectionViewFlowLayout {
+//                layout.minimumInteritemSpacing = spacings
+//                layout.minimumLineSpacing = spacings
+//                layout.itemSize = CGSize(width: self.collectionView.frame.size.height-spacings, height: self.collectionView.frame.size.height-spacings)
+//                layout.invalidateLayout()
+//            }
+//            collectionView.reloadData()
+//        }
+    }
+    var spacings: CGFloat{
+        return 10.0
+    }
+}
+class mediaKabanPreviewCollectionViewCell: UICollectionViewCell{
+    @IBOutlet weak var imageView: UIImageView!
+    func setImageLink(fileName: String){
+        DispatchQueue.global(qos: .background).async {
+            if let url = try? FileManager.default.url(
+                for: .documentDirectory,
+                in: .userDomainMask,
+                appropriateFor: nil,
+                create: true
+            ).appendingPathComponent(fileName){
+                if let jsonData = try? Data(contentsOf: url){
+                    if let extract = imageData(json: jsonData){
+                        let x=extract.data
+                        if let image = UIImage(data: x){
+                            DispatchQueue.main.async {
+                                self.imageView.image = image
+                            }
+                        }
+                    }else{
+                        print("couldnt get json from URL")
+                    }
+                }
+            }
+        }
+    }
+}
+extension addMediaKabanCell: UICollectionViewDataSource, ImagePickerDelegate{
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return mediaLinks.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "mediaCVC", for: indexPath) as! mediaKabanPreviewCollectionViewCell
+        
+        //TOODO: setup cell image
+//        cell.imageView.image = allImages[indexPath.item]
+//        cell.backgroundColor = .green
+        cell.layer.cornerRadius=imageCornerRadius
+        cell.layer.masksToBounds=true
+        cell.setImageLink(fileName: mediaLinks[indexPath.row])
+        cell.imageView.setupImageViewer()
+//        cell.imageView.setupImageViewer(images: allImages, initialIndex: indexPath.item)
+        return cell
+    }
+    
+    func wrapperDidPress(_ imagePicker: ImagePickerController, images: [UIImage]) {
+        imagePicker.expandGalleryView()
+    }
+    
+    func doneButtonDidPress(_ imagePicker: ImagePickerController, images: [UIImage]) {
+        print("done")
+        let fileName=String.uniqueFilename(withPrefix: "kabanCardImageData")+".json"
+        if images.count>0{
+            let image = images[0]
+            if let json = imageData(instData: (image.resizedTo1MB()!).pngData()!).json {
+                if let url = try? FileManager.default.url(
+                    for: .documentDirectory,
+                    in: .userDomainMask,
+                    appropriateFor: nil,
+                    create: true
+                ).appendingPathComponent(fileName){
+                    do {
+                        try json.write(to: url)
+                        print ("saved successfully")
+                        //MARK: is a data leak to be corrected
+                        //TODO: sometimes fileName added but not deleted
+                        self.mediaLinks.append(fileName)
+                        self.collectionView.reloadData()
+                    } catch let error {
+                        print ("couldn't save \(error)")
+                    }
+                }
+            }
+        }
+        imagePicker.dismiss(animated: true, completion: nil)
+    }
+    
+    func cancelButtonDidPress(_ imagePicker: ImagePickerController) {
+        print("delete")
+    }
+    
+    var imageCornerRadius: CGFloat{
+        return 6.0
+    }
+}

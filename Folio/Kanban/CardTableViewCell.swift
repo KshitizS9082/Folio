@@ -102,6 +102,5 @@ extension CardTableViewCell: cardPreviewProtocol{
         delegate?.updateHeights()
     }
     
-    
 }
 
