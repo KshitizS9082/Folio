@@ -461,9 +461,7 @@ class addMediaKabanCell: UITableViewCell{
     @IBOutlet weak var collectionView: UICollectionView!{
         didSet{
             collectionView.dataSource=self
-//            collectionView.delegate=self
-//            collectionView.register(ThumbCell.self,forCellWithReuseIdentifier: ThumbCell.reuseIdentifier)
-            
+            collectionView.delegate=self
         }
     }
     override func awakeFromNib() {
@@ -512,7 +510,7 @@ class mediaKabanPreviewCollectionViewCell: UICollectionViewCell{
         }
     }
 }
-extension addMediaKabanCell: UICollectionViewDataSource, ImagePickerDelegate{
+extension addMediaKabanCell: UICollectionViewDataSource, ImagePickerDelegate, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout{
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return mediaLinks.count
@@ -530,6 +528,9 @@ extension addMediaKabanCell: UICollectionViewDataSource, ImagePickerDelegate{
         cell.imageView.setupImageViewer()
 //        cell.imageView.setupImageViewer(images: allImages, initialIndex: indexPath.item)
         return cell
+    }
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: 75, height: 75)
     }
     
     func wrapperDidPress(_ imagePicker: ImagePickerController, images: [UIImage]) {
