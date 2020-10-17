@@ -9,6 +9,7 @@
 import Foundation
 
 class Board: Codable {
+    var uid = UUID()
     var title: String
     var items: [KanbanCard]
     

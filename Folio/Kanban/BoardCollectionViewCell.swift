@@ -14,7 +14,8 @@ protocol tableCardDeletgate {
 }
 class BoardCollectionViewCell: UICollectionViewCell {
     var board: Board?
-    weak var parentVC: BoardCollectionViewController?
+    var delegate: BoardCVCProtocol?
+//    weak var parentVC: BoardCollectionViewController?
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var titleTextField: UITextField!
@@ -73,6 +74,7 @@ extension BoardCollectionViewCell: tableCardDeletgate{
                 self.board?.items[ind]=newCard
             }
         })
+        delegate?.updateBoard(newBoard: board!)
     }
     
     func updateHeights() {

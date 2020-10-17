@@ -637,7 +637,5 @@ class addURLKabanCell: UITableViewCell{
         if let text = textField.text{
             delegate?.openURL(urlString: text)
         }
-        
-        
     }
 }

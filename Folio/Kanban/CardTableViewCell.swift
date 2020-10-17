@@ -55,7 +55,7 @@ class CardTableViewCell: UITableViewCell {
         }else{
             previewImageViews[2].tintColor = .blue
         }
-        if card.linkURL == nil{
+        if card.linkURL.count==0 {
             previewImageViews[3].tintColor = .gray
         }else{
             previewImageViews[3].tintColor = .blue

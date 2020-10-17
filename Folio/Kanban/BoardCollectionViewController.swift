@@ -7,7 +7,10 @@
 //
 
 import UIKit
-
+protocol BoardCVCProtocol {
+    func updateBoard(newBoard: Board)
+    func deleteBoard(board: Board)
+}
 
 class BoardCollectionViewController: UICollectionViewController {
     var boards = [
@@ -66,7 +69,8 @@ class BoardCollectionViewController: UICollectionViewController {
             return cell
         }
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "kanbanCell", for: indexPath) as! BoardCollectionViewCell
-        cell.parentVC=self
+//        cell.parentVC=self
+        cell.delegate=self
         cell.setup(with: boards[indexPath.item])
         return cell
     }
@@ -84,3 +88,24 @@ class BoardCollectionViewController: UICollectionViewController {
     }
 }
 
+extension BoardCollectionViewController: BoardCVCProtocol{
+    func updateBoard(newBoard: Board) {
+        for ind in boards.indices{
+            if boards[ind].uid == newBoard.uid{
+                boards[ind]=newBoard
+                break
+            }
+        }
+    }
+    
+    func deleteBoard(board: Board) {
+        for ind in boards.indices{
+            if boards[ind].uid == board.uid{
+                boards.remove(at: ind)
+                break
+            }
+        }
+    }
+    
+    
+}
