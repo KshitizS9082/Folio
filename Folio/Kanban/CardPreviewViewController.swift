@@ -7,6 +7,7 @@
 //
 import UIKit
 import ImagePicker
+import SafariServices
 
 protocol cardPreviewProtocol {
     func saveCard(to newCard: KanbanCard)
@@ -22,6 +23,9 @@ protocol cardPreviewTableProtocol {
     func updateChecklistItem(item: CheckListItem)
     func preseintViewController(vc: UIViewController)
     func updateMediaLinks(to links: [String])
+    func updateURL(to newURL: String)
+//    func showURL(url: URL)
+    func openURL(urlString: String)
 }
 class CardPreviewViewController: UIViewController {
     var delegate: cardPreviewProtocol?
@@ -38,18 +42,18 @@ class CardPreviewViewController: UIViewController {
             tableView.delegate=self
         }
     }
-    @IBAction func cancelPressed(_ sender: Any) {
-        self.dismiss(animated: true, completion: nil)
-    }
+    
     @IBAction func donePressed(_ sender: Any) {
         delegate?.saveCard(to: card)
         self.dismiss(animated: true, completion: nil)
     }
-    
+    override func viewWillDisappear(_ animated: Bool) {
+        delegate?.saveCard(to: card)
+    }
 }
 extension CardPreviewViewController: UITableViewDataSource, UITableViewDelegate{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        var ret = 5+1
+        var ret = 5+1+1
         if showChecklist{
             ret += (card.checkList.items.count)
             ret+=1
@@ -113,6 +117,13 @@ extension CardPreviewViewController: UITableViewDataSource, UITableViewDelegate{
         if indexPath.row==postCheckListStartpoint{
             let cell=tableView.dequeueReusableCell(withIdentifier: "addMediaKabanId") as! addMediaKabanCell
             cell.delegate=self
+            cell.mediaLinks = card.mediaLinks
+            return cell
+        }
+        if indexPath.row==postCheckListStartpoint+1{
+            let cell=tableView.dequeueReusableCell(withIdentifier: "urlKanbanCell") as! addURLKabanCell
+            cell.delegate=self
+            cell.textField.text = card.linkURL
             return cell
         }
         return UITableViewCell()
@@ -121,6 +132,40 @@ extension CardPreviewViewController: UITableViewDataSource, UITableViewDelegate{
     
 }
 extension CardPreviewViewController: cardPreviewTableProtocol{
+    func openURL(urlString: String) {
+        guard let url = URL(string: urlString) else {
+            // not a valid URL
+            return
+        }
+        
+        if ["http", "https"].contains(url.scheme?.lowercased() ?? "") {
+            // Can open with SFSafariViewController
+            print("opening with SFSafariViewController")
+            let safariViewController = SFSafariViewController(url: url)
+            self.present(safariViewController, animated: true, completion: nil)
+        } else {
+            // Scheme is not supported or no scheme is given, use openURL
+//            print("openeing other way")
+//            if #available(iOS 10.0, *) {
+//                UIApplication.shared.open(url, options: [:], completionHandler: nil)
+//            } else {
+//                UIApplication.shared.openURL(url)
+//            }
+            let urlStr = "http://"+urlString
+            guard let urls = URL(string: urlStr) else {
+                // not a valid URL
+                return
+            }
+            let safariViewController = SFSafariViewController(url: urls)
+            self.present(safariViewController, animated: true, completion: nil)
+        }
+    }
+    
+    
+    func updateURL(to newURL: String) {
+        card.linkURL = newURL
+    }
+    
     func updateMediaLinks(to links: [String]) {
         card.mediaLinks = links
     }
@@ -519,9 +564,6 @@ extension addMediaKabanCell: UICollectionViewDataSource, ImagePickerDelegate, UI
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "mediaCVC", for: indexPath) as! mediaKabanPreviewCollectionViewCell
         
-        //TOODO: setup cell image
-//        cell.imageView.image = allImages[indexPath.item]
-//        cell.backgroundColor = .green
         cell.layer.cornerRadius=imageCornerRadius
         cell.layer.masksToBounds=true
         cell.setImageLink(fileName: mediaLinks[indexPath.row])
@@ -555,6 +597,7 @@ extension addMediaKabanCell: UICollectionViewDataSource, ImagePickerDelegate, UI
                         //MARK: is a data leak to be corrected
                         //TODO: sometimes fileName added but not deleted
                         self.mediaLinks.append(fileName)
+                        self.delegate?.updateMediaLinks(to: self.mediaLinks)
                         self.collectionView.reloadData()
                     } catch let error {
                         print ("couldn't save \(error)")
@@ -571,5 +614,30 @@ extension addMediaKabanCell: UICollectionViewDataSource, ImagePickerDelegate, UI
     
     var imageCornerRadius: CGFloat{
         return 6.0
+    }
+}
+
+class addURLKabanCell: UITableViewCell{
+    var delegate: cardPreviewTableProtocol?
+    @IBOutlet weak var textField: UITextField!
+    
+    @IBOutlet weak var linkImageView: UIImageView!{
+        didSet{
+            linkImageView.isUserInteractionEnabled=true
+            linkImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(openLink)))
+        }
+    }
+    @IBAction func textFieldEdittingEnded(_ sender: Any) {
+        if let text = textField.text{
+            delegate?.updateURL(to: text)
+            print("url = \(text)")
+        }
+    }
+    @objc func openLink(){
+        if let text = textField.text{
+            delegate?.openURL(urlString: text)
+        }
+        
+        
     }
 }
