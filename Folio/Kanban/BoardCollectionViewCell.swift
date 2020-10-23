@@ -88,5 +88,4 @@ extension BoardCollectionViewCell: tableCardDeletgate{
         UIView.setAnimationsEnabled(true)
     }
     
-    
 }

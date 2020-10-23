@@ -4168,18 +4168,18 @@
                                                 </constraints>
                                             </view>
                                             <prototypes>
-                                                <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="kabanTableCell" rowHeight="158" id="o8v-Lo-fUl" customClass="CardTableViewCell" customModule="Folio" customModuleProvider="target">
-                                                    <rect key="frame" x="0.0" y="72" width="350" height="158"/>
+                                                <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="kabanTableCell" id="o8v-Lo-fUl" customClass="CardTableViewCell" customModule="Folio" customModuleProvider="target">
+                                                    <rect key="frame" x="0.0" y="72" width="350" height="197"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="o8v-Lo-fUl" id="cp0-oE-2Yd">
-                                                        <rect key="frame" x="0.0" y="0.0" width="350" height="158"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="350" height="197"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <subviews>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eku-mq-P7D">
-                                                                <rect key="frame" x="4" y="4" width="343" height="150"/>
+                                                                <rect key="frame" x="4" y="4" width="343" height="189"/>
                                                                 <subviews>
                                                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" text="Text" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Bpf-bn-ODW">
-                                                                        <rect key="frame" x="3" y="8" width="297" height="94"/>
+                                                                        <rect key="frame" x="3" y="8" width="297" height="33"/>
                                                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                                         <color key="textColor" systemColor="labelColor"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -4198,32 +4198,32 @@
                                                                         </connections>
                                                                     </button>
                                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="checkmark.square" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="grR-BU-vlv">
-                                                                        <rect key="frame" x="8" y="111.66666666666666" width="20" height="17"/>
+                                                                        <rect key="frame" x="8" y="50.666666666666664" width="20" height="17"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="width" constant="20" id="Kb2-G0-a7a"/>
                                                                             <constraint firstAttribute="width" secondItem="grR-BU-vlv" secondAttribute="height" id="TCd-ZI-jmJ"/>
                                                                         </constraints>
                                                                     </imageView>
                                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="calendar" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="idP-HJ-Eq3">
-                                                                        <rect key="frame" x="36" y="111.66666666666666" width="20" height="17"/>
+                                                                        <rect key="frame" x="36" y="50.666666666666664" width="20" height="17"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="width" secondItem="idP-HJ-Eq3" secondAttribute="height" id="a1d-sD-BQ0"/>
                                                                         </constraints>
                                                                     </imageView>
                                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="alarm" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="Gzg-mS-8YG">
-                                                                        <rect key="frame" x="64" y="110" width="20" height="19"/>
+                                                                        <rect key="frame" x="64" y="49" width="20" height="19"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="width" secondItem="Gzg-mS-8YG" secondAttribute="height" id="eSp-tf-IrJ"/>
                                                                         </constraints>
                                                                     </imageView>
                                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="paperclip" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="c4h-WE-sdo">
-                                                                        <rect key="frame" x="92" y="110" width="20" height="20.666666666666671"/>
+                                                                        <rect key="frame" x="92" y="49" width="20" height="20.666666666666671"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="width" secondItem="c4h-WE-sdo" secondAttribute="height" id="GUD-ZQ-wvY"/>
                                                                         </constraints>
                                                                     </imageView>
                                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="photo" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="OEc-by-GPO">
-                                                                        <rect key="frame" x="120" y="111.66666666666666" width="20" height="17"/>
+                                                                        <rect key="frame" x="120" y="50.666666666666664" width="20" height="17"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="width" secondItem="OEc-by-GPO" secondAttribute="height" id="ZRx-Um-DQP"/>
                                                                         </constraints>
@@ -4243,7 +4243,7 @@
                                                                     <constraint firstItem="OEc-by-GPO" firstAttribute="width" secondItem="OEc-by-GPO" secondAttribute="height" id="FRb-B9-Gr6"/>
                                                                     <constraint firstItem="OEc-by-GPO" firstAttribute="leading" secondItem="c4h-WE-sdo" secondAttribute="trailing" constant="8" symbolic="YES" id="H6f-SB-ATR"/>
                                                                     <constraint firstItem="grR-BU-vlv" firstAttribute="top" secondItem="Bpf-bn-ODW" secondAttribute="bottom" constant="8" symbolic="YES" id="HdU-UZ-7eL"/>
-                                                                    <constraint firstAttribute="bottom" secondItem="grR-BU-vlv" secondAttribute="bottom" constant="20" id="LnG-ph-mWT"/>
+                                                                    <constraint firstAttribute="bottom" secondItem="grR-BU-vlv" secondAttribute="bottom" constant="120" id="LnG-ph-mWT"/>
                                                                     <constraint firstItem="c4h-WE-sdo" firstAttribute="width" secondItem="grR-BU-vlv" secondAttribute="width" id="NtV-7K-IxR"/>
                                                                     <constraint firstItem="Bpf-bn-ODW" firstAttribute="leading" secondItem="eku-mq-P7D" secondAttribute="leading" constant="3" id="RTq-37-M92"/>
                                                                     <constraint firstItem="idP-HJ-Eq3" firstAttribute="centerY" secondItem="grR-BU-vlv" secondAttribute="centerY" id="UQ5-B9-0Hp"/>

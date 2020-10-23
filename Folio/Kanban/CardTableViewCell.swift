@@ -8,7 +8,9 @@
 
 
 import UIKit
-
+protocol cardPreviewProtocol {
+    func saveCard(to newCard: KanbanCard)
+}
 class CardTableViewCell: UITableViewCell {
     var card = KanbanCard()
     var row: Int?
@@ -96,10 +98,10 @@ extension CardTableViewCell: UITextViewDelegate{
 }
 extension CardTableViewCell: cardPreviewProtocol{
     func saveCard(to newCard: KanbanCard) {
-        print("save card inside cardtvc")
         self.card=newCard
         setupCard()
         delegate?.updateHeights()
+        self.delegate?.updateCard(to: card)
     }
     
 }

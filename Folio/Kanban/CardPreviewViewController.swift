@@ -9,9 +9,7 @@ import UIKit
 import ImagePicker
 import SafariServices
 
-protocol cardPreviewProtocol {
-    func saveCard(to newCard: KanbanCard)
-}
+
 protocol cardPreviewTableProtocol {
     func updateHeights()
     func updateTitle(to text: String)
@@ -630,7 +628,6 @@ class addURLKabanCell: UITableViewCell{
     @IBAction func textFieldEdittingEnded(_ sender: Any) {
         if let text = textField.text{
             delegate?.updateURL(to: text)
-            print("url = \(text)")
         }
     }
     @objc func openLink(){
