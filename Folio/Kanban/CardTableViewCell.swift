@@ -17,12 +17,12 @@ class CardTableViewCell: UITableViewCell {
     var delegate: tableCardDeletgate?
     @IBOutlet weak var cardBackgroundView: UIView!{
         didSet{
-            cardBackgroundView.layer.cornerRadius=10
+            cardBackgroundView.layer.cornerRadius=5
             //Draw shaddow for layer
             cardBackgroundView.layer.shadowColor = UIColor.gray.cgColor
-            cardBackgroundView.layer.shadowOffset = CGSize(width: 0.0, height: 1.0)
-            cardBackgroundView.layer.shadowRadius = 1.0
-            cardBackgroundView.layer.shadowOpacity = 0.8
+            cardBackgroundView.layer.shadowOffset = CGSize(width: 0.0, height: 0.3)
+            cardBackgroundView.layer.shadowRadius = 0.7
+            cardBackgroundView.layer.shadowOpacity = 0.4
         }
     }
     @IBOutlet weak var titleTextView: UITextView!{

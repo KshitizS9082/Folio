@@ -18,7 +18,20 @@ class BoardCollectionViewCell: UICollectionViewCell {
 //    weak var parentVC: BoardCollectionViewController?
     
     @IBOutlet weak var tableView: UITableView!
+//    @IBOutlet weak var titleTextField: UITextField!
     @IBOutlet weak var titleTextField: UITextField!
+    @IBAction func titleTextFieldDidChange(_ sender: UITextField) {
+        self.board?.title = self.titleTextField.text ?? ""
+        if let b = board{
+            delegate?.updateBoard(newBoard: b)
+        }
+    }
+    @IBAction func textFieldDidEndEditting(_ sender: UITextField) {
+        self.board?.title = self.titleTextField.text ?? ""
+        if let b = board{
+            delegate?.updateBoard(newBoard: b)
+        }
+    }
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -52,10 +65,21 @@ class BoardCollectionViewCell: UICollectionViewCell {
 }
 
 extension BoardCollectionViewCell: UITableViewDataSource, UITableViewDelegate {
+    func numberOfSections(in tableView: UITableView) -> Int {
+        //NOTE: make 2 to show addCard cell in last
+        return 1
+    }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if section==1{
+            return 1
+        }
         return board?.items.count ?? 0
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if indexPath.section==1{
+            let cell = tableView.dequeueReusableCell(withIdentifier: "addButtonCell", for: indexPath)
+            return cell
+        }
         let cell = tableView.dequeueReusableCell(withIdentifier: "kabanTableCell", for: indexPath) as! CardTableViewCell
         cell.delegate=self
         cell.card = board!.items[indexPath.row]

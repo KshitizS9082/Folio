@@ -13,12 +13,7 @@ protocol BoardCVCProtocol {
 }
 
 class BoardCollectionViewController: UICollectionViewController {
-    var boards = [
-        Board(title: "first", items: [KanbanCard(title: "Database Migration"),KanbanCard(title: "Schema Design"),KanbanCard(title: "Storage Management"),KanbanCard(title: "Model Abstraction")]),
-        Board(title: "second", items: [KanbanCard(title: "Database Migration"),KanbanCard(title: "Schema Design"),KanbanCard(title: "Storage Management"),KanbanCard(title: "Model Abstraction")]),
-        Board(title: "third", items: []),
-        Board(title: "fourth", items: [KanbanCard(title: "Database Migration"),KanbanCard(title: "Schema Design"),KanbanCard(title: "Storage Management"),KanbanCard(title: "Model Abstraction")])
-    ]
+    var kanban = Kanban()
     override func viewDidLoad() {
         super.viewDidLoad()
 //        setupAddButtonItem()
@@ -46,9 +41,9 @@ class BoardCollectionViewController: UICollectionViewController {
                 return
             }
             
-            self.boards.append(Board(title: text, items: []))
+            self.kanban.boards.append(Board(title: text, items: []))
             
-            let addedIndexPath = IndexPath(item: self.boards.count - 1, section: 0)
+            let addedIndexPath = IndexPath(item: self.kanban.boards.count - 1, section: 0)
             
             self.collectionView.insertItems(at: [addedIndexPath])
             self.collectionView.scrollToItem(at: addedIndexPath, at: UICollectionView.ScrollPosition.centeredHorizontally, animated: true)
@@ -59,19 +54,19 @@ class BoardCollectionViewController: UICollectionViewController {
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        print("count = \(boards.count)")
-        return boards.count+1
+        print("count = \(kanban.boards.count)")
+        return kanban.boards.count+1
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        if indexPath.row == boards.count{
+        if indexPath.row == kanban.boards.count{
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "addBoardCell", for: indexPath) as! addBoardCollectionViewCell
             return cell
         }
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "kanbanCell", for: indexPath) as! BoardCollectionViewCell
 //        cell.parentVC=self
         cell.delegate=self
-        cell.setup(with: boards[indexPath.item])
+        cell.setup(with: kanban.boards[indexPath.item])
         return cell
     }
     
@@ -86,22 +81,63 @@ class BoardCollectionViewController: UICollectionViewController {
             
         }
     }
+    
+    func save(){
+        if let json = kanban.json {
+            if let url = try? FileManager.default.url(
+                for: .documentDirectory,
+                in: .userDomainMask,
+                appropriateFor: nil,
+                create: true
+            ).appendingPathComponent("kanbanData.json"){
+                do {
+                    try json.write(to: url)
+                    print ("saved successfully")
+                } catch let error {
+                    print ("couldn't save \(error)")
+                }
+            }
+        }
+
+    }
+    override func viewWillDisappear(_ animated: Bool) {
+        save()
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        if let url = try? FileManager.default.url(
+            for: .documentDirectory,
+            in: .userDomainMask,
+            appropriateFor: nil,
+            create: true
+        ).appendingPathComponent("kanbanData.json"){
+//            print("trying to extract contents of kanbanData")
+            if let jsonData = try? Data(contentsOf: url){
+                //                pageList = pageInfo(json: jsonData)
+                if let x = Kanban(json: jsonData){
+                    kanban = x
+                }else{
+                    print("WARNING: COULDN'T UNWRAP JSON DATA TO FIND kanbanData")
+                }
+            }
+            viewDidLoad()
+        }
+    }
 }
 
 extension BoardCollectionViewController: BoardCVCProtocol{
     func updateBoard(newBoard: Board) {
-        for ind in boards.indices{
-            if boards[ind].uid == newBoard.uid{
-                boards[ind]=newBoard
+        for ind in kanban.boards.indices{
+            if kanban.boards[ind].uid == newBoard.uid{
+                kanban.boards[ind]=newBoard
                 break
             }
         }
     }
     
     func deleteBoard(board: Board) {
-        for ind in boards.indices{
-            if boards[ind].uid == board.uid{
-                boards.remove(at: ind)
+        for ind in kanban.boards.indices{
+            if kanban.boards[ind].uid == board.uid{
+                kanban.boards.remove(at: ind)
                 break
             }
         }

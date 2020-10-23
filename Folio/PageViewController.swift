@@ -369,7 +369,7 @@ class PageViewController: UIViewController {
     }
     
     func save() {
-        print("is now saving page with pageviewc \(page)")
+//        print("is now saving page with pageviewc \(page)")
         if let json = page?.json {
             if let url = try? FileManager.default.url(
                 for: .documentDirectory,

@@ -7,7 +7,27 @@
 //
 
 import Foundation
-
+struct Kanban: Codable{
+//    var boards = [Board]()
+    var boards = [
+            Board(title: "first", items: [KanbanCard(title: "Database Migration"),KanbanCard(title: "Schema Design"),KanbanCard(title: "Storage Management"),KanbanCard(title: "Model Abstraction")]),
+            Board(title: "second", items: [KanbanCard(title: "Database Migration"),KanbanCard(title: "Schema Design"),KanbanCard(title: "Storage Management"),KanbanCard(title: "Model Abstraction")]),
+            Board(title: "third", items: []),
+            Board(title: "fourth", items: [KanbanCard(title: "Database Migration"),KanbanCard(title: "Schema Design"),KanbanCard(title: "Storage Management"),KanbanCard(title: "Model Abstraction")])
+        ]
+    init(){
+    }
+    init?(json: Data){
+        if let newValue = try? JSONDecoder().decode(Kanban.self, from: json) {
+            self = newValue
+        } else {
+            return nil
+        }
+    }
+    var json: Data? {
+        return try? JSONEncoder().encode(self)
+    }
+}
 class Board: Codable {
     var uid = UUID()
     var title: String
