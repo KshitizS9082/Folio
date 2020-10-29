@@ -21,8 +21,8 @@ struct KanbanCard: Codable{
     var isTask: Bool?
     
     var reminderDate: Date?
-    var time : Date? = nil
-    var endTime : Date? = nil
+//    var time : Date? = nil
+//    var endTime : Date? = nil
     
     var savedPKData: Data?
     

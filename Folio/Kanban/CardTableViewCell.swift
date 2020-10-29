@@ -15,6 +15,14 @@ class CardTableViewCell: UITableViewCell {
     var card = KanbanCard()
     var row: Int?
     var delegate: tableCardDeletgate?
+    
+    @IBOutlet var previewVerSpacingConstraints: [NSLayoutConstraint]!
+    @IBOutlet weak var previewIVHeightConstraint: NSLayoutConstraint!
+    
+    @IBOutlet weak var calendarLabel: UILabel!
+    @IBOutlet weak var reminderLabel: UILabel!
+    @IBOutlet weak var linkLabel: UILabel!
+    
     @IBOutlet weak var cardBackgroundView: UIView!{
         didSet{
             cardBackgroundView.layer.cornerRadius=5
@@ -34,13 +42,48 @@ class CardTableViewCell: UITableViewCell {
     @IBOutlet var previewImageViews: [UIImageView]!
     
     @IBAction func handlePreviewButtonClick(_ sender: UIButton) {
-        
+        card.showingPreview = !card.showingPreview
+        setupCard()
+        delegate?.updateCard(to: self.card)
+        self.delegate?.updateHeights()
     }
     func setupCard(){
         titleTextView.text = card.title
         initiateTitleTextViewWithPlaceholder()
         setupPreviewImages()
+        
+        if card.showingPreview{
+            for ind in previewVerSpacingConstraints.indices{
+                previewVerSpacingConstraints[ind].constant=6
+            }
+            previewIVHeightConstraint.constant=20
+        }else{
+            for ind in previewVerSpacingConstraints.indices{
+                previewVerSpacingConstraints[ind].constant=0
+            }
+            previewIVHeightConstraint.constant=0
+        }
+//        UIView.animate(withDuration: 0.4, animations: {
+//            self.layoutIfNeeded()
+//            self.delegate?.updateHeights()
+//        })
+//        self.delegate?.updateHeights()
+        if let schedDate = card.scheduledDate{
+            let formatter = DateFormatter()
+            formatter.dateFormat = "d/M/yy, hh:mm a"
+            calendarLabel.text = formatter.string(from: schedDate)
+        }else{
+            calendarLabel.text = "-"
+        }
+        if let remindDate = card.reminderDate{
+            let formatter = DateFormatter()
+            formatter.dateFormat = "d/M/yy, hh:mm a"
+            reminderLabel.text = formatter.string(from: remindDate)
+        }else{
+            reminderLabel.text = "-"
+        }
     }
+    
     func setupPreviewImages(){
         if card.checkList.items.count == 0{
             previewImageViews[0].tintColor = .gray
