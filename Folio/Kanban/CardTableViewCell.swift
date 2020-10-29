@@ -22,6 +22,12 @@ class CardTableViewCell: UITableViewCell {
     @IBOutlet weak var calendarLabel: UILabel!
     @IBOutlet weak var reminderLabel: UILabel!
     @IBOutlet weak var linkLabel: UILabel!
+    @IBOutlet weak var previewImageView: UIImageView!{
+        didSet{
+            previewImageView.layer.cornerRadius = 6
+        }
+    }
+    @IBOutlet weak var imageCountIV: UIImageView!
     
     @IBOutlet weak var cardBackgroundView: UIView!{
         didSet{
@@ -82,6 +88,37 @@ class CardTableViewCell: UITableViewCell {
         }else{
             reminderLabel.text = "-"
         }
+        if card.linkURL.count>0{
+            linkLabel.text = card.linkURL
+        }else{
+            linkLabel.text = "-"
+        }
+        
+        if card.mediaLinks.count>0{
+            let fileName = card.mediaLinks[0]
+            DispatchQueue.global(qos: .background).async {
+                if let url = try? FileManager.default.url(
+                    for: .documentDirectory,
+                    in: .userDomainMask,
+                    appropriateFor: nil,
+                    create: true
+                ).appendingPathComponent(fileName){
+                    if let jsonData = try? Data(contentsOf: url){
+                        if self.card.mediaLinks.count>0, self.card.mediaLinks[0]==fileName, let extract = imageData(json: jsonData){
+                            let x=extract.data
+                            if let image = UIImage(data: x){
+                                DispatchQueue.main.async {
+                                    self.previewImageView.image = image
+                                }
+                            }
+                        }else{
+                            print("couldnt get json from URL")
+                        }
+                    }
+                }
+            }
+        }
+        imageCountIV.image = UIImage(systemName: String(card.mediaLinks.count)+".circle.fill")
     }
     
     func setupPreviewImages(){
