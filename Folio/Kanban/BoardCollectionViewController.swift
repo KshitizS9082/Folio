@@ -104,6 +104,7 @@ class BoardCollectionViewController: UICollectionViewController {
         save()
     }
     override func viewWillAppear(_ animated: Bool) {
+        
         if let url = try? FileManager.default.url(
             for: .documentDirectory,
             in: .userDomainMask,

@@ -56,9 +56,21 @@ class KanbanTimelineViewController: UIViewController {
 
     }
     override func viewWillDisappear(_ animated: Bool) {
+//        navigationController?.navigationBar.setBackgroundImage(nil, for: .default)
+//        navigationController?.navigationBar.shadowImage = nil
+//        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black]
         save()
     }
     override func viewWillAppear(_ animated: Bool) {
+//        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+//        navigationController?.navigationBar.shadowImage = UIImage()
+//        navigationController?.navigationBar.isTranslucent = true
+//
+//        let attrs = [
+//            NSAttributedString.Key.foregroundColor: UIColor.systemTeal ,
+//            NSAttributedString.Key.font: UIFont(name: "SnellRoundhand-Black", size: 30)!
+//        ]
+//        self.navigationController?.navigationBar.titleTextAttributes = attrs
         if let url = try? FileManager.default.url(
             for: .documentDirectory,
             in: .userDomainMask,

@@ -76,6 +76,7 @@
 		E26FD6AB24828DF1004DA918 /* journalMediaTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E26FD6AA24828DF1004DA918 /* journalMediaTableViewCell.swift */; };
 		E26FD6AD2482A4FB004DA918 /* journalLocationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E26FD6AC2482A4FB004DA918 /* journalLocationTableViewCell.swift */; };
 		E26FD6B02482AD0D004DA918 /* journalImagePickerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E26FD6AF2482AD0D004DA918 /* journalImagePickerManager.swift */; };
+		E274AA14254B264900A41E28 /* switchKanbanTimelineTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E274AA13254B264900A41E28 /* switchKanbanTimelineTabBarController.swift */; };
 		E2771B8224B2FC3E00EF3BED /* WalletStatsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2771B8124B2FC3E00EF3BED /* WalletStatsViewController.swift */; };
 		E27DBB0224AF5E6B0099617B /* walletEntryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27DBB0124AF5E6B0099617B /* walletEntryTableViewCell.swift */; };
 		E27DBB0424AF70350099617B /* walletTableViewSectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27DBB0324AF70340099617B /* walletTableViewSectionHeaderView.swift */; };
@@ -221,6 +222,7 @@
 		E26FD6AA24828DF1004DA918 /* journalMediaTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = journalMediaTableViewCell.swift; sourceTree = "<group>"; };
 		E26FD6AC2482A4FB004DA918 /* journalLocationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = journalLocationTableViewCell.swift; sourceTree = "<group>"; };
 		E26FD6AF2482AD0D004DA918 /* journalImagePickerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = journalImagePickerManager.swift; sourceTree = "<group>"; };
+		E274AA13254B264900A41E28 /* switchKanbanTimelineTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = switchKanbanTimelineTabBarController.swift; sourceTree = "<group>"; };
 		E2771B8124B2FC3E00EF3BED /* WalletStatsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletStatsViewController.swift; sourceTree = "<group>"; };
 		E27DBB0124AF5E6B0099617B /* walletEntryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = walletEntryTableViewCell.swift; sourceTree = "<group>"; };
 		E27DBB0324AF70340099617B /* walletTableViewSectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = walletTableViewSectionHeaderView.swift; sourceTree = "<group>"; };
@@ -546,6 +548,7 @@
 				E2D7290525347D8200D77702 /* addBoardCollectionViewCell.swift */,
 				E2D7290A25347DB600D77702 /* CardTableViewCell.swift */,
 				E2D7291425347DE600D77702 /* CardPreviewViewController.swift */,
+				E274AA13254B264900A41E28 /* switchKanbanTimelineTabBarController.swift */,
 			);
 			path = Kanban;
 			sourceTree = "<group>";
@@ -842,6 +845,7 @@
 				E2DD7A3024ADAAB300F9DF27 /* walletTabBar.swift in Sources */,
 				E2E152682486565C00079B79 /* addHabbitGoalCountTableViewCell.swift in Sources */,
 				E252B04D246C4041003F8718 /* ViewController.swift in Sources */,
+				E274AA14254B264900A41E28 /* switchKanbanTimelineTabBarController.swift in Sources */,
 				E252B094246CEE55003F8718 /* PageView.swift in Sources */,
 				E2E15258248604B900079B79 /* habitsTableViewController.swift in Sources */,
 				E252B090246C4E6D003F8718 /* PageViewController.swift in Sources */,

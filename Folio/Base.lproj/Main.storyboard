@@ -4729,11 +4729,11 @@
             </objects>
             <point key="canvasLocation" x="-440" y="1539"/>
         </scene>
-        <!--Tab Bar Controller-->
+        <!--Kanban-->
         <scene sceneID="Bj9-eg-rza">
             <objects>
-                <tabBarController id="fuU-Da-AkD" sceneMemberID="viewController">
-                    <navigationItem key="navigationItem" id="6cP-am-1uz"/>
+                <tabBarController id="fuU-Da-AkD" customClass="switchKanbanTimelineTabBarController" customModule="Folio" customModuleProvider="target" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" title="Kanban" id="6cP-am-1uz"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" barStyle="black" id="WLH-kG-VYx">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
