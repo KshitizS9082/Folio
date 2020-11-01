@@ -30,6 +30,10 @@ class switchKanbanTimelineTabBarController: UITabBarController {
         navigationController?.navigationBar.setBackgroundImage(nil, for: .default)
         navigationController?.navigationBar.shadowImage = nil
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black]
+        print("vwlds")
+        if let vc = self.viewControllers?[0] as? BoardCollectionViewController{
+            vc.save()
+        }
     }
     /*
     // MARK: - Navigation

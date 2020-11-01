@@ -24,6 +24,7 @@ protocol cardPreviewTableProtocol {
     func updateURL(to newURL: String)
 //    func showURL(url: URL)
     func openURL(urlString: String)
+    func deleteCard()
 }
 class CardPreviewViewController: UIViewController {
     var delegate: cardPreviewProtocol?
@@ -51,7 +52,7 @@ class CardPreviewViewController: UIViewController {
 }
 extension CardPreviewViewController: UITableViewDataSource, UITableViewDelegate{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        var ret = 5+1+1
+        var ret = 5+1+1+1
         if showChecklist{
             ret += (card.checkList.items.count)
             ret+=1
@@ -124,12 +125,52 @@ extension CardPreviewViewController: UITableViewDataSource, UITableViewDelegate{
             cell.textField.text = card.linkURL
             return cell
         }
+        if indexPath.row==postCheckListStartpoint+2{
+            let cell=tableView.dequeueReusableCell(withIdentifier: "deleteCell") as! deleteKanbanCell
+            cell.delegate=self
+            return cell
+        }
         return UITableViewCell()
     }
     
     
 }
 extension CardPreviewViewController: cardPreviewTableProtocol{
+    func deleteCardFinal(){
+        let fileManager = FileManager.default
+        for fileName in self.card.mediaLinks{
+            if let url = try? FileManager.default.url(
+                for: .documentDirectory,
+                in: .userDomainMask,
+                appropriateFor: nil,
+                create: true
+            ).appendingPathComponent(fileName){
+                do{
+                    try fileManager.removeItem(at: url)
+                    print("deleted item \(url) succefully")
+                } catch{
+                    print("ERROR: item  at \(url) couldn't be deleted")
+                    return
+                }
+            }
+        }
+        delegate?.deleteCard(newCard: self.card)
+        self.dismiss(animated: true, completion: nil)
+    }
+    func deleteCard() {
+        let deleteAction = UIAlertAction(title: "Delete", style: .destructive){
+            UIAlertAction in
+            self.deleteCardFinal()
+        }
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel){
+            UIAlertAction in
+        }
+        let alert = UIAlertController(title: "Delete Card?", message: "Deleting this card will also delete it's data", preferredStyle: .actionSheet)
+        alert.addAction(deleteAction)
+        alert.addAction(cancelAction)
+        self.present(alert, animated: true, completion: nil)
+    }
+    
     func openURL(urlString: String) {
         guard let url = URL(string: urlString) else {
             // not a valid URL
@@ -634,5 +675,12 @@ class addURLKabanCell: UITableViewCell{
         if let text = textField.text{
             delegate?.openURL(urlString: text)
         }
+    }
+}
+
+class deleteKanbanCell: UITableViewCell{
+    var delegate: cardPreviewTableProtocol?
+    @IBAction func deletePressed(_ sender: Any) {
+        self.delegate?.deleteCard()
     }
 }

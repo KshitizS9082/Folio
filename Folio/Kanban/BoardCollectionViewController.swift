@@ -83,6 +83,7 @@ class BoardCollectionViewController: UICollectionViewController {
     }
     
     func save(){
+        print("board cvc save")
         if let json = kanban.json {
             if let url = try? FileManager.default.url(
                 for: .documentDirectory,
@@ -127,9 +128,11 @@ class BoardCollectionViewController: UICollectionViewController {
 
 extension BoardCollectionViewController: BoardCVCProtocol{
     func updateBoard(newBoard: Board) {
+//        print("updating board to \(newBoard.items)")
         for ind in kanban.boards.indices{
             if kanban.boards[ind].uid == newBoard.uid{
                 kanban.boards[ind]=newBoard
+//                print("updating at ind= \(ind)")
                 break
             }
         }

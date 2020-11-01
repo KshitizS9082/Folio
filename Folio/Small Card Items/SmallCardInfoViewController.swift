@@ -236,7 +236,7 @@ class SmallCardInfoViewController: UIViewController, UITableViewDataSource, SPSt
         return cell
     }
     @objc func deleteCard(){
-        print("yet to implement deleting card")
+//        print("yet to implement deleting card")
         let deleteAction = UIAlertAction(title: "Delete", style: .destructive){
             UIAlertAction in
             print("in delete")

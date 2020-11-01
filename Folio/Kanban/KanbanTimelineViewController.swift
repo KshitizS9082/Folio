@@ -59,7 +59,7 @@ class KanbanTimelineViewController: UIViewController {
 //        navigationController?.navigationBar.setBackgroundImage(nil, for: .default)
 //        navigationController?.navigationBar.shadowImage = nil
 //        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black]
-        save()
+//        save()
     }
     override func viewWillAppear(_ animated: Bool) {
 //        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
@@ -95,6 +95,8 @@ class KanbanTimelineViewController: UIViewController {
 
 }
 extension KanbanTimelineViewController: UITableViewDataSource, UITableViewDelegate, tableCardDeletgate{
+    
+    
     func updateHeights() {
         // Disabling animations gives us our desired behaviour
         UIView.setAnimationsEnabled(false)
@@ -123,6 +125,8 @@ extension KanbanTimelineViewController: UITableViewDataSource, UITableViewDelega
         cell.setupCard()
         return cell
     }
-    
+    func deleteCard(newCard: KanbanCard) {
+        print("do nothing to at 234jikoqafg")
+    }
     
 }

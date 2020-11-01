@@ -11,6 +11,7 @@ import UIKit
 protocol tableCardDeletgate {
     func updateHeights()
     func updateCard(to newCard: KanbanCard)
+    func deleteCard(newCard: KanbanCard)
 }
 class BoardCollectionViewCell: UICollectionViewCell {
     var board: Board?
@@ -92,6 +93,20 @@ extension BoardCollectionViewCell: UITableViewDataSource, UITableViewDelegate {
     }
 }
 extension BoardCollectionViewCell: tableCardDeletgate{
+    func deleteCard(newCard: KanbanCard) {
+        if let board = self.board{
+            for ind in board.items.indices{
+                if self.board?.items[ind].UniquIdentifier == newCard.UniquIdentifier{
+                    self.board?.items.remove(at: ind)
+                    self.tableView.deleteRows(at: [IndexPath(row: ind, section: 0)], with: .automatic)
+                    delegate?.updateBoard(newBoard: self.board!)
+                    break
+                }
+            }
+        }
+//        delegate?.deleteBoard(board: self.board!)
+    }
+    
     func updateCard(to newCard: KanbanCard){
         self.board?.items.indices.forEach({ (ind) in
             if self.board?.items[ind].UniquIdentifier == newCard.UniquIdentifier{

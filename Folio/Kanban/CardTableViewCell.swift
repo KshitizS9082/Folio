@@ -10,6 +10,7 @@
 import UIKit
 protocol cardPreviewProtocol {
     func saveCard(to newCard: KanbanCard)
+    func deleteCard(newCard: KanbanCard)
 }
 class CardTableViewCell: UITableViewCell {
     var card = KanbanCard()
@@ -69,21 +70,24 @@ class CardTableViewCell: UITableViewCell {
             }
             previewIVHeightConstraint.constant=0
         }
-//        UIView.animate(withDuration: 0.4, animations: {
+//        UIView.animate(withDuration: 0 .4, animations: {
 //            self.layoutIfNeeded()
 //            self.delegate?.updateHeights()
 //        })
 //        self.delegate?.updateHeights()
         if let schedDate = card.scheduledDate{
             let formatter = DateFormatter()
-            formatter.dateFormat = "d/M/yy, hh:mm a"
+//            formatter.dateFormat = "d/M/yy, hh:mm a"
+//            formatter.dateStyle = .medium
+            formatter.dateFormat = "d/M, hh:mm a"
             calendarLabel.text = formatter.string(from: schedDate)
         }else{
             calendarLabel.text = "-"
         }
         if let remindDate = card.reminderDate{
             let formatter = DateFormatter()
-            formatter.dateFormat = "d/M/yy, hh:mm a"
+            formatter.dateFormat = "d/M, hh:mm a"
+//            formatter.dateStyle = .medium
             reminderLabel.text = formatter.string(from: remindDate)
         }else{
             reminderLabel.text = "-"
@@ -177,6 +181,10 @@ extension CardTableViewCell: UITextViewDelegate{
     }
 }
 extension CardTableViewCell: cardPreviewProtocol{
+    func deleteCard(newCard: KanbanCard) {
+        self.delegate?.deleteCard(newCard: newCard)
+    }
+    
     func saveCard(to newCard: KanbanCard) {
         self.card=newCard
         setupCard()
