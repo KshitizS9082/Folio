@@ -62,6 +62,19 @@ class BoardCollectionViewCell: UICollectionViewCell {
         }
     }
     
+    @IBAction func editBoardTapped(_ sender: UIButton) {
+        delegate?.deleteBoard(board: self.board!)
+        let deleteAction = UIAlertAction(title: "Delete", style: .destructive){
+            UIAlertAction in
+            print("in delete")
+        }
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel){
+            UIAlertAction in
+        }
+        let alert = UIAlertController(title: "Delete Board?", message: "Deleting this card will also delete it's data", preferredStyle: .actionSheet)
+        alert.addAction(deleteAction)
+        alert.addAction(cancelAction)
+    }
     
 }
 

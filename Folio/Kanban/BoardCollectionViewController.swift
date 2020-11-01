@@ -139,12 +139,23 @@ extension BoardCollectionViewController: BoardCVCProtocol{
     }
     
     func deleteBoard(board: Board) {
-        for ind in kanban.boards.indices{
-            if kanban.boards[ind].uid == board.uid{
-                kanban.boards.remove(at: ind)
-                break
+        let deleteAction = UIAlertAction(title: "Delete", style: .destructive){
+            UIAlertAction in
+            for ind in self.kanban.boards.indices{
+                if self.kanban.boards[ind].uid == board.uid{
+                    self.kanban.boards.remove(at: ind)
+                    self.collectionView.deleteItems(at: [IndexPath(row: ind, section: 0)])
+                    break
+                }
             }
         }
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel){
+            UIAlertAction in
+        }
+        let alert = UIAlertController(title: "Delete Board?", message: "Deleting this card will also delete it's data", preferredStyle: .actionSheet)
+        alert.addAction(deleteAction)
+        alert.addAction(cancelAction)
+        self.present(alert, animated: true, completion: nil)
     }
     
     
