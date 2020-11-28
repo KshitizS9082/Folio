@@ -431,6 +431,7 @@ class dateCellCardPreview: UITableViewCell{
 }
 class checkListCellCardPreview: UITableViewCell{
     var delegate: cardPreviewTableProtocol?
+    let largeConfig = UIImage.SymbolConfiguration(pointSize: 15, weight: .bold, scale: .large)
     @IBOutlet weak var expandCheckList: UIImageView!{
         didSet{
             expandCheckList.isUserInteractionEnabled=true
@@ -453,6 +454,7 @@ class checkListCellCardPreview: UITableViewCell{
 class checkListItemCell: UITableViewCell, UITextViewDelegate{
     var delegate: cardPreviewTableProtocol?
     var item = CheckListItem()
+    let largeConfig = UIImage.SymbolConfiguration(pointSize: 15, weight: .bold, scale: .large)
     @IBOutlet weak var doneButton: UIImageView!{
         didSet{
             doneButton.isUserInteractionEnabled=true
@@ -472,9 +474,9 @@ class checkListItemCell: UITableViewCell, UITextViewDelegate{
     func setupCell(){
         textview.text = item.item
         if item.done{
-            doneButton.image = UIImage(systemName: "largecircle.fill.circle")
+            doneButton.image = UIImage(systemName: "largecircle.fill.circle", withConfiguration: largeConfig)
         }else{
-            doneButton.image = UIImage(systemName: "circle")
+            doneButton.image = UIImage(systemName: "circle", withConfiguration: largeConfig)
         }
         delegate?.updateHeights()
     }
@@ -486,14 +488,19 @@ class checkListItemCell: UITableViewCell, UITextViewDelegate{
 }
 class addCheckListItemCell: UITableViewCell, UITextViewDelegate{
     var delegate: cardPreviewTableProtocol?
+    let largeConfig = UIImage.SymbolConfiguration(pointSize: 15, weight: .bold, scale: .large)
+
     @IBOutlet weak var textView: UITextView!{
         didSet{
             textView.delegate=self
         }
     }
+    
+    @IBOutlet weak var addCLImage: UIImageView!
     func initiateTextViewWithPlaceholder(){
+        addCLImage.image = UIImage(systemName: "plus.circle", withConfiguration: largeConfig)
         textView.text = "Add item..."
-        textView.textColor = UIColor.systemGray
+        textView.textColor = UIColor.systemBlue
     }
     
     func textViewDidChange(_ textView: UITextView) {
@@ -513,13 +520,13 @@ class addCheckListItemCell: UITableViewCell, UITextViewDelegate{
         }
         if textView.text.isEmpty {
             textView.text = "Placeholder"
-            textView.textColor = UIColor.systemGray
+            textView.textColor = UIColor.systemBlue
         }
         textView.text=nil
         initiateTextViewWithPlaceholder()
     }
     func textViewDidBeginEditing(_ textView: UITextView) {
-        if textView.textColor == UIColor.systemGray {
+        if textView.textColor == UIColor.systemBlue {
             textView.text = nil
             textView.textColor = UIColor.black
         }
