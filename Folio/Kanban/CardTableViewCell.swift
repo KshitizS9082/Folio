@@ -20,6 +20,13 @@ class CardTableViewCell: UITableViewCell {
     @IBOutlet var previewVerSpacingConstraints: [NSLayoutConstraint]!
     @IBOutlet weak var previewIVHeightConstraint: NSLayoutConstraint!
     
+    
+    @IBOutlet weak var taskView: UIView!
+    @IBOutlet weak var taskViewHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var taskSymbolImage: UIImageView!
+    @IBOutlet weak var taskStatusLabel: UILabel!
+    
+    
     @IBOutlet weak var calendarLabel: UILabel!
     @IBOutlet weak var reminderLabel: UILabel!
     @IBOutlet weak var linkLabel: UILabel!
@@ -38,6 +45,7 @@ class CardTableViewCell: UITableViewCell {
             cardBackgroundView.layer.shadowOffset = CGSize(width: 0.0, height: 0.3)
             cardBackgroundView.layer.shadowRadius = 0.7
             cardBackgroundView.layer.shadowOpacity = 0.4
+//            cardBackgroundView.layer.masksToBounds=true
         }
     }
     @IBOutlet weak var titleTextView: UITextView!{
@@ -58,6 +66,28 @@ class CardTableViewCell: UITableViewCell {
         titleTextView.text = card.title
         initiateTitleTextViewWithPlaceholder()
         setupPreviewImages()
+        
+        if let status = card.isTask{
+            taskView.isHidden=false
+            taskViewHeightConstraint.constant=30
+            let taskConfig = UIImage.SymbolConfiguration(pointSize: 7, weight: .medium, scale: .small)
+            if status{
+                taskView.backgroundColor = #colorLiteral(red: 0, green: 0.9768045545, blue: 0, alpha: 0.15)
+                taskSymbolImage.image = UIImage(systemName: "checkmark.circle.fill", withConfiguration: taskConfig)
+                taskSymbolImage.tintColor = UIColor.systemGreen
+                taskStatusLabel.text = "Completed"
+                taskStatusLabel.textColor = UIColor.systemGreen
+            }else{
+                taskView.backgroundColor = #colorLiteral(red: 0.9994240403, green: 0.9855536819, blue: 0, alpha: 0.15)
+                taskSymbolImage.image = UIImage(systemName: "circle", withConfiguration: taskConfig)
+                taskSymbolImage.tintColor = UIColor.systemYellow
+                taskStatusLabel.text = "Pending"
+                taskStatusLabel.textColor = UIColor.systemYellow
+            }
+        }else{
+            taskView.isHidden=true
+            taskViewHeightConstraint.constant=0
+        }
         
         if card.showingPreview{
             for ind in previewVerSpacingConstraints.indices{

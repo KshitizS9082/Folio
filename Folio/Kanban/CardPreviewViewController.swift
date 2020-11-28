@@ -22,8 +22,8 @@ protocol cardPreviewTableProtocol {
     func preseintViewController(vc: UIViewController)
     func updateMediaLinks(to links: [String])
     func updateURL(to newURL: String)
-//    func showURL(url: URL)
     func openURL(urlString: String)
+    func updateTask(to taskVal: Bool?)
     func deleteCard()
 }
 class CardPreviewViewController: UIViewController {
@@ -52,7 +52,7 @@ class CardPreviewViewController: UIViewController {
 }
 extension CardPreviewViewController: UITableViewDataSource, UITableViewDelegate{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        var ret = 5+1+1+1
+        var ret = 6+1+1+1
         if showChecklist{
             ret += (card.checkList.items.count)
             ret+=1
@@ -75,37 +75,43 @@ extension CardPreviewViewController: UITableViewDataSource, UITableViewDelegate{
             cell.initiateTextViewWithPlaceholder()
             return cell
         case 2:
+            let cell = tableView.dequeueReusableCell(withIdentifier: "taskType") as! taskTypeCardPreview
+            cell.delegate=self
+            cell.isTask=card.isTask
+            cell.updateSegments()
+            return cell
+        case 3:
             let cell=tableView.dequeueReusableCell(withIdentifier: "dateCell") as! dateCellCardPreview
             cell.delegate=self
             cell.date=card.scheduledDate
             cell.updateLook()
             return cell
-        case 3:
+        case 4:
             let cell=tableView.dequeueReusableCell(withIdentifier: "reminderCell") as! reminderCellCardPreview
             cell.delegate=self
             cell.reminderDate=card.reminderDate
             cell.updateLook()
             return cell
-        case 4:
+        case 5:
             let cell=tableView.dequeueReusableCell(withIdentifier: "checkListCell") as! checkListCellCardPreview
             cell.delegate=self
             return cell
         default:
             print("xyz")
         }
-        var postCheckListStartpoint=5
+        var postCheckListStartpoint=6
         if showChecklist{
-            postCheckListStartpoint=5+(card.checkList.items.count)+1
-            if indexPath.row < 5+(card.checkList.items.count){
+            postCheckListStartpoint=6+(card.checkList.items.count)+1
+            if indexPath.row < 6+(card.checkList.items.count){
 //                let cell=UITableViewCell()
 //                cell.backgroundColor = .green
                 let cell=tableView.dequeueReusableCell(withIdentifier: "checkListItemCell") as! checkListItemCell
                 cell.delegate=self
-                cell.item=card.checkList.items[indexPath.row-5]
+                cell.item=card.checkList.items[indexPath.row-6]
                 cell.setupCell()
                 return cell
             }
-            if indexPath.row == 5+(card.checkList.items.count){
+            if indexPath.row == 6+(card.checkList.items.count){
                 let cell=tableView.dequeueReusableCell(withIdentifier: "addCheckListCell") as! addCheckListItemCell
                 cell.delegate=self
                 
@@ -136,6 +142,10 @@ extension CardPreviewViewController: UITableViewDataSource, UITableViewDelegate{
     
 }
 extension CardPreviewViewController: cardPreviewTableProtocol{
+    func updateTask(to taskVal: Bool?) {
+        card.isTask = taskVal
+    }
+    
     func deleteCardFinal(){
         let fileManager = FileManager.default
         for fileName in self.card.mediaLinks{
@@ -227,7 +237,7 @@ extension CardPreviewViewController: cardPreviewTableProtocol{
         let x = CheckListItem(item: text, done: false)
         card.checkList.items.append(x)
         tableView.beginUpdates()
-        tableView.insertRows(at: [IndexPath(row: 5+(card.checkList.items.count)-1, section: 0)], with: .automatic)
+        tableView.insertRows(at: [IndexPath(row: 6+(card.checkList.items.count)-1, section: 0)], with: .automatic)
         tableView.endUpdates()
 //        tableView.reloadData()
     }
@@ -237,13 +247,13 @@ extension CardPreviewViewController: cardPreviewTableProtocol{
         tableView.beginUpdates()
         if show{
             var indexes = [IndexPath]()
-            for ind in 5...(5+card.checkList.items.count){
+            for ind in 6...(6+card.checkList.items.count){
                 indexes.append(IndexPath(row: ind, section: 0))
             }
             tableView.insertRows(at: indexes, with: .automatic)
         }else{
             var indexes = [IndexPath]()
-            for ind in 5...(5+card.checkList.items.count){
+            for ind in 6...(6+card.checkList.items.count){
                 indexes.append(IndexPath(row: ind, section: 0))
             }
             tableView.deleteRows(at: indexes, with: .automatic)
@@ -335,6 +345,37 @@ class notesCellCardPreview: UITableViewCell, UITextViewDelegate{
         }
     }
 }
+class taskTypeCardPreview: UITableViewCell {
+    var delegate: cardPreviewTableProtocol?
+    var isTask: Bool?
+    @IBOutlet weak var segmentControl: UISegmentedControl!
+    func updateSegments(){
+        if let val = isTask{
+            if val{
+                segmentControl.selectedSegmentIndex = 2
+            }else{
+                segmentControl.selectedSegmentIndex = 1
+            }
+        }else{
+            segmentControl.selectedSegmentIndex = 0
+        }
+    }
+    @IBAction func segmentChanged(_ sender: UISegmentedControl) {
+        switch sender.selectedSegmentIndex {
+        case 0:
+            isTask=nil
+        case 1:
+            isTask=false
+        case 2:
+            isTask=true
+        default:
+            print("not possible to enter 363")
+        }
+        delegate?.updateTask(to: isTask)
+    }
+    
+}
+
 class reminderCellCardPreview: UITableViewCell{
     var delegate: cardPreviewTableProtocol?
     var reminderDate: Date?
