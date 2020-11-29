@@ -1,0 +1,46 @@
+PODS:
+  - Charts (3.5.0):
+    - Charts/Core (= 3.5.0)
+  - Charts/Core (3.5.0)
+  - ImagePicker (3.2.0)
+  - ImageViewer.swift (3.1.0)
+  - JTAppleCalendar (7.1.8)
+  - MaterialTextField (0.2.1)
+  - SideMenu (6.4.8)
+  - SPFakeBar (1.0.9)
+  - SPStorkController (1.8.2)
+
+DEPENDENCIES:
+  - Charts
+  - ImagePicker
+  - ImageViewer.swift (~> 3.0)
+  - JTAppleCalendar (~> 7.1)
+  - MaterialTextField (~> 0.2)
+  - SideMenu
+  - SPFakeBar
+  - SPStorkController
+
+SPEC REPOS:
+  trunk:
+    - Charts
+    - ImagePicker
+    - ImageViewer.swift
+    - JTAppleCalendar
+    - MaterialTextField
+    - SideMenu
+    - SPFakeBar
+    - SPStorkController
+
+SPEC CHECKSUMS:
+  Charts: 40a08591df1f8ad5c223ddedfb1a06da92f24f7c
+  ImagePicker: 1d950bbb2422548ed58791b4ec7f42fe42920511
+  ImageViewer.swift: 76a454219ccefd5f3fe6f0f79c789ac226a451de
+  JTAppleCalendar: b7fb40852f5f319fe55c8ec3861f1de0edc99cc8
+  MaterialTextField: f876a39d571eeece872af6a4da421e3bd065fe0b
+  SideMenu: 4a891be552d30bb6fa87ad404d62e485f8450c34
+  SPFakeBar: b74ebaa7ff9ca06a39f13dbe668238f15825ee88
+  SPStorkController: d809adb3e333ec07760f8bf1b4c628a2801675ac
+
+PODFILE CHECKSUM: b13040d6f5ef8389ca1f0b29ce67496f1839eaee
+
+COCOAPODS: 1.9.3

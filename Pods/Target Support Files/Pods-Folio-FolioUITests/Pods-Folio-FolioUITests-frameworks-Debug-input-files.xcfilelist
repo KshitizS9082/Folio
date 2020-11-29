@@ -1,0 +1,9 @@
+${PODS_ROOT}/Target Support Files/Pods-Folio-FolioUITests/Pods-Folio-FolioUITests-frameworks.sh
+${BUILT_PRODUCTS_DIR}/Charts/Charts.framework
+${BUILT_PRODUCTS_DIR}/ImagePicker/ImagePicker.framework
+${BUILT_PRODUCTS_DIR}/ImageViewer.swift/ImageViewer_swift.framework
+${BUILT_PRODUCTS_DIR}/JTAppleCalendar/JTAppleCalendar.framework
+${BUILT_PRODUCTS_DIR}/MaterialTextField/MaterialTextField.framework
+${BUILT_PRODUCTS_DIR}/SPFakeBar/SPFakeBar.framework
+${BUILT_PRODUCTS_DIR}/SPStorkController/SPStorkController.framework
+${BUILT_PRODUCTS_DIR}/SideMenu/SideMenu.framework

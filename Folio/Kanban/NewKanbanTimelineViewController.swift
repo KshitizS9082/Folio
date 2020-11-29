@@ -7,10 +7,15 @@
 //
 
 import UIKit
-
+enum SortStyle {
+    case scheduleDate
+    case dateOfConstruction
+    case board
+}
 class NewKanbanTimelineViewController: UIViewController {
     var kanban = Kanban()
     var allCards = [KanbanCard]()
+    var sortStyle = SortStyle.scheduleDate
     @IBOutlet weak var tableView: UITableView!{
         didSet{
             tableView.dataSource=self
@@ -25,13 +30,38 @@ class NewKanbanTimelineViewController: UIViewController {
     }
     func setAllCards(){
         allCards.removeAll()
-        kanban.boards.forEach { (board) in
-            board.items.forEach { (card) in
-                allCards.append(card)
+        if sortStyle == .board{
+            kanban.boards.forEach { (board) in
+                board.items.forEach { (card) in
+                    allCards.append(card)
+                }
             }
-        }
-        allCards.sort { (first, second) -> Bool in
-            return first.dateOfConstruction<second.dateOfConstruction
+        }else if sortStyle == .scheduleDate{
+            kanban.boards.forEach { (board) in
+                board.items.forEach { (card) in
+                    allCards.append(card)
+                }
+            }
+            allCards.sort { (first, second) -> Bool in
+                if let s=second.scheduledDate{
+                    if let f=first.scheduledDate{
+                            return f<s
+                    }else{
+                        return false
+                    }
+                }else{
+                    return true
+                }
+            }
+        }else if sortStyle == .dateOfConstruction{
+            kanban.boards.forEach { (board) in
+                board.items.forEach { (card) in
+                    allCards.append(card)
+                }
+            }
+            allCards.sort { (first, second) -> Bool in
+                return first.dateOfConstruction<second.dateOfConstruction
+            }
         }
         tableView.reloadData()
     }
@@ -58,6 +88,9 @@ class NewKanbanTimelineViewController: UIViewController {
         }
     }
     
+    func editTimelineTapped(){
+        
+    }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "newKanbanTimelineSegueID"{

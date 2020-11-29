@@ -52,5 +52,44 @@ class switchKanbanTimelineTabBarController: UITabBarController, UITabBarControll
         }
         return true
     }
+    @IBAction func editElipsisPressed(_ sender: UIBarButtonItem) {
+        print("ellipsisPressed")
+        if let vc = self.selectedViewController as? NewKanbanTimelineViewController{
+            print("NewKanbanTimelineViewController identified")
+            editTimelinePressed(vc: vc, barButton: sender)
+        }
+    }
+    func editTimelinePressed(vc: NewKanbanTimelineViewController, barButton: UIBarButtonItem){
+        let sortBoard = UIAlertAction(title: "Sort By Board",
+                                    style: .default) { (action) in
+            vc.sortStyle = .board
+            vc.setAllCards()
+        }
+        let sortSchedule = UIAlertAction(title: "Sort By Schedule Date",
+                                      style: .default) { (action) in
+            vc.sortStyle = .scheduleDate
+            vc.setAllCards()
+        }
+        let sortDateofConstruct = UIAlertAction(title: "Sort By Date of Construction",
+                                      style: .default) { (action) in
+            vc.sortStyle = .dateOfConstruction
+            vc.setAllCards()
+        }
+        let cancelAction = UIAlertAction(title: "Cancel",
+                                         style: .cancel) { (action) in
+                                            // Respond to user selection of the action
+        }
+        
+        let alert = UIAlertController(title: "Sort Cards",
+                                      message: "filter what to see",
+                                      preferredStyle: .actionSheet)
+        alert.addAction(sortBoard)
+        alert.addAction(sortSchedule)
+        alert.addAction(sortDateofConstruct)
+        alert.addAction(cancelAction)
+        // On iPad, action sheets must be presented from a popover.
+        alert.popoverPresentationController?.barButtonItem = barButton
+        self.present(alert, animated: true, completion: nil)
+    }
 
 }
