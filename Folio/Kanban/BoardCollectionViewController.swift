@@ -83,7 +83,7 @@ class BoardCollectionViewController: UICollectionViewController {
     }
     
     func save(){
-        print("board cvc save")
+        print("viewwilalal board cvc save")
         if let json = kanban.json {
             if let url = try? FileManager.default.url(
                 for: .documentDirectory,
@@ -101,11 +101,8 @@ class BoardCollectionViewController: UICollectionViewController {
         }
 
     }
-    override func viewWillDisappear(_ animated: Bool) {
-        save()
-    }
     override func viewWillAppear(_ animated: Bool) {
-        
+        print("viewwilalal boardvcv")
         if let url = try? FileManager.default.url(
             for: .documentDirectory,
             in: .userDomainMask,
@@ -122,6 +119,7 @@ class BoardCollectionViewController: UICollectionViewController {
                 }
             }
             viewDidLoad()
+            collectionView.reloadData()
         }
     }
 }

@@ -12,7 +12,6 @@
 		870E12556BF0317058D31A09 /* Pods_Folio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F32C815244D1C255A7FDD23A /* Pods_Folio.framework */; };
 		87DB04D9E8C0C19EDD6FF265 /* Pods_FolioTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC6B6DB7D06A4FC4A090E6A3 /* Pods_FolioTests.framework */; };
 		A3922D801270C8842263D3B3 /* Pods_Folio_FolioUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5CDFF065539CE4B3E77C16F8 /* Pods_Folio_FolioUITests.framework */; };
-		E20057C2254338010043F49C /* KanbanTimelineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E20057C1254338010043F49C /* KanbanTimelineViewController.swift */; };
 		E211905C248BA61C00DE9D92 /* newCheckListFullViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E211905B248BA61C00DE9D92 /* newCheckListFullViewController.swift */; };
 		E211905E248BABA100DE9D92 /* fullChecklistViewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E211905D248BABA100DE9D92 /* fullChecklistViewTableViewCell.swift */; };
 		E216884D2474E19B00D079A4 /* UIImageCompressor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E216884C2474E19B00D079A4 /* UIImageCompressor.swift */; };
@@ -97,6 +96,7 @@
 		E2A942092490B7FE003716A2 /* settingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A942082490B7FE003716A2 /* settingsViewController.swift */; };
 		E2AD5C3624920C88006146F3 /* newPageExtractTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2AD5C3524920C88006146F3 /* newPageExtractTableViewCell.swift */; };
 		E2B1D0542483EEA100BA8C7D /* MKPointAnnotation-Codable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2B1D0532483EEA100BA8C7D /* MKPointAnnotation-Codable.swift */; };
+		E2B2F32D2573992900C1DA5C /* NewKanbanTimelineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2B2F32C2573992900C1DA5C /* NewKanbanTimelineViewController.swift */; };
 		E2C1F340248579F0004A8050 /* PageListSideMenuTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2C1F33F248579F0004A8050 /* PageListSideMenuTableViewController.swift */; };
 		E2CB87F52483581B002F3E6A /* journalLocationPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2CB87F42483581B002F3E6A /* journalLocationPickerViewController.swift */; };
 		E2D4B87D247901A1005F566F /* pageListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D4B87C247901A1005F566F /* pageListTableViewCell.swift */; };
@@ -152,7 +152,6 @@
 		AB7282A2BE03B60D0F69806A /* Pods-Folio.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Folio.debug.xcconfig"; path = "Target Support Files/Pods-Folio/Pods-Folio.debug.xcconfig"; sourceTree = "<group>"; };
 		B7F7E37428634E233DB6CFDE /* Pods-FolioTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FolioTests.release.xcconfig"; path = "Target Support Files/Pods-FolioTests/Pods-FolioTests.release.xcconfig"; sourceTree = "<group>"; };
 		BC6B6DB7D06A4FC4A090E6A3 /* Pods_FolioTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FolioTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		E20057C1254338010043F49C /* KanbanTimelineViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KanbanTimelineViewController.swift; sourceTree = "<group>"; };
 		E211905B248BA61C00DE9D92 /* newCheckListFullViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = newCheckListFullViewController.swift; sourceTree = "<group>"; };
 		E211905D248BABA100DE9D92 /* fullChecklistViewTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = fullChecklistViewTableViewCell.swift; sourceTree = "<group>"; };
 		E216884C2474E19B00D079A4 /* UIImageCompressor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageCompressor.swift; sourceTree = "<group>"; };
@@ -243,6 +242,7 @@
 		E2A942082490B7FE003716A2 /* settingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = settingsViewController.swift; sourceTree = "<group>"; };
 		E2AD5C3524920C88006146F3 /* newPageExtractTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = newPageExtractTableViewCell.swift; sourceTree = "<group>"; };
 		E2B1D0532483EEA100BA8C7D /* MKPointAnnotation-Codable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MKPointAnnotation-Codable.swift"; sourceTree = "<group>"; };
+		E2B2F32C2573992900C1DA5C /* NewKanbanTimelineViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewKanbanTimelineViewController.swift; sourceTree = "<group>"; };
 		E2C1F33F248579F0004A8050 /* PageListSideMenuTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageListSideMenuTableViewController.swift; sourceTree = "<group>"; };
 		E2CB87F42483581B002F3E6A /* journalLocationPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = journalLocationPickerViewController.swift; sourceTree = "<group>"; };
 		E2D4B87C247901A1005F566F /* pageListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = pageListTableViewCell.swift; sourceTree = "<group>"; };
@@ -543,7 +543,7 @@
 				E2D728F325347CE400D77702 /* KanbanCard.swift */,
 				E2D728F825347D1B00D77702 /* Board.swift */,
 				E2D7290F25347DCA00D77702 /* BoardCollectionViewController.swift */,
-				E20057C1254338010043F49C /* KanbanTimelineViewController.swift */,
+				E2B2F32C2573992900C1DA5C /* NewKanbanTimelineViewController.swift */,
 				E2D7290025347D3F00D77702 /* BoardCollectionViewCell.swift */,
 				E2D7290525347D8200D77702 /* addBoardCollectionViewCell.swift */,
 				E2D7290A25347DB600D77702 /* CardTableViewCell.swift */,
@@ -880,6 +880,7 @@
 				E269476524702D0900F9E21F /* UITextView+Expanding.swift in Sources */,
 				E25BA50A24721F93000D1DF7 /* Extensions0.swift in Sources */,
 				E25BA4F9247163CE000D1DF7 /* drawingCardFullViewController.swift in Sources */,
+				E2B2F32D2573992900C1DA5C /* NewKanbanTimelineViewController.swift in Sources */,
 				E252B085246C45F2003F8718 /* MediaCard.swift in Sources */,
 				E216884D2474E19B00D079A4 /* UIImageCompressor.swift in Sources */,
 				E2E152602486562900079B79 /* addHabbitTitleTableViewCell.swift in Sources */,
@@ -936,7 +937,6 @@
 				E2A35B522488C38900FDF4C6 /* habitsCellCalendarCell.swift in Sources */,
 				E2DD7A2C24AD996800F9DF27 /* walletViewController.swift in Sources */,
 				E252B092246C4E79003F8718 /* TimelineViewController.swift in Sources */,
-				E20057C2254338010043F49C /* KanbanTimelineViewController.swift in Sources */,
 				E26FD6A924823E87004DA918 /* journalNotesTableViewCell.swift in Sources */,
 				6BD51DB324A5A5DF00253290 /* newNotesFullViewController.swift in Sources */,
 				E26A31232480A8AB007F2289 /* addEntryInJournalTableViewCell.swift in Sources */,
