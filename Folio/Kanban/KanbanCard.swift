@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 struct KanbanCard: Codable{
     var UniquIdentifier=UUID()
@@ -29,6 +30,8 @@ struct KanbanCard: Codable{
     //if checkList==nul there is no checklist
     var checkList = CheckListData()
     
+    var tagColor: Int=0
+    
     var mediaLinks = [String]()
     
 }
@@ -41,4 +44,15 @@ struct CheckListItem: Codable {
     var uid = UUID()
     var item: String = ""
     var done: Bool = false
+}
+struct Color : Codable {
+    var red : CGFloat = 0.0, green: CGFloat = 0.0, blue: CGFloat = 0.0, alpha: CGFloat = 0.0
+
+    var uiColor : UIColor {
+        return UIColor(red: red, green: green, blue: blue, alpha: alpha)
+    }
+
+    init(uiColor : UIColor) {
+        uiColor.getRed(&red, green: &green, blue: &blue, alpha: &alpha)
+    }
 }

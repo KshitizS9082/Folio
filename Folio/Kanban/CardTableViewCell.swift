@@ -27,6 +27,9 @@ class CardTableViewCell: UITableViewCell {
     @IBOutlet weak var taskStatusLabel: UILabel!
     
     
+    @IBOutlet weak var tagColorView: UIView!
+    @IBOutlet weak var tagColorViewWidthConstraint: NSLayoutConstraint!
+    
     @IBOutlet weak var calendarLabel: UILabel!
     @IBOutlet weak var reminderLabel: UILabel!
     @IBOutlet weak var linkLabel: UILabel!
@@ -88,6 +91,35 @@ class CardTableViewCell: UITableViewCell {
             taskView.isHidden=true
             taskViewHeightConstraint.constant=0
         }
+        
+        if card.tagColor==0{
+            tagColorViewWidthConstraint.constant=0
+        }else{
+            tagColorViewWidthConstraint.constant=10
+        }
+        switch card.tagColor {
+        case 1:
+            tagColorView.backgroundColor = UIColor.systemPurple
+        case 2:
+            tagColorView.backgroundColor = UIColor.systemIndigo
+        case 3:
+            tagColorView.backgroundColor = UIColor.systemBlue
+        case 4:
+            tagColorView.backgroundColor = UIColor.systemTeal
+        case 5:
+            tagColorView.backgroundColor = UIColor.systemGreen
+        case 6:
+            tagColorView.backgroundColor = UIColor.systemYellow
+        case 7:
+            tagColorView.backgroundColor = UIColor.systemOrange
+        case 8:
+            tagColorView.backgroundColor = UIColor.systemPink
+        case 9:
+            tagColorView.backgroundColor = UIColor.systemRed
+        default:
+            tagColorView.backgroundColor = UIColor.systemGray
+        }
+        tagColorView.layer.opacity = 0.3
         
         if card.showingPreview{
             for ind in previewVerSpacingConstraints.indices{

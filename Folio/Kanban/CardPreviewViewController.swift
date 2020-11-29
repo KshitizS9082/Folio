@@ -24,6 +24,7 @@ protocol cardPreviewTableProtocol {
     func updateURL(to newURL: String)
     func openURL(urlString: String)
     func updateTask(to taskVal: Bool?)
+    func updateTagColor(to tagColor: Int)
     func deleteCard()
 }
 class CardPreviewViewController: UIViewController {
@@ -52,7 +53,7 @@ class CardPreviewViewController: UIViewController {
 }
 extension CardPreviewViewController: UITableViewDataSource, UITableViewDelegate{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        var ret = 6+1+1+1
+        var ret = 6+1+1+1+1
         if showChecklist{
             ret += (card.checkList.items.count)
             ret+=1
@@ -132,6 +133,13 @@ extension CardPreviewViewController: UITableViewDataSource, UITableViewDelegate{
             return cell
         }
         if indexPath.row==postCheckListStartpoint+2{
+            let cell=tableView.dequeueReusableCell(withIdentifier: "labelCell") as! labelKanbanCell
+            cell.delegate=self
+            cell.tagColor=card.tagColor
+            cell.setupCell()
+            return cell
+        }
+        if indexPath.row==postCheckListStartpoint+3{
             let cell=tableView.dequeueReusableCell(withIdentifier: "deleteCell") as! deleteKanbanCell
             cell.delegate=self
             return cell
@@ -142,6 +150,10 @@ extension CardPreviewViewController: UITableViewDataSource, UITableViewDelegate{
     
 }
 extension CardPreviewViewController: cardPreviewTableProtocol{
+    func updateTagColor(to tagColor: Int) {
+        card.tagColor = tagColor
+    }
+    
     func updateTask(to taskVal: Bool?) {
         card.isTask = taskVal
     }
@@ -723,6 +735,68 @@ class addURLKabanCell: UITableViewCell{
         if let text = textField.text{
             delegate?.openURL(urlString: text)
         }
+    }
+}
+class labelKanbanCell: UITableViewCell {
+    @IBOutlet weak var stackView: UIStackView!
+    var delegate: cardPreviewTableProtocol?
+    var tagColor: Int=0
+    @IBOutlet var labelButtons: [UIButton]!
+    @IBAction func but0(_ sender: Any) {
+        tagColor=0
+        updateTag()
+    }
+    @IBAction func but1(_ sender: Any) {
+        tagColor=1
+        updateTag()
+    }
+    @IBAction func but2(_ sender: Any) {
+        tagColor=2
+        updateTag()
+    }
+    @IBAction func but3(_ sender: Any) {
+        tagColor=3
+        updateTag()
+    }
+    @IBAction func but4(_ sender: Any) {
+        tagColor=4
+        updateTag()
+    }
+    @IBAction func but5(_ sender: Any) {
+        tagColor=5
+        updateTag()
+    }
+    @IBAction func but6(_ sender: Any) {
+        tagColor=6
+        updateTag()
+    }
+    @IBAction func but7(_ sender: Any) {
+        tagColor=7
+        updateTag()
+    }
+    @IBAction func but8(_ sender: Any) {
+        tagColor=8
+        updateTag()
+    }
+    @IBAction func but9(_ sender: Any) {
+        tagColor=9
+        updateTag()
+    }
+    
+    func setupCell(){
+        for ind in 0...9{
+            if ind==tagColor{
+//                labelButtons[ind].imageView?.contentMode = .scaleAspectFit
+                labelButtons[ind].backgroundColor = #colorLiteral(red: 0.2392156869, green: 0.6745098233, blue: 0.9686274529, alpha: 0.219396682)
+            }else{
+//                labelButtons[ind].imageView?.contentMode = .center
+                labelButtons[ind].backgroundColor = .clear
+            }
+        }
+    }
+    func updateTag() {
+        delegate?.updateTagColor(to: tagColor)
+        setupCell()
     }
 }
 
