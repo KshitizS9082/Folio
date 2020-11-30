@@ -68,7 +68,7 @@ class PageListSideMenuTableViewController: UITableViewController {
             let cell = tableView.dequeueReusableCell(withIdentifier: "titleCellIdentifier", for: indexPath)
             return cell
         case 1:
-            let cell = tableView.dequeueReusableCell(withIdentifier: "pageCellIdentifier", for: indexPath)
+            let cell = tableView.dequeueReusableCell(withIdentifier: "kanbanCellIdentifier", for: indexPath)
             cell.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(dismissSideMenu)))
             return cell
         case 2:
@@ -81,7 +81,7 @@ class PageListSideMenuTableViewController: UITableViewController {
             let cell = tableView.dequeueReusableCell(withIdentifier: "walletCellIdentifier", for: indexPath)
             return cell
         case 5:
-            let cell = tableView.dequeueReusableCell(withIdentifier: "kanbanCellIdentifier", for: indexPath)
+            let cell = tableView.dequeueReusableCell(withIdentifier: "pageCellIdentifier", for: indexPath)
             return cell
         case 6:
         let cell = tableView.dequeueReusableCell(withIdentifier: "settingsCellIdentifier", for: indexPath)
