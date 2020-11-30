@@ -99,6 +99,8 @@
 		E2B2F32D2573992900C1DA5C /* NewKanbanTimelineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2B2F32C2573992900C1DA5C /* NewKanbanTimelineViewController.swift */; };
 		E2C1F340248579F0004A8050 /* PageListSideMenuTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2C1F33F248579F0004A8050 /* PageListSideMenuTableViewController.swift */; };
 		E2CB87F52483581B002F3E6A /* journalLocationPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2CB87F42483581B002F3E6A /* journalLocationPickerViewController.swift */; };
+		E2CE17222574D358008CC2B3 /* KanbanListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2CE17212574D358008CC2B3 /* KanbanListViewController.swift */; };
+		E2CE17272574D3AC008CC2B3 /* KanbanListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2CE17262574D3AC008CC2B3 /* KanbanListTableViewCell.swift */; };
 		E2D4B87D247901A1005F566F /* pageListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D4B87C247901A1005F566F /* pageListTableViewCell.swift */; };
 		E2D728F425347CE400D77702 /* KanbanCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D728F325347CE400D77702 /* KanbanCard.swift */; };
 		E2D728F925347D1B00D77702 /* Board.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D728F825347D1B00D77702 /* Board.swift */; };
@@ -245,6 +247,8 @@
 		E2B2F32C2573992900C1DA5C /* NewKanbanTimelineViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewKanbanTimelineViewController.swift; sourceTree = "<group>"; };
 		E2C1F33F248579F0004A8050 /* PageListSideMenuTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageListSideMenuTableViewController.swift; sourceTree = "<group>"; };
 		E2CB87F42483581B002F3E6A /* journalLocationPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = journalLocationPickerViewController.swift; sourceTree = "<group>"; };
+		E2CE17212574D358008CC2B3 /* KanbanListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KanbanListViewController.swift; sourceTree = "<group>"; };
+		E2CE17262574D3AC008CC2B3 /* KanbanListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KanbanListTableViewCell.swift; sourceTree = "<group>"; };
 		E2D4B87C247901A1005F566F /* pageListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = pageListTableViewCell.swift; sourceTree = "<group>"; };
 		E2D728F325347CE400D77702 /* KanbanCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KanbanCard.swift; sourceTree = "<group>"; };
 		E2D728F825347D1B00D77702 /* Board.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Board.swift; sourceTree = "<group>"; };
@@ -547,8 +551,10 @@
 				E2D7290025347D3F00D77702 /* BoardCollectionViewCell.swift */,
 				E2D7290525347D8200D77702 /* addBoardCollectionViewCell.swift */,
 				E2D7290A25347DB600D77702 /* CardTableViewCell.swift */,
+				E2CE17262574D3AC008CC2B3 /* KanbanListTableViewCell.swift */,
 				E2D7291425347DE600D77702 /* CardPreviewViewController.swift */,
 				E274AA13254B264900A41E28 /* switchKanbanTimelineTabBarController.swift */,
+				E2CE17212574D358008CC2B3 /* KanbanListViewController.swift */,
 			);
 			path = Kanban;
 			sourceTree = "<group>";
@@ -875,6 +881,7 @@
 				E25BA50D2472285F000D1DF7 /* pickImage.swift in Sources */,
 				E252B08C246C4681003F8718 /* PageListViewController.swift in Sources */,
 				E252B081246C45C0003F8718 /* Card.swift in Sources */,
+				E2CE17222574D358008CC2B3 /* KanbanListViewController.swift in Sources */,
 				E25BA4EA24714CBD000D1DF7 /* smallCardTitleTableViewCell.swift in Sources */,
 				E2E152622486563500079B79 /* addHabbitStyleTableViewCell.swift in Sources */,
 				E269476524702D0900F9E21F /* UITextView+Expanding.swift in Sources */,
@@ -905,6 +912,7 @@
 				E2E5EEF624ADFBAF00E01490 /* addWalletEntryViewController.swift in Sources */,
 				E252B07E246C44DF003F8718 /* UnderlinedTextView.swift in Sources */,
 				E2FEE2B0247C1DDD00DD7069 /* DateCell.swift in Sources */,
+				E2CE17272574D3AC008CC2B3 /* KanbanListTableViewCell.swift in Sources */,
 				E25B0E9D247C010C004F3BDA /* JournalViewController.swift in Sources */,
 				E211905E248BABA100DE9D92 /* fullChecklistViewTableViewCell.swift in Sources */,
 				E2623829249F1F3500BC510A /* journalHabitTableViewCell.swift in Sources */,

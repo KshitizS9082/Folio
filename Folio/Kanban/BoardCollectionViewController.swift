@@ -13,6 +13,11 @@ protocol BoardCVCProtocol {
 }
 
 class BoardCollectionViewController: UICollectionViewController {
+    var boardFileName = "empty.json"{
+        didSet{
+            self.viewWillAppear(false)
+        }
+    }
     var kanban = Kanban()
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -90,7 +95,7 @@ class BoardCollectionViewController: UICollectionViewController {
                 in: .userDomainMask,
                 appropriateFor: nil,
                 create: true
-            ).appendingPathComponent("kanbanData.json"){
+            ).appendingPathComponent(boardFileName){
                 do {
                     try json.write(to: url)
                     print ("saved successfully")
@@ -108,7 +113,7 @@ class BoardCollectionViewController: UICollectionViewController {
             in: .userDomainMask,
             appropriateFor: nil,
             create: true
-        ).appendingPathComponent("kanbanData.json"){
+        ).appendingPathComponent(boardFileName){
 //            print("trying to extract contents of kanbanData")
             if let jsonData = try? Data(contentsOf: url){
                 //                pageList = pageInfo(json: jsonData)

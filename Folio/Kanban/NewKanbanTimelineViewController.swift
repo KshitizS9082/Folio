@@ -13,6 +13,7 @@ enum SortStyle {
     case board
 }
 class NewKanbanTimelineViewController: UIViewController {
+    var boardFileName = "empty.json"
     var kanban = Kanban()
     var allCards = [KanbanCard]()
     var sortStyle = SortStyle.scheduleDate
@@ -72,7 +73,7 @@ class NewKanbanTimelineViewController: UIViewController {
             in: .userDomainMask,
             appropriateFor: nil,
             create: true
-        ).appendingPathComponent("kanbanData.json"){
+        ).appendingPathComponent(boardFileName){
 //            print("trying to extract contents of kanbanData")
             if let jsonData = try? Data(contentsOf: url){
                 //                pageList = pageInfo(json: jsonData)
@@ -111,7 +112,7 @@ class NewKanbanTimelineViewController: UIViewController {
                 in: .userDomainMask,
                 appropriateFor: nil,
                 create: true
-            ).appendingPathComponent("kanbanData.json"){
+            ).appendingPathComponent(boardFileName){
                 do {
                     try json.write(to: url)
                     print ("saved successfully")

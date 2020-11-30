@@ -20,8 +20,48 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3ua-cl-yPw">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UZZ-5h-Nqu">
+                                        <rect key="frame" x="147.66666666666666" y="479.66666666666669" width="118.99999999999997" height="33.000000000000057"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                        <color key="tintColor" name="smallCardColor"/>
+                                        <state key="normal" title="Use Bio-Metric">
+                                            <color key="titleColor" systemColor="systemTealColor"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="authenticatButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="QAM-fC-afY"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Folio is locked" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HxK-3U-T0u">
+                                        <rect key="frame" x="105" y="400.66666666666669" width="204" height="41"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="lock.shield" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="GuL-9i-hI8">
+                                        <rect key="frame" x="157" y="297.33333333333331" width="100" height="98"/>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="100" id="BW0-6r-Z0s"/>
+                                            <constraint firstAttribute="width" secondItem="GuL-9i-hI8" secondAttribute="height" id="YgW-DS-PWb"/>
+                                        </constraints>
+                                        <preferredSymbolConfiguration key="preferredSymbolConfiguration" weight="thin"/>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="GuL-9i-hI8" firstAttribute="centerY" secondItem="3ua-cl-yPw" secondAttribute="centerY" constant="-75" id="5u3-7R-uU2"/>
+                                    <constraint firstItem="UZZ-5h-Nqu" firstAttribute="centerX" secondItem="3ua-cl-yPw" secondAttribute="centerX" id="BpU-XD-ag1"/>
+                                    <constraint firstItem="UZZ-5h-Nqu" firstAttribute="centerY" secondItem="3ua-cl-yPw" secondAttribute="centerY" constant="75" id="TVz-gY-fnD"/>
+                                    <constraint firstItem="GuL-9i-hI8" firstAttribute="centerX" secondItem="3ua-cl-yPw" secondAttribute="centerX" id="hHg-nV-AD4"/>
+                                    <constraint firstItem="HxK-3U-T0u" firstAttribute="centerY" secondItem="3ua-cl-yPw" secondAttribute="centerY" id="igS-nf-oHS"/>
+                                    <constraint firstItem="HxK-3U-T0u" firstAttribute="centerX" secondItem="3ua-cl-yPw" secondAttribute="centerX" id="pbl-JB-sDz"/>
+                                </constraints>
+                            </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="mer-jd-fz9">
-                                <rect key="frame" x="0.0" y="61" width="414" height="774"/>
+                                <rect key="frame" x="0.0" y="34" width="414" height="774"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
@@ -259,46 +299,6 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3ua-cl-yPw">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UZZ-5h-Nqu">
-                                        <rect key="frame" x="147.66666666666666" y="479.66666666666669" width="118.99999999999997" height="33.000000000000057"/>
-                                        <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
-                                        <color key="tintColor" name="smallCardColor"/>
-                                        <state key="normal" title="Use Bio-Metric">
-                                            <color key="titleColor" systemColor="systemTealColor"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="authenticatButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="QAM-fC-afY"/>
-                                        </connections>
-                                    </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Folio is locked" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HxK-3U-T0u">
-                                        <rect key="frame" x="105" y="400.66666666666669" width="204" height="41"/>
-                                        <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="lock.shield" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="GuL-9i-hI8">
-                                        <rect key="frame" x="157" y="297.33333333333331" width="100" height="98"/>
-                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="100" id="BW0-6r-Z0s"/>
-                                            <constraint firstAttribute="width" secondItem="GuL-9i-hI8" secondAttribute="height" id="YgW-DS-PWb"/>
-                                        </constraints>
-                                        <preferredSymbolConfiguration key="preferredSymbolConfiguration" weight="thin"/>
-                                    </imageView>
-                                </subviews>
-                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstItem="GuL-9i-hI8" firstAttribute="centerY" secondItem="3ua-cl-yPw" secondAttribute="centerY" constant="-75" id="5u3-7R-uU2"/>
-                                    <constraint firstItem="UZZ-5h-Nqu" firstAttribute="centerX" secondItem="3ua-cl-yPw" secondAttribute="centerX" id="BpU-XD-ag1"/>
-                                    <constraint firstItem="UZZ-5h-Nqu" firstAttribute="centerY" secondItem="3ua-cl-yPw" secondAttribute="centerY" constant="75" id="TVz-gY-fnD"/>
-                                    <constraint firstItem="GuL-9i-hI8" firstAttribute="centerX" secondItem="3ua-cl-yPw" secondAttribute="centerX" id="hHg-nV-AD4"/>
-                                    <constraint firstItem="HxK-3U-T0u" firstAttribute="centerY" secondItem="3ua-cl-yPw" secondAttribute="centerY" id="igS-nf-oHS"/>
-                                    <constraint firstItem="HxK-3U-T0u" firstAttribute="centerX" secondItem="3ua-cl-yPw" secondAttribute="centerX" id="pbl-JB-sDz"/>
-                                </constraints>
-                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -414,14 +414,17 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="f2b-UA-dmi">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <textAttributes key="titleTextAttributes">
+                            <fontDescription key="fontDescription" name="SnellRoundhand-Black" family="Snell Roundhand" pointSize="30"/>
+                        </textAttributes>
                     </navigationBar>
                     <connections>
-                        <segue destination="fuU-Da-AkD" kind="relationship" relationship="rootViewController" id="dCm-Bh-RtA"/>
+                        <segue destination="cxC-YH-7PH" kind="relationship" relationship="rootViewController" id="PoW-NV-PdB"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WwA-6g-N8K" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="290" y="-1345"/>
+            <point key="canvasLocation" x="1819" y="-1373"/>
         </scene>
         <!--Theme Chooser View Controller-->
         <scene sceneID="sDA-YA-Q4B">
@@ -1588,14 +1591,14 @@
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="spendingCatCellId" id="CNx-iF-W6G" customClass="spendingCategoryCell" customModule="Folio" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="414" height="226.33332824707031"/>
+                                        <rect key="frame" x="0.0" y="28" width="414" height="225.66667175292969"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="CNx-iF-W6G" id="INM-lK-oJg">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="226.33332824707031"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="225.66667175292969"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="FlT-L4-tqt">
-                                                    <rect key="frame" x="10" y="56.333333333333343" width="394" height="160"/>
+                                                    <rect key="frame" x="10" y="55.666666666666657" width="394" height="160"/>
                                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="160" id="Mdi-jE-VYN"/>
@@ -1643,7 +1646,7 @@
                                                     </cells>
                                                 </collectionView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Category:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N29-du-TUi">
-                                                    <rect key="frame" x="15" y="14.999999999999998" width="78.666666666666671" height="21.333333333333329"/>
+                                                    <rect key="frame" x="15" y="15.000000000000002" width="78.666666666666671" height="20.666666666666671"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                                     <color key="textColor" name="subMainTextColor"/>
                                                     <nil key="highlightedColor"/>
@@ -1663,26 +1666,26 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="addDateCellId" id="Tnv-ID-kcW" customClass="addWallEntrDateCell" customModule="Folio" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="254.33332824707031" width="414" height="51.333332061767578"/>
+                                        <rect key="frame" x="0.0" y="253.66667175292969" width="414" height="50.666667938232422"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Tnv-ID-kcW" id="Fx0-yF-Wt2">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="51.333332061767578"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="50.666667938232422"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VXj-jm-DEp">
-                                                    <rect key="frame" x="15" y="14.999999999999998" width="43" height="21.333333333333329"/>
+                                                    <rect key="frame" x="15" y="15.000000000000002" width="43" height="20.666666666666671"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                                     <color key="textColor" name="subMainTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Category" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wCD-1u-xH4">
-                                                    <rect key="frame" x="336" y="16.666666666666668" width="63" height="18.000000000000004"/>
+                                                    <rect key="frame" x="336" y="16.333333333333332" width="63" height="17.999999999999996"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
                                                     <color key="textColor" name="subMainTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="eEU-rZ-UzZ">
-                                                    <rect key="frame" x="15" y="51.333333333333336" width="384" height="0.0"/>
+                                                    <rect key="frame" x="15" y="50.666666666666664" width="384" height="0.0"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" id="SJD-6b-gP6"/>
                                                     </constraints>
@@ -1709,7 +1712,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="addNoteCellId" id="RNm-p0-kBI" customClass="addWallEntrNoteCell" customModule="Folio" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="305.66666030883789" width="414" height="86"/>
+                                        <rect key="frame" x="0.0" y="304.33333969116211" width="414" height="86"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="RNm-p0-kBI" id="YcU-R4-CLI">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="86"/>
@@ -1747,7 +1750,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="addPayeeCellId" id="LEr-vN-Fsl" customClass="addWallEntrPayeeCell" customModule="Folio" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="391.66666030883789" width="414" height="50.333332061767578"/>
+                                        <rect key="frame" x="0.0" y="390.33333969116211" width="414" height="50.333332061767578"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="LEr-vN-Fsl" id="biD-Xo-QKG">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="50.333332061767578"/>
@@ -1783,7 +1786,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="addImageCellId" id="dm8-tx-1Bf" customClass="addWallEntryImageCell" customModule="Folio" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="441.99999237060547" width="414" height="106.33333587646484"/>
+                                        <rect key="frame" x="0.0" y="440.66667175292969" width="414" height="106.33333587646484"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="dm8-tx-1Bf" id="MLT-ty-Aa7">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="106.33333587646484"/>
@@ -3164,7 +3167,7 @@
                                                     <color key="backgroundColor" red="1" green="0.17647058823529413" blue="0.33333333333333331" alpha="0.33958013803680981" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </view>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="text.bubble" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="JB4-bc-wXl">
-                                                    <rect key="frame" x="45" y="21.333333333333336" width="60" height="59.000000000000021"/>
+                                                    <rect key="frame" x="45" y="21.333333333333336" width="60" height="59.000000000000007"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="60" id="Ea8-ax-ZNm"/>
                                                         <constraint firstAttribute="width" secondItem="JB4-bc-wXl" secondAttribute="height" id="Wle-Ll-hLp"/>
@@ -3862,10 +3865,10 @@
                                 <color key="sectionIndexColor" systemColor="systemTealColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="expandTextInpCell" id="6BD-mt-3xq" customClass="ExpandableTextSCardInfoTableViewCell" customModule="Folio" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="414" height="116"/>
+                                        <rect key="frame" x="0.0" y="28" width="414" height="115.66666412353516"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="6BD-mt-3xq" id="uin-eD-Bs6">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="116"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="115.66666412353516"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Type of TextView:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wKZ-U8-68f">
@@ -3875,7 +3878,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" text="Some text inside textview" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="BSh-gZ-7iL">
-                                                    <rect key="frame" x="20" y="48" width="374" height="48"/>
+                                                    <rect key="frame" x="20" y="48" width="374" height="47.666666666666657"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <color key="textColor" name="subMainTextColor"/>
                                                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="26"/>
@@ -3900,7 +3903,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="sCardEdVReminderCell" id="d24-sJ-qlp" customClass="sCardReminderTableViewCell" customModule="Folio" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="144" width="414" height="94.333335876464844"/>
+                                        <rect key="frame" x="0.0" y="143.66666412353516" width="414" height="94.333335876464844"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="d24-sJ-qlp" id="2rp-Pm-mDK">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="94.333335876464844"/>
@@ -4823,6 +4826,7 @@
                                             <outletCollection property="previewVerSpacingConstraints" destination="9jF-ov-Ct5" collectionClass="NSMutableArray" id="Qma-ha-TZp"/>
                                             <outletCollection property="previewVerSpacingConstraints" destination="IjY-iA-dwa" collectionClass="NSMutableArray" id="cIx-q6-KJu"/>
                                             <outletCollection property="previewVerSpacingConstraints" destination="0V3-90-8Wd" collectionClass="NSMutableArray" id="DIj-vg-PCH"/>
+                                            <segue destination="ioX-hk-ok5" kind="presentation" identifier="newKanbanTimelineSegueID" id="JDV-1P-lBh"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="tempCell" rowHeight="83" id="jVO-Yp-Zqo">
@@ -4857,16 +4861,11 @@
             </objects>
             <point key="canvasLocation" x="-1457" y="-1552"/>
         </scene>
-        <!--Kanban-->
+        <!--Title-->
         <scene sceneID="Bj9-eg-rza">
             <objects>
                 <tabBarController id="fuU-Da-AkD" customClass="switchKanbanTimelineTabBarController" customModule="Folio" customModuleProvider="target" sceneMemberID="viewController">
-                    <navigationItem key="navigationItem" title="Kanban" id="6cP-am-1uz">
-                        <barButtonItem key="leftBarButtonItem" image="line.horizontal.3" catalog="system" id="tgb-V9-XNZ">
-                            <connections>
-                                <segue destination="c77-aF-p03" kind="presentation" id="hUJ-Ro-33I"/>
-                            </connections>
-                        </barButtonItem>
+                    <navigationItem key="navigationItem" title="Title" id="6cP-am-1uz">
                         <barButtonItem key="rightBarButtonItem" title="Item" image="ellipsis" catalog="system" id="B9m-9l-dHV">
                             <connections>
                                 <action selector="editElipsisPressed:" destination="fuU-Da-AkD" id="Ouc-dv-1US"/>
@@ -4886,6 +4885,98 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Sse-hJ-eGj" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-609" y="-1345"/>
+        </scene>
+        <!--Kanban-->
+        <scene sceneID="7kN-u2-zUc">
+            <objects>
+                <viewController id="cxC-YH-7PH" customClass="KanbanListViewController" customModule="Folio" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="xYT-4t-ovz">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="H3Y-Mp-amU">
+                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="customPageCell" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="KanbanListCell" rowHeight="130" id="X1U-5u-x5u" customClass="KanbanListTableViewCell" customModule="Folio" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="414" height="130"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="X1U-5u-x5u" id="AZB-30-eNO">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="130"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lfz-ys-W8Y">
+                                                    <rect key="frame" x="50" y="40.666666666666657" width="344" height="77"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </view>
+                                                <textField opaque="NO" contentMode="scaleToFill" restorationIdentifier="titleTextView" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Board Name..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Np6-Uo-MIB">
+                                                    <rect key="frame" x="70" y="55.666666666666657" width="113.33333333333331" height="22"/>
+                                                    <accessibility key="accessibilityConfiguration" label="titleTextxx"/>
+                                                    <color key="textColor" name="subMainTextColor"/>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                                    <textInputTraits key="textInputTraits"/>
+                                                </textField>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="circle" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="Zf9-Zs-qat">
+                                                    <rect key="frame" x="15" y="6.3333333333333339" width="22" height="19"/>
+                                                    <color key="tintColor" systemColor="systemBlueColor"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" secondItem="Zf9-Zs-qat" secondAttribute="height" multiplier="22:19" id="ESb-3M-Y4z"/>
+                                                        <constraint firstAttribute="width" constant="22" id="c0u-pQ-H2q"/>
+                                                    </constraints>
+                                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" weight="black"/>
+                                                </imageView>
+                                            </subviews>
+                                            <color key="backgroundColor" systemColor="systemGray6Color"/>
+                                            <constraints>
+                                                <constraint firstItem="Zf9-Zs-qat" firstAttribute="leading" secondItem="AZB-30-eNO" secondAttribute="leading" constant="15" id="00e-fl-ttD"/>
+                                                <constraint firstItem="Zf9-Zs-qat" firstAttribute="top" secondItem="AZB-30-eNO" secondAttribute="top" constant="6" id="2TM-l7-9MP"/>
+                                                <constraint firstItem="lfz-ys-W8Y" firstAttribute="leading" secondItem="Zf9-Zs-qat" secondAttribute="trailing" constant="13" id="9dW-qP-YgJ"/>
+                                                <constraint firstAttribute="trailing" relation="lessThanOrEqual" secondItem="Np6-Uo-MIB" secondAttribute="trailing" constant="287" id="BZ1-Ig-xzz"/>
+                                                <constraint firstItem="lfz-ys-W8Y" firstAttribute="leading" secondItem="Np6-Uo-MIB" secondAttribute="leading" constant="-20" id="HAB-O7-oj1"/>
+                                                <constraint firstItem="lfz-ys-W8Y" firstAttribute="top" secondItem="Np6-Uo-MIB" secondAttribute="top" constant="-15" id="JYv-hq-KdF"/>
+                                                <constraint firstItem="lfz-ys-W8Y" firstAttribute="top" secondItem="Zf9-Zs-qat" secondAttribute="bottom" constant="15.5" id="QpW-GA-aYT"/>
+                                                <constraint firstAttribute="trailing" secondItem="lfz-ys-W8Y" secondAttribute="trailing" constant="20" id="kUt-r6-qfV"/>
+                                                <constraint firstAttribute="bottom" secondItem="lfz-ys-W8Y" secondAttribute="bottom" constant="12.333333333333343" id="nKi-c4-6Cc"/>
+                                                <constraint firstItem="lfz-ys-W8Y" firstAttribute="bottom" secondItem="Np6-Uo-MIB" secondAttribute="bottom" constant="40" id="yvR-sb-9Wa"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="cardBackgroundView" destination="lfz-ys-W8Y" id="CId-eu-TIo"/>
+                                            <outlet property="titleTextField" destination="Np6-Uo-MIB" id="p1D-8G-3kW"/>
+                                            <segue destination="fuU-Da-AkD" kind="show" identifier="showBoardSegueID" id="bsM-7P-YIy"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="0n5-Z5-Lbb"/>
+                        <color key="backgroundColor" systemColor="systemGray6Color"/>
+                        <constraints>
+                            <constraint firstItem="H3Y-Mp-amU" firstAttribute="top" secondItem="0n5-Z5-Lbb" secondAttribute="top" id="64B-ID-R3c"/>
+                            <constraint firstItem="0n5-Z5-Lbb" firstAttribute="trailing" secondItem="H3Y-Mp-amU" secondAttribute="trailing" id="Kek-qt-5e4"/>
+                            <constraint firstItem="0n5-Z5-Lbb" firstAttribute="bottom" secondItem="H3Y-Mp-amU" secondAttribute="bottom" id="VtA-Bc-SFJ"/>
+                            <constraint firstItem="H3Y-Mp-amU" firstAttribute="leading" secondItem="0n5-Z5-Lbb" secondAttribute="leading" id="twD-ip-y1E"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Kanban" id="xtr-K5-Fqq">
+                        <barButtonItem key="leftBarButtonItem" image="line.horizontal.3" catalog="system" id="PFg-b4-aMk">
+                            <connections>
+                                <segue destination="c77-aF-p03" kind="presentation" id="aBE-48-xsF"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" image="plus.circle" catalog="system" id="MOx-Mr-ta0">
+                            <connections>
+                                <action selector="addBoard:" destination="cxC-YH-7PH" id="tWQ-17-VpA"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="tableView" destination="H3Y-Mp-amU" id="mxs-HC-n2D"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7I8-qh-tft" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="521" y="-1350"/>
         </scene>
         <!--Card Preview View Controller-->
         <scene sceneID="dH0-Xb-NwW">
@@ -5550,6 +5641,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
+        <segue reference="JDV-1P-lBh"/>
         <segue reference="262-yF-jhR"/>
         <segue reference="to3-FM-KxV"/>
     </inferredMetricsTieBreakers>
