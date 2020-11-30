@@ -30,6 +30,7 @@ class CardTableViewCell: UITableViewCell {
     @IBOutlet weak var tagColorView: UIView!
     @IBOutlet weak var tagColorViewWidthConstraint: NSLayoutConstraint!
     
+    @IBOutlet weak var checkListLabel: UILabel!
     @IBOutlet weak var calendarLabel: UILabel!
     @IBOutlet weak var reminderLabel: UILabel!
     @IBOutlet weak var linkLabel: UILabel!
@@ -121,6 +122,11 @@ class CardTableViewCell: UITableViewCell {
         }
         tagColorView.layer.opacity = 0.3
         
+        for i in 1...4{
+            previewImageViews[i].isHidden = card.showingPreview
+        }
+        checkListLabel.isHidden = !card.showingPreview
+        
         if card.showingPreview{
             for ind in previewVerSpacingConstraints.indices{
                 previewVerSpacingConstraints[ind].constant=6
@@ -137,6 +143,17 @@ class CardTableViewCell: UITableViewCell {
 //            self.delegate?.updateHeights()
 //        })
 //        self.delegate?.updateHeights()
+        if card.checkList.items.count==0{
+            checkListLabel.text="-"
+        }else{
+            var completed=0
+            for item in card.checkList.items{
+                if item.done{
+                    completed+=1
+                }
+            }
+            checkListLabel.text="\(completed)/\(card.checkList.items.count)"
+        }
         if let schedDate = card.scheduledDate{
             let formatter = DateFormatter()
 //            formatter.dateFormat = "d/M/yy, hh:mm a"
@@ -191,27 +208,27 @@ class CardTableViewCell: UITableViewCell {
         if card.checkList.items.count == 0{
             previewImageViews[0].tintColor = .gray
         }else{
-            previewImageViews[0].tintColor = .blue
+            previewImageViews[0].tintColor = .systemBlue
         }
         if card.scheduledDate == nil{
             previewImageViews[1].tintColor = .gray
         }else{
-            previewImageViews[1].tintColor = .blue
+            previewImageViews[1].tintColor = .systemBlue
         }
         if card.reminderDate == nil{
             previewImageViews[2].tintColor = .gray
         }else{
-            previewImageViews[2].tintColor = .blue
+            previewImageViews[2].tintColor = .systemBlue
         }
         if card.linkURL.count==0 {
             previewImageViews[3].tintColor = .gray
         }else{
-            previewImageViews[3].tintColor = .blue
+            previewImageViews[3].tintColor = .systemBlue
         }
         if card.mediaLinks.count == 0{
             previewImageViews[4].tintColor = .gray
         }else{
-            previewImageViews[4].tintColor = .blue
+            previewImageViews[4].tintColor = .systemBlue
         }
     }
 }
