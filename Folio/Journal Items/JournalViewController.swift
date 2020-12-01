@@ -227,7 +227,7 @@ class JournalViewController: UIViewController {
         }
     }
     func setupData(){
-        var fileName=""
+        
         self.allCards.removeAll()
        
         print("journalentrycards count - \(journalEntryCards.count)")
@@ -315,10 +315,10 @@ class JournalViewController: UIViewController {
         navigationController?.navigationBar.isTranslucent = true
         
         navigationController?.hidesBarsOnSwipe=true
-        let attrs = [
-            NSAttributedString.Key.foregroundColor: UIColor(named: "calendarAccent") ?? UIColor.red,
-            NSAttributedString.Key.font: UIFont(name: "HelveticaNeue-Bold", size: 30)!
-        ]
+//        let attrs = [
+//            NSAttributedString.Key.foregroundColor: UIColor(named: "calendarAccent") ?? UIColor.red,
+//            NSAttributedString.Key.font: UIFont(name: "HelveticaNeue-Bold", size: 30)!
+//        ]
 
 //        UINavigationBar.appearance().titleTextAttributes = attrs
         

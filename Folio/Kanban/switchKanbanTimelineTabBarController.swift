@@ -75,7 +75,7 @@ class switchKanbanTimelineTabBarController: UITabBarController, UITabBarControll
             if vc.boardFileName != self.boardFileName{
                 vc.boardFileName=self.boardFileName
             }
-        }else if let vc = viewController as? BoardCollectionViewController{
+        }else if viewController is BoardCollectionViewController{
             print("viewwilalal selection first")
             let orig = self.viewControllers?[1] as! NewKanbanTimelineViewController
             orig.save()

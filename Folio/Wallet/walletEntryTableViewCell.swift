@@ -110,7 +110,7 @@ class walletEntryTableViewCell: UITableViewCell {
             formatter.dateFormat = "hh:mm a"
             dateLabel.text = formatter.string(from: entry.date)
             let smallConfig = UIImage.SymbolConfiguration(pointSize: 15, weight: .medium, scale: .small)
-            var iconColor = [#colorLiteral(red: 0.886832118, green: 0.9455494285, blue: 0.9998298287, alpha: 1), #colorLiteral(red: 0.9906743169, green: 0.8905956149, blue: 0.8889676332, alpha: 1), #colorLiteral(red: 0.755782187, green: 1, blue: 0.8466194272, alpha: 1), #colorLiteral(red: 0.9186416268, green: 0.7921586633, blue: 0.9477668405, alpha: 1)].randomElement()
+            let iconColor = [#colorLiteral(red: 0.886832118, green: 0.9455494285, blue: 0.9998298287, alpha: 1), #colorLiteral(red: 0.9906743169, green: 0.8905956149, blue: 0.8889676332, alpha: 1), #colorLiteral(red: 0.755782187, green: 1, blue: 0.8466194272, alpha: 1), #colorLiteral(red: 0.9186416268, green: 0.7921586633, blue: 0.9477668405, alpha: 1)].randomElement()
             self.categoryImageView.backgroundColor = iconColor
             self.categoryImageView.tintColor = iconColor?.darker(by: 50)
             switch entry.category {
