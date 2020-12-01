@@ -25,10 +25,7 @@
 		E252B07C246C44DF003F8718 /* textViewPlaceholder.swift in Sources */ = {isa = PBXBuildFile; fileRef = E252B079246C44DF003F8718 /* textViewPlaceholder.swift */; };
 		E252B07D246C44DF003F8718 /* removeAllConstraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = E252B07A246C44DF003F8718 /* removeAllConstraints.swift */; };
 		E252B07E246C44DF003F8718 /* UnderlinedTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E252B07B246C44DF003F8718 /* UnderlinedTextView.swift */; };
-		E252B081246C45C0003F8718 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = E252B080246C45BF003F8718 /* Card.swift */; };
-		E252B083246C45E6003F8718 /* checkListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = E252B082246C45E5003F8718 /* checkListItem.swift */; };
-		E252B085246C45F2003F8718 /* MediaCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = E252B084246C45F2003F8718 /* MediaCard.swift */; };
-		E252B089246C4620003F8718 /* smallCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = E252B088246C4620003F8718 /* smallCard.swift */; };
+		E252B085246C45F2003F8718 /* ImagedData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E252B084246C45F2003F8718 /* ImagedData.swift */; };
 		E25B0E9B247BD055004F3BDA /* UITextFieldExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E25B0E9A247BD055004F3BDA /* UITextFieldExtensions.swift */; };
 		E25B0E9D247C010C004F3BDA /* JournalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E25B0E9C247C010C004F3BDA /* JournalViewController.swift */; };
 		E25BA4FF24716DC0000D1DF7 /* ImagePickerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E25BA4FE24716DC0000D1DF7 /* ImagePickerManager.swift */; };
@@ -137,10 +134,7 @@
 		E252B079246C44DF003F8718 /* textViewPlaceholder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = textViewPlaceholder.swift; sourceTree = "<group>"; };
 		E252B07A246C44DF003F8718 /* removeAllConstraints.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = removeAllConstraints.swift; sourceTree = "<group>"; };
 		E252B07B246C44DF003F8718 /* UnderlinedTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnderlinedTextView.swift; sourceTree = "<group>"; };
-		E252B080246C45BF003F8718 /* Card.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
-		E252B082246C45E5003F8718 /* checkListItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = checkListItem.swift; sourceTree = "<group>"; };
-		E252B084246C45F2003F8718 /* MediaCard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediaCard.swift; sourceTree = "<group>"; };
-		E252B088246C4620003F8718 /* smallCard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = smallCard.swift; sourceTree = "<group>"; };
+		E252B084246C45F2003F8718 /* ImagedData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagedData.swift; sourceTree = "<group>"; };
 		E25B0E9A247BD055004F3BDA /* UITextFieldExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITextFieldExtensions.swift; sourceTree = "<group>"; };
 		E25B0E9C247C010C004F3BDA /* JournalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalViewController.swift; sourceTree = "<group>"; };
 		E25BA4FE24716DC0000D1DF7 /* ImagePickerManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagePickerManager.swift; sourceTree = "<group>"; };
@@ -351,10 +345,7 @@
 		E252B08A246C4640003F8718 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				E252B080246C45BF003F8718 /* Card.swift */,
-				E252B088246C4620003F8718 /* smallCard.swift */,
-				E252B082246C45E5003F8718 /* checkListItem.swift */,
-				E252B084246C45F2003F8718 /* MediaCard.swift */,
+				E252B084246C45F2003F8718 /* ImagedData.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -712,13 +703,12 @@
 				E24382682490CEAC00C7F016 /* themeChooserViewController.swift in Sources */,
 				E2D7291525347DE600D77702 /* CardPreviewViewController.swift in Sources */,
 				E25BA50D2472285F000D1DF7 /* pickImage.swift in Sources */,
-				E252B081246C45C0003F8718 /* Card.swift in Sources */,
 				E2CE17222574D358008CC2B3 /* KanbanListViewController.swift in Sources */,
 				E2E152622486563500079B79 /* addHabbitStyleTableViewCell.swift in Sources */,
 				E269476524702D0900F9E21F /* UITextView+Expanding.swift in Sources */,
 				E25BA50A24721F93000D1DF7 /* Extensions0.swift in Sources */,
 				E2B2F32D2573992900C1DA5C /* NewKanbanTimelineViewController.swift in Sources */,
-				E252B085246C45F2003F8718 /* MediaCard.swift in Sources */,
+				E252B085246C45F2003F8718 /* ImagedData.swift in Sources */,
 				E2CE1753257623E4008CC2B3 /* colorLighterDarkerExtension.swift in Sources */,
 				E216884D2474E19B00D079A4 /* UIImageCompressor.swift in Sources */,
 				E2E152602486562900079B79 /* addHabbitTitleTableViewCell.swift in Sources */,
@@ -755,8 +745,6 @@
 				E26FD6AD2482A4FB004DA918 /* journalLocationTableViewCell.swift in Sources */,
 				E2DD7A3224ADAB2A00F9DF27 /* wallletTabBarController.swift in Sources */,
 				E29A5873248A695500FA7D7C /* doneToDismissTextView.swift in Sources */,
-				E252B083246C45E6003F8718 /* checkListItem.swift in Sources */,
-				E252B089246C4620003F8718 /* smallCard.swift in Sources */,
 				E2E152642486564100079B79 /* addHabbitGoalPeriodTableViewCell.swift in Sources */,
 				E25BA50824721F93000D1DF7 /* GalleryViewController.swift in Sources */,
 				E291F00B24873B3D0006D147 /* habitTableViewCell.swift in Sources */,

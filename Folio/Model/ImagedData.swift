@@ -8,17 +8,6 @@
 
 import Foundation
 
-struct MediaCard: Codable {
-    var UniquIdentifier=UUID()
-//    var data = (Any?, mediaType?)()
-    var title: String?
-    var dateOfConstruction = Date()
-    var timelineIndex: Int?
-//    var data = [AnyObject]()
-//    var mediaData = [Data]()
-    var mediaDataURLs = [String]()
-    
-}
 struct imageData: Codable{
     var data = Data()
     var json: Data? {
@@ -34,9 +23,4 @@ struct imageData: Codable{
             return nil
         }
     }
-}
-enum mediaType {
-    case image
-    case video
-    case audio
 }
