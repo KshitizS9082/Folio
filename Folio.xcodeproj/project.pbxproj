@@ -8,15 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		6B2A257E24AA1FEC0050B2DE /* TextCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B2A257D24AA1FEC0050B2DE /* TextCardView.swift */; };
-		6BD51DB324A5A5DF00253290 /* newNotesFullViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BD51DB224A5A5DF00253290 /* newNotesFullViewController.swift */; };
 		870E12556BF0317058D31A09 /* Pods_Folio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F32C815244D1C255A7FDD23A /* Pods_Folio.framework */; };
 		87DB04D9E8C0C19EDD6FF265 /* Pods_FolioTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC6B6DB7D06A4FC4A090E6A3 /* Pods_FolioTests.framework */; };
 		A3922D801270C8842263D3B3 /* Pods_Folio_FolioUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5CDFF065539CE4B3E77C16F8 /* Pods_Folio_FolioUITests.framework */; };
-		E211905C248BA61C00DE9D92 /* newCheckListFullViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E211905B248BA61C00DE9D92 /* newCheckListFullViewController.swift */; };
-		E211905E248BABA100DE9D92 /* fullChecklistViewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E211905D248BABA100DE9D92 /* fullChecklistViewTableViewCell.swift */; };
 		E216884D2474E19B00D079A4 /* UIImageCompressor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E216884C2474E19B00D079A4 /* UIImageCompressor.swift */; };
 		E216884F2475965500D079A4 /* DrawingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E216884E2475965500D079A4 /* DrawingView.swift */; };
-		E2252E0B247943AA00EF26C9 /* PagesExtractTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2252E0A247943AA00EF26C9 /* PagesExtractTableViewCell.swift */; };
 		E24382682490CEAC00C7F016 /* themeChooserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E24382672490CEAC00C7F016 /* themeChooserViewController.swift */; };
 		E252B049246C4041003F8718 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E252B048246C4041003F8718 /* AppDelegate.swift */; };
 		E252B04B246C4041003F8718 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E252B04A246C4041003F8718 /* SceneDelegate.swift */; };
@@ -32,26 +28,9 @@
 		E252B081246C45C0003F8718 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = E252B080246C45BF003F8718 /* Card.swift */; };
 		E252B083246C45E6003F8718 /* checkListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = E252B082246C45E5003F8718 /* checkListItem.swift */; };
 		E252B085246C45F2003F8718 /* MediaCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = E252B084246C45F2003F8718 /* MediaCard.swift */; };
-		E252B087246C4601003F8718 /* PageData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E252B086246C4601003F8718 /* PageData.swift */; };
 		E252B089246C4620003F8718 /* smallCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = E252B088246C4620003F8718 /* smallCard.swift */; };
-		E252B08C246C4681003F8718 /* PageListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E252B08B246C4681003F8718 /* PageListViewController.swift */; };
-		E252B08E246C4AD7003F8718 /* SwitchPageTimelineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E252B08D246C4AD7003F8718 /* SwitchPageTimelineViewController.swift */; };
-		E252B090246C4E6D003F8718 /* PageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E252B08F246C4E6D003F8718 /* PageViewController.swift */; };
-		E252B092246C4E79003F8718 /* TimelineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E252B091246C4E79003F8718 /* TimelineViewController.swift */; };
-		E252B094246CEE55003F8718 /* PageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E252B093246CEE55003F8718 /* PageView.swift */; };
 		E25B0E9B247BD055004F3BDA /* UITextFieldExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E25B0E9A247BD055004F3BDA /* UITextFieldExtensions.swift */; };
 		E25B0E9D247C010C004F3BDA /* JournalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E25B0E9C247C010C004F3BDA /* JournalViewController.swift */; };
-		E25BA4E924714CBD000D1DF7 /* SmallCardDatePickerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E25BA4E424714CBC000D1DF7 /* SmallCardDatePickerTableViewCell.swift */; };
-		E25BA4EA24714CBD000D1DF7 /* smallCardTitleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E25BA4E524714CBC000D1DF7 /* smallCardTitleTableViewCell.swift */; };
-		E25BA4EB24714CBD000D1DF7 /* smallCardTitleTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E25BA4E624714CBC000D1DF7 /* smallCardTitleTableViewCell.xib */; };
-		E25BA4EC24714CBD000D1DF7 /* SmallCardDatePickerTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E25BA4E724714CBC000D1DF7 /* SmallCardDatePickerTableViewCell.xib */; };
-		E25BA4F024715A29000D1DF7 /* cardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E25BA4EF24715A29000D1DF7 /* cardView.swift */; };
-		E25BA4F224716130000D1DF7 /* SmallCardInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E25BA4F12471612F000D1DF7 /* SmallCardInfoViewController.swift */; };
-		E25BA4F424716196000D1DF7 /* EditCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E25BA4F324716196000D1DF7 /* EditCardViewController.swift */; };
-		E25BA4F8247163CE000D1DF7 /* checkListFullViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E25BA4F5247163CD000D1DF7 /* checkListFullViewController.swift */; };
-		E25BA4F9247163CE000D1DF7 /* drawingCardFullViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E25BA4F6247163CD000D1DF7 /* drawingCardFullViewController.swift */; };
-		E25BA4FA247163CE000D1DF7 /* NotesFullViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E25BA4F7247163CE000D1DF7 /* NotesFullViewController.swift */; };
-		E25BA4FD24716AD0000D1DF7 /* MediaCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E25BA4FC24716AD0000D1DF7 /* MediaCardView.swift */; };
 		E25BA4FF24716DC0000D1DF7 /* ImagePickerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E25BA4FE24716DC0000D1DF7 /* ImagePickerManager.swift */; };
 		E25BA50624721F93000D1DF7 /* ThumbCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E25BA50024721F91000D1DF7 /* ThumbCell.swift */; };
 		E25BA50724721F93000D1DF7 /* SCardCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E25BA50124721F92000D1DF7 /* SCardCollectionViewCell.xib */; };
@@ -60,16 +39,8 @@
 		E25BA50A24721F93000D1DF7 /* Extensions0.swift in Sources */ = {isa = PBXBuildFile; fileRef = E25BA50424721F92000D1DF7 /* Extensions0.swift */; };
 		E25BA50B24721F93000D1DF7 /* GalleryFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = E25BA50524721F93000D1DF7 /* GalleryFlowLayout.swift */; };
 		E25BA50D2472285F000D1DF7 /* pickImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E25BA50C2472285F000D1DF7 /* pickImage.swift */; };
-		E25BA51124727508000D1DF7 /* ScardTimelineTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E25BA50F24727508000D1DF7 /* ScardTimelineTableViewCell.swift */; };
-		E25BA51224727508000D1DF7 /* ScardTimelineTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E25BA51024727508000D1DF7 /* ScardTimelineTableViewCell.xib */; };
-		E25BA51524727B79000D1DF7 /* BigcardTimelineTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E25BA51324727B78000D1DF7 /* BigcardTimelineTableViewCell.xib */; };
-		E25BA51624727B79000D1DF7 /* BigcardTimelineTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E25BA51424727B79000D1DF7 /* BigcardTimelineTableViewCell.swift */; };
-		E25BA51924728AA9000D1DF7 /* MediaCardTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E25BA51724728AA9000D1DF7 /* MediaCardTableViewCell.xib */; };
-		E25BA51A24728AA9000D1DF7 /* MediaCardTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E25BA51824728AA9000D1DF7 /* MediaCardTableViewCell.swift */; };
-		E260F152247AA91E00CFB697 /* PageExtractViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E260F151247AA91E00CFB697 /* PageExtractViewController.swift */; };
 		E2623829249F1F3500BC510A /* journalHabitTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2623828249F1F3500BC510A /* journalHabitTableViewCell.swift */; };
 		E269476524702D0900F9E21F /* UITextView+Expanding.swift in Sources */ = {isa = PBXBuildFile; fileRef = E269476424702D0900F9E21F /* UITextView+Expanding.swift */; };
-		E26947672470320B00F9E21F /* SmallCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E26947662470320B00F9E21F /* SmallCardView.swift */; };
 		E26A31232480A8AB007F2289 /* addEntryInJournalTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E26A31222480A8AB007F2289 /* addEntryInJournalTableViewCell.swift */; };
 		E26FD6A924823E87004DA918 /* journalNotesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E26FD6A824823E87004DA918 /* journalNotesTableViewCell.swift */; };
 		E26FD6AB24828DF1004DA918 /* journalMediaTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E26FD6AA24828DF1004DA918 /* journalMediaTableViewCell.swift */; };
@@ -82,19 +53,11 @@
 		E284B6242472D9BD00CC6465 /* uniqueFileName.swift in Sources */ = {isa = PBXBuildFile; fileRef = E284B6232472D9BD00CC6465 /* uniqueFileName.swift */; };
 		E291F00B24873B3D0006D147 /* habitTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E291F00A24873B3D0006D147 /* habitTableViewCell.swift */; };
 		E291F00D24875B900006D147 /* weekExtractFromDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E291F00C24875B900006D147 /* weekExtractFromDate.swift */; };
-		E29A586B248A360D00FA7D7C /* newEditCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E29A586A248A360D00FA7D7C /* newEditCardViewController.swift */; };
-		E29A586D248A383B00FA7D7C /* cardTitleAndDateTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E29A586C248A383B00FA7D7C /* cardTitleAndDateTableViewCell.swift */; };
-		E29A586F248A385600FA7D7C /* cardTypeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E29A586E248A385600FA7D7C /* cardTypeTableViewCell.swift */; };
-		E29A5871248A386100FA7D7C /* cardReminderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E29A5870248A386100FA7D7C /* cardReminderTableViewCell.swift */; };
 		E29A5873248A695500FA7D7C /* doneToDismissTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E29A5872248A695500FA7D7C /* doneToDismissTextView.swift */; };
-		E29A5875248A734A00FA7D7C /* newSmallCardInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E29A5874248A734A00FA7D7C /* newSmallCardInfoViewController.swift */; };
-		E29A5877248A783000FA7D7C /* ExpandableTextSCardInfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E29A5876248A783000FA7D7C /* ExpandableTextSCardInfoTableViewCell.swift */; };
-		E29A5879248AA51000FA7D7C /* sCardReminderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E29A5878248AA51000FA7D7C /* sCardReminderTableViewCell.swift */; };
 		E2A35B522488C38900FDF4C6 /* habitsCellCalendarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A35B512488C38900FDF4C6 /* habitsCellCalendarCell.swift */; };
 		E2A35B542488EC3200FDF4C6 /* habitDateCellHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A35B532488EC3200FDF4C6 /* habitDateCellHeader.swift */; };
 		E2A6F99C248FB9510041616A /* journalCardFullViewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A6F99B248FB9510041616A /* journalCardFullViewViewController.swift */; };
 		E2A942092490B7FE003716A2 /* settingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A942082490B7FE003716A2 /* settingsViewController.swift */; };
-		E2AD5C3624920C88006146F3 /* newPageExtractTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2AD5C3524920C88006146F3 /* newPageExtractTableViewCell.swift */; };
 		E2B1D0542483EEA100BA8C7D /* MKPointAnnotation-Codable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2B1D0532483EEA100BA8C7D /* MKPointAnnotation-Codable.swift */; };
 		E2B2F32D2573992900C1DA5C /* NewKanbanTimelineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2B2F32C2573992900C1DA5C /* NewKanbanTimelineViewController.swift */; };
 		E2C1F340248579F0004A8050 /* PageListSideMenuTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2C1F33F248579F0004A8050 /* PageListSideMenuTableViewController.swift */; };
@@ -104,7 +67,6 @@
 		E2CE172C257537E4008CC2B3 /* ImageViewBlurExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2CE172B257537E4008CC2B3 /* ImageViewBlurExtension.swift */; };
 		E2CE174E257593A4008CC2B3 /* walletTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2CE174D257593A4008CC2B3 /* walletTabBar.swift */; };
 		E2CE1753257623E4008CC2B3 /* colorLighterDarkerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2CE1752257623E4008CC2B3 /* colorLighterDarkerExtension.swift */; };
-		E2D4B87D247901A1005F566F /* pageListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D4B87C247901A1005F566F /* pageListTableViewCell.swift */; };
 		E2D728F425347CE400D77702 /* KanbanCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D728F325347CE400D77702 /* KanbanCard.swift */; };
 		E2D728F925347D1B00D77702 /* Board.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D728F825347D1B00D77702 /* Board.swift */; };
 		E2D7290125347D3F00D77702 /* BoardCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D7290025347D3F00D77702 /* BoardCollectionViewCell.swift */; };
@@ -151,16 +113,12 @@
 		19AA4F4EE3EA7DC3617C074A /* Pods-Folio.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Folio.release.xcconfig"; path = "Target Support Files/Pods-Folio/Pods-Folio.release.xcconfig"; sourceTree = "<group>"; };
 		5CDFF065539CE4B3E77C16F8 /* Pods_Folio_FolioUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Folio_FolioUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6B2A257D24AA1FEC0050B2DE /* TextCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TextCardView.swift; path = Folio/TextCardView.swift; sourceTree = "<group>"; };
-		6BD51DB224A5A5DF00253290 /* newNotesFullViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = newNotesFullViewController.swift; sourceTree = "<group>"; };
 		6D725AB9D78B9CC0FD8B1825 /* Pods-Folio-FolioUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Folio-FolioUITests.release.xcconfig"; path = "Target Support Files/Pods-Folio-FolioUITests/Pods-Folio-FolioUITests.release.xcconfig"; sourceTree = "<group>"; };
 		AB7282A2BE03B60D0F69806A /* Pods-Folio.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Folio.debug.xcconfig"; path = "Target Support Files/Pods-Folio/Pods-Folio.debug.xcconfig"; sourceTree = "<group>"; };
 		B7F7E37428634E233DB6CFDE /* Pods-FolioTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FolioTests.release.xcconfig"; path = "Target Support Files/Pods-FolioTests/Pods-FolioTests.release.xcconfig"; sourceTree = "<group>"; };
 		BC6B6DB7D06A4FC4A090E6A3 /* Pods_FolioTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FolioTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		E211905B248BA61C00DE9D92 /* newCheckListFullViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = newCheckListFullViewController.swift; sourceTree = "<group>"; };
-		E211905D248BABA100DE9D92 /* fullChecklistViewTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = fullChecklistViewTableViewCell.swift; sourceTree = "<group>"; };
 		E216884C2474E19B00D079A4 /* UIImageCompressor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageCompressor.swift; sourceTree = "<group>"; };
 		E216884E2475965500D079A4 /* DrawingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrawingView.swift; sourceTree = "<group>"; };
-		E2252E0A247943AA00EF26C9 /* PagesExtractTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PagesExtractTableViewCell.swift; sourceTree = "<group>"; };
 		E24382672490CEAC00C7F016 /* themeChooserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = themeChooserViewController.swift; sourceTree = "<group>"; };
 		E252B045246C4041003F8718 /* Folio.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Folio.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E252B048246C4041003F8718 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -182,26 +140,9 @@
 		E252B080246C45BF003F8718 /* Card.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
 		E252B082246C45E5003F8718 /* checkListItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = checkListItem.swift; sourceTree = "<group>"; };
 		E252B084246C45F2003F8718 /* MediaCard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediaCard.swift; sourceTree = "<group>"; };
-		E252B086246C4601003F8718 /* PageData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageData.swift; sourceTree = "<group>"; };
 		E252B088246C4620003F8718 /* smallCard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = smallCard.swift; sourceTree = "<group>"; };
-		E252B08B246C4681003F8718 /* PageListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageListViewController.swift; sourceTree = "<group>"; };
-		E252B08D246C4AD7003F8718 /* SwitchPageTimelineViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchPageTimelineViewController.swift; sourceTree = "<group>"; };
-		E252B08F246C4E6D003F8718 /* PageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageViewController.swift; sourceTree = "<group>"; };
-		E252B091246C4E79003F8718 /* TimelineViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineViewController.swift; sourceTree = "<group>"; };
-		E252B093246CEE55003F8718 /* PageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageView.swift; sourceTree = "<group>"; };
 		E25B0E9A247BD055004F3BDA /* UITextFieldExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITextFieldExtensions.swift; sourceTree = "<group>"; };
 		E25B0E9C247C010C004F3BDA /* JournalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalViewController.swift; sourceTree = "<group>"; };
-		E25BA4E424714CBC000D1DF7 /* SmallCardDatePickerTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SmallCardDatePickerTableViewCell.swift; sourceTree = "<group>"; };
-		E25BA4E524714CBC000D1DF7 /* smallCardTitleTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = smallCardTitleTableViewCell.swift; sourceTree = "<group>"; };
-		E25BA4E624714CBC000D1DF7 /* smallCardTitleTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = smallCardTitleTableViewCell.xib; sourceTree = "<group>"; };
-		E25BA4E724714CBC000D1DF7 /* SmallCardDatePickerTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SmallCardDatePickerTableViewCell.xib; sourceTree = "<group>"; };
-		E25BA4EF24715A29000D1DF7 /* cardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = cardView.swift; sourceTree = "<group>"; };
-		E25BA4F12471612F000D1DF7 /* SmallCardInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SmallCardInfoViewController.swift; sourceTree = "<group>"; };
-		E25BA4F324716196000D1DF7 /* EditCardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditCardViewController.swift; sourceTree = "<group>"; };
-		E25BA4F5247163CD000D1DF7 /* checkListFullViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = checkListFullViewController.swift; sourceTree = "<group>"; };
-		E25BA4F6247163CD000D1DF7 /* drawingCardFullViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = drawingCardFullViewController.swift; sourceTree = "<group>"; };
-		E25BA4F7247163CE000D1DF7 /* NotesFullViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotesFullViewController.swift; sourceTree = "<group>"; };
-		E25BA4FC24716AD0000D1DF7 /* MediaCardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediaCardView.swift; sourceTree = "<group>"; };
 		E25BA4FE24716DC0000D1DF7 /* ImagePickerManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagePickerManager.swift; sourceTree = "<group>"; };
 		E25BA50024721F91000D1DF7 /* ThumbCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThumbCell.swift; sourceTree = "<group>"; };
 		E25BA50124721F92000D1DF7 /* SCardCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SCardCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -210,16 +151,8 @@
 		E25BA50424721F92000D1DF7 /* Extensions0.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions0.swift; sourceTree = "<group>"; };
 		E25BA50524721F93000D1DF7 /* GalleryFlowLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GalleryFlowLayout.swift; sourceTree = "<group>"; };
 		E25BA50C2472285F000D1DF7 /* pickImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = pickImage.swift; sourceTree = "<group>"; };
-		E25BA50F24727508000D1DF7 /* ScardTimelineTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScardTimelineTableViewCell.swift; sourceTree = "<group>"; };
-		E25BA51024727508000D1DF7 /* ScardTimelineTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ScardTimelineTableViewCell.xib; sourceTree = "<group>"; };
-		E25BA51324727B78000D1DF7 /* BigcardTimelineTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BigcardTimelineTableViewCell.xib; sourceTree = "<group>"; };
-		E25BA51424727B79000D1DF7 /* BigcardTimelineTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BigcardTimelineTableViewCell.swift; sourceTree = "<group>"; };
-		E25BA51724728AA9000D1DF7 /* MediaCardTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MediaCardTableViewCell.xib; sourceTree = "<group>"; };
-		E25BA51824728AA9000D1DF7 /* MediaCardTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediaCardTableViewCell.swift; sourceTree = "<group>"; };
-		E260F151247AA91E00CFB697 /* PageExtractViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageExtractViewController.swift; sourceTree = "<group>"; };
 		E2623828249F1F3500BC510A /* journalHabitTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = journalHabitTableViewCell.swift; sourceTree = "<group>"; };
 		E269476424702D0900F9E21F /* UITextView+Expanding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITextView+Expanding.swift"; sourceTree = "<group>"; };
-		E26947662470320B00F9E21F /* SmallCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmallCardView.swift; sourceTree = "<group>"; };
 		E26A31222480A8AB007F2289 /* addEntryInJournalTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = addEntryInJournalTableViewCell.swift; sourceTree = "<group>"; };
 		E26FD6A824823E87004DA918 /* journalNotesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = journalNotesTableViewCell.swift; sourceTree = "<group>"; };
 		E26FD6AA24828DF1004DA918 /* journalMediaTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = journalMediaTableViewCell.swift; sourceTree = "<group>"; };
@@ -232,19 +165,11 @@
 		E284B6232472D9BD00CC6465 /* uniqueFileName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = uniqueFileName.swift; sourceTree = "<group>"; };
 		E291F00A24873B3D0006D147 /* habitTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = habitTableViewCell.swift; sourceTree = "<group>"; };
 		E291F00C24875B900006D147 /* weekExtractFromDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = weekExtractFromDate.swift; sourceTree = "<group>"; };
-		E29A586A248A360D00FA7D7C /* newEditCardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = newEditCardViewController.swift; sourceTree = "<group>"; };
-		E29A586C248A383B00FA7D7C /* cardTitleAndDateTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = cardTitleAndDateTableViewCell.swift; sourceTree = "<group>"; };
-		E29A586E248A385600FA7D7C /* cardTypeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = cardTypeTableViewCell.swift; sourceTree = "<group>"; };
-		E29A5870248A386100FA7D7C /* cardReminderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = cardReminderTableViewCell.swift; sourceTree = "<group>"; };
 		E29A5872248A695500FA7D7C /* doneToDismissTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = doneToDismissTextView.swift; sourceTree = "<group>"; };
-		E29A5874248A734A00FA7D7C /* newSmallCardInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = newSmallCardInfoViewController.swift; sourceTree = "<group>"; };
-		E29A5876248A783000FA7D7C /* ExpandableTextSCardInfoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpandableTextSCardInfoTableViewCell.swift; sourceTree = "<group>"; };
-		E29A5878248AA51000FA7D7C /* sCardReminderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = sCardReminderTableViewCell.swift; sourceTree = "<group>"; };
 		E2A35B512488C38900FDF4C6 /* habitsCellCalendarCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = habitsCellCalendarCell.swift; sourceTree = "<group>"; };
 		E2A35B532488EC3200FDF4C6 /* habitDateCellHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = habitDateCellHeader.swift; sourceTree = "<group>"; };
 		E2A6F99B248FB9510041616A /* journalCardFullViewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = journalCardFullViewViewController.swift; sourceTree = "<group>"; };
 		E2A942082490B7FE003716A2 /* settingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = settingsViewController.swift; sourceTree = "<group>"; };
-		E2AD5C3524920C88006146F3 /* newPageExtractTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = newPageExtractTableViewCell.swift; sourceTree = "<group>"; };
 		E2B1D0532483EEA100BA8C7D /* MKPointAnnotation-Codable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MKPointAnnotation-Codable.swift"; sourceTree = "<group>"; };
 		E2B2F32C2573992900C1DA5C /* NewKanbanTimelineViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewKanbanTimelineViewController.swift; sourceTree = "<group>"; };
 		E2C1F33F248579F0004A8050 /* PageListSideMenuTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageListSideMenuTableViewController.swift; sourceTree = "<group>"; };
@@ -254,7 +179,6 @@
 		E2CE172B257537E4008CC2B3 /* ImageViewBlurExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ImageViewBlurExtension.swift; path = Folio/Extensions/ImageViewBlurExtension.swift; sourceTree = SOURCE_ROOT; };
 		E2CE174D257593A4008CC2B3 /* walletTabBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = walletTabBar.swift; sourceTree = "<group>"; };
 		E2CE1752257623E4008CC2B3 /* colorLighterDarkerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = colorLighterDarkerExtension.swift; path = Folio/Extensions/colorLighterDarkerExtension.swift; sourceTree = SOURCE_ROOT; };
-		E2D4B87C247901A1005F566F /* pageListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = pageListTableViewCell.swift; sourceTree = "<group>"; };
 		E2D728F325347CE400D77702 /* KanbanCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KanbanCard.swift; sourceTree = "<group>"; };
 		E2D728F825347D1B00D77702 /* Board.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Board.swift; sourceTree = "<group>"; };
 		E2D7290025347D3F00D77702 /* BoardCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -360,22 +284,13 @@
 			children = (
 				E252B04C246C4041003F8718 /* ViewController.swift */,
 				E2771B8124B2FC3E00EF3BED /* WalletStatsViewController.swift */,
-				E252B08B246C4681003F8718 /* PageListViewController.swift */,
 				E252B04E246C4041003F8718 /* Main.storyboard */,
 				E2D728EA25347C8B00D77702 /* Kanban */,
 				E252B08A246C4640003F8718 /* Model */,
 				E2DD7A2A24AD964100F9DF27 /* Settings */,
+				E2C1F33F248579F0004A8050 /* PageListSideMenuTableViewController.swift */,
 				E2E6E10D250B92CC00C1B198 /* Wallet */,
-				E25B0E97247BA803004F3BDA /* Page List Items */,
-				E260F153247AA95200CFB697 /* Page Extract Items */,
-				E252B08D246C4AD7003F8718 /* SwitchPageTimelineViewController.swift */,
-				E252B08F246C4E6D003F8718 /* PageViewController.swift */,
-				E252B093246CEE55003F8718 /* PageView.swift */,
-				E269475D2470276F00F9E21F /* Small Card Items */,
-				E25BA4EE247159E2000D1DF7 /* Big Card Items */,
 				E25BA4FB24716A9D000D1DF7 /* Media Card Items */,
-				E252B091246C4E79003F8718 /* TimelineViewController.swift */,
-				E25BA50E2472695A000D1DF7 /* Timeline Items */,
 				E2E152562486045500079B79 /* Habits Items */,
 				E26FD6AE2482A7AA004DA918 /* Journal Items */,
 				E252B07F246C44E7003F8718 /* Extensions */,
@@ -436,7 +351,6 @@
 		E252B08A246C4640003F8718 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				E252B086246C4601003F8718 /* PageData.swift */,
 				E252B080246C45BF003F8718 /* Card.swift */,
 				E252B088246C4620003F8718 /* smallCard.swift */,
 				E252B082246C45E5003F8718 /* checkListItem.swift */,
@@ -445,39 +359,9 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
-		E25B0E97247BA803004F3BDA /* Page List Items */ = {
-			isa = PBXGroup;
-			children = (
-				E2252E0A247943AA00EF26C9 /* PagesExtractTableViewCell.swift */,
-				E2D4B87C247901A1005F566F /* pageListTableViewCell.swift */,
-				E2C1F33F248579F0004A8050 /* PageListSideMenuTableViewController.swift */,
-			);
-			path = "Page List Items";
-			sourceTree = "<group>";
-		};
-		E25BA4EE247159E2000D1DF7 /* Big Card Items */ = {
-			isa = PBXGroup;
-			children = (
-				6BD51DB224A5A5DF00253290 /* newNotesFullViewController.swift */,
-				E25BA4EF24715A29000D1DF7 /* cardView.swift */,
-				E25BA4F324716196000D1DF7 /* EditCardViewController.swift */,
-				E29A586A248A360D00FA7D7C /* newEditCardViewController.swift */,
-				E25BA4F5247163CD000D1DF7 /* checkListFullViewController.swift */,
-				E25BA4F6247163CD000D1DF7 /* drawingCardFullViewController.swift */,
-				E25BA4F7247163CE000D1DF7 /* NotesFullViewController.swift */,
-				E29A586C248A383B00FA7D7C /* cardTitleAndDateTableViewCell.swift */,
-				E29A586E248A385600FA7D7C /* cardTypeTableViewCell.swift */,
-				E29A5870248A386100FA7D7C /* cardReminderTableViewCell.swift */,
-				E211905B248BA61C00DE9D92 /* newCheckListFullViewController.swift */,
-				E211905D248BABA100DE9D92 /* fullChecklistViewTableViewCell.swift */,
-			);
-			path = "Big Card Items";
-			sourceTree = "<group>";
-		};
 		E25BA4FB24716A9D000D1DF7 /* Media Card Items */ = {
 			isa = PBXGroup;
 			children = (
-				E25BA4FC24716AD0000D1DF7 /* MediaCardView.swift */,
 				E25BA4FE24716DC0000D1DF7 /* ImagePickerManager.swift */,
 				E25BA50424721F92000D1DF7 /* Extensions0.swift */,
 				E25BA50524721F93000D1DF7 /* GalleryFlowLayout.swift */,
@@ -488,44 +372,6 @@
 				E25BA50024721F91000D1DF7 /* ThumbCell.swift */,
 			);
 			path = "Media Card Items";
-			sourceTree = "<group>";
-		};
-		E25BA50E2472695A000D1DF7 /* Timeline Items */ = {
-			isa = PBXGroup;
-			children = (
-				E25BA50F24727508000D1DF7 /* ScardTimelineTableViewCell.swift */,
-				E25BA51024727508000D1DF7 /* ScardTimelineTableViewCell.xib */,
-				E25BA51424727B79000D1DF7 /* BigcardTimelineTableViewCell.swift */,
-				E25BA51324727B78000D1DF7 /* BigcardTimelineTableViewCell.xib */,
-				E25BA51824728AA9000D1DF7 /* MediaCardTableViewCell.swift */,
-				E25BA51724728AA9000D1DF7 /* MediaCardTableViewCell.xib */,
-			);
-			path = "Timeline Items";
-			sourceTree = "<group>";
-		};
-		E260F153247AA95200CFB697 /* Page Extract Items */ = {
-			isa = PBXGroup;
-			children = (
-				E260F151247AA91E00CFB697 /* PageExtractViewController.swift */,
-				E2AD5C3524920C88006146F3 /* newPageExtractTableViewCell.swift */,
-			);
-			path = "Page Extract Items";
-			sourceTree = "<group>";
-		};
-		E269475D2470276F00F9E21F /* Small Card Items */ = {
-			isa = PBXGroup;
-			children = (
-				E26947662470320B00F9E21F /* SmallCardView.swift */,
-				E25BA4F12471612F000D1DF7 /* SmallCardInfoViewController.swift */,
-				E25BA4E424714CBC000D1DF7 /* SmallCardDatePickerTableViewCell.swift */,
-				E25BA4E724714CBC000D1DF7 /* SmallCardDatePickerTableViewCell.xib */,
-				E25BA4E524714CBC000D1DF7 /* smallCardTitleTableViewCell.swift */,
-				E25BA4E624714CBC000D1DF7 /* smallCardTitleTableViewCell.xib */,
-				E29A5874248A734A00FA7D7C /* newSmallCardInfoViewController.swift */,
-				E29A5876248A783000FA7D7C /* ExpandableTextSCardInfoTableViewCell.swift */,
-				E29A5878248AA51000FA7D7C /* sCardReminderTableViewCell.swift */,
-			);
-			path = "Small Card Items";
 			sourceTree = "<group>";
 		};
 		E26FD6AE2482A7AA004DA918 /* Journal Items */ = {
@@ -717,14 +563,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				E25BA50724721F93000D1DF7 /* SCardCollectionViewCell.xib in Resources */,
-				E25BA4EB24714CBD000D1DF7 /* smallCardTitleTableViewCell.xib in Resources */,
 				E252B055246C4044003F8718 /* LaunchScreen.storyboard in Resources */,
-				E25BA4EC24714CBD000D1DF7 /* SmallCardDatePickerTableViewCell.xib in Resources */,
-				E25BA51924728AA9000D1DF7 /* MediaCardTableViewCell.xib in Resources */,
 				E252B052246C4044003F8718 /* Assets.xcassets in Resources */,
 				E252B050246C4041003F8718 /* Main.storyboard in Resources */,
-				E25BA51524727B79000D1DF7 /* BigcardTimelineTableViewCell.xib in Resources */,
-				E25BA51224727508000D1DF7 /* ScardTimelineTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -852,67 +693,44 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E25BA4F024715A29000D1DF7 /* cardView.swift in Sources */,
 				E2CB87F52483581B002F3E6A /* journalLocationPickerViewController.swift in Sources */,
 				E2E152682486565C00079B79 /* addHabbitGoalCountTableViewCell.swift in Sources */,
 				E252B04D246C4041003F8718 /* ViewController.swift in Sources */,
 				E274AA14254B264900A41E28 /* switchKanbanTimelineTabBarController.swift in Sources */,
-				E252B094246CEE55003F8718 /* PageView.swift in Sources */,
 				E2E15258248604B900079B79 /* habitsTableViewController.swift in Sources */,
-				E252B090246C4E6D003F8718 /* PageViewController.swift in Sources */,
 				E26FD6AB24828DF1004DA918 /* journalMediaTableViewCell.swift in Sources */,
 				E2B1D0542483EEA100BA8C7D /* MKPointAnnotation-Codable.swift in Sources */,
-				E29A5879248AA51000FA7D7C /* sCardReminderTableViewCell.swift in Sources */,
-				E29A586D248A383B00FA7D7C /* cardTitleAndDateTableViewCell.swift in Sources */,
-				E25BA4F224716130000D1DF7 /* SmallCardInfoViewController.swift in Sources */,
-				E252B08E246C4AD7003F8718 /* SwitchPageTimelineViewController.swift in Sources */,
 				E252B049246C4041003F8718 /* AppDelegate.swift in Sources */,
 				E284B6242472D9BD00CC6465 /* uniqueFileName.swift in Sources */,
 				E2C1F340248579F0004A8050 /* PageListSideMenuTableViewController.swift in Sources */,
 				E2D728F925347D1B00D77702 /* Board.swift in Sources */,
-				E2252E0B247943AA00EF26C9 /* PagesExtractTableViewCell.swift in Sources */,
 				E2E1525C2486122000079B79 /* AddHabbitViewController.swift in Sources */,
-				E252B087246C4601003F8718 /* PageData.swift in Sources */,
-				E29A5877248A783000FA7D7C /* ExpandableTextSCardInfoTableViewCell.swift in Sources */,
 				E2A6F99C248FB9510041616A /* journalCardFullViewViewController.swift in Sources */,
 				E26FD6B02482AD0D004DA918 /* journalImagePickerManager.swift in Sources */,
 				E2FEE2B2247CC24200DD7069 /* DateHeader.swift in Sources */,
 				E2E152662486564C00079B79 /* addHabbitReminderValueTableViewCell.swift in Sources */,
-				E29A586F248A385600FA7D7C /* cardTypeTableViewCell.swift in Sources */,
-				E25BA51A24728AA9000D1DF7 /* MediaCardTableViewCell.swift in Sources */,
 				E24382682490CEAC00C7F016 /* themeChooserViewController.swift in Sources */,
 				E2D7291525347DE600D77702 /* CardPreviewViewController.swift in Sources */,
-				E211905C248BA61C00DE9D92 /* newCheckListFullViewController.swift in Sources */,
 				E25BA50D2472285F000D1DF7 /* pickImage.swift in Sources */,
-				E252B08C246C4681003F8718 /* PageListViewController.swift in Sources */,
 				E252B081246C45C0003F8718 /* Card.swift in Sources */,
 				E2CE17222574D358008CC2B3 /* KanbanListViewController.swift in Sources */,
-				E25BA4EA24714CBD000D1DF7 /* smallCardTitleTableViewCell.swift in Sources */,
 				E2E152622486563500079B79 /* addHabbitStyleTableViewCell.swift in Sources */,
 				E269476524702D0900F9E21F /* UITextView+Expanding.swift in Sources */,
 				E25BA50A24721F93000D1DF7 /* Extensions0.swift in Sources */,
-				E25BA4F9247163CE000D1DF7 /* drawingCardFullViewController.swift in Sources */,
 				E2B2F32D2573992900C1DA5C /* NewKanbanTimelineViewController.swift in Sources */,
 				E252B085246C45F2003F8718 /* MediaCard.swift in Sources */,
 				E2CE1753257623E4008CC2B3 /* colorLighterDarkerExtension.swift in Sources */,
 				E216884D2474E19B00D079A4 /* UIImageCompressor.swift in Sources */,
 				E2E152602486562900079B79 /* addHabbitTitleTableViewCell.swift in Sources */,
 				6B2A257E24AA1FEC0050B2DE /* TextCardView.swift in Sources */,
-				E26947672470320B00F9E21F /* SmallCardView.swift in Sources */,
-				E29A5875248A734A00FA7D7C /* newSmallCardInfoViewController.swift in Sources */,
-				E25BA51124727508000D1DF7 /* ScardTimelineTableViewCell.swift in Sources */,
-				E2AD5C3624920C88006146F3 /* newPageExtractTableViewCell.swift in Sources */,
 				E2A35B542488EC3200FDF4C6 /* habitDateCellHeader.swift in Sources */,
 				E252B07D246C44DF003F8718 /* removeAllConstraints.swift in Sources */,
-				E25BA4E924714CBD000D1DF7 /* SmallCardDatePickerTableViewCell.swift in Sources */,
-				E25BA4F8247163CE000D1DF7 /* checkListFullViewController.swift in Sources */,
 				E252B04B246C4041003F8718 /* SceneDelegate.swift in Sources */,
 				E252B07C246C44DF003F8718 /* textViewPlaceholder.swift in Sources */,
 				E2A942092490B7FE003716A2 /* settingsViewController.swift in Sources */,
 				E25BA50924721F93000D1DF7 /* SCardCollectionViewCell.swift in Sources */,
 				E2E1525E2486426700079B79 /* habiCardData.swift in Sources */,
 				E216884F2475965500D079A4 /* DrawingView.swift in Sources */,
-				E29A586B248A360D00FA7D7C /* newEditCardViewController.swift in Sources */,
 				E25BA50B24721F93000D1DF7 /* GalleryFlowLayout.swift in Sources */,
 				E2E1525A248604CC00079B79 /* HabitsViewController.swift in Sources */,
 				E2E5EEF624ADFBAF00E01490 /* addWalletEntryViewController.swift in Sources */,
@@ -920,9 +738,7 @@
 				E2FEE2B0247C1DDD00DD7069 /* DateCell.swift in Sources */,
 				E2CE17272574D3AC008CC2B3 /* KanbanListTableViewCell.swift in Sources */,
 				E25B0E9D247C010C004F3BDA /* JournalViewController.swift in Sources */,
-				E211905E248BABA100DE9D92 /* fullChecklistViewTableViewCell.swift in Sources */,
 				E2623829249F1F3500BC510A /* journalHabitTableViewCell.swift in Sources */,
-				E25BA4FD24716AD0000D1DF7 /* MediaCardView.swift in Sources */,
 				E2D7290625347D8200D77702 /* addBoardCollectionViewCell.swift in Sources */,
 				E25BA50624721F93000D1DF7 /* ThumbCell.swift in Sources */,
 				E2D728F425347CE400D77702 /* KanbanCard.swift in Sources */,
@@ -932,29 +748,21 @@
 				E25B0E9B247BD055004F3BDA /* UITextFieldExtensions.swift in Sources */,
 				E2D7291025347DCA00D77702 /* BoardCollectionViewController.swift in Sources */,
 				E2CE172C257537E4008CC2B3 /* ImageViewBlurExtension.swift in Sources */,
-				E260F152247AA91E00CFB697 /* PageExtractViewController.swift in Sources */,
 				E2D7290125347D3F00D77702 /* BoardCollectionViewCell.swift in Sources */,
 				E291F00D24875B900006D147 /* weekExtractFromDate.swift in Sources */,
 				E2E1526A2486566C00079B79 /* addHabbitTargetDateTableViewCell.swift in Sources */,
-				E25BA4FA247163CE000D1DF7 /* NotesFullViewController.swift in Sources */,
 				E25BA4FF24716DC0000D1DF7 /* ImagePickerManager.swift in Sources */,
 				E26FD6AD2482A4FB004DA918 /* journalLocationTableViewCell.swift in Sources */,
 				E2DD7A3224ADAB2A00F9DF27 /* wallletTabBarController.swift in Sources */,
-				E29A5871248A386100FA7D7C /* cardReminderTableViewCell.swift in Sources */,
 				E29A5873248A695500FA7D7C /* doneToDismissTextView.swift in Sources */,
 				E252B083246C45E6003F8718 /* checkListItem.swift in Sources */,
-				E25BA51624727B79000D1DF7 /* BigcardTimelineTableViewCell.swift in Sources */,
 				E252B089246C4620003F8718 /* smallCard.swift in Sources */,
 				E2E152642486564100079B79 /* addHabbitGoalPeriodTableViewCell.swift in Sources */,
 				E25BA50824721F93000D1DF7 /* GalleryViewController.swift in Sources */,
 				E291F00B24873B3D0006D147 /* habitTableViewCell.swift in Sources */,
-				E25BA4F424716196000D1DF7 /* EditCardViewController.swift in Sources */,
-				E2D4B87D247901A1005F566F /* pageListTableViewCell.swift in Sources */,
 				E2A35B522488C38900FDF4C6 /* habitsCellCalendarCell.swift in Sources */,
 				E2DD7A2C24AD996800F9DF27 /* walletViewController.swift in Sources */,
-				E252B092246C4E79003F8718 /* TimelineViewController.swift in Sources */,
 				E26FD6A924823E87004DA918 /* journalNotesTableViewCell.swift in Sources */,
-				6BD51DB324A5A5DF00253290 /* newNotesFullViewController.swift in Sources */,
 				E26A31232480A8AB007F2289 /* addEntryInJournalTableViewCell.swift in Sources */,
 				E2771B8224B2FC3E00EF3BED /* WalletStatsViewController.swift in Sources */,
 				E27DBB0224AF5E6B0099617B /* walletEntryTableViewCell.swift in Sources */,

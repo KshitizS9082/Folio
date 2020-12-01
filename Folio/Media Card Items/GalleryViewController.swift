@@ -14,8 +14,8 @@ import ImagePicker
 class WithImagesViewController:UIViewController {
 
     var images = [UIImage]()
-    var viewLinkedTo:MediaCardView?
-    var myViewController: PageViewController?
+//    var viewLinkedTo:MediaCardView?
+//    var myViewController: PageViewController?
     
     lazy var layout = GalleryFlowLayout()
     let navBar = SPFakeBarView(style: .noContent)
@@ -179,32 +179,32 @@ extension WithImagesViewController: ImagePickerDelegate{
     
     func doneButtonDidPress(_ imagePicker: ImagePickerController, images: [UIImage]) {
         print("y")
-        imagePicker.dismiss(animated: true) {
-            self.images.append(contentsOf: images)
-            self.collectionView.reloadData()
-            for image in images{
-                let fileName=String.uniqueFilename(withPrefix: "iamgeData")+".json"
-                if let json = imageData(instData: (image.resizedTo1MB()!).pngData()!).json {
-                    if let url = try? FileManager.default.url(
-                        for: .documentDirectory,
-                        in: .userDomainMask,
-                        appropriateFor: nil,
-                        create: true
-                    ).appendingPathComponent(fileName){
-                        do {
-                            try json.write(to: url)
-                            print ("saved successfully")
-                            //MARK: is a data leak to be corrected
-                            //TODO: sometimes fileName added but not deleted
-                            self.viewLinkedTo?.card.mediaDataURLs.append(fileName)
-                            self.viewLinkedTo?.layoutSubviews()
-                        } catch let error {
-                            print ("couldn't save \(error)")
-                        }
-                    }
-                }
-            }
-        }
+//        imagePicker.dismiss(animated: true) {
+//            self.images.append(contentsOf: images)
+//            self.collectionView.reloadData()
+//            for image in images{
+//                let fileName=String.uniqueFilename(withPrefix: "iamgeData")+".json"
+//                if let json = imageData(instData: (image.resizedTo1MB()!).pngData()!).json {
+//                    if let url = try? FileManager.default.url(
+//                        for: .documentDirectory,
+//                        in: .userDomainMask,
+//                        appropriateFor: nil,
+//                        create: true
+//                    ).appendingPathComponent(fileName){
+//                        do {
+//                            try json.write(to: url)
+//                            print ("saved successfully")
+//                            //MARK: is a data leak to be corrected
+//                            //TODO: sometimes fileName added but not deleted
+//                            self.viewLinkedTo?.card.mediaDataURLs.append(fileName)
+//                            self.viewLinkedTo?.layoutSubviews()
+//                        } catch let error {
+//                            print ("couldn't save \(error)")
+//                        }
+//                    }
+//                }
+//            }
+//        }
     }
     
     func cancelButtonDidPress(_ imagePicker: ImagePickerController) {

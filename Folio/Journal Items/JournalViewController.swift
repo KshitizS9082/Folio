@@ -14,17 +14,14 @@ import ImagePicker
 //TODO: instead of calling setupdata at updates try doing somethign like updateJournalNotesCard as setupdata may be very inefficient
 
 struct journalCard: Codable {
-    var type = journalCardType.small
+    var type = journalCardType.notes
     var dateInCal: Date?
-    var smallCard: smallCardData?
-    var bigCard: bigCardData?
-    var mediaCard: mediaCardData?
     var journalNotesCard: noteJournalCard?
     var journalLocationCard: locationJournalCard?
     var journalMediaCard: mediaJournalCard?
     var habitCard: habitJournalCard?
     //used for segue from PageExtractViewController to switchPageTimelineVC
-    var pageID: pageInfo?
+//    var pageID: pageInfo?
 }
 struct habitJournalCard: Codable{
     var UniquIdentifier=UUID()
@@ -72,9 +69,6 @@ struct mediaJournalCard: Codable {
     var subNotesText = "SubNotes goes here"
 }
 enum journalCardType: String, Codable{
-    case small
-    case big
-    case media
     case audio
     case notes
     case journalLocation
@@ -98,14 +92,14 @@ protocol addCardInJournalProtocol {
 
 class JournalViewController: UIViewController {
     
-    var pagesListFromPLVC = pageInfoList()
-    var pages = [PageData]()
+//    var pagesListFromPLVC = pageInfoList()
+//    var pages = [PageData]()
     var allCards = [journalCard]()
     var journalEntryCards = [journalCard]()
     var habits = HabitsData()
     var selectedDate = Date()
     var cardsForSelectedDate = [journalCard]()
-    var sizeType = cardSizeMode.full
+//    var sizeType = cardSizeMode.full
     let locationManager = CLLocationManager()
 //    var typesToShow
     var showJournalCards = true
@@ -152,8 +146,6 @@ class JournalViewController: UIViewController {
         setupData()
         setupTable()
         table.reloadData()
-        let pinch = UIPinchGestureRecognizer(target: self, action: #selector(handlePinch))
-        table.addGestureRecognizer(pinch)
         // register for notifications when the keyboard appears:
         NotificationCenter.default.addObserver( self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
     }
@@ -237,38 +229,7 @@ class JournalViewController: UIViewController {
     func setupData(){
         var fileName=""
         self.allCards.removeAll()
-        if showPageCards{
-            for info in pagesListFromPLVC.items{
-                fileName=info.fileName
-                if let url = try? FileManager.default.url(
-                    for: .documentDirectory,
-                    in: .userDomainMask,
-                    appropriateFor: nil,
-                    create: true
-                ).appendingPathComponent(fileName){
-                    if let jsonData = try? Data(contentsOf: url){
-                        if let page = PageData(json: jsonData){
-    //                        pages.append(page)
-                            page.bigCards.forEach { (card) in
-                                if let doc=card.card.dateOfCompletion{
-                                self.allCards.append(journalCard(type: .big, dateInCal: doc, smallCard: nil, bigCard: card, mediaCard: nil, pageID: info))
-                                }
-                            }
-                            page.smallCards.forEach { (card) in
-                                if let doc=card.card.dateOfCompletion{
-                                self.allCards.append(journalCard(type: .small, dateInCal: doc, smallCard: card, bigCard: nil, mediaCard: nil, pageID: info))
-                                }
-                            }
-                            page.mediaCards.forEach { (card) in
-                                self.allCards.append(journalCard(type: .media, dateInCal: card.card.dateOfConstruction, smallCard: nil, bigCard: nil, mediaCard: card, pageID: info))
-                            }
-                        }else{
-                            print("WARNING: DROPPED A PAGE INSIDE PAGEEXTRACTVC")
-                        }
-                    }
-                }
-            }
-        }
+       
         print("journalentrycards count - \(journalEntryCards.count)")
         if showJournalCards{
             for card in journalEntryCards{
@@ -316,31 +277,31 @@ class JournalViewController: UIViewController {
 //           table.backgroundColor = pageColor
            table.rowHeight = UITableView.automaticDimension
        }
-    @objc func handlePinch(pinch: UIPinchGestureRecognizer){
-        if pinch.state == .ended{
-            if pinch.scale>1.0{
-                switch self.sizeType {
-                case .small:
-                    self.sizeType = .medium
-                case .medium:
-                    self.sizeType = .full
-                default:
-                    print("can't zoom in further")
-                }
-            }else if pinch.scale<1.0{
-                switch self.sizeType {
-                case .full:
-                    self.sizeType = .medium
-                case .medium:
-                    self.sizeType = .small
-                default:
-                    print("can't zoom out further")
-                }
-            }
-            print("size type = \(self.sizeType)")
-            table.reloadData()
-        }
-    }
+//    @objc func handlePinch(pinch: UIPinchGestureRecognizer){
+//        if pinch.state == .ended{
+//            if pinch.scale>1.0{
+//                switch self.sizeType {
+//                case .small:
+//                    self.sizeType = .medium
+//                case .medium:
+//                    self.sizeType = .full
+//                default:
+//                    print("can't zoom in further")
+//                }
+//            }else if pinch.scale<1.0{
+//                switch self.sizeType {
+//                case .full:
+//                    self.sizeType = .medium
+//                case .medium:
+//                    self.sizeType = .small
+//                default:
+//                    print("can't zoom out further")
+//                }
+//            }
+//            print("size type = \(self.sizeType)")
+//            table.reloadData()
+//        }
+//    }
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         let visibleDates = calendarView.visibleDates()
@@ -360,24 +321,7 @@ class JournalViewController: UIViewController {
         ]
 
 //        UINavigationBar.appearance().titleTextAttributes = attrs
-        self.navigationController?.navigationBar.titleTextAttributes = attrs
-        if let url = try? FileManager.default.url(
-            for: .documentDirectory,
-            in: .userDomainMask,
-            appropriateFor: nil,
-            create: true
-        ).appendingPathComponent("PageList.json"){
-            print("trying to extract contents of jsonData")
-            if let jsonData = try? Data(contentsOf: url){
-                //                pageList = pageInfo(json: jsonData)
-                if let x = pageInfoList(json: jsonData){
-                    pagesListFromPLVC = x
-                }else{
-                    print("WARNING: COULDN'T UNWRAP JSON DATA TO FIND PAGELIST")
-                }
-            }
-            viewDidLoad()
-        }
+        
         
         if let url = try? FileManager.default.url(
             for: .documentDirectory,
@@ -456,13 +400,7 @@ class JournalViewController: UIViewController {
     var selectedCell: Int?
     var uniqueIdOfCardToShow: UUID?
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "fromCalendarShowCardSegue"{
-            if let targetController = segue.destination as? SwitchPageTimelineViewController{
-                targetController.pageID = cardsForSelectedDate[selectedCell!].pageID
-                targetController.uniqueIdOfCardToShow = self.uniqueIdOfCardToShow
-                self.uniqueIdOfCardToShow=nil
-            }
-        }
+        
         if segue.identifier == "showJournalFullViewSegue"{
             if let targetController = segue.destination as? journalCardFullViewViewController{
                 targetController.type = cardsForSelectedDate[selectedCell!].type
@@ -623,12 +561,12 @@ extension JournalViewController: UITableViewDataSource, UITableViewDelegate{
             return cell
         }
         switch cardsForSelectedDate[indexPath.row].type {
-        case .small:
-            return setSmallCardCell(tableView, cellForRowAt: indexPath)
-        case .big:
-            return setBigCardCell(tableView, cellForRowAt: indexPath)
-        case .media:
-            return setMediaCardCell(tableView, cellForRowAt: indexPath)
+//        case .small:
+//            return setSmallCardCell(tableView, cellForRowAt: indexPath)
+//        case .big:
+//            return setBigCardCell(tableView, cellForRowAt: indexPath)
+//        case .media:
+//            return setMediaCardCell(tableView, cellForRowAt: indexPath)
         case .notes:
             return setNotesCardCell(tableView, cellForRowAt: indexPath)
         case .journalMedia:
@@ -643,68 +581,7 @@ extension JournalViewController: UITableViewDataSource, UITableViewDelegate{
         return UITableViewCell()
     }
     
-    func setSmallCardCell(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell{
-        let cell = tableView.dequeueReusableCell(withIdentifier: "smallCardCell", for: indexPath) as! ScardTimelineTableViewCell
-        cell.selectionStyle = .none
-        cell.delegate=self
-        cell.showLinkDelegate=self
-        cell.sizeType = self.sizeType
-        cell.indexpath = indexPath
-        cell.row = indexPath.row
-        cell.backgroundColor = .clear
-        cell.card=cardsForSelectedDate[indexPath.row].smallCard?.card
-        if let done = cell.card?.isDone{
-            cell.isDone = done
-        }
-        cell.awakeFromNib()
-        cell.checkBox.isUserInteractionEnabled=false
-        cell.titleTextView.isEditable=false
-        cell.notesTextView.isEditable=false
-        cell.linkView.isUserInteractionEnabled=true
-        cell.linkView.tintColor =  UIColor(named: "calendarAccent") ?? UIColor.red
-        cell.checkBox.tintColor =  UIColor(named: "calendarAccent") ?? UIColor.red
-        return cell
-    }
-    func setBigCardCell(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell{
-        let cell = tableView.dequeueReusableCell(withIdentifier: "bigCardCell", for: indexPath) as! BigcardTimelineTableViewCell
-        cell.selectionStyle = .none
-        cell.delegate=self
-        cell.showLinkDelegate=self
-        cell.sizeType = self.sizeType
-        cell.indexpath=indexPath
-        cell.row = indexPath.row
-        cell.backgroundColor = .clear
-        cell.card=cardsForSelectedDate[indexPath.row].bigCard?.card
-//        cell.linkView.isHidden=true
-        cell.awakeFromNib()
-        cell.checkBox.isUserInteractionEnabled=false
-        //        cell.checkListTable.isUserInteractionEnabled=fal
-        cell.titleTextView.isEditable=false
-        cell.additionalView.isUserInteractionEnabled=false
-        cell.linkView.isUserInteractionEnabled=true
-        cell.linkView.tintColor =  UIColor(named: "calendarAccent") ?? UIColor.red
-        cell.checkBox.tintColor =  UIColor(named: "calendarAccent") ?? UIColor.red
-        
-        return cell
-    }
-    func setMediaCardCell(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell{
-        let cell = tableView.dequeueReusableCell(withIdentifier: "mediaCardCell", for: indexPath) as! MediaCardTableViewCell
-        cell.selectionStyle = .none
-        //reload data added to remove a bug where previous cell without image deleted in page view and new cell with image added would result in crash DO NOT REMOVE!!
-        cell.collectionView.reloadData()
-        cell.showLinkDelegate=self
-        cell.card=cardsForSelectedDate[indexPath.row].mediaCard?.card
-        cell.backgroundColor = .clear
-        cell.delegate=self
-        cell.indexpath=indexPath
-        cell.row=indexPath.row
-        cell.backgroundColor = .clear
-        cell.sizeType = self.sizeType
-//        cell.linkView.isHidden=true
-        cell.linkView.tintColor =  UIColor(named: "calendarAccent") ?? UIColor.red
-        cell.awakeFromNib()
-        return cell
-    }
+   
     func setNotesCardCell(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell{
          let cell = tableView.dequeueReusableCell(withIdentifier: "journalNotesTVC", for: indexPath) as! journalNotesTableViewCell
         cell.selectionStyle = .none
@@ -791,91 +668,8 @@ extension JournalViewController: UITableViewDataSource, UITableViewDelegate{
         self.table.deselectRow(at: indexPath, animated: false)
     }
 }
-extension JournalViewController: myUpdateCellHeightDelegate{
-    func saveBigCard(with card: Card) {
-        //        let uniqueID = card.UniquIdentifier
-        //        if let cardDatas = page?.bigCards{
-        //            for ind in cardDatas.indices{
-        //                if cardDatas[ind].card.UniquIdentifier==uniqueID{
-        //                    print("found the place to save to")
-        //                    page?.bigCards[ind].card = card
-        //                }
-        //            }
-        //        }
-    }
-    //TODO: see if ever calls
-    func saveMediaCard(with card: MediaCard) {
-        //        let uniqueID = card.UniquIdentifier
-        //        if let cardDatas = page?.mediaCards{
-        //            for ind in cardDatas.indices{
-        //                if cardDatas[ind].card.UniquIdentifier==uniqueID{
-        //                    print("found the place to save to nv = \(card)")
-        //                    page?.mediaCards[ind].card = card
-        //                }
-        //            }
-        //        }
-    }
-    
-    func saveSmallCard(with card: SmallCard) {
-        //        let uniqueID = card.UniquIdentifier
-        //        if let cardDatas = page?.smallCards{
-        //            for ind in cardDatas.indices{
-        //                if cardDatas[ind].card.UniquIdentifier==uniqueID{
-        //                    page?.smallCards[ind].card = card
-        //                }
-        //            }
-        //        }
-    }
-    
-    func updated(height: CGFloat, row: Int, indexpath: IndexPath) {
-        //TODO: maybe use this stord height method, but not required
-        
-        // Disabling animations gives us our desired behaviour
-        UIView.setAnimationsEnabled(false)
-        /* These will causes table cell heights to be recaluclated,
-         without reloading the entire cell */
-        table.beginUpdates()
-        table.endUpdates()
-        // Re-enable animations
-        UIView.setAnimationsEnabled(true)
-        
-        table.scrollToRow(at: indexpath, at: .bottom, animated: false)
-    }
-}
-extension JournalViewController: timelineSwitchDelegate{
-    func switchToPageAndShowCard(with uniqueID: UUID) {
-        print("inside switchToPageAndShowCard")
-        self.navigationController?.setNavigationBarHidden(false, animated: true)
-        self.uniqueIdOfCardToShow=uniqueID
-        cardsForSelectedDate.indices.forEach{ (ind) in
-            let tlcard = cardsForSelectedDate[ind]
-            if let card = tlcard.bigCard{
-                if card.card.UniquIdentifier == uniqueID{
-                    selectedCell=ind
-                    print("gonna perform segue with cell at \(selectedCell!)")
-                    performSegue(withIdentifier: "fromCalendarShowCardSegue", sender: self)
-                    return
-                }
-            }
-            if let card = tlcard.smallCard{
-                if card.card.UniquIdentifier == uniqueID{
-                    selectedCell=ind
-                    print("gonna perform segue with cell at \(selectedCell!)")
-                    performSegue(withIdentifier: "fromCalendarShowCardSegue", sender: self)
-                    return
-                }
-            }
-            if let card = tlcard.mediaCard{
-                if card.card.UniquIdentifier == uniqueID{
-                    selectedCell=ind
-                    print("gonna perform segue with cell at \(selectedCell!)")
-                    performSegue(withIdentifier: "fromCalendarShowCardSegue", sender: self)
-                    return
-                }
-            }
-        }
-    }
-}
+
+
 extension JournalViewController: addCardInJournalProtocol{
     
     func showJournalFullView(at index: IndexPath) {
@@ -925,7 +719,7 @@ extension JournalViewController: addCardInJournalProtocol{
     
     func addMediaCell() {
         print("inside addMediaCell")
-        let card = journalCard(type: .journalMedia, dateInCal:  selectedDate, journalMediaCard: mediaJournalCard() , pageID: nil)
+        let card = journalCard(type: .journalMedia, dateInCal:  selectedDate, journalMediaCard: mediaJournalCard() )
         journalEntryCards.append(card)
         setupData()
         setupSelectedDate()
@@ -1033,7 +827,7 @@ extension JournalViewController: addCardInJournalProtocol{
     
     func addWrittenEntry() {
         print("inside addWrittenEntry")
-        let card = journalCard(type: .notes, dateInCal: selectedDate,journalNotesCard: noteJournalCard() , pageID: nil)
+        let card = journalCard(type: .notes, dateInCal: selectedDate,journalNotesCard: noteJournalCard())
         journalEntryCards.append(card)
         setupData()
         setupSelectedDate()
@@ -1061,7 +855,7 @@ extension JournalViewController: addCardInJournalProtocol{
     
     func addLocationEntry() {
         print("inside addLocationEntry")
-        let card = journalCard(type: .journalLocation, dateInCal:  selectedDate, journalLocationCard: locationJournalCard() , pageID: nil)
+        let card = journalCard(type: .journalLocation, dateInCal:  selectedDate, journalLocationCard: locationJournalCard())
         journalEntryCards.append(card)
         setupData()
         setupSelectedDate()
