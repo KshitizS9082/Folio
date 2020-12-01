@@ -4188,6 +4188,10 @@
                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
                             <inset key="sectionInset" minX="20" minY="0.0" maxX="20" maxY="0.0"/>
                         </collectionViewFlowLayout>
+                        <imageView key="backgroundView" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="kanbanListBG" id="Obv-Iz-Bri">
+                            <rect key="frame" x="0.0" y="-88" width="414" height="896"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        </imageView>
                         <cells>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="kanbanCell" id="s6S-gz-wMu" customClass="BoardCollectionViewCell" customModule="Folio" customModuleProvider="target">
                                 <rect key="frame" x="20" y="62.666666666666664" width="350" height="600"/>
@@ -4597,6 +4601,9 @@
                     </collectionView>
                     <tabBarItem key="tabBarItem" title="Kanban" image="list.bullet.rectangle" catalog="system" id="eSz-WC-eAU"/>
                     <navigationItem key="navigationItem" id="Dfd-v1-tcO"/>
+                    <connections>
+                        <outlet property="backgroundImageView" destination="Obv-Iz-Bri" id="xDH-0w-qG3"/>
+                    </connections>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ts9-Yk-qhr" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -4610,6 +4617,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="kanbanListBG" translatesAutoresizingMaskIntoConstraints="NO" id="Y9N-QO-R8q">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                            </imageView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="O6F-6b-L0G">
                                 <rect key="frame" x="0.0" y="88" width="414" height="676"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -4905,8 +4915,12 @@
                         <viewLayoutGuide key="safeArea" id="X0d-RG-MKb"/>
                         <color key="backgroundColor" systemColor="systemGray6Color"/>
                         <constraints>
+                            <constraint firstItem="Y9N-QO-R8q" firstAttribute="leading" secondItem="X0d-RG-MKb" secondAttribute="leading" id="2AW-Zu-YEA"/>
+                            <constraint firstAttribute="top" secondItem="Y9N-QO-R8q" secondAttribute="top" id="KCn-Ob-blM"/>
                             <constraint firstItem="X0d-RG-MKb" firstAttribute="trailing" secondItem="O6F-6b-L0G" secondAttribute="trailing" id="NYI-T0-VAX"/>
                             <constraint firstItem="O6F-6b-L0G" firstAttribute="top" secondItem="X0d-RG-MKb" secondAttribute="top" id="Nao-oA-NZ3"/>
+                            <constraint firstItem="Y9N-QO-R8q" firstAttribute="bottom" secondItem="bZ1-aA-U4K" secondAttribute="bottom" id="epp-ZZ-rXY"/>
+                            <constraint firstItem="X0d-RG-MKb" firstAttribute="trailing" secondItem="Y9N-QO-R8q" secondAttribute="trailing" id="gSy-ZP-MJS"/>
                             <constraint firstItem="O6F-6b-L0G" firstAttribute="leading" secondItem="X0d-RG-MKb" secondAttribute="leading" id="jcP-BT-qlD"/>
                             <constraint firstItem="X0d-RG-MKb" firstAttribute="bottom" secondItem="O6F-6b-L0G" secondAttribute="bottom" id="zP6-oB-CdR"/>
                         </constraints>
@@ -4915,6 +4929,7 @@
                     <toolbarItems/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="backgroundImageView" destination="Y9N-QO-R8q" id="6ZF-IG-dKF"/>
                         <outlet property="tableView" destination="O6F-6b-L0G" id="bdS-j4-H6E"/>
                     </connections>
                 </viewController>
@@ -4968,7 +4983,7 @@
                                 <rect key="frame" x="0.0" y="138" width="414" height="724"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="customPageCell" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="KanbanListCell" id="X1U-5u-x5u" customClass="KanbanListTableViewCell" customModule="Folio" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="customPageCell" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="KanbanListCell" id="X1U-5u-x5u" customClass="KanbanListTableViewCell" customModule="Folio" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="414" height="99.333335876464844"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="X1U-5u-x5u" id="AZB-30-eNO">
@@ -5715,7 +5730,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="C1M-k7-2I7"/>
+        <segue reference="JDV-1P-lBh"/>
         <segue reference="262-yF-jhR"/>
         <segue reference="IQB-IT-bw5"/>
     </inferredMetricsTieBreakers>

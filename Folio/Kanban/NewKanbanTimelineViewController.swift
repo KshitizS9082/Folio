@@ -17,6 +17,11 @@ class NewKanbanTimelineViewController: UIViewController {
     var kanban = Kanban()
     var allCards = [KanbanCard]()
     var sortStyle = SortStyle.scheduleDate
+    @IBOutlet weak var backgroundImageView: UIImageView!{
+        didSet{
+            backgroundImageView.addBlurEffect()
+        }
+    }
     @IBOutlet weak var tableView: UITableView!{
         didSet{
             tableView.dataSource=self
@@ -87,11 +92,35 @@ class NewKanbanTimelineViewController: UIViewController {
             viewDidLoad()
             tableView.reloadData()
         }
+        
+        if let wallpath = self.kanban.wallpaperPath{
+            DispatchQueue.global(qos: .background).async {
+            print("got wall path")
+                if let url = try? FileManager.default.url(
+                    for: .documentDirectory,
+                    in: .userDomainMask,
+                    appropriateFor: nil,
+                    create: true
+                ).appendingPathComponent(wallpath){
+                    if let jsonData = try? Data(contentsOf: url){
+                        if let extract = imageData(json: jsonData){
+                            let x=extract.data
+                            if let image = UIImage(data: x){
+                                print("got the background image")
+                                DispatchQueue.main.async {
+//                                    self.previewImageView.image = image
+                                    self.backgroundImageView.image = image
+                                }
+                            }
+                        }else{
+                            print("couldnt get json from URL")
+                        }
+                    }
+                }
+            }
+        }
     }
     
-    func editTimelineTapped(){
-        
-    }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "newKanbanTimelineSegueID"{

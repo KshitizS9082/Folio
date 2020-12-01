@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import ImagePicker
 
 class switchKanbanTimelineTabBarController: UITabBarController, UITabBarControllerDelegate {
     var boardFileName = "Inster File Name SKTTC"
@@ -87,6 +88,8 @@ class switchKanbanTimelineTabBarController: UITabBarController, UITabBarControll
         if let vc = self.selectedViewController as? NewKanbanTimelineViewController{
             print("NewKanbanTimelineViewController identified")
             editTimelinePressed(vc: vc, barButton: sender)
+        }else if let vc = self.selectedViewController as? BoardCollectionViewController{
+            editBoardPressed(vc: vc, barButton: sender)
         }
     }
     func editTimelinePressed(vc: NewKanbanTimelineViewController, barButton: UIBarButtonItem){
@@ -121,5 +124,135 @@ class switchKanbanTimelineTabBarController: UITabBarController, UITabBarControll
         alert.popoverPresentationController?.barButtonItem = barButton
         self.present(alert, animated: true, completion: nil)
     }
+    func editBoardPressed(vc: BoardCollectionViewController, barButton: UIBarButtonItem){
+        let changeWall = UIAlertAction(title: "Change Wallpaper",
+                                       style: .default) { (action) in
+            self.setWallpaper(vc: vc)
+        }
+        let unsetWall = UIAlertAction(title: "Unset Wallpaper",
+                                      style: .default) { (action) in
+            self.deleteWallpaper(vc: vc)
+            
+        }
+//        let sortDateofConstruct = UIAlertAction(title: "Sort By Date of Construction",
+//                                      style: .default) { (action) in
+//
+//        }
+        let cancelAction = UIAlertAction(title: "Cancel",
+                                         style: .cancel) { (action) in
+                                            // Respond to user selection of the action
+        }
+        
+        let alert = UIAlertController(title: "Edit Board",
+                                      message: "Edit Board",
+                                      preferredStyle: .actionSheet)
+        alert.addAction(changeWall)
+        alert.addAction(unsetWall)
+//        alert.addAction(sortDateofConstruct)
+        alert.addAction(cancelAction)
+        // On iPad, action sheets must be presented from a popover.
+        alert.popoverPresentationController?.barButtonItem = barButton
+        self.present(alert, animated: true, completion: nil)
 
+    }
+    var BoardCVC: BoardCollectionViewController?
+    func setWallpaper(vc: BoardCollectionViewController){
+        self.BoardCVC=vc
+        let imagePickerController = ImagePickerController()
+        imagePickerController.imageLimit = 1
+        imagePickerController.delegate = self
+        self.present(imagePickerController, animated: true, completion: nil)
+        
+    }
+    func deleteWallpaper(vc: BoardCollectionViewController){
+        //delete old wallpaper
+        vc.deleteWallPaper()
+        vc.viewWillAppear(false)
+    }
+}
+extension switchKanbanTimelineTabBarController: ImagePickerDelegate{
+    func wrapperDidPress(_ imagePicker: ImagePickerController, images: [UIImage]) {
+        imagePicker.expandGalleryView()
+    }
+    
+    func doneButtonDidPress(_ imagePicker: ImagePickerController, images: [UIImage]) {
+        let fileName=String.uniqueFilename(withPrefix: "kabanWallPaperImageData")+".json"
+        if images.count==0{
+            print("no image returned")
+            return
+        }
+        let image = images[0]
+        if let json = imageData(instData: image.pngData()!).json {
+            if let url = try? FileManager.default.url(
+                for: .documentDirectory,
+                in: .userDomainMask,
+                appropriateFor: nil,
+                create: true
+            ).appendingPathComponent(fileName){
+                do {
+                    /*
+                    //delete old wallpaper
+                    if let oldPath = self.BoardCVC?.kanban.wallpaperPath{
+                        if let oldurl = try? FileManager.default.url(
+                            for: .documentDirectory,
+                            in: .userDomainMask,
+                            appropriateFor: nil,
+                            create: true
+                        ).appendingPathComponent(oldPath){
+                            let fileNameToDelete = "myFileName.txt"
+                            var filePath = ""
+                            
+                            // Fine documents directory on device
+                            let dirs : [String] = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.allDomainsMask, true)
+                            
+                            if dirs.count > 0 {
+                                let dir = dirs[0] //documents directory
+                                filePath = dir.appendingFormat("/" + fileNameToDelete)
+                                print("Local path = \(filePath)")
+                            } else {
+                                print("Could not find local directory to store file")
+                                return
+                            }
+                            
+                            let fileManager = FileManager.default
+                            // Check if file exists
+                            if fileManager.fileExists(atPath: filePath) {
+                                print("old File exists now trying to delete")
+                                do{
+                                    try FileManager.default.removeItem(at: oldurl)
+                                    print("deleted item \(oldurl) succefully")
+                                } catch{
+                                    print("ERROR: item  at \(oldurl) couldn't be deleted")
+                                    return
+                                }
+                            } else {
+                                print("File does not exist")
+                            }
+                            
+                            
+                        }
+                    }
+                    */
+                    self.BoardCVC?.deleteWallPaper()
+                    try json.write(to: url)
+                    print ("saved kanban wall successfully with name \(fileName)")
+                    self.BoardCVC?.kanban.wallpaperPath=fileName
+                    self.BoardCVC?.save()
+                    self.BoardCVC?.viewWillAppear(false)
+                } catch let error {
+                    print ("couldn't save \(error)")
+                }
+            }
+        }
+        imagePicker.dismiss(animated: true, completion: nil)
+//        BoardCVC.kanban.wallpaperPath=path
+//        BoardCVC.viewWillAppear(false)
+    }
+    
+    func cancelButtonDidPress(_ imagePicker: ImagePickerController) {
+        imagePicker.dismiss(animated: true, completion: nil)
+        
+    }
+    
+    
 }

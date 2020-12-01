@@ -18,6 +18,11 @@ class BoardCollectionViewController: UICollectionViewController {
             self.viewWillAppear(false)
         }
     }
+//    var wallpaperPath: String?{
+//        didSet{
+//            self.viewWillAppear(false)
+//        }
+//    }
     var kanban = Kanban()
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,6 +40,24 @@ class BoardCollectionViewController: UICollectionViewController {
             return
         }
         layout.itemSize = CGSize(width: 300, height: size.height * 0.75)
+    }
+    func deleteWallPaper(){
+        if let oldPath = self.kanban.wallpaperPath{
+            if let oldurl = try? FileManager.default.url(
+                for: .documentDirectory,
+                in: .userDomainMask,
+                appropriateFor: nil,
+                create: true
+            ).appendingPathComponent(oldPath){
+                do{
+                    try FileManager.default.removeItem(at: oldurl)
+                    print("deleted item \(oldurl) succefully")
+                } catch{
+                    print("ERROR: item  at \(oldurl) couldn't be deleted")
+                    return
+                }
+            }
+        }
     }
     
     @IBAction func addList(_ sender: UIButton) {
@@ -56,6 +79,11 @@ class BoardCollectionViewController: UICollectionViewController {
         
         alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         present(alertController, animated: true)
+    }
+    @IBOutlet weak var backgroundImageView: UIImageView!{
+        didSet{
+            backgroundImageView.addBlurEffect()
+        }
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -107,7 +135,7 @@ class BoardCollectionViewController: UICollectionViewController {
 
     }
     override func viewWillAppear(_ animated: Bool) {
-        print("viewwilalal boardvcv")
+        print("viewwilalal boardvcv: \(self)")
         if let url = try? FileManager.default.url(
             for: .documentDirectory,
             in: .userDomainMask,
@@ -126,6 +154,34 @@ class BoardCollectionViewController: UICollectionViewController {
             viewDidLoad()
             collectionView.reloadData()
         }
+//        print("wallp: \(self.kanban.wallpaperPath)")
+        if let wallpath = self.kanban.wallpaperPath{
+            DispatchQueue.global(qos: .background).async {
+            print("got wall path")
+                if let url = try? FileManager.default.url(
+                    for: .documentDirectory,
+                    in: .userDomainMask,
+                    appropriateFor: nil,
+                    create: true
+                ).appendingPathComponent(wallpath){
+                    if let jsonData = try? Data(contentsOf: url){
+                        if let extract = imageData(json: jsonData){
+                            let x=extract.data
+                            if let image = UIImage(data: x){
+                                print("got the background image")
+                                DispatchQueue.main.async {
+//                                    self.previewImageView.image = image
+                                    self.backgroundImageView.image = image
+                                }
+                            }
+                        }else{
+                            print("couldnt get json from URL")
+                        }
+                    }
+                }
+            }
+        }
+        print("ended wall")
     }
 }
 

@@ -15,6 +15,7 @@ struct Kanban: Codable{
 //            Board(title: "third", items: []),
 //            Board(title: "fourth", items: [KanbanCard(title: "Database Migration"),KanbanCard(title: "Schema Design"),KanbanCard(title: "Storage Management"),KanbanCard(title: "Model Abstraction")])
 //        ]
+    var wallpaperPath: String?
     var boards = [Board]()
     init(){
     }
