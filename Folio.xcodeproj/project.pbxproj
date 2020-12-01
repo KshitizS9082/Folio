@@ -30,9 +30,7 @@
 		E25B0E9D247C010C004F3BDA /* JournalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E25B0E9C247C010C004F3BDA /* JournalViewController.swift */; };
 		E25BA4FF24716DC0000D1DF7 /* ImagePickerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E25BA4FE24716DC0000D1DF7 /* ImagePickerManager.swift */; };
 		E25BA50624721F93000D1DF7 /* ThumbCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E25BA50024721F91000D1DF7 /* ThumbCell.swift */; };
-		E25BA50724721F93000D1DF7 /* SCardCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E25BA50124721F92000D1DF7 /* SCardCollectionViewCell.xib */; };
 		E25BA50824721F93000D1DF7 /* GalleryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E25BA50224721F92000D1DF7 /* GalleryViewController.swift */; };
-		E25BA50924721F93000D1DF7 /* SCardCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E25BA50324721F92000D1DF7 /* SCardCollectionViewCell.swift */; };
 		E25BA50A24721F93000D1DF7 /* Extensions0.swift in Sources */ = {isa = PBXBuildFile; fileRef = E25BA50424721F92000D1DF7 /* Extensions0.swift */; };
 		E25BA50B24721F93000D1DF7 /* GalleryFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = E25BA50524721F93000D1DF7 /* GalleryFlowLayout.swift */; };
 		E25BA50D2472285F000D1DF7 /* pickImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E25BA50C2472285F000D1DF7 /* pickImage.swift */; };
@@ -139,9 +137,7 @@
 		E25B0E9C247C010C004F3BDA /* JournalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalViewController.swift; sourceTree = "<group>"; };
 		E25BA4FE24716DC0000D1DF7 /* ImagePickerManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagePickerManager.swift; sourceTree = "<group>"; };
 		E25BA50024721F91000D1DF7 /* ThumbCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThumbCell.swift; sourceTree = "<group>"; };
-		E25BA50124721F92000D1DF7 /* SCardCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SCardCollectionViewCell.xib; sourceTree = "<group>"; };
 		E25BA50224721F92000D1DF7 /* GalleryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GalleryViewController.swift; sourceTree = "<group>"; };
-		E25BA50324721F92000D1DF7 /* SCardCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SCardCollectionViewCell.swift; sourceTree = "<group>"; };
 		E25BA50424721F92000D1DF7 /* Extensions0.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions0.swift; sourceTree = "<group>"; };
 		E25BA50524721F93000D1DF7 /* GalleryFlowLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GalleryFlowLayout.swift; sourceTree = "<group>"; };
 		E25BA50C2472285F000D1DF7 /* pickImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = pickImage.swift; sourceTree = "<group>"; };
@@ -279,6 +275,7 @@
 				E252B04C246C4041003F8718 /* ViewController.swift */,
 				E2771B8124B2FC3E00EF3BED /* WalletStatsViewController.swift */,
 				E252B04E246C4041003F8718 /* Main.storyboard */,
+				E252B084246C45F2003F8718 /* ImagedData.swift */,
 				E2D728EA25347C8B00D77702 /* Kanban */,
 				E252B08A246C4640003F8718 /* Model */,
 				E2DD7A2A24AD964100F9DF27 /* Settings */,
@@ -345,7 +342,6 @@
 		E252B08A246C4640003F8718 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				E252B084246C45F2003F8718 /* ImagedData.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -358,8 +354,6 @@
 				E25BA50524721F93000D1DF7 /* GalleryFlowLayout.swift */,
 				E25BA50224721F92000D1DF7 /* GalleryViewController.swift */,
 				E25BA50C2472285F000D1DF7 /* pickImage.swift */,
-				E25BA50324721F92000D1DF7 /* SCardCollectionViewCell.swift */,
-				E25BA50124721F92000D1DF7 /* SCardCollectionViewCell.xib */,
 				E25BA50024721F91000D1DF7 /* ThumbCell.swift */,
 			);
 			path = "Media Card Items";
@@ -553,7 +547,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E25BA50724721F93000D1DF7 /* SCardCollectionViewCell.xib in Resources */,
 				E252B055246C4044003F8718 /* LaunchScreen.storyboard in Resources */,
 				E252B052246C4044003F8718 /* Assets.xcassets in Resources */,
 				E252B050246C4041003F8718 /* Main.storyboard in Resources */,
@@ -718,7 +711,6 @@
 				E252B04B246C4041003F8718 /* SceneDelegate.swift in Sources */,
 				E252B07C246C44DF003F8718 /* textViewPlaceholder.swift in Sources */,
 				E2A942092490B7FE003716A2 /* settingsViewController.swift in Sources */,
-				E25BA50924721F93000D1DF7 /* SCardCollectionViewCell.swift in Sources */,
 				E2E1525E2486426700079B79 /* habiCardData.swift in Sources */,
 				E216884F2475965500D079A4 /* DrawingView.swift in Sources */,
 				E25BA50B24721F93000D1DF7 /* GalleryFlowLayout.swift in Sources */,
