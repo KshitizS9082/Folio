@@ -113,7 +113,25 @@ class JournalViewController: UIViewController {
     var showHabitCards = true
     var showWalletCards = true
     
-    @IBOutlet weak var calendarView: JTAppleCalendarView!
+    @IBOutlet weak var backgroundImageView: UIImageView!{
+        didSet{
+            backgroundImageView.addBlurEffect()
+        }
+    }
+    
+    
+    @IBOutlet weak var calendarView: JTAppleCalendarView!{
+        didSet{
+//            calendarView.layer.cornerRadius = 10
+//            calendarView.layer.masksToBounds=true
+//            calendarView.backgroundColor = .clear
+//            let blurEffect = UIBlurEffect(style: UIBlurEffect.Style.systemThinMaterial)
+//            let blurEffectView = UIVisualEffectView(effect: blurEffect)
+//            blurEffectView.frame = calendarView.bounds
+//            blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+//            calendarView.addSubview(blurEffectView)
+        }
+    }
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var constraint: NSLayoutConstraint!
     @IBOutlet weak var toggleCalendarButton: UIBarButtonItem!
@@ -295,7 +313,7 @@ class JournalViewController: UIViewController {
            table.register(UINib(nibName: "ScardTimelineTableViewCell", bundle: nil), forCellReuseIdentifier: "smallCardCell")
            table.register(UINib(nibName: "BigcardTimelineTableViewCell", bundle: nil), forCellReuseIdentifier: "bigCardCell")
            table.register(UINib(nibName: "MediaCardTableViewCell", bundle: nil), forCellReuseIdentifier: "mediaCardCell")
-           table.backgroundColor = pageColor
+//           table.backgroundColor = pageColor
            table.rowHeight = UITableView.automaticDimension
        }
     @objc func handlePinch(pinch: UIPinchGestureRecognizer){
@@ -338,7 +356,7 @@ class JournalViewController: UIViewController {
         navigationController?.hidesBarsOnSwipe=true
         let attrs = [
             NSAttributedString.Key.foregroundColor: UIColor(named: "calendarAccent") ?? UIColor.red,
-            NSAttributedString.Key.font: UIFont(name: "SnellRoundhand-Black", size: 30)!
+            NSAttributedString.Key.font: UIFont(name: "HelveticaNeue-Bold", size: 30)!
         ]
 
 //        UINavigationBar.appearance().titleTextAttributes = attrs

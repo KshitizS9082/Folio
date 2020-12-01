@@ -13,7 +13,13 @@ class wallletTabBarController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupMiddleButton()
-        // Do any additional setup after loading the view.
+//        self.tabBar.isTranslucent=true
+//        let blurEffect = UIBlurEffect(style: .systemUltraThinMaterialDark)
+//        let blurEffectView = UIVisualEffectView(effect: blurEffect)
+//        blurEffectView.frame = self.tabBar.frame
+////        blurView.layer.masksToBounds=true
+////        self.view.addSubview(blurEffectView)
+//        self.tabBar.addSubview(blurEffectView)
     }
     
     // TabBarButton – Setup Middle Button

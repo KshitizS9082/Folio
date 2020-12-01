@@ -10,7 +10,23 @@ import UIKit
 
 class addEntryInJournalTableViewCell: UITableViewCell {
     
-    @IBOutlet weak var cardBackgrounView: UIView!
+    @IBOutlet weak var cardBackgrounView: UIView!{
+        didSet{
+            cardBackgrounView.layer.cornerRadius = 10
+            cardBackgrounView.layer.masksToBounds=true
+            cardBackgrounView.backgroundColor = .clear
+//            //Draw shaddow for layer
+//            cardBackgroundView.layer.shadowColor = UIColor.systemGray6.cgColor
+//            cardBackgroundView.layer.shadowOffset = CGSize(width: 0.0, height: 3.0)
+//            cardBackgroundView.layer.shadowRadius = 3.0
+//            cardBackgroundView.layer.shadowOpacity = 0.2
+            let blurEffect = UIBlurEffect(style: UIBlurEffect.Style.systemThinMaterial)
+            let blurEffectView = UIVisualEffectView(effect: blurEffect)
+            blurEffectView.frame = cardBackgrounView.bounds
+            blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+            cardBackgrounView.addSubview(blurEffectView)
+        }
+    }
     
     @IBOutlet weak var addTextIV: UIImageView!{
         didSet{
@@ -36,7 +52,7 @@ class addEntryInJournalTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         cardBackgrounView.layer.cornerRadius = ivCornerRadius
-        cardBackgrounView.backgroundColor = cardBackgrounViewColor
+//        cardBackgrounView.backgroundColor = cardBackgrounViewColor
         
         addTextIV.tintColor = ivTintColor
         addTextIV.backgroundColor = ivBackgroundColor

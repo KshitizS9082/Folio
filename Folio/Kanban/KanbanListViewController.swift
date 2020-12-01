@@ -37,6 +37,11 @@ class KanbanListViewController: UIViewController, UITableViewDataSource, UITable
 
         // Do any additional setup after loading the view.
     }
+    @IBOutlet weak var backgroundImageView: UIImageView!{
+        didSet{
+            backgroundImageView.addBlurEffect()
+        }
+    }
     @IBOutlet weak var tableView: UITableView!{
         didSet{
             tableView.dataSource=self
@@ -108,7 +113,7 @@ class KanbanListViewController: UIViewController, UITableViewDataSource, UITable
         navigationController?.navigationBar.isTranslucent = true
         let attrs = [
             NSAttributedString.Key.foregroundColor: UIColor.systemGray,
-            NSAttributedString.Key.font: UIFont(name: "SnellRoundhand-Black", size: 30)!
+            NSAttributedString.Key.font: UIFont(name: "HelveticaNeue-Bold", size: 30)!
         ]
         self.navigationController?.navigationBar.titleTextAttributes = attrs
         

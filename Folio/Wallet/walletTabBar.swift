@@ -15,7 +15,7 @@ class walletTabBar: UITabBar {
         let shapeLayer = CAShapeLayer()
         shapeLayer.path = createPath()
         shapeLayer.strokeColor = UIColor.systemGray4.cgColor
-        shapeLayer.fillColor = UIColor.systemBackground.cgColor
+        shapeLayer.fillColor = UIColor.systemBackground.withAlphaComponent(0.9).cgColor
         shapeLayer.lineWidth = 1.0
         
         //The below 4 lines are for shadow above the bar. you can skip them if you do not want a shadow
@@ -38,16 +38,20 @@ class walletTabBar: UITabBar {
         let height: CGFloat = 37.0
         let path = UIBezierPath()
         let centerWidth = self.frame.width / 2
-        path.move(to: CGPoint(x: 0, y: 0)) // start top left
+        path.move(to: CGPoint(x: 0, y: height)) // start top left
+        path.addCurve(to: CGPoint(x: height, y: 0), controlPoint1: CGPoint(x: 0, y: 0), controlPoint2: CGPoint(x: height, y: 0))
+        
         path.addLine(to: CGPoint(x: (centerWidth - height * 2), y: 0)) // the beginning of the trough
 
+        //central curve around plus button
         path.addCurve(to: CGPoint(x: centerWidth, y: height),
         controlPoint1: CGPoint(x: (centerWidth - 30), y: 0), controlPoint2: CGPoint(x: centerWidth - 35, y: height))
 
         path.addCurve(to: CGPoint(x: (centerWidth + height * 2), y: 0),
         controlPoint1: CGPoint(x: centerWidth + 35, y: height), controlPoint2: CGPoint(x: (centerWidth + 30), y: 0))
 
-        path.addLine(to: CGPoint(x: self.frame.width, y: 0))
+        path.addLine(to: CGPoint(x: self.frame.width-height, y: 0))
+        path.addCurve(to: CGPoint(x: self.frame.width, y: height), controlPoint1: CGPoint(x: self.frame.width, y: 0), controlPoint2: CGPoint(x: self.frame.width, y: height))
         path.addLine(to: CGPoint(x: self.frame.width, y: self.frame.height))
         path.addLine(to: CGPoint(x: 0, y: self.frame.height))
         path.close()

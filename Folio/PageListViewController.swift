@@ -192,7 +192,7 @@ class PageListViewController: UIViewController {
         navigationController?.navigationBar.isTranslucent = true
         let attrs = [
             NSAttributedString.Key.foregroundColor: UIColor.systemGray,
-            NSAttributedString.Key.font: UIFont(name: "SnellRoundhand-Black", size: 30)!
+            NSAttributedString.Key.font: UIFont(name: "HelveticaNeue-Bold", size: 30)!
         ]
         self.navigationController?.navigationBar.titleTextAttributes = attrs
         

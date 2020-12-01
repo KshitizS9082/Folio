@@ -66,29 +66,43 @@ class walletViewController: UIViewController {
     var walletData = WalletData()
     override func viewDidLoad() {
         super.viewDidLoad()
-//        calculateCurrentBalance()
-        let blurEffect = UIBlurEffect(style: .systemThinMaterial)
-        let blurEffectView = UIVisualEffectView(effect: blurEffect)
-        blurEffectView.frame = self.view.frame
-        blurView.layer.masksToBounds=true
-        self.blurView.addSubview(blurEffectView)
+        
     }
-//    override func viewDidAppear(_ animated: Bool) {
-//        self.navigationController?.hidesBarsOnSwipe=true
-//    }
-//    override func viewDidDisappear(_ animated: Bool) {
-//        self.navigationController?.hidesBarsOnSwipe=false
-//    }
     
-    @IBOutlet weak var blurView: UIView!
+    @IBOutlet weak var backgroundImageView: UIImageView!{
+        didSet{
+            backgroundImageView.addBlurEffect()
+        }
+    }
+    
+//    @IBOutlet weak var blurView: UIView!
     @IBOutlet weak var balanceView: UIView!{
         didSet{
-            balanceView.layer.cornerRadius=15
+            balanceView.layer.cornerRadius=10
             //Draw shaddow for layer
-            balanceView.layer.shadowColor = UIColor.gray.cgColor
-            balanceView.layer.shadowOffset = CGSize(width: 0.0, height: 0.0)
-            balanceView.layer.shadowRadius = 5.0
-            balanceView.layer.shadowOpacity = 0.2
+//            balanceView.layer.shadowColor = UIColor.gray.cgColor
+//            balanceView.layer.shadowOffset = CGSize(width: 0.0, height: 15.0)
+//            balanceView.layer.shadowRadius = 15.0
+//            balanceView.layer.shadowOpacity = 0.8
+            balanceView.layer.masksToBounds=true
+            
+            let blurContView = UIView()
+            blurContView.frame = balanceView.bounds
+            balanceView.addSubview(blurContView)
+            balanceView.sendSubviewToBack(blurContView)
+            blurContView.layer.cornerRadius = 10
+            blurContView.layer.masksToBounds=true
+            
+//            balanceView.layer.cornerRadius = 10
+            
+            balanceView.backgroundColor = .clear
+            let blurEffect = UIBlurEffect(style: UIBlurEffect.Style.systemChromeMaterial)
+            let blurEffectView = UIVisualEffectView(effect: blurEffect)
+            blurEffectView.frame = blurContView.bounds
+            blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+            
+            blurContView.addSubview(blurEffectView)
+            blurContView.sendSubviewToBack(blurEffectView)
         }
     }
     @IBOutlet weak var balanceLabel: UILabel!
@@ -105,7 +119,7 @@ class walletViewController: UIViewController {
         didSet{
             table.dataSource=self
             table.delegate=self
-            table.layer.masksToBounds=false
+//            table.layer.masksToBounds=false
         }
     }
     @IBOutlet weak var dateSelectedImageView: UIImageView!{
@@ -223,8 +237,8 @@ class walletViewController: UIViewController {
         navigationController?.navigationBar.shadowImage = UIImage()
         navigationController?.navigationBar.isTranslucent = true
         let attrs = [
-            NSAttributedString.Key.foregroundColor: UIColor.systemBlue ,
-            NSAttributedString.Key.font: UIFont(name: "SnellRoundhand-Black", size: 30)!
+            NSAttributedString.Key.foregroundColor: UIColor.black,
+            NSAttributedString.Key.font: UIFont(name: "HelveticaNeue-Bold", size: 30)!
         ]
         self.navigationController?.navigationBar.titleTextAttributes = attrs
         
@@ -439,14 +453,30 @@ extension walletViewController: UITableViewDataSource, UITableViewDelegate{
 //        view.valueLabel.text=String(sum)
         //        return view
         let headerView = UIView.init(frame: CGRect.init(x: 0, y: 0, width: tableView.frame.width, height: 40))
-        headerView.backgroundColor = UIColor.systemBackground
+        headerView.backgroundColor = UIColor.clear
+        
+//        let blurEffect = UIBlurEffect(style: UIBlurEffect.Style.systemThickMaterial)
+//        let blurEffectView = UIVisualEffectView(effect: blurEffect)
+//        let hvbounds = headerView.bounds
+//        blurEffectView.frame = CGRect(x: hvbounds.minX+5, y: hvbounds.minY+5, width: hvbounds.width-10, height: hvbounds.height-10)
+//        blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+//        blurEffectView.layer.cornerRadius=10
+//        blurEffectView.layer.masksToBounds=true
+//        headerView.addSubview(blurEffectView)
+        
         let label = UILabel()
-        label.frame = CGRect.init(x: 20, y: 6, width: headerView.frame.width-10, height: headerView.frame.height-10)
-        label.font = UIFont.boldSystemFont(ofSize: 20.0)
+        label.frame = CGRect.init(x: 20, y: 10, width: headerView.frame.width-10, height: headerView.frame.height-10)
+        label.font = UIFont.boldSystemFont(ofSize: 25.0)
         let date =  self.walletEntryArray[section].0
         let formatter = DateFormatter()
         formatter.dateStyle = .medium
-        label.text = formatter.string(from: date)
+        if Calendar.current.isDateInToday(date){
+            label.text="Today"
+        }else if Calendar.current.isDateInYesterday(date){
+            label.text="Yesterday"
+        }else{
+            label.text = formatter.string(from: date)
+        }
         headerView.addSubview(label)
         
         let valueLabel = UILabel()
@@ -456,10 +486,8 @@ extension walletViewController: UITableViewDataSource, UITableViewDelegate{
         }
         [
             valueLabel.rightAnchor.constraint(equalTo: headerView.safeAreaLayoutGuide.rightAnchor, constant: -25),
-//            valueLabel.topAnchor.constraint(equalTo:headerView.safeAreaLayoutGuide.topAnchor, constant: 15),
-//            valueLabel.bottomAnchor.constraint(equalTo: headerView.safeAreaLayoutGuide.bottomAnchor, constant: -15)
-            valueLabel.centerYAnchor.constraint(equalTo: label.centerYAnchor)
-            //            ,label.rightAnchor.constraint(equalTo: safeAreaLayoutGuide.rightAnchor, constant: 25)
+//            valueLabel.centerYAnchor.constraint(equalTo: label.centerYAnchor)
+            valueLabel.bottomAnchor.constraint(equalTo: label.bottomAnchor)
             ].forEach { (cst) in
                 cst.isActive=true
         }
@@ -514,4 +542,57 @@ extension walletViewController: UITableViewDataSource, UITableViewDelegate{
         let configuration = UISwipeActionsConfiguration(actions: [action])
         return configuration
     }
+    
+    //for rounded corner grouped sections
+//    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+//            let cornerRadius : CGFloat = 15.0
+//            cell.backgroundColor = UIColor.clear
+//            let layer: CAShapeLayer = CAShapeLayer()
+//            let pathRef:CGMutablePath = CGMutablePath()
+//            let bounds: CGRect = cell.bounds.insetBy(dx:0,dy:0)
+//            var addLine: Bool = false
+//
+//            if (indexPath.row == 0 && indexPath.row == tableView.numberOfRows(inSection: indexPath.section)-1) {
+//                pathRef.addRoundedRect(in: bounds, cornerWidth: cornerRadius, cornerHeight: cornerRadius)
+//                // CGPathAddRoundedRect(pathRef, nil, bounds, cornerRadius, cornerRadius)
+//            } else if (indexPath.row == 0) {
+//
+//                pathRef.move(to: CGPoint(x: bounds.minX, y: bounds.maxY))
+//                pathRef.addArc(tangent1End: CGPoint(x: bounds.minX, y: bounds.minY), tangent2End: CGPoint(x: bounds.midX, y: bounds.midY), radius: cornerRadius)
+//                pathRef.addArc(tangent1End: CGPoint(x: bounds.maxX, y: bounds.minY), tangent2End: CGPoint(x: bounds.maxX, y: bounds.midY), radius: cornerRadius)
+//                pathRef.addLine(to:CGPoint(x: bounds.maxX, y: bounds.maxY) )
+//
+//                addLine = true
+//            } else if (indexPath.row == tableView.numberOfRows(inSection: indexPath.section)-1) {
+//
+//
+//                pathRef.move(to: CGPoint(x: bounds.minX, y: bounds.minY), transform: CGAffineTransform())
+//                //                    CGPathMoveToPoint(pathRef, nil, CGRectGetMinX(bounds), CGRectGetMaxY(bounds))
+//                pathRef.addArc(tangent1End: CGPoint(x: bounds.minX, y: bounds.maxY), tangent2End: CGPoint(x: bounds.midX, y: bounds.maxY), radius: cornerRadius)
+//                pathRef.addArc(tangent1End: CGPoint(x: bounds.maxX, y: bounds.maxY), tangent2End: CGPoint(x: bounds.maxX, y: bounds.midY), radius: cornerRadius)
+//                pathRef.addLine(to:CGPoint(x: bounds.maxX, y: bounds.minY) )
+//
+//
+//            } else {
+//                pathRef.addRect(bounds)
+//
+//                addLine = true
+//            }
+//
+//            layer.path = pathRef
+//            layer.fillColor = UIColor(red: 255/255.0, green: 255/255.0, blue: 255/255.0, alpha: 0.8).cgColor
+//
+//            if (addLine == true) {
+//                let lineLayer: CALayer = CALayer()
+//                let lineHeight: CGFloat = (1.0 / UIScreen.main.scale)
+//                lineLayer.frame = CGRect(x:bounds.minX + 10 , y:bounds.size.height-lineHeight, width:bounds.size.width-10, height:lineHeight)
+//                lineLayer.backgroundColor = tableView.separatorColor?.cgColor
+//                layer.addSublayer(lineLayer)
+//            }
+//            let testView: UIView = UIView(frame: bounds)
+//            testView.layer.insertSublayer(layer, at: 0)
+//            testView.backgroundColor = UIColor.clear
+//            cell.backgroundView = testView
+//
+//        }
 }

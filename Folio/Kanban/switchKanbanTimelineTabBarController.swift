@@ -36,7 +36,7 @@ class switchKanbanTimelineTabBarController: UITabBarController, UITabBarControll
         
         let attrs = [
             NSAttributedString.Key.foregroundColor: UIColor.systemGray ,
-            NSAttributedString.Key.font: UIFont(name: "SnellRoundhand-Black", size: 30)!
+            NSAttributedString.Key.font: UIFont(name: "HelveticaNeue-Bold", size: 30)!
         ]
         self.navigationController?.navigationBar.titleTextAttributes = attrs
         self.navigationController?.title = self.boardName
@@ -57,7 +57,7 @@ class switchKanbanTimelineTabBarController: UITabBarController, UITabBarControll
     override func viewWillDisappear(_ animated: Bool) {
         navigationController?.navigationBar.setBackgroundImage(nil, for: .default)
         navigationController?.navigationBar.shadowImage = nil
-        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black, NSAttributedString.Key.font: UIFont(name: "SnellRoundhand-Black", size: 30)!]
+        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black, NSAttributedString.Key.font: UIFont(name: "HelveticaNeue-Bold", size: 30)!]
         print("vwlds")
         if let vc = self.selectedViewController as? BoardCollectionViewController{
             vc.save()

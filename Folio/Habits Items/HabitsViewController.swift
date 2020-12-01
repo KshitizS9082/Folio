@@ -83,7 +83,7 @@ class HabitsViewController: UIViewController {
         
         let attrs = [
             NSAttributedString.Key.foregroundColor: UIColor.systemTeal ,
-            NSAttributedString.Key.font: UIFont(name: "SnellRoundhand-Black", size: 30)!
+            NSAttributedString.Key.font: UIFont(name: "HelveticaNeue-Bold", size: 30)!
         ]
         self.navigationController?.navigationBar.titleTextAttributes = attrs
         

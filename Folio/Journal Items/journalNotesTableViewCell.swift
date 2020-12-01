@@ -29,11 +29,18 @@ class journalNotesTableViewCell: UITableViewCell, UITextViewDelegate {
     @IBOutlet weak var cardBackgroundView: UIView!{
         didSet{
             cardBackgroundView.layer.cornerRadius = 10
-            //Draw shaddow for layer
-            cardBackgroundView.layer.shadowColor = UIColor.gray.cgColor
-            cardBackgroundView.layer.shadowOffset = CGSize(width: 0.0, height: 0.0)
-            cardBackgroundView.layer.shadowRadius = 5.0
-            cardBackgroundView.layer.shadowOpacity = 0.2
+            cardBackgroundView.layer.masksToBounds=true
+            cardBackgroundView.backgroundColor = .clear
+//            //Draw shaddow for layer
+//            cardBackgroundView.layer.shadowColor = UIColor.systemGray6.cgColor
+//            cardBackgroundView.layer.shadowOffset = CGSize(width: 0.0, height: 3.0)
+//            cardBackgroundView.layer.shadowRadius = 3.0
+//            cardBackgroundView.layer.shadowOpacity = 0.2
+            let blurEffect = UIBlurEffect(style: UIBlurEffect.Style.systemThinMaterial)
+            let blurEffectView = UIVisualEffectView(effect: blurEffect)
+            blurEffectView.frame = cardBackgroundView.bounds
+            blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+            cardBackgroundView.addSubview(blurEffectView)
         }
     }
     override func awakeFromNib() {

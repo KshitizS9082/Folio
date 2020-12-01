@@ -64,6 +64,12 @@ class WalletStatsViewController: UIViewController {
         }
     }
     var rangeWalletEntrieAeeay = [(Date, [walletEntry])]()
+    
+    @IBOutlet weak var backgroundImageView: UIImageView!{
+        didSet{
+            backgroundImageView.addBlurEffect()
+        }
+    }
     @IBOutlet weak var table: UITableView!{
         didSet{
             table.dataSource=self
@@ -76,6 +82,19 @@ class WalletStatsViewController: UIViewController {
             startDateLabel.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(startDateSelector)))
         }
     }
+    @IBOutlet weak var startDateBackGround: UIView!{
+        didSet{
+            startDateBackGround.layer.cornerRadius = 23
+            startDateBackGround.layer.masksToBounds=true
+            startDateBackGround.backgroundColor = .clear
+            let blurEffect = UIBlurEffect(style: UIBlurEffect.Style.systemChromeMaterial)
+            let blurEffectView = UIVisualEffectView(effect: blurEffect)
+            blurEffectView.frame = startDateBackGround.bounds
+            blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+            startDateBackGround.addSubview(blurEffectView)
+        }
+    }
+    
     @objc func startDateSelector(){
         print("start date selection")
         let myDatePicker: UIDatePicker = UIDatePicker()
@@ -116,6 +135,19 @@ class WalletStatsViewController: UIViewController {
             endDateLabel.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(endDateSelector)))
         }
     }
+    @IBOutlet weak var endDateBackGround: UIView!{
+        didSet{
+            endDateBackGround.layer.cornerRadius = 23
+            endDateBackGround.layer.masksToBounds=true
+            endDateBackGround.backgroundColor = .clear
+            let blurEffect = UIBlurEffect(style: UIBlurEffect.Style.systemChromeMaterial)
+            let blurEffectView = UIVisualEffectView(effect: blurEffect)
+            blurEffectView.frame = endDateBackGround.bounds
+            blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+            endDateBackGround.addSubview(blurEffectView)
+        }
+    }
+    
     @objc func endDateSelector(){
         print("start date selection")
         let myDatePicker: UIDatePicker = UIDatePicker()
@@ -157,8 +189,8 @@ class WalletStatsViewController: UIViewController {
         navigationController?.navigationBar.shadowImage = UIImage()
         navigationController?.navigationBar.isTranslucent = true
         let attrs = [
-            NSAttributedString.Key.foregroundColor: UIColor.systemBlue ,
-            NSAttributedString.Key.font: UIFont(name: "SnellRoundhand-Black", size: 30)!
+            NSAttributedString.Key.foregroundColor: UIColor.black,
+            NSAttributedString.Key.font: UIFont(name: "HelveticaNeue-Bold", size: 30)!
         ]
         self.navigationController?.navigationBar.titleTextAttributes = attrs
         
@@ -195,6 +227,7 @@ extension WalletStatsViewController: UITableViewDelegate, UITableViewDataSource{
             let cell = tableView.dequeueReusableCell(withIdentifier: "cashFlowTVCIdent") as! cashFlowTableViewCell
             cell.rangeWalletEntrieAeeay = self.rangeWalletEntrieAeeay
             cell.awakeFromNib()
+            cell.backgroundColor = .clear
             return cell
         case 1:
             let cell = tableView.dequeueReusableCell(withIdentifier: "balGraphIdentifier") as! balanceGraphTableViewCell
@@ -202,6 +235,7 @@ extension WalletStatsViewController: UITableViewDelegate, UITableViewDataSource{
             cell.startDate=self.startDate
             cell.endDate=self.endDate
             cell.setupChartData()
+            cell.backgroundColor = .clear
             return cell
         case 2:
             let cell = tableView.dequeueReusableCell(withIdentifier: "incomeCell") as! piChartTableViewCell
@@ -209,6 +243,7 @@ extension WalletStatsViewController: UITableViewDelegate, UITableViewDataSource{
             cell.rangeWalletEntrieAeeay = self.rangeWalletEntrieAeeay
             cell.setupChartData()
             cell.awakeFromNib()
+            cell.backgroundColor = .clear
             return cell
         case 3:
             let cell = tableView.dequeueReusableCell(withIdentifier: "incomeCell") as! piChartTableViewCell
@@ -216,6 +251,7 @@ extension WalletStatsViewController: UITableViewDelegate, UITableViewDataSource{
             cell.rangeWalletEntrieAeeay = self.rangeWalletEntrieAeeay
             cell.setupChartData()
             cell.awakeFromNib()
+            cell.backgroundColor = .clear
             return cell
         default:
             let cell = UITableViewCell()
@@ -231,15 +267,24 @@ class balanceGraphTableViewCell: UITableViewCell,ChartViewDelegate {
         didSet{
             cardBackgroundView.layer.cornerRadius=15
             //Draw shaddow for layer
-            cardBackgroundView.layer.shadowColor = UIColor.gray.cgColor
-            cardBackgroundView.layer.shadowOffset = CGSize(width: 0.0, height: 2.0)
-            cardBackgroundView.layer.shadowRadius = 6.0
-            cardBackgroundView.layer.shadowOpacity = 0.4
+//            cardBackgroundView.layer.shadowColor = UIColor.gray.cgColor
+//            cardBackgroundView.layer.shadowOffset = CGSize(width: 0.0, height: 2.0)
+//            cardBackgroundView.layer.shadowRadius = 6.0
+//            cardBackgroundView.layer.shadowOpacity = 0.4
+            cardBackgroundView.layer.masksToBounds=true
+            cardBackgroundView.backgroundColor = .clear
+            let blurEffect = UIBlurEffect(style: UIBlurEffect.Style.systemChromeMaterial)
+            let blurEffectView = UIVisualEffectView(effect: blurEffect)
+            blurEffectView.frame = cardBackgroundView.bounds
+            blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+            cardBackgroundView.addSubview(blurEffectView)
+            cardBackgroundView.sendSubviewToBack(blurEffectView)
         }
     }
     @IBOutlet weak var lineChartView: LineChartView!{
         didSet{
-            self.lineChartView.backgroundColor = UIColor(named: "smallCardColor")
+//            self.lineChartView.backgroundColor = UIColor(named: "smallCardColor")
+            self.lineChartView.backgroundColor = .clear
 //            self.lineChartView.layer.cornerRadius = chartCornerRadius
 //            self.lineChartView.layer.masksToBounds = false
 //            self.lineChartView.layer.shadowColor = UIColor.gray.cgColor
@@ -376,10 +421,19 @@ class cashFlowTableViewCell: UITableViewCell{
         didSet{
             cardBackgroundView.layer.cornerRadius=15
             //Draw shaddow for layer
-            cardBackgroundView.layer.shadowColor = UIColor.gray.cgColor
-            cardBackgroundView.layer.shadowOffset = CGSize(width: 0.0, height: 2.0)
-            cardBackgroundView.layer.shadowRadius = 6.0
-            cardBackgroundView.layer.shadowOpacity = 0.4
+//            cardBackgroundView.layer.shadowColor = UIColor.gray.cgColor
+//            cardBackgroundView.layer.shadowOffset = CGSize(width: 0.0, height: 2.0)
+//            cardBackgroundView.layer.shadowRadius = 6.0
+//            cardBackgroundView.layer.shadowOpacity = 0.4
+            
+            cardBackgroundView.layer.masksToBounds=true
+            cardBackgroundView.backgroundColor = .clear
+            let blurEffect = UIBlurEffect(style: UIBlurEffect.Style.systemChromeMaterial)
+            let blurEffectView = UIVisualEffectView(effect: blurEffect)
+            blurEffectView.frame = cardBackgroundView.bounds
+            blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+            cardBackgroundView.addSubview(blurEffectView)
+            cardBackgroundView.sendSubviewToBack(blurEffectView)
         }
     }
     @IBOutlet weak var flowValueLabel: UILabel!
@@ -469,12 +523,21 @@ class piChartTableViewCell: UITableViewCell, ChartViewDelegate{
             didSet{
                 cardBackgroundView.layer.cornerRadius=15
                 //Draw shaddow for layer
-                cardBackgroundView.layer.shadowColor = UIColor.gray.cgColor
-                cardBackgroundView.layer.shadowOffset = CGSize(width: 0.0, height: 2.0)
-                cardBackgroundView.layer.shadowRadius = 6.0
-                cardBackgroundView.layer.shadowOpacity = 0.4
+                //                cardBackgroundView.layer.shadowColor = UIColor.gray.cgColor
+                //                cardBackgroundView.layer.shadowOffset = CGSize(width: 0.0, height: 2.0)
+                //                cardBackgroundView.layer.shadowRadius = 6.0
+                //                cardBackgroundView.layer.shadowOpacity = 0.4
+                
+                cardBackgroundView.layer.masksToBounds=true
+                cardBackgroundView.backgroundColor = .clear
+                let blurEffect = UIBlurEffect(style: UIBlurEffect.Style.systemChromeMaterial)
+                let blurEffectView = UIVisualEffectView(effect: blurEffect)
+                blurEffectView.frame = cardBackgroundView.bounds
+                blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+                cardBackgroundView.addSubview(blurEffectView)
+                cardBackgroundView.sendSubviewToBack(blurEffectView)
             }
-        }
+    }
     @IBOutlet weak var pieChartView: PieChartView!{
         didSet{
             pieChartView.delegate=self
