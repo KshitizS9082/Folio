@@ -39,7 +39,7 @@ class BoardCollectionViewController: UICollectionViewController {
         guard let layout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout else {
             return
         }
-        layout.itemSize = CGSize(width: 300, height: size.height * 0.75)
+        layout.itemSize = CGSize(width: 300, height: size.height * 0.8)
     }
     func deleteWallPaper(){
         if let oldPath = self.kanban.wallpaperPath{

@@ -36,6 +36,18 @@ class CardPreviewViewController: UIViewController {
         
         
     }
+    @IBOutlet weak var backgroundView: UIView!{
+        didSet{
+            backgroundView.layer.masksToBounds=true
+            backgroundView.backgroundColor = .clear
+            let blurEffect = UIBlurEffect(style: UIBlurEffect.Style.systemChromeMaterial)
+            let blurEffectView = UIVisualEffectView(effect: blurEffect)
+            blurEffectView.frame = backgroundView.bounds
+            blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+            backgroundView.addSubview(blurEffectView)
+            backgroundView.sendSubviewToBack(blurEffectView)
+        }
+    }
     @IBOutlet weak var tableView: UITableView!{
         didSet{
             tableView.dataSource=self
