@@ -88,7 +88,6 @@ class BoardCollectionViewCell: UICollectionViewCell {
                 self.tableView.layoutIfNeeded()
             }
         }
-        print("did increase height")
     }
 }
 

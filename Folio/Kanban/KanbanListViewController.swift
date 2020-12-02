@@ -33,8 +33,8 @@ class KanbanListViewController: UIViewController, UITableViewDataSource, UITable
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        // register for notifications when the keyboard appears:
+        NotificationCenter.default.addObserver( self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
     }
     @IBOutlet weak var backgroundImageView: UIImageView!{
         didSet{
@@ -136,5 +136,17 @@ class KanbanListViewController: UIViewController, UITableViewDataSource, UITable
     }
     override func viewWillDisappear(_ animated: Bool) {
         save()
+    }
+    @objc func keyboardWillShow( note:NSNotification ){
+        // read the CGRect from the notification (if any)
+        if let newFrame = (note.userInfo?[ UIResponder.keyboardFrameEndUserInfoKey ] as? NSValue)?.cgRectValue {
+            let insets = UIEdgeInsets( top: 0, left: 0, bottom: newFrame.height, right: 0 )
+            tableView.contentInset = insets
+            tableView.scrollIndicatorInsets = insets
+            UIView.animate(withDuration: 0.25) {
+                self.tableView.layoutIfNeeded()
+                self.tableView.layoutIfNeeded()
+            }
+        }
     }
 }

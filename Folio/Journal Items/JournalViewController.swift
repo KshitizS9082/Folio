@@ -49,7 +49,7 @@ struct journalCardList: Codable{
 struct noteJournalCard: Codable {
     var UniquIdentifier = UUID()
 //    var dateOfCreation = Date()
-    var notesText = "Notes Text of noteJournalCard is like this can you handle this long string when it exceedes your limit by a lot of texts"
+    var notesText = "Notes Text goes here"
     var subNotesText = "SubNotes goes here"
 }
 struct locationJournalCard: Codable {
@@ -150,12 +150,16 @@ class JournalViewController: UIViewController {
         NotificationCenter.default.addObserver( self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
     }
     @objc func keyboardWillShow( note:NSNotification ){
+        print("asasasas did show keyboard")
         // read the CGRect from the notification (if any)
         if let newFrame = (note.userInfo?[ UIResponder.keyboardFrameEndUserInfoKey ] as? NSValue)?.cgRectValue {
-            print("increease by \(newFrame.height)")
             let insets = UIEdgeInsets( top: 0, left: 0, bottom: newFrame.height, right: 0 )
             table.contentInset = insets
             table.scrollIndicatorInsets = insets
+            UIView.animate(withDuration: 0.25) {
+                self.table.layoutIfNeeded()
+                self.table.layoutIfNeeded()
+            }
         }
     }
     

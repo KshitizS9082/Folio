@@ -27,7 +27,23 @@ class journalCardFullViewViewController: UIViewController, UITableViewDataSource
         }
     }
     
-
+    override func viewDidLoad() {
+        // register for notifications when the keyboard appears:
+        NotificationCenter.default.addObserver( self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
+    }
+    @objc func keyboardWillShow( note:NSNotification ){
+        // read the CGRect from the notification (if any)
+        if let newFrame = (note.userInfo?[ UIResponder.keyboardFrameEndUserInfoKey ] as? NSValue)?.cgRectValue {
+            let insets = UIEdgeInsets( top: 0, left: 0, bottom: newFrame.height, right: 0 )
+            table.contentInset = insets
+            table.scrollIndicatorInsets = insets
+            UIView.animate(withDuration: 0.25) {
+                self.table.layoutIfNeeded()
+                self.table.layoutIfNeeded()
+            }
+        }
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if self.type == journalCardType.notes{
             return 2
