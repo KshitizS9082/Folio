@@ -24,6 +24,7 @@ class addHabbitReminderValueTableViewCell: UITableViewCell {
             switchButton.setOn(false, animated: false)
             segment.isUserInteractionEnabled=false
             segment.layer.opacity = 0.5
+            datePicker.isHidden=true
             datePickerHeightConstraint.constant=0
             stackViewHeightConstraint.constant=0
             stackViewVertSpaceToDateConstraint.constant=0
@@ -31,7 +32,12 @@ class addHabbitReminderValueTableViewCell: UITableViewCell {
             switchButton.setOn(true, animated: false)
             segment.isUserInteractionEnabled=true
             segment.layer.opacity = 1.0
-            datePickerHeightConstraint.constant=125
+            datePicker.isHidden=false
+            if #available(iOS 14, *){
+                datePickerHeightConstraint.constant = 35
+            }else{
+                datePickerHeightConstraint.constant = 200
+            }
             switch segment.selectedSegmentIndex {
             case 0:
                 stackViewHeightConstraint.constant=33
@@ -77,7 +83,12 @@ class addHabbitReminderValueTableViewCell: UITableViewCell {
             } else {
                 print("notifications are enabled")
             }
-            datePickerHeightConstraint.constant=125
+            datePicker.isHidden=false
+            if #available(iOS 14, *){
+                datePickerHeightConstraint.constant = 35
+            }else{
+                datePickerHeightConstraint.constant = 200
+            }
             segment.isUserInteractionEnabled=true
             segment.layer.opacity = 1.0
             stackViewHeightConstraint.constant=0
@@ -99,6 +110,7 @@ class addHabbitReminderValueTableViewCell: UITableViewCell {
                 print("ERROR: unhandled index in addHabbitReminderValueTableViewCell")
             }
         }else{
+            datePicker.isHidden=true
             datePickerHeightConstraint.constant=0
             stackViewHeightConstraint.constant=0
             stackViewVertSpaceToDateConstraint.constant=0

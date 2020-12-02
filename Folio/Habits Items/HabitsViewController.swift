@@ -38,6 +38,11 @@ class HabitsViewController: UIViewController {
     var archivedHabits: HabitsData?
     var currentlyShowingType = 0 //0 for curetn habits, 1 for archived
     @IBOutlet weak var table: UITableView!
+    @IBOutlet weak var backgroundImageView: UIImageView!{
+        didSet{
+            backgroundImageView.addBlurEffect()
+        }
+    }
     
     @IBOutlet weak var tableTopConstraint: NSLayoutConstraint!
     @IBAction func switchArchive(_ sender: UIBarButtonItem) {

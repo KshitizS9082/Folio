@@ -21,7 +21,25 @@ class habitTableViewCell: UITableViewCell {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var currentCountLabel: UILabel!
     @IBOutlet weak var streakLabel: UILabel!
-    @IBOutlet weak var cardBackgroundView: UIView!
+    @IBOutlet weak var cardBackgroundView: UIView!{
+        didSet{
+            self.cardBackgroundView.layer.cornerRadius=cornerRadius
+            //Draw shaddow for layer
+//            cardBackgroundView.layer.shadowColor = UIColor.gray.cgColor
+//            cardBackgroundView.layer.shadowOffset = CGSize(width: 0.0, height: 3.0)
+//            cardBackgroundView.layer.shadowRadius = 3.0
+//            cardBackgroundView.layer.shadowOpacity = 0.2
+            
+            cardBackgroundView.layer.masksToBounds=true
+            cardBackgroundView.backgroundColor = .clear
+            let blurEffect = UIBlurEffect(style: UIBlurEffect.Style.systemChromeMaterial)
+            let blurEffectView = UIVisualEffectView(effect: blurEffect)
+            blurEffectView.frame = cardBackgroundView.bounds
+            blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+            cardBackgroundView.addSubview(blurEffectView)
+            cardBackgroundView.sendSubviewToBack(blurEffectView)
+        }
+    }
     @IBOutlet weak var stepper: UIStepper!
     @IBOutlet weak var calendar: JTAppleCalendarView!{
         didSet{
@@ -98,12 +116,7 @@ class habitTableViewCell: UITableViewCell {
         super.awakeFromNib()
         print("called awake from nib")
         self.contentView.isUserInteractionEnabled=true
-        self.cardBackgroundView.layer.cornerRadius=cornerRadius
-        //Draw shaddow for layer
-        cardBackgroundView.layer.shadowColor = UIColor.gray.cgColor
-        cardBackgroundView.layer.shadowOffset = CGSize(width: 0.0, height: 3.0)
-        cardBackgroundView.layer.shadowRadius = 3.0
-        cardBackgroundView.layer.shadowOpacity = 0.2
+        
         //set calendar
         self.calendar.reloadData(withanchor: self.selectedDate)
         calendar.scrollDirection = .horizontal

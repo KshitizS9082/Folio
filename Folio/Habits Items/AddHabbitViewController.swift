@@ -31,6 +31,18 @@ class AddHabbitViewController: UIViewController {
         }
     }
     @IBOutlet weak var table: UITableView!
+    @IBOutlet weak var backgroundView: UIView!{
+        didSet{
+            backgroundView.layer.masksToBounds=true
+            backgroundView.backgroundColor = .clear
+            let blurEffect = UIBlurEffect(style: UIBlurEffect.Style.systemChromeMaterial)
+            let blurEffectView = UIVisualEffectView(effect: blurEffect)
+            blurEffectView.frame = backgroundView.bounds
+            blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+            backgroundView.addSubview(blurEffectView)
+            backgroundView.sendSubviewToBack(blurEffectView)
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -177,25 +189,25 @@ extension AddHabbitViewController: UITableViewDataSource, UITableViewDelegate{
             let cell = tableView.dequeueReusableCell(withIdentifier: "titleCellIdentifier") as! addHabbitTitleTableViewCell
             cell.delegate=self
             cell.selectionStyle = .none
-            cell.backgroundColor = UIColor(named: "myBackgroundColor")
+//            cell.backgroundColor = UIColor(named: "myBackgroundColor")
             return cell
         case 1:
             let cell = tableView.dequeueReusableCell(withIdentifier: "habitStyleCellIdentifier") as! addHabbitStyleTableViewCell
             cell.delegate=self
             cell.selectionStyle = .none
-            cell.backgroundColor = UIColor(named: "myBackgroundColor")
+//            cell.backgroundColor = UIColor(named: "myBackgroundColor")
             return cell
         case 2:
             let cell = tableView.dequeueReusableCell(withIdentifier: "goalPeriodCellIdentifier") as! addHabbitGoalPeriodTableViewCell
             cell.delegate=self
             cell.selectionStyle = .none
-            cell.backgroundColor = UIColor(named: "myBackgroundColor")
+//            cell.backgroundColor = UIColor(named: "myBackgroundColor")
             return cell
         case 3:
             let cell = tableView.dequeueReusableCell(withIdentifier: "goalCountCellIdentifier") as! addHabbitGoalCountTableViewCell
             cell.delegate=self
             cell.selectionStyle = .none
-            cell.backgroundColor = UIColor(named: "myBackgroundColor")
+//            cell.backgroundColor = UIColor(named: "myBackgroundColor")
             return cell
         case 4:
             let cell = tableView.dequeueReusableCell(withIdentifier: "reminderValuesCellIdentifier") as! addHabbitReminderValueTableViewCell
@@ -203,7 +215,7 @@ extension AddHabbitViewController: UITableViewDataSource, UITableViewDelegate{
             cell.index = indexPath
             cell.selectionStyle = .none
             cell.reminderValue = card.reminderValue
-            cell.backgroundColor = UIColor(named: "myBackgroundColor")
+//            cell.backgroundColor = UIColor(named: "myBackgroundColor")
             return cell
         case 5:
             let cell = tableView.dequeueReusableCell(withIdentifier: "targetDateCellIdentifier") as! addHabbitTargetDateTableViewCell
@@ -211,7 +223,7 @@ extension AddHabbitViewController: UITableViewDataSource, UITableViewDelegate{
             cell.selectionStyle = .none
             cell.targetDate=card.targetDate
             cell.index=indexPath
-            cell.backgroundColor = UIColor(named: "myBackgroundColor")
+//            cell.backgroundColor = UIColor(named: "myBackgroundColor")
             return cell
         default:
             return UITableViewCell()

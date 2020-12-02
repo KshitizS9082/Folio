@@ -18,11 +18,17 @@ var delegate: addHabiitVCProtocol?
     override func awakeFromNib() {
         super.awakeFromNib()
         if targetDate==nil{
+            datePicker.isHidden=true
             datePickerHeightAnchor.constant=0
             switchButton.setOn(false, animated: false)
             delegate?.updated(indexpath: index)
         }else{
-            datePickerHeightAnchor.constant=150
+            datePicker.isHidden=false
+            if #available(iOS 14, *){
+                datePickerHeightAnchor.constant = 35
+            }else{
+                datePickerHeightAnchor.constant = 200
+            }
             switchButton.setOn(true, animated: false)
             delegate?.updated(indexpath: index)
         }
@@ -31,11 +37,17 @@ var delegate: addHabiitVCProtocol?
 
     @IBAction func switchButtonClick(_ sender: UISwitch) {
         if sender.isOn{
-            datePickerHeightAnchor.constant=150
+            datePicker.isHidden=false
+            if #available(iOS 14, *){
+                datePickerHeightAnchor.constant = 35
+            }else{
+                datePickerHeightAnchor.constant = 200
+            }
             switchButton.setOn(true, animated: false)
             delegate?.setHabitTargetDate(datePicker.date)
             delegate?.updated(indexpath: index)
         }else{
+            datePicker.isHidden=true
             datePickerHeightAnchor.constant=0
             switchButton.setOn(false, animated: false)
             delegate?.setHabitTargetDate(nil)
