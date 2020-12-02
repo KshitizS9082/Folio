@@ -443,8 +443,19 @@ class addWallEntrDateCell: UITableViewCell{
         super.setSelected(selected, animated: animated)
         if selected{
             print("is selected")
-            datePickerHeightConstraint.constant = 175-datePickerHeightConstraint.constant
-            self.delegate?.updated(indexpath: self.index, animated: true)
+//            datePickerHeightConstraint.constant = 175-datePickerHeightConstraint.constant
+            if datePickerHeightConstraint.constant==0{
+                datePicker.isHidden=false
+                if #available(iOS 14, *){
+                    datePickerHeightConstraint.constant = 35
+                }else{
+                    datePickerHeightConstraint.constant = 200
+                }
+            }else{
+                datePicker.isHidden=true
+                datePickerHeightConstraint.constant = 0
+            }
+            self.delegate?.updated(indexpath: self.index, animated: false)
             super.setSelected(false, animated: true)
         }
         // Configure the view for the selected state
