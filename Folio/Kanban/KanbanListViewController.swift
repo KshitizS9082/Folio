@@ -21,8 +21,7 @@ struct KanbanListInfo: Codable {
     }
     var json: Data? {
         return try? JSONEncoder().encode(self)
-    }
-}
+    } }
 protocol KanbanListProtcol {
     func editName(for boardFileName: String, to newName: String)
 //    func deleteBoard

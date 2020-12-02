@@ -381,6 +381,8 @@
 		E2D728EA25347C8B00D77702 /* Kanban */ = {
 			isa = PBXGroup;
 			children = (
+				E2CE17212574D358008CC2B3 /* KanbanListViewController.swift */,
+				E2CE17262574D3AC008CC2B3 /* KanbanListTableViewCell.swift */,
 				E2D728F325347CE400D77702 /* KanbanCard.swift */,
 				E2D728F825347D1B00D77702 /* Board.swift */,
 				E2D7290F25347DCA00D77702 /* BoardCollectionViewController.swift */,
@@ -388,10 +390,8 @@
 				E2D7290025347D3F00D77702 /* BoardCollectionViewCell.swift */,
 				E2D7290525347D8200D77702 /* addBoardCollectionViewCell.swift */,
 				E2D7290A25347DB600D77702 /* CardTableViewCell.swift */,
-				E2CE17262574D3AC008CC2B3 /* KanbanListTableViewCell.swift */,
 				E2D7291425347DE600D77702 /* CardPreviewViewController.swift */,
 				E274AA13254B264900A41E28 /* switchKanbanTimelineTabBarController.swift */,
-				E2CE17212574D358008CC2B3 /* KanbanListViewController.swift */,
 			);
 			path = Kanban;
 			sourceTree = "<group>";

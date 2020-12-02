@@ -181,7 +181,7 @@ class BoardCollectionViewController: UICollectionViewController {
                 }
             }
         }
-        print("ended wall")
+//        print("ended wall")
     }
 }
 
