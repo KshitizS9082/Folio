@@ -25,6 +25,20 @@ class addWalletEntryViewController: UIViewController {
     var delegate: walletProtocol?
     var entry = walletEntry()
     var isNewEntry = false //to distinguish between adding a new and editing a old
+    
+    @IBOutlet weak var backgroundView: UIView!{
+        didSet{
+            backgroundView.layer.masksToBounds=true
+            backgroundView.backgroundColor = .clear
+            let blurEffect = UIBlurEffect(style: UIBlurEffect.Style.systemChromeMaterial)
+            let blurEffectView = UIVisualEffectView(effect: blurEffect)
+            blurEffectView.frame = backgroundView.bounds
+            blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+            backgroundView.addSubview(blurEffectView)
+            backgroundView.sendSubviewToBack(blurEffectView)
+        }
+    }
+    
     @IBOutlet weak var categoryImageView: UIImageView!
     
     @IBOutlet weak var valueField: UITextField!
@@ -141,7 +155,7 @@ class addWalletEntryViewController: UIViewController {
 }
 extension addWalletEntryViewController: UITableViewDataSource, UITableViewDelegate{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 6
+        return 5
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -179,8 +193,8 @@ extension addWalletEntryViewController: UITableViewDataSource, UITableViewDelega
             cell.index = indexPath
             cell.imageURL = self.entry.imageURL
             return cell
-        case 5:
-            return UITableViewCell()
+//        case 5:
+//            return UITableViewCell()
         default:
             return UITableViewCell()
         }
