@@ -20,4 +20,18 @@ extension UIImageView
         blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight] // for supporting device rotation
         self.addSubview(blurEffectView)
     }
+    
+}
+extension UIView{
+    func addBlurEffect(with style: UIBlurEffect.Style)
+    {
+        self.layer.masksToBounds=true
+        let blurEffect = UIBlurEffect(style: style)
+        let blurEffectView = UIVisualEffectView(effect: blurEffect)
+        blurEffectView.frame = self.bounds
+
+        blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight] // for supporting device rotation
+        self.addSubview(blurEffectView)
+        self.sendSubviewToBack(blurEffectView)
+    }
 }

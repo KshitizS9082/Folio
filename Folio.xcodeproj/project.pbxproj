@@ -58,6 +58,8 @@
 		E2C1F340248579F0004A8050 /* PageListSideMenuTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2C1F33F248579F0004A8050 /* PageListSideMenuTableViewController.swift */; };
 		E2CB87F52483581B002F3E6A /* journalLocationPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2CB87F42483581B002F3E6A /* journalLocationPickerViewController.swift */; };
 		E2CCA1542577B6B200609410 /* UIButtonGradientExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2CCA1532577B6B200609410 /* UIButtonGradientExtension.swift */; };
+		E2CCA1592578D87E00609410 /* HomePageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2CCA1582578D87E00609410 /* HomePageViewController.swift */; };
+		E2CCA1612579481700609410 /* GradientExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2CCA1602579481700609410 /* GradientExtension.swift */; };
 		E2CE17222574D358008CC2B3 /* KanbanListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2CE17212574D358008CC2B3 /* KanbanListViewController.swift */; };
 		E2CE17272574D3AC008CC2B3 /* KanbanListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2CE17262574D3AC008CC2B3 /* KanbanListTableViewCell.swift */; };
 		E2CE172C257537E4008CC2B3 /* ImageViewBlurExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2CE172B257537E4008CC2B3 /* ImageViewBlurExtension.swift */; };
@@ -166,6 +168,8 @@
 		E2C1F33F248579F0004A8050 /* PageListSideMenuTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageListSideMenuTableViewController.swift; sourceTree = "<group>"; };
 		E2CB87F42483581B002F3E6A /* journalLocationPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = journalLocationPickerViewController.swift; sourceTree = "<group>"; };
 		E2CCA1532577B6B200609410 /* UIButtonGradientExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIButtonGradientExtension.swift; sourceTree = "<group>"; };
+		E2CCA1582578D87E00609410 /* HomePageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePageViewController.swift; sourceTree = "<group>"; };
+		E2CCA1602579481700609410 /* GradientExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientExtension.swift; sourceTree = "<group>"; };
 		E2CE17212574D358008CC2B3 /* KanbanListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KanbanListViewController.swift; sourceTree = "<group>"; };
 		E2CE17262574D3AC008CC2B3 /* KanbanListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KanbanListTableViewCell.swift; sourceTree = "<group>"; };
 		E2CE172B257537E4008CC2B3 /* ImageViewBlurExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ImageViewBlurExtension.swift; path = Folio/Extensions/ImageViewBlurExtension.swift; sourceTree = SOURCE_ROOT; };
@@ -275,6 +279,7 @@
 			isa = PBXGroup;
 			children = (
 				E252B04C246C4041003F8718 /* ViewController.swift */,
+				E2CCA1582578D87E00609410 /* HomePageViewController.swift */,
 				E2771B8124B2FC3E00EF3BED /* WalletStatsViewController.swift */,
 				E252B04E246C4041003F8718 /* Main.storyboard */,
 				E2D728EA25347C8B00D77702 /* Kanban */,
@@ -337,6 +342,7 @@
 				E291F00C24875B900006D147 /* weekExtractFromDate.swift */,
 				E29A5872248A695500FA7D7C /* doneToDismissTextView.swift */,
 				E2CCA1532577B6B200609410 /* UIButtonGradientExtension.swift */,
+				E2CCA1602579481700609410 /* GradientExtension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -695,6 +701,7 @@
 				E2A6F99C248FB9510041616A /* journalCardFullViewViewController.swift in Sources */,
 				E26FD6B02482AD0D004DA918 /* journalImagePickerManager.swift in Sources */,
 				E2FEE2B2247CC24200DD7069 /* DateHeader.swift in Sources */,
+				E2CCA1592578D87E00609410 /* HomePageViewController.swift in Sources */,
 				E2E152662486564C00079B79 /* addHabbitReminderValueTableViewCell.swift in Sources */,
 				E24382682490CEAC00C7F016 /* themeChooserViewController.swift in Sources */,
 				E2D7291525347DE600D77702 /* CardPreviewViewController.swift in Sources */,
@@ -740,6 +747,7 @@
 				E2CCA1542577B6B200609410 /* UIButtonGradientExtension.swift in Sources */,
 				E26FD6AD2482A4FB004DA918 /* journalLocationTableViewCell.swift in Sources */,
 				E2DD7A3224ADAB2A00F9DF27 /* wallletTabBarController.swift in Sources */,
+				E2CCA1612579481700609410 /* GradientExtension.swift in Sources */,
 				E29A5873248A695500FA7D7C /* doneToDismissTextView.swift in Sources */,
 				E2E152642486564100079B79 /* addHabbitGoalPeriodTableViewCell.swift in Sources */,
 				E25BA50824721F93000D1DF7 /* GalleryViewController.swift in Sources */,
