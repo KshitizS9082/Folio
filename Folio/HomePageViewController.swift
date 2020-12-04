@@ -140,6 +140,7 @@ class HomePageViewController: UIViewController {
         }
     }
     @IBOutlet weak var bubbleOneLabel: UILabel!
+    @IBOutlet weak var bubbleOneSubLabel: UILabel!
     
     
     @IBOutlet weak var bubbleTwoContainer: UIView!{
@@ -201,6 +202,8 @@ class HomePageViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        loadKanbanBoards()
+        setupKanbanBubbles()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -233,6 +236,7 @@ class HomePageViewController: UIViewController {
                 }
             }
     }
+        boards.removeAll()
         for ind in kanbanList.boardNames.indices{
             let fileName = kanbanList.boardFileNames[ind]
             let boardName = kanbanList.boardNames[ind]
@@ -251,9 +255,45 @@ class HomePageViewController: UIViewController {
                 }
         }
         
-       
-//            viewDidLoad()
-//            collectionView.reloadData()
+        }
+    }
+    func setupKanbanBubbles(){
+//        var tasksCounts = [String,[KanbanCard]]()
+        var tasksCounts = [(String,Int)]()
+        for tup in boards{
+            let boardName = tup.0
+            let kanbanInfo = tup.1
+            var count=0
+            for board in kanbanInfo.boards{
+                for item in board.items{
+                    if let isComplete = item.isTask, isComplete==false{
+                        count+=1
+                    }
+                }
+                tasksCounts.append((boardName,count))
+            }
+        }
+        tasksCounts.sort { (first, second) -> Bool in
+            return first.1>second.1
+        }
+        if tasksCounts.count>0{
+            subBubOneOne.isHidden=false
+            oneOneLabel.text="\(tasksCounts[0].0) : \(tasksCounts[0].1)"
+            if tasksCounts.count>1{
+                subBubOneTwo.isHidden=false
+                oneTwoLabel.text="\(tasksCounts[1].0) : \(tasksCounts[1].1)"
+                if tasksCounts.count>2{
+                    subBubOneThree.isHidden=false
+                    oneThreeLabel.text="\(tasksCounts[2].0) : \(tasksCounts[2].1)"
+                }else{
+                    subBubOneThree.isHidden=true
+                }
+            }else{
+                subBubOneTwo.isHidden=true
+            }
+            
+        }else{
+            subBubOneOne.isHidden=true
         }
     }
     

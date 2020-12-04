@@ -42,7 +42,7 @@ class PageListSideMenuTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        print("asking for count")
+//        print("asking for count")
         return 7
     }
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -68,20 +68,21 @@ class PageListSideMenuTableViewController: UITableViewController {
             let cell = tableView.dequeueReusableCell(withIdentifier: "titleCellIdentifier", for: indexPath)
             return cell
         case 1:
-            let cell = tableView.dequeueReusableCell(withIdentifier: "kanbanCellIdentifier", for: indexPath)
+            let cell = tableView.dequeueReusableCell(withIdentifier: "homeCellIdentifier", for: indexPath)
             cell.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(dismissSideMenu)))
             return cell
         case 2:
-            let cell = tableView.dequeueReusableCell(withIdentifier: "journalCellIdentifier", for: indexPath)
+            let cell = tableView.dequeueReusableCell(withIdentifier: "kanbanCellIdentifier", for: indexPath)
+//            cell.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(dismissSideMenu)))
             return cell
         case 3:
-            let cell = tableView.dequeueReusableCell(withIdentifier: "habitsCellIdentifier", for: indexPath)
+            let cell = tableView.dequeueReusableCell(withIdentifier: "journalCellIdentifier", for: indexPath)
             return cell
         case 4:
-            let cell = tableView.dequeueReusableCell(withIdentifier: "walletCellIdentifier", for: indexPath)
+            let cell = tableView.dequeueReusableCell(withIdentifier: "habitsCellIdentifier", for: indexPath)
             return cell
         case 5:
-            let cell = tableView.dequeueReusableCell(withIdentifier: "pageCellIdentifier", for: indexPath)
+            let cell = tableView.dequeueReusableCell(withIdentifier: "walletCellIdentifier", for: indexPath)
             return cell
         case 6:
         let cell = tableView.dequeueReusableCell(withIdentifier: "settingsCellIdentifier", for: indexPath)
