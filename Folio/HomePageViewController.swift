@@ -74,7 +74,12 @@ class HomePageViewController: UIViewController {
                 segmentButtons[ind].alpha=0.35
             }
         }
-        
+        if self.selectedSegment==0{
+            loadKanbanBoards()
+        }else if self.selectedSegment==3{
+            loadJournalCards()
+        }
+        animateSetup()
     }
     
     @IBOutlet weak var bubbleOne: UIImageView!{
@@ -141,6 +146,7 @@ class HomePageViewController: UIViewController {
     }
     @IBOutlet weak var bubbleOneLabel: UILabel!
     @IBOutlet weak var bubbleOneSubLabel: UILabel!
+    @IBOutlet weak var bubbleOneLeadingConstraint: NSLayoutConstraint!
     
     
     @IBOutlet weak var bubbleTwoContainer: UIView!{
@@ -184,6 +190,7 @@ class HomePageViewController: UIViewController {
     @IBOutlet weak var bubbleTwoSubLabel: UILabel!
     @IBOutlet weak var subBubTwoOneLabel: UILabel!
     @IBOutlet weak var bubbleTwoTwoLabel: UILabel!
+    @IBOutlet weak var bubbleTwoLeadingConstraint: NSLayoutConstraint!
     
     
     @IBOutlet weak var bubbleThree: UIImageView!{
@@ -233,11 +240,11 @@ class HomePageViewController: UIViewController {
     @IBOutlet weak var bubbleThreeOneLabel: UILabel!
     @IBOutlet weak var bubbleThreeTwoLabel: UILabel!
     @IBOutlet weak var bubbleThreeSubLabel: UILabel!
+    @IBOutlet weak var bubbleThreeLeadingConstraint: NSLayoutConstraint!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         loadKanbanBoards()
-        setupKanbanBubbles()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -251,6 +258,26 @@ class HomePageViewController: UIViewController {
         self.navigationController?.navigationBar.titleTextAttributes = attrs
     }
     
+    func animateSetup(){
+        UIView.animate(withDuration: 0.4, delay: 0, options: .curveEaseOut) {
+            self.bubbleOneLeadingConstraint.constant=self.bubbleOneLeadingConstraint.constant-self.backgroundImageView.frame.width
+            self.bubbleTwoLeadingConstraint.constant=self.bubbleTwoLeadingConstraint.constant+self.backgroundImageView.frame.width
+            self.bubbleThreeLeadingConstraint.constant=self.backgroundImageView.frame.width+self.bubbleThreeLeadingConstraint.constant
+            self.view.layoutIfNeeded()
+        } completion: { (bl) in
+            if self.selectedSegment==0{
+                self.setupKanbanBubbles()
+            }else if self.selectedSegment==3{
+                self.setupJournalBubbles()
+            }
+            UIView.animate(withDuration: 0.4, delay: 0, options: .curveEaseIn, animations: {
+                self.bubbleOneLeadingConstraint.constant=self.bubbleOneLeadingConstraint.constant+self.backgroundImageView.frame.width
+                self.bubbleTwoLeadingConstraint.constant=self.bubbleTwoLeadingConstraint.constant-self.backgroundImageView.frame.width
+                self.bubbleThreeLeadingConstraint.constant=self.bubbleThreeLeadingConstraint.constant-self.backgroundImageView.frame.width
+                self.view.layoutIfNeeded()
+            }, completion: nil)
+        }
+    }
     var kanbanList = KanbanListInfo()
     var boards = [(String,Kanban)]()
     func loadKanbanBoards(){
@@ -269,7 +296,7 @@ class HomePageViewController: UIViewController {
                     print("WARNING: COULDN'T UNWRAP JSON DATA TO FIND PAGELIST")
                 }
             }
-    }
+        }
         boards.removeAll()
         for ind in kanbanList.boardNames.indices{
             let fileName = kanbanList.boardFileNames[ind]
@@ -287,12 +314,10 @@ class HomePageViewController: UIViewController {
                         print("WARNING: COULDN'T UNWRAP JSON DATA TO FIND kanbanData in homepage")
                     }
                 }
-        }
-        
+            }
         }
     }
     func setupKanbanBubbles(){
-//        var tasksCounts = [String,[KanbanCard]]()
         var tasksCounts = [(String,Int)]()
         var taskTimes = [(String,Date)]()
         var taskMissed = [(String,Date)]()
@@ -320,6 +345,7 @@ class HomePageViewController: UIViewController {
         }
         
         //All incomplete tasks
+        bubbleOneLabel.text="Tasks"
         bubbleOneSubLabel.text=String(totalCount)
         tasksCounts.sort { (first, second) -> Bool in
             return first.1>second.1
@@ -348,6 +374,7 @@ class HomePageViewController: UIViewController {
         }
         
         //Events today
+        bubbleTwoLabel.text="Today"
         bubbleTwoSubLabel.text = String(taskTimes.count)
         taskTimes.sort { (first, second) -> Bool in
             return first.1<second.1
@@ -366,6 +393,7 @@ class HomePageViewController: UIViewController {
         }
         
         //Missed
+        bubbleThreeLabel.text="Missed"
         formatter.dateStyle = .short
         bubbleThreeSubLabel.text = String(taskMissed.count)
         taskMissed.sort { (first, second) -> Bool in
@@ -381,7 +409,7 @@ class HomePageViewController: UIViewController {
             subBubThreeTwo.isHidden=false
             bubbleThreeTwoLabel.text="\(formatter.string(from: taskMissed.last!.1)) : \(taskMissed.last!.0)"
         }
- 
+        
     }
     
     var journalEntryCards = [journalCard]()
@@ -402,8 +430,62 @@ class HomePageViewController: UIViewController {
                 print("error no file named journalCards.json found")
             }
         }
+        
+        
     }
-    
+    func setupJournalBubbles(){
+        var noteCards = [(String,Date)]()
+        var mediaCards = [(mediaJournalCard,Date)]()
+        var locationCount = 0
+        for card in journalEntryCards{
+            if Calendar.current.isDayInCurrentWeek(date: card.dateInCal!)!{
+                if card.type == .notes{
+                    noteCards.append((card.journalNotesCard!.notesText, card.dateInCal!))
+                }else if card.type == .journalMedia{
+                    mediaCards.append((card.journalMediaCard!, card.dateInCal!))
+                }else if card.type == .journalLocation{
+                    locationCount+=1
+                }
+            }
+        }
+        noteCards.sort { (first, second) -> Bool in
+            return first.1>second.1
+        }
+        let formatter = DateFormatter()
+        formatter.dateStyle = .short
+        
+        //Overview this week
+        bubbleOneLabel.text="This Week"
+        bubbleOneSubLabel.text=String(noteCards.count+mediaCards.count+locationCount)
+        oneOneLabel.text="Notes: \(noteCards.count)"
+        oneTwoLabel.text="Media: \(mediaCards.count)"
+        oneThreeLabel.text="Locations: \(locationCount)"
+        
+        //Notes bubble
+        bubbleTwoLabel.text="Notes"
+        bubbleTwoSubLabel.text=String(noteCards.count)
+        subBubTwoOne.isHidden=true
+        subBubTwoTwo.isHidden=true
+        if noteCards.count>0{
+            subBubTwoOne.isHidden=false
+            subBubTwoOneLabel.text="\(formatter.string(from: noteCards[0].1)) : \(noteCards[0].0)"
+        }
+        if noteCards.count>1{
+            subBubTwoTwo.isHidden=false
+            bubbleTwoTwoLabel.text="\(formatter.string(from: noteCards[1].1)) : \(noteCards[1].0)"
+        }
+        //Media Bubble
+        bubbleThreeLabel.text="Media"
+        bubbleThreeSubLabel.text=String(mediaCards.count)
+        if mediaCards.count>0{
+            subBubThreeOne.isHidden=false
+            bubbleThreeOneLabel.text="\(formatter.string(from: mediaCards[0].1)) : \(mediaCards[0].0.notesText)"
+        }
+        if mediaCards.count>1{
+            subBubThreeTwo.isHidden=false
+            bubbleThreeTwoLabel.text="\(formatter.string(from: mediaCards[1].1)) : \(mediaCards[1].0.notesText)"
+        }
+    }
     var habits = HabitsData()
     func loadHabitCards(){
         if let url = try? FileManager.default.url(
