@@ -105,7 +105,7 @@ class HomePageViewController: UIViewController {
     }
     @IBOutlet weak var subBubOneOne: UIView!{
         didSet{
-            subBubOneOne.backgroundColor = .clear
+            subBubOneOne.backgroundColor = #colorLiteral(red: 0.6126989722, green: 0.2192376256, blue: 0.2806146145, alpha: 0.4727003085)
             subBubOneOne.layer.cornerRadius=subBubOneOne.frame.height/2.0
             subBubOneOne.addBlurEffect(with: .systemThinMaterial)
         }
@@ -117,7 +117,7 @@ class HomePageViewController: UIViewController {
     }
     @IBOutlet weak var subBubOneTwo: UIView!{
         didSet{
-            subBubOneTwo.backgroundColor = .clear
+            subBubOneTwo.backgroundColor = #colorLiteral(red: 0.4769539237, green: 0.2728464603, blue: 0.3283729553, alpha: 0.5333660202)
             subBubOneTwo.layer.cornerRadius=subBubOneTwo.frame.height/2.0
             subBubOneTwo.addBlurEffect(with: .systemThinMaterial)
         }
@@ -129,7 +129,7 @@ class HomePageViewController: UIViewController {
     }
     @IBOutlet weak var subBubOneThree: UIView!{
         didSet{
-            subBubOneThree.backgroundColor = .clear
+            subBubOneThree.backgroundColor = #colorLiteral(red: 0.3883536756, green: 0.2989271879, blue: 0.3512608409, alpha: 0.4925274375)
             subBubOneThree.layer.cornerRadius=subBubOneThree.frame.height/2.0
             subBubOneThree.addBlurEffect(with: .systemThinMaterial)
         }
@@ -166,7 +166,24 @@ class HomePageViewController: UIViewController {
             bubbleTwoShadow.addBlurEffect(with: .systemUltraThinMaterial)
         }
     }
+    @IBOutlet weak var subBubTwoOne: UIView!{
+        didSet{
+            subBubTwoOne.backgroundColor = #colorLiteral(red: 0.7734910846, green: 0.5028807521, blue: 0.7306686044, alpha: 0.5197318374)
+            subBubTwoOne.layer.cornerRadius=subBubTwoOne.frame.height/2.0
+            subBubTwoOne.addBlurEffect(with: .systemThinMaterial)
+        }
+    }
+    @IBOutlet weak var subBubTwoTwo: UIView!{
+        didSet{
+            subBubTwoTwo.backgroundColor = #colorLiteral(red: 0.6391574144, green: 0.635892272, blue: 0.8690081239, alpha: 0.5820263995)
+            subBubTwoTwo.layer.cornerRadius=subBubTwoTwo.frame.height/2.0
+            subBubTwoTwo.addBlurEffect(with: .systemThinMaterial)
+        }
+    }
     @IBOutlet weak var bubbleTwoLabel: UILabel!
+    @IBOutlet weak var bubbleTwoSubLabel: UILabel!
+    @IBOutlet weak var subBubTwoOneLabel: UILabel!
+    @IBOutlet weak var bubbleTwoTwoLabel: UILabel!
     
     
     @IBOutlet weak var bubbleThree: UIImageView!{
@@ -187,6 +204,20 @@ class HomePageViewController: UIViewController {
             bubbleThreeShadowTwo.addBlurEffect(with: .systemUltraThinMaterial)
         }
     }
+    @IBOutlet weak var subBubThreeOne: UIView!{
+        didSet{
+            subBubThreeOne.backgroundColor = #colorLiteral(red: 0.2910746932, green: 0.6548274159, blue: 0.6268165708, alpha: 0.5178142825)
+            subBubThreeOne.layer.cornerRadius=subBubThreeOne.frame.height/2.0
+            subBubThreeOne.addBlurEffect(with: .systemThinMaterial)
+        }
+    }
+    @IBOutlet weak var subBubThreeTwo: UIView!{
+        didSet{
+            subBubThreeTwo.backgroundColor = #colorLiteral(red: 0.2842479944, green: 0.4911205173, blue: 0.6787464619, alpha: 0.53)
+            subBubThreeTwo.layer.cornerRadius=subBubThreeTwo.frame.height/2.0
+            subBubThreeTwo.addBlurEffect(with: .systemThinMaterial)
+        }
+    }
     @IBOutlet weak var bubbleThreeContainer: UIView!{
         didSet{
 //            bubbleOneContainer.backgroundColor = .clear
@@ -199,6 +230,9 @@ class HomePageViewController: UIViewController {
         }
     }
     @IBOutlet weak var bubbleThreeLabel: UILabel!
+    @IBOutlet weak var bubbleThreeOneLabel: UILabel!
+    @IBOutlet weak var bubbleThreeTwoLabel: UILabel!
+    @IBOutlet weak var bubbleThreeSubLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -260,29 +294,43 @@ class HomePageViewController: UIViewController {
     func setupKanbanBubbles(){
 //        var tasksCounts = [String,[KanbanCard]]()
         var tasksCounts = [(String,Int)]()
+        var taskTimes = [(String,Date)]()
+        var taskMissed = [(String,Date)]()
+        var totalCount = 0
         for tup in boards{
             let boardName = tup.0
             let kanbanInfo = tup.1
             var count=0
             for board in kanbanInfo.boards{
+                count=0
                 for item in board.items{
                     if let isComplete = item.isTask, isComplete==false{
                         count+=1
                     }
+                    if let date = item.scheduledDate, Calendar.current.isDateInToday(date){
+                        taskTimes.append((item.title, date))
+                    }
+                    if let isComplete = item.isTask, let date = item.scheduledDate, isComplete==false, date<Date() {
+                        taskMissed.append((item.title, date))
+                    }
                 }
                 tasksCounts.append((boardName,count))
+                totalCount+=count
             }
         }
+        
+        //All incomplete tasks
+        bubbleOneSubLabel.text=String(totalCount)
         tasksCounts.sort { (first, second) -> Bool in
             return first.1>second.1
         }
-        if tasksCounts.count>0{
+        if tasksCounts.count>0, tasksCounts[0].1>0{
             subBubOneOne.isHidden=false
             oneOneLabel.text="\(tasksCounts[0].0) : \(tasksCounts[0].1)"
-            if tasksCounts.count>1{
+            if tasksCounts.count>1, tasksCounts[1].1>0{
                 subBubOneTwo.isHidden=false
                 oneTwoLabel.text="\(tasksCounts[1].0) : \(tasksCounts[1].1)"
-                if tasksCounts.count>2{
+                if tasksCounts.count>2, tasksCounts[2].1>0{
                     subBubOneThree.isHidden=false
                     oneThreeLabel.text="\(tasksCounts[2].0) : \(tasksCounts[2].1)"
                 }else{
@@ -290,11 +338,50 @@ class HomePageViewController: UIViewController {
                 }
             }else{
                 subBubOneTwo.isHidden=true
+                subBubOneThree.isHidden=true
             }
             
         }else{
             subBubOneOne.isHidden=true
+            subBubOneTwo.isHidden=true
+            subBubOneThree.isHidden=true
         }
+        
+        //Events today
+        bubbleTwoSubLabel.text = String(taskTimes.count)
+        taskTimes.sort { (first, second) -> Bool in
+            return first.1<second.1
+        }
+        let formatter = DateFormatter()
+        formatter.dateFormat = "hh:mm a"
+        subBubTwoOne.isHidden=true
+        subBubTwoTwo.isHidden=true
+        if taskTimes.count>0{
+            subBubTwoOne.isHidden=false
+            subBubTwoOneLabel.text = "\(formatter.string(from: taskTimes[0].1)) : \(taskTimes[0].0)"
+        }
+        if taskTimes.count>1{
+            subBubTwoTwo.isHidden=false
+            bubbleTwoTwoLabel.text = "\(formatter.string(from: taskTimes[1].1)) : \(taskTimes[1].0)"
+        }
+        
+        //Missed
+        formatter.dateStyle = .short
+        bubbleThreeSubLabel.text = String(taskMissed.count)
+        taskMissed.sort { (first, second) -> Bool in
+            return first.1<second.1
+        }
+        subBubThreeOne.isHidden=true
+        subBubThreeTwo.isHidden=true
+        if taskMissed.count>0{
+            subBubThreeOne.isHidden=false
+            bubbleThreeOneLabel.text="\(formatter.string(from: taskMissed[0].1)) : \(taskMissed[0].0)"
+        }
+        if taskMissed.count>1{
+            subBubThreeTwo.isHidden=false
+            bubbleThreeTwoLabel.text="\(formatter.string(from: taskMissed.last!.1)) : \(taskMissed.last!.0)"
+        }
+ 
     }
     
     var journalEntryCards = [journalCard]()
