@@ -374,18 +374,8 @@ class HomePageViewController: UIViewController {
                 if tasksCounts.count>2, tasksCounts[2].1>0{
                     subBubOneThree.isHidden=false
                     oneThreeLabel.text="\(tasksCounts[2].0) : \(tasksCounts[2].1)"
-                }else{
-                    subBubOneThree.isHidden=true
                 }
-            }else{
-                subBubOneTwo.isHidden=true
-                subBubOneThree.isHidden=true
             }
-            
-        }else{
-            subBubOneOne.isHidden=true
-            subBubOneTwo.isHidden=true
-            subBubOneThree.isHidden=true
         }
         
         //Events today
@@ -396,8 +386,6 @@ class HomePageViewController: UIViewController {
         }
         let formatter = DateFormatter()
         formatter.dateFormat = "hh:mm a"
-        subBubTwoOne.isHidden=true
-        subBubTwoTwo.isHidden=true
         if taskTimes.count>0{
             subBubTwoOne.isHidden=false
             subBubTwoOneLabel.text = "\(formatter.string(from: taskTimes[0].1)) : \(taskTimes[0].0)"
@@ -414,8 +402,6 @@ class HomePageViewController: UIViewController {
         taskMissed.sort { (first, second) -> Bool in
             return first.1<second.1
         }
-        subBubThreeOne.isHidden=true
-        subBubThreeTwo.isHidden=true
         if taskMissed.count>0{
             subBubThreeOne.isHidden=false
             bubbleThreeOneLabel.text="\(formatter.string(from: taskMissed[0].1)) : \(taskMissed[0].0)"
