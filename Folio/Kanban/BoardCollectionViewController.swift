@@ -202,6 +202,24 @@ extension BoardCollectionViewController: BoardCVCProtocol{
             UIAlertAction in
             for ind in self.kanban.boards.indices{
                 if self.kanban.boards[ind].uid == board.uid{
+                    for item in self.kanban.boards[ind].items{
+                        for imagePath in item.mediaLinks{
+                            if let imageUrl = try? FileManager.default.url(
+                                for: .documentDirectory,
+                                in: .userDomainMask,
+                                appropriateFor: nil,
+                                create: true
+                            ).appendingPathComponent(imagePath){
+                                do{
+                                    try FileManager.default.removeItem(at: imageUrl)
+                                    print("deleted item \(imageUrl) succefully")
+                                } catch{
+                                    print("ERROR: item  at \(imageUrl) couldn't be deleted")
+                                    return
+                                }
+                            }
+                        }
+                    }
                     self.kanban.boards.remove(at: ind)
                     self.collectionView.deleteItems(at: [IndexPath(row: ind, section: 0)])
                     break

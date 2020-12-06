@@ -24,9 +24,18 @@ struct KanbanListInfo: Codable {
     } }
 protocol KanbanListProtcol {
     func editName(for boardFileName: String, to newName: String)
-//    func deleteBoard
+    func updateBoardDeleteInfo(for boardFileName: String)
 }
 class KanbanListViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, KanbanListProtcol {
+    func updateBoardDeleteInfo(for boardFileName: String) {
+        for ind in kanbanList.boardFileNames.indices{
+            if kanbanList.boardFileNames[ind]==boardFileName{
+                kanbanList.boardFileNames.remove(at: ind)
+                kanbanList.boardNames.remove(at: ind)
+                break
+            }
+        }
+    }
     
     
     var kanbanList = KanbanListInfo()
@@ -79,6 +88,7 @@ class KanbanListViewController: UIViewController, UITableViewDataSource, UITable
 //        showBoardSegueID
         if segue.identifier == "showBoardSegueID"{
             if let vc = segue.destination as? switchKanbanTimelineTabBarController, let sourceTVC = sender as? KanbanListTableViewCell{
+                vc.kanbanDelegate=self
                 vc.boardFileName = sourceTVC.fileName!
                 vc.title=sourceTVC.boardName!
             }

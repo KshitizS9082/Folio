@@ -10,6 +10,7 @@ import UIKit
 import ImagePicker
 
 class switchKanbanTimelineTabBarController: UITabBarController, UITabBarControllerDelegate {
+    var kanbanDelegate: KanbanListProtcol?
     var boardFileName = "Inster File Name SKTTC"
     var boardName = "Insert Title SKTTC"
     override func viewDidLoad() {
@@ -142,6 +143,11 @@ class switchKanbanTimelineTabBarController: UITabBarController, UITabBarControll
                                          style: .cancel) { (action) in
                                             // Respond to user selection of the action
         }
+        let deleteAction = UIAlertAction(title: "Delete kanban",
+                                         style: .destructive) { (action) in
+                                            // Respond to user selection of the action
+            self.deleteKanban(vc: vc)
+        }
         
         let alert = UIAlertController(title: "Edit Board",
                                       message: "Edit Board",
@@ -150,6 +156,7 @@ class switchKanbanTimelineTabBarController: UITabBarController, UITabBarControll
         alert.addAction(unsetWall)
 //        alert.addAction(sortDateofConstruct)
         alert.addAction(cancelAction)
+        alert.addAction(deleteAction)
         // On iPad, action sheets must be presented from a popover.
         alert.popoverPresentationController?.barButtonItem = barButton
         self.present(alert, animated: true, completion: nil)
@@ -168,6 +175,29 @@ class switchKanbanTimelineTabBarController: UITabBarController, UITabBarControll
         //delete old wallpaper
         vc.deleteWallPaper()
         vc.viewWillAppear(false)
+    }
+    func deleteKanban(vc: BoardCollectionViewController){
+        for board in vc.kanban.boards{
+            for item in board.items{
+                for imagePath in item.mediaLinks{
+                    if let imageUrl = try? FileManager.default.url(
+                        for: .documentDirectory,
+                        in: .userDomainMask,
+                        appropriateFor: nil,
+                        create: true
+                    ).appendingPathComponent(imagePath){
+                        do{
+                            try FileManager.default.removeItem(at: imageUrl)
+                            print("deleted item \(imageUrl) succefully")
+                        } catch{
+                            print("ERROR: item  at \(imageUrl) couldn't be deleted. Causes datalink")
+                        }
+                    }
+                }
+            }
+        }
+        kanbanDelegate?.updateBoardDeleteInfo(for: self.boardFileName)
+        self.navigationController?.popViewController(animated: true)
     }
 }
 extension switchKanbanTimelineTabBarController: ImagePickerDelegate{
