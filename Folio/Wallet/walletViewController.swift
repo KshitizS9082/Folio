@@ -250,7 +250,7 @@ class walletViewController: UIViewController {
         ).appendingPathComponent("walletData.json"){
             if let jsonData = try? Data(contentsOf: url){
                 if let extract = WalletData(json: jsonData){
-                    print("did set self.habits to \(extract)")
+//                    print("did set self.habits to \(extract)")
                     self.walletData = extract
                     self.calculateCurrentBalance()
                     self.setupData()

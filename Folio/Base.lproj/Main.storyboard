@@ -748,7 +748,7 @@
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Missed" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QMY-LH-MPU">
-                                <rect key="frame" x="109" y="577.33333333333337" width="72" height="25.333333333333371"/>
+                                <rect key="frame" x="109" y="574.33333333333337" width="72" height="25.333333333333371"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="21"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -778,7 +778,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tasks" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ktQ-BX-WpA">
-                                <rect key="frame" x="124" y="605.66666666666663" width="42" height="19.333333333333371"/>
+                                <rect key="frame" x="124" y="602.66666666666663" width="42" height="19.333333333333371"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="16"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -809,7 +809,7 @@
                             <constraint firstItem="h3x-9g-g7l" firstAttribute="trailing" secondItem="15O-xk-kJf" secondAttribute="trailing" id="IPA-BL-8rz"/>
                             <constraint firstItem="3dy-ul-D0e" firstAttribute="trailing" secondItem="vFF-q9-LA5" secondAttribute="trailing" id="Iqc-Mn-s8k"/>
                             <constraint firstItem="0FD-Wd-uSD" firstAttribute="leading" secondItem="LYI-bT-bbw" secondAttribute="leading" id="IuP-Xt-9Gl"/>
-                            <constraint firstItem="QMY-LH-MPU" firstAttribute="centerY" secondItem="hvx-jr-FzQ" secondAttribute="centerY" constant="-5" id="Jr0-Rz-aZB"/>
+                            <constraint firstItem="QMY-LH-MPU" firstAttribute="centerY" secondItem="hvx-jr-FzQ" secondAttribute="centerY" constant="-8" id="Jr0-Rz-aZB"/>
                             <constraint firstItem="DA3-P2-7CS" firstAttribute="trailing" relation="lessThanOrEqual" secondItem="IrV-PZ-Q44" secondAttribute="trailing" constant="-8" id="Ker-3g-bsO"/>
                             <constraint firstItem="ooR-vs-oFO" firstAttribute="leading" secondItem="m1h-6r-CSX" secondAttribute="leading" constant="155" id="Luc-ij-Kyx"/>
                             <constraint firstItem="DaA-7h-O2J" firstAttribute="top" secondItem="hvx-jr-FzQ" secondAttribute="top" constant="10" id="MIZ-Ac-nXv"/>

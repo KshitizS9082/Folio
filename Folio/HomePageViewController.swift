@@ -76,6 +76,8 @@ class HomePageViewController: UIViewController {
         }
         if self.selectedSegment==0{
             loadKanbanBoards()
+        }else if self.selectedSegment==1{
+            loadWallet()
         }else if self.selectedSegment==3{
             loadJournalCards()
         }
@@ -267,6 +269,8 @@ class HomePageViewController: UIViewController {
         } completion: { (bl) in
             if self.selectedSegment==0{
                 self.setupKanbanBubbles()
+            }else if self.selectedSegment==1{
+                self.setupWalletBubbles()
             }else if self.selectedSegment==3{
                 self.setupJournalBubbles()
             }
@@ -430,8 +434,6 @@ class HomePageViewController: UIViewController {
                 print("error no file named journalCards.json found")
             }
         }
-        
-        
     }
     func setupJournalBubbles(){
         var noteCards = [(String,Date)]()
@@ -486,6 +488,86 @@ class HomePageViewController: UIViewController {
             bubbleThreeTwoLabel.text="\(formatter.string(from: mediaCards[1].1)) : \(mediaCards[1].0.notesText)"
         }
     }
+    
+    var walletData = WalletData()
+    func loadWallet(){
+        if let url = try? FileManager.default.url(
+            for: .documentDirectory,
+            in: .userDomainMask,
+            appropriateFor: nil,
+            create: true
+        ).appendingPathComponent("walletData.json"){
+            if let jsonData = try? Data(contentsOf: url){
+                if let extract = WalletData(json: jsonData){
+                    self.walletData = extract
+                }else{
+                    print("ERROR: found WalletData(json: jsonData) to be nil so didn't set it")
+                }
+            }else{
+                print("error no file named walletData.json found")
+            }
+        }
+    }
+    func setupWalletBubbles(){
+        var monthIncome=Float(0.0)
+        var monthExpense=Float(0.0)
+        var weekIncome=Float(0.0)
+        var weekExpense=Float(0.0)
+        var totalIncome=Float(0.0)
+        var totalExpense=Float(0.0)
+        var currentBalance=walletData.initialBalance
+        for entryListPair in Array(walletData.entries){
+            let entryList = entryListPair.value
+            for entry in entryList{
+                currentBalance+=entry.value
+                if entry.value<Float(0.0){
+                    totalExpense+=entry.value
+                }else{
+                    totalIncome+=entry.value
+                }
+                if entry.date.isInThisWeek{
+                    if entry.value<Float(0.0){
+                        weekExpense+=entry.value
+                    }else{
+                        weekIncome+=entry.value
+                    }
+                }
+                if entry.date.isInThisMonth && entry.date.isInThisYear{
+                    if entry.value<Float(0.0){
+                        monthExpense+=entry.value
+                    }else{
+                        monthIncome+=entry.value
+                    }
+                }
+            }
+        }
+        
+        subBubOneOne.isHidden=false
+        subBubOneTwo.isHidden=false
+        subBubOneThree.isHidden=false
+        bubbleOneLabel.text="All-Time"
+        let locale = Locale.current
+        bubbleOneSubLabel.text="\(locale.currencySymbol!)(\(locale.currencyCode!))"
+        oneOneLabel.text="Balance: \(currentBalance)"
+        oneTwoLabel.text="Income: \(totalIncome)"
+        oneThreeLabel.text="Expense: \(totalExpense)"
+        
+        subBubTwoOne.isHidden=false
+        subBubTwoTwo.isHidden=false
+        bubbleTwoLabel.text="Week"
+        bubbleTwoSubLabel.text=String(weekIncome+weekExpense)
+        subBubTwoOneLabel.text="Income: \(String(weekIncome))"
+        bubbleTwoTwoLabel.text="Expense: \(String(weekExpense))"
+        
+        subBubThreeOne.isHidden=false
+        subBubThreeTwo.isHidden=false
+        bubbleThreeLabel.text="Months"
+        bubbleThreeSubLabel.text=String(monthIncome+monthExpense)
+        bubbleThreeOneLabel.text="Income: \(String(monthIncome))"
+        bubbleThreeTwoLabel.text="Expense: \(String(monthExpense))"
+        
+    }
+    
     var habits = HabitsData()
     func loadHabitCards(){
         if let url = try? FileManager.default.url(
@@ -505,6 +587,8 @@ class HomePageViewController: UIViewController {
             }
         }
     }
+    
+    
     /*
     // MARK: - Navigation
 
