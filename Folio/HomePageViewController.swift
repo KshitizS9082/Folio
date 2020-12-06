@@ -79,6 +79,8 @@ class HomePageViewController: UIViewController {
         }else if self.selectedSegment==1{
             loadWallet()
         }else if self.selectedSegment==3{
+            loadHabitCards()
+        }else if self.selectedSegment==3{
             loadJournalCards()
         }
         animateSetup()
@@ -267,10 +269,19 @@ class HomePageViewController: UIViewController {
             self.bubbleThreeLeadingConstraint.constant=self.backgroundImageView.frame.width+self.bubbleThreeLeadingConstraint.constant
             self.view.layoutIfNeeded()
         } completion: { (bl) in
+            self.subBubOneOne.isHidden=true
+            self.subBubOneTwo.isHidden=true
+            self.subBubOneThree.isHidden=true
+            self.subBubTwoOne.isHidden=true
+            self.subBubTwoTwo.isHidden=true
+            self.subBubThreeOne.isHidden=true
+            self.subBubThreeTwo.isHidden=true
             if self.selectedSegment==0{
                 self.setupKanbanBubbles()
             }else if self.selectedSegment==1{
                 self.setupWalletBubbles()
+            }else if self.selectedSegment==2{
+                self.setupHabitBubbles()
             }else if self.selectedSegment==3{
                 self.setupJournalBubbles()
             }
@@ -457,6 +468,9 @@ class HomePageViewController: UIViewController {
         formatter.dateStyle = .short
         
         //Overview this week
+        subBubOneOne.isHidden=false
+        subBubOneTwo.isHidden=false
+        subBubOneThree.isHidden=false
         bubbleOneLabel.text="This Week"
         bubbleOneSubLabel.text=String(noteCards.count+mediaCards.count+locationCount)
         oneOneLabel.text="Notes: \(noteCards.count)"
@@ -466,8 +480,6 @@ class HomePageViewController: UIViewController {
         //Notes bubble
         bubbleTwoLabel.text="Notes"
         bubbleTwoSubLabel.text=String(noteCards.count)
-        subBubTwoOne.isHidden=true
-        subBubTwoTwo.isHidden=true
         if noteCards.count>0{
             subBubTwoOne.isHidden=false
             subBubTwoOneLabel.text="\(formatter.string(from: noteCards[0].1)) : \(noteCards[0].0)"
@@ -587,8 +599,98 @@ class HomePageViewController: UIViewController {
             }
         }
     }
-    
-    
+    func setupHabitBubbles(){
+        var todayCards = [habitCardData]()
+        var thisWeekCards = [habitCardData]()
+        var thisMonthCards = [habitCardData]()
+        for card in habits.cardList{
+            switch card.habitGoalPeriod {
+            case .daily:
+                todayCards.append(card)
+            case .weekly:
+                thisWeekCards.append(card)
+            case .monthly:
+                thisMonthCards.append(card)
+            default:
+                print("not to show goalperiod")
+            }
+        }
+        
+        bubbleOneLabel.text="Habits"
+        bubbleOneSubLabel.text=String(habits.cardList.count)
+        subBubOneOne.isHidden=false
+        oneOneLabel.text="Today: \(todayCards.count)"
+        oneTwoLabel.isHidden=false
+        oneTwoLabel.text="This Week: \(thisWeekCards.count)"
+        oneThreeLabel.isHidden=false
+        oneThreeLabel.text="This Month: \(thisMonthCards.count)"
+        
+        bubbleTwoLabel.text="Daily"
+        bubbleTwoSubLabel.text=String(todayCards.count)
+        if todayCards.count>0{
+            subBubTwoOne.isHidden=false
+            subBubTwoOneLabel.text=calculateHabitCompleted(habitData: todayCards[0])
+        }
+        if todayCards.count>1{
+            subBubTwoTwo.isHidden=false
+            bubbleTwoTwoLabel.text=calculateHabitCompleted(habitData: todayCards[1])
+        }
+        
+        bubbleThreeLabel.text="This Week"
+        bubbleThreeSubLabel.text=String(thisWeekCards.count)
+        if thisWeekCards.count>0{
+            subBubThreeOne.isHidden=false
+            bubbleThreeOneLabel.text=calculateHabitCompleted(habitData: thisWeekCards[0])
+        }
+        if thisWeekCards.count>1{
+            subBubThreeTwo.isHidden=false
+            bubbleThreeTwoLabel.text=calculateHabitCompleted(habitData: thisWeekCards[1])
+        }
+        
+    }
+    func completed(habitData: habitCardData) -> Bool{
+        var date = Date()
+        switch habitData.habitGoalPeriod {
+        case .daily:
+            date=date.startOfDay
+        case .weekly:
+            date=date.startOfWeek
+        case .monthly:
+            date=date.startOfMonth
+        case .yearly:
+            date=date.startOfYear
+        default:
+            print("ERROR: UNKNOWN HABITGOALPERIOD IN HABITTABLEVIEWCELL")
+        }
+        let currentCount=habitData.entriesList[date] ?? 0
+        return currentCount > habitData.goalCount || currentCount.isEqual(to: habitData.goalCount)
+    }
+    func calculateHabitCompleted( habitData: habitCardData) -> String{
+        var date = Date()
+        var returnStr = ""
+        switch habitData.habitGoalPeriod {
+        case .daily:
+            returnStr = "Today: "
+            date=date.startOfDay
+        case .weekly:
+            returnStr = "This Week: "
+            date=date.startOfWeek
+        case .monthly:
+            returnStr = "This Month: "
+            date=date.startOfMonth
+        case .yearly:
+            returnStr = "This Year: "
+            date=date.startOfYear
+        default:
+            print("ERROR: UNKNOWN HABITGOALPERIOD IN HABITTABLEVIEWCELL")
+            returnStr = ""
+        }
+        //TODO: calculate count
+        let currentCount=habitData.entriesList[date] ?? 0
+        returnStr += String(Int(currentCount)) + " / " + String(Int(habitData.goalCount))
+        
+        return returnStr
+    }
     /*
     // MARK: - Navigation
 
