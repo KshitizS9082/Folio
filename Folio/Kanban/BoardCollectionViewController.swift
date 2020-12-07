@@ -7,6 +7,7 @@
 //
 
 import UIKit
+
 protocol BoardCVCProtocol {
     func updateBoard(newBoard: Board)
     func deleteBoard(board: Board)

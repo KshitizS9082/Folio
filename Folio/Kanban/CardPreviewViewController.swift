@@ -26,6 +26,7 @@ protocol cardPreviewTableProtocol {
     func updateTask(to taskVal: Bool?)
     func updateTagColor(to tagColor: Int)
     func deleteCard()
+    func showNotificationNotPresentAlert()
 }
 class CardPreviewViewController: UIViewController {
     var delegate: cardPreviewProtocol?
@@ -75,6 +76,35 @@ class CardPreviewViewController: UIViewController {
             }
         }
     }
+    
+    func setCardReminderNotif(){
+        UNUserNotificationCenter.current().getPendingNotificationRequests { (notificationRequests) in
+            var identifiers: [String] = []
+            for notification:UNNotificationRequest in notificationRequests {
+                if notification.identifier == self.card.UniquIdentifier.uuidString {
+                    identifiers.append(notification.identifier)
+                }
+            }
+            print("removing notifs with identifiers \(identifiers)")
+            UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: identifiers)
+        }
+        
+        if let date = card.reminderDate{
+            let center = UNUserNotificationCenter.current()
+            
+            let content = UNMutableNotificationContent()
+            content.title = "Kanban: \(card.title)"
+            content.body = card.notes ?? "Kanban Reminder"
+            content.categoryIdentifier = "kanban"
+            //                content.userInfo = ["customData": "fizzbuzz"]
+            content.sound = .default
+            
+            let trigger = UNCalendarNotificationTrigger(dateMatching: Calendar.current.dateComponents([.year, .month, .day, .hour, .minute, .second],from: date), repeats: false)
+            
+            let request = UNNotificationRequest(identifier: card.UniquIdentifier.uuidString, content: content, trigger: trigger)
+            center.add(request)
+        }
+    }
 }
 extension CardPreviewViewController: UITableViewDataSource, UITableViewDelegate{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -119,7 +149,7 @@ extension CardPreviewViewController: UITableViewDataSource, UITableViewDelegate{
             cell.updateLook()
             return cell
         case 5:
-            let cell=tableView.dequeueReusableCell(withIdentifier: "checkListCell") as! checkListCellCardPreview
+            let cell=tableView.dequeueReusableCell(withIdentifier: "checkL istCell") as! checkListCellCardPreview
             cell.delegate=self
             return cell
         default:
@@ -305,6 +335,16 @@ extension CardPreviewViewController: cardPreviewTableProtocol{
     
     func updateReminder(to date: Date?){
         self.card.reminderDate=date
+        self.setCardReminderNotif()
+    }
+    func showNotificationNotPresentAlert(){
+        let alert = UIAlertController(title: "We Don't have permision to notify you :(", message: "Please enable them from settings>App>Notfication ;)", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Ok Sure :)", style: .default, handler: { (action) in
+            UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { (succes, error) in
+                print("autho \(succes)")
+            }
+        }))
+        self.present(alert, animated: true)
     }
     
     func updateNotes(to text: String) {
@@ -420,16 +460,28 @@ class reminderCellCardPreview: UITableViewCell{
     
     @IBOutlet weak var reminderSwitch: UISwitch!
     @IBAction func switchChanged(_ sender: UISwitch) {
-        if sender.isOn{
-            datePicker.isHidden=false
-            reminderDate=datePicker.date
-        }else{
-            datePicker.isHidden=true
-            reminderDate=nil
+        let center = UNUserNotificationCenter.current()
+        center.requestAuthorization(options: [.alert, .badge, .sound]) { (granted, error) in
+            if granted {
+                print("Yay!")
+                DispatchQueue.main.sync {
+                    if sender.isOn{
+                        self.datePicker.isHidden=false
+                        self.reminderDate=self.datePicker.date
+                    }else{
+                        self.datePicker.isHidden=true
+                        self.reminderDate=nil
+                    }
+                    self.updateLook()
+                    self.delegate?.updateReminder(to: self.reminderDate)
+                }
+            } else {
+                DispatchQueue.main.sync {
+                    self.reminderSwitch.setOn(false, animated: true)
+                    self.delegate?.showNotificationNotPresentAlert()
+                }
+            }
         }
-//        delegate?.updateHeights()
-        updateLook()
-        delegate?.updateReminder(to: reminderDate)
     }
     @IBOutlet weak var datePicker: UIDatePicker!
     @IBAction func datePickerChanged(_ sender: UIDatePicker) {

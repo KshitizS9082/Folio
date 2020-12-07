@@ -403,9 +403,9 @@ extension HabitsViewController: UITableViewDataSource, UITableViewDelegate{
                                                     }
                                                 }
                                                 completionHandler(true)
-            })
+                                            })
             action.backgroundColor = .systemRed
-
+            
             if self.habits.cardList[indexPath.row].firstReminder != nil{
                 var title="Unset"
                 switch self.habits.cardList[indexPath.row].reminderValue {
