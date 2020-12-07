@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import UserNotifications
 protocol BoardCVCProtocol {
     func updateBoard(newBoard: Board)
     func deleteBoard(board: Board)
@@ -211,6 +211,18 @@ extension BoardCollectionViewController: BoardCVCProtocol{
     func deleteBoard(board: Board) {
         let deleteAction = UIAlertAction(title: "Delete", style: .destructive){
             UIAlertAction in
+            for card in board.items{
+                UNUserNotificationCenter.current().getPendingNotificationRequests { (notificationRequests) in
+                    var identifiers: [String] = []
+                    for notification:UNNotificationRequest in notificationRequests {
+                        if notification.identifier == card.UniquIdentifier.uuidString {
+                            identifiers.append(notification.identifier)
+                        }
+                    }
+                    print("removing notifs with identifiers \(identifiers)")
+                    UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: identifiers)
+                }
+            }
             for ind in self.kanban.boards.indices{
                 if self.kanban.boards[ind].uid == board.uid{
                     for item in self.kanban.boards[ind].items{
@@ -240,7 +252,7 @@ extension BoardCollectionViewController: BoardCVCProtocol{
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel){
             UIAlertAction in
         }
-        let alert = UIAlertController(title: "Delete Board?", message: "Deleting this card will also delete it's data", preferredStyle: .actionSheet)
+        let alert = UIAlertController(title: "Delete Board?", message: "Deleting this board will also delete it's data", preferredStyle: .actionSheet)
         alert.addAction(deleteAction)
         alert.addAction(cancelAction)
         self.present(alert, animated: true, completion: nil)

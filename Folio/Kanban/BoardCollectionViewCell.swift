@@ -67,7 +67,7 @@ class BoardCollectionViewCell: UICollectionViewCell {
     }
     
     @IBAction func editBoardTapped(_ sender: UIButton) {
-        delegate?.deleteBoard(board: self.board!)
+        self.delegate?.deleteBoard(board: self.board!)
         let deleteAction = UIAlertAction(title: "Delete", style: .destructive){
             UIAlertAction in
             print("in delete")
