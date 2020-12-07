@@ -46,7 +46,8 @@ class BoardCollectionViewCell: UICollectionViewCell {
         tableView.dragInteractionEnabled = true
         tableView.dragDelegate = self
         tableView.dropDelegate=self
-         
+        tableView.dragInteractionEnabled = true
+        
         // register for notifications when the keyboard appears:
         NotificationCenter.default.addObserver( self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
     }
@@ -186,6 +187,12 @@ extension BoardCollectionViewCell: UITableViewDragDelegate, UITableViewDropDeleg
 //        session.localContext = (board, indexPath, tableView)
         dragItem.localObject = board.items[indexPath.row].UniquIdentifier.uuidString
         return [dragItem]
+    }
+    
+    func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+        let mover = board?.items.remove(at: sourceIndexPath.row)
+        board?.items.insert(mover!, at: destinationIndexPath.row)
+        delegate?.updateBoard(newBoard: self.board!)
     }
 }
 extension BoardCollectionViewCell: tableCardDeletgate{
