@@ -32,6 +32,10 @@ class KanbanListViewController: UIViewController, UITableViewDataSource, UITable
             if kanbanList.boardFileNames[ind]==boardFileName{
                 kanbanList.boardFileNames.remove(at: ind)
                 kanbanList.boardNames.remove(at: ind)
+                print("FOUND IND=\(ind) where to remove board from list")
+                self.tableView.beginUpdates()
+                self.tableView.deleteRows(at: [IndexPath(row: ind, section: 0)], with: .automatic)
+                self.tableView.endUpdates()
                 break
             }
         }
@@ -107,6 +111,22 @@ class KanbanListViewController: UIViewController, UITableViewDataSource, UITable
         cell.delegate=self
         return cell
     }
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let action = UIContextualAction(style: .destructive, title: "Delete",
+                                        handler: { (action, view, completionHandler) in
+                                            self.deleteBoard(at: indexPath.row)
+//                                            self.tableView.beginUpdates()
+//                                            self.tableView.deleteRows(at: [indexPath], with: .automatic)
+//                                            self.tableView.endUpdates()
+                                            completionHandler(true)
+        })
+        action.backgroundColor = .systemRed
+        let configuration = UISwipeActionsConfiguration(actions: [action])
+        return configuration
+    }
     
     func editName(for boardFileName: String, to newName: String) {
         for ind in kanbanList.boardFileNames.indices{
@@ -158,5 +178,55 @@ class KanbanListViewController: UIViewController, UITableViewDataSource, UITable
                 self.tableView.layoutIfNeeded()
             }
         }
+    }
+    func deleteBoard(at index: Int){
+        let boardFileName = self.kanbanList.boardFileNames[index]
+        var kanban = Kanban()
+        if let url = try? FileManager.default.url(
+            for: .documentDirectory,
+            in: .userDomainMask,
+            appropriateFor: nil,
+            create: true
+        ).appendingPathComponent(boardFileName){
+//            print("trying to extract contents of kanbanData")
+            if let jsonData = try? Data(contentsOf: url){
+                //                pageList = pageInfo(json: jsonData)
+                if let x = Kanban(json: jsonData){
+                    kanban = x
+                }else{
+                    print("WARNING: COULDN'T UNWRAP JSON DATA TO FIND kanbanData")
+                    return
+                }
+                do{
+                    try FileManager.default.removeItem(at: url)
+                    print("deleted kanban at \(url) succefully")
+                } catch{
+                    print("ERROR: kanban  at \(url) couldn't be deleted. Causes dataleak")
+                    return
+                }
+            }
+        }
+        for board in kanban.boards{
+            for item in board.items{
+                for imagePath in item.mediaLinks{
+                    if let imageUrl = try? FileManager.default.url(
+                        for: .documentDirectory,
+                        in: .userDomainMask,
+                        appropriateFor: nil,
+                        create: true
+                    ).appendingPathComponent(imagePath){
+                        do{
+                            try FileManager.default.removeItem(at: imageUrl)
+                            print("deleted item \(imageUrl) succefully")
+                        } catch{
+                            print("ERROR: item  at \(imageUrl) couldn't be deleted. Causes datalink")
+                            return
+                        }
+                    }
+                }
+            }
+        }
+        self.updateBoardDeleteInfo(for: boardFileName)
+        self.tableView.reloadData()
     }
 }

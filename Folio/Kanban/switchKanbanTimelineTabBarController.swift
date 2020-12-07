@@ -13,6 +13,7 @@ class switchKanbanTimelineTabBarController: UITabBarController, UITabBarControll
     var kanbanDelegate: KanbanListProtcol?
     var boardFileName = "Inster File Name SKTTC"
     var boardName = "Insert Title SKTTC"
+    var isdeleting=false
     override func viewDidLoad() {
         super.viewDidLoad()
         self.delegate=self
@@ -57,6 +58,9 @@ class switchKanbanTimelineTabBarController: UITabBarController, UITabBarControll
 //        vc1.boardFileName=self.boardFileName
     }
     override func viewWillDisappear(_ animated: Bool) {
+        if isdeleting{
+            return
+        }
         navigationController?.navigationBar.setBackgroundImage(nil, for: .default)
         navigationController?.navigationBar.shadowImage = nil
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black, NSAttributedString.Key.font: UIFont(name: "HelveticaNeue-Bold", size: 30)!]
@@ -135,19 +139,14 @@ class switchKanbanTimelineTabBarController: UITabBarController, UITabBarControll
             self.deleteWallpaper(vc: vc)
             
         }
-//        let sortDateofConstruct = UIAlertAction(title: "Sort By Date of Construction",
-//                                      style: .default) { (action) in
-//
-//        }
         let cancelAction = UIAlertAction(title: "Cancel",
                                          style: .cancel) { (action) in
                                             // Respond to user selection of the action
         }
-        let deleteAction = UIAlertAction(title: "Delete kanban",
-                                         style: .destructive) { (action) in
-                                            // Respond to user selection of the action
-            self.deleteKanban(vc: vc)
-        }
+//        let deleteAction = UIAlertAction(title: "Delete kanban",
+//                                         style: .destructive) { (action) in
+//            self.deleteKanban(vc: vc)
+//        }
         
         let alert = UIAlertController(title: "Edit Board",
                                       message: "Edit Board",
@@ -156,7 +155,7 @@ class switchKanbanTimelineTabBarController: UITabBarController, UITabBarControll
         alert.addAction(unsetWall)
 //        alert.addAction(sortDateofConstruct)
         alert.addAction(cancelAction)
-        alert.addAction(deleteAction)
+//        alert.addAction(deleteAction)
         // On iPad, action sheets must be presented from a popover.
         alert.popoverPresentationController?.barButtonItem = barButton
         self.present(alert, animated: true, completion: nil)
@@ -176,6 +175,7 @@ class switchKanbanTimelineTabBarController: UITabBarController, UITabBarControll
         vc.deleteWallPaper()
         vc.viewWillAppear(false)
     }
+    /* not working
     func deleteKanban(vc: BoardCollectionViewController){
         for board in vc.kanban.boards{
             for item in board.items{
@@ -191,14 +191,31 @@ class switchKanbanTimelineTabBarController: UITabBarController, UITabBarControll
                             print("deleted item \(imageUrl) succefully")
                         } catch{
                             print("ERROR: item  at \(imageUrl) couldn't be deleted. Causes datalink")
+//                            return
                         }
                     }
                 }
             }
         }
+        if let url = try? FileManager.default.url(
+            for: .documentDirectory,
+            in: .userDomainMask,
+            appropriateFor: nil,
+            create: true
+        ).appendingPathComponent(boardFileName){
+            do{
+                try FileManager.default.removeItem(at: url)
+                print("deleted kanban item \(url) succefully")
+            } catch{
+                print("ERROR: kanban  at \(url) couldn't be deleted. Causes datalink")
+//                            return
+            }
+        }
         kanbanDelegate?.updateBoardDeleteInfo(for: self.boardFileName)
+        isdeleting=true
         self.navigationController?.popViewController(animated: true)
     }
+     */
 }
 extension switchKanbanTimelineTabBarController: ImagePickerDelegate{
     func wrapperDidPress(_ imagePicker: ImagePickerController, images: [UIImage]) {
