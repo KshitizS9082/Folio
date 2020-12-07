@@ -42,10 +42,11 @@ class BoardCollectionViewCell: UICollectionViewCell {
         tableView.dataSource = self
         tableView.delegate = self
         tableView.tableFooterView = UIView()
-        /*
+        
         tableView.dragInteractionEnabled = true
         tableView.dragDelegate = self
-         */
+        tableView.dropDelegate=self
+         
         // register for notifications when the keyboard appears:
         NotificationCenter.default.addObserver( self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
     }
@@ -116,6 +117,75 @@ extension BoardCollectionViewCell: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 //        print("yet to handle selecting a tableViewCell")
         tableView.deselectRow(at: indexPath, animated: true)
+    }
+}
+extension BoardCollectionViewCell: UITableViewDragDelegate, UITableViewDropDelegate{
+//    func tableView(_ tableView: UITableView, dropSessionDidUpdate session: UIDropSession, withDestinationIndexPath destinationIndexPath: IndexPath?) -> UITableViewDropProposal {
+//        var dropProposal = UITableViewDropProposal(operation: .cancel)
+//
+//        // Accept only one drag item.
+//        guard session.items.count == 1 else { return dropProposal }
+//
+//        // The .move drag operation is available only for dragging within this app and while in edit mode.
+//        if tableView.hasActiveDrag {
+//            if tableView.isEditing {
+//                dropProposal = UITableViewDropProposal(operation: .move, intent: .insertAtDestinationIndexPath)
+//            }
+//        }
+////        else {
+////            // Drag is coming from outside the app.
+////            dropProposal = UITableViewDropProposal(operation: .copy, intent: .insertAtDestinationIndexPath)
+////        }
+//
+//        return dropProposal
+//    }
+    func tableView(_ tableView: UITableView, performDropWith coordinator: UITableViewDropCoordinator) {
+        coordinator.session.loadObjects(ofClass: NSAttributedString.self) { providers in
+//            let dropPoint = session.location(in: self)
+//            print("point= \(dropPoint)")
+            let destinationIndexPath: IndexPath
+            
+            if let indexPath = coordinator.destinationIndexPath {
+                destinationIndexPath = indexPath
+            } else {
+                // Get last index path of table view.
+                let section = tableView.numberOfSections - 1
+                let row = tableView.numberOfRows(inSection: section)
+                destinationIndexPath = IndexPath(row: row, section: section)
+            }
+//            coordinator.session.loadObjects(ofClass: NSString.self) { items in
+//                // Consume drag items.
+//                let stringItems = items as! [String]
+//                //only allow one item
+//                if stringItems.count>1{
+//                    return
+//                }
+//                var indexPaths = [IndexPath]()
+//                for (index, item) in stringItems.enumerated() {
+//                    let indexPath = IndexPath(row: destinationIndexPath.row + index, section: destinationIndexPath.section)
+////                    self.model.addItem(item, at: indexPath.row)
+//                    indexPaths.append(indexPath)
+//                }
+//
+//                tableView.insertRows(at: indexPaths, with: .automatic)
+//            }
+            for attributedString in providers as? [NSAttributedString] ?? [] {
+                print("trying to drop " + attributedString.string)
+                self.delegate?.dragDropCard(sourceCardUID: attributedString.string, targetBoardID: self.board!.uid, targetIndex: destinationIndexPath.row)
+            }
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, itemsForBeginning session: UIDragSession, at indexPath: IndexPath) -> [UIDragItem] {
+        guard let board = board else {
+               return []
+           }
+        let stringData = board.items[indexPath.row].UniquIdentifier.uuidString
+        //           let itemProvider = NSItemProvider(item: stringData as NSData, typeIdentifier: String?)
+        let dragItem = UIDragItem(itemProvider: NSItemProvider(object: stringData as NSString))
+//        session.localContext = (board, indexPath, tableView)
+        dragItem.localObject = board.items[indexPath.row].UniquIdentifier.uuidString
+        return [dragItem]
     }
 }
 extension BoardCollectionViewCell: tableCardDeletgate{

@@ -10,6 +10,7 @@ import UIKit
 protocol BoardCVCProtocol {
     func updateBoard(newBoard: Board)
     func deleteBoard(board: Board)
+    func dragDropCard(sourceCardUID: String, targetBoardID: UUID, targetIndex: Int)
 }
 
 class BoardCollectionViewController: UICollectionViewController {
@@ -62,23 +63,32 @@ class BoardCollectionViewController: UICollectionViewController {
     
     @IBAction func addList(_ sender: UIButton) {
         print("addList tapped")
-        let alertController = UIAlertController(title: "Add List", message: nil, preferredStyle: .alert)
-        alertController.addTextField(configurationHandler: nil)
-        alertController.addAction(UIAlertAction(title: "Add", style: .default, handler: { (_) in
-            guard let text = alertController.textFields?.first?.text, !text.isEmpty else {
-                return
-            }
-            
-            self.kanban.boards.append(Board(title: text, items: []))
-            
-            let addedIndexPath = IndexPath(item: self.kanban.boards.count - 1, section: 0)
-            
-            self.collectionView.insertItems(at: [addedIndexPath])
-            self.collectionView.scrollToItem(at: addedIndexPath, at: UICollectionView.ScrollPosition.centeredHorizontally, animated: true)
-        }))
+//        let alertController = UIAlertController(title: "Add List", message: nil, preferredStyle: .alert)
+//        alertController.addTextField(configurationHandler: nil)
+//        alertController.addAction(UIAlertAction(title: "Add", style: .default, handler: { (_) in
+//            guard let text = alertController.textFields?.first?.text, !text.isEmpty else {
+//                return
+//            }
+//
+//            self.kanban.boards.append(Board(title: text, items: []))
+//
+//            let addedIndexPath = IndexPath(item: self.kanban.boards.count - 1, section: 0)
+//
+//            self.collectionView.insertItems(at: [addedIndexPath])
+//            self.collectionView.scrollToItem(at: addedIndexPath, at: UICollectionView.ScrollPosition.centeredHorizontally, animated: true)
+//        }))
+//
+//        alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+//        present(alertController, animated: true)
         
-        alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-        present(alertController, animated: true)
+        self.kanban.boards.append(Board(title: "", items: []))
+        
+        let addedIndexPath = IndexPath(item: self.kanban.boards.count - 1, section: 0)
+        self.collectionView.insertItems(at: [addedIndexPath])
+        self.collectionView.scrollToItem(at: addedIndexPath, at: UICollectionView.ScrollPosition.centeredHorizontally, animated: true)
+        if let cell = collectionView.cellForItem(at: addedIndexPath) as? BoardCollectionViewCell{
+            cell.titleTextField.becomeFirstResponder()
+        }
     }
     @IBOutlet weak var backgroundImageView: UIImageView!{
         didSet{
@@ -235,5 +245,41 @@ extension BoardCollectionViewController: BoardCVCProtocol{
         self.present(alert, animated: true, completion: nil)
     }
     
-    
+    func dragDropCard(sourceCardUID: String, targetBoardID: UUID, targetIndex: Int){
+        var sourceBoardInd = -1
+        var sourcCardInd = -1
+        var targBoardInd = -1
+        for ind in kanban.boards.indices{
+            let board=kanban.boards[ind]
+            for innerind in board.items.indices{
+                let card = board.items[innerind]
+                if card.UniquIdentifier.uuidString == sourceCardUID{
+                    sourceBoardInd=ind
+                    sourcCardInd=innerind
+                }
+            }
+            if board.uid==targetBoardID{
+                targBoardInd=ind
+            }
+        }
+        if sourceBoardInd<0{
+            return
+        }
+        moveCell(sourceBoard: sourceBoardInd, sourceCard: sourcCardInd, targetBoard: targBoardInd, targetCard: targetIndex)
+    }
+    func moveCell(sourceBoard: Int, sourceCard: Int, targetBoard: Int, targetCard: Int ){
+        let source = kanban.boards[sourceBoard].items[sourceCard]
+        kanban.boards[sourceBoard].items.remove(at: sourceCard)
+        kanban.boards[targetBoard].items.insert(source, at: targetCard)
+        if let boardCell = collectionView.cellForItem(at: IndexPath(row: sourceBoard, section: 0)) as? BoardCollectionViewCell{
+            boardCell.tableView.beginUpdates()
+            boardCell.tableView.deleteRows(at: [IndexPath(row: sourceCard, section: 0)], with: .automatic)
+            boardCell.tableView.endUpdates()
+        }
+        if let boardCell = collectionView.cellForItem(at: IndexPath(row: targetBoard, section: 0)) as? BoardCollectionViewCell{
+            //TODO: change it to tableview.insertRowAt
+            boardCell.setup(with: kanban.boards[targetBoard])
+//            tableView.insertRows(at: indexPaths, with: .automatic)
+        }
+    }
 }
