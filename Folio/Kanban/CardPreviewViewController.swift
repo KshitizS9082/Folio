@@ -105,6 +105,7 @@ class CardPreviewViewController: UIViewController {
             center.add(request)
         }
     }
+    
 }
 extension CardPreviewViewController: UITableViewDataSource, UITableViewDelegate{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -149,7 +150,7 @@ extension CardPreviewViewController: UITableViewDataSource, UITableViewDelegate{
             cell.updateLook()
             return cell
         case 5:
-            let cell=tableView.dequeueReusableCell(withIdentifier: "checkL istCell") as! checkListCellCardPreview
+            let cell=tableView.dequeueReusableCell(withIdentifier: "checkListCell") as! checkListCellCardPreview
             cell.delegate=self
             return cell
         default:
@@ -214,6 +215,16 @@ extension CardPreviewViewController: cardPreviewTableProtocol{
     }
     
     func deleteCardFinal(){
+        UNUserNotificationCenter.current().getPendingNotificationRequests { (notificationRequests) in
+            var identifiers: [String] = []
+            for notification:UNNotificationRequest in notificationRequests {
+                if notification.identifier == self.card.UniquIdentifier.uuidString {
+                    identifiers.append(notification.identifier)
+                }
+            }
+            print("removing notifs with identifiers \(identifiers)")
+            UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: identifiers)
+        }
         let fileManager = FileManager.default
         for fileName in self.card.mediaLinks{
             if let url = try? FileManager.default.url(

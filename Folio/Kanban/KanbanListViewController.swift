@@ -179,6 +179,8 @@ class KanbanListViewController: UIViewController, UITableViewDataSource, UITable
             }
         }
     }
+//    var identifiers: [String] = []
+    var identifiers: Set = [""]
     func deleteBoard(at index: Int){
         let boardFileName = self.kanbanList.boardFileNames[index]
         var kanban = Kanban()
@@ -224,7 +226,20 @@ class KanbanListViewController: UIViewController, UITableViewDataSource, UITable
                         }
                     }
                 }
+                if item.reminderDate != nil{
+                    self.identifiers.insert(item.UniquIdentifier.uuidString)
+                }
             }
+        }
+        UNUserNotificationCenter.current().getPendingNotificationRequests { (notificationRequests) in
+            var identifToDelete: [String] = []
+            for notification:UNNotificationRequest in notificationRequests {
+                if self.identifiers.contains(notification.identifier){
+                    identifToDelete.append(notification.identifier)
+                }
+            }
+            print("removing notifs with identifiers \(self.identifiers)")
+            UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: identifToDelete)
         }
         self.updateBoardDeleteInfo(for: boardFileName)
         self.tableView.reloadData()
