@@ -49,7 +49,7 @@ struct journalCardList: Codable{
 struct noteJournalCard: Codable {
     var UniquIdentifier = UUID()
 //    var dateOfCreation = Date()
-    var notesText = "Notes Text goes here"
+    var notesText = "Notes goes here"
     var subNotesText = "SubNotes goes here"
 }
 struct locationJournalCard: Codable {
@@ -57,7 +57,7 @@ struct locationJournalCard: Codable {
 //    var dateOfCreation = Date()
     var locationAnnotations = [CodableMKPointAnnotation]()
     var locationData: Data?
-    var notesText = "Notes Text of locationJournalCard"
+    var notesText = "Notes goes here"
     var subNotesText = "SubNotes goes here"
 }
 struct mediaJournalCard: Codable {
@@ -65,7 +65,7 @@ struct mediaJournalCard: Codable {
 //    var dateOfCreation = Date()
     var imageData: Data?
     var imageFileName = [String]()
-    var notesText = "Notes Text of mediaJournalCard"
+    var notesText = "Notes goes here"
     var subNotesText = "SubNotes goes here"
 }
 enum journalCardType: String, Codable{

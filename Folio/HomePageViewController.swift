@@ -260,6 +260,7 @@ class HomePageViewController: UIViewController {
             NSAttributedString.Key.font: UIFont(name: "HelveticaNeue-Bold", size: 30)!
         ]
         self.navigationController?.navigationBar.titleTextAttributes = attrs
+        self.setupKanbanBubbles()
     }
     
     func animateSetup(){
