@@ -29,12 +29,18 @@ class KanbanListTableViewCell: UITableViewCell, UITextFieldDelegate {
                             print("WARNING: COULDN'T UNWRAP JSON DATA TO FIND kanbanData")
                         }
                     }
+                    awakeFromNib()
                 }
             }
         }
     }
     var kanban : Kanban?{
         didSet{
+            let formatter = DateFormatter()
+            formatter.dateStyle = .full
+            if let doc = kanban?.dateOfCreation{
+                self.subtitleText.text = formatter.string(from: doc)
+            }
             if let wallpath = self.kanban?.wallpaperPath{
                 self.cardBGImageView.isHidden=false
                 DispatchQueue.global(qos: .background).async {
