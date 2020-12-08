@@ -260,6 +260,13 @@ class HomePageViewController: UIViewController {
             NSAttributedString.Key.font: UIFont(name: "HelveticaNeue-Bold", size: 30)!
         ]
         self.navigationController?.navigationBar.titleTextAttributes = attrs
+        self.subBubOneOne.isHidden=true
+        self.subBubOneTwo.isHidden=true
+        self.subBubOneThree.isHidden=true
+        self.subBubTwoOne.isHidden=true
+        self.subBubTwoTwo.isHidden=true
+        self.subBubThreeOne.isHidden=true
+        self.subBubThreeTwo.isHidden=true
         self.setupKanbanBubbles()
     }
     
