@@ -675,9 +675,9 @@ class HomePageViewController: UIViewController {
         case .yearly:
             returnStr = "This Year: "
             date=date.startOfYear
-        default:
-            print("ERROR: UNKNOWN HABITGOALPERIOD IN HABITTABLEVIEWCELL")
-            returnStr = ""
+//        default:
+//            print("ERROR: UNKNOWN HABITGOALPERIOD IN HABITTABLEVIEWCELL")
+//            returnStr = ""
         }
         //TODO: calculate count
         let currentCount=habitData.entriesList[date] ?? 0
