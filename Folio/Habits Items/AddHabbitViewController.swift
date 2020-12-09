@@ -180,6 +180,7 @@ class AddHabbitViewController: UIViewController {
 
 extension AddHabbitViewController: UITableViewDataSource, UITableViewDelegate{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        //NOTE: if you change row of addHabbitReminderValueTableViewCell change index path used to reload that cell in addHabbitReminderValueTableViewCell (self.delegate?.updated(indexpath: IndexPath(row: 4, section: 0)))
         return 6
     }
     
@@ -189,33 +190,29 @@ extension AddHabbitViewController: UITableViewDataSource, UITableViewDelegate{
             let cell = tableView.dequeueReusableCell(withIdentifier: "titleCellIdentifier") as! addHabbitTitleTableViewCell
             cell.delegate=self
             cell.selectionStyle = .none
-//            cell.backgroundColor = UIColor(named: "myBackgroundColor")
             return cell
         case 1:
             let cell = tableView.dequeueReusableCell(withIdentifier: "habitStyleCellIdentifier") as! addHabbitStyleTableViewCell
             cell.delegate=self
             cell.selectionStyle = .none
-//            cell.backgroundColor = UIColor(named: "myBackgroundColor")
             return cell
         case 2:
             let cell = tableView.dequeueReusableCell(withIdentifier: "goalPeriodCellIdentifier") as! addHabbitGoalPeriodTableViewCell
             cell.delegate=self
             cell.selectionStyle = .none
-//            cell.backgroundColor = UIColor(named: "myBackgroundColor")
             return cell
         case 3:
             let cell = tableView.dequeueReusableCell(withIdentifier: "goalCountCellIdentifier") as! addHabbitGoalCountTableViewCell
             cell.delegate=self
             cell.selectionStyle = .none
-//            cell.backgroundColor = UIColor(named: "myBackgroundColor")
             return cell
         case 4:
+            //NOTE: if you change row of addHabbitReminderValueTableViewCell change index path used to reload that cell in addHabbitReminderValueTableViewCell (self.delegate?.updated(indexpath: IndexPath(row: 4, section: 0)))
             let cell = tableView.dequeueReusableCell(withIdentifier: "reminderValuesCellIdentifier") as! addHabbitReminderValueTableViewCell
             cell.delegate=self
             cell.index = indexPath
             cell.selectionStyle = .none
             cell.reminderValue = card.reminderValue
-//            cell.backgroundColor = UIColor(named: "myBackgroundColor")
             return cell
         case 5:
             let cell = tableView.dequeueReusableCell(withIdentifier: "targetDateCellIdentifier") as! addHabbitTargetDateTableViewCell
@@ -223,7 +220,6 @@ extension AddHabbitViewController: UITableViewDataSource, UITableViewDelegate{
             cell.selectionStyle = .none
             cell.targetDate=card.targetDate
             cell.index=indexPath
-//            cell.backgroundColor = UIColor(named: "myBackgroundColor")
             return cell
         default:
             return UITableViewCell()

@@ -653,8 +653,8 @@ class HomePageViewController: UIViewController {
             date=date.startOfMonth
         case .yearly:
             date=date.startOfYear
-        default:
-            print("ERROR: UNKNOWN HABITGOALPERIOD IN HABITTABLEVIEWCELL")
+//        default:
+//            print("ERROR: UNKNOWN HABITGOALPERIOD IN HABITTABLEVIEWCELL")
         }
         let currentCount=habitData.entriesList[date] ?? 0
         return currentCount > habitData.goalCount || currentCount.isEqual(to: habitData.goalCount)

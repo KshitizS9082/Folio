@@ -12,6 +12,7 @@ target 'Folio' do
   pod 'SideMenu'
   pod 'Charts'
   pod 'ImagePicker'
+  pod 'SwiftIcons', '~> 3.0'
   # Pods for Folio
 
   target 'FolioTests' do

@@ -10,6 +10,7 @@
 #endif
 #endif
 
+#import "ImageViewer_swift.h"
 
 FOUNDATION_EXPORT double ImageViewer_swiftVersionNumber;
 FOUNDATION_EXPORT const unsigned char ImageViewer_swiftVersionString[];

@@ -7,3 +7,4 @@ ${BUILT_PRODUCTS_DIR}/MaterialTextField/MaterialTextField.framework
 ${BUILT_PRODUCTS_DIR}/SPFakeBar/SPFakeBar.framework
 ${BUILT_PRODUCTS_DIR}/SPStorkController/SPStorkController.framework
 ${BUILT_PRODUCTS_DIR}/SideMenu/SideMenu.framework
+${BUILT_PRODUCTS_DIR}/SwiftIcons/SwiftIcons.framework

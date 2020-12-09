@@ -73,42 +73,88 @@ class addHabbitReminderValueTableViewCell: UITableViewCell {
         
         firstReminderDate = datePicker.date
         if sender.isOn{
-            let notificationType = UIApplication.shared.currentUserNotificationSettings!.types
-            if notificationType == [] {
-                print("notifications are NOT enabled")
-                sender.setOn(false, animated: true)
-                delegate?.setReminderValue(.notSet, firstDate: nil, weekDays: weekDayArray)
-                delegate?.showNotificationNotPresentAlert()
-                return
-            } else {
+//            let notificationType = UIApplication.shared.currentUserNotificationSettings!.types
+//            if notificationType == [] {
+//                print("notifications are NOT enabled")
+//                sender.setOn(false, animated: true)
+//                delegate?.setReminderValue(.notSet, firstDate: nil, weekDays: weekDayArray)
+//                delegate?.showNotificationNotPresentAlert()
+//                return
+//            } else {
+//                print("notifications are enabled")
+//            }
+            UNUserNotificationCenter.current().getNotificationSettings { (settings) in
+              if settings.authorizationStatus == .authorized {
+                // Notifications are allowed
                 print("notifications are enabled")
+                DispatchQueue.main.async {
+                    self.datePicker.isHidden=false
+                    if #available(iOS 14, *){
+                        self.datePickerHeightConstraint.constant = 35
+                    }else{
+                        self.datePickerHeightConstraint.constant = 200
+                    }
+                    self.segment.isUserInteractionEnabled=true
+                    self.segment.layer.opacity = 1.0
+                    self.stackViewHeightConstraint.constant=0
+                    self.stackViewVertSpaceToDateConstraint.constant=0
+                    switch self.segment.selectedSegmentIndex {
+                    case 0:
+                        self.delegate?.setReminderValue(.daily, firstDate: self.firstReminderDate, weekDays: self.weekDayArray)
+                        self.stackViewHeightConstraint.constant=33
+                        self.stackViewVertSpaceToDateConstraint.constant=20
+                    case 1:
+                        self.delegate?.setReminderValue(.weekly, firstDate: self.firstReminderDate, weekDays: self.weekDayArray)
+                    case 2:
+                        self.delegate?.setReminderValue(.monthly, firstDate: self.firstReminderDate, weekDays: self.weekDayArray)
+                    case 3:
+                        self.delegate?.setReminderValue(.yearly, firstDate: self.firstReminderDate, weekDays: self.weekDayArray)
+                    case 4:
+                        self.delegate?.setReminderValue(.nonRepeating, firstDate: self.firstReminderDate, weekDays: self.weekDayArray)
+                    default:
+                        print("ERROR: unhandled index in addHabbitReminderValueTableViewCell")
+                    }
+                    //MARK: required to
+                    self.delegate?.updated(indexpath: IndexPath(row: 4, section: 0))
+                }
+              }
+              else {
+                // Either denied or notDetermined
+                DispatchQueue.main.async {
+                    print("notifications are NOT enabled")
+                    sender.setOn(false, animated: true)
+                    self.delegate?.setReminderValue(.notSet, firstDate: nil, weekDays:self.weekDayArray)
+                    self.delegate?.showNotificationNotPresentAlert()
+                    self.delegate?.updated(indexpath: IndexPath(row: 4, section: 0))
+                }
+              }
             }
-            datePicker.isHidden=false
-            if #available(iOS 14, *){
-                datePickerHeightConstraint.constant = 35
-            }else{
-                datePickerHeightConstraint.constant = 200
-            }
-            segment.isUserInteractionEnabled=true
-            segment.layer.opacity = 1.0
-            stackViewHeightConstraint.constant=0
-            stackViewVertSpaceToDateConstraint.constant=0
-            switch segment.selectedSegmentIndex {
-            case 0:
-                delegate?.setReminderValue(.daily, firstDate: firstReminderDate, weekDays: weekDayArray)
-                stackViewHeightConstraint.constant=33
-                stackViewVertSpaceToDateConstraint.constant=20
-            case 1:
-                delegate?.setReminderValue(.weekly, firstDate: firstReminderDate, weekDays: weekDayArray)
-            case 2:
-                delegate?.setReminderValue(.monthly, firstDate: firstReminderDate, weekDays: weekDayArray)
-            case 3:
-                delegate?.setReminderValue(.yearly, firstDate: firstReminderDate, weekDays: weekDayArray)
-            case 4:
-                delegate?.setReminderValue(.nonRepeating, firstDate: firstReminderDate, weekDays: weekDayArray)
-            default:
-                print("ERROR: unhandled index in addHabbitReminderValueTableViewCell")
-            }
+//            datePicker.isHidden=false
+//            if #available(iOS 14, *){
+//                datePickerHeightConstraint.constant = 35
+//            }else{
+//                datePickerHeightConstraint.constant = 200
+//            }
+//            segment.isUserInteractionEnabled=true
+//            segment.layer.opacity = 1.0
+//            stackViewHeightConstraint.constant=0
+//            stackViewVertSpaceToDateConstraint.constant=0
+//            switch segment.selectedSegmentIndex {
+//            case 0:
+//                delegate?.setReminderValue(.daily, firstDate: firstReminderDate, weekDays: weekDayArray)
+//                stackViewHeightConstraint.constant=33
+//                stackViewVertSpaceToDateConstraint.constant=20
+//            case 1:
+//                delegate?.setReminderValue(.weekly, firstDate: firstReminderDate, weekDays: weekDayArray)
+//            case 2:
+//                delegate?.setReminderValue(.monthly, firstDate: firstReminderDate, weekDays: weekDayArray)
+//            case 3:
+//                delegate?.setReminderValue(.yearly, firstDate: firstReminderDate, weekDays: weekDayArray)
+//            case 4:
+//                delegate?.setReminderValue(.nonRepeating, firstDate: firstReminderDate, weekDays: weekDayArray)
+//            default:
+//                print("ERROR: unhandled index in addHabbitReminderValueTableViewCell")
+//            }
         }else{
             datePicker.isHidden=true
             datePickerHeightConstraint.constant=0
