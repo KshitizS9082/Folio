@@ -20,16 +20,59 @@ class BoardCollectionViewController: UICollectionViewController {
             self.viewWillAppear(false)
         }
     }
-//    var wallpaperPath: String?{
-//        didSet{
-//            self.viewWillAppear(false)
-//        }
-//    }
+    
+    let magnButton = UIButton()
+    
+    var cellWidth = CGFloat(300.0)
+    
     var kanban = Kanban()
     override func viewDidLoad() {
         super.viewDidLoad()
 //        setupAddButtonItem()
         updateCollectionViewItem(with: view.bounds.size)
+        
+        if view.subviews.contains(magnButton)==false{
+            view.addSubview(magnButton)
+            view.bringSubviewToFront(magnButton)
+            magnButton.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(magnButtonClickHandle)))
+            magnButton.backgroundColor = (UIColor.systemGray6).withAlphaComponent(0.8)
+            magnButton.layer.cornerRadius = 8
+            magnButton.setImage(UIImage(systemName: "minus.magnifyingglass"), for: .normal)
+            magnButton.translatesAutoresizingMaskIntoConstraints=false
+            [
+                magnButton.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor, constant: -20),
+                magnButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -20),
+                magnButton.widthAnchor.constraint(equalToConstant: 50),
+                magnButton.heightAnchor.constraint(equalTo: magnButton.widthAnchor)
+            ].forEach { (cst) in
+                cst.isActive=true
+            }
+        }
+    }
+    
+    @objc func magnButtonClickHandle(){
+        print("magnButton clicked")
+//        UIView.animate(withDuration: 1, animations: {
+//            self.collectionView.transform = CGAffineTransform(scaleX: 0.75, y: 0.75)
+//        }) { (finished) in
+////            UIView.animate(withDuration: 1, animations: {
+////                self.view.transform = CGAffineTransform.identity
+////            })
+//        }
+        if cellWidth==CGFloat(300.0){
+            cellWidth=CGFloat(200.0)
+            magnButton.setImage(UIImage(systemName: "plus.magnifyingglass"), for: .normal)
+        }else{
+            cellWidth=CGFloat(300.0)
+            magnButton.setImage(UIImage(systemName: "minus.magnifyingglass"), for: .normal)
+        }
+        guard let layout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout else {
+            return
+        }
+//        UIView.animate(withDuration: 0.4, delay: 0, options: .curveEaseInOut, animations: {
+            layout.itemSize = CGSize(width: self.cellWidth, height: self.view.bounds.size.height * 0.8)
+//        }, completion: nil)
+        
     }
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
@@ -41,7 +84,7 @@ class BoardCollectionViewController: UICollectionViewController {
         guard let layout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout else {
             return
         }
-        layout.itemSize = CGSize(width: 300, height: size.height * 0.8)
+        layout.itemSize = CGSize(width: cellWidth, height: size.height * 0.8)
     }
     func deleteWallPaper(){
         if let oldPath = self.kanban.wallpaperPath{
