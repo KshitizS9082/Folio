@@ -229,7 +229,7 @@ extension switchKanbanTimelineTabBarController: ImagePickerDelegate{
             return
         }
         let image = images[0]
-        if let json = imageData(instData: image.pngData()!).json {
+        if let json = imageData(instData: image.resizedTo1MB()!.pngData()!).json {
             if let url = try? FileManager.default.url(
                 for: .documentDirectory,
                 in: .userDomainMask,
