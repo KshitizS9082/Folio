@@ -4,7 +4,6 @@
 target 'Folio' do
   # Comment the next line if you don't want to use dynamic frameworks
   use_frameworks!
-   pod 'MaterialTextField', '~> 0.2'
   pod 'SPStorkController'
   pod 'SPFakeBar'
   pod 'ImageViewer.swift', '~> 3.0'

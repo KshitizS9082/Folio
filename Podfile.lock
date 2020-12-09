@@ -5,7 +5,6 @@ PODS:
   - ImagePicker (3.2.0)
   - ImageViewer.swift (3.3.3)
   - JTAppleCalendar (7.1.8)
-  - MaterialTextField (0.2.1)
   - SideMenu (6.5.0)
   - SPFakeBar (1.0.9)
   - SPStorkController (1.8.2)
@@ -16,7 +15,6 @@ DEPENDENCIES:
   - ImagePicker
   - ImageViewer.swift (~> 3.0)
   - JTAppleCalendar (~> 7.1)
-  - MaterialTextField (~> 0.2)
   - SideMenu
   - SPFakeBar
   - SPStorkController
@@ -28,7 +26,6 @@ SPEC REPOS:
     - ImagePicker
     - ImageViewer.swift
     - JTAppleCalendar
-    - MaterialTextField
     - SideMenu
     - SPFakeBar
     - SPStorkController
@@ -39,12 +36,11 @@ SPEC CHECKSUMS:
   ImagePicker: 1d950bbb2422548ed58791b4ec7f42fe42920511
   ImageViewer.swift: 3dbb74a68ac4bdd6cdd585b3128dae17ccd733e5
   JTAppleCalendar: b7fb40852f5f319fe55c8ec3861f1de0edc99cc8
-  MaterialTextField: f876a39d571eeece872af6a4da421e3bd065fe0b
   SideMenu: f583187d21c5b1dd04c72002be544b555a2627a2
   SPFakeBar: b74ebaa7ff9ca06a39f13dbe668238f15825ee88
   SPStorkController: d809adb3e333ec07760f8bf1b4c628a2801675ac
   SwiftIcons: 3b748e57d9eee0c7c8d3bdbf2d742c0b1b4c6172
 
-PODFILE CHECKSUM: 52ded384d276fe10c2ccc37aad8a626e58c382c3
+PODFILE CHECKSUM: 34c49d38bd5a3e67d600dc109ef0dc2c267548b0
 
 COCOAPODS: 1.9.3
