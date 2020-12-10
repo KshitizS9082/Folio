@@ -21,7 +21,7 @@ import UIKit
 //    }
 //}
 class HomePageViewController: UIViewController {
-
+    
     @IBOutlet weak var backgroundImageView: UIImageView!{
         didSet{
             backgroundImageView.addBlurEffect(with: .systemUltraThinMaterial)
@@ -61,6 +61,10 @@ class HomePageViewController: UIViewController {
     @IBOutlet weak var selectedSegmentIndicatorCenterYConstraint: NSLayoutConstraint!
     @IBOutlet weak var selectedSegmentIndicatorCenterXConstraint: NSLayoutConstraint!
     @IBAction func segmentButtonSelected(_ sender: UIButton) {
+        var segmentIncreasing=true
+        if segmentButtons.lastIndex(of: sender)!<self.selectedSegment{
+           segmentIncreasing=false
+        }
         self.selectedSegment=segmentButtons.lastIndex(of: sender)!
         print("selected index: \(self.selectedSegment)")
         self.selectedSegmentIndicatorCenterXConstraint.isActive=false
@@ -83,19 +87,19 @@ class HomePageViewController: UIViewController {
         }else if self.selectedSegment==3{
             loadJournalCards()
         }
-        animateSetup()
+        animateSetup(segmentIncreasing: segmentIncreasing)
     }
     
     @IBOutlet weak var bubbleOne: UIImageView!{
         didSet{
             bubbleOne.layer.cornerRadius=bubbleOne.frame.width/2.0
             bubbleOne.addBlurEffect(with: .systemUltraThinMaterial)
-//            bubbleOne.applyshadowWithCorner(containerView: bubbleOne, cornerRadious: bubbleOne.frame.width/2.0)
+            //            bubbleOne.applyshadowWithCorner(containerView: bubbleOne, cornerRadious: bubbleOne.frame.width/2.0)
         }
     }
     @IBOutlet weak var bubbleOneContainer: UIView!{
         didSet{
-//            bubbleOneContainer.backgroundColor = .clear
+            //            bubbleOneContainer.backgroundColor = .clear
             bubbleOneContainer.layer.cornerRadius=bubbleOneContainer.frame.width/2.0
             //Draw shaddow for layer
             bubbleOneContainer.layer.shadowColor = #colorLiteral(red: 0.5039077985, green: 0.2100836635, blue: 0.2754305899, alpha: 1).cgColor
@@ -109,7 +113,7 @@ class HomePageViewController: UIViewController {
         didSet{
             bubbleOneShadow.layer.cornerRadius=bubbleOneShadow.frame.width/2.0
             bubbleOneShadow.addBlurEffect(with: .systemUltraThinMaterial)
-//            bubbleOne.applyshadowWithCorner(containerView: bubbleOne, cornerRadious: bubbleOne.frame.width/2.0)
+            //            bubbleOne.applyshadowWithCorner(containerView: bubbleOne, cornerRadious: bubbleOne.frame.width/2.0)
         }
     }
     @IBOutlet weak var subBubOneOne: UIView!{
@@ -155,7 +159,7 @@ class HomePageViewController: UIViewController {
     
     @IBOutlet weak var bubbleTwoContainer: UIView!{
         didSet{
-//            bubbleOneContainer.backgroundColor = .clear
+            //            bubbleOneContainer.backgroundColor = .clear
             bubbleTwoContainer.layer.cornerRadius=bubbleTwoContainer.frame.width/2.0
             //Draw shaddow for layer
             bubbleTwoContainer.layer.shadowColor = #colorLiteral(red: 0.4481569647, green: 0.4288250172, blue: 0.5929355621, alpha: 1).cgColor
@@ -167,7 +171,7 @@ class HomePageViewController: UIViewController {
     @IBOutlet weak var bubbleTwo: UIImageView!{
         didSet{
             bubbleTwo.layer.cornerRadius=bubbleTwo.frame.width/2.0
-//            bubbleTwo.addBlurEffect(with: .systemUltraThinMaterial)
+            //            bubbleTwo.addBlurEffect(with: .systemUltraThinMaterial)
         }
     }
     @IBOutlet weak var bubbleTwoShadow: UIImageView!{
@@ -200,7 +204,7 @@ class HomePageViewController: UIViewController {
     @IBOutlet weak var bubbleThree: UIImageView!{
         didSet{
             bubbleThree.layer.cornerRadius=bubbleThree.frame.width/2.0
-//            bubbleTwo.addBlurEffect(with: .systemUltraThinMaterial)
+            //            bubbleTwo.addBlurEffect(with: .systemUltraThinMaterial)
         }
     }
     @IBOutlet weak var bubbleThreeShadow: UIImageView!{
@@ -231,7 +235,7 @@ class HomePageViewController: UIViewController {
     }
     @IBOutlet weak var bubbleThreeContainer: UIView!{
         didSet{
-//            bubbleOneContainer.backgroundColor = .clear
+            //            bubbleOneContainer.backgroundColor = .clear
             bubbleThreeContainer.layer.cornerRadius=bubbleThreeContainer.frame.width/2.0
             //Draw shaddow for layer
             bubbleThreeContainer.layer.shadowColor = #colorLiteral(red: 0.1764553137, green: 0.3516730533, blue: 0.4293856982, alpha: 1).cgColor
@@ -245,6 +249,49 @@ class HomePageViewController: UIViewController {
     @IBOutlet weak var bubbleThreeTwoLabel: UILabel!
     @IBOutlet weak var bubbleThreeSubLabel: UILabel!
     @IBOutlet weak var bubbleThreeLeadingConstraint: NSLayoutConstraint!
+    
+    @IBOutlet weak var goToViewIV: UIImageView!{
+        didSet{
+//            goToViewIV.layer.cornerRadius = 8.0
+            goToViewIV.layer.cornerRadius = goToViewIV.frame.width/2.0
+//            let gradient = CAGradientLayer()
+//            gradient.frame = goToViewIV.bounds
+//            gradient.colors = [#colorLiteral(red: 0.6972481012, green: 0.2983421981, blue: 0.6252576709, alpha: 1), #colorLiteral(red: 0.335029155, green: 0.289393276, blue: 0.6445288658, alpha: 1)]
+//            goToViewIV.layer.insertSublayer(gradient, at: 0)
+            
+//            goToViewIV.setGradientBackground(colorOne: #colorLiteral(red: 0.6972481012, green: 0.2983421981, blue: 0.6252576709, alpha: 1), colorTwo: #colorLiteral(red: 0.335029155, green: 0.289393276, blue: 0.6445288658, alpha: 1))
+            
+//            goToViewIV.backgroundColor = #colorLiteral(red: 0.1764553137, green: 0.3516730533, blue: 0.4293856982, alpha: 1)
+            goToViewIV.isUserInteractionEnabled=true
+            goToViewIV.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(goToClicked)))
+        }
+    }
+    @IBOutlet weak var goToViewContainer: UIView!{
+        didSet{
+//            goToViewContainer.layer.cornerRadius=12
+            goToViewContainer.layer.cornerRadius=goToViewContainer.frame.width/2.0
+            //Draw shaddow for layer
+            goToViewContainer.layer.shadowColor = #colorLiteral(red: 0.1357329488, green: 0.4477517605, blue: 0.5759849548, alpha: 1).cgColor
+            goToViewContainer.layer.shadowOffset = CGSize(width: 3, height: 8)
+            goToViewContainer.layer.shadowRadius = 10.0
+            goToViewContainer.layer.shadowOpacity = 0.3
+//            goToViewContainer.setGradientBackground(colorOne: #colorLiteral(red: 0.6972481012, green: 0.2983421981, blue: 0.6252576709, alpha: 1), colorTwo: #colorLiteral(red: 0.335029155, green: 0.289393276, blue: 0.6445288658, alpha: 1))
+        }
+    }
+    @objc func goToClicked(){
+        switch selectedSegment{
+        case 0:
+            self.performSegue(withIdentifier: "homeToPageListSegue", sender: self)
+        case 1:
+            self.performSegue(withIdentifier: "homeToFinanceSegue", sender: self)
+        case 2:
+            self.performSegue(withIdentifier: "homeToHabitSegue", sender: self)
+        case 3:
+            self.performSegue(withIdentifier: "homeToJournalSegue", sender: self)
+        default:
+            print("not handled segue in gotoclick homepage")
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -270,7 +317,14 @@ class HomePageViewController: UIViewController {
         self.setupKanbanBubbles()
     }
     
-    func animateSetup(){
+    func animateSetup(segmentIncreasing: Bool){
+        if segmentIncreasing{
+            UIView.transition(with: goToViewContainer, duration: 0.6, options: .transitionFlipFromLeft, animations: nil, completion: nil)
+        }else{
+            UIView.transition(with: goToViewContainer, duration: 0.6, options: .transitionFlipFromRight, animations: nil, completion: nil)
+        }
+        
+        
         UIView.animate(withDuration: 0.4, delay: 0, options: .curveEaseOut) {
             self.bubbleOneLeadingConstraint.constant=self.bubbleOneLeadingConstraint.constant-self.backgroundImageView.frame.width
             self.bubbleTwoLeadingConstraint.constant=self.bubbleTwoLeadingConstraint.constant+self.backgroundImageView.frame.width
@@ -653,8 +707,8 @@ class HomePageViewController: UIViewController {
             date=date.startOfMonth
         case .yearly:
             date=date.startOfYear
-//        default:
-//            print("ERROR: UNKNOWN HABITGOALPERIOD IN HABITTABLEVIEWCELL")
+        //        default:
+        //            print("ERROR: UNKNOWN HABITGOALPERIOD IN HABITTABLEVIEWCELL")
         }
         let currentCount=habitData.entriesList[date] ?? 0
         return currentCount > habitData.goalCount || currentCount.isEqual(to: habitData.goalCount)
@@ -675,9 +729,9 @@ class HomePageViewController: UIViewController {
         case .yearly:
             returnStr = "This Year: "
             date=date.startOfYear
-//        default:
-//            print("ERROR: UNKNOWN HABITGOALPERIOD IN HABITTABLEVIEWCELL")
-//            returnStr = ""
+        //        default:
+        //            print("ERROR: UNKNOWN HABITGOALPERIOD IN HABITTABLEVIEWCELL")
+        //            returnStr = ""
         }
         //TODO: calculate count
         let currentCount=habitData.entriesList[date] ?? 0
@@ -685,5 +739,5 @@ class HomePageViewController: UIViewController {
         
         return returnStr
     }
-
+    
 }
