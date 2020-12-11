@@ -28,9 +28,10 @@ class BoardCollectionViewController: UICollectionViewController {
     var kanban = Kanban()
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.collectionView!.addGestureRecognizer(UILongPressGestureRecognizer(target: self, action: #selector(handleLongGestureForReorder)))
 //        setupAddButtonItem()
         updateCollectionViewItem(with: view.bounds.size)
-        
+
         if view.subviews.contains(magnButton)==false{
             view.addSubview(magnButton)
             view.bringSubviewToFront(magnButton)
@@ -47,6 +48,22 @@ class BoardCollectionViewController: UICollectionViewController {
             ].forEach { (cst) in
                 cst.isActive=true
             }
+        }
+    }
+    
+    @objc func handleLongGestureForReorder(gesture: UILongPressGestureRecognizer){
+        switch(gesture.state){
+        case UIGestureRecognizerState.began:
+            guard let selectedIndexPath = self.collectionView!.indexPathForItem(at: gesture.location(in: self.collectionView)) else{
+                    break
+                }
+            collectionView!.beginInteractiveMovementForItem(at: selectedIndexPath)
+        case UIGestureRecognizerState.changed:
+            collectionView!.updateInteractiveMovementTargetPosition(gesture.location(in: gesture.view!))
+        case UIGestureRecognizerState.ended:
+            collectionView!.endInteractiveMovement()
+        default:
+            collectionView!.cancelInteractiveMovement()
         }
     }
     
@@ -236,6 +253,13 @@ class BoardCollectionViewController: UICollectionViewController {
             }
         }
 //        print("ended wall")
+    }
+    
+    override func collectionView(_ collectionView: UICollectionView, canMoveItemAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    override func collectionView(_ collectionView: UICollectionView, moveItemAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+        self.kanban.boards.swapAt(sourceIndexPath.row, destinationIndexPath.row)
     }
 }
 
