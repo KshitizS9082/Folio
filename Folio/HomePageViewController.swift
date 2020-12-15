@@ -102,10 +102,10 @@ class HomePageViewController: UIViewController {
             //            bubbleOneContainer.backgroundColor = .clear
             bubbleOneContainer.layer.cornerRadius=bubbleOneContainer.frame.width/2.0
             //Draw shaddow for layer
-            bubbleOneContainer.layer.shadowColor = #colorLiteral(red: 0.5039077985, green: 0.2100836635, blue: 0.2754305899, alpha: 1).cgColor
+            bubbleOneContainer.layer.shadowColor = #colorLiteral(red: 0.2740381486, green: 0.1163476719, blue: 0.1526151291, alpha: 1).cgColor
             bubbleOneContainer.layer.shadowOffset = CGSize(width: 10.0, height: 15)
-            bubbleOneContainer.layer.shadowRadius = 18.0
-            bubbleOneContainer.layer.shadowOpacity = 0.35
+            bubbleOneContainer.layer.shadowRadius = 17.0
+            bubbleOneContainer.layer.shadowOpacity = 0.2
         }
     }
     
@@ -162,16 +162,16 @@ class HomePageViewController: UIViewController {
             //            bubbleOneContainer.backgroundColor = .clear
             bubbleTwoContainer.layer.cornerRadius=bubbleTwoContainer.frame.width/2.0
             //Draw shaddow for layer
-            bubbleTwoContainer.layer.shadowColor = #colorLiteral(red: 0.4481569647, green: 0.4288250172, blue: 0.5929355621, alpha: 1).cgColor
+            bubbleTwoContainer.layer.shadowColor = #colorLiteral(red: 0.2785261072, green: 0.2646946907, blue: 0.3706331156, alpha: 1).cgColor
             bubbleTwoContainer.layer.shadowOffset = CGSize(width: -3, height: 35)
             bubbleTwoContainer.layer.shadowRadius = 30.0
-            bubbleTwoContainer.layer.shadowOpacity = 0.65
+            bubbleTwoContainer.layer.shadowOpacity = 0.3
         }
     }
     @IBOutlet weak var bubbleTwo: UIImageView!{
         didSet{
             bubbleTwo.layer.cornerRadius=bubbleTwo.frame.width/2.0
-            //            bubbleTwo.addBlurEffect(with: .systemUltraThinMaterial)
+            bubbleTwo.addBlurEffect(with: .systemUltraThinMaterial)
         }
     }
     @IBOutlet weak var bubbleTwoShadow: UIImageView!{
@@ -204,7 +204,7 @@ class HomePageViewController: UIViewController {
     @IBOutlet weak var bubbleThree: UIImageView!{
         didSet{
             bubbleThree.layer.cornerRadius=bubbleThree.frame.width/2.0
-            //            bubbleTwo.addBlurEffect(with: .systemUltraThinMaterial)
+            bubbleThree.addBlurEffect(with: .systemUltraThinMaterial)
         }
     }
     @IBOutlet weak var bubbleThreeShadow: UIImageView!{
@@ -238,10 +238,10 @@ class HomePageViewController: UIViewController {
             //            bubbleOneContainer.backgroundColor = .clear
             bubbleThreeContainer.layer.cornerRadius=bubbleThreeContainer.frame.width/2.0
             //Draw shaddow for layer
-            bubbleThreeContainer.layer.shadowColor = #colorLiteral(red: 0.1764553137, green: 0.3516730533, blue: 0.4293856982, alpha: 1).cgColor
+            bubbleThreeContainer.layer.shadowColor = #colorLiteral(red: 0.09488880719, green: 0.1891121092, blue: 0.2309020673, alpha: 1).cgColor
             bubbleThreeContainer.layer.shadowOffset = CGSize(width: 0, height: 15)
             bubbleThreeContainer.layer.shadowRadius = 18.0
-            bubbleThreeContainer.layer.shadowOpacity = 0.3
+            bubbleThreeContainer.layer.shadowOpacity = 0.18
         }
     }
     @IBOutlet weak var bubbleThreeLabel: UILabel!

@@ -203,6 +203,24 @@ extension CardPreviewViewController: UITableViewDataSource, UITableViewDelegate{
         return UITableViewCell()
     }
     
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let ret = 6
+        if (!showChecklist) || indexPath.row<ret || indexPath.row >= ret+(card.checkList.items.count){
+            let configuration = UISwipeActionsConfiguration()
+            return configuration
+        }
+        let action = UIContextualAction(style: .destructive, title: "Delete",
+                                        handler: { (action, view, completionHandler) in
+                                            self.card.checkList.items.remove(at: indexPath.row-6)
+                                            self.tableView.beginUpdates()
+                                            self.tableView.deleteRows(at: [indexPath], with: .automatic)
+                                            self.tableView.endUpdates()
+                                            completionHandler(true)
+        })
+        action.backgroundColor = .systemRed
+        let configuration = UISwipeActionsConfiguration(actions: [action])
+        return configuration
+    }
     
 }
 extension CardPreviewViewController: cardPreviewTableProtocol{

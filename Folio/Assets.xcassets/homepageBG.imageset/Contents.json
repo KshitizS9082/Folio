@@ -1,17 +1,50 @@
 {
   "images" : [
     {
-      "filename" : "das-sasha-VuBzplNNi0k-unsplash-3.jpg",
+      "filename" : "han-chenxu-s87ngBxo4xg-unsplash-7.jpg",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "han-chenxu-s87ngBxo4xg-unsplash-4.jpg",
+      "appearances" : [
+        {
+          "appearance" : "luminosity",
+          "value" : "dark"
+        }
+      ],
+      "filename" : "Gradient-Background-Wallpaper-003-300x585-2.jpg",
+      "idiom" : "universal",
+      "scale" : "1x"
+    },
+    {
+      "filename" : "Gradient_builder_2-1.jpg",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "han-chenxu-s87ngBxo4xg-unsplash-3.jpg",
+      "appearances" : [
+        {
+          "appearance" : "luminosity",
+          "value" : "dark"
+        }
+      ],
+      "filename" : "pngtree-dark-gradient-blurred-halo-background-image_120272-1.jpg",
+      "idiom" : "universal",
+      "scale" : "2x"
+    },
+    {
+      "filename" : "Gradient_builder_2.jpg",
+      "idiom" : "universal",
+      "scale" : "3x"
+    },
+    {
+      "appearances" : [
+        {
+          "appearance" : "luminosity",
+          "value" : "dark"
+        }
+      ],
+      "filename" : "pngtree-dark-gradient-blurred-halo-background-image_120272.jpg",
       "idiom" : "universal",
       "scale" : "3x"
     }
