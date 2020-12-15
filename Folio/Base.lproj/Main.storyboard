@@ -4760,7 +4760,7 @@
                                                     <rect key="frame" x="299" y="5.6666666666666643" width="40" height="39.333333333333343"/>
                                                     <preferredSymbolConfiguration key="preferredSymbolConfiguration" weight="semibold"/>
                                                 </imageView>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ellipsis.circle" catalog="system" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XOE-ti-ZPk">
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="line.horizontal.3.decrease.circle" catalog="system" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XOE-ti-ZPk">
                                                     <rect key="frame" x="354" y="5.6666666666666643" width="40" height="39.333333333333343"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="40" id="8cH-Ad-f0g"/>
@@ -5031,7 +5031,6 @@
         <image name="creditcard" catalog="system" width="128" height="88"/>
         <image name="doc.plaintext" catalog="system" width="115" height="128"/>
         <image name="ellipsis" catalog="system" width="128" height="37"/>
-        <image name="ellipsis.circle" catalog="system" width="128" height="121"/>
         <image name="exclamationmark.circle" catalog="system" width="128" height="121"/>
         <image name="f.circle.fill" catalog="system" width="128" height="121"/>
         <image name="financeBG" width="480" height="506.66665649414062"/>
@@ -5041,6 +5040,7 @@
         <image name="icloud.slash" catalog="system" width="128" height="101"/>
         <image name="kanbanListBG" width="755.33331298828125" height="1166.3333740234375"/>
         <image name="line.horizontal.3" catalog="system" width="128" height="64"/>
+        <image name="line.horizontal.3.decrease.circle" catalog="system" width="128" height="121"/>
         <image name="link" catalog="system" width="128" height="122"/>
         <image name="link.circle" catalog="system" width="128" height="121"/>
         <image name="list.bullet.rectangle" catalog="system" width="128" height="93"/>

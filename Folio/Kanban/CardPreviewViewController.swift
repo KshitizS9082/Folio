@@ -17,6 +17,7 @@ protocol cardPreviewTableProtocol {
     func updateReminder(to date: Date?)
     func updateScheduledDate(to date: Date?)
     func showFullChecklist(show: Bool)
+    func toggleEdittingChecklistRows()
     func addChecklistItem(text: String)
     func updateChecklistItem(item: CheckListItem)
     func preseintViewController(vc: UIViewController)
@@ -54,6 +55,7 @@ class CardPreviewViewController: UIViewController {
         didSet{
             tableView.dataSource=self
             tableView.delegate=self
+            tableView.dragInteractionEnabled=true
         }
     }
     
@@ -222,8 +224,53 @@ extension CardPreviewViewController: UITableViewDataSource, UITableViewDelegate{
         return configuration
     }
     
+    //Moving and reordering checklist items
+    func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
+        let ret = 6
+        if (!showChecklist) || indexPath.row<ret || indexPath.row >= ret+(card.checkList.items.count){
+            return false
+        }else{
+            return true
+        }
+    }
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        let ret = 6
+        if (!showChecklist) || indexPath.row<ret || indexPath.row >= ret+(card.checkList.items.count){
+            return false
+        }else{
+            return true
+        }
+    }
+    func tableView(_ tableView: UITableView, targetIndexPathForMoveFromRowAt sourceIndexPath: IndexPath, toProposedIndexPath proposedDestinationIndexPath: IndexPath) -> IndexPath {
+        var returnVal = proposedDestinationIndexPath
+        var dest = proposedDestinationIndexPath.row-6
+        if dest > (card.checkList.items.count)-1{
+            dest = (card.checkList.items.count)-1
+        }
+        if dest < 0{
+            dest = 0
+        }
+        returnVal = IndexPath(row: dest+6, section: 0)
+        return returnVal
+    }
+    func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+        let source = sourceIndexPath.row-6
+        var dest = destinationIndexPath.row-6
+        if dest > (card.checkList.items.count)-1{
+            dest = (card.checkList.items.count)-1
+        }
+        if dest < 0{
+            dest = 0
+        }
+        let data = self.card.checkList.items.remove(at: source)
+        self.card.checkList.items.insert(data, at: dest)
+    }
 }
 extension CardPreviewViewController: cardPreviewTableProtocol{
+    func toggleEdittingChecklistRows() {
+        self.tableView.setEditing(!tableView.isEditing, animated: true)
+    }
+    
     func updateTagColor(to tagColor: Int) {
         card.tagColor = tagColor
     }
@@ -348,6 +395,7 @@ extension CardPreviewViewController: cardPreviewTableProtocol{
             }
             tableView.insertRows(at: indexes, with: .automatic)
         }else{
+            self.tableView.setEditing(false, animated: true)
             var indexes = [IndexPath]()
             for ind in 6...(6+card.checkList.items.count){
                 indexes.append(IndexPath(row: ind, section: 0))
@@ -597,7 +645,12 @@ class checkListCellCardPreview: UITableViewCell{
             expandCheckList.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(toggleCheckList)))
         }
     }
-    @IBOutlet weak var checkLIstPref: UIImageView!
+    @IBOutlet weak var checkLIstPref: UIImageView!{
+        didSet{
+            checkLIstPref.isUserInteractionEnabled=true
+            checkLIstPref.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(setEditting)))
+        }
+    }
     var checList: CheckListData?
     @objc func toggleCheckList(){
         if expandCheckList.image == UIImage(systemName: "chevron.down.circle"){
@@ -608,6 +661,9 @@ class checkListCellCardPreview: UITableViewCell{
             delegate?.showFullChecklist(show: false)
         }
         delegate?.updateHeights()
+    }
+    @objc func setEditting(){
+        delegate?.toggleEdittingChecklistRows()
     }
 }
 class checkListItemCell: UITableViewCell, UITextViewDelegate{
