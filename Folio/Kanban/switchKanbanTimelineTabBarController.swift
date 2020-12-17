@@ -36,9 +36,9 @@ class switchKanbanTimelineTabBarController: UITabBarController, UITabBarControll
         ]
         self.navigationController?.navigationBar.titleTextAttributes = attrs
         self.navigationController?.title = self.boardName
-//        let vc0 = self.viewControllers?[0] as! BoardCollectionViewController
-//        print("setting vc0 bfname")
-//        vc0.boardFileName=self.boardFileName
+        let vc0 = self.viewControllers?[0] as! BoardCollectionViewController
+        print("setting vc0 bfname")
+        vc0.boardFileName=self.boardFileName
     }
     override func viewDidAppear(_ animated: Bool) {
 //        if let vc = self.selectedViewController as? BoardCollectionViewController{
@@ -46,9 +46,9 @@ class switchKanbanTimelineTabBarController: UITabBarController, UITabBarControll
 //        }else if let vc = self.selectedViewController as? NewKanbanTimelineViewController{
 //            vc.boardFileName=self.boardFileName
 //        }
-        let vc0 = self.viewControllers?[0] as! BoardCollectionViewController
-        print("setting vc0 bfname")
-        vc0.boardFileName=self.boardFileName
+//        let vc0 = self.viewControllers?[0] as! BoardCollectionViewController
+//        print("setting vc0 bfname")
+//        vc0.boardFileName=self.boardFileName
 //        let vc1 = self.viewControllers?[1] as! NewKanbanTimelineViewController
 //        print("setting vc1 bfname")
 //        vc1.boardFileName=self.boardFileName
