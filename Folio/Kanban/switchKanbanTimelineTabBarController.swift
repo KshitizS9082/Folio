@@ -24,14 +24,7 @@ class switchKanbanTimelineTabBarController: UITabBarController, UITabBarControll
 //            print("viewwilala second ")
 //        }
     }
-//    override func viewDidAppear(_ animated: Bool) {
-//        print("viewwilala vdl switch")
-//        if let vc = self.selectedViewController as? BoardCollectionViewController{
-//            print("viewwilala first")
-//        }else if let vc = self.selectedViewController as? NewKanbanTimelineViewController{
-//            print("viewwilala second ")
-//        }
-//    }
+
     override func viewWillAppear(_ animated: Bool) {
         navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
         navigationController?.navigationBar.shadowImage = UIImage()
@@ -43,6 +36,9 @@ class switchKanbanTimelineTabBarController: UITabBarController, UITabBarControll
         ]
         self.navigationController?.navigationBar.titleTextAttributes = attrs
         self.navigationController?.title = self.boardName
+//        let vc0 = self.viewControllers?[0] as! BoardCollectionViewController
+//        print("setting vc0 bfname")
+//        vc0.boardFileName=self.boardFileName
     }
     override func viewDidAppear(_ animated: Bool) {
 //        if let vc = self.selectedViewController as? BoardCollectionViewController{
@@ -216,6 +212,14 @@ class switchKanbanTimelineTabBarController: UITabBarController, UITabBarControll
         self.navigationController?.popViewController(animated: true)
     }
      */
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier=="addAutomationSegue"{
+            if let vc = segue.destination as? AddAutomationViewController{
+                vc.boardFileName = self.boardFileName
+            }
+        }
+    }
 }
 extension switchKanbanTimelineTabBarController: ImagePickerDelegate{
     func wrapperDidPress(_ imagePicker: ImagePickerController, images: [UIImage]) {

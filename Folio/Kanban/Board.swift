@@ -18,6 +18,7 @@ struct Kanban: Codable{
     var wallpaperPath: String?
     var dateOfCreation = Date()
     var boards = [Board]()
+    var commands = [Command]()
     init(){
     }
     init?(json: Data){
