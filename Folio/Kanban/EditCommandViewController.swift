@@ -9,8 +9,11 @@
 import UIKit
 protocol EditCommandVCProtocol {
     func updateCommandName(to title: String)
+    func addTrigger(newTrigger: Trigger)
+    func addAction(newAction: Action)
 }
 class EditCommandViewController: UIViewController, EditCommandVCProtocol {
+    
     
     var delegate: addAutomationVCProtocol?
     var command = Command()
@@ -38,10 +41,29 @@ class EditCommandViewController: UIViewController, EditCommandVCProtocol {
     func updateCommandName(to title: String) {
         command.name=title
     }
+    func addTrigger(newTrigger: Trigger) {
+        print("addTrigger called in EditCommandVC")
+        command.condition.append(newTrigger)
+        tableView.reloadData()
+    }
+    
+    func addAction(newAction: Action) {
+        command.execution.append(newAction)
+        tableView.reloadData()
+    }
     override func viewWillDisappear(_ animated: Bool) {
         delegate?.editCommand(to: command)
     }
-
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "AddTriggerSegue"{
+            let vc = segue.destination as! AddTriggerViewController
+            vc.delegate=self
+        }else if segue.identifier == "AddActionSegue"{
+            let vc = segue.destination as! AddActionViewController
+            vc.delegate=self
+        }
+    }
 }
 extension EditCommandViewController: UITableViewDataSource, UITableViewDelegate{
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -65,23 +87,25 @@ extension EditCommandViewController: UITableViewDataSource, UITableViewDelegate{
             let cell = tableView.dequeueReusableCell(withIdentifier: "commandTitleID") as! EditCommandTitleTCV
             cell.delegate=self
             cell.textField.text = command.name
-            cell.textLabel?.text = command.name
+//            cell.textLabel?.text = command.name
             return cell
         }else if indexPath.section==1{
             if indexPath.row==command.condition.count{
                 let cell = tableView.dequeueReusableCell(withIdentifier: "addConditionIdentifier")!
                 return cell
             }else{
-                let cell = tableView.dequeueReusableCell(withIdentifier: "commandTextCell")
-                cell?.textLabel?.text = command.condition[indexPath.row].triggerType.rawValue
+                let cell = tableView.dequeueReusableCell(withIdentifier: "commandTextCell")!
+                cell.textLabel?.text = command.condition[indexPath.row].triggerType.rawValue
+                return cell
             }
         }else if indexPath.section==2{
             if indexPath.row==command.execution.count{
                 let cell = tableView.dequeueReusableCell(withIdentifier: "addActionIdentifier")!
                 return cell
             }else{
-                let cell = tableView.dequeueReusableCell(withIdentifier: "commandTextCell")
-                cell?.textLabel?.text = command.execution[indexPath.row].actionType.rawValue
+                let cell = tableView.dequeueReusableCell(withIdentifier: "commandTextCell")!
+                cell.textLabel?.text = command.execution[indexPath.row].actionType.rawValue
+                return cell
             }
         }
         let cell = UITableViewCell()

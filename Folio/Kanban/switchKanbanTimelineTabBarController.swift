@@ -25,6 +25,8 @@ class switchKanbanTimelineTabBarController: UITabBarController, UITabBarControll
 //        }
     }
 
+    //Note: addAutomationButton need to be hidden when in timeline as otherwise won't save
+    @IBOutlet weak var addAutomationButton: UIBarButtonItem!
     override func viewWillAppear(_ animated: Bool) {
         navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
         navigationController?.navigationBar.shadowImage = UIImage()
@@ -71,6 +73,7 @@ class switchKanbanTimelineTabBarController: UITabBarController, UITabBarControll
     func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
         if let vc = viewController as? NewKanbanTimelineViewController{
             print("viewwilalal selecting second")
+            self.addAutomationButton.isEnabled=false
             let orig = self.viewControllers?[0] as! BoardCollectionViewController
             orig.save()
             if vc.boardFileName != self.boardFileName{
@@ -78,6 +81,7 @@ class switchKanbanTimelineTabBarController: UITabBarController, UITabBarControll
             }
         }else if viewController is BoardCollectionViewController{
             print("viewwilalal selection first")
+            self.addAutomationButton.isEnabled=true
             let orig = self.viewControllers?[1] as! NewKanbanTimelineViewController
             orig.save()
             

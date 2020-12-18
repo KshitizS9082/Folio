@@ -29,6 +29,8 @@
 		E252D8242589EB9D00DC6F92 /* kanbanAutomation.swift in Sources */ = {isa = PBXBuildFile; fileRef = E252D8232589EB9D00DC6F92 /* kanbanAutomation.swift */; };
 		E252D829258A31A200DC6F92 /* AddAutomationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E252D828258A31A200DC6F92 /* AddAutomationViewController.swift */; };
 		E252D82E258A6A1600DC6F92 /* EditCommandViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E252D82D258A6A1600DC6F92 /* EditCommandViewController.swift */; };
+		E252D833258B41AB00DC6F92 /* AddTriggerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E252D832258B41AB00DC6F92 /* AddTriggerViewController.swift */; };
+		E252D838258CDC9800DC6F92 /* AddActionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E252D837258CDC9800DC6F92 /* AddActionViewController.swift */; };
 		E25B0E9B247BD055004F3BDA /* UITextFieldExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E25B0E9A247BD055004F3BDA /* UITextFieldExtensions.swift */; };
 		E25B0E9D247C010C004F3BDA /* JournalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E25B0E9C247C010C004F3BDA /* JournalViewController.swift */; };
 		E25BA4FF24716DC0000D1DF7 /* ImagePickerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E25BA4FE24716DC0000D1DF7 /* ImagePickerManager.swift */; };
@@ -143,6 +145,8 @@
 		E252D8232589EB9D00DC6F92 /* kanbanAutomation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = kanbanAutomation.swift; sourceTree = "<group>"; };
 		E252D828258A31A200DC6F92 /* AddAutomationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAutomationViewController.swift; sourceTree = "<group>"; };
 		E252D82D258A6A1600DC6F92 /* EditCommandViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditCommandViewController.swift; sourceTree = "<group>"; };
+		E252D832258B41AB00DC6F92 /* AddTriggerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTriggerViewController.swift; sourceTree = "<group>"; };
+		E252D837258CDC9800DC6F92 /* AddActionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddActionViewController.swift; sourceTree = "<group>"; };
 		E25B0E9A247BD055004F3BDA /* UITextFieldExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITextFieldExtensions.swift; sourceTree = "<group>"; };
 		E25B0E9C247C010C004F3BDA /* JournalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalViewController.swift; sourceTree = "<group>"; };
 		E25BA4FE24716DC0000D1DF7 /* ImagePickerManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagePickerManager.swift; sourceTree = "<group>"; };
@@ -413,6 +417,8 @@
 				E252D8232589EB9D00DC6F92 /* kanbanAutomation.swift */,
 				E252D828258A31A200DC6F92 /* AddAutomationViewController.swift */,
 				E252D82D258A6A1600DC6F92 /* EditCommandViewController.swift */,
+				E252D832258B41AB00DC6F92 /* AddTriggerViewController.swift */,
+				E252D837258CDC9800DC6F92 /* AddActionViewController.swift */,
 			);
 			path = Kanban;
 			sourceTree = "<group>";
@@ -698,6 +704,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E252D833258B41AB00DC6F92 /* AddTriggerViewController.swift in Sources */,
 				E252D829258A31A200DC6F92 /* AddAutomationViewController.swift in Sources */,
 				E2CB87F52483581B002F3E6A /* journalLocationPickerViewController.swift in Sources */,
 				E2E152682486565C00079B79 /* addHabbitGoalCountTableViewCell.swift in Sources */,
@@ -763,6 +770,7 @@
 				E252D82E258A6A1600DC6F92 /* EditCommandViewController.swift in Sources */,
 				E26FD6AD2482A4FB004DA918 /* journalLocationTableViewCell.swift in Sources */,
 				E2DD7A3224ADAB2A00F9DF27 /* wallletTabBarController.swift in Sources */,
+				E252D838258CDC9800DC6F92 /* AddActionViewController.swift in Sources */,
 				E2CCA1612579481700609410 /* GradientExtension.swift in Sources */,
 				E29A5873248A695500FA7D7C /* doneToDismissTextView.swift in Sources */,
 				E2E152642486564100079B79 /* addHabbitGoalPeriodTableViewCell.swift in Sources */,
