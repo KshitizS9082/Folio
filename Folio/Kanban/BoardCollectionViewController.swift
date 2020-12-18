@@ -205,6 +205,64 @@ class BoardCollectionViewController: UICollectionViewController {
         }
 
     }
+    func checkTrigger(trigger: Trigger, card: KanbanCard) -> Bool{
+        switch trigger.triggerType {
+        case .xBeforeSchedule:
+            var dateComponent = DateComponents()
+            dateComponent.day = trigger.daysBeforeSchedule
+            dateComponent.hour = trigger.hoursBeforeSchedule
+            let addedDate = Calendar.current.date(byAdding: dateComponent, to: Date())!
+            if let scheduledDate = card.scheduledDate, scheduledDate <= addedDate{
+                return true
+            }else{
+                return false
+            }
+        default:
+            print("ERROR: yet to handle triggerType: \(trigger.triggerType)")
+            return false
+        }
+    }
+    func checkCommandCondition(condition: [Trigger], card: KanbanCard) -> Bool{
+        for trigger in condition{
+            if checkTrigger(trigger: trigger, card: card) == false{
+                return false
+            }
+        }
+        return true
+    }
+    func executeAction(action: Action, boardInd: Int, cardInd: Int){
+        if !(boardInd<kanban.boards.count && cardInd<kanban.boards[boardInd].items.count){
+            return
+        }
+        switch action.actionType {
+        case .setTitleTo:
+            kanban.boards[boardInd].items[cardInd].title = action.newTitleString
+        default:
+            print("ERROR: yet to handle actionType: \(action.actionType)")
+        }
+    }
+    func executeCommandExuction(execution: [Action], boardInd: Int, cardInd: Int){
+        let card = kanban.boards[boardInd].items[cardInd]
+        for action in execution{
+            executeAction(action: action, boardInd: boardInd, cardInd: cardInd)
+        }
+    }
+    func implementAutomationCommands(){
+        for command in kanban.commands{
+            if !command.enabled{
+                continue
+            }
+            for boardInd in kanban.boards.indices{
+                for cardInd in kanban.boards[boardInd].items.indices{
+                    if boardInd < kanban.boards.count && cardInd < kanban.boards[boardInd].items.count{
+                        if checkCommandCondition(condition: command.condition, card: kanban.boards[boardInd].items[cardInd]){
+                            executeCommandExuction(execution: command.execution, boardInd: boardInd, cardInd: cardInd)
+                        }
+                    }
+                }
+            }
+        }
+    }
     override func viewWillAppear(_ animated: Bool) {
         print("viewwilalal boardvcv: \(self)")
         if let url = try? FileManager.default.url(
@@ -222,6 +280,7 @@ class BoardCollectionViewController: UICollectionViewController {
                     print("WARNING: COULDN'T UNWRAP JSON DATA TO FIND kanbanData")
                 }
             }
+            self.implementAutomationCommands()
             viewDidLoad()
             collectionView.reloadData()
         }
