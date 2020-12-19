@@ -5277,8 +5277,55 @@
                                             <outlet property="plusButtonIV" destination="6vC-1d-iAx" id="u9G-rn-czR"/>
                                         </connections>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ifTaskTypeID" id="bcf-ay-2n0" customClass="IfTaskTypeTVC" customModule="Folio" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="378" width="414" height="124.33333587646484"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="bcf-ay-2n0" id="nfy-iD-wPp">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="124.33333587646484"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="plus.circle" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="jkt-Vd-vd5">
+                                                    <rect key="frame" x="20" y="17.999999999999996" width="45" height="49.333333333333329"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" secondItem="jkt-Vd-vd5" secondAttribute="height" id="4Gr-ZN-DXT"/>
+                                                        <constraint firstAttribute="width" constant="45" id="7GX-FR-XHP"/>
+                                                    </constraints>
+                                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large" weight="bold"/>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="If Task Type:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BMh-9L-ZIa">
+                                                    <rect key="frame" x="73" y="32" width="100.33333333333331" height="21"/>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="QYe-jI-dzZ">
+                                                    <rect key="frame" x="26" y="73" width="362" height="32.333333333333329"/>
+                                                    <segments>
+                                                        <segment title="Not-Task"/>
+                                                        <segment title="Incomplete Task"/>
+                                                        <segment title="Complete Task"/>
+                                                    </segments>
+                                                </segmentedControl>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="QYe-jI-dzZ" firstAttribute="leading" secondItem="nfy-iD-wPp" secondAttribute="leading" constant="26" id="1pQ-Qu-wWT"/>
+                                                <constraint firstAttribute="trailing" secondItem="QYe-jI-dzZ" secondAttribute="trailing" constant="26" id="Edc-u8-vNt"/>
+                                                <constraint firstAttribute="bottom" secondItem="QYe-jI-dzZ" secondAttribute="bottom" constant="20" symbolic="YES" id="FfH-O6-6og"/>
+                                                <constraint firstItem="jkt-Vd-vd5" firstAttribute="leading" secondItem="nfy-iD-wPp" secondAttribute="leading" constant="20" symbolic="YES" id="HN5-sB-wqM"/>
+                                                <constraint firstItem="BMh-9L-ZIa" firstAttribute="leading" secondItem="jkt-Vd-vd5" secondAttribute="trailing" constant="8" symbolic="YES" id="OE5-0h-LQa"/>
+                                                <constraint firstItem="BMh-9L-ZIa" firstAttribute="centerY" secondItem="jkt-Vd-vd5" secondAttribute="centerY" id="OvJ-oA-JZX"/>
+                                                <constraint firstItem="QYe-jI-dzZ" firstAttribute="top" secondItem="BMh-9L-ZIa" secondAttribute="bottom" constant="20" id="Wll-IH-xCJ"/>
+                                                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="BMh-9L-ZIa" secondAttribute="trailing" constant="20" symbolic="YES" id="ejW-qF-QfB"/>
+                                                <constraint firstItem="jkt-Vd-vd5" firstAttribute="top" secondItem="nfy-iD-wPp" secondAttribute="top" constant="20" symbolic="YES" id="nuA-FK-tBn"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="plusButtonIV" destination="jkt-Vd-vd5" id="ILb-qm-E7z"/>
+                                            <outlet property="segmentControl" destination="QYe-jI-dzZ" id="RYS-9E-A6W"/>
+                                        </connections>
+                                    </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="79" id="BHa-XV-yYB">
-                                        <rect key="frame" x="0.0" y="378" width="414" height="79"/>
+                                        <rect key="frame" x="0.0" y="502.33333587646484" width="414" height="79"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="BHa-XV-yYB" id="aYy-VL-CBn">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="79"/>
@@ -5300,7 +5347,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="79" id="Krn-ie-BKz">
-                                        <rect key="frame" x="0.0" y="457" width="414" height="79"/>
+                                        <rect key="frame" x="0.0" y="581.33333587646484" width="414" height="79"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Krn-ie-BKz" id="V7p-9o-Fas">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="79"/>

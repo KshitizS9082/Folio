@@ -41,7 +41,7 @@ class AddTriggerViewController: UIViewController, UITableViewDataSource, UITable
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 2
+        return 3
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -55,6 +55,10 @@ class AddTriggerViewController: UIViewController, UITableViewDataSource, UITable
             let cell = tableView.dequeueReusableCell(withIdentifier: "ifFromBoardID") as! IfFromBoardTVC
             cell.delegate=self
             cell.kanban=self.kanban
+            return cell
+        case 2:
+            let cell = tableView.dequeueReusableCell(withIdentifier: "ifTaskTypeID") as! IfTaskTypeTVC
+            cell.delegate=self
             return cell
         default:
             return UITableViewCell()
@@ -111,13 +115,6 @@ class IfFromBoardTVC: UITableViewCell, UIPickerViewDataSource, UIPickerViewDeleg
             return kanban.boards[row-1].title
         }
     }
-//    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-//        if row>0{
-//            var trigger = Trigger(triggerType: .ifFromBoard)
-//            trigger.fromBoard = kanban.boards[row-1].uid
-//            delegate?.addTrigger(newTrigger: trigger)
-//        }
-//    }
     var delegate: AddTriggerViewControllerProtocol?
     var kanban = Kanban()
     @IBOutlet weak var pickerView: UIPickerView!{
@@ -139,6 +136,29 @@ class IfFromBoardTVC: UITableViewCell, UIPickerViewDataSource, UIPickerViewDeleg
             trigger.fromBoard = kanban.boards[pickerView.selectedRow(inComponent: 0)-1].uid
             delegate?.addTrigger(newTrigger: trigger)
         }
+    }
+}
+
+class IfTaskTypeTVC: UITableViewCell {
+    var delegate: AddTriggerViewControllerProtocol?
+    @IBOutlet weak var plusButtonIV: UIImageView!{
+        didSet{
+            plusButtonIV.isUserInteractionEnabled=true
+            plusButtonIV.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(plusButtonTapped)))
+        }
+    }
+    @IBOutlet weak var segmentControl: UISegmentedControl!
+    
+    @objc func plusButtonTapped(){
+        var trigger = Trigger(triggerType: .ifTaskType)
+        if segmentControl.selectedSegmentIndex==0{
+            trigger.taskType = nil
+        }else if segmentControl.selectedSegmentIndex==1{
+            trigger.taskType = false
+        }else{
+            trigger.taskType = true
+        }
+        delegate?.addTrigger(newTrigger: trigger)
     }
 }
 class AnotherTableViewCell: UITableViewCell {
