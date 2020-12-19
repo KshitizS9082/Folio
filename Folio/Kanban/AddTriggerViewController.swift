@@ -41,7 +41,7 @@ class AddTriggerViewController: UIViewController, UITableViewDataSource, UITable
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 4
+        return 5
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -62,6 +62,10 @@ class AddTriggerViewController: UIViewController, UITableViewDataSource, UITable
             return cell
         case 3:
             let cell = tableView.dequeueReusableCell(withIdentifier: "isContatinsIntTitleID") as! isContainsInTitleTVC
+            cell.delegate=self
+            return cell
+        case 4:
+            let cell = tableView.dequeueReusableCell(withIdentifier: "hasChecklistItemsID") as! hasChecklistWithAllItemsTVC
             cell.delegate=self
             return cell
         default:
@@ -191,6 +195,23 @@ class isContainsInTitleTVC: UITableViewCell {
     }
 }
 
+class hasChecklistWithAllItemsTVC: UITableViewCell {
+    var delegate: AddTriggerViewControllerProtocol?
+    @IBOutlet weak var plusButtonIV: UIImageView!{
+        didSet{
+            plusButtonIV.isUserInteractionEnabled=true
+            plusButtonIV.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(plusButtonTapped)))
+        }
+    }
+    @IBOutlet weak var segmentControl: UISegmentedControl!
+    @objc func plusButtonTapped(){
+        var trigger = Trigger(triggerType: .ifChecklistHasAllComplete)
+        if segmentControl.selectedSegmentIndex==1{
+            trigger.triggerType = .ifChecklistHasAllIncomplete
+        }
+        delegate?.addTrigger(newTrigger: trigger)
+    }
+}
 class AnotherTableViewCell: UITableViewCell {
     var delegate: AddTriggerViewControllerProtocol?
     @IBOutlet weak var plusButtonIV: UIImageView!{

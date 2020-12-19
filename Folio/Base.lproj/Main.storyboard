@@ -5352,8 +5352,8 @@
                                                         <segment title="Contains"/>
                                                     </segments>
                                                 </segmentedControl>
-                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="String..." borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="r4d-e9-40B">
-                                                    <rect key="frame" x="73" y="69" width="79" height="34.333333333333343"/>
+                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="String..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="r4d-e9-40B">
+                                                    <rect key="frame" x="73" y="69" width="78.666666666666686" height="34.333333333333343"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                 </textField>
@@ -5376,11 +5376,11 @@
                                             <outlet property="textField" destination="r4d-e9-40B" id="C6V-tK-ht0"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="79" id="Krn-ie-BKz">
-                                        <rect key="frame" x="0.0" y="622" width="414" height="79"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="hasChecklistItemsID" id="Krn-ie-BKz" customClass="hasChecklistWithAllItemsTVC" customModule="Folio" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="622" width="414" height="112.33333587646484"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Krn-ie-BKz" id="V7p-9o-Fas">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="79"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="112.33333587646484"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="plus.circle" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="2IK-lz-kUF">
@@ -5391,10 +5391,54 @@
                                                     </constraints>
                                                     <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large" weight="bold"/>
                                                 </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="If has checklist with all Items: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rXJ-d1-2aP">
+                                                    <rect key="frame" x="73" y="32" width="238" height="21"/>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="75C-cT-jpO">
+                                                    <rect key="frame" x="118.66666666666669" y="60.999999999999993" width="177" height="32.333333333333321"/>
+                                                    <segments>
+                                                        <segment title="Complete"/>
+                                                        <segment title="Incomplete"/>
+                                                    </segments>
+                                                </segmentedControl>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="75C-cT-jpO" secondAttribute="bottom" constant="20" symbolic="YES" id="8Hi-LA-qBW"/>
                                                 <constraint firstItem="2IK-lz-kUF" firstAttribute="leading" secondItem="V7p-9o-Fas" secondAttribute="leading" constant="20" symbolic="YES" id="V9m-jT-SAd"/>
+                                                <constraint firstItem="75C-cT-jpO" firstAttribute="centerX" secondItem="V7p-9o-Fas" secondAttribute="centerX" id="kGv-zf-QZb"/>
+                                                <constraint firstItem="75C-cT-jpO" firstAttribute="top" secondItem="rXJ-d1-2aP" secondAttribute="bottom" constant="8" symbolic="YES" id="l5h-f7-Db6"/>
+                                                <constraint firstItem="rXJ-d1-2aP" firstAttribute="centerY" secondItem="2IK-lz-kUF" secondAttribute="centerY" id="mOH-ER-H5X"/>
                                                 <constraint firstItem="2IK-lz-kUF" firstAttribute="top" secondItem="V7p-9o-Fas" secondAttribute="top" constant="20" symbolic="YES" id="nUW-6y-zeU"/>
+                                                <constraint firstItem="rXJ-d1-2aP" firstAttribute="leading" secondItem="2IK-lz-kUF" secondAttribute="trailing" constant="8" symbolic="YES" id="plx-I4-atg"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="plusButtonIV" destination="2IK-lz-kUF" id="win-OO-u4p"/>
+                                            <outlet property="segmentControl" destination="75C-cT-jpO" id="Q8g-of-SNP"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="79" id="xyX-DO-oWO">
+                                        <rect key="frame" x="0.0" y="734.33333587646484" width="414" height="79"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="xyX-DO-oWO" id="kfQ-Lj-VZE">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="79"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="plus.circle" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="l5c-Zj-2Kc">
+                                                    <rect key="frame" x="20" y="17.999999999999996" width="45" height="49.333333333333329"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="45" id="F53-9g-RkJ"/>
+                                                        <constraint firstAttribute="width" secondItem="l5c-Zj-2Kc" secondAttribute="height" id="znx-78-2Mx"/>
+                                                    </constraints>
+                                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large" weight="bold"/>
+                                                </imageView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="l5c-Zj-2Kc" firstAttribute="leading" secondItem="kfQ-Lj-VZE" secondAttribute="leading" constant="20" symbolic="YES" id="BOf-vb-yXb"/>
+                                                <constraint firstItem="l5c-Zj-2Kc" firstAttribute="top" secondItem="kfQ-Lj-VZE" secondAttribute="top" constant="20" symbolic="YES" id="kuQ-ql-M6e"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>

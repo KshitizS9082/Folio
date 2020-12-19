@@ -225,6 +225,26 @@ class BoardCollectionViewController: UICollectionViewController {
             return card.title == trigger.titleString
         case .ifTitleContains:
             return card.title.contains(trigger.titleString!)
+        case .ifChecklistHasAllIncomplete:
+            if card.checkList.items.count==0{
+                return false
+            }
+            for item in card.checkList.items{
+                if item.done==true{
+                    return false
+                }
+            }
+            return true
+        case .ifChecklistHasAllComplete:
+            if card.checkList.items.count==0{
+                return false
+            }
+            for item in card.checkList.items{
+                if item.done==false{
+                    return false
+                }
+            }
+            return true
         default:
             print("ERROR: yet to handle triggerType: \(trigger.triggerType)")
             return false
