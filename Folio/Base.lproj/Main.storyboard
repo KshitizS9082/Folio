@@ -5160,10 +5160,10 @@
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="beforeScheduleID" id="7Ps-xV-V7e" customClass="BeforeScheduledDate" customModule="Folio" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="414" height="161.66667175292969"/>
+                                        <rect key="frame" x="0.0" y="28" width="414" height="161.33332824707031"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="7Ps-xV-V7e" id="ov3-qg-SS5">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="161.66667175292969"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="161.33332824707031"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="plus.circle" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="vG1-rr-eo2">
@@ -5199,7 +5199,7 @@
                                                     </connections>
                                                 </stepper>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Before a Card is Due" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vfi-51-B3F">
-                                                    <rect key="frame" x="73.000000000000014" y="120.00000000000001" width="161.33333333333337" height="21.666666666666671"/>
+                                                    <rect key="frame" x="73.000000000000014" y="119.99999999999999" width="161.33333333333337" height="21.333333333333329"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -5233,10 +5233,10 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ifFromBoardID" id="jNW-4Y-Zpp" customClass="IfFromBoardTVC" customModule="Folio" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="189.66667175292969" width="414" height="188.33332824707031"/>
+                                        <rect key="frame" x="0.0" y="189.33332824707031" width="414" height="188"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="jNW-4Y-Zpp" id="sLk-cx-Kyy">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="188.33332824707031"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="188"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="plus.circle" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="6vC-1d-iAx">
@@ -5248,13 +5248,13 @@
                                                     <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large" weight="bold"/>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="If From Board:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x2x-e6-O6Y">
-                                                    <rect key="frame" x="73" y="31.666666666666664" width="112.66666666666669" height="21.666666666666664"/>
+                                                    <rect key="frame" x="73" y="32" width="112.66666666666669" height="21"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="m4i-qi-xoZ">
-                                                    <rect key="frame" x="20" y="61.333333333333343" width="374" height="105"/>
+                                                    <rect key="frame" x="20" y="61" width="374" height="105"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="105" id="lKo-7N-R91"/>
                                                     </constraints>
@@ -5278,7 +5278,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ifTaskTypeID" id="bcf-ay-2n0" customClass="IfTaskTypeTVC" customModule="Folio" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="378" width="414" height="124.33333587646484"/>
+                                        <rect key="frame" x="0.0" y="377.33332824707031" width="414" height="124.33333587646484"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="bcf-ay-2n0" id="nfy-iD-wPp">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="124.33333587646484"/>
@@ -5324,11 +5324,11 @@
                                             <outlet property="segmentControl" destination="QYe-jI-dzZ" id="RYS-9E-A6W"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="79" id="BHa-XV-yYB">
-                                        <rect key="frame" x="0.0" y="502.33333587646484" width="414" height="79"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="isContatinsIntTitleID" id="BHa-XV-yYB" customClass="isContainsInTitleTVC" customModule="Folio" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="501.66666412353516" width="414" height="120.33333587646484"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="BHa-XV-yYB" id="aYy-VL-CBn">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="79"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="120.33333587646484"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="plus.circle" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="wb2-HK-8z7">
@@ -5339,15 +5339,45 @@
                                                     </constraints>
                                                     <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large" weight="bold"/>
                                                 </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="If Card Title: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="70T-or-WfD">
+                                                    <rect key="frame" x="73" y="32" width="102" height="21"/>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="BIQ-24-UoM">
+                                                    <rect key="frame" x="205" y="27" width="147" height="32"/>
+                                                    <segments>
+                                                        <segment title="is"/>
+                                                        <segment title="Contains"/>
+                                                    </segments>
+                                                </segmentedControl>
+                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="String..." borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="r4d-e9-40B">
+                                                    <rect key="frame" x="73" y="69" width="79" height="34.333333333333343"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <textInputTraits key="textInputTraits"/>
+                                                </textField>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstItem="70T-or-WfD" firstAttribute="centerY" secondItem="wb2-HK-8z7" secondAttribute="centerY" id="JGB-Ve-8rr"/>
+                                                <constraint firstItem="70T-or-WfD" firstAttribute="leading" secondItem="wb2-HK-8z7" secondAttribute="trailing" constant="8" symbolic="YES" id="MCK-Ou-Mz7"/>
+                                                <constraint firstItem="r4d-e9-40B" firstAttribute="leading" secondItem="70T-or-WfD" secondAttribute="leading" id="OHc-ud-lBP"/>
                                                 <constraint firstItem="wb2-HK-8z7" firstAttribute="top" secondItem="aYy-VL-CBn" secondAttribute="top" constant="20" symbolic="YES" id="SkS-Pi-caG"/>
+                                                <constraint firstItem="r4d-e9-40B" firstAttribute="top" secondItem="BIQ-24-UoM" secondAttribute="bottom" constant="11" id="TQ8-RX-MMz"/>
                                                 <constraint firstItem="wb2-HK-8z7" firstAttribute="leading" secondItem="aYy-VL-CBn" secondAttribute="leading" constant="20" symbolic="YES" id="h7o-4D-FDb"/>
+                                                <constraint firstItem="BIQ-24-UoM" firstAttribute="centerY" secondItem="70T-or-WfD" secondAttribute="centerY" id="jtB-A4-RXh"/>
+                                                <constraint firstAttribute="bottom" secondItem="r4d-e9-40B" secondAttribute="bottom" constant="17" id="rvD-t6-xCQ"/>
+                                                <constraint firstItem="BIQ-24-UoM" firstAttribute="leading" secondItem="70T-or-WfD" secondAttribute="trailing" constant="30" id="zH0-tK-kxt"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="plusButtonIV" destination="wb2-HK-8z7" id="Ikg-RJ-1us"/>
+                                            <outlet property="segmentControl" destination="BIQ-24-UoM" id="vOg-ro-kmf"/>
+                                            <outlet property="textField" destination="r4d-e9-40B" id="C6V-tK-ht0"/>
+                                        </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="79" id="Krn-ie-BKz">
-                                        <rect key="frame" x="0.0" y="581.33333587646484" width="414" height="79"/>
+                                        <rect key="frame" x="0.0" y="622" width="414" height="79"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Krn-ie-BKz" id="V7p-9o-Fas">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="79"/>
@@ -5390,7 +5420,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vuc-yk-8P5" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-4146" y="-1732"/>
+            <point key="canvasLocation" x="-4146.376811594203" y="-1732.3660714285713"/>
         </scene>
         <!--Command-->
         <scene sceneID="fhM-9h-GLf">

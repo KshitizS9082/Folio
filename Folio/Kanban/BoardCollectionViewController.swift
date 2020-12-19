@@ -221,6 +221,10 @@ class BoardCollectionViewController: UICollectionViewController {
             return kanban.boards[boardInd].uid == trigger.fromBoard
         case .ifTaskType:
             return card.isTask == trigger.taskType
+        case .ifTilteIs:
+            return card.title == trigger.titleString
+        case .ifTitleContains:
+            return card.title.contains(trigger.titleString!)
         default:
             print("ERROR: yet to handle triggerType: \(trigger.triggerType)")
             return false
