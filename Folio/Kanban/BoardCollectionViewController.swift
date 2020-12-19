@@ -245,6 +245,8 @@ class BoardCollectionViewController: UICollectionViewController {
                 }
             }
             return true
+        case .ifHasTag:
+            return card.tagColor == trigger.tagColor
         default:
             print("ERROR: yet to handle triggerType: \(trigger.triggerType)")
             return false

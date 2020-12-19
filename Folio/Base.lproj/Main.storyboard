@@ -5160,10 +5160,10 @@
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="beforeScheduleID" id="7Ps-xV-V7e" customClass="BeforeScheduledDate" customModule="Folio" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="414" height="161.33332824707031"/>
+                                        <rect key="frame" x="0.0" y="28" width="414" height="160.66667175292969"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="7Ps-xV-V7e" id="ov3-qg-SS5">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="161.33332824707031"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="160.66667175292969"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="plus.circle" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="vG1-rr-eo2">
@@ -5199,7 +5199,7 @@
                                                     </connections>
                                                 </stepper>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Before a Card is Due" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vfi-51-B3F">
-                                                    <rect key="frame" x="73.000000000000014" y="119.99999999999999" width="161.33333333333337" height="21.333333333333329"/>
+                                                    <rect key="frame" x="73.000000000000014" y="120.00000000000001" width="161.33333333333337" height="20.666666666666671"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -5233,7 +5233,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ifFromBoardID" id="jNW-4Y-Zpp" customClass="IfFromBoardTVC" customModule="Folio" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="189.33332824707031" width="414" height="188"/>
+                                        <rect key="frame" x="0.0" y="188.66667175292969" width="414" height="188"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="jNW-4Y-Zpp" id="sLk-cx-Kyy">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="188"/>
@@ -5278,10 +5278,10 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ifTaskTypeID" id="bcf-ay-2n0" customClass="IfTaskTypeTVC" customModule="Folio" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="377.33332824707031" width="414" height="124.33333587646484"/>
+                                        <rect key="frame" x="0.0" y="376.66667175292969" width="414" height="124"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="bcf-ay-2n0" id="nfy-iD-wPp">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="124.33333587646484"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="124"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="plus.circle" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="jkt-Vd-vd5">
@@ -5293,13 +5293,13 @@
                                                     <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large" weight="bold"/>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="If Task Type:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BMh-9L-ZIa">
-                                                    <rect key="frame" x="73" y="32" width="100.33333333333331" height="21"/>
+                                                    <rect key="frame" x="73" y="32.333333333333336" width="100.33333333333331" height="20.333333333333336"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="QYe-jI-dzZ">
-                                                    <rect key="frame" x="26" y="73" width="362" height="32.333333333333329"/>
+                                                    <rect key="frame" x="26" y="72.666666666666686" width="362" height="32.333333333333329"/>
                                                     <segments>
                                                         <segment title="Not-Task"/>
                                                         <segment title="Incomplete Task"/>
@@ -5325,7 +5325,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="isContatinsIntTitleID" id="BHa-XV-yYB" customClass="isContainsInTitleTVC" customModule="Folio" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="501.66666412353516" width="414" height="120.33333587646484"/>
+                                        <rect key="frame" x="0.0" y="500.66667175292969" width="414" height="120.33333587646484"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="BHa-XV-yYB" id="aYy-VL-CBn">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="120.33333587646484"/>
@@ -5340,13 +5340,13 @@
                                                     <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large" weight="bold"/>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="If Card Title: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="70T-or-WfD">
-                                                    <rect key="frame" x="73" y="32" width="102" height="21"/>
+                                                    <rect key="frame" x="73" y="32.333333333333336" width="101.66666666666669" height="20.333333333333336"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="BIQ-24-UoM">
-                                                    <rect key="frame" x="205" y="27" width="147" height="32"/>
+                                                    <rect key="frame" x="204.66666666666663" y="27" width="147" height="32"/>
                                                     <segments>
                                                         <segment title="is"/>
                                                         <segment title="Contains"/>
@@ -5377,10 +5377,10 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="hasChecklistItemsID" id="Krn-ie-BKz" customClass="hasChecklistWithAllItemsTVC" customModule="Folio" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="622" width="414" height="112.33333587646484"/>
+                                        <rect key="frame" x="0.0" y="621.00000762939453" width="414" height="112"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Krn-ie-BKz" id="V7p-9o-Fas">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="112.33333587646484"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="112"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="plus.circle" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="2IK-lz-kUF">
@@ -5392,13 +5392,13 @@
                                                     <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large" weight="bold"/>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="If has checklist with all Items: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rXJ-d1-2aP">
-                                                    <rect key="frame" x="73" y="32" width="238" height="21"/>
+                                                    <rect key="frame" x="73.000000000000014" y="32.333333333333336" width="237.33333333333337" height="20.333333333333336"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="75C-cT-jpO">
-                                                    <rect key="frame" x="118.66666666666669" y="60.999999999999993" width="177" height="32.333333333333321"/>
+                                                    <rect key="frame" x="118.66666666666669" y="60.666666666666664" width="177" height="32.333333333333336"/>
                                                     <segments>
                                                         <segment title="Complete"/>
                                                         <segment title="Incomplete"/>
@@ -5420,11 +5420,11 @@
                                             <outlet property="segmentControl" destination="75C-cT-jpO" id="Q8g-of-SNP"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="79" id="xyX-DO-oWO">
-                                        <rect key="frame" x="0.0" y="734.33333587646484" width="414" height="79"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="hasTagTVCID" rowHeight="119" id="xyX-DO-oWO" customClass="HasTagTableViewCell" customModule="Folio" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="733.00000762939453" width="414" height="119"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="xyX-DO-oWO" id="kfQ-Lj-VZE">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="79"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="119"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="plus.circle" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="l5c-Zj-2Kc">
@@ -5435,10 +5435,177 @@
                                                     </constraints>
                                                     <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large" weight="bold"/>
                                                 </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Has Tag: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gip-sX-w2T">
+                                                    <rect key="frame" x="73" y="32.333333333333336" width="73" height="20.333333333333336"/>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="pek-dH-jM5">
+                                                    <rect key="frame" x="65" y="60.666666666666657" width="329" height="40"/>
+                                                    <subviews>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EGo-n0-Wkf">
+                                                            <rect key="frame" x="0.0" y="0.0" width="33" height="40"/>
+                                                            <color key="tintColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <state key="normal">
+                                                                <imageReference key="image" image="circle.dashed" catalog="system" symbolScale="small"/>
+                                                                <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="small"/>
+                                                            </state>
+                                                            <connections>
+                                                                <action selector="but0:" destination="xyX-DO-oWO" eventType="touchUpInside" id="ptI-fh-6zB"/>
+                                                            </connections>
+                                                        </button>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ASb-jy-RaC">
+                                                            <rect key="frame" x="33" y="0.0" width="32.666666666666657" height="40"/>
+                                                            <color key="tintColor" systemColor="systemPurpleColor"/>
+                                                            <state key="normal">
+                                                                <imageReference key="image" image="circle.fill" catalog="system" symbolScale="small"/>
+                                                                <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="small"/>
+                                                            </state>
+                                                            <connections>
+                                                                <action selector="but1:" destination="xyX-DO-oWO" eventType="touchUpInside" id="D8y-aw-uJO"/>
+                                                            </connections>
+                                                        </button>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sJs-6p-n78">
+                                                            <rect key="frame" x="65.666666666666657" y="0.0" width="33" height="40"/>
+                                                            <color key="tintColor" systemColor="systemIndigoColor"/>
+                                                            <state key="normal">
+                                                                <imageReference key="image" image="circle.fill" catalog="system" symbolScale="small"/>
+                                                                <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="small"/>
+                                                            </state>
+                                                            <connections>
+                                                                <action selector="but2:" destination="xyX-DO-oWO" eventType="touchUpInside" id="8fd-CM-4OH"/>
+                                                            </connections>
+                                                        </button>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1iH-Kx-cLI">
+                                                            <rect key="frame" x="98.666666666666657" y="0.0" width="33" height="40"/>
+                                                            <color key="tintColor" systemColor="systemBlueColor"/>
+                                                            <state key="normal">
+                                                                <imageReference key="image" image="circle.fill" catalog="system" symbolScale="small"/>
+                                                                <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="small"/>
+                                                            </state>
+                                                            <connections>
+                                                                <action selector="but3:" destination="xyX-DO-oWO" eventType="touchUpInside" id="isP-MO-C9S"/>
+                                                            </connections>
+                                                        </button>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vJY-bo-MFh">
+                                                            <rect key="frame" x="131.66666666666666" y="0.0" width="33" height="40"/>
+                                                            <color key="tintColor" systemColor="systemTealColor"/>
+                                                            <state key="normal">
+                                                                <imageReference key="image" image="circle.fill" catalog="system" symbolScale="small"/>
+                                                                <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="small"/>
+                                                            </state>
+                                                            <connections>
+                                                                <action selector="but4:" destination="xyX-DO-oWO" eventType="touchUpInside" id="r3A-xl-rGn"/>
+                                                            </connections>
+                                                        </button>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Oz-n8-cAi">
+                                                            <rect key="frame" x="164.66666666666666" y="0.0" width="32.666666666666657" height="40"/>
+                                                            <color key="tintColor" systemColor="systemGreenColor"/>
+                                                            <state key="normal">
+                                                                <imageReference key="image" image="circle.fill" catalog="system" symbolScale="small"/>
+                                                                <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="small"/>
+                                                            </state>
+                                                            <connections>
+                                                                <action selector="but5:" destination="xyX-DO-oWO" eventType="touchUpInside" id="a6u-1Q-eMT"/>
+                                                            </connections>
+                                                        </button>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UdV-Tz-qgA">
+                                                            <rect key="frame" x="197.33333333333331" y="0.0" width="33" height="40"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                                            <color key="tintColor" systemColor="systemYellowColor"/>
+                                                            <state key="normal">
+                                                                <imageReference key="image" image="circle.fill" catalog="system" symbolScale="small"/>
+                                                                <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="small"/>
+                                                            </state>
+                                                            <connections>
+                                                                <action selector="but6:" destination="xyX-DO-oWO" eventType="touchUpInside" id="V7a-1b-kjS"/>
+                                                            </connections>
+                                                        </button>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0G1-OC-gl1">
+                                                            <rect key="frame" x="230.33333333333331" y="0.0" width="33" height="40"/>
+                                                            <color key="tintColor" systemColor="systemOrangeColor"/>
+                                                            <state key="normal">
+                                                                <imageReference key="image" image="circle.fill" catalog="system" symbolScale="small"/>
+                                                                <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="small"/>
+                                                            </state>
+                                                            <connections>
+                                                                <action selector="but7:" destination="xyX-DO-oWO" eventType="touchUpInside" id="eNw-Oy-Gyc"/>
+                                                            </connections>
+                                                        </button>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vlG-LD-Mfh">
+                                                            <rect key="frame" x="263.33333333333331" y="0.0" width="32.666666666666686" height="40"/>
+                                                            <color key="tintColor" systemColor="systemPinkColor"/>
+                                                            <state key="normal">
+                                                                <imageReference key="image" image="circle.fill" catalog="system" symbolScale="small"/>
+                                                                <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="small"/>
+                                                            </state>
+                                                            <connections>
+                                                                <action selector="but8:" destination="xyX-DO-oWO" eventType="touchUpInside" id="syN-zg-Gld"/>
+                                                            </connections>
+                                                        </button>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="M6L-qz-NSM">
+                                                            <rect key="frame" x="296" y="0.0" width="33" height="40"/>
+                                                            <color key="tintColor" systemColor="systemRedColor"/>
+                                                            <state key="normal">
+                                                                <imageReference key="image" image="circle.fill" catalog="system" symbolScale="small"/>
+                                                                <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="small"/>
+                                                            </state>
+                                                            <connections>
+                                                                <action selector="but9:" destination="xyX-DO-oWO" eventType="touchUpInside" id="Vu5-MM-qdz"/>
+                                                            </connections>
+                                                        </button>
+                                                    </subviews>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="40" id="EjC-Jh-j27"/>
+                                                    </constraints>
+                                                </stackView>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="pek-dH-jM5" secondAttribute="bottom" constant="18.333333333333343" id="2uj-bO-VcZ"/>
                                                 <constraint firstItem="l5c-Zj-2Kc" firstAttribute="leading" secondItem="kfQ-Lj-VZE" secondAttribute="leading" constant="20" symbolic="YES" id="BOf-vb-yXb"/>
+                                                <constraint firstItem="pek-dH-jM5" firstAttribute="top" secondItem="gip-sX-w2T" secondAttribute="bottom" constant="8" symbolic="YES" id="J6N-7W-1Wd"/>
+                                                <constraint firstItem="gip-sX-w2T" firstAttribute="centerY" secondItem="l5c-Zj-2Kc" secondAttribute="centerY" id="S8i-pZ-5rx"/>
+                                                <constraint firstAttribute="trailing" secondItem="pek-dH-jM5" secondAttribute="trailing" constant="20" symbolic="YES" id="cKy-m2-xV6"/>
                                                 <constraint firstItem="l5c-Zj-2Kc" firstAttribute="top" secondItem="kfQ-Lj-VZE" secondAttribute="top" constant="20" symbolic="YES" id="kuQ-ql-M6e"/>
+                                                <constraint firstItem="pek-dH-jM5" firstAttribute="leading" secondItem="l5c-Zj-2Kc" secondAttribute="trailing" id="q6J-mC-2ki"/>
+                                                <constraint firstItem="gip-sX-w2T" firstAttribute="leading" secondItem="l5c-Zj-2Kc" secondAttribute="trailing" constant="8" symbolic="YES" id="uFn-ym-udt"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="plusButtonIV" destination="l5c-Zj-2Kc" id="G37-T8-3Fq"/>
+                                            <outlet property="stackView" destination="pek-dH-jM5" id="dfa-aH-FMj"/>
+                                            <outletCollection property="labelButtons" destination="EGo-n0-Wkf" collectionClass="NSMutableArray" id="BZN-mc-9GD"/>
+                                            <outletCollection property="labelButtons" destination="ASb-jy-RaC" collectionClass="NSMutableArray" id="HgI-gu-Z9X"/>
+                                            <outletCollection property="labelButtons" destination="sJs-6p-n78" collectionClass="NSMutableArray" id="veW-P8-3XP"/>
+                                            <outletCollection property="labelButtons" destination="1iH-Kx-cLI" collectionClass="NSMutableArray" id="VKJ-hq-RJv"/>
+                                            <outletCollection property="labelButtons" destination="vJY-bo-MFh" collectionClass="NSMutableArray" id="ke6-Ay-wbk"/>
+                                            <outletCollection property="labelButtons" destination="5Oz-n8-cAi" collectionClass="NSMutableArray" id="b4L-c1-Ikp"/>
+                                            <outletCollection property="labelButtons" destination="UdV-Tz-qgA" collectionClass="NSMutableArray" id="shq-XV-Xp8"/>
+                                            <outletCollection property="labelButtons" destination="0G1-OC-gl1" collectionClass="NSMutableArray" id="pgZ-KX-hZ4"/>
+                                            <outletCollection property="labelButtons" destination="vlG-LD-Mfh" collectionClass="NSMutableArray" id="r5S-P6-qVF"/>
+                                            <outletCollection property="labelButtons" destination="M6L-qz-NSM" collectionClass="NSMutableArray" id="pJa-kF-zEF"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="79" id="goO-ac-1If">
+                                        <rect key="frame" x="0.0" y="852.00000762939453" width="414" height="79"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="goO-ac-1If" id="D0O-Hx-GQR">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="79"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="plus.circle" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="amB-mr-uWu">
+                                                    <rect key="frame" x="20" y="17.999999999999996" width="45" height="49.333333333333329"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="45" id="S7v-VX-F3R"/>
+                                                        <constraint firstAttribute="width" secondItem="amB-mr-uWu" secondAttribute="height" id="w0c-eT-Nit"/>
+                                                    </constraints>
+                                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large" weight="bold"/>
+                                                </imageView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="amB-mr-uWu" firstAttribute="leading" secondItem="D0O-Hx-GQR" secondAttribute="leading" constant="20" symbolic="YES" id="Bqf-GU-qnl"/>
+                                                <constraint firstItem="amB-mr-uWu" firstAttribute="top" secondItem="D0O-Hx-GQR" secondAttribute="top" constant="20" symbolic="YES" id="cW6-2c-a4u"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
