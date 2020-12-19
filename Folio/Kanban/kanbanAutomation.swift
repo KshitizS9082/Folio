@@ -48,8 +48,9 @@ struct Action: Codable {
         case setTagTo
         case setTaskTo
         case setChecklistItemsTo
-        case deleteAllChecklist
-        case deleteCompletedChecklist
+//        case deleteAllChecklist
+//        case deleteCompletedChecklist
+        case deleteChecklistItemsWhichAre
         case setTitleTo
         case appendToStartOfTitle
     }
@@ -70,7 +71,7 @@ struct Action: Codable {
     
     var taskType: Bool?
     
-    var checkListValue: Bool=false
+    var checkListValue: Bool? //NOTE: null = both
     
     var newTitleString = ""
     

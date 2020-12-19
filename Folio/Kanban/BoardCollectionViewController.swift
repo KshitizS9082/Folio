@@ -283,6 +283,33 @@ class BoardCollectionViewController: UICollectionViewController {
             }
         case .setTaskTo:
             kanban.boards[boardInd].items[cardInd].isTask = action.taskType
+        case .setChecklistItemsTo:
+            if action.checkListValue==true{
+                for clind in kanban.boards[boardInd].items[cardInd].checkList.items.indices{
+                    kanban.boards[boardInd].items[cardInd].checkList.items[clind].done=true
+                }
+            }else if action.checkListValue==false{
+                for clind in kanban.boards[boardInd].items[cardInd].checkList.items.indices{
+                    kanban.boards[boardInd].items[cardInd].checkList.items[clind].done=false
+                }
+            }else{
+                print("ERROR: found unexpected value in action.checkListValue when accesed in executeAction")
+            }
+        case .deleteChecklistItemsWhichAre:
+            if let ccvalue = action.checkListValue{
+                if ccvalue{
+                    kanban.boards[boardInd].items[cardInd].checkList.items = kanban.boards[boardInd].items[cardInd].checkList.items.filter({ (item) -> Bool in
+                        item.done ==  false
+                    })
+                }else{
+                    kanban.boards[boardInd].items[cardInd].checkList.items = kanban.boards[boardInd].items[cardInd].checkList.items.filter({ (item) -> Bool in
+                        item.done ==  true
+                    })
+                }
+            }else{
+                kanban.boards[boardInd].items[cardInd].checkList.items.removeAll()
+            }
+            
         default:
             print("ERROR: yet to handle actionType: \(action.actionType)")
         }

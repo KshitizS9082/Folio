@@ -6015,46 +6015,94 @@
                                             <outlet property="segmentControl" destination="xqs-Cu-Yyf" id="niw-HF-GLI"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="qAn-ek-9xg">
-                                        <rect key="frame" x="0.0" y="396.33332824707031" width="414" height="188"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="setChecklistItemsID" id="P5w-aA-G7b" customClass="setChecklistItemsToActionTVC" customModule="Folio" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="396.33332824707031" width="414" height="112"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="qAn-ek-9xg" id="TIo-y1-dQP">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="188"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="P5w-aA-G7b" id="00j-AU-QNu">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="112"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="plus.circle" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="gli-ch-vX6">
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="plus.circle" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="Y5f-u5-Yhy">
                                                     <rect key="frame" x="20" y="17.999999999999996" width="45" height="49.333333333333329"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" secondItem="gli-ch-vX6" secondAttribute="height" id="7Rp-r0-9fi"/>
-                                                        <constraint firstAttribute="width" constant="45" id="hqw-hf-BZq"/>
+                                                        <constraint firstAttribute="width" constant="45" id="bBa-Oq-HpM"/>
+                                                        <constraint firstAttribute="width" secondItem="Y5f-u5-Yhy" secondAttribute="height" id="eUh-ft-oHk"/>
                                                     </constraints>
                                                     <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large" weight="bold"/>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="If From Board:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zrx-jF-MJX">
-                                                    <rect key="frame" x="73" y="32" width="112.66666666666669" height="21"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Set All Checklist Items to: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B0B-rU-JLk">
+                                                    <rect key="frame" x="73.000000000000014" y="32.333333333333336" width="207.33333333333337" height="20.333333333333336"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uk6-xx-QKE">
-                                                    <rect key="frame" x="20" y="61" width="374" height="105"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="105" id="GmH-P1-1LP"/>
-                                                    </constraints>
-                                                </pickerView>
+                                                <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="2RL-jG-JJ4">
+                                                    <rect key="frame" x="118.66666666666669" y="60.666666666666664" width="177" height="32.333333333333336"/>
+                                                    <segments>
+                                                        <segment title="Complete"/>
+                                                        <segment title="Incomplete"/>
+                                                    </segments>
+                                                </segmentedControl>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="gli-ch-vX6" firstAttribute="top" secondItem="TIo-y1-dQP" secondAttribute="top" constant="20" symbolic="YES" id="GsY-O6-crj"/>
-                                                <constraint firstItem="uk6-xx-QKE" firstAttribute="top" secondItem="zrx-jF-MJX" secondAttribute="bottom" constant="8" symbolic="YES" id="Ixt-py-vxa"/>
-                                                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="zrx-jF-MJX" secondAttribute="trailing" constant="20" symbolic="YES" id="Mpb-Lf-drk"/>
-                                                <constraint firstItem="uk6-xx-QKE" firstAttribute="leading" secondItem="TIo-y1-dQP" secondAttribute="leading" constant="20" symbolic="YES" id="UCu-xr-hen"/>
-                                                <constraint firstItem="gli-ch-vX6" firstAttribute="leading" secondItem="TIo-y1-dQP" secondAttribute="leading" constant="20" symbolic="YES" id="WMC-vh-hp7"/>
-                                                <constraint firstItem="zrx-jF-MJX" firstAttribute="leading" secondItem="gli-ch-vX6" secondAttribute="trailing" constant="8" symbolic="YES" id="bDd-Fu-9c6"/>
-                                                <constraint firstAttribute="trailing" secondItem="uk6-xx-QKE" secondAttribute="trailing" constant="20" symbolic="YES" id="d1d-ch-rBx"/>
-                                                <constraint firstItem="zrx-jF-MJX" firstAttribute="centerY" secondItem="gli-ch-vX6" secondAttribute="centerY" id="dml-jd-QgX"/>
-                                                <constraint firstAttribute="bottom" secondItem="uk6-xx-QKE" secondAttribute="bottom" constant="22" id="ylW-IY-j0F"/>
+                                                <constraint firstItem="Y5f-u5-Yhy" firstAttribute="top" secondItem="00j-AU-QNu" secondAttribute="top" constant="20" symbolic="YES" id="19F-Tc-fWm"/>
+                                                <constraint firstAttribute="bottom" secondItem="2RL-jG-JJ4" secondAttribute="bottom" constant="20" symbolic="YES" id="4za-dS-Obf"/>
+                                                <constraint firstItem="Y5f-u5-Yhy" firstAttribute="leading" secondItem="00j-AU-QNu" secondAttribute="leading" constant="20" symbolic="YES" id="BE5-4r-Kki"/>
+                                                <constraint firstItem="2RL-jG-JJ4" firstAttribute="top" secondItem="B0B-rU-JLk" secondAttribute="bottom" constant="8" symbolic="YES" id="T5O-UU-IXt"/>
+                                                <constraint firstItem="2RL-jG-JJ4" firstAttribute="centerX" secondItem="00j-AU-QNu" secondAttribute="centerX" id="kIX-4x-gIV"/>
+                                                <constraint firstItem="B0B-rU-JLk" firstAttribute="leading" secondItem="Y5f-u5-Yhy" secondAttribute="trailing" constant="8" symbolic="YES" id="mba-nr-dgq"/>
+                                                <constraint firstItem="B0B-rU-JLk" firstAttribute="centerY" secondItem="Y5f-u5-Yhy" secondAttribute="centerY" id="voh-5L-SOa"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="plusButtonIV" destination="Y5f-u5-Yhy" id="1Ou-RS-FDP"/>
+                                            <outlet property="segmentControl" destination="2RL-jG-JJ4" id="dGw-iD-iJu"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="deleteChecklistID" id="PCG-y4-AYm" customClass="DeleteChecklistItemsTVC" customModule="Folio" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="508.33332824707031" width="414" height="112"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="PCG-y4-AYm" id="VAc-1O-FgL">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="112"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="plus.circle" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="MqL-xE-l7Y">
+                                                    <rect key="frame" x="20" y="17.999999999999996" width="45" height="49.333333333333329"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" secondItem="MqL-xE-l7Y" secondAttribute="height" id="2n1-cD-cH3"/>
+                                                        <constraint firstAttribute="width" constant="45" id="Qk8-gp-vKi"/>
+                                                    </constraints>
+                                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large" weight="bold"/>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Delete Checklist Which Are: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lEv-zb-fgQ">
+                                                    <rect key="frame" x="73" y="32.333333333333336" width="225" height="20.333333333333336"/>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="6ND-6I-8sk">
+                                                    <rect key="frame" x="74" y="60.666666666666664" width="266" height="32.333333333333336"/>
+                                                    <segments>
+                                                        <segment title="Complete"/>
+                                                        <segment title="Incomplete"/>
+                                                        <segment title="All"/>
+                                                    </segments>
+                                                </segmentedControl>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="lEv-zb-fgQ" firstAttribute="centerY" secondItem="MqL-xE-l7Y" secondAttribute="centerY" id="2IU-D9-N4j"/>
+                                                <constraint firstItem="MqL-xE-l7Y" firstAttribute="top" secondItem="VAc-1O-FgL" secondAttribute="top" constant="20" symbolic="YES" id="66u-H0-a1M"/>
+                                                <constraint firstItem="lEv-zb-fgQ" firstAttribute="leading" secondItem="MqL-xE-l7Y" secondAttribute="trailing" constant="8" symbolic="YES" id="Cxr-vl-Gs4"/>
+                                                <constraint firstItem="6ND-6I-8sk" firstAttribute="centerX" secondItem="VAc-1O-FgL" secondAttribute="centerX" id="ewi-Qa-Ikn"/>
+                                                <constraint firstItem="6ND-6I-8sk" firstAttribute="top" secondItem="lEv-zb-fgQ" secondAttribute="bottom" constant="8" symbolic="YES" id="u4t-i4-t7b"/>
+                                                <constraint firstAttribute="bottom" secondItem="6ND-6I-8sk" secondAttribute="bottom" constant="20" symbolic="YES" id="xx8-5j-ND5"/>
+                                                <constraint firstItem="MqL-xE-l7Y" firstAttribute="leading" secondItem="VAc-1O-FgL" secondAttribute="leading" constant="20" symbolic="YES" id="yxn-w8-s05"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="plusButtonIV" destination="MqL-xE-l7Y" id="C0g-YG-Hml"/>
+                                            <outlet property="segmentControl" destination="6ND-6I-8sk" id="h2p-Hg-HFP"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
