@@ -281,6 +281,8 @@ class BoardCollectionViewController: UICollectionViewController {
                 let addedDate = Calendar.current.date(byAdding: dateComponent, to: sd)!
                 kanban.boards[boardInd].items[cardInd].scheduledDate = addedDate
             }
+        case .setTaskTo:
+            kanban.boards[boardInd].items[cardInd].isTask = action.taskType
         default:
             print("ERROR: yet to handle actionType: \(action.actionType)")
         }

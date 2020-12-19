@@ -5968,8 +5968,55 @@
                                             <outlet property="plusButtonIV" destination="NNQ-0R-YsP" id="Kz5-HF-jVG"/>
                                         </connections>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="setTaskTypeActionID" id="h9H-HC-8Ou" customClass="setTaskTypeActionTVC" customModule="Folio" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="272.33332824707031" width="414" height="124"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="h9H-HC-8Ou" id="VuL-nx-Jnt">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="124"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="plus.circle" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="h46-gE-A4O">
+                                                    <rect key="frame" x="20" y="17.999999999999996" width="45" height="49.333333333333329"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" secondItem="h46-gE-A4O" secondAttribute="height" id="7aR-YP-vsz"/>
+                                                        <constraint firstAttribute="width" constant="45" id="wQD-lp-X3m"/>
+                                                    </constraints>
+                                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large" weight="bold"/>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Set Task Type To:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h2G-q5-MJx">
+                                                    <rect key="frame" x="73" y="32.333333333333336" width="139" height="20.333333333333336"/>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="xqs-Cu-Yyf">
+                                                    <rect key="frame" x="26" y="72.666666666666686" width="362" height="32.333333333333329"/>
+                                                    <segments>
+                                                        <segment title="Not-Task"/>
+                                                        <segment title="Incomplete Task"/>
+                                                        <segment title="Complete Task"/>
+                                                    </segments>
+                                                </segmentedControl>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="xqs-Cu-Yyf" secondAttribute="bottom" constant="20" symbolic="YES" id="29G-2a-nBa"/>
+                                                <constraint firstItem="h46-gE-A4O" firstAttribute="top" secondItem="VuL-nx-Jnt" secondAttribute="top" constant="20" symbolic="YES" id="313-iS-8Ho"/>
+                                                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="h2G-q5-MJx" secondAttribute="trailing" constant="20" symbolic="YES" id="ADB-92-HKS"/>
+                                                <constraint firstItem="xqs-Cu-Yyf" firstAttribute="leading" secondItem="VuL-nx-Jnt" secondAttribute="leading" constant="26" id="Hph-v3-G7d"/>
+                                                <constraint firstItem="h2G-q5-MJx" firstAttribute="centerY" secondItem="h46-gE-A4O" secondAttribute="centerY" id="KeV-4w-XWQ"/>
+                                                <constraint firstAttribute="trailing" secondItem="xqs-Cu-Yyf" secondAttribute="trailing" constant="26" id="Qwn-4e-8Li"/>
+                                                <constraint firstItem="h2G-q5-MJx" firstAttribute="leading" secondItem="h46-gE-A4O" secondAttribute="trailing" constant="8" symbolic="YES" id="RkD-Gz-XdP"/>
+                                                <constraint firstItem="xqs-Cu-Yyf" firstAttribute="top" secondItem="h2G-q5-MJx" secondAttribute="bottom" constant="20" id="o5U-Og-F7f"/>
+                                                <constraint firstItem="h46-gE-A4O" firstAttribute="leading" secondItem="VuL-nx-Jnt" secondAttribute="leading" constant="20" symbolic="YES" id="w5X-M4-S9t"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="plusButtonIV" destination="h46-gE-A4O" id="nAC-sz-oAM"/>
+                                            <outlet property="segmentControl" destination="xqs-Cu-Yyf" id="niw-HF-GLI"/>
+                                        </connections>
+                                    </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="qAn-ek-9xg">
-                                        <rect key="frame" x="0.0" y="272.33332824707031" width="414" height="188"/>
+                                        <rect key="frame" x="0.0" y="396.33332824707031" width="414" height="188"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="qAn-ek-9xg" id="TIo-y1-dQP">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="188"/>

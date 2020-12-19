@@ -36,7 +36,7 @@ class AddActionViewController: UIViewController, UITableViewDataSource, UITableV
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 2
+        return 3
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -48,6 +48,10 @@ class AddActionViewController: UIViewController, UITableViewDataSource, UITableV
             return cell
         case 1:
             let cell = tableView.dequeueReusableCell(withIdentifier: "advanceScheduleID") as! AdvanceScheduledDateTVC
+            cell.delegate=self
+            return cell
+        case 2:
+            let cell = tableView.dequeueReusableCell(withIdentifier: "setTaskTypeActionID") as! setTaskTypeActionTVC
             cell.delegate=self
             return cell
         default:
@@ -107,5 +111,31 @@ class AdvanceScheduledDateTVC: UITableViewCell {
         action.xDays = Int(daysStepper.value)
         action.xHours = Int(hoursStepper.value)
         delegate?.addAction(newAction: action)
+    }
+}
+
+class setTaskTypeActionTVC: UITableViewCell {
+    var delegate: AddActionViewControllerProtocol?
+    @IBOutlet weak var plusButtonIV: UIImageView!{
+        didSet{
+            plusButtonIV.isUserInteractionEnabled=true
+            plusButtonIV.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(plusButtonTapped)))
+        }
+    }
+    @IBOutlet weak var segmentControl: UISegmentedControl!
+    
+    @objc func plusButtonTapped(){
+        var newAction = Action(actionType: .setTaskTo)
+        switch segmentControl.selectedSegmentIndex {
+        case 0:
+            newAction.taskType = nil
+        case 1:
+            newAction.taskType = false
+        case 2:
+            newAction.taskType = true
+        default:
+            print("Unknown segment in setTaskTypeActionTVC= \(segmentControl.selectedSegmentIndex)")
+        }
+        delegate?.addAction(newAction: newAction)
     }
 }
