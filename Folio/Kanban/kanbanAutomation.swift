@@ -34,7 +34,7 @@ struct Trigger: Codable {
     
     var tagColor: Int=0
     
-    var linkURL = ""
+    var hasURL: Bool = false
     
     var scheduledDate: Date?
 }

@@ -41,7 +41,7 @@ class AddTriggerViewController: UIViewController, UITableViewDataSource, UITable
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 6
+        return 7
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -70,6 +70,10 @@ class AddTriggerViewController: UIViewController, UITableViewDataSource, UITable
             return cell
         case 5:
             let cell = tableView.dequeueReusableCell(withIdentifier: "hasTagTVCID") as! HasTagTableViewCell
+            cell.delegate=self
+            return cell
+        case 6:
+            let cell = tableView.dequeueReusableCell(withIdentifier: "HasURLTVCID") as! HasURLTableViewCell
             cell.delegate=self
             return cell
         default:
@@ -272,6 +276,26 @@ class HasTagTableViewCell: UITableViewCell {
     }
     @IBAction func but9(_ sender: Any) {
         tagColor=9
+    }
+}
+
+class HasURLTableViewCell: UITableViewCell {
+    var delegate: AddTriggerViewControllerProtocol?
+    @IBOutlet weak var plusButtonIV: UIImageView!{
+        didSet{
+            plusButtonIV.isUserInteractionEnabled=true
+            plusButtonIV.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(plusButtonTapped)))
+        }
+    }
+    @IBOutlet weak var segmentControl: UISegmentedControl!
+    @objc func plusButtonTapped(){
+        var trigger = Trigger(triggerType: .ifHasURLSetTo)
+        if segmentControl.selectedSegmentIndex==0{
+            trigger.hasURL=false
+        }else{
+            trigger.hasURL=true
+        }
+        delegate?.addTrigger(newTrigger: trigger)
     }
 }
 

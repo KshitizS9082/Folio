@@ -247,6 +247,12 @@ class BoardCollectionViewController: UICollectionViewController {
             return true
         case .ifHasTag:
             return card.tagColor == trigger.tagColor
+        case .ifHasURLSetTo:
+            if trigger.hasURL{
+                return card.linkURL.count>0
+            }else{
+                return card.linkURL.count==0
+            }
         default:
             print("ERROR: yet to handle triggerType: \(trigger.triggerType)")
             return false
