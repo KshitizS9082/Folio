@@ -14,7 +14,7 @@ class AddActionViewController: UIViewController, UITableViewDataSource, UITableV
     
 
     var delegate: EditCommandVCProtocol?
-
+    var kanban = Kanban()
     
     @IBOutlet var backgroundView: UIView!{
         didSet{

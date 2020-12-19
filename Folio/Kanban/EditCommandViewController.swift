@@ -17,6 +17,8 @@ class EditCommandViewController: UIViewController, EditCommandVCProtocol {
     
     var delegate: addAutomationVCProtocol?
     var command = Command()
+    var kanbanFileName = "Inster File Name SKTTC"
+    var kanban = Kanban()
     
     var backgroundImage: UIImage?
     @IBOutlet weak var backgroundImageView: UIImageView!{
@@ -51,6 +53,24 @@ class EditCommandViewController: UIViewController, EditCommandVCProtocol {
         command.execution.append(newAction)
         tableView.reloadData()
     }
+    override func viewWillLayoutSubviews() {
+        print("Edditcommand gonna retrieve kanban with file: \(kanbanFileName)")
+        if let url = try? FileManager.default.url(
+            for: .documentDirectory,
+            in: .userDomainMask,
+            appropriateFor: nil,
+            create: true
+        ).appendingPathComponent(kanbanFileName){
+            if let jsonData = try? Data(contentsOf: url){
+                if let x = Kanban(json: jsonData){
+                    kanban = x
+                }else{
+                    print("WARNING: COULDN'T UNWRAP JSON DATA TO FIND kanbanData in EditCommand")
+                }
+            }
+            self.tableView.reloadData()
+        }
+    }
     override func viewWillDisappear(_ animated: Bool) {
         delegate?.editCommand(to: command)
     }
@@ -59,9 +79,12 @@ class EditCommandViewController: UIViewController, EditCommandVCProtocol {
         if segue.identifier == "AddTriggerSegue"{
             let vc = segue.destination as! AddTriggerViewController
             vc.delegate=self
+            print("gonna set addtrigger vc to \(kanban.boards)")
+            vc.kanban=self.kanban
         }else if segue.identifier == "AddActionSegue"{
             let vc = segue.destination as! AddActionViewController
             vc.delegate=self
+            vc.kanban=self.kanban
         }
     }
 }

@@ -15,7 +15,7 @@ protocol BoardCVCProtocol {
 }
 
 class BoardCollectionViewController: UICollectionViewController {
-    var boardFileName = "empty.json"{
+    var kanbanFileName = "empty.json"{
         didSet{
             self.viewWillAppear(false)
         }
@@ -194,7 +194,7 @@ class BoardCollectionViewController: UICollectionViewController {
                 in: .userDomainMask,
                 appropriateFor: nil,
                 create: true
-            ).appendingPathComponent(boardFileName){
+            ).appendingPathComponent(kanbanFileName){
                 do {
                     try json.write(to: url)
                     print ("saved successfully")
@@ -205,7 +205,7 @@ class BoardCollectionViewController: UICollectionViewController {
         }
 
     }
-    func checkTrigger(trigger: Trigger, card: KanbanCard) -> Bool{
+    func checkTrigger(trigger: Trigger, card: KanbanCard, boardInd: Int) -> Bool{
         switch trigger.triggerType {
         case .xBeforeSchedule:
             var dateComponent = DateComponents()
@@ -217,14 +217,16 @@ class BoardCollectionViewController: UICollectionViewController {
             }else{
                 return false
             }
+        case .ifFromBoard:
+            return kanban.boards[boardInd].uid == trigger.fromBoard
         default:
             print("ERROR: yet to handle triggerType: \(trigger.triggerType)")
             return false
         }
     }
-    func checkCommandCondition(condition: [Trigger], card: KanbanCard) -> Bool{
+    func checkCommandCondition(condition: [Trigger], card: KanbanCard, boardInd: Int) -> Bool{
         for trigger in condition{
-            if checkTrigger(trigger: trigger, card: card) == false{
+            if checkTrigger(trigger: trigger, card: card, boardInd: boardInd) == false{
                 return false
             }
         }
@@ -242,7 +244,6 @@ class BoardCollectionViewController: UICollectionViewController {
         }
     }
     func executeCommandExuction(execution: [Action], boardInd: Int, cardInd: Int){
-        let card = kanban.boards[boardInd].items[cardInd]
         for action in execution{
             executeAction(action: action, boardInd: boardInd, cardInd: cardInd)
         }
@@ -255,7 +256,7 @@ class BoardCollectionViewController: UICollectionViewController {
             for boardInd in kanban.boards.indices{
                 for cardInd in kanban.boards[boardInd].items.indices{
                     if boardInd < kanban.boards.count && cardInd < kanban.boards[boardInd].items.count{
-                        if checkCommandCondition(condition: command.condition, card: kanban.boards[boardInd].items[cardInd]){
+                        if checkCommandCondition(condition: command.condition, card: kanban.boards[boardInd].items[cardInd], boardInd: boardInd){
                             executeCommandExuction(execution: command.execution, boardInd: boardInd, cardInd: cardInd)
                         }
                     }
@@ -263,6 +264,7 @@ class BoardCollectionViewController: UICollectionViewController {
             }
         }
     }
+    
     override func viewWillAppear(_ animated: Bool) {
         print("viewwilalal boardvcv: \(self)")
         if let url = try? FileManager.default.url(
@@ -270,7 +272,7 @@ class BoardCollectionViewController: UICollectionViewController {
             in: .userDomainMask,
             appropriateFor: nil,
             create: true
-        ).appendingPathComponent(boardFileName){
+        ).appendingPathComponent(kanbanFileName){
 //            print("trying to extract contents of kanbanData")
             if let jsonData = try? Data(contentsOf: url){
                 //                pageList = pageInfo(json: jsonData)

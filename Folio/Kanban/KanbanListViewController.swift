@@ -93,7 +93,7 @@ class KanbanListViewController: UIViewController, UITableViewDataSource, UITable
         if segue.identifier == "showBoardSegueID"{
             if let vc = segue.destination as? switchKanbanTimelineTabBarController, let sourceTVC = sender as? KanbanListTableViewCell{
                 vc.kanbanDelegate=self
-                vc.boardFileName = sourceTVC.fileName!
+                vc.kanbanFileName = sourceTVC.fileName!
                 vc.title=sourceTVC.boardName!
             }
         }

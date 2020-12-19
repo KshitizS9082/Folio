@@ -11,7 +11,7 @@ import ImagePicker
 
 class switchKanbanTimelineTabBarController: UITabBarController, UITabBarControllerDelegate {
     var kanbanDelegate: KanbanListProtcol?
-    var boardFileName = "Inster File Name SKTTC"
+    var kanbanFileName = "Inster File Name SKTTC"
     var boardName = "Insert Title SKTTC"
     var isdeleting=false
     override func viewDidLoad() {
@@ -40,7 +40,7 @@ class switchKanbanTimelineTabBarController: UITabBarController, UITabBarControll
         self.navigationController?.title = self.boardName
         let vc0 = self.viewControllers?[0] as! BoardCollectionViewController
         print("setting vc0 bfname")
-        vc0.boardFileName=self.boardFileName
+        vc0.kanbanFileName=self.kanbanFileName
     }
     override func viewDidAppear(_ animated: Bool) {
 //        if let vc = self.selectedViewController as? BoardCollectionViewController{
@@ -76,8 +76,8 @@ class switchKanbanTimelineTabBarController: UITabBarController, UITabBarControll
             self.addAutomationButton.isEnabled=false
             let orig = self.viewControllers?[0] as! BoardCollectionViewController
             orig.save()
-            if vc.boardFileName != self.boardFileName{
-                vc.boardFileName=self.boardFileName
+            if vc.boardFileName != self.kanbanFileName{
+                vc.boardFileName=self.kanbanFileName
             }
         }else if viewController is BoardCollectionViewController{
             print("viewwilalal selection first")
@@ -219,9 +219,9 @@ class switchKanbanTimelineTabBarController: UITabBarController, UITabBarControll
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier=="addAutomationSegue"{
-            if let vc = segue.destination as? AddAutomationViewController{
-                vc.boardFileName = self.boardFileName
-            }
+            let vc = segue.destination as! AddAutomationViewController
+            vc.boardFileName = self.kanbanFileName
+            
         }
     }
 }

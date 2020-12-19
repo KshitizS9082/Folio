@@ -132,7 +132,7 @@ class AddAutomationViewController: UIViewController {
             vc.delegate=self
             vc.command=tableCell.command
             vc.backgroundImage = self.backgroundImageView.image
-            
+            vc.kanbanFileName=self.boardFileName
         }
     }
 

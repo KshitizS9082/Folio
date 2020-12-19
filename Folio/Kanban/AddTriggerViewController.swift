@@ -14,6 +14,11 @@ protocol AddTriggerViewControllerProtocol {
 class AddTriggerViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, AddTriggerViewControllerProtocol {
     
     var delegate: EditCommandVCProtocol?
+    var kanban = Kanban(){
+        didSet{
+            print("addtrigger kanban: \(kanban.boards)")
+        }
+    }
 
     @IBOutlet var backgroundView: UIView!{
         didSet{
@@ -36,7 +41,7 @@ class AddTriggerViewController: UIViewController, UITableViewDataSource, UITable
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return 2
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -45,6 +50,11 @@ class AddTriggerViewController: UIViewController, UITableViewDataSource, UITable
         case 0:
             let cell = tableView.dequeueReusableCell(withIdentifier: "beforeScheduleID") as! BeforeScheduledDate
             cell.delegate=self
+            return cell
+        case 1:
+            let cell = tableView.dequeueReusableCell(withIdentifier: "ifFromBoardID") as! IfFromBoardTVC
+            cell.delegate=self
+            cell.kanban=self.kanban
             return cell
         default:
             return UITableViewCell()
@@ -83,6 +93,52 @@ class BeforeScheduledDate: UITableViewCell {
         trigger.daysBeforeSchedule=Int(daysStepper.value)
         trigger.hoursBeforeSchedule=Int(hoursStepper.value)
         delegate?.addTrigger(newTrigger: trigger)
+    }
+}
+
+class IfFromBoardTVC: UITableViewCell, UIPickerViewDataSource, UIPickerViewDelegate {
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return 1+kanban.boards.count
+    }
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        if row == 0{
+            return "Not Selected"
+        }else{
+            return kanban.boards[row-1].title
+        }
+    }
+//    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+//        if row>0{
+//            var trigger = Trigger(triggerType: .ifFromBoard)
+//            trigger.fromBoard = kanban.boards[row-1].uid
+//            delegate?.addTrigger(newTrigger: trigger)
+//        }
+//    }
+    var delegate: AddTriggerViewControllerProtocol?
+    var kanban = Kanban()
+    @IBOutlet weak var pickerView: UIPickerView!{
+        didSet{
+            pickerView.dataSource=self
+            pickerView.delegate=self
+        }
+    }
+    @IBOutlet weak var plusButtonIV: UIImageView!{
+        didSet{
+            plusButtonIV.isUserInteractionEnabled=true
+            plusButtonIV.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(plusButtonTapped)))
+        }
+    }
+    
+    @objc func plusButtonTapped(){
+        if pickerView.selectedRow(inComponent: 0)>0{
+            var trigger = Trigger(triggerType: .ifFromBoard)
+            trigger.fromBoard = kanban.boards[pickerView.selectedRow(inComponent: 0)-1].uid
+            delegate?.addTrigger(newTrigger: trigger)
+        }
     }
 }
 class AnotherTableViewCell: UITableViewCell {
