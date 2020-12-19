@@ -273,6 +273,14 @@ class BoardCollectionViewController: UICollectionViewController {
         switch action.actionType {
         case .setTitleTo:
             kanban.boards[boardInd].items[cardInd].title = action.newTitleString
+        case .advanceDueDateByX:
+            if let sd = kanban.boards[boardInd].items[cardInd].scheduledDate{
+                var dateComponent = DateComponents()
+                dateComponent.day = action.xDays
+                dateComponent.hour = action.xHours
+                let addedDate = Calendar.current.date(byAdding: dateComponent, to: sd)!
+                kanban.boards[boardInd].items[cardInd].scheduledDate = addedDate
+            }
         default:
             print("ERROR: yet to handle actionType: \(action.actionType)")
         }

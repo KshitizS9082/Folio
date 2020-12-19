@@ -5895,11 +5895,84 @@
                                             <outlet property="plusButtonIV" destination="7A5-6n-XC9" id="nQh-qE-tGt"/>
                                         </connections>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="advanceScheduleID" rowHeight="165.33332824707031" id="1UO-Yx-bch" customClass="AdvanceScheduledDateTVC" customModule="Folio" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="107" width="414" height="165.33332824707031"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="1UO-Yx-bch" id="wcj-6J-Vha">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="165.33332824707031"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="plus.circle" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="NNQ-0R-YsP">
+                                                    <rect key="frame" x="20" y="17.999999999999996" width="45" height="49.333333333333329"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" secondItem="NNQ-0R-YsP" secondAttribute="height" id="HPs-h2-5YX"/>
+                                                        <constraint firstAttribute="width" constant="45" id="bp7-An-wKy"/>
+                                                    </constraints>
+                                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large" weight="bold"/>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0 Days" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yHy-xV-0Tv">
+                                                    <rect key="frame" x="73" y="73" width="54.333333333333343" height="20.333333333333329"/>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="LOE-Ni-85A">
+                                                    <rect key="frame" x="300" y="67.333333333333329" width="94" height="32"/>
+                                                    <connections>
+                                                        <action selector="daysChanged:" destination="1UO-Yx-bch" eventType="valueChanged" id="bHK-nF-lMW"/>
+                                                    </connections>
+                                                </stepper>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0 Hours" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vio-US-o34">
+                                                    <rect key="frame" x="73" y="119.33333333333333" width="63" height="20.333333333333329"/>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="88S-jZ-Yn0">
+                                                    <rect key="frame" x="300" y="113.66666666666667" width="94" height="31.666666666666671"/>
+                                                    <connections>
+                                                        <action selector="hoursChanged:" destination="1UO-Yx-bch" eventType="valueChanged" id="bvq-Vb-9mY"/>
+                                                    </connections>
+                                                </stepper>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Advance Scheduled Date By:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y4r-73-Yyv">
+                                                    <rect key="frame" x="72.999999999999986" y="32.333333333333336" width="228.66666666666663" height="20.333333333333336"/>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="88S-jZ-Yn0" firstAttribute="centerY" secondItem="Vio-US-o34" secondAttribute="centerY" id="0ex-aj-rUD"/>
+                                                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="y4r-73-Yyv" secondAttribute="trailing" constant="20" symbolic="YES" id="2RO-T5-LqL"/>
+                                                <constraint firstAttribute="bottom" secondItem="88S-jZ-Yn0" secondAttribute="bottom" constant="20" symbolic="YES" id="2c8-4d-4is"/>
+                                                <constraint firstItem="88S-jZ-Yn0" firstAttribute="top" secondItem="LOE-Ni-85A" secondAttribute="bottom" constant="14.333333333333329" id="8Ar-RX-kYr"/>
+                                                <constraint firstItem="NNQ-0R-YsP" firstAttribute="leading" secondItem="wcj-6J-Vha" secondAttribute="leading" constant="20" symbolic="YES" id="9pY-rx-Vc5"/>
+                                                <constraint firstItem="Vio-US-o34" firstAttribute="leading" secondItem="yHy-xV-0Tv" secondAttribute="leading" id="ELS-CV-yCd"/>
+                                                <constraint firstItem="NNQ-0R-YsP" firstAttribute="top" secondItem="wcj-6J-Vha" secondAttribute="top" constant="20" symbolic="YES" id="Eub-Aa-1JG"/>
+                                                <constraint firstItem="88S-jZ-Yn0" firstAttribute="trailing" secondItem="LOE-Ni-85A" secondAttribute="trailing" id="P7K-pf-Jvq"/>
+                                                <constraint firstAttribute="trailing" secondItem="LOE-Ni-85A" secondAttribute="trailing" constant="20" symbolic="YES" id="SXT-9s-LVR"/>
+                                                <constraint firstItem="yHy-xV-0Tv" firstAttribute="leading" secondItem="y4r-73-Yyv" secondAttribute="leading" id="VHD-ev-cmb"/>
+                                                <constraint firstItem="y4r-73-Yyv" firstAttribute="leading" secondItem="NNQ-0R-YsP" secondAttribute="trailing" constant="8" symbolic="YES" id="aqc-gy-dvT"/>
+                                                <constraint firstItem="LOE-Ni-85A" firstAttribute="centerY" secondItem="yHy-xV-0Tv" secondAttribute="centerY" id="boz-JS-WH9"/>
+                                                <constraint firstItem="LOE-Ni-85A" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="yHy-xV-0Tv" secondAttribute="trailing" constant="8" symbolic="YES" id="hIU-JG-nZd"/>
+                                                <constraint firstItem="y4r-73-Yyv" firstAttribute="centerY" secondItem="NNQ-0R-YsP" secondAttribute="centerY" id="lxI-r8-DTV"/>
+                                                <constraint firstItem="yHy-xV-0Tv" firstAttribute="top" secondItem="y4r-73-Yyv" secondAttribute="bottom" constant="20.333333333333329" id="s0t-ij-hge"/>
+                                                <constraint firstItem="88S-jZ-Yn0" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Vio-US-o34" secondAttribute="trailing" constant="8" symbolic="YES" id="xIE-dU-Cat"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="daysLabel" destination="yHy-xV-0Tv" id="J1s-KT-Q5n"/>
+                                            <outlet property="daysStepper" destination="LOE-Ni-85A" id="fQM-W2-0Ie"/>
+                                            <outlet property="hoursLabel" destination="Vio-US-o34" id="8bL-J8-Wxz"/>
+                                            <outlet property="hoursStepper" destination="88S-jZ-Yn0" id="IMg-64-4es"/>
+                                            <outlet property="plusButtonIV" destination="NNQ-0R-YsP" id="Kz5-HF-jVG"/>
+                                        </connections>
+                                    </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="qAn-ek-9xg">
-                                        <rect key="frame" x="0.0" y="107" width="414" height="188.33332824707031"/>
+                                        <rect key="frame" x="0.0" y="272.33332824707031" width="414" height="188"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="qAn-ek-9xg" id="TIo-y1-dQP">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="188.33332824707031"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="188"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="plus.circle" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="gli-ch-vX6">
@@ -5911,13 +5984,13 @@
                                                     <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large" weight="bold"/>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="If From Board:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zrx-jF-MJX">
-                                                    <rect key="frame" x="73" y="31.666666666666664" width="112.66666666666669" height="21.666666666666664"/>
+                                                    <rect key="frame" x="73" y="32" width="112.66666666666669" height="21"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uk6-xx-QKE">
-                                                    <rect key="frame" x="20" y="61.333333333333343" width="374" height="105"/>
+                                                    <rect key="frame" x="20" y="61" width="374" height="105"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="105" id="GmH-P1-1LP"/>
                                                     </constraints>

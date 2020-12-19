@@ -36,7 +36,7 @@ class AddActionViewController: UIViewController, UITableViewDataSource, UITableV
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return 2
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -44,6 +44,10 @@ class AddActionViewController: UIViewController, UITableViewDataSource, UITableV
         switch indexPath.row {
         case 0:
             let cell = tableView.dequeueReusableCell(withIdentifier: "setTitleID") as! SetTitleToTVC
+            cell.delegate=self
+            return cell
+        case 1:
+            let cell = tableView.dequeueReusableCell(withIdentifier: "advanceScheduleID") as! AdvanceScheduledDateTVC
             cell.delegate=self
             return cell
         default:
@@ -74,5 +78,34 @@ class SetTitleToTVC: UITableViewCell {
             newAction.newTitleString=str
             delegate?.addAction(newAction: newAction)
         }
+    }
+}
+
+class AdvanceScheduledDateTVC: UITableViewCell {
+    var delegate: AddActionViewControllerProtocol?
+    @IBOutlet weak var daysLabel: UILabel!
+    @IBOutlet weak var hoursLabel: UILabel!
+    
+    @IBOutlet weak var daysStepper: UIStepper!
+    @IBAction func daysChanged(_ sender: UIStepper) {
+        daysLabel.text = "\(Int(sender.value)) Days"
+    }
+    @IBOutlet weak var hoursStepper: UIStepper!
+    @IBAction func hoursChanged(_ sender: UIStepper) {
+        hoursLabel.text = "\(Int(sender.value)) Hours"
+    }
+    
+    @IBOutlet weak var plusButtonIV: UIImageView!{
+        didSet{
+            plusButtonIV.isUserInteractionEnabled=true
+            plusButtonIV.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(plusButtonTapped)))
+        }
+    }
+    
+    @objc func plusButtonTapped(){
+        var action = Action(actionType: .advanceDueDateByX)
+        action.xDays = Int(daysStepper.value)
+        action.xHours = Int(hoursStepper.value)
+        delegate?.addAction(newAction: action)
     }
 }
