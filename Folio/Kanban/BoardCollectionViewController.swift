@@ -309,7 +309,8 @@ class BoardCollectionViewController: UICollectionViewController {
             }else{
                 kanban.boards[boardInd].items[cardInd].checkList.items.removeAll()
             }
-            
+        case .setDueDateToNone:
+            kanban.boards[boardInd].items[cardInd].scheduledDate = nil
         default:
             print("ERROR: yet to handle actionType: \(action.actionType)")
         }

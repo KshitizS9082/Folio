@@ -36,7 +36,7 @@ class AddActionViewController: UIViewController, UITableViewDataSource, UITableV
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return 6
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -62,7 +62,10 @@ class AddActionViewController: UIViewController, UITableViewDataSource, UITableV
             let cell = tableView.dequeueReusableCell(withIdentifier: "deleteChecklistID") as! DeleteChecklistItemsTVC
             cell.delegate=self
             return cell
-        
+        case 5:
+            let cell = tableView.dequeueReusableCell(withIdentifier: "removeDudeDateActionID") as! RmoveDueDateTVC
+            cell.delegate=self
+            return cell
         default:
             return UITableViewCell()
         }
@@ -189,6 +192,20 @@ class DeleteChecklistItemsTVC: UITableViewCell {
         }else{
             newAction.checkListValue = nil
         }
+        delegate?.addAction(newAction: newAction)
+    }
+}
+class RmoveDueDateTVC: UITableViewCell {
+    var delegate: AddActionViewControllerProtocol?
+    
+    @IBOutlet weak var plusButtonIV: UIImageView!{
+        didSet{
+            plusButtonIV.isUserInteractionEnabled=true
+            plusButtonIV.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(plusButtonTapped)))
+        }
+    }
+    @objc func plusButtonTapped(){
+        let newAction = Action(actionType: .setDueDateToNone)
         delegate?.addAction(newAction: newAction)
     }
 }

@@ -43,7 +43,7 @@ struct Action: Codable {
     enum ActionTypeEnum: String, Codable {
         case moveCardToPostionOf
         case deleteCard
-        case setDueDateTo
+        case setDueDateToNone
         case advanceDueDateByX
         case setTagTo
         case setTaskTo
