@@ -3843,8 +3843,8 @@
                                                     <imageReference key="image" image="checkerboard.rectangle" catalog="system" symbolScale="small"/>
                                                     <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large" weight="light"/>
                                                 </imageView>
-                                                <textField opaque="NO" contentMode="scaleToFill" restorationIdentifier="titleTextView" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Board Name..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Rpj-Th-Gaf">
-                                                    <rect key="frame" x="85" y="28" width="113.33333333333331" height="22"/>
+                                                <textField opaque="NO" contentMode="scaleToFill" restorationIdentifier="titleTextView" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Command Name..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Rpj-Th-Gaf">
+                                                    <rect key="frame" x="85" y="28" width="148" height="22"/>
                                                     <accessibility key="accessibilityConfiguration" label="titleTextxx"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                                     <textInputTraits key="textInputTraits"/>
@@ -3907,12 +3907,19 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="0CM-BO-BJ5">
-                        <barButtonItem key="rightBarButtonItem" image="plus.circle" catalog="system" id="QKi-pH-UEQ">
-                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            <connections>
-                                <action selector="addCommand:" destination="3Og-Yt-zeL" id="Ry5-ty-MKh"/>
-                            </connections>
-                        </barButtonItem>
+                        <rightBarButtonItems>
+                            <barButtonItem image="plus.circle" catalog="system" id="QKi-pH-UEQ">
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <connections>
+                                    <action selector="addCommand:" destination="3Og-Yt-zeL" id="Ry5-ty-MKh"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem title="Item" id="9hN-at-her">
+                                <connections>
+                                    <action selector="toggleEditting:" destination="3Og-Yt-zeL" id="qiO-yJ-mdu"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
                     </navigationItem>
                     <connections>
                         <outlet property="backgroundImageView" destination="36T-lj-i03" id="u2M-8Q-npa"/>

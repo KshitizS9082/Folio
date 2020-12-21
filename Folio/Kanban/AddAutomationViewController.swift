@@ -35,6 +35,9 @@ class AddAutomationViewController: UIViewController {
 //            self.backgroundImageView.image=bgImage
 //        }
     }
+    @IBAction func toggleEditting(_ sender: Any) {
+        self.tableView.setEditing(!tableView.isEditing, animated: true)
+    }
     
     @IBAction func addCommand(_ sender: UIBarButtonItem) {
         //TODO: first do segue then add command if correct
@@ -151,10 +154,20 @@ extension AddAutomationViewController: UITableViewDataSource, UITableViewDelegat
         cell.updateLook()
         return cell
     }
-//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        self.shouldPerformSegue(withIdentifier: "commandDetailSegue", sender: tableView.cellForRow(at: indexPath))
-//    }
     
+    func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+        let data = self.kanban.commands.remove(at: sourceIndexPath.row)
+        self.kanban.commands.insert(data, at: destinationIndexPath.row)
+    }
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+//            objects.remove(at: indexPath.row)
+            kanban.commands.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .automatic)
+        } else if editingStyle == .insert {
+            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
+        }
+    }
 }
 extension AddAutomationViewController: addAutomationVCProtocol{
     func doEditCommandSegue(using tvc: commandTableViewCell) {
@@ -238,9 +251,9 @@ class commandTableViewCell: UITableViewCell{
         self.commandNameTextField.text = command.name
         let symbolConfig = UIImage.SymbolConfiguration(scale: .medium)
         if command.enabled{
-            categoryImageView.image = UIImage(systemName: "lock.slash.fill", withConfiguration: symbolConfig)
-        }else{
             categoryImageView.image = UIImage(systemName: "lock.open.fill", withConfiguration: symbolConfig)
+        }else{
+            categoryImageView.image = UIImage(systemName: "lock.slash.fill", withConfiguration: symbolConfig)
         }
         automDelegate?.editCommand(to: command)
     }

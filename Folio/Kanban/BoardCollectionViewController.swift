@@ -325,9 +325,11 @@ class BoardCollectionViewController: UICollectionViewController {
     }
     func implementAutomationCommands(){
         for command in kanban.commands{
+            print("trying to execute command: \(command.enabled)")
             if !command.enabled{
                 continue
             }
+            print("will to execute command: \(command.enabled)")
             for boardInd in kanban.boards.indices{
                 for cardInd in kanban.boards[boardInd].items.indices{
                     if boardInd < kanban.boards.count && cardInd < kanban.boards[boardInd].items.count{
