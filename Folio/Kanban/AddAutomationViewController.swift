@@ -10,6 +10,7 @@ import UIKit
 protocol addAutomationVCProtocol {
     func editCommand(to newComand: Command)
     func deleteCommand(to newComand: Command)
+    func doEditCommandSegue(using tvc: commandTableViewCell)
 }
 class AddAutomationViewController: UIViewController {
     var boardFileName = "empty.json"
@@ -145,6 +146,7 @@ extension AddAutomationViewController: UITableViewDataSource, UITableViewDelegat
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "commandTVCIdentifier") as! commandTableViewCell
 //        cell.commandNameTextField.text="23453"
+        cell.automDelegate=self
         cell.command = self.kanban.commands[indexPath.row]
         cell.updateLook()
         return cell
@@ -155,6 +157,10 @@ extension AddAutomationViewController: UITableViewDataSource, UITableViewDelegat
     
 }
 extension AddAutomationViewController: addAutomationVCProtocol{
+    func doEditCommandSegue(using tvc: commandTableViewCell) {
+        self.performSegue(withIdentifier: "newCommandDetailSegue", sender: tvc)
+    }
+    
     func deleteCommand(to newComand: Command) {
         for ind in kanban.commands.indices{
             if kanban.commands[ind].uniqueIdentifier == newComand.uniqueIdentifier{
@@ -182,6 +188,7 @@ extension AddAutomationViewController: addAutomationVCProtocol{
 
 class commandTableViewCell: UITableViewCell{
     var command = Command()
+    var automDelegate: addAutomationVCProtocol?
     @IBOutlet weak var cardBackgroundView: UIView!
     @IBOutlet weak var blurView: UIView!{
         didSet{
@@ -190,7 +197,14 @@ class commandTableViewCell: UITableViewCell{
             blurView.backgroundColor = .clear
             
             blurView.addBlurEffect(with: .systemThinMaterial)
+            
+            blurView.isUserInteractionEnabled=true
+            blurView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(doEditSegue)))
         }
+    }
+    @objc func doEditSegue(){
+        print("Edit Segue")
+        automDelegate?.doEditCommandSegue(using: self)
     }
     @IBOutlet weak var categoryImageView: UIImageView!{
         didSet{
@@ -205,13 +219,29 @@ class commandTableViewCell: UITableViewCell{
             let iconColor = [#colorLiteral(red: 0.886832118, green: 0.9455494285, blue: 0.9998298287, alpha: 1), #colorLiteral(red: 0.9906743169, green: 0.8905956149, blue: 0.8889676332, alpha: 1), #colorLiteral(red: 0.755782187, green: 1, blue: 0.8466194272, alpha: 1), #colorLiteral(red: 0.9186416268, green: 0.7921586633, blue: 0.9477668405, alpha: 1)].randomElement()
             self.categoryImageView.backgroundColor = iconColor
             self.categoryImageView.tintColor = iconColor?.darker(by: 50)
+            
+            self.categoryImageView.isUserInteractionEnabled=true
+            self.categoryImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(toggleEnabled)))
+            
         }
     }
     
+    @objc func toggleEnabled(){
+        print("Toggle Enabled")
+        command.enabled = !command.enabled
+        updateLook()
+    }
     @IBOutlet weak var commandNameTextField: UITextField!
     @IBOutlet weak var subTitleTextLabel: UILabel!
     
     func updateLook(){
         self.commandNameTextField.text = command.name
+        let symbolConfig = UIImage.SymbolConfiguration(scale: .medium)
+        if command.enabled{
+            categoryImageView.image = UIImage(systemName: "lock.slash.fill", withConfiguration: symbolConfig)
+        }else{
+            categoryImageView.image = UIImage(systemName: "lock.open.fill", withConfiguration: symbolConfig)
+        }
+        automDelegate?.editCommand(to: command)
     }
 }
