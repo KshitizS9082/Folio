@@ -36,7 +36,7 @@ class AddActionViewController: UIViewController, UITableViewDataSource, UITableV
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 6
+        return 7
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -64,6 +64,10 @@ class AddActionViewController: UIViewController, UITableViewDataSource, UITableV
             return cell
         case 5:
             let cell = tableView.dequeueReusableCell(withIdentifier: "removeDudeDateActionID") as! RmoveDueDateTVC
+            cell.delegate=self
+            return cell
+        case 6:
+            let cell = tableView.dequeueReusableCell(withIdentifier: "DeleteCardActionID") as! DeleteCardAutomationTVC
             cell.delegate=self
             return cell
         default:
@@ -206,6 +210,21 @@ class RmoveDueDateTVC: UITableViewCell {
     }
     @objc func plusButtonTapped(){
         let newAction = Action(actionType: .setDueDateToNone)
+        delegate?.addAction(newAction: newAction)
+    }
+}
+
+class DeleteCardAutomationTVC: UITableViewCell {
+    var delegate: AddActionViewControllerProtocol?
+    
+    @IBOutlet weak var plusButtonIV: UIImageView!{
+        didSet{
+            plusButtonIV.isUserInteractionEnabled=true
+            plusButtonIV.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(plusButtonTapped)))
+        }
+    }
+    @objc func plusButtonTapped(){
+        let newAction = Action(actionType: .deleteCard)
         delegate?.addAction(newAction: newAction)
     }
 }

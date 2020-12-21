@@ -41,7 +41,7 @@ class AddTriggerViewController: UIViewController, UITableViewDataSource, UITable
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 7
+        return 6
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -72,10 +72,10 @@ class AddTriggerViewController: UIViewController, UITableViewDataSource, UITable
             let cell = tableView.dequeueReusableCell(withIdentifier: "hasTagTVCID") as! HasTagTableViewCell
             cell.delegate=self
             return cell
-        case 6:
-            let cell = tableView.dequeueReusableCell(withIdentifier: "HasURLTVCID") as! HasURLTableViewCell
-            cell.delegate=self
-            return cell
+//        case 6:
+//            let cell = tableView.dequeueReusableCell(withIdentifier: "HasURLTVCID") as! HasURLTableViewCell
+//            cell.delegate=self
+//            return cell
         default:
             return UITableViewCell()
         }

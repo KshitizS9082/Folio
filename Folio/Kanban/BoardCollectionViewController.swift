@@ -311,6 +311,9 @@ class BoardCollectionViewController: UICollectionViewController {
             }
         case .setDueDateToNone:
             kanban.boards[boardInd].items[cardInd].scheduledDate = nil
+//        case .deleteCard:
+//            //Warning: not working somehow
+//            kanban.boards[boardInd].items.remove(at: cardInd)
         default:
             print("ERROR: yet to handle actionType: \(action.actionType)")
         }
