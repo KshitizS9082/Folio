@@ -1063,14 +1063,14 @@
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="spendingCatCellId" id="CNx-iF-W6G" customClass="spendingCategoryCell" customModule="Folio" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="414" height="226"/>
+                                        <rect key="frame" x="0.0" y="28" width="414" height="225.66667175292969"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="CNx-iF-W6G" id="INM-lK-oJg">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="226"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="225.66667175292969"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="FlT-L4-tqt">
-                                                    <rect key="frame" x="10" y="56" width="394" height="160"/>
+                                                    <rect key="frame" x="10" y="55.666666666666657" width="394" height="160"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="160" id="Mdi-jE-VYN"/>
@@ -1119,7 +1119,7 @@
                                                     </cells>
                                                 </collectionView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Category:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N29-du-TUi">
-                                                    <rect key="frame" x="15" y="15" width="78.666666666666671" height="21"/>
+                                                    <rect key="frame" x="15" y="15.000000000000002" width="78.666666666666671" height="20.666666666666671"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                                     <color key="textColor" name="subMainTextColor"/>
                                                     <nil key="highlightedColor"/>
@@ -1142,28 +1142,28 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="addDateCellId" id="Tnv-ID-kcW" customClass="addWallEntrDateCell" customModule="Folio" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="254" width="414" height="71"/>
+                                        <rect key="frame" x="0.0" y="253.66667175292969" width="414" height="70.666664123535156"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Tnv-ID-kcW" id="Fx0-yF-Wt2">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="71"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="70.666664123535156"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VXj-jm-DEp">
-                                                    <rect key="frame" x="15" y="15" width="43" height="21"/>
+                                                    <rect key="frame" x="15" y="15.000000000000002" width="43" height="20.666666666666671"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                                     <color key="textColor" name="subMainTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Category" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wCD-1u-xH4">
-                                                    <rect key="frame" x="336" y="16.666666666666668" width="63" height="18.000000000000004"/>
+                                                    <rect key="frame" x="336" y="16.333333333333332" width="63" height="17.999999999999996"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
                                                     <color key="textColor" name="subMainTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <datePicker hidden="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="eEU-rZ-UzZ">
-                                                    <rect key="frame" x="15" y="51" width="384" height="0.0"/>
+                                                    <rect key="frame" x="15" y="50.666666666666664" width="384" height="0.0"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" id="SJD-6b-gP6"/>
@@ -1194,7 +1194,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="addNoteCellId" id="RNm-p0-kBI" customClass="addWallEntrNoteCell" customModule="Folio" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="325" width="414" height="86"/>
+                                        <rect key="frame" x="0.0" y="324.33333587646484" width="414" height="86"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="RNm-p0-kBI" id="YcU-R4-CLI">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="86"/>
@@ -1234,10 +1234,10 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="addPayeeCellId" id="LEr-vN-Fsl" customClass="addWallEntrPayeeCell" customModule="Folio" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="411" width="414" height="50"/>
+                                        <rect key="frame" x="0.0" y="410.33333587646484" width="414" height="50.333332061767578"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="LEr-vN-Fsl" id="biD-Xo-QKG">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="50"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="50.333332061767578"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Payee:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uG0-wd-k3s">
@@ -1248,7 +1248,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="s1U-RY-qoY">
-                                                    <rect key="frame" x="83" y="15.666666666666666" width="316" height="19.333333333333336"/>
+                                                    <rect key="frame" x="83" y="15.333333333333336" width="316" height="20"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <color key="textColor" name="subMainTextColor"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -1274,7 +1274,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="addImageCellId" id="dm8-tx-1Bf" customClass="addWallEntryImageCell" customModule="Folio" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="461" width="414" height="106.33333587646484"/>
+                                        <rect key="frame" x="0.0" y="460.66666793823242" width="414" height="106.33333587646484"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="dm8-tx-1Bf" id="MLT-ty-Aa7">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="106.33333587646484"/>
@@ -5170,7 +5170,7 @@
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <inset key="scrollIndicatorInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="50"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="beforeScheduleID" id="7Ps-xV-V7e" customClass="BeforeScheduledDate" customModule="Folio" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="beforeScheduleID" id="7Ps-xV-V7e" customClass="BeforeScheduledDate" customModule="Folio" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="414" height="160.66667175292969"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="7Ps-xV-V7e" id="ov3-qg-SS5">
@@ -5243,7 +5243,7 @@
                                             <outlet property="plusButtonIV" destination="vG1-rr-eo2" id="xAo-zL-0Nv"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ifFromBoardID" id="jNW-4Y-Zpp" customClass="IfFromBoardTVC" customModule="Folio" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="ifFromBoardID" id="jNW-4Y-Zpp" customClass="IfFromBoardTVC" customModule="Folio" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="188.66667175292969" width="414" height="188"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="jNW-4Y-Zpp" id="sLk-cx-Kyy">
@@ -5288,7 +5288,7 @@
                                             <outlet property="plusButtonIV" destination="6vC-1d-iAx" id="u9G-rn-czR"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ifTaskTypeID" id="bcf-ay-2n0" customClass="IfTaskTypeTVC" customModule="Folio" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="ifTaskTypeID" id="bcf-ay-2n0" customClass="IfTaskTypeTVC" customModule="Folio" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="376.66667175292969" width="414" height="124"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="bcf-ay-2n0" id="nfy-iD-wPp">
@@ -5335,7 +5335,7 @@
                                             <outlet property="segmentControl" destination="QYe-jI-dzZ" id="RYS-9E-A6W"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="isContatinsIntTitleID" id="BHa-XV-yYB" customClass="isContainsInTitleTVC" customModule="Folio" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="isContatinsIntTitleID" id="BHa-XV-yYB" customClass="isContainsInTitleTVC" customModule="Folio" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="500.66667175292969" width="414" height="120.33333587646484"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="BHa-XV-yYB" id="aYy-VL-CBn">
@@ -5389,7 +5389,7 @@
                                             <outlet property="textField" destination="r4d-e9-40B" id="C6V-tK-ht0"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="hasChecklistItemsID" id="Krn-ie-BKz" customClass="hasChecklistWithAllItemsTVC" customModule="Folio" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="hasChecklistItemsID" id="Krn-ie-BKz" customClass="hasChecklistWithAllItemsTVC" customModule="Folio" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="621.00000762939453" width="414" height="112"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Krn-ie-BKz" id="V7p-9o-Fas">
@@ -5434,7 +5434,7 @@
                                             <outlet property="segmentControl" destination="75C-cT-jpO" id="Q8g-of-SNP"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="hasTagTVCID" rowHeight="119" id="xyX-DO-oWO" customClass="HasTagTableViewCell" customModule="Folio" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="hasTagTVCID" rowHeight="119" id="xyX-DO-oWO" customClass="HasTagTableViewCell" customModule="Folio" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="733.00000762939453" width="414" height="119"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="xyX-DO-oWO" id="kfQ-Lj-VZE">
@@ -5602,7 +5602,7 @@
                                             <outletCollection property="labelButtons" destination="M6L-qz-NSM" collectionClass="NSMutableArray" id="pJa-kF-zEF"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="HasURLTVCID" id="goO-ac-1If" customClass="HasURLTableViewCell" customModule="Folio" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="HasURLTVCID" id="goO-ac-1If" customClass="HasURLTableViewCell" customModule="Folio" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="852.00000762939453" width="414" height="79.333335876464844"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="goO-ac-1If" id="D0O-Hx-GQR">
@@ -5647,7 +5647,7 @@
                                             <outlet property="segmentControl" destination="eqG-oT-KOA" id="Lux-i8-Cvf"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="79" id="GHF-Un-wWU">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="79" id="GHF-Un-wWU">
                                         <rect key="frame" x="0.0" y="931.33334350585938" width="414" height="79"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="GHF-Un-wWU" id="jhb-g8-XVz">
@@ -5708,15 +5708,15 @@
                                 <rect key="frame" x="0.0" y="88" width="414" height="774"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="commandTitleID" id="Vhl-f5-rab" customClass="EditCommandTitleTCV" customModule="Folio" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="414" height="51.333332061767578"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="commandTitleID" id="Vhl-f5-rab" customClass="EditCommandTitleTCV" customModule="Folio" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="414" height="36.333332061767578"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Vhl-f5-rab" id="yrm-Ue-tyS">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="51.333332061767578"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="36.333332061767578"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Command Name..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1C3-8l-cLQ">
-                                                    <rect key="frame" x="20" y="13.999999999999998" width="148" height="22.333333333333329"/>
+                                                    <rect key="frame" x="20" y="6.9999999999999982" width="148" height="22.333333333333329"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                     <userDefinedRuntimeAttributes>
@@ -5726,17 +5726,17 @@
                                             </subviews>
                                             <constraints>
                                                 <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="1C3-8l-cLQ" secondAttribute="trailing" constant="20" symbolic="YES" id="2lh-BO-TUQ"/>
-                                                <constraint firstAttribute="bottom" secondItem="1C3-8l-cLQ" secondAttribute="bottom" constant="15" id="5EC-Pf-DtV"/>
+                                                <constraint firstAttribute="bottom" secondItem="1C3-8l-cLQ" secondAttribute="bottom" constant="7" id="5EC-Pf-DtV"/>
                                                 <constraint firstItem="1C3-8l-cLQ" firstAttribute="leading" secondItem="yrm-Ue-tyS" secondAttribute="leading" constant="20" symbolic="YES" id="C9X-Hg-6CJ"/>
-                                                <constraint firstItem="1C3-8l-cLQ" firstAttribute="top" secondItem="yrm-Ue-tyS" secondAttribute="top" constant="14" id="mxY-Ug-utm"/>
+                                                <constraint firstItem="1C3-8l-cLQ" firstAttribute="top" secondItem="yrm-Ue-tyS" secondAttribute="top" constant="7" id="mxY-Ug-utm"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="textField" destination="1C3-8l-cLQ" id="dRd-E0-zVC"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="commandTextCell" textLabel="jer-lu-my9" style="IBUITableViewCellStyleDefault" id="1yD-1S-8p7">
-                                        <rect key="frame" x="0.0" y="79.333332061767578" width="414" height="43.666667938232422"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="commandTextCell" textLabel="jer-lu-my9" style="IBUITableViewCellStyleDefault" id="1yD-1S-8p7">
+                                        <rect key="frame" x="0.0" y="64.333332061767578" width="414" height="43.666667938232422"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="1yD-1S-8p7" id="gEA-0R-dlh">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="43.666667938232422"/>
@@ -5745,22 +5745,23 @@
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="jer-lu-my9">
                                                     <rect key="frame" x="20" y="0.0" width="374" height="43.666667938232422"/>
                                                     <autoresizingMask key="autoresizingMask"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="addConditionIdentifier" id="69A-7d-FTG">
-                                        <rect key="frame" x="0.0" y="123" width="414" height="72.333335876464844"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="addConditionIdentifier" id="69A-7d-FTG">
+                                        <rect key="frame" x="0.0" y="108" width="414" height="50.333332061767578"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="69A-7d-FTG" id="2Xl-ih-CcZ">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="72.333335876464844"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="50.333332061767578"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="plus.circle" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="Hs4-rf-Eds">
-                                                    <rect key="frame" x="182" y="8.9999999999999929" width="50" height="54.666666666666671"/>
+                                                    <rect key="frame" x="182" y="-2.0000000000000036" width="50" height="54.666666666666671"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="50" id="2Yh-3Q-gft"/>
                                                         <constraint firstAttribute="width" secondItem="Hs4-rf-Eds" secondAttribute="height" id="mAO-Zj-91A"/>
@@ -5770,23 +5771,23 @@
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="Hs4-rf-Eds" firstAttribute="centerX" secondItem="2Xl-ih-CcZ" secondAttribute="centerX" id="LcL-6t-DPn"/>
-                                                <constraint firstAttribute="bottom" secondItem="Hs4-rf-Eds" secondAttribute="bottom" constant="11" id="V4z-32-Dxv"/>
-                                                <constraint firstItem="Hs4-rf-Eds" firstAttribute="top" secondItem="2Xl-ih-CcZ" secondAttribute="top" constant="11" id="pww-US-cAV"/>
+                                                <constraint firstAttribute="bottom" secondItem="Hs4-rf-Eds" secondAttribute="bottom" id="V4z-32-Dxv"/>
+                                                <constraint firstItem="Hs4-rf-Eds" firstAttribute="top" secondItem="2Xl-ih-CcZ" secondAttribute="top" id="pww-US-cAV"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
                                             <segue destination="9gf-KS-Kkb" kind="presentation" identifier="AddTriggerSegue" id="zUm-xm-9qo"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="addActionIdentifier" id="n7Q-yM-2sa">
-                                        <rect key="frame" x="0.0" y="195.33333587646484" width="414" height="72.333335876464844"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="addActionIdentifier" id="n7Q-yM-2sa">
+                                        <rect key="frame" x="0.0" y="158.33333206176758" width="414" height="50.333332061767578"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="n7Q-yM-2sa" id="3rv-fD-765">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="72.333335876464844"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="50.333332061767578"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="plus.circle" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="WZC-mD-zBH">
-                                                    <rect key="frame" x="182" y="8.9999999999999929" width="50" height="54.666666666666671"/>
+                                                    <rect key="frame" x="182" y="-2.0000000000000036" width="50" height="54.666666666666671"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="50" id="Koy-45-avY"/>
                                                         <constraint firstAttribute="width" secondItem="WZC-mD-zBH" secondAttribute="height" id="j3o-Tw-hpQ"/>
@@ -5795,9 +5796,9 @@
                                                 </imageView>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="bottom" secondItem="WZC-mD-zBH" secondAttribute="bottom" constant="11" id="Kmy-Xf-OLh"/>
+                                                <constraint firstAttribute="bottom" secondItem="WZC-mD-zBH" secondAttribute="bottom" id="Kmy-Xf-OLh"/>
                                                 <constraint firstItem="WZC-mD-zBH" firstAttribute="centerX" secondItem="3rv-fD-765" secondAttribute="centerX" id="apU-bO-CVJ"/>
-                                                <constraint firstItem="WZC-mD-zBH" firstAttribute="top" secondItem="3rv-fD-765" secondAttribute="top" constant="11" id="nGo-w0-UUH"/>
+                                                <constraint firstItem="WZC-mD-zBH" firstAttribute="top" secondItem="3rv-fD-765" secondAttribute="top" id="nGo-w0-UUH"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
@@ -5821,14 +5822,7 @@
                             <constraint firstItem="NLq-iz-I3G" firstAttribute="bottom" secondItem="DMA-23-QsE" secondAttribute="bottom" id="vJg-7h-Eck"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Command" id="zSi-SG-sZU">
-                        <barButtonItem key="rightBarButtonItem" image="plus.circle" catalog="system" id="xnh-Wq-lCc">
-                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            <connections>
-                                <action selector="addCommand:" destination="79b-vT-KZK" id="SOk-7D-9nP"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Command" id="zSi-SG-sZU"/>
                     <connections>
                         <outlet property="backgroundImageView" destination="t9v-fE-nyB" id="Y43-qS-Rrh"/>
                         <outlet property="tableView" destination="DMA-23-QsE" id="Z0o-6P-2Ea"/>
@@ -5867,7 +5861,7 @@
                                 <rect key="frame" x="0.0" y="56" width="414" height="752"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="setTitleID" rowHeight="79" id="yoM-PO-0xa" customClass="SetTitleToTVC" customModule="Folio" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="setTitleID" rowHeight="79" id="yoM-PO-0xa" customClass="SetTitleToTVC" customModule="Folio" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="414" height="79"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="yoM-PO-0xa" id="e3R-CG-WWx">
@@ -5910,7 +5904,7 @@
                                             <outlet property="plusButtonIV" destination="7A5-6n-XC9" id="nQh-qE-tGt"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="advanceScheduleID" rowHeight="165.33332824707031" id="1UO-Yx-bch" customClass="AdvanceScheduledDateTVC" customModule="Folio" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="advanceScheduleID" rowHeight="165.33332824707031" id="1UO-Yx-bch" customClass="AdvanceScheduledDateTVC" customModule="Folio" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="107" width="414" height="165.33332824707031"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="1UO-Yx-bch" id="wcj-6J-Vha">
@@ -5983,7 +5977,7 @@
                                             <outlet property="plusButtonIV" destination="NNQ-0R-YsP" id="Kz5-HF-jVG"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="setTaskTypeActionID" id="h9H-HC-8Ou" customClass="setTaskTypeActionTVC" customModule="Folio" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="setTaskTypeActionID" id="h9H-HC-8Ou" customClass="setTaskTypeActionTVC" customModule="Folio" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="272.33332824707031" width="414" height="124"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="h9H-HC-8Ou" id="VuL-nx-Jnt">
@@ -6030,7 +6024,7 @@
                                             <outlet property="segmentControl" destination="xqs-Cu-Yyf" id="niw-HF-GLI"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="setChecklistItemsID" id="P5w-aA-G7b" customClass="setChecklistItemsToActionTVC" customModule="Folio" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="setChecklistItemsID" id="P5w-aA-G7b" customClass="setChecklistItemsToActionTVC" customModule="Folio" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="396.33332824707031" width="414" height="112"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="P5w-aA-G7b" id="00j-AU-QNu">
@@ -6075,7 +6069,7 @@
                                             <outlet property="segmentControl" destination="2RL-jG-JJ4" id="dGw-iD-iJu"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="deleteChecklistID" id="PCG-y4-AYm" customClass="DeleteChecklistItemsTVC" customModule="Folio" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="deleteChecklistID" id="PCG-y4-AYm" customClass="DeleteChecklistItemsTVC" customModule="Folio" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="508.33332824707031" width="414" height="112"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="PCG-y4-AYm" id="VAc-1O-FgL">
@@ -6121,7 +6115,7 @@
                                             <outlet property="segmentControl" destination="6ND-6I-8sk" id="h2p-Hg-HFP"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="removeDudeDateActionID" rowHeight="79" id="6rH-2S-I8W" customClass="RmoveDueDateTVC" customModule="Folio" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="removeDudeDateActionID" rowHeight="79" id="6rH-2S-I8W" customClass="RmoveDueDateTVC" customModule="Folio" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="620.33332824707031" width="414" height="79"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="6rH-2S-I8W" id="xNi-DJ-HZE">
@@ -6156,7 +6150,7 @@
                                             <outlet property="plusButtonIV" destination="aW2-Kg-ZQY" id="cYb-aE-pAM"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="DeleteCardActionID" rowHeight="79" id="QlW-Ol-Khf" customClass="DeleteCardAutomationTVC" customModule="Folio" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="DeleteCardActionID" rowHeight="79" id="QlW-Ol-Khf" customClass="DeleteCardAutomationTVC" customModule="Folio" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="699.33332824707031" width="414" height="79"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="QlW-Ol-Khf" id="wRn-GG-HgQ">
