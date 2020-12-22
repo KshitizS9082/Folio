@@ -812,7 +812,7 @@
                             <constraint firstItem="FrG-kl-Igq" firstAttribute="trailing" secondItem="oH3-lo-kPM" secondAttribute="trailing" id="ABC-SP-Dew"/>
                             <constraint firstItem="zPB-nw-TI6" firstAttribute="width" secondItem="RAj-8e-MEk" secondAttribute="width" multiplier="1.1" id="Bzh-WY-z0Z"/>
                             <constraint firstItem="WgN-wh-LXa" firstAttribute="top" secondItem="LYI-bT-bbw" secondAttribute="bottom" constant="250" id="DXS-Hi-Jn1"/>
-                            <constraint firstItem="zPB-nw-TI6" firstAttribute="centerX" secondItem="RAj-8e-MEk" secondAttribute="centerX" id="ElI-Pw-UXY"/>
+                            <constraint firstItem="zPB-nw-TI6" firstAttribute="centerX" secondItem="RAj-8e-MEk" secondAttribute="centerX" priority="750" id="ElI-Pw-UXY"/>
                             <constraint firstItem="vFF-q9-LA5" firstAttribute="width" secondItem="vFF-q9-LA5" secondAttribute="height" id="FA0-Xd-F96"/>
                             <constraint firstItem="pSt-PJ-1Nx" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="m1h-6r-CSX" secondAttribute="bottom" priority="900" constant="300" id="GTi-oX-MLO"/>
                             <constraint firstItem="FrG-kl-Igq" firstAttribute="bottom" secondItem="oH3-lo-kPM" secondAttribute="bottom" id="H9N-Qe-GIq"/>
@@ -822,7 +822,7 @@
                             <constraint firstItem="0FD-Wd-uSD" firstAttribute="leading" secondItem="LYI-bT-bbw" secondAttribute="leading" id="IuP-Xt-9Gl"/>
                             <constraint firstItem="pSt-PJ-1Nx" firstAttribute="trailing" secondItem="zku-qq-2SR" secondAttribute="trailing" constant="30" id="J1O-Kl-0es"/>
                             <constraint firstItem="QMY-LH-MPU" firstAttribute="centerY" secondItem="hvx-jr-FzQ" secondAttribute="centerY" constant="-8" id="Jr0-Rz-aZB"/>
-                            <constraint firstItem="DA3-P2-7CS" firstAttribute="trailing" relation="lessThanOrEqual" secondItem="IrV-PZ-Q44" secondAttribute="trailing" constant="-8" id="Ker-3g-bsO"/>
+                            <constraint firstItem="DA3-P2-7CS" firstAttribute="trailing" relation="lessThanOrEqual" secondItem="IrV-PZ-Q44" secondAttribute="trailing" priority="750" constant="-8" id="Ker-3g-bsO"/>
                             <constraint firstItem="ooR-vs-oFO" firstAttribute="leading" secondItem="m1h-6r-CSX" secondAttribute="leading" constant="155" id="Luc-ij-Kyx"/>
                             <constraint firstItem="DaA-7h-O2J" firstAttribute="top" secondItem="hvx-jr-FzQ" secondAttribute="top" constant="10" id="MIZ-Ac-nXv"/>
                             <constraint firstItem="ktQ-BX-WpA" firstAttribute="top" secondItem="QMY-LH-MPU" secondAttribute="bottom" constant="3" id="NOo-or-uAg"/>
@@ -877,7 +877,7 @@
                             <constraint firstItem="15O-xk-kJf" firstAttribute="width" secondItem="15O-xk-kJf" secondAttribute="height" id="tdF-9v-QGq"/>
                             <constraint firstItem="w0l-s6-vUV" firstAttribute="centerX" secondItem="hvx-jr-FzQ" secondAttribute="centerX" constant="-10" id="tx3-Xd-eRU"/>
                             <constraint firstItem="h3x-9g-g7l" firstAttribute="bottom" secondItem="15O-xk-kJf" secondAttribute="bottom" id="ufe-SN-UTw"/>
-                            <constraint firstItem="DaA-7h-O2J" firstAttribute="trailing" relation="lessThanOrEqual" secondItem="IrV-PZ-Q44" secondAttribute="trailing" constant="-8" id="vJW-DR-2lb"/>
+                            <constraint firstItem="DaA-7h-O2J" firstAttribute="trailing" relation="lessThanOrEqual" secondItem="IrV-PZ-Q44" secondAttribute="trailing" priority="750" constant="-8" id="vJW-DR-2lb"/>
                             <constraint firstItem="LYI-bT-bbw" firstAttribute="top" secondItem="u6d-lf-lki" secondAttribute="bottom" constant="8" symbolic="YES" id="w86-UA-ZxT"/>
                             <constraint firstItem="m1h-6r-CSX" firstAttribute="leading" secondItem="IrV-PZ-Q44" secondAttribute="leading" priority="750" constant="45" id="xEF-zc-gQ7"/>
                             <constraint firstItem="h3x-9g-g7l" firstAttribute="leading" secondItem="15O-xk-kJf" secondAttribute="leading" id="yA0-8O-iRh"/>
@@ -1063,14 +1063,14 @@
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="spendingCatCellId" id="CNx-iF-W6G" customClass="spendingCategoryCell" customModule="Folio" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="414" height="226.33332824707031"/>
+                                        <rect key="frame" x="0.0" y="28" width="414" height="226"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="CNx-iF-W6G" id="INM-lK-oJg">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="226.33332824707031"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="226"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="FlT-L4-tqt">
-                                                    <rect key="frame" x="10" y="56.333333333333343" width="394" height="160"/>
+                                                    <rect key="frame" x="10" y="56" width="394" height="160"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="160" id="Mdi-jE-VYN"/>
@@ -1119,7 +1119,7 @@
                                                     </cells>
                                                 </collectionView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Category:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N29-du-TUi">
-                                                    <rect key="frame" x="15" y="14.999999999999998" width="78.666666666666671" height="21.333333333333329"/>
+                                                    <rect key="frame" x="15" y="15" width="78.666666666666671" height="21"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                                     <color key="textColor" name="subMainTextColor"/>
                                                     <nil key="highlightedColor"/>
@@ -1142,14 +1142,14 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="addDateCellId" id="Tnv-ID-kcW" customClass="addWallEntrDateCell" customModule="Folio" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="254.33332824707031" width="414" height="71.333335876464844"/>
+                                        <rect key="frame" x="0.0" y="254" width="414" height="71"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Tnv-ID-kcW" id="Fx0-yF-Wt2">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="71.333335876464844"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="71"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VXj-jm-DEp">
-                                                    <rect key="frame" x="15" y="14.999999999999998" width="43" height="21.333333333333329"/>
+                                                    <rect key="frame" x="15" y="15" width="43" height="21"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                                     <color key="textColor" name="subMainTextColor"/>
@@ -1163,7 +1163,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <datePicker hidden="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="eEU-rZ-UzZ">
-                                                    <rect key="frame" x="15" y="51.333333333333336" width="384" height="0.0"/>
+                                                    <rect key="frame" x="15" y="51" width="384" height="0.0"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" id="SJD-6b-gP6"/>
@@ -1194,7 +1194,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="addNoteCellId" id="RNm-p0-kBI" customClass="addWallEntrNoteCell" customModule="Folio" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="325.66666412353516" width="414" height="86"/>
+                                        <rect key="frame" x="0.0" y="325" width="414" height="86"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="RNm-p0-kBI" id="YcU-R4-CLI">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="86"/>
@@ -1234,10 +1234,10 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="addPayeeCellId" id="LEr-vN-Fsl" customClass="addWallEntrPayeeCell" customModule="Folio" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="411.66666412353516" width="414" height="50.333332061767578"/>
+                                        <rect key="frame" x="0.0" y="411" width="414" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="LEr-vN-Fsl" id="biD-Xo-QKG">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="50.333332061767578"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="50"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Payee:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uG0-wd-k3s">
@@ -1248,7 +1248,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="s1U-RY-qoY">
-                                                    <rect key="frame" x="83" y="15.333333333333336" width="316" height="20"/>
+                                                    <rect key="frame" x="83" y="15.666666666666666" width="316" height="19.333333333333336"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <color key="textColor" name="subMainTextColor"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -1274,7 +1274,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="addImageCellId" id="dm8-tx-1Bf" customClass="addWallEntryImageCell" customModule="Folio" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="461.99999618530273" width="414" height="106.33333587646484"/>
+                                        <rect key="frame" x="0.0" y="461" width="414" height="106.33333587646484"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="dm8-tx-1Bf" id="MLT-ty-Aa7">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="106.33333587646484"/>
