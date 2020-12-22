@@ -311,6 +311,8 @@ class BoardCollectionViewController: UICollectionViewController {
             }
         case .setDueDateToNone:
             kanban.boards[boardInd].items[cardInd].scheduledDate = nil
+        case .setTagTo:
+            kanban.boards[boardInd].items[cardInd].tagColor = action.tagColor
 //        case .deleteCard:
 //            //Warning: not working somehow
 //            kanban.boards[boardInd].items.remove(at: cardInd)

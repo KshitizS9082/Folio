@@ -67,9 +67,13 @@ class AddActionViewController: UIViewController, UITableViewDataSource, UITableV
             cell.delegate=self
             return cell
         case 6:
-            let cell = tableView.dequeueReusableCell(withIdentifier: "DeleteCardActionID") as! DeleteCardAutomationTVC
+            let cell = tableView.dequeueReusableCell(withIdentifier: "setTagTVCID") as! SetTagActionTableViewCell
             cell.delegate=self
             return cell
+//        case 6:
+//            let cell = tableView.dequeueReusableCell(withIdentifier: "DeleteCardActionID") as! DeleteCardAutomationTVC
+//            cell.delegate=self
+//            return cell
         default:
             return UITableViewCell()
         }
@@ -226,5 +230,67 @@ class DeleteCardAutomationTVC: UITableViewCell {
     @objc func plusButtonTapped(){
         let newAction = Action(actionType: .deleteCard)
         delegate?.addAction(newAction: newAction)
+    }
+}
+
+class SetTagActionTableViewCell: UITableViewCell {
+    var delegate: AddActionViewControllerProtocol?
+   
+    @IBOutlet weak var plusButtonIV: UIImageView!{
+        didSet{
+            plusButtonIV.isUserInteractionEnabled=true
+            plusButtonIV.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(plusButtonTapped)))
+        }
+    }
+    @objc func plusButtonTapped(){
+        var newAction = Action(actionType: .setTagTo)
+        newAction.tagColor=tagColor
+        delegate?.addAction(newAction: newAction)
+    }
+    @IBOutlet weak var stackView: UIStackView!
+    var tagColor: Int=0{
+        didSet{
+            for ind in 0...9{
+                if ind==tagColor{
+                    labelButtons[ind].backgroundColor = #colorLiteral(red: 0.2392156869, green: 0.6745098233, blue: 0.9686274529, alpha: 0.219396682)
+                }else{
+                    labelButtons[ind].backgroundColor = .clear
+                }
+            }
+        }
+    }
+    @IBOutlet var labelButtons: [UIButton]!
+    override func awakeFromNib() {
+        tagColor=0
+    }
+    @IBAction func but0(_ sender: Any) {
+        tagColor=0
+    }
+    @IBAction func but1(_ sender: Any) {
+        tagColor=1
+    }
+    @IBAction func but2(_ sender: Any) {
+        tagColor=2
+    }
+    @IBAction func but3(_ sender: Any) {
+        tagColor=3
+    }
+    @IBAction func but4(_ sender: Any) {
+        tagColor=4
+    }
+    @IBAction func but5(_ sender: Any) {
+        tagColor=5
+    }
+    @IBAction func but6(_ sender: Any) {
+        tagColor=6
+    }
+    @IBAction func but7(_ sender: Any) {
+        tagColor=7
+    }
+    @IBAction func but8(_ sender: Any) {
+        tagColor=8
+    }
+    @IBAction func but9(_ sender: Any) {
+        tagColor=9
     }
 }

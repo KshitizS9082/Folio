@@ -6151,8 +6151,176 @@
                                             <outlet property="plusButtonIV" destination="aW2-Kg-ZQY" id="cYb-aE-pAM"/>
                                         </connections>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="setTagTVCID" rowHeight="119" id="Xyf-VV-b8F" customClass="SetTagActionTableViewCell" customModule="Folio" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="699.33332824707031" width="414" height="119"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Xyf-VV-b8F" id="TYr-jy-G30">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="119"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="plus.circle" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="gaY-YI-LPw">
+                                                    <rect key="frame" x="20" y="17.999999999999996" width="45" height="49.333333333333329"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" secondItem="gaY-YI-LPw" secondAttribute="height" id="Gc7-eB-Ku3"/>
+                                                        <constraint firstAttribute="width" constant="45" id="RMk-79-gIF"/>
+                                                    </constraints>
+                                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large" weight="bold"/>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Set Tag: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XpH-DO-zzf">
+                                                    <rect key="frame" x="73" y="32.333333333333336" width="69" height="20.333333333333336"/>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="fUg-Ir-RgL">
+                                                    <rect key="frame" x="65" y="60.666666666666657" width="329" height="40"/>
+                                                    <subviews>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wOe-LH-iIo">
+                                                            <rect key="frame" x="0.0" y="0.0" width="33" height="40"/>
+                                                            <color key="tintColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <state key="normal">
+                                                                <imageReference key="image" image="circle.dashed" catalog="system" symbolScale="small"/>
+                                                                <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="small"/>
+                                                            </state>
+                                                            <connections>
+                                                                <action selector="but0:" destination="Xyf-VV-b8F" eventType="touchUpInside" id="ZjT-gX-GdZ"/>
+                                                            </connections>
+                                                        </button>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fb1-gt-IDQ">
+                                                            <rect key="frame" x="33" y="0.0" width="32.666666666666657" height="40"/>
+                                                            <color key="tintColor" systemColor="systemPurpleColor"/>
+                                                            <state key="normal">
+                                                                <imageReference key="image" image="circle.fill" catalog="system" symbolScale="small"/>
+                                                                <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="small"/>
+                                                            </state>
+                                                            <connections>
+                                                                <action selector="but1:" destination="Xyf-VV-b8F" eventType="touchUpInside" id="M4s-7W-1rS"/>
+                                                            </connections>
+                                                        </button>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OnD-el-UEW">
+                                                            <rect key="frame" x="65.666666666666657" y="0.0" width="33" height="40"/>
+                                                            <color key="tintColor" systemColor="systemIndigoColor"/>
+                                                            <state key="normal">
+                                                                <imageReference key="image" image="circle.fill" catalog="system" symbolScale="small"/>
+                                                                <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="small"/>
+                                                            </state>
+                                                            <connections>
+                                                                <action selector="but2:" destination="Xyf-VV-b8F" eventType="touchUpInside" id="iA7-Wn-Z58"/>
+                                                            </connections>
+                                                        </button>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UbN-Oj-Kxr">
+                                                            <rect key="frame" x="98.666666666666657" y="0.0" width="33" height="40"/>
+                                                            <color key="tintColor" systemColor="systemBlueColor"/>
+                                                            <state key="normal">
+                                                                <imageReference key="image" image="circle.fill" catalog="system" symbolScale="small"/>
+                                                                <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="small"/>
+                                                            </state>
+                                                            <connections>
+                                                                <action selector="but3:" destination="Xyf-VV-b8F" eventType="touchUpInside" id="qE8-zs-8lx"/>
+                                                            </connections>
+                                                        </button>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sGq-RI-nm2">
+                                                            <rect key="frame" x="131.66666666666666" y="0.0" width="33" height="40"/>
+                                                            <color key="tintColor" systemColor="systemTealColor"/>
+                                                            <state key="normal">
+                                                                <imageReference key="image" image="circle.fill" catalog="system" symbolScale="small"/>
+                                                                <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="small"/>
+                                                            </state>
+                                                            <connections>
+                                                                <action selector="but4:" destination="Xyf-VV-b8F" eventType="touchUpInside" id="LhD-Ta-Byx"/>
+                                                            </connections>
+                                                        </button>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qea-Mg-EI8">
+                                                            <rect key="frame" x="164.66666666666666" y="0.0" width="32.666666666666657" height="40"/>
+                                                            <color key="tintColor" systemColor="systemGreenColor"/>
+                                                            <state key="normal">
+                                                                <imageReference key="image" image="circle.fill" catalog="system" symbolScale="small"/>
+                                                                <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="small"/>
+                                                            </state>
+                                                            <connections>
+                                                                <action selector="but5:" destination="Xyf-VV-b8F" eventType="touchUpInside" id="kXb-Bl-uoa"/>
+                                                            </connections>
+                                                        </button>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xrw-TN-WWf">
+                                                            <rect key="frame" x="197.33333333333331" y="0.0" width="33" height="40"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                                            <color key="tintColor" systemColor="systemYellowColor"/>
+                                                            <state key="normal">
+                                                                <imageReference key="image" image="circle.fill" catalog="system" symbolScale="small"/>
+                                                                <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="small"/>
+                                                            </state>
+                                                            <connections>
+                                                                <action selector="but6:" destination="Xyf-VV-b8F" eventType="touchUpInside" id="4RN-f7-SIE"/>
+                                                            </connections>
+                                                        </button>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NE0-la-Ts4">
+                                                            <rect key="frame" x="230.33333333333331" y="0.0" width="33" height="40"/>
+                                                            <color key="tintColor" systemColor="systemOrangeColor"/>
+                                                            <state key="normal">
+                                                                <imageReference key="image" image="circle.fill" catalog="system" symbolScale="small"/>
+                                                                <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="small"/>
+                                                            </state>
+                                                            <connections>
+                                                                <action selector="but7:" destination="Xyf-VV-b8F" eventType="touchUpInside" id="bNB-hq-vcj"/>
+                                                            </connections>
+                                                        </button>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wk3-0n-fZn">
+                                                            <rect key="frame" x="263.33333333333331" y="0.0" width="32.666666666666686" height="40"/>
+                                                            <color key="tintColor" systemColor="systemPinkColor"/>
+                                                            <state key="normal">
+                                                                <imageReference key="image" image="circle.fill" catalog="system" symbolScale="small"/>
+                                                                <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="small"/>
+                                                            </state>
+                                                            <connections>
+                                                                <action selector="but8:" destination="Xyf-VV-b8F" eventType="touchUpInside" id="w86-I9-WnC"/>
+                                                            </connections>
+                                                        </button>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="evd-aX-tok">
+                                                            <rect key="frame" x="296" y="0.0" width="33" height="40"/>
+                                                            <color key="tintColor" systemColor="systemRedColor"/>
+                                                            <state key="normal">
+                                                                <imageReference key="image" image="circle.fill" catalog="system" symbolScale="small"/>
+                                                                <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="small"/>
+                                                            </state>
+                                                            <connections>
+                                                                <action selector="but9:" destination="Xyf-VV-b8F" eventType="touchUpInside" id="pU9-ET-fWk"/>
+                                                            </connections>
+                                                        </button>
+                                                    </subviews>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="40" id="77F-Gi-awW"/>
+                                                    </constraints>
+                                                </stackView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="fUg-Ir-RgL" secondAttribute="trailing" constant="20" symbolic="YES" id="EXL-oh-MMl"/>
+                                                <constraint firstItem="XpH-DO-zzf" firstAttribute="centerY" secondItem="gaY-YI-LPw" secondAttribute="centerY" id="OS5-Xc-0FT"/>
+                                                <constraint firstItem="XpH-DO-zzf" firstAttribute="leading" secondItem="gaY-YI-LPw" secondAttribute="trailing" constant="8" symbolic="YES" id="Xhb-d9-q9Z"/>
+                                                <constraint firstItem="gaY-YI-LPw" firstAttribute="leading" secondItem="TYr-jy-G30" secondAttribute="leading" constant="20" symbolic="YES" id="aeu-Xv-WU5"/>
+                                                <constraint firstItem="fUg-Ir-RgL" firstAttribute="top" secondItem="XpH-DO-zzf" secondAttribute="bottom" constant="8" symbolic="YES" id="ce8-4r-h7q"/>
+                                                <constraint firstAttribute="bottom" secondItem="fUg-Ir-RgL" secondAttribute="bottom" constant="18.333333333333343" id="i65-hZ-tfE"/>
+                                                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="XpH-DO-zzf" secondAttribute="trailing" constant="20" symbolic="YES" id="mcf-jo-8Hb"/>
+                                                <constraint firstItem="fUg-Ir-RgL" firstAttribute="leading" secondItem="gaY-YI-LPw" secondAttribute="trailing" id="rFM-41-fYW"/>
+                                                <constraint firstItem="gaY-YI-LPw" firstAttribute="top" secondItem="TYr-jy-G30" secondAttribute="top" constant="20" symbolic="YES" id="yYj-iK-QvP"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="plusButtonIV" destination="gaY-YI-LPw" id="LU0-A8-e4f"/>
+                                            <outlet property="stackView" destination="fUg-Ir-RgL" id="Z3G-wa-odm"/>
+                                            <outletCollection property="labelButtons" destination="wOe-LH-iIo" collectionClass="NSMutableArray" id="eoO-Ql-9LN"/>
+                                            <outletCollection property="labelButtons" destination="fb1-gt-IDQ" collectionClass="NSMutableArray" id="FgN-6C-KM9"/>
+                                            <outletCollection property="labelButtons" destination="OnD-el-UEW" collectionClass="NSMutableArray" id="BeB-ru-hn4"/>
+                                            <outletCollection property="labelButtons" destination="UbN-Oj-Kxr" collectionClass="NSMutableArray" id="au7-nR-bAa"/>
+                                            <outletCollection property="labelButtons" destination="sGq-RI-nm2" collectionClass="NSMutableArray" id="L9H-qj-dqp"/>
+                                            <outletCollection property="labelButtons" destination="qea-Mg-EI8" collectionClass="NSMutableArray" id="sRO-9N-NZx"/>
+                                            <outletCollection property="labelButtons" destination="Xrw-TN-WWf" collectionClass="NSMutableArray" id="ats-gr-2vL"/>
+                                            <outletCollection property="labelButtons" destination="NE0-la-Ts4" collectionClass="NSMutableArray" id="QJo-Kx-Ght"/>
+                                            <outletCollection property="labelButtons" destination="wk3-0n-fZn" collectionClass="NSMutableArray" id="hfx-7a-Rj0"/>
+                                            <outletCollection property="labelButtons" destination="evd-aX-tok" collectionClass="NSMutableArray" id="gj9-cG-ZSn"/>
+                                        </connections>
+                                    </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="DeleteCardActionID" rowHeight="79" id="QlW-Ol-Khf" customClass="DeleteCardAutomationTVC" customModule="Folio" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="699.33332824707031" width="414" height="79"/>
+                                        <rect key="frame" x="0.0" y="818.33332824707031" width="414" height="79"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="QlW-Ol-Khf" id="wRn-GG-HgQ">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="79"/>
