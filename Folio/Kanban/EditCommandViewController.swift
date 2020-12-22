@@ -118,7 +118,7 @@ extension EditCommandViewController: UITableViewDataSource, UITableViewDelegate{
                 return cell
             }else{
                 let cell = tableView.dequeueReusableCell(withIdentifier: "commandTextCell")!
-                cell.textLabel?.text = command.condition[indexPath.row].triggerType.rawValue
+                cell.textLabel?.text = command.condition[indexPath.row].describingString
                 return cell
             }
         }else if indexPath.section==2{
@@ -127,7 +127,7 @@ extension EditCommandViewController: UITableViewDataSource, UITableViewDelegate{
                 return cell
             }else{
                 let cell = tableView.dequeueReusableCell(withIdentifier: "commandTextCell")!
-                cell.textLabel?.text = command.execution[indexPath.row].actionType.rawValue
+                cell.textLabel?.text = command.execution[indexPath.row].describingString
                 return cell
             }
         }

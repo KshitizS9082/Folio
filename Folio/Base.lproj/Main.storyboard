@@ -5673,7 +5673,6 @@
                             </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="ahh-BT-4Xn"/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="E9g-BH-Iwt" firstAttribute="leading" secondItem="ahh-BT-4Xn" secondAttribute="leading" id="EHJ-xU-OcR"/>
                             <constraint firstItem="dTS-CX-9D0" firstAttribute="trailing" secondItem="ahh-BT-4Xn" secondAttribute="trailing" id="P4d-yH-k2t"/>
@@ -5709,14 +5708,15 @@
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="commandTitleID" id="Vhl-f5-rab" customClass="EditCommandTitleTCV" customModule="Folio" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="414" height="36.333332061767578"/>
+                                        <rect key="frame" x="0.0" y="28" width="414" height="48.333332061767578"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Vhl-f5-rab" id="yrm-Ue-tyS">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="36.333332061767578"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="48.333332061767578"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Command Name..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1C3-8l-cLQ">
-                                                    <rect key="frame" x="20" y="6.9999999999999982" width="148" height="22.333333333333329"/>
+                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Command Name..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1C3-8l-cLQ">
+                                                    <rect key="frame" x="20" y="7" width="176" height="34.333333333333336"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                     <userDefinedRuntimeAttributes>
@@ -5731,12 +5731,13 @@
                                                 <constraint firstItem="1C3-8l-cLQ" firstAttribute="top" secondItem="yrm-Ue-tyS" secondAttribute="top" constant="7" id="mxY-Ug-utm"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <connections>
                                             <outlet property="textField" destination="1C3-8l-cLQ" id="dRd-E0-zVC"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="commandTextCell" textLabel="jer-lu-my9" style="IBUITableViewCellStyleDefault" id="1yD-1S-8p7">
-                                        <rect key="frame" x="0.0" y="64.333332061767578" width="414" height="43.666667938232422"/>
+                                        <rect key="frame" x="0.0" y="76.333332061767578" width="414" height="43.666667938232422"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="1yD-1S-8p7" id="gEA-0R-dlh">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="43.666667938232422"/>
@@ -5754,7 +5755,7 @@
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="addConditionIdentifier" id="69A-7d-FTG">
-                                        <rect key="frame" x="0.0" y="108" width="414" height="50.333332061767578"/>
+                                        <rect key="frame" x="0.0" y="120" width="414" height="50.333332061767578"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="69A-7d-FTG" id="2Xl-ih-CcZ">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="50.333332061767578"/>
@@ -5780,7 +5781,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="addActionIdentifier" id="n7Q-yM-2sa">
-                                        <rect key="frame" x="0.0" y="158.33333206176758" width="414" height="50.333332061767578"/>
+                                        <rect key="frame" x="0.0" y="170.33333206176758" width="414" height="50.333332061767578"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="n7Q-yM-2sa" id="3rv-fD-765">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="50.333332061767578"/>
@@ -6189,7 +6190,6 @@
                             </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="0KN-Ej-hc9"/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="3Qb-jf-497" firstAttribute="leading" secondItem="0KN-Ej-hc9" secondAttribute="leading" id="BfS-El-2Qf"/>
                             <constraint firstItem="zDz-Fj-BiE" firstAttribute="top" secondItem="3Qb-jf-497" secondAttribute="bottom" id="MLH-1y-Rdu"/>
