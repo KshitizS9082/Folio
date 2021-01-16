@@ -14,7 +14,6 @@ protocol EditCommandVCProtocol {
 }
 class EditCommandViewController: UIViewController, EditCommandVCProtocol {
     
-    
     var delegate: addAutomationVCProtocol?
     var command = Command()
     var kanbanFileName = "Inster File Name SKTTC"
@@ -110,7 +109,6 @@ extension EditCommandViewController: UITableViewDataSource, UITableViewDelegate{
             let cell = tableView.dequeueReusableCell(withIdentifier: "commandTitleID") as! EditCommandTitleTCV
             cell.delegate=self
             cell.textField.text = command.name
-//            cell.textLabel?.text = command.name
             return cell
         }else if indexPath.section==1{
             if indexPath.row==command.condition.count{
@@ -158,11 +156,11 @@ extension EditCommandViewController: UITableViewDataSource, UITableViewDelegate{
         label.textColor = .white
         switch section {
         case 0:
-            label.text = "Name"
+            label.text = "Name:"
         case 1:
-            label.text = "Condition"
+            label.text = "Condition:"
         case 2:
-            label.text = "Action"
+            label.text = "Action:"
         default:
             label.text = "Unknown section"
         }
@@ -183,6 +181,4 @@ class EditCommandTitleTCV: UITableViewCell, UITextFieldDelegate{
     func textFieldDidEndEditing(_ textField: UITextField) {
         delegate?.updateCommandName(to: textField.text ?? "")
     }
-    
 }
-

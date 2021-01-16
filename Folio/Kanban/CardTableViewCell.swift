@@ -93,9 +93,9 @@ class CardTableViewCell: UITableViewCell {
             }else{
                 taskView.backgroundColor = #colorLiteral(red: 0.9994240403, green: 0.9855536819, blue: 0, alpha: 0.15)
                 taskSymbolImage.image = UIImage(systemName: "circle", withConfiguration: taskConfig)
-                taskSymbolImage.tintColor = UIColor.systemYellow
+                taskSymbolImage.tintColor = UIColor.systemOrange
                 taskStatusLabel.text = "Pending"
-                taskStatusLabel.textColor = UIColor.systemYellow
+                taskStatusLabel.textColor = UIColor.systemOrange
             }
         }else{
             taskView.isHidden=true
