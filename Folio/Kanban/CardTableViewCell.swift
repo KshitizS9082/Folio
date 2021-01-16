@@ -31,8 +31,11 @@ class CardTableViewCell: UITableViewCell {
     @IBOutlet weak var tagColorViewWidthConstraint: NSLayoutConstraint!
     
     @IBOutlet weak var checkListLabel: UILabel!
+    @IBOutlet weak var calendarPreviewSymbol: UIImageView!
     @IBOutlet weak var calendarLabel: UILabel!
+    @IBOutlet weak var reminderPreviewSymbol: UIImageView!
     @IBOutlet weak var reminderLabel: UILabel!
+    @IBOutlet weak var linkPreviewSymbol: UIImageView!
     @IBOutlet weak var linkLabel: UILabel!
     @IBOutlet weak var previewImageView: UIImageView!{
         didSet{
@@ -74,6 +77,7 @@ class CardTableViewCell: UITableViewCell {
         setupCard()
         delegate?.updateCard(to: self.card)
         self.delegate?.updateHeights()
+        print("updated heights, calendarPreviewSymbol= \(String(describing: calendarPreviewSymbol)) ")
     }
     func setupCard(){
         titleTextView.text = card.title
@@ -221,18 +225,24 @@ class CardTableViewCell: UITableViewCell {
         }
         if card.scheduledDate == nil{
             previewImageViews[1].tintColor = .gray
+            calendarPreviewSymbol.tintColor = .gray
         }else{
             previewImageViews[1].tintColor = .systemBlue
+            calendarPreviewSymbol.tintColor = .systemBlue
         }
         if card.reminderDate == nil{
             previewImageViews[2].tintColor = .gray
+            reminderPreviewSymbol.tintColor = .gray
         }else{
             previewImageViews[2].tintColor = .systemBlue
+            reminderPreviewSymbol.tintColor = .systemBlue
         }
         if card.linkURL.count==0 {
             previewImageViews[3].tintColor = .gray
+            linkPreviewSymbol.tintColor = .gray
         }else{
             previewImageViews[3].tintColor = .systemBlue
+            linkPreviewSymbol.tintColor = .systemBlue
         }
         if card.mediaLinks.count == 0{
             previewImageViews[4].tintColor = .gray

@@ -33,7 +33,7 @@ class switchKanbanTimelineTabBarController: UITabBarController, UITabBarControll
         navigationController?.navigationBar.isTranslucent = true
         
         let attrs = [
-            NSAttributedString.Key.foregroundColor: UIColor.systemGray ,
+            NSAttributedString.Key.foregroundColor: UIColor.systemGray6 ,
             NSAttributedString.Key.font: UIFont(name: "HelveticaNeue-Bold", size: 30)!
         ]
         self.navigationController?.navigationBar.titleTextAttributes = attrs
