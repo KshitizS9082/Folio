@@ -54,6 +54,7 @@ class journalLocationTableViewCell: UITableViewCell, UITextViewDelegate {
     }
         @objc func didSelctTextView() {
             print("didselect in setSelected")
+            notesLabel.isHidden=true
             notesIsEditingTextView.isHidden=false
             notesIsEditingTextView.font = notesLabel.font
             notesIsEditingTextView.text = notesLabel.text
