@@ -149,7 +149,7 @@ class IfFromBoardTVC: UITableViewCell, UIPickerViewDataSource, UIPickerViewDeleg
     @objc func plusButtonTapped(){
         if pickerView.selectedRow(inComponent: 0)>0{
             var trigger = Trigger(triggerType: .ifFromBoard)
-            trigger.fromBoard = kanban.boards[pickerView.selectedRow(inComponent: 0)-1].uid
+            trigger.fromBoard = kanban.boards[pickerView.selectedRow(inComponent: 0)-1].title
             delegate?.addTrigger(newTrigger: trigger)
         }
     }

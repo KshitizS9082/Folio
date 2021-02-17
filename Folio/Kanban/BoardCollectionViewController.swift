@@ -218,7 +218,7 @@ class BoardCollectionViewController: UICollectionViewController {
                 return false
             }
         case .ifFromBoard:
-            return kanban.boards[boardInd].uid == trigger.fromBoard
+            return kanban.boards[boardInd].title == trigger.fromBoard
         case .ifTaskType:
             return card.isTask == trigger.taskType
         case .ifTilteIs:

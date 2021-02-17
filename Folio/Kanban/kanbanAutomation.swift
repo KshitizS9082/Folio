@@ -15,7 +15,7 @@ struct Trigger: Codable {
                 case TriggerTypeEnum.xBeforeSchedule:
                     return "\(daysBeforeSchedule!) Days, \(hoursBeforeSchedule!) Hours before scheduled"
                 case TriggerTypeEnum.ifFromBoard:
-                    return "If from Board \(String(describing: fromBoard))"
+                    return "If from Board with title \(String(describing: fromBoard))"
                 case TriggerTypeEnum.ifTilteIs:
                     return "If title is \(titleString!)"
                 case TriggerTypeEnum.ifTitleContains:
@@ -88,7 +88,7 @@ struct Trigger: Codable {
     var daysBeforeSchedule: Int?
     var hoursBeforeSchedule: Int?
     
-    var fromBoard: UUID?
+    var fromBoard: String?
     
     var titleString: String?
     
