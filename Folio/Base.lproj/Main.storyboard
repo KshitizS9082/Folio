@@ -3136,7 +3136,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Journal" id="LHS-SP-7NN">
                         <rightBarButtonItems>
-                            <barButtonItem title="Item" image="rectangle.compress.vertical" catalog="system" id="bUs-VX-RXK">
+                            <barButtonItem title="Item" image="rectangle.expand.vertical" catalog="system" id="bUs-VX-RXK">
                                 <color key="tintColor" name="calendarAccent"/>
                                 <connections>
                                     <action selector="toggleCalendar:" destination="iHJ-Ix-OFG" id="mkl-z2-Jva"/>
@@ -6457,7 +6457,7 @@
         <image name="plus" catalog="system" width="128" height="113"/>
         <image name="plus.circle" catalog="system" width="128" height="121"/>
         <image name="questionmark.diamond" catalog="system" width="128" height="122"/>
-        <image name="rectangle.compress.vertical" catalog="system" width="122" height="128"/>
+        <image name="rectangle.expand.vertical" catalog="system" width="128" height="122"/>
         <image name="rectangle.grid.1x2" catalog="system" width="128" height="101"/>
         <image name="s.circle.fill" catalog="system" width="128" height="121"/>
         <image name="t.circle.fill" catalog="system" width="128" height="121"/>

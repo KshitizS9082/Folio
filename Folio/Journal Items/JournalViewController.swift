@@ -139,7 +139,8 @@ class JournalViewController: UIViewController {
         calendarView.scrollDirection = .horizontal
         calendarView.scrollingMode   = .stopAtEachCalendarFrame
         calendarView.showsHorizontalScrollIndicator = false
-        constraint.constant=fullCalHeight
+        self.constraint.constant = singleRohCalHeight
+        self.numberOfRows = 1
         self.calendarView.reloadData(withanchor: selectedDate)
         self.calendarView.selectDates([selectedDate])
         
@@ -422,7 +423,7 @@ extension JournalViewController{
         return 250
     }
     var singleRohCalHeight: CGFloat{
-        return 100
+        return 90
     }
     var monthLabelViewSize: CGFloat{
         return 40
