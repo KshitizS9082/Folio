@@ -82,7 +82,7 @@ class HomePageViewController: UIViewController {
             loadKanbanBoards()
         }else if self.selectedSegment==1{
             loadWallet()
-        }else if self.selectedSegment==3{
+        }else if self.selectedSegment==2{
             loadHabitCards()
         }else if self.selectedSegment==3{
             loadJournalCards()

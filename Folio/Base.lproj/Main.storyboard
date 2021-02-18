@@ -100,7 +100,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="rI9-iM-VtK">
-                                <rect key="frame" x="0.0" y="112" width="414" height="696"/>
+                                <rect key="frame" x="0.0" y="56" width="414" height="752"/>
                                 <color key="backgroundColor" name="myBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="themeCell" textLabel="3sR-Ya-evM" detailTextLabel="YRD-vW-BW1" rowHeight="70" style="IBUITableViewCellStyleValue1" id="eg7-dS-foT">
@@ -200,38 +200,18 @@
                                     <outlet property="delegate" destination="UAC-d8-kH1" id="osh-Cz-mGV"/>
                                 </connections>
                             </tableView>
-                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="crc-iE-wxV">
-                                <rect key="frame" x="0.0" y="56" width="414" height="56"/>
-                                <textAttributes key="titleTextAttributes">
-                                    <color key="textColor" systemColor="systemTealColor"/>
-                                </textAttributes>
-                                <items>
-                                    <navigationItem title="Settings" id="3Rz-PU-hty">
-                                        <barButtonItem key="rightBarButtonItem" style="done" systemItem="done" id="iTA-Rc-lqR">
-                                            <color key="tintColor" systemColor="systemTealColor"/>
-                                            <connections>
-                                                <action selector="doneButtonPressed:" destination="UAC-d8-kH1" id="ZcD-n9-kN0"/>
-                                            </connections>
-                                        </barButtonItem>
-                                    </navigationItem>
-                                </items>
-                            </navigationBar>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="exx-zG-j8V"/>
                         <color key="backgroundColor" name="myBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="crc-iE-wxV" firstAttribute="leading" secondItem="exx-zG-j8V" secondAttribute="leading" id="EQf-z7-qeE"/>
-                            <constraint firstItem="crc-iE-wxV" firstAttribute="trailing" secondItem="exx-zG-j8V" secondAttribute="trailing" id="PVJ-KJ-0xd"/>
+                            <constraint firstItem="rI9-iM-VtK" firstAttribute="top" secondItem="exx-zG-j8V" secondAttribute="top" id="QkT-GK-Kds"/>
                             <constraint firstItem="rI9-iM-VtK" firstAttribute="leading" secondItem="exx-zG-j8V" secondAttribute="leading" id="TEJ-FZ-t9Z"/>
-                            <constraint firstItem="rI9-iM-VtK" firstAttribute="top" secondItem="crc-iE-wxV" secondAttribute="bottom" id="ai7-qM-O85"/>
-                            <constraint firstItem="crc-iE-wxV" firstAttribute="top" secondItem="exx-zG-j8V" secondAttribute="top" id="mo6-WV-80s"/>
                             <constraint firstItem="exx-zG-j8V" firstAttribute="trailing" secondItem="rI9-iM-VtK" secondAttribute="trailing" id="qzz-TT-PmF"/>
                             <constraint firstItem="exx-zG-j8V" firstAttribute="bottom" secondItem="rI9-iM-VtK" secondAttribute="bottom" id="uFw-nD-LIE"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Settings" id="i6V-2I-fwg"/>
                     <connections>
-                        <outlet property="navBar" destination="crc-iE-wxV" id="XCp-re-xTB"/>
                         <outlet property="table" destination="rI9-iM-VtK" id="pdu-vX-mtI"/>
                     </connections>
                 </viewController>
