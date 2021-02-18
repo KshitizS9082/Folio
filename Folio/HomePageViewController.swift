@@ -327,21 +327,33 @@ class HomePageViewController: UIViewController {
         self.subBubTwoTwo.isHidden=true
         self.subBubThreeOne.isHidden=true
         self.subBubThreeTwo.isHidden=true
-        
+        //Selection of homePageDefault
         let homePageDefault = UserDefaults.standard.integer(forKey: "homePage_default_type")
-        segmentButtonSelected(segmentButtons[homePageDefault])
-//        switch homePageDefault {
-//        case 0:
-//            self.setupKanbanBubbles()
-//        case 1:
-//            self.setupWalletBubbles()
-//        case 2:
-//            self.setupHabitBubbles()
-//        case 3:
-//            self.setupJournalBubbles()
-//        default:
-//            self.setupKanbanBubbles()
-//        }
+//        segmentButtonSelected(segmentButtons[homePageDefault])
+        switch homePageDefault {
+        case 0:
+            self.setupKanbanBubbles()
+        case 1:
+            self.setupWalletBubbles()
+        case 2:
+            self.setupHabitBubbles()
+        case 3:
+            self.setupJournalBubbles()
+        default:
+            self.setupKanbanBubbles()
+        }
+        self.selectedSegment=homePageDefault
+        self.selectedSegmentIndicatorCenterXConstraint.isActive=false
+        let newConstr = self.selectedSegmentIndicatorView.centerXAnchor.constraint(equalTo: self.segmentButtons[self.selectedSegment].centerXAnchor)
+        newConstr.isActive=true
+        self.selectedSegmentIndicatorCenterXConstraint=newConstr
+        for ind in self.segmentButtons.indices{
+            if ind == self.selectedSegment{
+                segmentButtons[ind].alpha=1
+            }else{
+                segmentButtons[ind].alpha=0.35
+            }
+        }
     }
     
     func animateSetup(segmentIncreasing: Bool){

@@ -6708,7 +6708,7 @@
             </objects>
             <point key="canvasLocation" x="-4146.376811594203" y="-994.41964285714278"/>
         </scene>
-        <!--Home Page-->
+        <!--Home Default-->
         <scene sceneID="2qu-Yj-flg">
             <objects>
                 <viewController id="nwo-Gq-KKA" customClass="homepageDefaultChooserViewController" customModule="Folio" customModuleProvider="target" sceneMemberID="viewController">
@@ -6759,7 +6759,7 @@
                             <constraint firstItem="L7E-ld-dAL" firstAttribute="bottom" secondItem="kO1-qe-DL0" secondAttribute="bottom" id="gsB-ra-0w4"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Home Page" id="1XS-kp-PsM"/>
+                    <navigationItem key="navigationItem" title="Home Default" id="1XS-kp-PsM"/>
                     <connections>
                         <outlet property="tableView" destination="kO1-qe-DL0" id="m62-8w-ogb"/>
                     </connections>
