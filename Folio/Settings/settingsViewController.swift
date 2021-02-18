@@ -53,7 +53,18 @@ class settingsViewController: UIViewController, UITableViewDelegate, UITableView
             cell.awakeFromNib()
             return cell
         case 2:
-        let cell = table.dequeueReusableCell(withIdentifier: "preferedHome")!
+        let cell = table.dequeueReusableCell(withIdentifier: "themeChooserTVC")!
+            //setting darkmode/lightmode/automode
+            var istylye = "text for interface style"
+            let interfaceStyle = UserDefaults.standard.integer(forKey: "prefs_is_dark_mode_on")
+            if interfaceStyle==0{
+                istylye="Automatic"
+            }else if interfaceStyle==1{
+                istylye="Day Mode"
+            }else if interfaceStyle==2{
+                istylye="Night Mode"
+            }
+            cell.detailTextLabel?.text = istylye
         return cell
         case 3:
         let cell = table.dequeueReusableCell(withIdentifier: "cloudSwitchCell") as! settingSwitchTableViewCell
@@ -67,6 +78,9 @@ class settingsViewController: UIViewController, UITableViewDelegate, UITableView
         }
     }
     
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 100
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -87,16 +101,19 @@ class settingsViewController: UIViewController, UITableViewDelegate, UITableView
         }else if interfaceStyle==2{
             overrideUserInterfaceStyle = .dark
         }
+        
+        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        navigationController?.navigationBar.shadowImage = UIImage()
+        navigationController?.navigationBar.isTranslucent = true
+        let attrs = [
+            NSAttributedString.Key.foregroundColor: UIColor.systemGray,
+            NSAttributedString.Key.font: UIFont(name: "HelveticaNeue-Bold", size: 30)!
+        ]
+        self.navigationController?.navigationBar.titleTextAttributes = attrs
+        
+        table.reloadData()
     }
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
+    
 
 }
 class settingSwitchTableViewCell: UITableViewCell{
@@ -154,4 +171,5 @@ class settingSwitchTableViewCell: UITableViewCell{
             titleLabel.text="unknown type"
         }
     }
+    
 }
