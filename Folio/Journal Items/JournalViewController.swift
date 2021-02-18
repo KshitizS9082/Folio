@@ -20,6 +20,7 @@ struct journalCard: Codable {
     var journalLocationCard: locationJournalCard?
     var journalMediaCard: mediaJournalCard?
     var habitCard: habitJournalCard?
+    var kanbanCard: KanbanCard?
     //used for segue from PageExtractViewController to switchPageTimelineVC
 //    var pageID: pageInfo?
 }
@@ -74,6 +75,7 @@ enum journalCardType: String, Codable{
     case journalLocation
     case journalMedia
     case habits
+    case kanban
 }
 protocol addCardInJournalProtocol {
     func addMediaCell()
@@ -97,15 +99,56 @@ class JournalViewController: UIViewController {
     var allCards = [journalCard]()
     var journalEntryCards = [journalCard]()
     var habits = HabitsData()
+    var kanbanList = KanbanListInfo()
+    var boards = [(String,Kanban)]()
+    func loadKanbanBoards(){
+        if let url = try? FileManager.default.url(
+            for: .documentDirectory,
+            in: .userDomainMask,
+            appropriateFor: nil,
+            create: true
+        ).appendingPathComponent("KanbanList.json"){
+            print("trying to extract contents of jsonData")
+            if let jsonData = try? Data(contentsOf: url){
+                //                pageList = pageInfo(json: jsonData)
+                if let x = KanbanListInfo(json: jsonData){
+                    kanbanList = x
+                }else{
+                    print("WARNING: COULDN'T UNWRAP JSON DATA TO FIND PAGELIST")
+                }
+            }
+        }
+        boards.removeAll()
+        for ind in kanbanList.boardNames.indices{
+            let fileName = kanbanList.boardFileNames[ind]
+            let boardName = kanbanList.boardNames[ind]
+            if let url = try? FileManager.default.url(
+                for: .documentDirectory,
+                in: .userDomainMask,
+                appropriateFor: nil,
+                create: true
+            ).appendingPathComponent(fileName){
+                if let jsonData = try? Data(contentsOf: url){
+                    if let x = Kanban(json: jsonData){
+                        boards.append((boardName,x))
+                    }else{
+                        print("WARNING: COULDN'T UNWRAP JSON DATA TO FIND kanbanData in homepage")
+                    }
+                }
+            }
+        }
+    }
+    
     var selectedDate = Date()
     var cardsForSelectedDate = [journalCard]()
 //    var sizeType = cardSizeMode.full
     let locationManager = CLLocationManager()
 //    var typesToShow
     var showJournalCards = true
-    var showPageCards = true
+//    var showPageCards = true
     var showHabitCards = true
     var showWalletCards = true
+    var showKanbanCards = true
     
     @IBOutlet weak var backgroundImageView: UIImageView!{
         didSet{
@@ -195,8 +238,8 @@ class JournalViewController: UIViewController {
             self.setupSelectedDate()
             self.table.reloadData()
         }
-        let togglePage = UIAlertAction(title: self.showPageCards ? "Hide Page Cards": "Unhide Page Cards", style: .default) { (action) in
-            self.showPageCards  = !self.showPageCards
+        let togglePage = UIAlertAction(title: self.showKanbanCards ? "Hide Kanban Cards": "Unhide Kanban Cards", style: .default) { (action) in
+            self.showKanbanCards  = !self.showKanbanCards
             self.setupData()
             self.setupSelectedDate()
             self.table.reloadData()
@@ -248,10 +291,18 @@ class JournalViewController: UIViewController {
                 }
             }
         }
-//        print("self.cards ")
-//        for card in self.allCards{
-//            print(card)
-//        }
+        if showKanbanCards{
+            for boardTup in boards{
+                print("BT: \(boardTup.0), \(boardTup.1)")
+                for board in boardTup.1.boards{
+                    for card in board.items{
+                        if let date = card.scheduledDate{
+                            self.allCards.append(journalCard(type: .kanban,dateInCal: date, kanbanCard: card))
+                        }
+                    }
+                }
+            }
+        }
     }
     func setupSelectedDate(){
         cardsForSelectedDate.removeAll()
@@ -273,12 +324,12 @@ class JournalViewController: UIViewController {
     func setupTable(){
            table.dataSource=self
            table.delegate=self
-           table.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
-           table.register(UINib(nibName: "smallCardTitleTableViewCell", bundle: nil), forCellReuseIdentifier: "titleTextCell")
-           table.register(UINib(nibName: "SmallCardDatePickerTableViewCell", bundle: nil), forCellReuseIdentifier: "datePickerCell")
-           table.register(UINib(nibName: "ScardTimelineTableViewCell", bundle: nil), forCellReuseIdentifier: "smallCardCell")
-           table.register(UINib(nibName: "BigcardTimelineTableViewCell", bundle: nil), forCellReuseIdentifier: "bigCardCell")
-           table.register(UINib(nibName: "MediaCardTableViewCell", bundle: nil), forCellReuseIdentifier: "mediaCardCell")
+//           table.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+//           table.register(UINib(nibName: "smallCardTitleTableViewCell", bundle: nil), forCellReuseIdentifier: "titleTextCell")
+//           table.register(UINib(nibName: "SmallCardDatePickerTableViewCell", bundle: nil), forCellReuseIdentifier: "datePickerCell")
+//           table.register(UINib(nibName: "ScardTimelineTableViewCell", bundle: nil), forCellReuseIdentifier: "smallCardCell")
+//           table.register(UINib(nibName: "BigcardTimelineTableViewCell", bundle: nil), forCellReuseIdentifier: "bigCardCell")
+//           table.register(UINib(nibName: "MediaCardTableViewCell", bundle: nil), forCellReuseIdentifier: "mediaCardCell")
 //           table.backgroundColor = pageColor
            table.rowHeight = UITableView.automaticDimension
        }
@@ -320,14 +371,6 @@ class JournalViewController: UIViewController {
         navigationController?.navigationBar.isTranslucent = true
         
         navigationController?.hidesBarsOnSwipe=true
-//        let attrs = [
-//            NSAttributedString.Key.foregroundColor: UIColor(named: "calendarAccent") ?? UIColor.red,
-//            NSAttributedString.Key.font: UIFont(name: "HelveticaNeue-Bold", size: 30)!
-//        ]
-
-//        UINavigationBar.appearance().titleTextAttributes = attrs
-        
-        
         if let url = try? FileManager.default.url(
             for: .documentDirectory,
             in: .userDomainMask,
@@ -363,6 +406,7 @@ class JournalViewController: UIViewController {
                 print("error no file named habitCardsData.json found")
             }
         }
+        loadKanbanBoards()
         
         setupData()
         setupTable()
@@ -580,6 +624,8 @@ extension JournalViewController: UITableViewDataSource, UITableViewDelegate{
             return setJournalLocationCardCell(tableView, cellForRowAt: indexPath)
         case .habits:
             return setJournalHabitCardCell(tableView, cellForRowAt: indexPath)
+        case .kanban:
+            return setKanbanCardCell(tableView, cellForRowAt: indexPath)
         default:
             print("i dunno what card this is x")
         }
@@ -668,7 +714,14 @@ extension JournalViewController: UITableViewDataSource, UITableViewDelegate{
         }
         return cell
     }
-    
+    func setKanbanCardCell(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell{
+         let cell = tableView.dequeueReusableCell(withIdentifier: "kabanTableCell", for: indexPath) as! CardTableViewCell
+        let card = cardsForSelectedDate[indexPath.row]
+        cell.delegate=self
+        cell.card = card.kanbanCard!
+        cell.setupCard()
+        return cell
+    }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.table.deselectRow(at: indexPath, animated: false)
     }
@@ -935,6 +988,28 @@ extension JournalViewController: CLLocationManagerDelegate,MKMapViewDelegate{
 
         //centerMap(locValue)
     }
+}
+extension JournalViewController: tableCardDeletgate{
+    func updateHeights() {
+        // Disabling animations gives us our desired behaviour
+        UIView.setAnimationsEnabled(false)
+        /* These will causes table cell heights to be recaluclated,
+         without reloading the entire cell */
+        table.beginUpdates()
+        table.endUpdates()
+        // Re-enable animations
+        UIView.setAnimationsEnabled(true)
+    }
+    
+    func updateCard(to newCard: KanbanCard) {
+        print("won't do here")
+    }
+    
+    func deleteCard(newCard: KanbanCard) {
+        print("won't do here")
+    }
+    
+    
 }
 extension JournalViewController: ImagePickerDelegate{
     func wrapperDidPress(_ imagePicker: ImagePickerController, images: [UIImage]) {
