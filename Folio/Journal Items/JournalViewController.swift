@@ -90,6 +90,7 @@ protocol addCardInJournalProtocol {
     func updateJournalLocationNotesEntry(at index: IndexPath, with text: String)
     func getJournalLocation(at index: IndexPath)
     func setJournalLocation(at index: IndexPath, to locations: [CodableMKPointAnnotation])
+    func deleteJournalCard(at index: IndexPath)
 }
 
 class JournalViewController: UIViewController {
@@ -293,7 +294,6 @@ class JournalViewController: UIViewController {
         }
         if showKanbanCards{
             for boardTup in boards{
-                print("BT: \(boardTup.0), \(boardTup.1)")
                 for board in boardTup.1.boards{
                     for card in board.items{
                         if let date = card.scheduledDate{
@@ -313,11 +313,11 @@ class JournalViewController: UIViewController {
             }
         }
         cardsForSelectedDate.sort { (firstCard, secondCard) -> Bool in
-            if firstCard.type == .habits{
-                return false
-            }else if secondCard.type == .habits{
-                return true
-            }
+//            if firstCard.type == .habits{
+//                return false
+//            }else if secondCard.type == .habits{
+//                return true
+//            }
             return firstCard.dateInCal! < secondCard.dateInCal!
         }
     }
@@ -631,7 +631,23 @@ extension JournalViewController: UITableViewDataSource, UITableViewDelegate{
         }
         return UITableViewCell()
     }
-    
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        if indexPath.section==1 || (cardsForSelectedDate[indexPath.row].type != .notes && cardsForSelectedDate[indexPath.row].type != .journalMedia && cardsForSelectedDate[indexPath.row].type != .journalLocation){
+            let configuration = UISwipeActionsConfiguration(actions: [])
+            return configuration
+        }
+        let action = UIContextualAction(style: .destructive, title: "Delete",
+                                        handler: { (action, view, completionHandler) in
+                                            self.deleteJournalCard(at: indexPath)
+//                                            self.tableView.beginUpdates()
+//                                            self.tableView.deleteRows(at: [indexPath], with: .automatic)
+//                                            self.tableView.endUpdates()
+                                            completionHandler(true)
+        })
+        action.backgroundColor = .systemRed
+        let configuration = UISwipeActionsConfiguration(actions: [action])
+        return configuration
+    }
    
     func setNotesCardCell(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell{
          let cell = tableView.dequeueReusableCell(withIdentifier: "journalNotesTVC", for: indexPath) as! journalNotesTableViewCell
@@ -729,6 +745,35 @@ extension JournalViewController: UITableViewDataSource, UITableViewDelegate{
 
 
 extension JournalViewController: addCardInJournalProtocol{
+    func deleteJournalCard(at index: IndexPath) {
+//        cardsForSelectedDate[index.row].journalMediaCard!.notesText=text
+        var notFoundInjournalEntryCards=true
+        for ind in journalEntryCards.indices{
+            let card =  journalEntryCards[ind]
+            if ((cardsForSelectedDate[index.row].journalNotesCard != nil) && card.journalNotesCard?.UniquIdentifier==cardsForSelectedDate[index.row].journalNotesCard?.UniquIdentifier) ||
+                ((cardsForSelectedDate[index.row].journalMediaCard != nil) && card.journalMediaCard?.UniquIdentifier==cardsForSelectedDate[index.row].journalMediaCard?.UniquIdentifier) ||
+                ((cardsForSelectedDate[index.row].journalLocationCard != nil) && card.journalLocationCard?.UniquIdentifier==cardsForSelectedDate[index.row].journalLocationCard?.UniquIdentifier)
+                {
+                print("found journal entry to delete: \(journalEntryCards[ind])")
+                notFoundInjournalEntryCards=false
+                journalEntryCards.remove(at: ind)
+                break
+            }
+        }
+        if notFoundInjournalEntryCards{
+            print("ERROR: JOURNAL CARD TO DELETE NOT FOUND IN journalEntryCards")
+            return
+        }
+        print("remove at index: \(index): \(cardsForSelectedDate[index.row])")
+        cardsForSelectedDate.remove(at: index.row)
+        self.setupData()
+//        self.setupSelectedDate()
+//        self.table.reloadData()
+        self.table.beginUpdates()
+        self.table.deleteRows(at: [index], with: .automatic)
+        self.table.endUpdates()
+    }
+    
     
     func showJournalFullView(at index: IndexPath) {
         selectedCell=index.row
