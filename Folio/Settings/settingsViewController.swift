@@ -67,10 +67,20 @@ class settingsViewController: UIViewController, UITableViewDelegate, UITableView
             cell.detailTextLabel?.text = istylye
         return cell
         case 3:
-        let cell = table.dequeueReusableCell(withIdentifier: "cloudSwitchCell") as! settingSwitchTableViewCell
-        cell.delegate=self
-        cell.type = .hapticFeedBack
-        cell.awakeFromNib()
+            let cell = table.dequeueReusableCell(withIdentifier: "homeDefaultChooserTVC")!
+            let homePageDefault = UserDefaults.standard.integer(forKey: "homePage_default_type")
+            switch homePageDefault {
+            case 0:
+                cell.detailTextLabel?.text = "Kanban"
+            case 1:
+                cell.detailTextLabel?.text = "Finance"
+            case 2:
+                cell.detailTextLabel?.text = "Habits"
+            case 3:
+                cell.detailTextLabel?.text = "Journal"
+            default:
+                cell.backgroundColor = .red
+            }
         return cell
         default:
             let cell = UITableViewCell()

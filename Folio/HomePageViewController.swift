@@ -327,7 +327,21 @@ class HomePageViewController: UIViewController {
         self.subBubTwoTwo.isHidden=true
         self.subBubThreeOne.isHidden=true
         self.subBubThreeTwo.isHidden=true
-        self.setupKanbanBubbles()
+        
+        let homePageDefault = UserDefaults.standard.integer(forKey: "homePage_default_type")
+        segmentButtonSelected(segmentButtons[homePageDefault])
+//        switch homePageDefault {
+//        case 0:
+//            self.setupKanbanBubbles()
+//        case 1:
+//            self.setupWalletBubbles()
+//        case 2:
+//            self.setupHabitBubbles()
+//        case 3:
+//            self.setupJournalBubbles()
+//        default:
+//            self.setupKanbanBubbles()
+//        }
     }
     
     func animateSetup(segmentIncreasing: Bool){
