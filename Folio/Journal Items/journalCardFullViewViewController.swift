@@ -31,6 +31,17 @@ class journalCardFullViewViewController: UIViewController, UITableViewDataSource
         // register for notifications when the keyboard appears:
         NotificationCenter.default.addObserver( self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
     }
+    override func viewWillAppear(_ animated: Bool) {
+        //setting darkmode/lightmode/automode
+        let interfaceStyle = UserDefaults.standard.integer(forKey: "prefs_is_dark_mode_on")
+        if interfaceStyle==0{
+            overrideUserInterfaceStyle = .unspecified
+        }else if interfaceStyle==1{
+            overrideUserInterfaceStyle = .light
+        }else if interfaceStyle==2{
+            overrideUserInterfaceStyle = .dark
+        }
+    }
     @objc func keyboardWillShow( note:NSNotification ){
         // read the CGRect from the notification (if any)
         if let newFrame = (note.userInfo?[ UIResponder.keyboardFrameEndUserInfoKey ] as? NSValue)?.cgRectValue {

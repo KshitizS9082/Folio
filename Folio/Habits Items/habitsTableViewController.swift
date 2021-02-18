@@ -19,7 +19,17 @@ class habitsTableViewController: UITableViewController {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
-
+    override func viewWillAppear(_ animated: Bool) {
+        //setting darkmode/lightmode/automode
+        let interfaceStyle = UserDefaults.standard.integer(forKey: "prefs_is_dark_mode_on")
+        if interfaceStyle==0{
+            overrideUserInterfaceStyle = .unspecified
+        }else if interfaceStyle==1{
+            overrideUserInterfaceStyle = .light
+        }else if interfaceStyle==2{
+            overrideUserInterfaceStyle = .dark
+        }
+    }
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {

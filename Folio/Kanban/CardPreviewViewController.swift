@@ -63,6 +63,17 @@ class CardPreviewViewController: UIViewController {
         delegate?.saveCard(to: card)
         self.dismiss(animated: true, completion: nil)
     }
+    override func viewWillAppear(_ animated: Bool) {
+        //setting darkmode/lightmode/automode
+        let interfaceStyle = UserDefaults.standard.integer(forKey: "prefs_is_dark_mode_on")
+        if interfaceStyle==0{
+            overrideUserInterfaceStyle = .unspecified
+        }else if interfaceStyle==1{
+            overrideUserInterfaceStyle = .light
+        }else if interfaceStyle==2{
+            overrideUserInterfaceStyle = .dark
+        }
+    }
     override func viewWillDisappear(_ animated: Bool) {
         delegate?.saveCard(to: card)
     }

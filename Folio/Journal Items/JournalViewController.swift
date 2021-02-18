@@ -364,6 +364,15 @@ class JournalViewController: UIViewController {
         calendarView.viewWillTransition(to: .zero, with: coordinator, anchorDate: visibleDates.monthDates.first?.date)
     }
     override func viewWillAppear(_ animated: Bool) {
+        //setting darkmode/lightmode/automode
+        let interfaceStyle = UserDefaults.standard.integer(forKey: "prefs_is_dark_mode_on")
+        if interfaceStyle==0{
+            overrideUserInterfaceStyle = .unspecified
+        }else if interfaceStyle==1{
+            overrideUserInterfaceStyle = .light
+        }else if interfaceStyle==2{
+            overrideUserInterfaceStyle = .dark
+        }
         print("in viewwillappear")
         // Make the navigation bar background clear
         navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)

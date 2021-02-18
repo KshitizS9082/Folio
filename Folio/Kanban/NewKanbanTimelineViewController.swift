@@ -72,7 +72,15 @@ class NewKanbanTimelineViewController: UIViewController {
         tableView.reloadData()
     }
     override func viewWillAppear(_ animated: Bool) {
-        print("viewwilalal newkanbantimelinevc")
+        //setting darkmode/lightmode/automode
+        let interfaceStyle = UserDefaults.standard.integer(forKey: "prefs_is_dark_mode_on")
+        if interfaceStyle==0{
+            overrideUserInterfaceStyle = .unspecified
+        }else if interfaceStyle==1{
+            overrideUserInterfaceStyle = .light
+        }else if interfaceStyle==2{
+            overrideUserInterfaceStyle = .dark
+        }
         if let url = try? FileManager.default.url(
             for: .documentDirectory,
             in: .userDomainMask,
@@ -95,7 +103,6 @@ class NewKanbanTimelineViewController: UIViewController {
         
         if let wallpath = self.kanban.wallpaperPath{
             DispatchQueue.global(qos: .background).async {
-            print("got wall path")
                 if let url = try? FileManager.default.url(
                     for: .documentDirectory,
                     in: .userDomainMask,

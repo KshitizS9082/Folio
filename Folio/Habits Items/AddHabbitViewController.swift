@@ -51,6 +51,17 @@ class AddHabbitViewController: UIViewController {
         table.separatorStyle = .none
         // Do any additional setup after loading the view.
     }
+    override func viewWillAppear(_ animated: Bool) {
+        //setting darkmode/lightmode/automode
+        let interfaceStyle = UserDefaults.standard.integer(forKey: "prefs_is_dark_mode_on")
+        if interfaceStyle==0{
+            overrideUserInterfaceStyle = .unspecified
+        }else if interfaceStyle==1{
+            overrideUserInterfaceStyle = .light
+        }else if interfaceStyle==2{
+            overrideUserInterfaceStyle = .dark
+        }
+    }
     @IBAction func handleCancelButton(_ sender: Any) {
         print("in handle cancel")
         unSetReminder()

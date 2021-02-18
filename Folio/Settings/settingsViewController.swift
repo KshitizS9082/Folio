@@ -53,7 +53,7 @@ class settingsViewController: UIViewController, UITableViewDelegate, UITableView
             cell.awakeFromNib()
             return cell
         case 2:
-        let cell = table.dequeueReusableCell(withIdentifier: "lockCell")!
+        let cell = table.dequeueReusableCell(withIdentifier: "preferedHome")!
         return cell
         case 3:
         let cell = table.dequeueReusableCell(withIdentifier: "cloudSwitchCell") as! settingSwitchTableViewCell
@@ -78,7 +78,16 @@ class settingsViewController: UIViewController, UITableViewDelegate, UITableView
         self.dismiss(animated: true, completion: nil)
     }
     
-
+    override func viewWillAppear(_ animated: Bool) {
+        let interfaceStyle = UserDefaults.standard.integer(forKey: "prefs_is_dark_mode_on")
+        if interfaceStyle==0{
+            overrideUserInterfaceStyle = .unspecified
+        }else if interfaceStyle==1{
+            overrideUserInterfaceStyle = .light
+        }else if interfaceStyle==2{
+            overrideUserInterfaceStyle = .dark
+        }
+    }
     /*
     // MARK: - Navigation
 

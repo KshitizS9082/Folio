@@ -12,6 +12,15 @@ class wallletTabBarController: UITabBarController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        //setting darkmode/lightmode/automode
+        let interfaceStyle = UserDefaults.standard.integer(forKey: "prefs_is_dark_mode_on")
+        if interfaceStyle==0{
+            overrideUserInterfaceStyle = .unspecified
+        }else if interfaceStyle==1{
+            overrideUserInterfaceStyle = .light
+        }else if interfaceStyle==2{
+            overrideUserInterfaceStyle = .dark
+        }
         setupMiddleButton()
 //        self.tabBar.isTranslucent=true
 //        let blurEffect = UIBlurEffect(style: .systemUltraThinMaterialDark)

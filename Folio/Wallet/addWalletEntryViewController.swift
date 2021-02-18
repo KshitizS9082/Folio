@@ -92,6 +92,17 @@ class addWalletEntryViewController: UIViewController {
             incomeExpenseSegmentControl.selectedSegmentIndex=1
         }
     }
+    override func viewWillAppear(_ animated: Bool) {
+        //setting darkmode/lightmode/automode
+        let interfaceStyle = UserDefaults.standard.integer(forKey: "prefs_is_dark_mode_on")
+        if interfaceStyle==0{
+            overrideUserInterfaceStyle = .unspecified
+        }else if interfaceStyle==1{
+            overrideUserInterfaceStyle = .light
+        }else if interfaceStyle==2{
+            overrideUserInterfaceStyle = .dark
+        }
+    }
     @IBAction func handleCancelTap(_ sender: Any) {
         let fileManager = FileManager.default
         if let fileName = self.entry.imageURL{

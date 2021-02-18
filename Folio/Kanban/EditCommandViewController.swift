@@ -52,6 +52,17 @@ class EditCommandViewController: UIViewController, EditCommandVCProtocol {
         command.execution.append(newAction)
         tableView.reloadData()
     }
+    override func viewWillAppear(_ animated: Bool) {
+        //setting darkmode/lightmode/automode
+        let interfaceStyle = UserDefaults.standard.integer(forKey: "prefs_is_dark_mode_on")
+        if interfaceStyle==0{
+            overrideUserInterfaceStyle = .unspecified
+        }else if interfaceStyle==1{
+            overrideUserInterfaceStyle = .light
+        }else if interfaceStyle==2{
+            overrideUserInterfaceStyle = .dark
+        }
+    }
     override func viewWillLayoutSubviews() {
         print("Edditcommand gonna retrieve kanban with file: \(kanbanFileName)")
         if let url = try? FileManager.default.url(

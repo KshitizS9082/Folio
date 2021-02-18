@@ -34,15 +34,19 @@ class themeChooserViewController: UIViewController, UITableViewDataSource, UITab
         }
         return cell
     }
+    @objc func setAutoMode(){
+        UserDefaults.standard.set(0, forKey: "prefs_is_dark_mode_on")
+        overrideUserInterfaceStyle = .unspecified
+    }
     @objc func setDayMode(){
+        UserDefaults.standard.set(1, forKey: "prefs_is_dark_mode_on")
          overrideUserInterfaceStyle = .light
     }
     @objc func setNightMode(){
         overrideUserInterfaceStyle = .dark
+        UserDefaults.standard.set(2, forKey: "prefs_is_dark_mode_on")
     }
-    @objc func setAutoMode(){
-        overrideUserInterfaceStyle = .unspecified
-    }
+    
     @IBAction func donePressed(_ sender: UIBarButtonItem) {
         dismiss(animated: true) {
             //Do post dismissing
@@ -64,7 +68,17 @@ class themeChooserViewController: UIViewController, UITableViewDataSource, UITab
 
         // Do any additional setup after loading the view.
     }
-    
+    override func viewWillAppear(_ animated: Bool) {
+        //setting darkmode/lightmode/automode
+        let interfaceStyle = UserDefaults.standard.integer(forKey: "prefs_is_dark_mode_on")
+        if interfaceStyle==0{
+            overrideUserInterfaceStyle = .unspecified
+        }else if interfaceStyle==1{
+            overrideUserInterfaceStyle = .light
+        }else if interfaceStyle==2{
+            overrideUserInterfaceStyle = .dark
+        }
+    }
 
     /*
     // MARK: - Navigation
