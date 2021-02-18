@@ -7,19 +7,7 @@
 //
 
 import UIKit
-//extension UIImageView {
-//    func applyshadowWithCorner(containerView : UIView, cornerRadious : CGFloat){
-//        containerView.clipsToBounds = false
-//        containerView.layer.shadowColor = UIColor.black.cgColor
-//        containerView.layer.shadowOpacity = 1
-//        containerView.layer.shadowOffset = CGSize.zero
-//        containerView.layer.shadowRadius = 10
-//        containerView.layer.cornerRadius = cornerRadious
-//        containerView.layer.shadowPath = UIBezierPath(roundedRect: containerView.bounds, cornerRadius: cornerRadious).cgPath
-//        self.clipsToBounds = true
-//        self.layer.cornerRadius = cornerRadious
-//    }
-//}
+import LocalAuthentication
 class HomePageViewController: UIViewController {
     
     @IBOutlet weak var backgroundImageView: UIImageView!{
@@ -27,6 +15,7 @@ class HomePageViewController: UIViewController {
             backgroundImageView.addBlurEffect(with: .systemUltraThinMaterial)
         }
     }
+    @IBOutlet weak var menuButton: UIBarButtonItem!
     
     @IBOutlet weak var segmentBackgroundView: UIView!{
         didSet{
@@ -299,6 +288,20 @@ class HomePageViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        //Locking related
+        if appIsUnlocked==false{
+            let name = UserDefaults.standard.bool(forKey: "AppIsLocked")
+            if name{
+                self.appIsUnlocked = false
+                menuButton.isEnabled=false
+                authenticateApp()
+            }else{
+                self.lockingView.isHidden=true
+            }
+        }else{
+            self.lockingView.isHidden=true
+        }
+        //
         navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
         navigationController?.navigationBar.shadowImage = UIImage()
         navigationController?.navigationBar.isTranslucent = true
@@ -740,5 +743,51 @@ class HomePageViewController: UIViewController {
         return returnStr
     }
     
+    //Locking related functions
+    var appIsUnlocked=false
+    @IBOutlet weak var lockingView: UIView!{
+        didSet{
+            lockingView.addBlurEffect(with: .systemChromeMaterial)
+        }
+    }
+    @IBAction func authenticatButtonTapped(_ sender: Any) {
+        authenticateApp()
+    }
+    func authenticateApp(){
+        //user authentication to unlock app
+        if !appIsUnlocked{
+            let myContext = LAContext()
+            let myLocalizedReasonString = "Biometric Authntication testing !! "
+            
+            var authError: NSError?
+            if #available(iOS 8.0, macOS 10.12.1, *) {
+                if myContext.canEvaluatePolicy(.deviceOwnerAuthentication, error: &authError) {
+                    myContext.evaluatePolicy(.deviceOwnerAuthentication, localizedReason: myLocalizedReasonString) { [weak self] success, evaluateError in
+                        
+                        DispatchQueue.main.async {
+                            if success {
+                                // User authenticated successfully, take appropriate action
+                                self?.appIsUnlocked=true
+                                self?.lockingView.isHidden=true
+                                self?.menuButton.isEnabled=true
+                                print("Awesome!!... User authenticated successfully")
+                            } else {
+                                // User did not authenticate successfully, look at error and take appropriate action
+                                print("Sorry!!... User did not authenticate successfully")
+                            }
+                        }
+                    }
+                } else {
+                    // Could not evaluate policy; look at authError and present an appropriate message to user
+                    self.appIsUnlocked=true
+                    self.lockingView.isHidden=true
+                    print("Sorry!!.. Could not evaluate policy.")
+                }
+            } else {
+                // Fallback on earlier versions
+                print("Ooops!!.. This feature is not supported.")
+            }
+        }
+    }
     
 }
