@@ -237,6 +237,19 @@ class HomePageViewController: UIViewController {
     @IBOutlet weak var bubbleThreeOneLabel: UILabel!
     @IBOutlet weak var bubbleThreeTwoLabel: UILabel!
     @IBOutlet weak var bubbleThreeSubLabel: UILabel!
+    @IBOutlet weak var bubbleThreeIMOne: UIImageView!{
+        didSet{
+            bubbleThreeIMOne.layer.cornerRadius = bubbleThreeIMOne.layer.frame.width/2.0
+            bubbleThreeIMOne.layer.opacity=0.75
+        }
+    }
+    @IBOutlet weak var bubbleThreeIMTwo: UIImageView!{
+        didSet{
+            bubbleThreeIMTwo.layer.cornerRadius = bubbleThreeIMTwo.layer.frame.width/2.0
+            bubbleThreeIMTwo.layer.opacity=0.75
+        }
+    }
+    
     @IBOutlet weak var bubbleThreeLeadingConstraint: NSLayoutConstraint!
     
     @IBOutlet weak var goToViewIV: UIImageView!{
@@ -284,7 +297,20 @@ class HomePageViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        loadKanbanBoards()
+//        loadKanbanBoards()
+//        let homePageDefault = UserDefaults.standard.integer(forKey: "homePage_default_type")
+//        switch homePageDefault {
+//        case 0:
+//            self.loadKanbanBoards()
+//        case 1:
+//            self.loadWallet()
+//        case 2:
+//            self.loadHabitCards()
+//        case 3:
+//            self.loadJournalCards()
+//        default:
+//            self.loadKanbanBoards()
+//        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -327,19 +353,25 @@ class HomePageViewController: UIViewController {
         self.subBubTwoTwo.isHidden=true
         self.subBubThreeOne.isHidden=true
         self.subBubThreeTwo.isHidden=true
+        self.bubbleThreeIMOne.isHidden=true
+        self.bubbleThreeIMTwo.isHidden=true
         //Selection of homePageDefault
         let homePageDefault = UserDefaults.standard.integer(forKey: "homePage_default_type")
-//        segmentButtonSelected(segmentButtons[homePageDefault])
         switch homePageDefault {
         case 0:
+            self.loadKanbanBoards()
             self.setupKanbanBubbles()
         case 1:
+            self.loadWallet()
             self.setupWalletBubbles()
         case 2:
+            self.loadHabitCards()
             self.setupHabitBubbles()
         case 3:
+            self.loadJournalCards()
             self.setupJournalBubbles()
         default:
+            self.loadKanbanBoards()
             self.setupKanbanBubbles()
         }
         self.selectedSegment=homePageDefault
@@ -377,6 +409,8 @@ class HomePageViewController: UIViewController {
             self.subBubTwoTwo.isHidden=true
             self.subBubThreeOne.isHidden=true
             self.subBubThreeTwo.isHidden=true
+            self.bubbleThreeIMOne.isHidden=true
+            self.bubbleThreeIMTwo.isHidden=true
             if self.selectedSegment==0{
                 self.setupKanbanBubbles()
             }else if self.selectedSegment==1{
@@ -581,13 +615,46 @@ class HomePageViewController: UIViewController {
         if mediaCards.count>0{
             subBubThreeOne.isHidden=false
             bubbleThreeOneLabel.text="\(formatter.string(from: mediaCards[0].1)) : \(mediaCards[0].0.notesText)"
+            setImage(for: bubbleThreeIMOne, with: mediaCards[0].0)
         }
         if mediaCards.count>1{
             subBubThreeTwo.isHidden=false
             bubbleThreeTwoLabel.text="\(formatter.string(from: mediaCards[1].1)) : \(mediaCards[1].0.notesText)"
+            setImage(for: bubbleThreeIMTwo, with: mediaCards[1].0)
         }
     }
-    
+    func setImage(for targetImageView: UIImageView,with mediaCard: mediaJournalCard){
+        if mediaCard.imageFileName.count>0 {
+            let fileName = mediaCard.imageFileName[0]
+            targetImageView.isHidden=false
+            DispatchQueue.global(qos: .background).async {
+                if let url = try? FileManager.default.url(
+                    for: .documentDirectory,
+                    in: .userDomainMask,
+                    appropriateFor: nil,
+                    create: true
+                ).appendingPathComponent(fileName){
+                    if let jsonData = try? Data(contentsOf: url){
+                        if let extract = imageData(json: jsonData){
+                            if let image = UIImage(data: extract.data){
+                                DispatchQueue.main.async {
+//                                    cell.journalImage.image=image
+//                                    cell.journalImage.setupImageViewer(images: [image])
+//                                    cell.awakeFromNib()
+                                    targetImageView.image = image
+                                    targetImageView.setupImageViewer(images: [image])
+                                }
+                            }else{
+                                print("couldn't get UIImage from extrated data, check if sure this file doesn't exist and if so delete it from array")
+                            }
+                        }else{
+                            print("couldnt get json from URL")
+                        }
+                    }
+                }
+            }
+        }
+    }
     var walletData = WalletData()
     func loadWallet(){
         if let url = try? FileManager.default.url(
